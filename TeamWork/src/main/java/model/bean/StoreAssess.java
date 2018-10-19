@@ -44,7 +44,6 @@ public class StoreAssess {
 	
 	public StoreAssess() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public StoreAssess(Integer id, String storeassessPoint, String storeassessContent, Integer storeassessPointee,
