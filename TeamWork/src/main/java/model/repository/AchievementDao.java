@@ -1,4 +1,4 @@
-package model.repository.dao;
+package model.repository;
 
 
 import java.sql.SQLException;
@@ -10,6 +10,6 @@ public interface AchievementDao {
 	public List<Achievement> select() throws SQLException;
 	public Achievement select(Integer id) throws SQLException;
 	public Achievement insert(Achievement bean) throws SQLException;
-	public Achievement update(Integer id, String context, Integer bouns, Integer parentsId) throws SQLException;
+	public Achievement update(Integer id, String context, Integer bonus, Integer parentsId) throws SQLException;
 	public boolean delete(Integer id) throws SQLException;
 }

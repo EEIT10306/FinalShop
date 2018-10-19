@@ -26,7 +26,7 @@ public class CommitAchievement {
 	Integer memberID;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "achID", insertable = false, updatable = false)
+	@JoinColumn(name = "ach_ID", insertable = false, updatable = false)
 	Achievement ach;
 
 	public CommitAchievement() {}
@@ -39,7 +39,7 @@ public class CommitAchievement {
 	
 	@Override
 	public String toString() {
-		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID + "]";
+		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -66,11 +66,11 @@ public class CommitAchievement {
 		this.memberID = memberID;
 	}
 
-	public Achievement getAch() {
-		return ach;
-	}
-
 	public void setAch(Achievement ach) {
 		this.ach = ach;
+	}
+
+	public Achievement getAch() {
+		return ach;
 	}
 }

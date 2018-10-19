@@ -1,4 +1,4 @@
-package model.repository.dao;
+package model.repository;
 
 
 import java.sql.SQLException;

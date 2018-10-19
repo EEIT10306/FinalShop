@@ -1,4 +1,4 @@
-package model.repository;
+package model.repository.Impl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
 import model.bean.Achievement;
-import model.repository.dao.AchievementDao;
+import model.repository.AchievementDao;
 @Repository
 public class AchievementDaoImpl implements AchievementDao {
 	@Autowired
@@ -29,10 +29,10 @@ public class AchievementDaoImpl implements AchievementDao {
 		AchievementDaoImpl dao = ctx.getBean(AchievementDaoImpl.class);
 		dao.getSession().beginTransaction();
 			
-//		System.out.println(dao.select());//selectAll
+		System.out.println(dao.select());//selectAll
 //				
-		Achievement ach = new Achievement(null,"成就的內容", 10, null);
-		System.out.println(dao.getSession().save(ach));//insert
+//		Achievement ach = new Achievement(null,"成就的內容", 10, null);
+//		System.out.println(dao.getSession().save(ach));//insert
 //				
 //		System.out.println(dao.select(1));//selectOne
 		
@@ -60,7 +60,7 @@ public class AchievementDaoImpl implements AchievementDao {
 	}
 
 	@Override
-	public Achievement update(Integer id, String context, Integer bouns, Integer parentsId) throws SQLException {
+	public Achievement update(Integer id, String context, Integer bonus, Integer parentsId) throws SQLException {
 		return null;
 	}
 
