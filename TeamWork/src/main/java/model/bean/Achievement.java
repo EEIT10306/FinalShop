@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Achievement")
 public class Achievement {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ach_ID", columnDefinition = "int")
