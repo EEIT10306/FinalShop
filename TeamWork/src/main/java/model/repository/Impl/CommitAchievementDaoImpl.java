@@ -1,4 +1,4 @@
-package model.repository;
+package model.repository.Impl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,8 +12,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
+import model.bean.Achievement;
 import model.bean.CommitAchievement;
-import model.repository.dao.CommitAchievementDao;
+import model.repository.CommitAchievementDao;
 
 @Repository
 public class CommitAchievementDaoImpl implements CommitAchievementDao {
@@ -31,11 +32,11 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 		dao.getSession().beginTransaction();
 
 //		System.out.println(dao.select());//selectAll
-//				
-		CommitAchievement comAch = new CommitAchievement(1, 1 , 1);
-		System.out.println(dao.getSession().save(comAch));// insert
-//				
-//		System.out.println(dao.select(1));//selectOne
+				
+//		CommitAchievement comAch = new CommitAchievement(1, 1 , 2);
+//		System.out.println(dao.getSession().save(comAch));// insert
+//		
+		System.out.println(dao.select(1));//selectOne
 
 		dao.getSession().getTransaction().commit();
 		((ConfigurableApplicationContext) ctx).close();
