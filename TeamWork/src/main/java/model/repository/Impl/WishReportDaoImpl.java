@@ -12,11 +12,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
-import model.bean.StoreReport;
-import model.repository.StoreReportDao;
+import model.bean.WishReport;
+import model.repository.WishReportDao;
 
 @Repository
-public class StoreReportDaoImpl implements StoreReportDao {
+public class WishReportDaoImpl implements WishReportDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -27,7 +27,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 	public static void main(String[] args) throws SQLException {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 
-		StoreReportDaoImpl dao = ctx.getBean(StoreReportDaoImpl.class);
+		WishReportDaoImpl dao = ctx.getBean(WishReportDaoImpl.class);
 		dao.getSession().beginTransaction();
 			
 		System.out.println(dao.select());//selectAll
@@ -42,19 +42,19 @@ public class StoreReportDaoImpl implements StoreReportDao {
 	}
 	
 	@Override
-	public List<StoreReport> select() throws SQLException {
-		return getSession().createQuery("from StoreReport", StoreReport.class).setMaxResults(50).list();
+	public List<WishReport> select() throws SQLException {
+		return getSession().createQuery("from WishReport", WishReport.class).setMaxResults(50).list();
 	}
 
 	@Override
-	public StoreReport select(Integer id) throws SQLException {
-		return getSession().get(StoreReport.class, id);
+	public WishReport select(Integer id) throws SQLException {
+		return getSession().get(WishReport.class, id);
 	}
 
 	@Override
-	public StoreReport insert(StoreReport bean) throws SQLException {
-		StoreReport storeReport = getSession().get(StoreReport.class, bean.getId());
-		if(storeReport==null) {
+	public WishReport insert(WishReport bean) throws SQLException {
+		WishReport wishReport = getSession().get(WishReport.class, bean.getId());
+		if(wishReport==null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -62,22 +62,22 @@ public class StoreReportDaoImpl implements StoreReportDao {
 	}
 
 	@Override
-	public StoreReport update(Integer id, String content) throws SQLException {
-		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
-		if(storeReport != null) {
-			storeReport.setId(id);
-			storeReport.setContent(content);
-			getSession().update(storeReport);
-			return storeReport;
+	public WishReport update(Integer id, String content) throws SQLException {
+		WishReport wishReport = this.getSession().get(WishReport.class, id);
+		if(wishReport != null) {
+			wishReport.setId(id);
+			wishReport.setContent(content);
+			getSession().update(wishReport);
+			return wishReport;
 		}
 		return null;
 	}
 
 	@Override
 	public boolean delete(Integer id) throws SQLException {
-		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
-		if(storeReport != null) {
-			getSession().delete(storeReport);
+		WishReport wishReport = this.getSession().get(WishReport.class, id);
+		if(wishReport != null) {
+			getSession().delete(wishReport);
 			return true;
 		}
 		return false;

@@ -12,11 +12,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
-import model.bean.StoreReport;
-import model.repository.StoreReportDao;
+import model.bean.GroupReport;
+import model.repository.GroupReportDao;
 
 @Repository
-public class StoreReportDaoImpl implements StoreReportDao {
+public class GroupReportDaoImpl implements GroupReportDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -27,7 +27,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 	public static void main(String[] args) throws SQLException {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 
-		StoreReportDaoImpl dao = ctx.getBean(StoreReportDaoImpl.class);
+		GroupReportDaoImpl dao = ctx.getBean(GroupReportDaoImpl.class);
 		dao.getSession().beginTransaction();
 			
 		System.out.println(dao.select());//selectAll
@@ -40,21 +40,21 @@ public class StoreReportDaoImpl implements StoreReportDao {
 		dao.getSession().getTransaction().commit();
 		((ConfigurableApplicationContext) ctx).close();
 	}
-	
+
 	@Override
-	public List<StoreReport> select() throws SQLException {
-		return getSession().createQuery("from StoreReport", StoreReport.class).setMaxResults(50).list();
+	public List<GroupReport> select() throws SQLException {
+		return getSession().createQuery("from GroupReport", GroupReport.class).setMaxResults(50).list();
 	}
 
 	@Override
-	public StoreReport select(Integer id) throws SQLException {
-		return getSession().get(StoreReport.class, id);
+	public GroupReport select(Integer id) throws SQLException {
+		return getSession().get(GroupReport.class, id);
 	}
 
 	@Override
-	public StoreReport insert(StoreReport bean) throws SQLException {
-		StoreReport storeReport = getSession().get(StoreReport.class, bean.getId());
-		if(storeReport==null) {
+	public GroupReport insert(GroupReport bean) throws SQLException {
+		GroupReport groupReport = getSession().get(GroupReport.class, bean.getId());
+		if(groupReport==null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -62,22 +62,22 @@ public class StoreReportDaoImpl implements StoreReportDao {
 	}
 
 	@Override
-	public StoreReport update(Integer id, String content) throws SQLException {
-		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
-		if(storeReport != null) {
-			storeReport.setId(id);
-			storeReport.setContent(content);
-			getSession().update(storeReport);
-			return storeReport;
+	public GroupReport update(Integer id, String content) throws SQLException {
+		GroupReport groupReport = this.getSession().get(GroupReport.class, id);
+		if(groupReport != null) {
+			groupReport.setId(id);
+			groupReport.setContent(content);
+			getSession().update(groupReport);
+			return groupReport;
 		}
 		return null;
 	}
 
 	@Override
 	public boolean delete(Integer id) throws SQLException {
-		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
-		if(storeReport != null) {
-			getSession().delete(storeReport);
+		GroupReport groupReport = this.getSession().get(GroupReport.class, id);
+		if(groupReport != null) {
+			getSession().delete(groupReport);
 			return true;
 		}
 		return false;
