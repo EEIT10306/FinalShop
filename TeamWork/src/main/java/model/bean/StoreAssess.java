@@ -46,8 +46,8 @@ public class StoreAssess {
 		super();
 	}
 
-	public StoreAssess(Integer id, String storeassessPoint, String storeassessContent, Integer storeassessPointee,
-			Integer storeassessContee) {
+	public StoreAssess(Integer id, Integer storeassessPoint, String storeassessContent, Integer storeassessPointee,
+			String storeassessContee) {
 		super();
 		this.id = id;
 		this.storeassessPoint = storeassessPoint;
@@ -71,11 +71,11 @@ public class StoreAssess {
 		this.id = id;
 	}
 
-	public String getStoreassessPoint() {
+	public Integer getStoreassessPoint() {
 		return storeassessPoint;
 	}
 
-	public void setStoreassessPoint(String storeassessPoint) {
+	public void setStoreassessPoint(Integer storeassessPoint) {
 		this.storeassessPoint = storeassessPoint;
 	}
 
@@ -95,31 +95,14 @@ public class StoreAssess {
 		this.storeassessPointee = storeassessPointee;
 	}
 
-	public Integer getStoreassessContee() {
+	public String getStoreassessContee() {
 		return storeassessContee;
 	}
 
-	public void setStoreassessContee(Integer storeassessContee) {
+	public void setStoreassessContee(String storeassessContee) {
 		this.storeassessContee = storeassessContee;
 	}
-
-	public StoreOrder getStoreOrder() {
-		return storeOrder;
-	}
-
-	public void setStoreOrder(StoreOrder storeOrder) {
-		this.storeOrder = storeOrder;
-	}
-
-	public StoreAssess getStoreAssess() {
-		return storeAssess;
-	}
-
-	public void setStoreAssess(StoreAssess storeAssess) {
-		this.storeAssess = storeAssess;
-	}
 	
 	
-
 		
 }
