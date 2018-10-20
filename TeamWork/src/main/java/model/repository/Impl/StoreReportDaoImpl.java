@@ -12,12 +12,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
-import model.bean.Product;
 import model.bean.StoreReport;
 import model.repository.StoreReportDao;
 
 @Repository
-public class StoreReportDaoImpl implements StoreReportDao, StoreReportDao {
+public class StoreReportDaoImpl implements StoreReportDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -42,28 +41,16 @@ public class StoreReportDaoImpl implements StoreReportDao, StoreReportDao {
 		((ConfigurableApplicationContext) ctx).close();
 	}
 	
-
-	/* (non-Javadoc)
-	 * @see model.repository.Impl.StoreReportDao#select()
-	 */
 	@Override
 	public List<StoreReport> select() throws SQLException {
 		return getSession().createQuery("from StoreReport", StoreReport.class).setMaxResults(50).list();
 	}
 
-
-	/* (non-Javadoc)
-	 * @see model.repository.Impl.StoreReportDao#select(java.lang.Integer)
-	 */
 	@Override
 	public StoreReport select(Integer id) throws SQLException {
 		return getSession().get(StoreReport.class, id);
 	}
 
-
-	/* (non-Javadoc)
-	 * @see model.repository.Impl.StoreReportDao#insert(model.bean.StoreReport)
-	 */
 	@Override
 	public StoreReport insert(StoreReport bean) throws SQLException {
 		StoreReport storeReport = getSession().get(StoreReport.class, bean.getId());
@@ -74,10 +61,6 @@ public class StoreReportDaoImpl implements StoreReportDao, StoreReportDao {
 		return null;
 	}
 
-
-	/* (non-Javadoc)
-	 * @see model.repository.Impl.StoreReportDao#update(java.lang.Integer, java.lang.String)
-	 */
 	@Override
 	public StoreReport update(Integer id, String content) throws SQLException {
 		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
@@ -90,9 +73,6 @@ public class StoreReportDaoImpl implements StoreReportDao, StoreReportDao {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see model.repository.Impl.StoreReportDao#delete(java.lang.Integer)
-	 */
 	@Override
 	public boolean delete(Integer id) throws SQLException {
 		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
