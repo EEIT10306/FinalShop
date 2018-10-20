@@ -43,7 +43,7 @@ public class CommitAchievement {
 	
 	@Override
 	public String toString() {
-		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID + "]";
+		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -70,19 +70,18 @@ public class CommitAchievement {
 		this.memberID = memberID;
 	}
 
-	public Achievement getAch() {
-		return ach;
-	}
-
 	public void setAch(Achievement ach) {
 		this.ach = ach;
 	}
 
+	public Achievement getAch() {
+		return ach;
+	}
+	
 	public Member getMem() {
 		return mem;
 	}
 
 	public void setMem(Member mem) {
 		this.mem = mem;
-	}
 }
