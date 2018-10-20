@@ -26,9 +26,13 @@ public class CommitAchievement {
 	Integer memberID;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "achID", insertable = false, updatable = false)
+	@JoinColumn(name = "ach_ID", insertable = false, updatable = false)
 	Achievement ach;
 
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
+	Member mem;
+	
 	public CommitAchievement() {}
 	
 	public CommitAchievement(Integer id, Integer achievementID, Integer memberID) {
@@ -72,5 +76,13 @@ public class CommitAchievement {
 
 	public void setAch(Achievement ach) {
 		this.ach = ach;
+	}
+
+	public Member getMem() {
+		return mem;
+	}
+
+	public void setMem(Member mem) {
+		this.mem = mem;
 	}
 }
