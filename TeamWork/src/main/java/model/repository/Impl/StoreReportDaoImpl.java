@@ -12,11 +12,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
+import model.bean.Product;
 import model.bean.StoreReport;
 import model.repository.StoreReportDao;
 
 @Repository
-public class StoreReportDaoImpl implements StoreReportDao {
+public class StoreReportDaoImpl implements StoreReportDao, StoreReportDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -41,7 +42,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 		((ConfigurableApplicationContext) ctx).close();
 	}
 	
-	
+
 	/* (non-Javadoc)
 	 * @see model.repository.Impl.StoreReportDao#select()
 	 */
@@ -50,7 +51,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 		return getSession().createQuery("from StoreReport", StoreReport.class).setMaxResults(50).list();
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see model.repository.Impl.StoreReportDao#select(java.lang.Integer)
 	 */
@@ -59,35 +60,46 @@ public class StoreReportDaoImpl implements StoreReportDao {
 		return getSession().get(StoreReport.class, id);
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see model.repository.Impl.StoreReportDao#insert(model.bean.StoreReport)
 	 */
 	@Override
 	public StoreReport insert(StoreReport bean) throws SQLException {
-		StoreReport simple = getSession().get(StoreReport.class, bean.getId());
-		if(simple==null) {
+		StoreReport storeReport = getSession().get(StoreReport.class, bean.getId());
+		if(storeReport==null) {
 			getSession().save(bean);
 			return bean;
 		}
 		return null;
 	}
 
-	
+
 	/* (non-Javadoc)
-	 * @see model.repository.Impl.StoreReportDao#update(java.lang.Integer, java.lang.String, java.lang.Integer, java.lang.Integer)
+	 * @see model.repository.Impl.StoreReportDao#update(java.lang.Integer, java.lang.String)
 	 */
 	@Override
-	public StoreReport update(Integer id, String context, Integer bonus, Integer parentsId) throws SQLException {
+	public StoreReport update(Integer id, String content) throws SQLException {
+		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
+		if(storeReport != null) {
+			storeReport.setId(id);
+			storeReport.setContent(content);
+			getSession().update(storeReport);
+			return storeReport;
+		}
 		return null;
 	}
 
-	
 	/* (non-Javadoc)
 	 * @see model.repository.Impl.StoreReportDao#delete(java.lang.Integer)
 	 */
 	@Override
 	public boolean delete(Integer id) throws SQLException {
+		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
+		if(storeReport != null) {
+			getSession().delete(storeReport);
+			return true;
+		}
 		return false;
 	}
 
