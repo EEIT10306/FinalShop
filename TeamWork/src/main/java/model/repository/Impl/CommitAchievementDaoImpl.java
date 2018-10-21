@@ -64,11 +64,23 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 
 	@Override
 	public CommitAchievement update(Integer id, Integer achievementID, Integer memberID) throws SQLException {
+		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
+		if(CA != null) {
+			CA.setAchievementID(achievementID);
+			CA.setMemberID(memberID);
+			getSession().update(CA);
+			return CA;
+		}
 		return null;
 	}
 
 	@Override
 	public boolean delete(Integer id) throws SQLException {
+		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
+		if(CA != null) {
+			getSession().delete(CA);
+			return true;
+		}
 		return false;
 	}
 

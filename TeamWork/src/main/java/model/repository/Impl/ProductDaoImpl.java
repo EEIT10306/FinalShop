@@ -1,4 +1,4 @@
-package model.repository;
+package model.repository.Impl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.Product;
-import model.repository.dao.ProductDao;
+import model.repository.ProductDao;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
