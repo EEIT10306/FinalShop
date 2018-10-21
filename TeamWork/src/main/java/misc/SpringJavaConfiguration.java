@@ -1,5 +1,6 @@
 package misc;
 
+import java.awt.Image;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -14,6 +15,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import model.bean.Achievement;
 import model.bean.CommitAchievement;
+import model.bean.Conversation;
+import model.bean.DistrictType;
+import model.bean.Group;
+import model.bean.GroupAssess;
+import model.bean.GroupMessage;
+import model.bean.GroupProduct;
+import model.bean.GroupReport;
+import model.bean.GroupService;
+import model.bean.Member;
+import model.bean.Product;
+import model.bean.Seller;
+import model.bean.State;
+import model.bean.Store;
+import model.bean.StoreAssess;
+import model.bean.StoreOrder;
+import model.bean.StoreProduct;
+import model.bean.StoreReport;
+import model.bean.Wish;
+import model.bean.WishAssess;
+import model.bean.WishMessage;
+import model.bean.WishProduct;
+import model.bean.WishReport;
 
 @Configuration
 @ComponentScan(basePackages={"model"})
@@ -54,10 +77,32 @@ public class SpringJavaConfiguration {
 		props.put("hibernate.format_sql", "true");	
 		builder.addProperties(props);
 		
+		builder.addAnnotatedClass(State.class);
+		builder.addAnnotatedClass(Member.class);
+		builder.addAnnotatedClass(Conversation.class);
 		builder.addAnnotatedClass(Achievement.class);
-//		builder.addAnnotatedClass(Member.class);
+		builder.addAnnotatedClass(Seller.class);
+		builder.addAnnotatedClass(Product.class);
 		builder.addAnnotatedClass(CommitAchievement.class);
-	
+		builder.addAnnotatedClass(Store.class);
+		builder.addAnnotatedClass(StoreProduct.class);
+		builder.addAnnotatedClass(StoreOrder.class);
+		builder.addAnnotatedClass(StoreReport.class);
+		builder.addAnnotatedClass(StoreAssess.class);
+		builder.addAnnotatedClass(DistrictType.class);	
+		builder.addAnnotatedClass(Wish.class);	
+		builder.addAnnotatedClass(WishProduct.class);	
+		builder.addAnnotatedClass(WishMessage.class);	
+		builder.addAnnotatedClass(WishReport.class);	
+		builder.addAnnotatedClass(WishAssess.class);	
+		builder.addAnnotatedClass(Group.class);	
+		builder.addAnnotatedClass(GroupProduct.class);	
+		builder.addAnnotatedClass(GroupService.class);	
+		builder.addAnnotatedClass(GroupMessage.class);	
+		builder.addAnnotatedClass(GroupReport.class);	
+		builder.addAnnotatedClass(GroupAssess.class);	
+		builder.addAnnotatedClass(Image.class);	
+		
 		return builder.buildSessionFactory();
 	}
 

@@ -13,46 +13,43 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Group")
-public class Group {
+@Table(name = "Wish")
+public class Wish {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "group_ID", columnDefinition = "int")
+	@Column(name = "wish_ID", columnDefinition = "int")
 	Integer id;
 
-	@Column(name = "memG_ID", columnDefinition = "int")
+	@Column(name = "memW_ID", columnDefinition = "int")
 	Integer memberId;
 
 	@Column(name = "prod_ID", columnDefinition = "int")
-	Integer groupClass;
+	Integer productId;
 
-	@Column(name = "group_title", columnDefinition = "nvarchar(max)")
+	@Column(name = "wish_title", columnDefinition = "nvarchar(Max)")
 	String title;
 
-	@Column(name = "group_cont", columnDefinition = "nvarchar(max)")
-	String cont;
+	@Column(name = "wish_cont", columnDefinition = "nvarchar(Max)")
+	String context;
 
 	@Column(name = "dist_ID", columnDefinition = "int")
 	Integer districtTypeId;
 
-	@Column(name = "group_sDate", columnDefinition = "datetime")
+	@Column(name = "wish_sDate", columnDefinition = "datetime")
 	Date startDate;
 
-	@Column(name = "group_sDate", columnDefinition = "datetime")
+	@Column(name = "wish_eDate", columnDefinition = "datetime")
 	Date endDate;
 
-	@Column(name = "group_goal", columnDefinition = "nvarchar(max)")
-	String goal;
+	@Column(name = "wish_compTime", columnDefinition = "datetime")
+	Date completeTime;
 
-	@Column(name = "group_compTime", columnDefinition = "datetime")
-	Date compTime;
-
-	@Column(name = "group_state", columnDefinition = "int")
+	@Column(name = "wish_state", columnDefinition = "int")
 	Integer state;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "memG_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "memW_ID", insertable = false, updatable = false)
 	Member memberBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -64,32 +61,31 @@ public class Group {
 	DistrictType districtTypeBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "group_state", insertable = false, updatable = false)
+	@JoinColumn(name = "wish_state", columnDefinition = "int")
 	State stateBean;
 
-	public Group() {
+	public Wish() {
 	}
 
-	public Group(Integer id, Integer memberId, Integer groupClass, String title, String cont, Integer districtTypeId,
-			Date startDate, Date endDate, String goal, Date compTime, Integer state) {
+	public Wish(Integer id, Integer memberId, Integer productId, String title, String context, Integer districtTypeId,
+			Date startDate, Date endDate, Date completeTime, Integer state) {
 		this.id = id;
 		this.memberId = memberId;
-		this.groupClass = groupClass;
+		this.productId = productId;
 		this.title = title;
-		this.cont = cont;
+		this.context = context;
 		this.districtTypeId = districtTypeId;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.goal = goal;
-		this.compTime = compTime;
+		this.completeTime = completeTime;
 		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "Group [id=" + id + ", memberId=" + memberId + ", groupClass=" + groupClass + ", title=" + title
-				+ ", cont=" + cont + ", districtTypeId=" + districtTypeId + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", goal=" + goal + ", compTime=" + compTime + ", state=" + state + "]\r\n  [memberBean="
+		return "Wish [id=" + id + ", memberId=" + memberId + ", productId=" + productId + ", title=" + title
+				+ ", context=" + context + ", districtTypeId=" + districtTypeId + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", completeTime=" + completeTime + ", state=" + state + "]\r\n  [memberBean="
 				+ memberBean + "]\r\n  [productBean=" + productBean + "]\r\n  [districtTypeBean=" + districtTypeBean
 				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
@@ -110,12 +106,12 @@ public class Group {
 		this.memberId = memberId;
 	}
 
-	public Integer getGroupClass() {
-		return groupClass;
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public void setGroupClass(Integer groupClass) {
-		this.groupClass = groupClass;
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public String getTitle() {
@@ -126,12 +122,12 @@ public class Group {
 		this.title = title;
 	}
 
-	public String getCont() {
-		return cont;
+	public String getContext() {
+		return context;
 	}
 
-	public void setCont(String cont) {
-		this.cont = cont;
+	public void setContext(String context) {
+		this.context = context;
 	}
 
 	public Integer getDistrictTypeId() {
@@ -158,20 +154,12 @@ public class Group {
 		this.endDate = endDate;
 	}
 
-	public String getGoal() {
-		return goal;
+	public Date getCompleteTime() {
+		return completeTime;
 	}
 
-	public void setGoal(String goal) {
-		this.goal = goal;
-	}
-
-	public Date getCompTime() {
-		return compTime;
-	}
-
-	public void setCompTime(Date compTime) {
-		this.compTime = compTime;
+	public void setCompleteTime(Date completeTime) {
+		this.completeTime = completeTime;
 	}
 
 	public Integer getState() {

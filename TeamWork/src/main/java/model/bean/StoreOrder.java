@@ -11,48 +11,50 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class StoreOrder {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sO_ID", columnDefinition = "int")
 	Integer id;
-	
+
 	@Column(name = "prod_ID", columnDefinition = "int")
 	Integer productId;
-	
+
 	@Column(name = "memS_IDee", columnDefinition = "int")
-	Integer memberStoreIDee;
-	
+	Integer memberStoreIDEE;
+
 	@Column(name = "sP_name", columnDefinition = "nvarchar(max)")
 	String storeProductName;
-	
+
 	@Column(name = "sO_amt", columnDefinition = "int")
 	Integer amount;
-	
+
 	@Column(name = "sP_price", columnDefinition = "int")
 	Integer storeProductPrice;
-	
+
 	@Column(name = "state", columnDefinition = "int")
 	Integer state;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "prod_id", insertable = false, updatable = false)
-	Product product;
-	
+	Product productBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "memS_IDee", insertable = false, updatable = false)
-	Member member;
-	
+	Member memberBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "state", insertable = false, updatable = false)
-	State st;
+	State stateBean;
 
-	public StoreOrder() {}
-	
-	public StoreOrder(Integer id, Integer productId, Integer memberStoreIDee, String storeProductName, Integer amount,
+	public StoreOrder() {
+	}
+
+	public StoreOrder(Integer id, Integer productId, Integer memberStoreIDEE, String storeProductName, Integer amount,
 			Integer storeProductPrice, Integer state) {
 		this.id = id;
 		this.productId = productId;
-		this.memberStoreIDee = memberStoreIDee;
+		this.memberStoreIDEE = memberStoreIDEE;
 		this.storeProductName = storeProductName;
 		this.amount = amount;
 		this.storeProductPrice = storeProductPrice;
@@ -61,9 +63,10 @@ public class StoreOrder {
 
 	@Override
 	public String toString() {
-		return "StoreOrder [id=" + id + ", productId=" + productId + ", memberStoreIDee=" + memberStoreIDee
+		return "StoreOrder [id=" + id + ", productId=" + productId + ", memberStoreIDEE=" + memberStoreIDEE
 				+ ", storeProductName=" + storeProductName + ", amount=" + amount + ", storeProductPrice="
-				+ storeProductPrice + ", state=" + state + "]\r\n";
+				+ storeProductPrice + ", state=" + state + "]\r\n  [productBean=" + productBean + "]\r\n  [memberBean=" + memberBean
+				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -82,12 +85,12 @@ public class StoreOrder {
 		this.productId = productId;
 	}
 
-	public Integer getMemberStoreIDee() {
-		return memberStoreIDee;
+	public Integer getMemberStoreIDEE() {
+		return memberStoreIDEE;
 	}
 
-	public void setMemberStoreIDee(Integer memberStoreIDee) {
-		this.memberStoreIDee = memberStoreIDee;
+	public void setMemberStoreIDEE(Integer memberStoreIDEE) {
+		this.memberStoreIDEE = memberStoreIDEE;
 	}
 
 	public String getStoreProductName() {
@@ -122,29 +125,28 @@ public class StoreOrder {
 		this.state = state;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Product getProductBean() {
+		return productBean;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductBean(Product productBean) {
+		this.productBean = productBean;
 	}
 
-	public Member getMember() {
-		return member;
+	public Member getMemberBean() {
+		return memberBean;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
 	}
 
-	public State getSt() {
-		return st;
+	public State getStateBean() {
+		return stateBean;
 	}
 
-	public void setSt(State st) {
-		this.st = st;
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
 	}
-	
-	
+
 }

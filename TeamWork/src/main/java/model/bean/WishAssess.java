@@ -19,45 +19,52 @@ public class WishAssess {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "wA_ID", columnDefinition = "int")
 	Integer id;
+
+	@Column(name = "wM_ID", columnDefinition = "int")
+	Integer wishMessageId;
 	 
 	@Column(name = "wA_point", columnDefinition = "int")
 	Integer point;
 	
 	@Column(name = "wA_cont", columnDefinition = "nvarchar(max)")
-	String content;
+	String context;
 	
 	@Column(name = "wA_pointee", columnDefinition = "int")
-	Integer pointee;
+	Integer pointEE;
 	
 	@Column(name = "wA_contee", columnDefinition = "nvarchar(max)")
-	String contee;
+	String contextEE;
+	
+	@Column(name = "wA_state", columnDefinition = "int")
+	Integer state;
 	
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "wM_ID", insertable = false, updatable = false)
-	WishMessage wishMessage;
-	
+	WishMessage wishMessageBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "wA_state", insertable = false, updatable = false)
-	WishAssess wishAssess;
+	State stateBean;
 
 	public WishAssess() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public WishAssess(Integer id, Integer point, String content, Integer pointee, String contee) {
-		super();
+	public WishAssess(Integer id, Integer wishMessageId, Integer point, String context, Integer pointEE,
+			String contextEE, Integer state) {
 		this.id = id;
+		this.wishMessageId = wishMessageId;
 		this.point = point;
-		this.content = content;
-		this.pointee = pointee;
-		this.contee = contee;
+		this.context = context;
+		this.pointEE = pointEE;
+		this.contextEE = contextEE;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "WishAssess [id=" + id + ", point=" + point + ", content=" + content + ", pointee=" + pointee
-				+ ", contee=" + contee + "]";
+		return "WishAssess [id=" + id + ", wishMessageId=" + wishMessageId + ", point=" + point + ", context=" + context
+				+ ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", state=" + state + "]\r\n  [wishMessageBean="
+				+ wishMessageBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -68,6 +75,14 @@ public class WishAssess {
 		this.id = id;
 	}
 
+	public Integer getWishMessageId() {
+		return wishMessageId;
+	}
+
+	public void setWishMessageId(Integer wishMessageId) {
+		this.wishMessageId = wishMessageId;
+	}
+
 	public Integer getPoint() {
 		return point;
 	}
@@ -76,47 +91,52 @@ public class WishAssess {
 		this.point = point;
 	}
 
-	public String getContent() {
-		return content;
+	public String getContext() {
+		return context;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContext(String context) {
+		this.context = context;
 	}
 
-	public Integer getPointee() {
-		return pointee;
+	public Integer getPointEE() {
+		return pointEE;
 	}
 
-	public void setPointee(Integer pointee) {
-		this.pointee = pointee;
+	public void setPointEE(Integer pointEE) {
+		this.pointEE = pointEE;
 	}
 
-	public String getContee() {
-		return contee;
+	public String getContextEE() {
+		return contextEE;
 	}
 
-	public void setContee(String contee) {
-		this.contee = contee;
+	public void setContextEE(String contextEE) {
+		this.contextEE = contextEE;
 	}
 
-	public WishMessage getWishMessage() {
-		return wishMessage;
+	public Integer getState() {
+		return state;
 	}
 
-	public void setWishMessage(WishMessage wishMessage) {
-		this.wishMessage = wishMessage;
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
-	public WishAssess getWishAssess() {
-		return wishAssess;
+	public WishMessage getWishMessageBean() {
+		return wishMessageBean;
 	}
 
-	public void setWishAssess(WishAssess wishAssess) {
-		this.wishAssess = wishAssess;
+	public void setWishMessageBean(WishMessage wishMessageBean) {
+		this.wishMessageBean = wishMessageBean;
 	}
 
-	
+	public State getStateBean() {
+		return stateBean;
+	}
 
-				
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+			
 }
