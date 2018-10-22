@@ -12,51 +12,61 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Group")
 public class Group {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "group_ID", columnDefinition = "int")
 	Integer id;
+
 	@Column(name = "memG_ID", columnDefinition = "int")
 	Integer memberId;
+
 	@Column(name = "prod_ID", columnDefinition = "int")
 	Integer groupClass;
+
 	@Column(name = "group_title", columnDefinition = "nvarchar(max)")
 	String title;
+
 	@Column(name = "group_cont", columnDefinition = "nvarchar(max)")
 	String cont;
+
 	@Column(name = "dist_ID", columnDefinition = "int")
-	Integer DistrictTypeId;
+	Integer districtTypeId;
+
 	@Column(name = "group_sDate", columnDefinition = "datetime")
 	Date startDate;
+
 	@Column(name = "group_sDate", columnDefinition = "datetime")
 	Date endDate;
+
 	@Column(name = "group_goal", columnDefinition = "nvarchar(max)")
 	String goal;
+
 	@Column(name = "group_compTime", columnDefinition = "datetime")
 	Date compTime;
+
 	@Column(name = "group_state", columnDefinition = "int")
 	Integer state;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "memG_ID", insertable = false, updatable = false)
-	Member mem;
-	
+	Member memberBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product pro;
-	
+	Product productBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "dist_ID", insertable = false, updatable = false)
-	DistrictType dis;
-	
+	DistrictType districtTypeBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "group_state", insertable = false, updatable = false)
-	State sta;
-	
+	State stateBean;
+
 	public Group() {
 	}
 
@@ -67,7 +77,7 @@ public class Group {
 		this.groupClass = groupClass;
 		this.title = title;
 		this.cont = cont;
-		DistrictTypeId = districtTypeId;
+		this.districtTypeId = districtTypeId;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.goal = goal;
@@ -78,8 +88,10 @@ public class Group {
 	@Override
 	public String toString() {
 		return "Group [id=" + id + ", memberId=" + memberId + ", groupClass=" + groupClass + ", title=" + title
-				+ ", cont=" + cont + ", DistrictTypeId=" + DistrictTypeId + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", goal=" + goal + ", compTime=" + compTime + ", state=" + state + "]\r\n";
+				+ ", cont=" + cont + ", districtTypeId=" + districtTypeId + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", goal=" + goal + ", compTime=" + compTime + ", state=" + state + "]\r\n  [memberBean="
+				+ memberBean + "]\r\n  [productBean=" + productBean + "]\r\n  [districtTypeBean=" + districtTypeBean
+				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -123,11 +135,11 @@ public class Group {
 	}
 
 	public Integer getDistrictTypeId() {
-		return DistrictTypeId;
+		return districtTypeId;
 	}
 
 	public void setDistrictTypeId(Integer districtTypeId) {
-		DistrictTypeId = districtTypeId;
+		this.districtTypeId = districtTypeId;
 	}
 
 	public Date getStartDate() {
@@ -170,38 +182,36 @@ public class Group {
 		this.state = state;
 	}
 
-	public Member getMem() {
-		return mem;
+	public Member getMemberBean() {
+		return memberBean;
 	}
 
-	public void setMem(Member mem) {
-		this.mem = mem;
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
 	}
 
-	public Product getPro() {
-		return pro;
+	public Product getProductBean() {
+		return productBean;
 	}
 
-	public void setPro(Product pro) {
-		this.pro = pro;
+	public void setProductBean(Product productBean) {
+		this.productBean = productBean;
 	}
 
-	public DistrictType getDis() {
-		return dis;
+	public DistrictType getDistrictTypeBean() {
+		return districtTypeBean;
 	}
 
-	public void setDis(DistrictType dis) {
-		this.dis = dis;
+	public void setDistrictTypeBean(DistrictType districtTypeBean) {
+		this.districtTypeBean = districtTypeBean;
 	}
 
-	public State getSta() {
-		return sta;
+	public State getStateBean() {
+		return stateBean;
 	}
 
-	public void setSta(State sta) {
-		this.sta = sta;
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
 	}
-	
-	
-	
+
 }

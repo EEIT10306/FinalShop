@@ -12,50 +12,49 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
-import model.bean.Achievement;
-import model.bean.CommitAchievement;
-import model.repository.CommitAchievementDao;
+import model.bean.StoreReport;
+import model.repository.StoreReportDao;
 
 @Repository
-public class CommitAchievementDaoImpl implements CommitAchievementDao {
+public class StoreReportDaoImpl implements StoreReportDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-
+	
 	public static void main(String[] args) throws SQLException {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 
-		CommitAchievementDaoImpl dao = ctx.getBean(CommitAchievementDaoImpl.class);
+		StoreReportDaoImpl dao = ctx.getBean(StoreReportDaoImpl.class);
 		dao.getSession().beginTransaction();
-
+			
 		System.out.println(dao.select());//selectAll
-				
-//		CommitAchievement comAch = new CommitAchievement(1, 1 , 2);
-//		System.out.println(dao.getSession().save(comAch));// insert
-//		
+//				
+//		Achievement ach = new Achievement(null,"成就的內容", 10, null);
+//		System.out.println(dao.getSession().save(ach));//insert
+//				
 //		System.out.println(dao.select(1));//selectOne
-
+		
 		dao.getSession().getTransaction().commit();
 		((ConfigurableApplicationContext) ctx).close();
 	}
-
+	
 	@Override
-	public List<CommitAchievement> select() throws SQLException {
-		return getSession().createQuery("from CommitAchievement", CommitAchievement.class).setMaxResults(50).list();
+	public List<StoreReport> select() throws SQLException {
+		return getSession().createQuery("from StoreReport", StoreReport.class).setMaxResults(50).list();
 	}
 
 	@Override
-	public CommitAchievement select(Integer id) throws SQLException {
-		return getSession().get(CommitAchievement.class, id);
+	public StoreReport select(Integer id) throws SQLException {
+		return getSession().get(StoreReport.class, id);
 	}
 
 	@Override
-	public CommitAchievement insert(CommitAchievement bean) throws SQLException {
-		CommitAchievement simple = getSession().get(CommitAchievement.class, bean.getId());
-		if (simple == null) {
+	public StoreReport insert(StoreReport bean) throws SQLException {
+		StoreReport storeReport = getSession().get(StoreReport.class, bean.getId());
+		if(storeReport==null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -63,12 +62,24 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 	}
 
 	@Override
-	public CommitAchievement update(Integer id, Integer achievementID, Integer memberID) throws SQLException {
+	public StoreReport update(Integer id, String content) throws SQLException {
+		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
+		if(storeReport != null) {
+			storeReport.setId(id);
+			storeReport.setContent(content);
+			getSession().update(storeReport);
+			return storeReport;
+		}
 		return null;
 	}
 
 	@Override
 	public boolean delete(Integer id) throws SQLException {
+		StoreReport storeReport = this.getSession().get(StoreReport.class, id);
+		if(storeReport != null) {
+			getSession().delete(storeReport);
+			return true;
+		}
 		return false;
 	}
 

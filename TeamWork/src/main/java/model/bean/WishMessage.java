@@ -20,48 +20,56 @@ public class WishMessage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wM_ID", columnDefinition = "int")
 	Integer id;
+
 	@Column(name = "wP_ID", columnDefinition = "int")
-	Integer wishProductId;
+	Integer groupProductId;
+
 	@Column(name = "mem_IDee", columnDefinition = "int")
-	Integer memberId;
+	Member buyerMemberIdEE;
+
 	@Column(name = "wM_bid", columnDefinition = "int")
-	Integer productId;
+	Integer bid;
+
 	@Column(name = "wM_cont", columnDefinition = "nvarchar(max)")
-	String bid;
-	@Column(name = "wM_time", columnDefinition = "datetime")
+	String amount;
+
+	@Column(name = "wM_time", columnDefinition = "daetime")
 	Date time;
-	@Column(name = "wP_state", columnDefinition = "int")
+
+	@Column(name = "wM_state", columnDefinition = "int")
 	Integer state;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
-	WishProduct wis;
-	
+	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
+	GroupProduct groupProductBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "mem_IDee", insertable = false, updatable = false)
-	Member mem;
-	
+	Member memberBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wM_state", insertable = false, updatable = false)
-	DistrictType dis;
+	@JoinColumn(name = "gM_state", insertable = false, updatable = false)
+	State stateBean;
 
-	public WishMessage() {}
+	public WishMessage() {
+	}
 
-	public WishMessage(Integer id, Integer wishProductId, Integer memberId, Integer productId, String bid, Date time,
-			Integer state) {
+	public WishMessage(Integer id, Integer groupProductId, Member buyerMemberIdEE, Integer bid, String amount,
+			Date time, Integer state) {
 		this.id = id;
-		this.wishProductId = wishProductId;
-		this.memberId = memberId;
-		this.productId = productId;
+		this.groupProductId = groupProductId;
+		this.buyerMemberIdEE = buyerMemberIdEE;
 		this.bid = bid;
+		this.amount = amount;
 		this.time = time;
 		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "WishMessage [id=" + id + ", wishProductId=" + wishProductId + ", memberId=" + memberId + ", productId="
-				+ productId + ", bid=" + bid + ", time=" + time + ", state=" + state + "]\r\n";
+		return "WishMessage [id=" + id + ", groupProductId=" + groupProductId + ", buyerMemberIdEE=" + buyerMemberIdEE
+				+ ", bid=" + bid + ", amount=" + amount + ", time=" + time + ", state=" + state + "]\r\n  [groupProductBean="
+				+ groupProductBean + "]\r\n  [memberBean=" + memberBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -72,36 +80,36 @@ public class WishMessage {
 		this.id = id;
 	}
 
-	public Integer getWishProductId() {
-		return wishProductId;
+	public Integer getGroupProductId() {
+		return groupProductId;
 	}
 
-	public void setWishProductId(Integer wishProductId) {
-		this.wishProductId = wishProductId;
+	public void setGroupProductId(Integer groupProductId) {
+		this.groupProductId = groupProductId;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Member getBuyerMemberIdEE() {
+		return buyerMemberIdEE;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setBuyerMemberIdEE(Member buyerMemberIdEE) {
+		this.buyerMemberIdEE = buyerMemberIdEE;
 	}
 
-	public Integer getProductId() {
-		return productId;
-	}
-
-	public void setProductId(Integer productId) {
-		this.productId = productId;
-	}
-
-	public String getBid() {
+	public Integer getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(Integer bid) {
 		this.bid = bid;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 
 	public Date getTime() {
@@ -120,30 +128,28 @@ public class WishMessage {
 		this.state = state;
 	}
 
-	public WishProduct getWis() {
-		return wis;
+	public GroupProduct getGroupProductBean() {
+		return groupProductBean;
 	}
 
-	public void setWis(WishProduct wis) {
-		this.wis = wis;
+	public void setGroupProductBean(GroupProduct groupProductBean) {
+		this.groupProductBean = groupProductBean;
 	}
 
-	public Member getMem() {
-		return mem;
+	public Member getMemberBean() {
+		return memberBean;
 	}
 
-	public void setMem(Member mem) {
-		this.mem = mem;
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
 	}
 
-	public DistrictType getDis() {
-		return dis;
+	public State getStateBean() {
+		return stateBean;
 	}
 
-	public void setDis(DistrictType dis) {
-		this.dis = dis;
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
 	}
-	
-	
-	
+
 }

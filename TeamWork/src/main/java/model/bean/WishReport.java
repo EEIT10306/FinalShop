@@ -13,36 +13,52 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "WishReport")
 public class WishReport {
-	 
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wR_ID", columnDefinition = "int")
 	Integer id;
-	 
+
+	@Column(name = "wP_ID", columnDefinition = "int")
+	Integer wishProductID;
+
+	@Column(name = "mem_ID", columnDefinition = "int")
+	Integer memberID;
+
 	@Column(name = "wR_cont", columnDefinition = "nvarchar(max)")
 	String content;
-	
+
+	@Column(name = "wR_state", columnDefinition = "int")
+	Integer state;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
-	WishProduct wishProduct;
-	
+	WishProduct wishProductBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member member;
-	
+	Member memberBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "wR_state", insertable = false, updatable = false)
-	WishReport wishReport;
+	State stateBean;
 
 	public WishReport() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public WishReport(Integer id, String content) {
-		super();
+	public WishReport(Integer id, Integer wishProductID, Integer memberID, String content, Integer state) {
 		this.id = id;
+		this.wishProductID = wishProductID;
+		this.memberID = memberID;
 		this.content = content;
+		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "WishReport [id=" + id + ", wishProductID=" + wishProductID + ", memberID=" + memberID + ", content="
+				+ content + ", state=" + state + "]\r\n  [wishProductBean=" + wishProductBean + "]\r\n  [memberBean=" + memberBean
+				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -53,6 +69,22 @@ public class WishReport {
 		this.id = id;
 	}
 
+	public Integer getWishProductID() {
+		return wishProductID;
+	}
+
+	public void setWishProductID(Integer wishProductID) {
+		this.wishProductID = wishProductID;
+	}
+
+	public Integer getMemberID() {
+		return memberID;
+	}
+
+	public void setMemberID(Integer memberID) {
+		this.memberID = memberID;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -61,29 +93,36 @@ public class WishReport {
 		this.content = content;
 	}
 
-	public WishProduct getWishProduct() {
-		return wishProduct;
+	public Integer getState() {
+		return state;
 	}
 
-	public void setWishProduct(WishProduct wishProduct) {
-		this.wishProduct = wishProduct;
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
-	public Member getMember() {
-		return member;
+	public WishProduct getWishProductBean() {
+		return wishProductBean;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setWishProductBean(WishProduct wishProductBean) {
+		this.wishProductBean = wishProductBean;
 	}
 
-	public WishReport getWishReport() {
-		return wishReport;
+	public Member getMemberBean() {
+		return memberBean;
 	}
 
-	public void setWishReport(WishReport wishReport) {
-		this.wishReport = wishReport;
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
 	}
 
-				
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+
 }

@@ -14,22 +14,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "DistrictType")
 public class DistrictType {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "dist_ID", columnDefinition = "int")
 	Integer id;
+
 	@Column(name = "dist_name", columnDefinition = "nvarchar(max)")
 	String name;
+
 	@Column(name = "dist_parID", columnDefinition = "int")
 	Integer parentID;
+
 	@Column(name = "dist_stage", columnDefinition = "int")
 	Integer stage;
-	
-	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "dist_parID ", insertable = false, updatable = false)
-	DistrictType parID;
 
-	public DistrictType() {}
+	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "dist_parID", insertable = false, updatable = false)
+	DistrictType parentsDistrictTypeBean;
+
+	public DistrictType() {
+	}
 
 	public DistrictType(Integer id, String name, Integer parentID, Integer stage) {
 		this.id = id;
@@ -40,7 +45,8 @@ public class DistrictType {
 
 	@Override
 	public String toString() {
-		return "DistrictType [id=" + id + ", name=" + name + ", parentID=" + parentID + ", stage=" + stage + "]\r\n";
+		return "DistrictType [id=" + id + ", name=" + name + ", parentID=" + parentID + ", stage=" + stage
+				+ "]\r\n  [parentsDistrictTypeBean=" + parentsDistrictTypeBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -68,13 +74,11 @@ public class DistrictType {
 	}
 
 	public DistrictType getParID() {
-		return parID;
+		return parentsDistrictTypeBean;
 	}
 
-	public void setParID(DistrictType parID) {
-		this.parID = parID;
+	public void setParID(DistrictType parentsDistrictTypeBean) {
+		this.parentsDistrictTypeBean = parentsDistrictTypeBean;
 	}
-	
-	
-	
+
 }

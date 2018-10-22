@@ -12,47 +12,47 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "WishAssess")
-public class WishAssess {
-	 
+@Table(name = "GroupAssess")
+public class GroupAssess {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "wA_ID", columnDefinition = "int")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "gA_ID", columnDefinition = "int")
 	Integer id;
 
-	@Column(name = "wM_ID", columnDefinition = "int")
-	Integer wishMessageId;
-	 
-	@Column(name = "wA_point", columnDefinition = "int")
+	@Column(name = "gM_ID", columnDefinition = "int")
+	Integer groupMessageId;
+
+	@Column(name = "gA_point", columnDefinition = "int")
 	Integer point;
-	
-	@Column(name = "wA_cont", columnDefinition = "nvarchar(max)")
+
+	@Column(name = "gA_cont", columnDefinition = "nvarchar(max)")
 	String context;
-	
-	@Column(name = "wA_pointee", columnDefinition = "int")
+
+	@Column(name = "gA_pointee", columnDefinition = "int")
 	Integer pointEE;
-	
-	@Column(name = "wA_contee", columnDefinition = "nvarchar(max)")
+
+	@Column(name = "gA_contee", columnDefinition = "nvarchar(max)")
 	String contextEE;
-	
-	@Column(name = "wA_state", columnDefinition = "int")
+
+	@Column(name = "gA_state", columnDefinition = "int")
 	Integer state;
-	
+
 	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wM_ID", insertable = false, updatable = false)
-	WishMessage wishMessageBean;
+	@JoinColumn(name = "gM_ID", insertable = false, updatable = false)
+	GroupMessage groupMessageBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wA_state", insertable = false, updatable = false)
+	@JoinColumn(name = "gA_state", insertable = false, updatable = false)
 	State stateBean;
 
-	public WishAssess() {
+	public GroupAssess() {
 	}
 
-	public WishAssess(Integer id, Integer wishMessageId, Integer point, String context, Integer pointEE,
+	public GroupAssess(Integer id, Integer groupMessageId, Integer point, String context, Integer pointEE,
 			String contextEE, Integer state) {
 		this.id = id;
-		this.wishMessageId = wishMessageId;
+		this.groupMessageId = groupMessageId;
 		this.point = point;
 		this.context = context;
 		this.pointEE = pointEE;
@@ -62,9 +62,9 @@ public class WishAssess {
 
 	@Override
 	public String toString() {
-		return "WishAssess [id=" + id + ", wishMessageId=" + wishMessageId + ", point=" + point + ", context=" + context
-				+ ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", state=" + state + "]\r\n  [wishMessageBean="
-				+ wishMessageBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "GroupAssess [id=" + id + ", groupMessageId=" + groupMessageId + ", point=" + point + ", context="
+				+ context + ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", state=" + state
+				+ "]\r\n  [groupMessageBean=" + groupMessageBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -75,12 +75,12 @@ public class WishAssess {
 		this.id = id;
 	}
 
-	public Integer getWishMessageId() {
-		return wishMessageId;
+	public Integer getGroupMessageId() {
+		return groupMessageId;
 	}
 
-	public void setWishMessageId(Integer wishMessageId) {
-		this.wishMessageId = wishMessageId;
+	public void setGroupMessageId(Integer groupMessageId) {
+		this.groupMessageId = groupMessageId;
 	}
 
 	public Integer getPoint() {
@@ -123,12 +123,12 @@ public class WishAssess {
 		this.state = state;
 	}
 
-	public WishMessage getWishMessageBean() {
-		return wishMessageBean;
+	public GroupMessage getGroupMessageBean() {
+		return groupMessageBean;
 	}
 
-	public void setWishMessageBean(WishMessage wishMessageBean) {
-		this.wishMessageBean = wishMessageBean;
+	public void setGroupMessageBean(GroupMessage groupMessageBean) {
+		this.groupMessageBean = groupMessageBean;
 	}
 
 	public State getStateBean() {
@@ -138,5 +138,5 @@ public class WishAssess {
 	public void setStateBean(State stateBean) {
 		this.stateBean = stateBean;
 	}
-			
+
 }

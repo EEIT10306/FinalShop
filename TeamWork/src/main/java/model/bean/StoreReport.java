@@ -13,42 +13,52 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "StoreReport")
 public class StoreReport {
-	 
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sR_ID", columnDefinition = "int")
 	Integer id;
-	 
+
+	@Column(name = "sP_ID", columnDefinition = "int")
+	Integer storeProductId;
+
+	@Column(name = "mem_ID", columnDefinition = "int")
+	Integer memberId;
+
 	@Column(name = "sR_cont", columnDefinition = "nvarchar(max)")
 	String content;
-	
+
+	@Column(name = "sR_state", columnDefinition = "int")
+	Integer state;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	Integer storeProductId;
-	
+	StoreProduct storeProductBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	StoreProduct storeProduct;
-	
+	Member memberBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "sR_state", insertable = false, updatable = false)
-	StoreReport storeReport;
+	State stateBean;
 
-	
-	
 	public StoreReport() {
-		super();
 	}
 
-	public StoreReport(Integer id, String content) {
-		super();
+	public StoreReport(Integer id, Integer storeProductId, Integer memberId, String content, Integer state) {
 		this.id = id;
+		this.storeProductId = storeProductId;
+		this.memberId = memberId;
 		this.content = content;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreReport [id=" + id + ", content=" + content + "]";
+		return "StoreReport [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", content="
+				+ content + ", state=" + state + "]\r\n  [storeProductBean=" + storeProductBean + "]\r\n  [memberBean=" + memberBean
+				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -59,14 +69,6 @@ public class StoreReport {
 		this.id = id;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public Integer getStoreProductId() {
 		return storeProductId;
 	}
@@ -75,21 +77,52 @@ public class StoreReport {
 		this.storeProductId = storeProductId;
 	}
 
-	public StoreProduct getStoreProduct() {
-		return storeProduct;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setStoreProduct(StoreProduct storeProduct) {
-		this.storeProduct = storeProduct;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public StoreReport getStoreReport() {
-		return storeReport;
+	public String getContent() {
+		return content;
 	}
 
-	public void setStoreReport(StoreReport storeReport) {
-		this.storeReport = storeReport;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	
-			
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public StoreProduct getStoreProductBean() {
+		return storeProductBean;
+	}
+
+	public void setStoreProductBean(StoreProduct storeProductBean) {
+		this.storeProductBean = storeProductBean;
+	}
+
+	public Member getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+
 }

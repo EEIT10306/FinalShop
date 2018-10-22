@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "WishProduct")
 public class WishProduct {
@@ -19,55 +20,65 @@ public class WishProduct {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wP_ID", columnDefinition = "int")
 	Integer id;
+
 	@Column(name = "wish_ID", columnDefinition = "int")
-	Integer wishId;
+	Integer wishID;
+
 	@Column(name = "wP_name", columnDefinition = "nvarchar(max)")
 	String name;
+
 	@Column(name = "prod_ID", columnDefinition = "int")
-	Integer productId;
+	Integer productID;
+
 	@Column(name = "wP_amt", columnDefinition = "int")
 	Integer amount;
-	@Column(name = "wP_pBot", columnDefinition = "int")
-	Integer priceBot;
-	@Column(name = "wP_pTop", columnDefinition = "int")
+
+	@Column(name = "wP_Bot", columnDefinition = "int")
+	Integer priceBottom;
+
+	@Column(name = "wP_Top", columnDefinition = "int")
 	Integer priceTop;
+
 	@Column(name = "wP_compTime", columnDefinition = "datetime")
-	Date compTime;
+	Date completeTime;
+
 	@Column(name = "wP_state", columnDefinition = "int")
 	Integer state;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
-	Wish mem;
-	
+	Wish wishBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product prd;
-	
+	Product productBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "wP_state", insertable = false, updatable = false)
-	DistrictType dis;
+	State stateBean;
 
-	public WishProduct() {}
+	public WishProduct() {
+	}
 
-	public WishProduct(Integer id, Integer wishId, String name, Integer productId, Integer amount, Integer priceBot,
-			Integer priceTop, Date compTime, Integer state) {
+	public WishProduct(Integer id, Integer wishID, String name, Integer productID, Integer amount, Integer priceBottom,
+			Integer priceTop, Date completeTime, Integer state) {
 		this.id = id;
-		this.wishId = wishId;
+		this.wishID = wishID;
 		this.name = name;
-		this.productId = productId;
+		this.productID = productID;
 		this.amount = amount;
-		this.priceBot = priceBot;
+		this.priceBottom = priceBottom;
 		this.priceTop = priceTop;
-		this.compTime = compTime;
+		this.completeTime = completeTime;
 		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "WishProduct [id=" + id + ", wishId=" + wishId + ", name=" + name + ", productId=" + productId
-				+ ", amount=" + amount + ", priceBot=" + priceBot + ", priceTop=" + priceTop + ", compTime=" + compTime
-				+ ", state=" + state + "]\r\n";
+		return "WishProduct [id=" + id + ", wishID=" + wishID + ", name=" + name + ", productID=" + productID
+				+ ", amount=" + amount + ", priceBottom=" + priceBottom + ", priceTop=" + priceTop + ", completeTime="
+				+ completeTime + ", state=" + state + "]\r\n  [wishBean=" + wishBean + "]\r\n [productBean=" + productBean
+				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -78,12 +89,12 @@ public class WishProduct {
 		this.id = id;
 	}
 
-	public Integer getWishId() {
-		return wishId;
+	public Integer getWishID() {
+		return wishID;
 	}
 
-	public void setWishId(Integer wishId) {
-		this.wishId = wishId;
+	public void setWishID(Integer wishID) {
+		this.wishID = wishID;
 	}
 
 	public String getName() {
@@ -94,12 +105,12 @@ public class WishProduct {
 		this.name = name;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public Integer getProductID() {
+		return productID;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setProductID(Integer productID) {
+		this.productID = productID;
 	}
 
 	public Integer getAmount() {
@@ -110,12 +121,12 @@ public class WishProduct {
 		this.amount = amount;
 	}
 
-	public Integer getPriceBot() {
-		return priceBot;
+	public Integer getPriceBottom() {
+		return priceBottom;
 	}
 
-	public void setPriceBot(Integer priceBot) {
-		this.priceBot = priceBot;
+	public void setPriceBottom(Integer priceBottom) {
+		this.priceBottom = priceBottom;
 	}
 
 	public Integer getPriceTop() {
@@ -126,12 +137,12 @@ public class WishProduct {
 		this.priceTop = priceTop;
 	}
 
-	public Date getCompTime() {
-		return compTime;
+	public Date getCompleteTime() {
+		return completeTime;
 	}
 
-	public void setCompTime(Date compTime) {
-		this.compTime = compTime;
+	public void setCompleteTime(Date completeTime) {
+		this.completeTime = completeTime;
 	}
 
 	public Integer getState() {
@@ -142,30 +153,28 @@ public class WishProduct {
 		this.state = state;
 	}
 
-	public Wish getMem() {
-		return mem;
+	public Wish getWishBean() {
+		return wishBean;
 	}
 
-	public void setMem(Wish mem) {
-		this.mem = mem;
+	public void setWishBean(Wish wishBean) {
+		this.wishBean = wishBean;
 	}
 
-	public Product getPrd() {
-		return prd;
+	public Product getProductBean() {
+		return productBean;
 	}
 
-	public void setPrd(Product prd) {
-		this.prd = prd;
+	public void setProductBean(Product productBean) {
+		this.productBean = productBean;
 	}
 
-	public DistrictType getDis() {
-		return dis;
+	public State getStateBean() {
+		return stateBean;
 	}
 
-	public void setDis(DistrictType dis) {
-		this.dis = dis;
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
 	}
-	
-	
-	
+
 }
