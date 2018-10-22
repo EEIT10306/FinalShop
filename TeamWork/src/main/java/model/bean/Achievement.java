@@ -10,19 +10,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Achievement")
 public class Achievement {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ach_ID", columnDefinition = "int")
 	Integer id;
+
 	@Column(name = "ach_cont", columnDefinition = "nvarchar(MAX)")
 	String context;
+
 	@Column(name = "ach_bon", columnDefinition = "int")
 	Integer bonus;
+
 	@Column(name = "ach_parID", columnDefinition = "int")
 	Integer parentsId;
 
-	public Achievement() {}
+	public Achievement() {
+	}
 
 	public Achievement(Integer id, String context, Integer bonus, Integer parentsId) {
 		this.id = id;
@@ -33,7 +37,8 @@ public class Achievement {
 
 	@Override
 	public String toString() {
-		return "Achievement [id=" + id + ", context=" + context + ", bonus=" + bonus + ", parentsId=" + parentsId + "]\r\n";
+		return "Achievement [id=" + id + ", context=" + context + ", bonus=" + bonus + ", parentsId=" + parentsId
+				+ "]\r\n";
 	}
 
 	public Integer getId() {
@@ -67,6 +72,5 @@ public class Achievement {
 	public void setParentsId(Integer parentsId) {
 		this.parentsId = parentsId;
 	}
-	
-	
+
 }

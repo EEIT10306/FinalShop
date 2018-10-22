@@ -21,7 +21,7 @@ public class CommitAchievement {
 
 	@Column(name = "ach_ID", columnDefinition = "int")
 	Integer achievementID;
-	
+
 	@Column(name = "mem_ID", columnDefinition = "int")
 	Integer memberID;
 
@@ -31,19 +31,21 @@ public class CommitAchievement {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member mem;
-	
-	public CommitAchievement() {}
-	
+	Member memeberBean;
+
+	public CommitAchievement() {
+	}
+
 	public CommitAchievement(Integer id, Integer achievementID, Integer memberID) {
 		this.id = id;
 		this.achievementID = achievementID;
 		this.memberID = memberID;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID + "]\r\n";
+		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID
+				+ "]\r\n  [ach=" + ach + "]\r\n    [memeberBean=" + memeberBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -77,11 +79,12 @@ public class CommitAchievement {
 	public Achievement getAch() {
 		return ach;
 	}
-	
+
 	public Member getMem() {
-		return mem;
+		return memeberBean;
 	}
 
-	public void setMem(Member mem) {
-		this.mem = mem;
+	public void setMem(Member memeberBean) {
+		this.memeberBean = memeberBean;
+	}
 }

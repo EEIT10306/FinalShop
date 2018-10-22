@@ -12,9 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "GroupMessage")
+@Table(name = "GroupMessage", uniqueConstraints = { @UniqueConstraint(columnNames = { "gP_ID", "memG_IDee" }) })
 public class GroupMessage {
 
 	@Id
@@ -22,62 +23,65 @@ public class GroupMessage {
 	@Column(name = "gM_ID", columnDefinition = "int")
 	Integer id;
 
-	@Column(name = "gP_ID", columnDefinition = "int", unique = true)
-	Integer groupID;
+	@Column(name = "gP_ID", columnDefinition = "int")
+	Integer groupProductId;
 
-	@Column(name = "memG_IDee", columnDefinition = "int", unique = true)
-	Integer memberID;
+	@Column(name = "memG_IDee", columnDefinition = "int")
+	Integer memberId;
 
 	@Column(name = "gM_amt", columnDefinition = "int")
-	Integer gmAmt;
+	Integer amount;
 
 	@Column(name = "gM_time", columnDefinition = "daetime")
-	Date gmTime;
+	Date time;
 
 	@Column(name = "gS_ID", columnDefinition = "int")
-	Integer gsID;
+	Integer groupServiceId;
 
 	@Column(name = "gM_sumPrice", columnDefinition = "int")
 	Integer sumPrice;
 
 	@Column(name = "gM_state", columnDefinition = "int")
-	Integer gmState;
+	Integer state;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
-	Group group;
+	GroupProduct groupProductBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "memG_IDee", insertable = false, updatable = false)
-	Member member;
+	Member memberBean;
 
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "gS_ID", insertable = false, updatable = false)
-	GroupService groupService;
+	GroupService groupServiceBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "gM_state", insertable = false, updatable = false)
-	State state;
+	State stateBean;
 
 	public GroupMessage() {
 	}
 
-	public GroupMessage(Integer id, Integer groupID, Integer memberID, Integer gmAmt, Date gmTime, Integer gsID, Integer sumPrice,
-			Integer gmState) {
+	public GroupMessage(Integer id, Integer groupProductId, Integer memberId, Integer amount, Date time,
+			Integer groupServiceId, Integer sumPrice, Integer state) {
 		this.id = id;
-		this.groupID = groupID;
-		this.memberID = memberID;
-		this.gmAmt = gmAmt;
-		this.gmTime = gmTime;
-		this.gsID = gsID;
+		this.groupProductId = groupProductId;
+		this.memberId = memberId;
+		this.amount = amount;
+		this.time = time;
+		this.groupServiceId = groupServiceId;
 		this.sumPrice = sumPrice;
-		this.gmState = gmState;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupMessage [id=" + id + ", groupID=" + groupID + ", memberID=" + memberID + ", gmAmt=" + gmAmt
-				+ ", gmTime=" + gmTime + ", gsID=" + gsID + ", sumPrice=" + sumPrice + ", gmState=" + gmState + "]";
+		return "GroupMessage [id=" + id + ", groupProductId=" + groupProductId + ", memberId=" + memberId + ", amount="
+				+ amount + ", time=" + time + ", groupServiceId=" + groupServiceId + ", sumPrice=" + sumPrice
+				+ ", state=" + state + "]\r\n  [groupProductBean=" + groupProductBean + "]\r\n  [memberBean="
+				+ memberBean + "]\r\n  [groupServiceBean=" + groupServiceBean + "]\r\n  [stateBean=" + stateBean
+				+ "]\r\n";
 	}
 
 	public Integer getId() {
@@ -88,44 +92,44 @@ public class GroupMessage {
 		this.id = id;
 	}
 
-	public Integer getGroupID() {
-		return groupID;
+	public Integer getGroupProductId() {
+		return groupProductId;
 	}
 
-	public void setGroupID(Integer groupID) {
-		this.groupID = groupID;
+	public void setGroupProductId(Integer groupProductId) {
+		this.groupProductId = groupProductId;
 	}
 
-	public Integer getMemberID() {
-		return memberID;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberID(Integer memberID) {
-		this.memberID = memberID;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public Integer getGmAmt() {
-		return gmAmt;
+	public Integer getAmount() {
+		return amount;
 	}
 
-	public void setGmAmt(Integer gmAmt) {
-		this.gmAmt = gmAmt;
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 
-	public Date getGmTime() {
-		return gmTime;
+	public Date getTime() {
+		return time;
 	}
 
-	public void setGmTime(Date gmTime) {
-		this.gmTime = gmTime;
+	public void setTime(Date time) {
+		this.time = time;
 	}
 
-	public Integer getGsID() {
-		return gsID;
+	public Integer getGroupServiceId() {
+		return groupServiceId;
 	}
 
-	public void setGsID(Integer gsID) {
-		this.gsID = gsID;
+	public void setGroupServiceId(Integer groupServiceId) {
+		this.groupServiceId = groupServiceId;
 	}
 
 	public Integer getSumPrice() {
@@ -136,43 +140,44 @@ public class GroupMessage {
 		this.sumPrice = sumPrice;
 	}
 
-	public Integer getGmState() {
-		return gmState;
-	}
-
-	public void setGmState(Integer gmState) {
-		this.gmState = gmState;
-	}
-
-	public Group getGroup() {
-		return group;
-	}
-
-	public void setGroup(Group group) {
-		this.group = group;
-	}
-
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
-
-	public GroupService getGroupService() {
-		return groupService;
-	}
-
-	public void setGroupService(GroupService groupService) {
-		this.groupService = groupService;
-	}
-
-	public State getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
+
+	public GroupProduct getGroupProductBean() {
+		return groupProductBean;
+	}
+
+	public void setGroupProductBean(GroupProduct groupProductBean) {
+		this.groupProductBean = groupProductBean;
+	}
+
+	public Member getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
+	}
+
+	public GroupService getGroupServiceBean() {
+		return groupServiceBean;
+	}
+
+	public void setGroupServiceBean(GroupService groupServiceBean) {
+		this.groupServiceBean = groupServiceBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+
 }

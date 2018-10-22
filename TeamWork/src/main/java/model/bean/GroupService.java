@@ -20,7 +20,7 @@ public class GroupService {
 	Integer id;
 
 	@Column(name = "gP_ID", columnDefinition = "int")
-	Integer groupID;
+	Integer groupProductID;
 
 	@Column(name = "gS_rule", columnDefinition = "nvarchar(max)")
 	String rule;
@@ -29,32 +29,32 @@ public class GroupService {
 	Double off;
 
 	@Column(name = "gS_state", columnDefinition = "int")
-	Integer groupState;
+	Integer state;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
-	Group group;
+	GroupProduct groupProductBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "gS_state", insertable = false, updatable = false)
-	State state;
+	State stateBean;
 
 	public GroupService() {
-
 	}
 
-	public GroupService(Integer id, Integer groupID, String rule, Double off, Integer groupState) {
+	public GroupService(Integer id, Integer groupProductID, String rule, Double off, Integer state) {
 		this.id = id;
-		this.groupID = groupID;
+		this.groupProductID = groupProductID;
 		this.rule = rule;
 		this.off = off;
-		this.groupState = groupState;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupService [id=" + id + ", groupID=" + groupID + ", rule=" + rule + ", off=" + off + ", groupState="
-				+ groupState + "]";
+		return "GroupService [id=" + id + ", groupProductID=" + groupProductID + ", rule=" + rule + ", off=" + off
+				+ ", state=" + state + "]\r\n  [groupProductBean=" + groupProductBean + "]\r\n  [stateBean=" + stateBean
+				+ "]\r\n";
 	}
 
 	public Integer getId() {
@@ -65,12 +65,12 @@ public class GroupService {
 		this.id = id;
 	}
 
-	public Integer getGroupID() {
-		return groupID;
+	public Integer getGroupProductID() {
+		return groupProductID;
 	}
 
-	public void setGroupID(Integer groupID) {
-		this.groupID = groupID;
+	public void setGroupProductID(Integer groupProductID) {
+		this.groupProductID = groupProductID;
 	}
 
 	public String getRule() {
@@ -89,27 +89,28 @@ public class GroupService {
 		this.off = off;
 	}
 
-	public Integer getGroupState() {
-		return groupState;
-	}
-
-	public void setGroupState(Integer groupState) {
-		this.groupState = groupState;
-	}
-
-	public Group getGroup() {
-		return group;
-	}
-
-	public void setGroup(Group group) {
-		this.group = group;
-	}
-
-	public State getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
+
+	public GroupProduct getGroupProductBean() {
+		return groupProductBean;
+	}
+
+	public void setGroupProductBean(GroupProduct groupProductBean) {
+		this.groupProductBean = groupProductBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+
 }

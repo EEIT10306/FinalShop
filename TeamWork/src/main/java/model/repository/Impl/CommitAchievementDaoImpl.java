@@ -31,12 +31,12 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 		CommitAchievementDaoImpl dao = ctx.getBean(CommitAchievementDaoImpl.class);
 		dao.getSession().beginTransaction();
 
-//		System.out.println(dao.select());//selectAll
+		System.out.println(dao.select());//selectAll
 				
 //		CommitAchievement comAch = new CommitAchievement(1, 1 , 2);
 //		System.out.println(dao.getSession().save(comAch));// insert
 //		
-		System.out.println(dao.select(1));//selectOne
+//		System.out.println(dao.select(1));//selectOne
 
 		dao.getSession().getTransaction().commit();
 		((ConfigurableApplicationContext) ctx).close();

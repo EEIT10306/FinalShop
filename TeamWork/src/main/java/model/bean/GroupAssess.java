@@ -12,57 +12,59 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="GroupAssess")
+@Table(name = "GroupAssess")
 public class GroupAssess {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="gA_ID" , columnDefinition="int")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "gA_ID", columnDefinition = "int")
 	Integer id;
-	
-	@Column(name="gM_ID" , columnDefinition="int")
-	Integer gmID;
-	
-	@Column(name="gA_point" , columnDefinition = "int")
+
+	@Column(name = "gM_ID", columnDefinition = "int")
+	Integer groupMessageId;
+
+	@Column(name = "gA_point", columnDefinition = "int")
 	Integer point;
-	
-	@Column(name="gA_cont" , columnDefinition="nvarchar(max)")
-	String cont;
-	
-	@Column(name="gA_pointee" , columnDefinition="int")
-	Integer pointee;
-	
-	@Column(name="gA_contee" , columnDefinition="nvarchar(max)")
-	String contee;
-	
-	@Column(name="gA_state" , columnDefinition="int")
-	Integer gaState;
-	
-	@OneToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="gM_ID" , insertable=false, updatable = false)
-	GroupMessage message;
-	
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="gA_state" , insertable=false , updatable = false)
-	State state;
+
+	@Column(name = "gA_cont", columnDefinition = "nvarchar(max)")
+	String context;
+
+	@Column(name = "gA_pointee", columnDefinition = "int")
+	Integer pointEE;
+
+	@Column(name = "gA_contee", columnDefinition = "nvarchar(max)")
+	String contextEE;
+
+	@Column(name = "gA_state", columnDefinition = "int")
+	Integer state;
+
+	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "gM_ID", insertable = false, updatable = false)
+	GroupMessage groupMessageBean;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "gA_state", insertable = false, updatable = false)
+	State stateBean;
 
 	public GroupAssess() {
 	}
 
-	public GroupAssess(Integer id, Integer gmID, Integer point, String cont, Integer pointee, String contee, Integer gaState) {
+	public GroupAssess(Integer id, Integer groupMessageId, Integer point, String context, Integer pointEE,
+			String contextEE, Integer state) {
 		this.id = id;
-		this.gmID = gmID;
+		this.groupMessageId = groupMessageId;
 		this.point = point;
-		this.cont = cont;
-		this.pointee = pointee;
-		this.contee = contee;
-		this.gaState = gaState;
+		this.context = context;
+		this.pointEE = pointEE;
+		this.contextEE = contextEE;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupAssess [id=" + id + ", gmID=" + gmID + ", point=" + point + ", cont=" + cont + ", pointee="
-				+ pointee + ", contee=" + contee + ", gaState=" + gaState + "]";
+		return "GroupAssess [id=" + id + ", groupMessageId=" + groupMessageId + ", point=" + point + ", context="
+				+ context + ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", state=" + state
+				+ "]\r\n  [groupMessageBean=" + groupMessageBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -73,12 +75,12 @@ public class GroupAssess {
 		this.id = id;
 	}
 
-	public Integer getGmID() {
-		return gmID;
+	public Integer getGroupMessageId() {
+		return groupMessageId;
 	}
 
-	public void setGmID(Integer gmID) {
-		this.gmID = gmID;
+	public void setGroupMessageId(Integer groupMessageId) {
+		this.groupMessageId = groupMessageId;
 	}
 
 	public Integer getPoint() {
@@ -89,51 +91,52 @@ public class GroupAssess {
 		this.point = point;
 	}
 
-	public String getCont() {
-		return cont;
+	public String getContext() {
+		return context;
 	}
 
-	public void setCont(String cont) {
-		this.cont = cont;
+	public void setContext(String context) {
+		this.context = context;
 	}
 
-	public Integer getPointee() {
-		return pointee;
+	public Integer getPointEE() {
+		return pointEE;
 	}
 
-	public void setPointee(Integer pointee) {
-		this.pointee = pointee;
+	public void setPointEE(Integer pointEE) {
+		this.pointEE = pointEE;
 	}
 
-	public String getContee() {
-		return contee;
+	public String getContextEE() {
+		return contextEE;
 	}
 
-	public void setContee(String contee) {
-		this.contee = contee;
+	public void setContextEE(String contextEE) {
+		this.contextEE = contextEE;
 	}
 
-	public Integer getGaState() {
-		return gaState;
-	}
-
-	public void setGaState(Integer gaState) {
-		this.gaState = gaState;
-	}
-
-	public GroupMessage getMessage() {
-		return message;
-	}
-
-	public void setMessage(GroupMessage message) {
-		this.message = message;
-	}
-
-	public State getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
+
+	public GroupMessage getGroupMessageBean() {
+		return groupMessageBean;
+	}
+
+	public void setGroupMessageBean(GroupMessage groupMessageBean) {
+		this.groupMessageBean = groupMessageBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+
 }
