@@ -25,7 +25,7 @@ public class WishMessage {
 	Integer groupProductId;
 
 	@Column(name = "mem_IDee", columnDefinition = "int")
-	Member buyerMemberIdEE;
+	Integer buyerMemberIdEE;
 
 	@Column(name = "wM_bid", columnDefinition = "int")
 	Integer bid;
@@ -54,7 +54,7 @@ public class WishMessage {
 	public WishMessage() {
 	}
 
-	public WishMessage(Integer id, Integer groupProductId, Member buyerMemberIdEE, Integer bid, String amount,
+	public WishMessage(Integer id, Integer groupProductId, Integer buyerMemberIdEE, Integer bid, String amount,
 			Date time, Integer state) {
 		this.id = id;
 		this.groupProductId = groupProductId;
@@ -88,11 +88,11 @@ public class WishMessage {
 		this.groupProductId = groupProductId;
 	}
 
-	public Member getBuyerMemberIdEE() {
+	public Integer getBuyerMemberIdEE() {
 		return buyerMemberIdEE;
 	}
 
-	public void setBuyerMemberIdEE(Member buyerMemberIdEE) {
+	public void setBuyerMemberIdEE(Integer buyerMemberIdEE) {
 		this.buyerMemberIdEE = buyerMemberIdEE;
 	}
 

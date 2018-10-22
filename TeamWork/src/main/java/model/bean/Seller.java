@@ -21,7 +21,7 @@ public class Seller {
 	Integer id;
 
 	@Column(name = "mem_ID", columnDefinition = "int")
-	Member memberId;
+	Integer memberId;
 
 	@Column(name = "mem_idcard", columnDefinition = "nvarchar(MAX)")
 	String idCard;
@@ -30,7 +30,7 @@ public class Seller {
 	String mailVerification;
 
 	@Column(name = "seller_state", columnDefinition = "int")
-	State state;
+	Integer state;
 
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
@@ -43,7 +43,7 @@ public class Seller {
 	public Seller() {
 	}
 
-	public Seller(Integer id, Member memberId, String idCard, String mailVerification, State state) {
+	public Seller(Integer id, Integer memberId, String idCard, String mailVerification, Integer state) {
 		this.id = id;
 		this.memberId = memberId;
 		this.idCard = idCard;
@@ -56,6 +56,62 @@ public class Seller {
 		return "Seller [id=" + id + ", memberId=" + memberId + ", idCard=" + idCard + ", mailVerification="
 				+ mailVerification + ", state=" + state + "]\r\n  [memberBean=" + memberBean + "]\r\n  [stateBean=" + stateBean
 				+ "]\r\n";
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getIdCard() {
+		return idCard;
+	}
+
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
+	}
+
+	public String getMailVerification() {
+		return mailVerification;
+	}
+
+	public void setMailVerification(String mailVerification) {
+		this.mailVerification = mailVerification;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public Member getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
 	}
 
 }

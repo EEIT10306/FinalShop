@@ -61,7 +61,7 @@ public class Wish {
 	DistrictType districtTypeBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wish_state", columnDefinition = "int")
+	@JoinColumn(name = "wish_state", insertable = false, updatable = false)
 	State stateBean;
 
 	public Wish() {
