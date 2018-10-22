@@ -9,7 +9,7 @@ public interface StoreOrderDao {
 	public List<StoreOrder> select() throws SQLException;
 	public StoreOrder select(Integer id) throws SQLException;
 	public StoreOrder insert(StoreOrder bean) throws SQLException;
-	public StoreOrder update(Integer id, Integer productId, Integer memberStoreIDee, String storeProductName,
+	public StoreOrder update(Integer id, Integer productId, Integer memberStoreIdEE, String storeProductName,
 			Integer amount, Integer storeProductPrice, Integer state) throws SQLException;
 	public boolean delete(Integer id) throws SQLException;
 }

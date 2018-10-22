@@ -39,12 +39,12 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 	}
 
 	@Override
-	public StoreOrder update(Integer id, Integer productId, Integer memberStoreIDee, String storeProductName,
+	public StoreOrder update(Integer id, Integer productId, Integer memberStoreIdEE, String storeProductName,
 			Integer amount, Integer storeProductPrice, Integer state) throws SQLException {
 		StoreOrder storeOrder = this.getSession().get(StoreOrder.class, id);
 		if(storeOrder != null) {
 			storeOrder.setProductId(productId);
-			storeOrder.setMemberStoreIDee(memberStoreIDee);
+			storeOrder.setMemberStoreIdEE(memberStoreIdEE);
 			storeOrder.setStoreProductName(storeProductName);
 			storeOrder.setAmount(amount);
 			storeOrder.setStoreProductPrice(storeProductPrice);

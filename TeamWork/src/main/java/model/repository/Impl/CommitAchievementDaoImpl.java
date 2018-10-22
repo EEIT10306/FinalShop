@@ -25,22 +25,22 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-
-		CommitAchievementDaoImpl dao = ctx.getBean(CommitAchievementDaoImpl.class);
-		dao.getSession().beginTransaction();
-
-		System.out.println(dao.select());//selectAll
-				
+//	public static void main(String[] args) throws SQLException {
+//		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
+//
+//		CommitAchievementDaoImpl dao = ctx.getBean(CommitAchievementDaoImpl.class);
+//		dao.getSession().beginTransaction();
+//
+//		System.out.println(dao.select());//selectAll
+//				
 //		CommitAchievement comAch = new CommitAchievement(1, 1 , 2);
 //		System.out.println(dao.getSession().save(comAch));// insert
 //		
 //		System.out.println(dao.select(1));//selectOne
-
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
-	}
+//
+//		dao.getSession().getTransaction().commit();
+//		((ConfigurableApplicationContext) ctx).close();
+//	}
 
 	@Override
 	public List<CommitAchievement> select() throws SQLException {

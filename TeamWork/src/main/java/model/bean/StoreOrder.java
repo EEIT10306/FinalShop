@@ -20,8 +20,8 @@ public class StoreOrder {
 	@Column(name = "prod_ID", columnDefinition = "int")
 	Integer productId;
 
-	@Column(name = "memS_IDee", columnDefinition = "int")
-	Integer memberStoreIDEE;
+	@Column(name = "memS_IdEE", columnDefinition = "int")
+	Integer memberStoreIdEE;
 
 	@Column(name = "sP_name", columnDefinition = "nvarchar(max)")
 	String storeProductName;
@@ -50,11 +50,11 @@ public class StoreOrder {
 	public StoreOrder() {
 	}
 
-	public StoreOrder(Integer id, Integer productId, Integer memberStoreIDEE, String storeProductName, Integer amount,
+	public StoreOrder(Integer id, Integer productId, Integer memberStoreIdEE, String storeProductName, Integer amount,
 			Integer storeProductPrice, Integer state) {
 		this.id = id;
 		this.productId = productId;
-		this.memberStoreIDEE = memberStoreIDEE;
+		this.memberStoreIdEE = memberStoreIdEE;
 		this.storeProductName = storeProductName;
 		this.amount = amount;
 		this.storeProductPrice = storeProductPrice;
@@ -63,7 +63,7 @@ public class StoreOrder {
 
 	@Override
 	public String toString() {
-		return "StoreOrder [id=" + id + ", productId=" + productId + ", memberStoreIDEE=" + memberStoreIDEE
+		return "StoreOrder [id=" + id + ", productId=" + productId + ", memberStoreIdEE=" + memberStoreIdEE
 				+ ", storeProductName=" + storeProductName + ", amount=" + amount + ", storeProductPrice="
 				+ storeProductPrice + ", state=" + state + "]\r\n  [productBean=" + productBean + "]\r\n  [memberBean=" + memberBean
 				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
@@ -85,12 +85,12 @@ public class StoreOrder {
 		this.productId = productId;
 	}
 
-	public Integer getMemberStoreIDEE() {
-		return memberStoreIDEE;
+	public Integer getMemberStoreIdEE() {
+		return memberStoreIdEE;
 	}
 
-	public void setMemberStoreIDEE(Integer memberStoreIDEE) {
-		this.memberStoreIDEE = memberStoreIDEE;
+	public void setMemberStoreIdEE(Integer memberStoreIdEE) {
+		this.memberStoreIdEE = memberStoreIdEE;
 	}
 
 	public String getStoreProductName() {
