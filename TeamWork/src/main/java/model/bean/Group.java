@@ -39,7 +39,7 @@ public class Group {
 	@Column(name = "group_sDate", columnDefinition = "datetime")
 	Date startDate;
 
-	@Column(name = "group_sDate", columnDefinition = "datetime")
+	@Column(name = "group_eDate", columnDefinition = "datetime")
 	Date endDate;
 
 	@Column(name = "group_goal", columnDefinition = "nvarchar(max)")

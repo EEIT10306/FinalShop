@@ -21,7 +21,7 @@ public class StoreAssess {
 	Integer id;
 
 	@Column(name = "sO_ID", columnDefinition = "int")
-	StoreOrder storeOrderId;
+	Integer storeOrderId;
 	 
 	@Column(name = "sA_point", columnDefinition = "int")
 	Integer point;
@@ -49,7 +49,7 @@ public class StoreAssess {
 	public StoreAssess() {
 	}
 
-	public StoreAssess(Integer id, StoreOrder storeOrderId, Integer point, String content, Integer pointEE,
+	public StoreAssess(Integer id, Integer storeOrderId, Integer point, String content, Integer pointEE,
 			String contextEE, Integer state) {
 		this.id = id;
 		this.storeOrderId = storeOrderId;
@@ -75,11 +75,11 @@ public class StoreAssess {
 		this.id = id;
 	}
 
-	public StoreOrder getStoreOrderId() {
+	public Integer getStoreOrderId() {
 		return storeOrderId;
 	}
 
-	public void setStoreOrderId(StoreOrder storeOrderId) {
+	public void setStoreOrderId(Integer storeOrderId) {
 		this.storeOrderId = storeOrderId;
 	}
 
