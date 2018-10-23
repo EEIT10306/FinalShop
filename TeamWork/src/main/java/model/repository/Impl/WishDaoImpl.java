@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.DistrictType;
+import model.bean.Group;
 import model.bean.Wish;
+import model.bean.WishReport;
 import model.repository.WishDao;
+
 @Repository
 public class WishDaoImpl implements WishDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -32,28 +35,36 @@ public class WishDaoImpl implements WishDao {
 	public Wish select(Integer id) throws SQLException {
 		return getSession().get(Wish.class, id);
 	}
-	
 
 	@Override
 	public Wish insert(Wish bean) throws SQLException {
 		Wish simple = getSession().get(Wish.class, bean.getId());
-		if(simple==null) {
+		if (simple == null) {
 			getSession().save(bean);
 			return bean;
 		}
 		return null;
 	}
-	@Override
-	public Wish update(Integer id, Integer memberId, Integer productId, String title, String cont,
-			Integer districtTypeId, Date startDate, Date endDate, Date compTime, Integer state) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public boolean delete(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public Wish update(Integer id, Integer memberId, Integer productId, String title, String context,
+			Integer districtTypeId, Date startDate, Date endDate, Date completeTime, Integer state)
+			throws SQLException {
+		Wish wish = this.getSession().get(Wish.class, id);
+		if (wish != null) {
+			wish.setId(id);
+			wish.setMemberId(memberId);
+			wish.setProductId(productId);
+			wish.setTitle(title);
+			wish.setContext(context);
+			wish.setDistrictTypeId(districtTypeId);
+			wish.setStartDate(startDate);
+			wish.setEndDate(endDate);
+			wish.setCompleteTime(completeTime);
+			wish.setState(state);
+			return wish;
+		}
+		return null;
 	}
 
 }

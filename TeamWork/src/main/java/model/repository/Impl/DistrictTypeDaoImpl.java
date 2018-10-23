@@ -10,10 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import model.bean.Achievement;
 import model.bean.DistrictType;
+import model.bean.WishProduct;
 import model.repository.DistrictTypeDao;
+
 @Repository
 public class DistrictTypeDaoImpl implements DistrictTypeDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -31,12 +33,11 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 	public DistrictType select(Integer id) throws SQLException {
 		return getSession().get(DistrictType.class, id);
 	}
-	
 
 	@Override
 	public DistrictType insert(DistrictType bean) throws SQLException {
 		DistrictType simple = getSession().get(DistrictType.class, bean.getId());
-		if(simple==null) {
+		if (simple == null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -45,12 +46,15 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 
 	@Override
 	public DistrictType update(Integer id, String name, Integer parentID, Integer stage) throws SQLException {
+		DistrictType districtType = this.getSession().get(DistrictType.class, id);
+		if (districtType != null) {
+			districtType.setId(id);
+			districtType.setName(name);
+			districtType.setParentID(parentID);
+			districtType.setStage(stage);
+			return districtType;
+		}
 		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		return false;
 	}
 
 }

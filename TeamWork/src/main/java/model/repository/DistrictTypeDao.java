@@ -10,5 +10,5 @@ public interface DistrictTypeDao {
 	public DistrictType select(Integer id) throws SQLException;
 	public DistrictType insert(DistrictType bean) throws SQLException;
 	public DistrictType update(Integer id, String name, Integer parentID, Integer stage) throws SQLException;
-	public boolean delete(Integer id) throws SQLException;
+	
 }

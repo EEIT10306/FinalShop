@@ -40,7 +40,7 @@ public class WishMessage {
 	Integer state;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
 	GroupProduct groupProductBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -48,7 +48,7 @@ public class WishMessage {
 	Member memberBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gM_state", insertable = false, updatable = false)
+	@JoinColumn(name = "wM_state", insertable = false, updatable = false)
 	State stateBean;
 
 	public WishMessage() {

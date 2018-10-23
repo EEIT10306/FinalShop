@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.DistrictType;
+import model.bean.Wish;
 import model.bean.WishMessage;
 import model.repository.WishMessageDao;
 @Repository
@@ -45,14 +46,19 @@ public class WishMessageDaoImpl implements WishMessageDao {
 	}
 
 	@Override
-	public WishMessage update(Integer id, Integer wishProductId, Integer memberId, Integer productId, String bid,
+	public WishMessage update(Integer id, Integer groupProductId, Integer buyerMemberIdEE, Integer bid, String amount,
 			Date time, Integer state) throws SQLException {
+		WishMessage wishMessage = this.getSession().get(WishMessage.class, id);
+		if (wishMessage != null) {
+			wishMessage.setId(id);
+			wishMessage.setGroupProductId(groupProductId);
+			wishMessage.setBuyerMemberIdEE(buyerMemberIdEE);
+			wishMessage.setBid(bid);
+			wishMessage.setAmount(amount);
+			wishMessage.setTime(time);
+			wishMessage.setState(state);
+			return wishMessage;
+		}
 		return null;
 	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		return false;
-	}
-
 }

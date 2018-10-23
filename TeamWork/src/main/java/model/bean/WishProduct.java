@@ -33,10 +33,10 @@ public class WishProduct {
 	@Column(name = "wP_amt", columnDefinition = "int")
 	Integer amount;
 
-	@Column(name = "wP_Bot", columnDefinition = "int")
+	@Column(name = "wP_pBot", columnDefinition = "int")
 	Integer priceBottom;
 
-	@Column(name = "wP_Top", columnDefinition = "int")
+	@Column(name = "wP_pTop", columnDefinition = "int")
 	Integer priceTop;
 
 	@Column(name = "wP_compTime", columnDefinition = "datetime")

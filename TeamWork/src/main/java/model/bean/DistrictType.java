@@ -73,12 +73,14 @@ public class DistrictType {
 		this.parentID = parentID;
 	}
 
-	public DistrictType getParID() {
-		return parentsDistrictTypeBean;
+	public Integer getStage() {
+		return stage;
 	}
 
-	public void setParID(DistrictType parentsDistrictTypeBean) {
-		this.parentsDistrictTypeBean = parentsDistrictTypeBean;
+	public void setStage(Integer stage) {
+		this.stage = stage;
 	}
+
+	
 
 }
