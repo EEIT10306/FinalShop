@@ -1,7 +1,6 @@
 package model.bean;
 
 import java.sql.Blob;
-import java.util.Arrays;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -25,22 +25,22 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-
-		CommitAchievementDaoImpl dao = ctx.getBean(CommitAchievementDaoImpl.class);
-		dao.getSession().beginTransaction();
-
-		System.out.println(dao.select());//selectAll
-				
+//	public static void main(String[] args) throws SQLException {
+//		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
+//
+//		CommitAchievementDaoImpl dao = ctx.getBean(CommitAchievementDaoImpl.class);
+//		dao.getSession().beginTransaction();
+//
+//		System.out.println(dao.select());//selectAll
+//				
 //		CommitAchievement comAch = new CommitAchievement(1, 1 , 2);
 //		System.out.println(dao.getSession().save(comAch));// insert
 //		
 //		System.out.println(dao.select(1));//selectOne
-
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
-	}
+//
+//		dao.getSession().getTransaction().commit();
+//		((ConfigurableApplicationContext) ctx).close();
+//	}
 
 	@Override
 	public List<CommitAchievement> select() throws SQLException {
@@ -64,11 +64,23 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 
 	@Override
 	public CommitAchievement update(Integer id, Integer achievementID, Integer memberID) throws SQLException {
+		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
+		if(CA != null) {
+			CA.setAchievementID(achievementID);
+			CA.setMemberID(memberID);
+			getSession().update(CA);
+			return CA;
+		}
 		return null;
 	}
 
 	@Override
 	public boolean delete(Integer id) throws SQLException {
+		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
+		if(CA != null) {
+			getSession().delete(CA);
+			return true;
+		}
 		return false;
 	}
 

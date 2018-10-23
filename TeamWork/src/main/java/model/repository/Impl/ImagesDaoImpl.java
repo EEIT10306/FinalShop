@@ -1,17 +1,14 @@
 package model.repository.Impl;
 
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import misc.SpringJavaConfiguration;
 import model.bean.Images;
 import model.repository.ImagesDao;
 
@@ -23,15 +20,6 @@ public class ImagesDaoImpl implements ImagesDao {
 
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
-	}
-
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-		ImagesDaoImpl dao = ctx.getBean(ImagesDaoImpl.class);
-		dao.getSession().beginTransaction();
-		System.out.println(dao.selectAll());
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
 	}
 
 	@Override
@@ -55,13 +43,26 @@ public class ImagesDaoImpl implements ImagesDao {
 	}
 
 	@Override
-	public Images update(Integer id, Integer wgsID, Byte[] cont, Integer imState) throws SQLException {
+	public Images update(Integer id, Integer wgsID, Blob cont, Integer imState) throws SQLException {
+		Images images = getSession().get(Images.class, id);
+		if (images != null) {
+			images.setId(id);
+			images.setWgsID(wgsID);
+			images.setCont(cont);
+			images.setState(imState);
+			getSession().update(images);
+			return images;
+		}
 		return null;
 	}
 
 	@Override
 	public Boolean delete(Integer id) throws SQLException {
+		Images images = getSession().get(Images.class, id);
+		if (images != null) {
+			getSession().delete(images);
+			return true;
+		}
 		return false;
 	}
-
 }

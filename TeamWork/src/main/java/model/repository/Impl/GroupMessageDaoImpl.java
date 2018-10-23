@@ -7,12 +7,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import misc.SpringJavaConfiguration;
 import model.bean.GroupMessage;
 import model.repository.GroupMessageDao;
 
@@ -24,15 +20,6 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
-	}
-
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-		GroupMessageDaoImpl dao = ctx.getBean(GroupMessageDaoImpl.class);
-		dao.getSession().beginTransaction();
-		System.out.println(dao.selectAll());
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
 	}
 
 	@Override
@@ -56,13 +43,31 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 	}
 
 	@Override
-	public GroupMessage update(Integer id, Integer groupID, Integer memberID, Integer gmAmt, Date gmTime, Integer gsID,
-			Integer sumPrice, Integer gmState) throws SQLException {
+	public GroupMessage update(Integer id, Integer groupProdID, Integer memberID, Integer gmAmt, Date gmTime,
+			Integer gsID, Integer sumPrice, Integer gmState) throws SQLException {
+		GroupMessage groupMessage = getSession().get(GroupMessage.class, id);
+		if (groupMessage != null) {
+			groupMessage.setId(id);
+			groupMessage.setGroupProductId(groupProdID);
+			groupMessage.setMemberId(memberID);
+			groupMessage.setAmount(gmAmt);
+			groupMessage.setTime(gmTime);
+			groupMessage.setGroupServiceId(gsID);
+			groupMessage.setSumPrice(sumPrice);
+			groupMessage.setState(gmState);
+			getSession().update(groupMessage);
+			return groupMessage;
+		}
 		return null;
 	}
 
 	@Override
 	public Boolean delete(Integer id) throws SQLException {
+		GroupMessage groupMessage = getSession().get(GroupMessage.class, id);
+		if (groupMessage != null) {
+			getSession().delete(groupMessage);
+			return true;
+		}
 		return false;
 	}
 }
