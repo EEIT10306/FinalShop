@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import misc.SpringJavaConfiguration;
 import model.bean.Achievement;
 import model.repository.AchievementDao;
+
 @Repository
 public class AchievementDaoImpl implements AchievementDao {
 	@Autowired
@@ -22,37 +23,25 @@ public class AchievementDaoImpl implements AchievementDao {
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-	
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 
-		AchievementDaoImpl dao = ctx.getBean(AchievementDaoImpl.class);
-		dao.getSession().beginTransaction();
-			
-		System.out.println(dao.select());//selectAll
-//				
-//		Achievement ach = new Achievement(null,"成就的內容", 10, null);
-//		System.out.println(dao.getSession().save(ach));//insert
-//				
-//		System.out.println(dao.select(1));//selectOne
-		
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
-	}
 	@Override
 	public List<Achievement> select() throws SQLException {
+		System.out.println(getSession().createQuery("from Achievement", Achievement.class).setMaxResults(50).list());
 		return getSession().createQuery("from Achievement", Achievement.class).setMaxResults(50).list();
 	}
 
 	@Override
 	public Achievement select(Integer id) throws SQLException {
+		System.out.println(getSession().get(Achievement.class, id));
 		return getSession().get(Achievement.class, id);
 	}
 
 	@Override
 	public Achievement insert(Achievement bean) throws SQLException {
+		// 查詢此ID有無資料
 		Achievement simple = getSession().get(Achievement.class, bean.getId());
-		if(simple==null) {
+		// 沒有才新增
+		if (simple == null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -61,12 +50,16 @@ public class AchievementDaoImpl implements AchievementDao {
 
 	@Override
 	public Achievement update(Integer id, String context, Integer bonus, Integer parentsId) throws SQLException {
+		// 查詢此ID有無資料
+		Achievement simple = getSession().get(Achievement.class, id);
+		// 有才修改
+		if (simple != null) {
+			simple.setContext(context);
+			simple.setBonus(bonus);
+			simple.setParentsId(parentsId);
+			return simple;
+		}
 		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		return false;
 	}
 
 }

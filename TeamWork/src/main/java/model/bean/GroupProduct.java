@@ -13,76 +13,76 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="GroupProduct")
+@Table(name = "GroupProduct")
 public class GroupProduct {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "gP_ID", columnDefinition = "int")
 	Integer id;
-	
-	@Column(name="group_ID" , columnDefinition="int")
+
+	@Column(name = "group_ID", columnDefinition = "int")
 	Integer groupID;
-	
-	@Column(name="gP_name" , columnDefinition="nvarchar(max)")
+
+	@Column(name = "gP_name", columnDefinition = "nvarchar(max)")
 	String name;
-	
-	@Column(name="prod_ID" , columnDefinition="int")
-	Integer prodID;
-	
-	@Column(name="gP_amt" , columnDefinition="int")
-	Integer amt;
-	
-	@Column(name="gP_price" , columnDefinition="int")
+
+	@Column(name = "prod_ID", columnDefinition = "int")
+	Integer productId;
+
+	@Column(name = "gP_amt", columnDefinition = "int")
+	Integer amount;
+
+	@Column(name = "gP_price", columnDefinition = "int")
 	Integer price;
-	
-	@Column(name="gP_cont" ,columnDefinition="nvarchar(max)")
-	String cont;
-	
-	@Column(name="gP_var", columnDefinition="int")
-	Integer ver;
-	
-	@Column(name="gP_compTime", columnDefinition="datetime")
-	Date compTime;
-	
-	@Column(name="gP_state", columnDefinition="int")
-	Integer gpState;
-	
+
+	@Column(name = "gP_cont", columnDefinition = "nvarchar(max)")
+	String context;
+
+	@Column(name = "gP_var", columnDefinition = "int")
+	Integer version;
+
+	@Column(name = "gP_compTime", columnDefinition = "datetime")
+	Date completeTime;
+
+	@Column(name = "gP_state", columnDefinition = "int")
+	Integer state;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
-	Group group;
-	
+	Groupon groupBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product product;
-	
+	Product productBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "sta_ID", insertable = false, updatable = false)
-	State state;
+	State stateBean;
 
 	public GroupProduct() {
-		
 	}
 
-	public GroupProduct(Integer id, Integer groupID, String name, Integer prodID, Integer amt, Integer price,
-			String cont, Integer ver, Date compTime, Integer gpState) {
+	public GroupProduct(Integer id, Integer groupID, String name, Integer productId, Integer amount, Integer price,
+			String context, Integer version, Date completeTime, Integer state) {
 		this.id = id;
 		this.groupID = groupID;
 		this.name = name;
-		this.prodID = prodID;
-		this.amt = amt;
+		this.productId = productId;
+		this.amount = amount;
 		this.price = price;
-		this.cont = cont;
-		this.ver = ver;
-		this.compTime = compTime;
-		this.gpState = gpState;
+		this.context = context;
+		this.version = version;
+		this.completeTime = completeTime;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupProduct [id=" + id + ", groupID=" + groupID + ", name=" + name + ", prodID=" + prodID + ", amt="
-				+ amt + ", price=" + price + ", cont=" + cont + ", ver=" + ver + ", compTime=" + compTime + ", gpState="
-				+ gpState + "]";
+		return "GroupProduct [id=" + id + ", groupID=" + groupID + ", name=" + name + ", productId=" + productId
+				+ ", amount=" + amount + ", price=" + price + ", context=" + context + ", version=" + version
+				+ ", completeTime=" + completeTime + ", state=" + state + "]\r\n  [groupBean=" + groupBean
+				+ "]\r\n  [productBean=" + productBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -109,20 +109,20 @@ public class GroupProduct {
 		this.name = name;
 	}
 
-	public Integer getProdID() {
-		return prodID;
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public void setProdID(Integer prodID) {
-		this.prodID = prodID;
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
-	public Integer getAmt() {
-		return amt;
+	public Integer getAmount() {
+		return amount;
 	}
 
-	public void setAmt(Integer amt) {
-		this.amt = amt;
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 
 	public Integer getPrice() {
@@ -133,61 +133,47 @@ public class GroupProduct {
 		this.price = price;
 	}
 
-	public String getCont() {
-		return cont;
+	public String getContext() {
+		return context;
 	}
 
-	public void setCont(String cont) {
-		this.cont = cont;
+	public void setContext(String context) {
+		this.context = context;
 	}
 
-	public Integer getVer() {
-		return ver;
+	public Integer getVersion() {
+		return version;
 	}
 
-	public void setVer(Integer ver) {
-		this.ver = ver;
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
-	public Date getCompTime() {
-		return compTime;
+	public Date getCompleteTime() {
+		return completeTime;
 	}
 
-	public void setCompTime(Date compTime) {
-		this.compTime = compTime;
+	public void setCompleteTime(Date completeTime) {
+		this.completeTime = completeTime;
 	}
 
-	public Integer getGpState() {
-		return gpState;
-	}
-
-	public void setGpState(Integer gpState) {
-		this.gpState = gpState;
-	}
-
-	public Group getGroup() {
-		return group;
-	}
-
-	public void setGroup(Group group) {
-		this.group = group;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public State getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
-	
-	
+
+	public Groupon getGroupBean() {
+		return groupBean;
+	}
+
+	public Product getProductBean() {
+		return productBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
 }

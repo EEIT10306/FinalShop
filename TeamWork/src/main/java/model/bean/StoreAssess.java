@@ -19,48 +19,52 @@ public class StoreAssess {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "sA_ID", columnDefinition = "int")
 	Integer id;
+
+	@Column(name = "sO_ID", columnDefinition = "int")
+	Integer storeOrderId;
 	 
 	@Column(name = "sA_point", columnDefinition = "int")
-	Integer storeassessPoint;
+	Integer point;
 	
 	@Column(name = "sA_cont", columnDefinition = "nvarchar(max)")
-	String storeassessContent;
+	String content;
 	
 	@Column(name = "sA_pointee", columnDefinition = "int")
-	Integer storeassessPointee;
+	Integer pointEE;
 	
 	@Column(name = "sA_contee", columnDefinition = "nvarchar(max)")
-	String storeassessContee;
+	String contextEE;
+
+	@Column(name = "sA_state", columnDefinition = "int")
+	Integer state;
 	
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "sO_ID", insertable = false, updatable = false)
-	StoreOrder storeOrder;
+	StoreOrder storeOrderBean;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "sA_state", insertable = false, updatable = false)
-	StoreAssess storeAssess;
-
-	
+	State stateBean;
 	
 	public StoreAssess() {
-		super();
 	}
 
-	public StoreAssess(Integer id, Integer storeassessPoint, String storeassessContent, Integer storeassessPointee,
-			String storeassessContee) {
-		super();
+	public StoreAssess(Integer id, Integer storeOrderId, Integer point, String content, Integer pointEE,
+			String contextEE, Integer state) {
 		this.id = id;
-		this.storeassessPoint = storeassessPoint;
-		this.storeassessContent = storeassessContent;
-		this.storeassessPointee = storeassessPointee;
-		this.storeassessContee = storeassessContee;
+		this.storeOrderId = storeOrderId;
+		this.point = point;
+		this.content = content;
+		this.pointEE = pointEE;
+		this.contextEE = contextEE;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreAssess [id=" + id + ", storeassessPoint=" + storeassessPoint + ", storeassessContent="
-				+ storeassessContent + ", storeassessPointee=" + storeassessPointee + ", storeassessContee="
-				+ storeassessContee + "]";
+		return "StoreAssess [id=" + id + ", storeOrderId=" + storeOrderId + ", point=" + point + ", content=" + content
+				+ ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", state=" + state + "]\r\n  [storeOrderBean="
+				+ storeOrderBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -71,38 +75,68 @@ public class StoreAssess {
 		this.id = id;
 	}
 
-	public Integer getStoreassessPoint() {
-		return storeassessPoint;
+	public Integer getStoreOrderId() {
+		return storeOrderId;
 	}
 
-	public void setStoreassessPoint(Integer storeassessPoint) {
-		this.storeassessPoint = storeassessPoint;
+	public void setStoreOrderId(Integer storeOrderId) {
+		this.storeOrderId = storeOrderId;
 	}
 
-	public String getStoreassessContent() {
-		return storeassessContent;
+	public Integer getPoint() {
+		return point;
 	}
 
-	public void setStoreassessContent(String storeassessContent) {
-		this.storeassessContent = storeassessContent;
+	public void setPoint(Integer point) {
+		this.point = point;
 	}
 
-	public Integer getStoreassessPointee() {
-		return storeassessPointee;
+	public String getContent() {
+		return content;
 	}
 
-	public void setStoreassessPointee(Integer storeassessPointee) {
-		this.storeassessPointee = storeassessPointee;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
-	public String getStoreassessContee() {
-		return storeassessContee;
+	public Integer getPointEE() {
+		return pointEE;
 	}
 
-	public void setStoreassessContee(String storeassessContee) {
-		this.storeassessContee = storeassessContee;
+	public void setPointEE(Integer pointEE) {
+		this.pointEE = pointEE;
 	}
-	
-	
+
+	public String getContextEE() {
+		return contextEE;
+	}
+
+	public void setContextEE(String contextEE) {
+		this.contextEE = contextEE;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public StoreOrder getStoreOrderBean() {
+		return storeOrderBean;
+	}
+
+	public void setStoreOrderBean(StoreOrder storeOrderBean) {
+		this.storeOrderBean = storeOrderBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
 		
 }

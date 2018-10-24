@@ -13,41 +13,52 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "GroupReport")
 public class GroupReport {
-	 
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "gR_ID", columnDefinition = "int")
 	Integer id;
-	 
+
+	@Column(name = "gProd_ID", columnDefinition = "int")
+	Integer productId;
+
+	@Column(name = "mem_ID", columnDefinition = "int")
+	Integer memberId;
+
 	@Column(name = "gR_cont", columnDefinition = "nvarchar(max)")
 	String content;
-	
+
+	@Column(name = "gR_state", columnDefinition = "int")
+	Integer state;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "gProd_ID", insertable = false, updatable = false)
-	GroupProduct groupProduct;
-	
+	GroupProduct groupProductBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member member;
-	
+	Member memberBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "gR_state", insertable = false, updatable = false)
-	GroupReport groupReport;
+	State stateBean;
 
 	public GroupReport() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public GroupReport(Integer id, String content) {
-		super();
+	public GroupReport(Integer id, Integer productId, Integer memberId, String content, Integer state) {
 		this.id = id;
+		this.productId = productId;
+		this.memberId = memberId;
 		this.content = content;
+		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupReport [id=" + id + ", content=" + content + "]";
+		return "GroupReport [id=" + id + ", productId=" + productId + ", memberId=" + memberId + ", content=" + content
+				+ ", state=" + state + "]\r\n  [groupProductBean=" + groupProductBean + "]\r\n  [memberBean="
+				+ memberBean + "[\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -58,6 +69,22 @@ public class GroupReport {
 		this.id = id;
 	}
 
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -66,31 +93,36 @@ public class GroupReport {
 		this.content = content;
 	}
 
-	public GroupProduct getGroupProduct() {
-		return groupProduct;
+	public Integer getState() {
+		return state;
 	}
 
-	public void setGroupProduct(GroupProduct groupProduct) {
-		this.groupProduct = groupProduct;
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
-	public Member getMember() {
-		return member;
+	public GroupProduct getGroupProductBean() {
+		return groupProductBean;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setGroupProductBean(GroupProduct groupProductBean) {
+		this.groupProductBean = groupProductBean;
 	}
 
-	public GroupReport getGroupReport() {
-		return groupReport;
+	public Member getMemberBean() {
+		return memberBean;
 	}
 
-	public void setGroupReport(GroupReport groupReport) {
-		this.groupReport = groupReport;
+	public void setMemberBean(Member memberBean) {
+		this.memberBean = memberBean;
 	}
 
-	
+	public State getStateBean() {
+		return stateBean;
+	}
 
-				
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+
 }

@@ -11,43 +11,45 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class StoreProduct {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sP_ID", columnDefinition = "int")
 	Integer id;
-	
+
 	@Column(name = "store_ID", columnDefinition = "int")
 	Integer storeId;
-	
+
 	@Column(name = "sP_name", columnDefinition = "nvarchar(max)")
 	String name;
-	
+
 	@Column(name = "prod_ID", columnDefinition = "int")
 	Integer productId;
-	
+
 	@Column(name = "sP_amt", columnDefinition = "int")
 	Integer amount;
-	
+
 	@Column(name = "sP_price", columnDefinition = "int")
 	Integer price;
-	
+
 	@Column(name = "sP_state", columnDefinition = "int")
 	Integer state;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "store_ID", insertable = false, updatable = false)
-	Store store;
-	
+	Store storeBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product product;
-	
+	Product productBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "sP_state", insertable = false, updatable = false)
-	State st;
+	State stateBean;
 
-	public StoreProduct() {}
-	
+	public StoreProduct() {
+	}
+
 	public StoreProduct(Integer id, Integer storeId, String name, Integer productId, Integer amount, Integer price,
 			Integer state) {
 		super();
@@ -63,7 +65,8 @@ public class StoreProduct {
 	@Override
 	public String toString() {
 		return "StoreProduct [id=" + id + ", storeId=" + storeId + ", name=" + name + ", productId=" + productId
-				+ ", amount=" + amount + ", price=" + price + ", state=" + state + "]\r\n";
+				+ ", amount=" + amount + ", price=" + price + ", state=" + state + "]\r\n  [storeBean=" + storeBean
+				+ "]\r\n  [productBean=" + productBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -122,27 +125,28 @@ public class StoreProduct {
 		this.state = state;
 	}
 
-	public Store getStore() {
-		return store;
+	public Store getStoreBean() {
+		return storeBean;
 	}
 
-	public void setStore(Store store) {
-		this.store = store;
+	public void setStoreBean(Store storeBean) {
+		this.storeBean = storeBean;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Product getProductBean() {
+		return productBean;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductBean(Product productBean) {
+		this.productBean = productBean;
 	}
 
-	public State getSt() {
-		return st;
+	public State getStateBean() {
+		return stateBean;
 	}
 
-	public void setState(State st) {
-		this.st = st;
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
 	}
+
 }

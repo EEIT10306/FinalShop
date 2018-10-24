@@ -17,43 +17,44 @@ public class Store {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "store_ID", columnDefinition = "int")
-	Integer id;	
-	
+	Integer id;
+
 	@Column(name = "seller_ID", columnDefinition = "int")
 	Integer sellerId;
-	
+
 	@Column(name = "store_name", columnDefinition = "nvarchar(max)")
 	String name;
-	
+
 	@Column(name = "store_pho", columnDefinition = "varbinary(max)")
 	Blob photo;
-	
+
 	@Column(name = "prod_ID", columnDefinition = "int")
 	Integer productId;
-	
+
 	@Column(name = "store_add", columnDefinition = "nvarchar(max)")
 	String address;
-	
+
 	@Column(name = "store_tel", columnDefinition = "int")
 	Integer telephone;
-	
+
 	@Column(name = "store_state", columnDefinition = "int")
 	Integer state;
-	
+
 	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "seller_ID", insertable = false, updatable = false)	
-	Seller seller;
-	
+	@JoinColumn(name = "seller_ID", insertable = false, updatable = false)
+	Seller sellerBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product product;
-	
+	Product productBean;
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "store_state", insertable = false, updatable = false)
-	State st;
-	
-	public Store() {}
-	
+	State stateBean;
+
+	public Store() {
+	}
+
 	public Store(Integer id, Integer sellerId, String name, Blob photo, Integer productId, String address,
 			Integer telephone, Integer state) {
 		this.id = id;
@@ -69,7 +70,8 @@ public class Store {
 	@Override
 	public String toString() {
 		return "Store [id=" + id + ", sellerId=" + sellerId + ", name=" + name + ", photo=" + photo + ", productId="
-				+ productId + ", address=" + address + ", telephone=" + telephone + ", state=" + state +  "]\r\n";
+				+ productId + ", address=" + address + ", telephone=" + telephone + ", state=" + state + "]\r\n  [sellerBean="
+				+ sellerBean + "]\r\n  [productBean=" + productBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -136,29 +138,28 @@ public class Store {
 		this.state = state;
 	}
 
-	public Seller getSeller() {
-		return seller;
+	public Seller getSellerBean() {
+		return sellerBean;
 	}
 
-	public void setSeller(Seller seller) {
-		this.seller = seller;
+	public void setSellerBean(Seller sellerBean) {
+		this.sellerBean = sellerBean;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Product getProductBean() {
+		return productBean;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductBean(Product productBean) {
+		this.productBean = productBean;
 	}
 
-	public State getSt() {
-		return st;
+	public State getStateBean() {
+		return stateBean;
 	}
 
-	public void setState(State st) {
-		this.st = st;
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
 	}
-	
-	
+
 }

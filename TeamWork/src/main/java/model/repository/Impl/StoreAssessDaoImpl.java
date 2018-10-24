@@ -12,7 +12,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
+import model.bean.State;
 import model.bean.StoreAssess;
+import model.bean.StoreOrder;
 import model.repository.StoreAssessDao;
 
 
@@ -25,22 +27,6 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 	
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-
-		StoreAssessDaoImpl dao = ctx.getBean(StoreAssessDaoImpl.class);
-		dao.getSession().beginTransaction();
-			
-		System.out.println(dao.select());//selectAll
-//				
-//		Achievement ach = new Achievement(null,"成就的內容", 10, null);
-//		System.out.println(dao.getSession().save(ach));//insert
-//				
-//		System.out.println(dao.select(1));//selectOne
-		
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
-	}
 	
 	@Override
 	public List<StoreAssess> select() throws SQLException {
@@ -48,43 +34,40 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 	}
 
 	@Override
-	public StoreAssess select(Integer id) throws SQLException {
-		return getSession().get(StoreAssess.class, id);
+	public StoreAssess selectByPk(StoreAssess bean) throws SQLException {
+		return getSession().get(StoreAssess.class, bean.getId());
 	}
 
 	@Override
 	public StoreAssess insert(StoreAssess bean) throws SQLException {
 		StoreAssess storeAssess = getSession().get(StoreAssess.class, bean.getId());
 		if(storeAssess==null) {
-			getSession().save(bean);
-			return bean;
+			State simpleState = getSession().get(State.class, bean.getState());
+			StoreOrder storeOrder = getSession().get(StoreOrder.class, bean.getStoreOrderId());
+			if(simpleState != null && storeOrder != null) {
+				getSession().save(bean);
+				return bean;
+			}
 		}
 		return null;
 	}
 
 	@Override
-	public StoreAssess update(Integer id, Integer storeassessPoint,String storeassessContent,Integer storeassessPointee,String storeassessContee) throws SQLException {
-		StoreAssess storeReport = this.getSession().get(StoreAssess.class, id);
+	public StoreAssess update(StoreAssess bean) throws SQLException {
+		StoreAssess storeReport = this.getSession().get(StoreAssess.class, bean.getId());
 		if(storeReport != null) {
-			storeReport.setId(id);
-			storeReport.setStoreassessPoint(storeassessPoint);
-			storeReport.setStoreassessContent(storeassessContent);
-			storeReport.setStoreassessPointee(storeassessPointee);
-			storeReport.setStoreassessContee(storeassessContee);
-			getSession().update(storeReport);
-			return storeReport;
+			State simpleState = getSession().get(State.class, bean.getState());
+			StoreOrder storeOrder = getSession().get(StoreOrder.class, bean.getStoreOrderId());
+			if(simpleState != null && storeOrder != null) {
+				storeReport.setPoint(bean.getPoint());
+				storeReport.setContent(bean.getContent());
+				storeReport.setPointEE(bean.getPointEE());
+				storeReport.setContextEE(bean.getContextEE());
+				getSession().update(storeReport);
+				return storeReport;
+			}
 		}
 		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		StoreAssess storeAssess = this.getSession().get(StoreAssess.class, id);
-		if(storeAssess != null) {
-			getSession().delete(storeAssess);
-			return true;
-		}
-		return false;
 	}
 
 }

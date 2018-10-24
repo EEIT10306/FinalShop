@@ -15,32 +15,34 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "prod_ID", columnDefinition = "int")
 	Integer id;
-	
+
 	@Column(name = "prod_name", columnDefinition = "nvarchar(max)")
 	String name;
-	
+
 	@Column(name = "prod_parID", columnDefinition = "nvarchar(max)")
 	Integer parentsId;
-	
+
 	@Column(name = "prod_stage", columnDefinition = "int")
-	Integer stage;	
-	
-	@OneToOne(cascade = CascadeType.MERGE) 
+	Integer stage;
+
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "parID", insertable = false, updatable = false)
-	Product product;
-	
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", parentId=" + parentsId + ", stage=" + stage + "]\r\n";
+	Product parentsProductBean;
+
+	public Product() {
 	}
 
-	public Product() {}
-	
 	public Product(Integer id, String name, Integer parentId, Integer stage) {
 		this.id = id;
 		this.name = name;
 		this.parentsId = parentId;
 		this.stage = stage;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", parentsId=" + parentsId + ", stage=" + stage
+				+ "]\r\n  [parentsProductBean=" + parentsProductBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -74,13 +76,13 @@ public class Product {
 	public void setStage(Integer stage) {
 		this.stage = stage;
 	}
-	
+
 	public Product getProduct() {
-		return product;
+		return parentsProductBean;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProduct(Product parentsProductBean) {
+		this.parentsProductBean = parentsProductBean;
 	}
 
 }
