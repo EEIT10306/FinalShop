@@ -22,14 +22,16 @@ public class StateDaoImpl implements StateDao {
 
 	@Override
 	public List<State> select() throws SQLException {
-		System.out.println(getSession().createQuery("from State", State.class).setMaxResults(50).list());
-		return getSession().createQuery("from State", State.class).setMaxResults(50).list();
+		List<State> simples = getSession().createQuery("from State", State.class).setMaxResults(50).list();
+		System.out.println(simples);
+		return simples;
 	}
 
 	@Override
-	public State select(Integer id) throws SQLException {
-		System.out.println(getSession().get(State.class, id));
-		return getSession().get(State.class, id);
+	public State selectByPk(State bean) throws SQLException {
+		State simple = getSession().get(State.class, bean.getId());
+		System.out.println(simple);
+		return simple;
 	}
 
 	@Override
@@ -45,13 +47,13 @@ public class StateDaoImpl implements StateDao {
 	}
 
 	@Override
-	public State update(Integer id, String context, String className) throws SQLException {
+	public State update(State bean) throws SQLException {
 		// 查詢此ID有無資料
-		State simple = getSession().get(State.class, id);
+		State simple = getSession().get(State.class, bean.getId());
 		// 有才修改
 		if (simple != null) {
-			simple.setContext(context);
-			simple.setClassName(className);
+			simple.setContext(bean.getContext());
+			simple.setClassName(bean.getClassName());
 			return simple;
 		}
 		return null;

@@ -22,14 +22,17 @@ public class AchievementDaoImpl implements AchievementDao {
 
 	@Override
 	public List<Achievement> select() throws SQLException {
-		System.out.println(getSession().createQuery("from Achievement", Achievement.class).setMaxResults(50).list());
-		return getSession().createQuery("from Achievement", Achievement.class).setMaxResults(50).list();
+		List<Achievement> simples = getSession().createQuery("from Achievement", Achievement.class).setMaxResults(50)
+				.list();
+		System.out.println(simples);
+		return simples;
 	}
 
 	@Override
-	public Achievement select(Integer id) throws SQLException {
-		System.out.println(getSession().get(Achievement.class, id));
-		return getSession().get(Achievement.class, id);
+	public Achievement selectByPk(Achievement bean) throws SQLException {
+		Achievement simple = getSession().get(Achievement.class, bean.getId());
+		System.out.println(simple);
+		return simple;
 	}
 
 	@Override
@@ -45,14 +48,14 @@ public class AchievementDaoImpl implements AchievementDao {
 	}
 
 	@Override
-	public Achievement update(Integer id, String context, Integer bonus, Integer parentsId) throws SQLException {
+	public Achievement update(Achievement bean) throws SQLException {
 		// 查詢此ID有無資料
-		Achievement simple = getSession().get(Achievement.class, id);
+		Achievement simple = getSession().get(Achievement.class, bean.getId());
 		// 有才修改
 		if (simple != null) {
-			simple.setContext(context);
-			simple.setBonus(bonus);
-			simple.setParentsId(parentsId);
+			simple.setContext(bean.getContext());
+			simple.setBonus(bean.getBonus());
+			simple.setParentsId(bean.getParentsId());
 			return simple;
 		}
 		return null;
