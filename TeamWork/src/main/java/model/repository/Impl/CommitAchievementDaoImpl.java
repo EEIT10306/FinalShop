@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import misc.SpringJavaConfiguration;
 import model.bean.Achievement;
 import model.bean.CommitAchievement;
+import model.bean.Member;
 import model.repository.CommitAchievementDao;
 
 @Repository
@@ -48,7 +49,7 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 	}
 
 	@Override
-	public CommitAchievement select(Integer id) throws SQLException {
+	public CommitAchievement selectByPk(Integer id) throws SQLException {
 		return getSession().get(CommitAchievement.class, id);
 	}
 
@@ -56,32 +57,31 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 	public CommitAchievement insert(CommitAchievement bean) throws SQLException {
 		CommitAchievement simple = getSession().get(CommitAchievement.class, bean.getId());
 		if (simple == null) {
-			getSession().save(bean);
-			return bean;
+			Achievement achievement = getSession().get(Achievement.class, bean.getAchievementID());
+			Member member = getSession().get(Member.class, bean.getMemberID());
+			if (achievement != null && member != null) {
+				getSession().save(bean);
+				return bean;				
+			}
+			return null;
 		}
 		return null;
 	}
 
 	@Override
-	public CommitAchievement update(Integer id, Integer achievementID, Integer memberID) throws SQLException {
-		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
-		if(CA != null) {
-			CA.setAchievementID(achievementID);
-			CA.setMemberID(memberID);
-			getSession().update(CA);
-			return CA;
+	public CommitAchievement update(CommitAchievement bean) throws SQLException {
+		CommitAchievement CA = getSession().get(CommitAchievement.class, bean.getId());
+		if (CA != null) {
+			Achievement achievement = getSession().get(Achievement.class, bean.getAchievementID());
+			Member member = getSession().get(Member.class, bean.getMemberID());
+			if(achievement != null && member != null) {
+				CA.setAchievementID(bean.getAchievementID());
+				CA.setMemberID(bean.getMemberID());				
+				return CA;
+			}
+			return null;
 		}
 		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
-		if(CA != null) {
-			getSession().delete(CA);
-			return true;
-		}
-		return false;
 	}
 
 }
