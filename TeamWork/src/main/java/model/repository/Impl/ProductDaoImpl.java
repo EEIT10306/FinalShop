@@ -25,7 +25,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product select(Integer id) throws SQLException {
+	public Product selectByPk(Integer id) throws SQLException {
 		return this.getSession().get(Product.class, id);
 	}
 
@@ -40,27 +40,15 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product update(Integer id, String name, Integer parentsId, Integer stage) throws SQLException {
-		Product product = this.getSession().get(Product.class, id);
+	public Product update(Product bean) throws SQLException {
+		Product product = this.getSession().get(Product.class, bean.getId());
 		if(product != null) {
-			product.setId(id);
-			product.setName(name);
-			product.setParentsId(parentsId);
-			product.setStage(stage);;
-			getSession().update(product);
+			product.setName(bean.getName());
+			product.setParentsId(bean.getParentsId());
+			product.setStage(bean.getStage());
 			return product;
 		}
 		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		Product product = this.getSession().get(Product.class, id);
-		if(product != null) {
-			getSession().delete(product);
-			return true;
-		}
-		return false;
 	}
 
 }

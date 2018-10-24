@@ -49,53 +49,39 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 	}
 
 	@Override
-	public CommitAchievement select(Integer id) throws SQLException {
+	public CommitAchievement selectByPk(Integer id) throws SQLException {
 		return getSession().get(CommitAchievement.class, id);
 	}
 
 	@Override
 	public CommitAchievement insert(CommitAchievement bean) throws SQLException {
 		CommitAchievement simple = getSession().get(CommitAchievement.class, bean.getId());
-		Achievement achievement = getSession().get(Achievement.class, bean.getAchievementID());		
-		Member member = getSession().get(Member.class, bean.getMemberID());
-		if (achievement.getId() == null || member.getId() == null) {
+		if (simple == null) {
+			Achievement achievement = getSession().get(Achievement.class, bean.getAchievementID());
+			Member member = getSession().get(Member.class, bean.getMemberID());
+			if (achievement != null && member != null) {
+				getSession().save(bean);
+				return bean;				
+			}
 			return null;
-		}else if(simple == null) {
-			getSession().save(bean);
-			return bean;
-		}else {
-			return null;
-		}
-//		if (simple == null) {
-//			getSession().save(bean);
-//			return bean;
-//		}
-	}
-
-	@Override
-	public CommitAchievement update(Integer id, Integer achievementID, Integer memberID) throws SQLException {
-		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
-		Achievement achievement = getSession().get(Achievement.class, achievementID);		
-		Member member = getSession().get(Member.class, memberID);
-		if(CA != null && achievement.getId() != null && member.getId() != null) {
-			CA.setAchievementID(achievementID);
-			CA.setMemberID(memberID);
-			getSession().update(CA);
-			return CA;
 		}
 		return null;
 	}
 
 	@Override
-	public boolean delete(Integer id) throws SQLException {
-		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
-		Achievement achievement = getSession().get(Achievement.class, CA.getAchievementID());		
-		Member member = getSession().get(Member.class, CA.getMemberID());
-		if(CA != null && achievement.getId() != null && member.getId() != null) {
-			getSession().delete(CA);
-			return true;
+	public CommitAchievement update(CommitAchievement bean) throws SQLException {
+		CommitAchievement CA = getSession().get(CommitAchievement.class, bean.getId());
+		if (CA != null) {
+			Achievement achievement = getSession().get(Achievement.class, bean.getAchievementID());
+			Member member = getSession().get(Member.class, bean.getMemberID());
+			if(achievement != null && member != null) {
+				CA.setAchievementID(bean.getAchievementID());
+				CA.setMemberID(bean.getMemberID());				
+				return CA;
+			}
+			return null;
 		}
-		return false;
+		return null;
 	}
 
 }
