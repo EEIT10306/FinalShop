@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import misc.SpringJavaConfiguration;
 import model.bean.Achievement;
 import model.bean.CommitAchievement;
+import model.bean.Member;
 import model.repository.CommitAchievementDao;
 
 @Repository
@@ -55,17 +56,28 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 	@Override
 	public CommitAchievement insert(CommitAchievement bean) throws SQLException {
 		CommitAchievement simple = getSession().get(CommitAchievement.class, bean.getId());
-		if (simple == null) {
+		Achievement achievement = getSession().get(Achievement.class, bean.getAchievementID());		
+		Member member = getSession().get(Member.class, bean.getMemberID());
+		if (achievement.getId() == null || member.getId() == null) {
+			return null;
+		}else if(simple == null) {
 			getSession().save(bean);
 			return bean;
+		}else {
+			return null;
 		}
-		return null;
+//		if (simple == null) {
+//			getSession().save(bean);
+//			return bean;
+//		}
 	}
 
 	@Override
 	public CommitAchievement update(Integer id, Integer achievementID, Integer memberID) throws SQLException {
 		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
-		if(CA != null) {
+		Achievement achievement = getSession().get(Achievement.class, achievementID);		
+		Member member = getSession().get(Member.class, memberID);
+		if(CA != null && achievement.getId() != null && member.getId() != null) {
 			CA.setAchievementID(achievementID);
 			CA.setMemberID(memberID);
 			getSession().update(CA);
@@ -77,7 +89,9 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 	@Override
 	public boolean delete(Integer id) throws SQLException {
 		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
-		if(CA != null) {
+		Achievement achievement = getSession().get(Achievement.class, CA.getAchievementID());		
+		Member member = getSession().get(Member.class, CA.getMemberID());
+		if(CA != null && achievement.getId() != null && member.getId() != null) {
 			getSession().delete(CA);
 			return true;
 		}
