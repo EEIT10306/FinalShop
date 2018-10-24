@@ -127,16 +127,7 @@ public class GroupAssess {
 		return groupMessageBean;
 	}
 
-	public void setGroupMessageBean(GroupMessage groupMessageBean) {
-		this.groupMessageBean = groupMessageBean;
-	}
-
 	public State getStateBean() {
 		return stateBean;
 	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
-	}
-
 }

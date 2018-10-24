@@ -111,32 +111,15 @@ public class Images {
 		return wishBean;
 	}
 
-	public void setWishBean(Wish wishBean) {
-		this.wishBean = wishBean;
-	}
-
 	public Groupon getGroupBean() {
 		return groupBean;
-	}
-
-	public void setGroupBean(Groupon groupBean) {
-		this.groupBean = groupBean;
 	}
 
 	public Store getStoreBean() {
 		return storeBean;
 	}
 
-	public void setStoreBean(Store storeBean) {
-		this.storeBean = storeBean;
-	}
-
 	public State getStateBean() {
 		return stateBean;
 	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
-	}
-
 }

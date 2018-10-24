@@ -8,7 +8,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.GroupProduct;
 import model.bean.GroupService;
+import model.bean.State;
 import model.repository.GroupServiceDao;
 
 @Repository
@@ -27,43 +29,38 @@ public class GroupServiceDaoImpl implements GroupServiceDao {
 	}
 
 	@Override
-	public GroupService select(Integer id) throws SQLException {
-		return getSession().get(GroupService.class, id);
-	}
-
-	@Override
-	public GroupService insert(GroupService groupService) throws SQLException {
-		GroupService service = getSession().get(GroupService.class, groupService.getId());
-		if (service == null) {
-			getSession().save(groupService);
+	public GroupService selectByPk(GroupService groupServiceBean) throws SQLException {
+		GroupService groupService = getSession().get(GroupService.class, groupServiceBean.getId());
+		if (groupService != null) {
 			return groupService;
 		}
 		return null;
 	}
 
 	@Override
-	public GroupService update(Integer id, Integer groupProductID, String rule, Double off, Integer groupState)
-			throws SQLException {
-		GroupService groupService = getSession().get(GroupService.class, id);
-		if (groupService != null) {
-			groupService.setId(id);
-			groupService.setGroupProductID(groupProductID);
-			groupService.setRule(rule);
-			groupService.setOff(off);
-			groupService.setState(groupState);
-			getSession().update(groupService);
-			return groupService;
+	public GroupService insert(GroupService groupServiceBean) throws SQLException {
+		GroupService groupService = getSession().get(GroupService.class, groupServiceBean.getId());
+		if (groupService == null) {
+			getSession().save(groupServiceBean);
+			return groupServiceBean;
 		}
 		return null;
 	}
 
 	@Override
-	public Boolean delete(Integer id) throws SQLException {
-		GroupService groupService = getSession().get(GroupService.class, id);
+	public GroupService update(GroupService groupServiceBean) throws SQLException {
+		GroupService groupService = getSession().get(GroupService.class, groupServiceBean.getId());
 		if (groupService != null) {
-			getSession().delete(groupService);
-			return true;
+			if (getSession().get(GroupProduct.class, groupServiceBean.getGroupProductID()) != null) {
+				if (getSession().get(State.class, groupServiceBean.getState()) != null) {
+					groupService.setGroupProductID(groupServiceBean.getGroupProductID());
+					groupService.setRule(groupServiceBean.getRule());
+					groupService.setOff(groupServiceBean.getOff());
+					groupService.setState(groupServiceBean.getState());
+					return groupService;
+				}
+			}
 		}
-		return false;
+		return null;
 	}
 }
