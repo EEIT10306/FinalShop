@@ -7,8 +7,8 @@ import model.bean.StoreFavorite;
 
 public interface StoreFavoriteDao {
 	public List<StoreFavorite> select() throws SQLException;
-	public StoreFavorite select(Integer id) throws SQLException;
+	public StoreFavorite selectByPk(StoreFavorite bean) throws SQLException;
 	public StoreFavorite insert(StoreFavorite bean) throws SQLException;
-	public StoreFavorite update(Integer id, Integer memberId, Integer storeProductId) throws SQLException;
-	public boolean delete(Integer id) throws SQLException;
+	public StoreFavorite update(StoreFavorite bean) throws SQLException;
+	public boolean delete(StoreFavorite bean) throws SQLException;
 }

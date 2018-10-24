@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Go Go Buy Managemnet System!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+
+    <!-- main CSS -->
+    <link rel="stylesheet" href="style/back.css">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body translate="no">
+
+    <div class="header">
+        <a href="#" id="menu-action">
+            <i class="fa fa-bars"></i>
+            <span>Close</span>
+        </a>
+        <div class="logo">Day Day Go System!</div>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <li><a href="manager-overview.html"><i class="fa fa-desktop"></i><span>首頁公告欄</span></a></li>
+            <li><a href="manage-chat.html"><i class="fa fa-server"></i><span>客服諮詢</span></a></li>
+            <li><a href="manage-requisition.html"><i class="fa fa-calendar"></i><span>申請單據處理</span></a></li>
+            <li><a href="manage-report.html"><i class="fa fa-envelope-o"></i><span>營業報表</span></a></li>
+            <li><a href="#"><i class="fa fa-table"></i><span>其他</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="main">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card ">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">營業報表</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                        <form class="form-inline">
+                            <label class="my-1 mr-2" for="from">From</label>
+                            <input type="text" class="form-control form-control-sm mr-sm-2 from" id="from" placeholder="MM/dd/yyyy">
+                            <label class="my-1 mr-2" for="to">to</label>
+                            <input type="text" class="form-control form-control-sm mr-sm-2 to" id="to" placeholder="MM/dd/yyyy">
+                            <button type="submit" class="btn btn-sm btn-primary">確認</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">產品銷售統計表A</div>
+                    <div class="card-body text-center">
+                        <svg class="chart1"></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">產品銷售統計表B</div>
+                    <div class="card-body text-center">
+                        <svg class="chart2"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js'></script>
+        <script src="js/back.js"></script>
+</body>
+
+</html>
