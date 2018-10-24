@@ -8,22 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import model.bean.Group;
+import model.bean.Groupon;
 import model.repository.GroupDao;
 @Service
-public class _TestServiceGroup {
+public class _TestServiceGroupon {
 
 	@Autowired
 	private GroupDao groupDaoImpl;
 	
-	public List<Group> getSelect(Group group) {
+	public List<Groupon> getSelect(Groupon groupon) {
 		try {
-			if (group.getId() == null) {
-				List<Group> list = groupDaoImpl.select();
+			if (groupon.getId() == null) {
+				List<Groupon> list = groupDaoImpl.select();
 				return list;
 			}
-			Group temp;
-			temp =	groupDaoImpl.select(group.getId());
-			List<Group> list = new ArrayList<>();
+			Groupon temp;
+			temp =	groupDaoImpl.select(groupon.getId());
+			List<Groupon> list = new ArrayList<>();
 			list.add(temp);
 			return list;
 		} catch (SQLException e) {

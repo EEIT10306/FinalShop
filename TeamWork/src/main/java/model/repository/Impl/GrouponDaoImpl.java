@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.Group;
+import model.bean.Groupon;
 import model.bean.WishProduct;
 import model.repository.GroupDao;
+import model.repository.GrouponDao;
 
 @Repository
-public class GroupDaoImpl implements GroupDao {
+public class GrouponDaoImpl implements GrouponDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -23,18 +25,18 @@ public class GroupDaoImpl implements GroupDao {
 	}
 
 	@Override
-	public List<Group> select() throws SQLException {
-		return getSession().createQuery("from Group", Group.class).setMaxResults(50).list();
+	public List<Groupon> select() throws SQLException {
+		return getSession().createQuery("from Groupon", Groupon.class).setMaxResults(50).list();
 	}
 
 	@Override
-	public Group select(Integer id) throws SQLException {
-		return getSession().get(Group.class, id);
+	public Groupon select(Integer id) throws SQLException {
+		return getSession().get(Groupon.class, id);
 	}
 
 	@Override
-	public Group insert(Group bean) throws SQLException {
-		Group simple = getSession().get(Group.class, bean.getId());
+	public Groupon insert(Groupon bean) throws SQLException {
+		Groupon simple = getSession().get(Groupon.class, bean.getId());
 		if (simple == null) {
 			getSession().save(bean);
 			return bean;
@@ -43,7 +45,7 @@ public class GroupDaoImpl implements GroupDao {
 	}
 
 	@Override
-	public Group update(Integer id, Integer memberId, Integer groupClass, String title, String cont,
+	public Groupon update(Integer id, Integer memberId, Integer groupClass, String title, String cont,
 			Integer districtTypeId, Date startDate, Date endDate, String goal, Date compTime, Integer state)
 			throws SQLException {
 		return null;
@@ -54,5 +56,6 @@ public class GroupDaoImpl implements GroupDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

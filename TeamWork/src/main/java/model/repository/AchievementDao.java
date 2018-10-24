@@ -11,5 +11,4 @@ public interface AchievementDao {
 	public Achievement select(Integer id) throws SQLException;
 	public Achievement insert(Achievement bean) throws SQLException;
 	public Achievement update(Integer id, String context, Integer bonus, Integer parentsId) throws SQLException;
-	public boolean delete(Integer id) throws SQLException;
 }

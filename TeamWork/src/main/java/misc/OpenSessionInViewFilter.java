@@ -15,9 +15,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
-@WebFilter(
-		urlPatterns= {"/*"}
-)
+//@WebFilter(
+//		urlPatterns= {"/*"}
+//)
 public class OpenSessionInViewFilter implements Filter {
 	private SessionFactory sessionFactory;
 	@Override

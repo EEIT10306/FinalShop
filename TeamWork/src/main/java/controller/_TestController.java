@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import model.bean.Achievement;
 import model.bean.DistrictType;
-import model.bean.Group;
+import model.bean.Groupon;
 import model.bean.Wish;
 import model.bean.WishMessage;
 import model.bean.WishProduct;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceDistrictType;
-import model.service._TestServiceGroup;
+import model.service._TestServiceGroupon;
 import model.service._TestServiceWish;
 import model.service._TestServiceWishMessage;
 import model.service._TestServiceWishProduct;
@@ -39,7 +39,7 @@ public class _TestController {
 	@Autowired
 	private _TestServiceDistrictType tes4;
 	@Autowired
-	private _TestServiceGroup tes5;
+	private _TestServiceGroupon tes5;
 
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
@@ -71,10 +71,10 @@ public class _TestController {
 		List<DistrictType> list = tes4.getSelect(districtType);
 		return new ResponseEntity<List<DistrictType>>(list, HttpStatus.OK);
 	}
-	@RequestMapping(path = "/Group", method = RequestMethod.GET)
-	public ResponseEntity<List<Group>> TestID(Group group, BindingResult binder) {
-		List<Group> list = tes5.getSelect(group);
-		return new ResponseEntity<List<Group>>(list, HttpStatus.OK);
+	@RequestMapping(path = "/Groupon", method = RequestMethod.GET)
+	public ResponseEntity<List<Groupon>> TestID(Groupon groupon, BindingResult binder) {
+		List<Groupon> list = tes5.getSelect(groupon);
+		return new ResponseEntity<List<Groupon>>(list, HttpStatus.OK);
 	}
 	
 }

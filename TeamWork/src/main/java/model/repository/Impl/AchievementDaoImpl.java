@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import model.bean.Achievement;
 import model.repository.AchievementDao;
+
 @Repository
 public class AchievementDaoImpl implements AchievementDao {
 	@Autowired
@@ -33,8 +34,10 @@ public class AchievementDaoImpl implements AchievementDao {
 
 	@Override
 	public Achievement insert(Achievement bean) throws SQLException {
+		// 查詢此ID有無資料
 		Achievement simple = getSession().get(Achievement.class, bean.getId());
-		if(simple==null) {
+		// 沒有才新增
+		if (simple == null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -43,12 +46,16 @@ public class AchievementDaoImpl implements AchievementDao {
 
 	@Override
 	public Achievement update(Integer id, String context, Integer bonus, Integer parentsId) throws SQLException {
+		// 查詢此ID有無資料
+		Achievement simple = getSession().get(Achievement.class, id);
+		// 有才修改
+		if (simple != null) {
+			simple.setContext(context);
+			simple.setBonus(bonus);
+			simple.setParentsId(parentsId);
+			return simple;
+		}
 		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		return false;
 	}
 
 }
