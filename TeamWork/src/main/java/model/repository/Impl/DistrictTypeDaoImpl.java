@@ -8,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Achievement;
 import model.bean.DistrictType;
-import model.bean.WishProduct;
 import model.repository.DistrictTypeDao;
 
 @Repository
@@ -38,23 +36,30 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 	public DistrictType insert(DistrictType bean) throws SQLException {
 		DistrictType simple = getSession().get(DistrictType.class, bean.getId());
 		if (simple == null) {
-			getSession().save(bean);
-			return bean;
+			DistrictType dis = getSession().get(DistrictType.class, bean.getParentID());
+			if (dis != null) {
+				getSession().save(bean);
+				return bean;
+			}
+			return null;
 		}
 		return null;
 	}
 
 	@Override
-	public DistrictType update(Integer id, String name, Integer parentID, Integer stage) throws SQLException {
-		DistrictType districtType = this.getSession().get(DistrictType.class, id);
-		if (districtType != null) {
-			districtType.setId(id);
-			districtType.setName(name);
-			districtType.setParentID(parentID);
-			districtType.setStage(stage);
-			return districtType;
+	public DistrictType update(DistrictType bean) throws SQLException {
+		DistrictType simple = this.getSession().get(DistrictType.class, bean.getId());
+		if (simple != null) {
+			DistrictType dis = getSession().get(DistrictType.class, bean.getParentID());
+			if (dis != null) {
+				simple.setName(bean.getName());
+				simple.setParentID(bean.getParentID());
+				simple.setStage(bean.getStage());
+				return simple;
+			}
+			return null;
 		}
 		return null;
 	}
-
+	
 }

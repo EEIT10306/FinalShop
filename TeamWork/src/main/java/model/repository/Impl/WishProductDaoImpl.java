@@ -1,17 +1,20 @@
 package model.repository.Impl;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.DistrictType;
-import model.bean.Group;
-import model.bean.WishMessage;
+import model.bean.Product;
+import model.bean.State;
+import model.bean.Wish;
 import model.bean.WishProduct;
 import model.repository.WishProductDao;
 
@@ -40,27 +43,44 @@ public class WishProductDaoImpl implements WishProductDao {
 	public WishProduct insert(WishProduct bean) throws SQLException {
 		WishProduct simple = getSession().get(WishProduct.class, bean.getId());
 		if (simple == null) {
-			getSession().save(bean);
-			return bean;
+			Wish wish = getSession().get(Wish.class, bean.getId());
+			Product pro= getSession().get(Product.class, bean.getId());
+			State sta = getSession().get(State.class, bean.getState());
+			if(wish!=null&& pro!=null&&sta!=null) {
+				
+				getSession().save(bean);
+				return bean;
+			}
+			return null;
 		}
 		return null;
 	}
+	
 
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
+	Product productBean;
+
+	
 	@Override
-	public WishProduct update(Integer id, Integer wishID, String name, Integer productID, Integer amount,
-			Integer priceBottom, Integer priceTop, Date completeTime, Integer state) throws SQLException {
-		WishProduct wishProduct = this.getSession().get(WishProduct.class, id);
+	public WishProduct update(WishProduct bean) throws SQLException {
+		WishProduct wishProduct = this.getSession().get(WishProduct.class, bean.getId());
 		if (wishProduct != null) {
-			wishProduct.setId(id);
-			wishProduct.setWishID(wishID);
-			wishProduct.setName(name);
-			wishProduct.setProductID(productID);
-			wishProduct.setAmount(amount);
-			wishProduct.setPriceBottom(priceBottom);
-			wishProduct.setPriceTop(priceTop);
-			wishProduct.setCompleteTime(completeTime);
-			wishProduct.setState(state);
-			return wishProduct;
+			Wish wish = getSession().get(Wish.class, bean.getId());
+			Product pro= getSession().get(Product.class, bean.getId());
+			State sta = getSession().get(State.class, bean.getState());
+			if(wish!=null&& pro!=null&&sta!=null) {			
+				wishProduct.setWishID(bean.getWishID());
+				wishProduct.setName(bean.getName());
+				wishProduct.setProductID(bean.getProductID());
+				wishProduct.setAmount(bean.getAmount());
+				wishProduct.setPriceBottom(bean.getPriceBottom());
+				wishProduct.setPriceTop(bean.getPriceTop());
+				wishProduct.setCompleteTime(bean.getCompleteTime());
+				wishProduct.setState(bean.getState());
+				return wishProduct;
+			}
+			return null;
 		}
 		return null;
 	}

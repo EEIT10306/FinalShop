@@ -1,18 +1,22 @@
 package model.repository.Impl;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Group;
+import model.bean.DistrictType;
 import model.bean.Groupon;
-import model.bean.WishProduct;
-import model.repository.GroupDao;
+import model.bean.Member;
+import model.bean.Product;
+import model.bean.State;
 import model.repository.GrouponDao;
 
 @Repository
@@ -38,24 +42,44 @@ public class GrouponDaoImpl implements GrouponDao {
 	public Groupon insert(Groupon bean) throws SQLException {
 		Groupon simple = getSession().get(Groupon.class, bean.getId());
 		if (simple == null) {
-			getSession().save(bean);
-			return bean;
+			Member memb = getSession().get(Member.class, bean.getId());
+			DistrictType dist = getSession().get(DistrictType.class, bean.getId());
+			Product prod = getSession().get(Product.class, bean.getId());
+			State simpleState = getSession().get(State.class, bean.getState());
+			if(dist != null && prod != null && simpleState != null && memb!=null ) {	
+				getSession().save(bean);
+				return bean;
+			}
+		}
+		return null;
+	}
+	
+	public Groupon update(Groupon bean)
+			throws SQLException {
+		Groupon simple = getSession().get(Groupon.class, bean.getId());
+		if (simple != null) {
+			Member memb = getSession().get(Member.class, bean.getId());
+			DistrictType dist = getSession().get(DistrictType.class, bean.getId());
+			Product prod = getSession().get(Product.class, bean.getId());
+			State simpleState = getSession().get(State.class, bean.getState());
+			if(dist != null && prod != null && simpleState != null&& memb!=null) {	
+				simple.setMemberId(bean.getMemberId());
+				simple.setGroupClass(bean.getGroupClass());
+				simple.setTitle(bean.getTitle());
+				simple.setCont(bean.getCont());
+				simple.setDistrictTypeId(bean.getDistrictTypeId());
+				simple.setStartDate(bean.getStartDate());
+				simple.setEndDate(bean.getEndDate());
+				simple.setGoal(bean.getGoal());
+				simple.setCompTime(bean.getCompTime());
+				simple.setState(bean.getState());
+				return bean;
+			}
+			return null;
 		}
 		return null;
 	}
 
-	@Override
-	public Groupon update(Integer id, Integer memberId, Integer groupClass, String title, String cont,
-			Integer districtTypeId, Date startDate, Date endDate, String goal, Date compTime, Integer state)
-			throws SQLException {
-		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 
-}

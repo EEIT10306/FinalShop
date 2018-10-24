@@ -1,7 +1,6 @@
 package model.repository.Impl;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -9,13 +8,15 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.DistrictType;
-import model.bean.Wish;
+import model.bean.GroupProduct;
+import model.bean.Member;
+import model.bean.State;
 import model.bean.WishMessage;
 import model.repository.WishMessageDao;
+
 @Repository
 public class WishMessageDaoImpl implements WishMessageDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -33,31 +34,40 @@ public class WishMessageDaoImpl implements WishMessageDao {
 	public WishMessage select(Integer id) throws SQLException {
 		return getSession().get(WishMessage.class, id);
 	}
-	
 
 	@Override
 	public WishMessage insert(WishMessage bean) throws SQLException {
 		WishMessage simple = getSession().get(WishMessage.class, bean.getId());
-		if(simple==null) {
-			getSession().save(bean);
-			return bean;
+		if (simple == null) {
+			GroupProduct group = getSession().get(GroupProduct.class, bean.getId());
+			Member memb = getSession().get(Member.class, bean.getId());
+			State sta = getSession().get(State.class, bean.getState());
+			if (group != null && memb != null && sta != null) {
+				getSession().save(bean);
+				return bean;
+			}
+			return null;
 		}
 		return null;
 	}
 
 	@Override
-	public WishMessage update(Integer id, Integer groupProductId, Integer buyerMemberIdEE, Integer bid, String amount,
-			Date time, Integer state) throws SQLException {
-		WishMessage wishMessage = this.getSession().get(WishMessage.class, id);
+	public WishMessage update(WishMessage bean) throws SQLException {
+		WishMessage wishMessage = this.getSession().get(WishMessage.class,bean.getId());
 		if (wishMessage != null) {
-			wishMessage.setId(id);
-			wishMessage.setGroupProductId(groupProductId);
-			wishMessage.setBuyerMemberIdEE(buyerMemberIdEE);
-			wishMessage.setBid(bid);
-			wishMessage.setAmount(amount);
-			wishMessage.setTime(time);
-			wishMessage.setState(state);
-			return wishMessage;
+			GroupProduct group = getSession().get(GroupProduct.class, bean.getId());
+			Member memb = getSession().get(Member.class, bean.getId());
+			State sta = getSession().get(State.class, bean.getState());
+			if (group != null && memb != null && sta != null) {			
+				wishMessage.setGroupProductId(bean.getGroupProductId());
+				wishMessage.setBuyerMemberIdEE(bean.getBuyerMemberIdEE());
+				wishMessage.setBid(bean.getBid());
+				wishMessage.setAmount(bean.getAmount());
+				wishMessage.setTime(bean.getTime());
+				wishMessage.setState(bean.getState());
+				return wishMessage;
+			}
+			return null;
 		}
 		return null;
 	}
