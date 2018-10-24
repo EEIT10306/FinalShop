@@ -17,7 +17,6 @@ import model.bean.StoreAssess;
 import model.bean.StoreOrder;
 import model.repository.StoreAssessDao;
 
-
 @Repository
 public class StoreAssessDaoImpl implements StoreAssessDao {
 	@Autowired
@@ -26,8 +25,10 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
+
 	
 	
+
 	@Override
 	public List<StoreAssess> select() throws SQLException {
 		return getSession().createQuery("from StoreAssess", StoreAssess.class).setMaxResults(50).list();
@@ -69,5 +70,6 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 		}
 		return null;
 	}
+
 
 }

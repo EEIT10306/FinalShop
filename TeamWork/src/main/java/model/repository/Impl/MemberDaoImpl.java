@@ -1,6 +1,5 @@
 package model.repository.Impl;
 
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,14 +23,16 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public List<Member> select() throws SQLException {
-		System.out.println(getSession().createQuery("from Member", Member.class).setMaxResults(50).list());
-		return getSession().createQuery("from Member", Member.class).setMaxResults(50).list();
+		List<Member> simples = getSession().createQuery("from Member", Member.class).setMaxResults(50).list();
+		System.out.println(simples);
+		return simples;
 	}
 
 	@Override
-	public Member select(Integer id) throws SQLException {
-		System.out.println(getSession().get(Member.class, id));
-		return getSession().get(Member.class, id);
+	public Member selectByPk(Member bean) throws SQLException {
+		Member simple = getSession().get(Member.class, bean.getId());
+		System.out.println(simple);
+		return simple;
 	}
 
 	@Override
@@ -46,42 +47,37 @@ public class MemberDaoImpl implements MemberDao {
 				getSession().save(bean);
 				return bean;
 			}
-			return null;
 		}
 		return null;
 	}
 
 	@Override
-	public Member update(Integer id, String account, String password, String name, String address, String telephone,
-			String mail, String position, Integer coin, Blob photo, Integer state, Double wiseAssessSumEE,
-			Double groupAssessSumEE, Double storeAssessSumEE, Double wiseAssessSum, Double groupAssessSum,
-			Double storeAssessSum) throws SQLException {
+	public Member update(Member bean) throws SQLException {
 		// 查詢此ID有無資料
-		Member simple = getSession().get(Member.class, id);
+		Member simple = getSession().get(Member.class, bean.getId());
 		// 有才修改
 		if (simple != null) {
-			// 外鍵有資料才新增
-			State simpleState = getSession().get(State.class, state);
+			// 外鍵有資料才修改
+			State simpleState = getSession().get(State.class, bean.getState());
 			if (simpleState != null) {
-				simple.setAccount(account);
-				simple.setPassword(password);
-				simple.setName(name);
-				simple.setAddress(address);
-				simple.setTelephone(telephone);
-				simple.setMail(mail);
-				simple.setPosition(position);
-				simple.setCoin(coin);
-				simple.setPhoto(photo);
-				simple.setState(state);
-				simple.setWiseAssessSumEE(wiseAssessSumEE);
-				simple.setGroupAssessSumEE(groupAssessSumEE);
-				simple.setStoreAssessSumEE(storeAssessSumEE);
-				simple.setWiseAssessSum(wiseAssessSum);
-				simple.setGroupAssessSum(groupAssessSum);
-				simple.setStoreAssessSum(storeAssessSum);
+				simple.setAccount(bean.getAccount());
+				simple.setPassword(bean.getPassword());
+				simple.setName(bean.getName());
+				simple.setAddress(bean.getAddress());
+				simple.setTelephone(bean.getTelephone());
+				simple.setMail(bean.getMail());
+				simple.setPosition(bean.getPosition());
+				simple.setCoin(bean.getCoin());
+				simple.setPhoto(bean.getPhoto());
+				simple.setState(bean.getState());
+				simple.setWiseAssessSumEE(bean.getWiseAssessSumEE());
+				simple.setGroupAssessSumEE(bean.getGroupAssessSumEE());
+				simple.setStoreAssessSumEE(bean.getStoreAssessSumEE());
+				simple.setWiseAssessSum(bean.getWiseAssessSum());
+				simple.setGroupAssessSum(bean.getGroupAssessSum());
+				simple.setStoreAssessSum(bean.getStoreAssessSum());
 				return simple;
 			}
-			return null;
 		}
 		return null;
 	}
