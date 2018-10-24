@@ -1,7 +1,6 @@
 package model.repository.Impl;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -10,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.GroupProduct;
+import model.bean.Groupon;
+import model.bean.Product;
+import model.bean.State;
 import model.repository.GroupProductDao;
 
 @Repository
@@ -28,49 +30,45 @@ public class GroupProductDaoImpl implements GroupProductDao {
 	}
 
 	@Override
-	public GroupProduct select(Integer id) throws SQLException {
-		return getSession().get(GroupProduct.class, id);
+	public GroupProduct selectByPk(GroupProduct groupProductBean) throws SQLException {
+		GroupProduct groupProduct = getSession().get(GroupProduct.class, groupProductBean.getId());
+		if (groupProduct != null) {
+			return groupProduct;
+		}
+		return null;
 	}
 
 	@Override
-	public GroupProduct insert(GroupProduct groupProduct) throws SQLException {
-		GroupProduct product = getSession().get(GroupProduct.class, groupProduct.getId());
+	public GroupProduct insert(GroupProduct groupProductBean) throws SQLException {
+		GroupProduct product = getSession().get(GroupProduct.class, groupProductBean.getId());
 		if (product == null) {
-			getSession().save(groupProduct);
-			return groupProduct;
+			getSession().save(groupProductBean);
+			return groupProductBean;
 		}
 		return null;
 	}
 
 	@Override
-	public GroupProduct update(Integer id, Integer groupID, String name, Integer prodID, Integer amt, Integer price,
-			String cont, Integer ver, Date compTime, Integer gpState) throws SQLException {
-		GroupProduct groupProduct = this.getSession().get(GroupProduct.class, id);
+	public GroupProduct update(GroupProduct groupProductBean) throws SQLException {
+		GroupProduct groupProduct = getSession().get(GroupProduct.class, groupProductBean.getId());
 		if (groupProduct != null) {
-			groupProduct.setId(id);
-			groupProduct.setGroupID(groupID);
-			groupProduct.setName(name);
-			groupProduct.setProductId(prodID);
-			groupProduct.setAmount(amt);
-			groupProduct.setPrice(price);
-			groupProduct.setContext(cont);
-			groupProduct.setVersion(ver);
-			groupProduct.setCompleteTime(compTime);
-			groupProduct.setState(gpState);
-			getSession().update(groupProduct);
-			return groupProduct;
+			if (getSession().get(Groupon.class, groupProductBean.getGroupID()) != null) {
+				if (getSession().get(Product.class, groupProductBean.getProductId()) != null) {
+					if (getSession().get(State.class, groupProductBean.getState()) != null) {
+						groupProduct.setGroupID(groupProductBean.getGroupID());
+						groupProduct.setName(groupProductBean.getName());
+						groupProduct.setProductId(groupProductBean.getProductId());
+						groupProduct.setAmount(groupProductBean.getAmount());
+						groupProduct.setPrice(groupProductBean.getPrice());
+						groupProduct.setContext(groupProductBean.getContext());
+						groupProduct.setVersion(groupProductBean.getVersion());
+						groupProduct.setCompleteTime(groupProductBean.getCompleteTime());
+						groupProduct.setState(groupProductBean.getState());
+						return groupProduct;
+					}
+				}
+			}
 		}
 		return null;
 	}
-
-	@Override
-	public Boolean delete(Integer id) throws SQLException {
-		GroupProduct groupProduct = getSession().get(GroupProduct.class, id);
-		if (groupProduct != null) {
-			getSession().delete(groupProduct);
-			return true;
-		}
-		return false;
-	}
-
 }

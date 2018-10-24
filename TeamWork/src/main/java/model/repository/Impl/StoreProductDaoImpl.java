@@ -8,6 +8,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.Product;
+import model.bean.State;
+import model.bean.Store;
 import model.bean.StoreProduct;
 import model.repository.StoreProductDao;
 
@@ -25,7 +28,7 @@ public class StoreProductDaoImpl implements StoreProductDao {
 	}
 
 	@Override
-	public StoreProduct select(Integer id) throws SQLException {
+	public StoreProduct selectByPk(Integer id) throws SQLException {
 		return this.getSession().get(StoreProduct.class, id);
 	}
 
@@ -33,37 +36,36 @@ public class StoreProductDaoImpl implements StoreProductDao {
 	public StoreProduct insert(StoreProduct bean) throws SQLException {
 		StoreProduct storeProduct = this.getSession().get(StoreProduct.class, bean.getId());
 		if(storeProduct == null) {
-			this.getSession().save(bean);
-			return bean;
+			Store store = this.getSession().get(Store.class, bean.getStoreId());
+			Product product = this.getSession().get(Product.class, bean.getProductId());
+			State state = this.getSession().get(State.class, bean.getState());
+			if(store != null && product != null && state != null) {
+				this.getSession().save(bean);
+				return bean;				
+			}
+			return null;
 		}
 		return null;
 	}
 
 	@Override
-	public StoreProduct update(Integer id, Integer storeId, String name, Integer productId, Integer amount,
-			Integer price, Integer state) throws SQLException {
-		StoreProduct storeProduct = this.getSession().get(StoreProduct.class, id);
+	public StoreProduct update(StoreProduct bean) throws SQLException {
+		StoreProduct storeProduct = this.getSession().get(StoreProduct.class, bean.getId());
 		if(storeProduct != null) {
-			storeProduct.setStoreId(storeId);
-			storeProduct.setName(name);
-			storeProduct.setProductId(productId);
-			storeProduct.setAmount(amount);
-			storeProduct.setPrice(price);
-			storeProduct.setState(state);
-			this.getSession().update(storeProduct);
-			return storeProduct;
+			Store store = this.getSession().get(Store.class, bean.getStoreId());
+			Product product = this.getSession().get(Product.class, bean.getProductId());
+			State state = this.getSession().get(State.class, bean.getState());
+			if(store != null && product != null && state != null) {
+				storeProduct.setStoreId(bean.getStoreId());
+				storeProduct.setName(bean.getName());
+				storeProduct.setProductId(bean.getProductId());
+				storeProduct.setAmount(bean.getAmount());
+				storeProduct.setPrice(bean.getPrice());
+				storeProduct.setState(bean.getState());
+				return storeProduct;				
+			}
+			return null;
 		}
 		return null;
 	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		StoreProduct storeProduct = this.getSession().get(StoreProduct.class, id);
-		if(storeProduct != null) {
-			this.getSession().delete(storeProduct);
-			return true;
-		}
-		return false;
-	}
-
 }

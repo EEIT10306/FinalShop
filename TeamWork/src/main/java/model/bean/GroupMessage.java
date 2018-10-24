@@ -152,32 +152,15 @@ public class GroupMessage {
 		return groupProductBean;
 	}
 
-	public void setGroupProductBean(GroupProduct groupProductBean) {
-		this.groupProductBean = groupProductBean;
-	}
-
 	public Member getMemberBean() {
 		return memberBean;
-	}
-
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
 	}
 
 	public GroupService getGroupServiceBean() {
 		return groupServiceBean;
 	}
 
-	public void setGroupServiceBean(GroupService groupServiceBean) {
-		this.groupServiceBean = groupServiceBean;
-	}
-
 	public State getStateBean() {
 		return stateBean;
 	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
-	}
-
 }

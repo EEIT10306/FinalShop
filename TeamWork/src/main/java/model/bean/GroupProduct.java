@@ -169,24 +169,11 @@ public class GroupProduct {
 		return groupBean;
 	}
 
-	public void setGroupBean(Groupon groupBean) {
-		this.groupBean = groupBean;
-	}
-
 	public Product getProductBean() {
 		return productBean;
-	}
-
-	public void setProductBean(Product productBean) {
-		this.productBean = productBean;
 	}
 
 	public State getStateBean() {
 		return stateBean;
 	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
-	}
-
 }
