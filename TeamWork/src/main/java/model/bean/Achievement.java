@@ -10,31 +10,35 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Achievement")
 public class Achievement {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ach_ID", columnDefinition = "int")
 	Integer id;
+
 	@Column(name = "ach_cont", columnDefinition = "nvarchar(MAX)")
 	String context;
+
 	@Column(name = "ach_bon", columnDefinition = "int")
-	Integer bouns;
+	Integer bonus;
+
 	@Column(name = "ach_parID", columnDefinition = "int")
 	Integer parentsId;
 
-	@Override
-	public String toString() {
-		return "AchievementBean [id=" + id + ", context=" + context + ", bouns=" + bouns + ", parentsId=" + parentsId
-				+ "]";
+	public Achievement() {
 	}
 
-	public Achievement() {
-	};
-
-	public Achievement(Integer id, String context, Integer bouns, Integer parentsId) {
+	public Achievement(Integer id, String context, Integer bonus, Integer parentsId) {
 		this.id = id;
 		this.context = context;
-		this.bouns = bouns;
+		this.bonus = bonus;
 		this.parentsId = parentsId;
+	}
+
+	@Override
+	public String toString() {
+		return "Achievement [id=" + id + ", context=" + context + ", bonus=" + bonus + ", parentsId=" + parentsId
+				+ "]\r\n";
 	}
 
 	public Integer getId() {
@@ -53,12 +57,12 @@ public class Achievement {
 		this.context = context;
 	}
 
-	public Integer getBouns() {
-		return bouns;
+	public Integer getBonus() {
+		return bonus;
 	}
 
-	public void setBouns(Integer bouns) {
-		this.bouns = bouns;
+	public void setBonus(Integer bonus) {
+		this.bonus = bonus;
 	}
 
 	public Integer getParentsId() {
@@ -68,4 +72,5 @@ public class Achievement {
 	public void setParentsId(Integer parentsId) {
 		this.parentsId = parentsId;
 	}
+
 }

@@ -21,25 +21,39 @@ public class CommitAchievement {
 
 	@Column(name = "ach_ID", columnDefinition = "int")
 	Integer achievementID;
-	
+
 	@Column(name = "mem_ID", columnDefinition = "int")
 	Integer memberID;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "achID", insertable = false, updatable = false)
-	Achievement ach;
+	@Column(name = "cA_state", columnDefinition = "int")
+	Integer state;
 
-	public CommitAchievement() {}
-	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ach_ID", insertable = false, updatable = false)
+	Achievement achievement;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
+	Member memeberBean;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "cA_state", insertable = false, updatable = false)
+	State stateBean;
+
+	public CommitAchievement() {
+	}
+
 	public CommitAchievement(Integer id, Integer achievementID, Integer memberID) {
 		this.id = id;
 		this.achievementID = achievementID;
 		this.memberID = memberID;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID + "]";
+		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID
+				+ "]\r\n  [achievement=" + achievement + "]\r\n    [memeberBean=" + memeberBean + "]\r\n  [stateBean="
+				+ stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -66,11 +80,36 @@ public class CommitAchievement {
 		this.memberID = memberID;
 	}
 
-	public Achievement getAch() {
-		return ach;
+	public Integer getState() {
+		return state;
 	}
 
-	public void setAch(Achievement ach) {
-		this.ach = ach;
+	public void setState(Integer state) {
+		this.state = state;
 	}
+
+	public Achievement getAchievement() {
+		return achievement;
+	}
+
+	public void setAchievement(Achievement achievement) {
+		this.achievement = achievement;
+	}
+
+	public Member getMemeberBean() {
+		return memeberBean;
+	}
+
+	public void setMemeberBean(Member memeberBean) {
+		this.memeberBean = memeberBean;
+	}
+
+	public State getStateBean() {
+		return stateBean;
+	}
+
+	public void setStateBean(State stateBean) {
+		this.stateBean = stateBean;
+	}
+
 }

@@ -11,53 +11,53 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "StoreReport")
-public class StoreReport {
+@Table(name = "WishReport")
+public class WishReport {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "sR_ID", columnDefinition = "int")
+	@Column(name = "wR_ID", columnDefinition = "int")
 	Integer id;
 
-	@Column(name = "sP_ID", columnDefinition = "int")
-	Integer storeProductId;
+	@Column(name = "wP_ID", columnDefinition = "int")
+	Integer wishProductID;
 
 	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberId;
+	Integer memberID;
 
-	@Column(name = "sR_cont", columnDefinition = "nvarchar(max)")
+	@Column(name = "wR_cont", columnDefinition = "nvarchar(max)")
 	String content;
 
-	@Column(name = "sR_state", columnDefinition = "int")
+	@Column(name = "wR_state", columnDefinition = "int")
 	Integer state;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	StoreProduct storeProductBean;
+	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
+	WishProduct wishProductBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
 	Member memberBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "sR_state", insertable = false, updatable = false)
+	@JoinColumn(name = "wR_state", insertable = false, updatable = false)
 	State stateBean;
 
-	public StoreReport() {
+	public WishReport() {
 	}
 
-	public StoreReport(Integer id, Integer storeProductId, Integer memberId, String content, Integer state) {
+	public WishReport(Integer id, Integer wishProductID, Integer memberID, String content, Integer state) {
 		this.id = id;
-		this.storeProductId = storeProductId;
-		this.memberId = memberId;
+		this.wishProductID = wishProductID;
+		this.memberID = memberID;
 		this.content = content;
 		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreReport [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", content="
-				+ content + ", state=" + state + "]\r\n  [storeProductBean=" + storeProductBean + "]\r\n  [memberBean=" + memberBean
+		return "WishReport [id=" + id + ", wishProductID=" + wishProductID + ", memberID=" + memberID + ", content="
+				+ content + ", state=" + state + "]\r\n  [wishProductBean=" + wishProductBean + "]\r\n  [memberBean=" + memberBean
 				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
@@ -69,20 +69,20 @@ public class StoreReport {
 		this.id = id;
 	}
 
-	public Integer getStoreProductId() {
-		return storeProductId;
+	public Integer getWishProductID() {
+		return wishProductID;
 	}
 
-	public void setStoreProductId(Integer storeProductId) {
-		this.storeProductId = storeProductId;
+	public void setWishProductID(Integer wishProductID) {
+		this.wishProductID = wishProductID;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getMemberID() {
+		return memberID;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setMemberID(Integer memberID) {
+		this.memberID = memberID;
 	}
 
 	public String getContent() {
@@ -101,12 +101,12 @@ public class StoreReport {
 		this.state = state;
 	}
 
-	public StoreProduct getStoreProductBean() {
-		return storeProductBean;
+	public WishProduct getWishProductBean() {
+		return wishProductBean;
 	}
 
-	public void setStoreProductBean(StoreProduct storeProductBean) {
-		this.storeProductBean = storeProductBean;
+	public void setWishProductBean(WishProduct wishProductBean) {
+		this.wishProductBean = wishProductBean;
 	}
 
 	public Member getMemberBean() {
