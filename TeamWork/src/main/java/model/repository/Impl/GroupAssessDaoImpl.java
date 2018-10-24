@@ -6,12 +6,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import misc.SpringJavaConfiguration;
 import model.bean.GroupAssess;
 import model.repository.GroupAssessDao;
 
@@ -23,15 +19,6 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
-	}
-
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-		GroupAssessDaoImpl dao = ctx.getBean(GroupAssessDaoImpl.class);
-		dao.getSession().beginTransaction();
-		System.out.println(dao.selectAll());
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
 	}
 
 	@Override
@@ -57,11 +44,28 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 	@Override
 	public GroupAssess update(Integer id, Integer gmID, Integer point, String cont, Integer pointee, String contee,
 			Integer gaState) throws SQLException {
+		GroupAssess groupAssess = getSession().get(GroupAssess.class, id);
+		if (groupAssess != null) {
+			groupAssess.setId(id);
+			groupAssess.setGroupMessageId(gmID);
+			groupAssess.setPoint(point);
+			groupAssess.setContext(cont);
+			groupAssess.setPointEE(pointee);
+			groupAssess.setContextEE(contee);
+			groupAssess.setState(gaState);
+			getSession().update(groupAssess);
+			return groupAssess;
+		}
 		return null;
 	}
 
 	@Override
 	public Boolean delete(Integer id) throws SQLException {
+		GroupAssess groupAssess = getSession().get(GroupAssess.class, id);
+		if (groupAssess != null) {
+			getSession().delete(groupAssess);
+			return true;
+		}
 		return false;
 	}
 }

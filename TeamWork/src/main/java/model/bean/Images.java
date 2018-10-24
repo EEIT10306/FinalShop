@@ -1,7 +1,6 @@
 package model.bean;
 
 import java.sql.Blob;
-import java.util.Arrays;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -29,24 +29,24 @@ public class Images {
 
 	@Column(name = "im_from", columnDefinition = "nvarchar(max)")
 	String from;
-	
+
 	@Column(name = "im_state", columnDefinition = "int")
 	Integer state;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@Column(name = "wgs_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
 	Wish wishBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@Column(name = "wgs_ID", insertable = false, updatable = false)
-	Group groupBean;
+	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
+	Groupon groupBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@Column(name = "wgs_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
 	Store storeBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@Column(name = "im_state", insertable = false, updatable = false)
+	@JoinColumn(name = "im_state", insertable = false, updatable = false)
 	State stateBean;
 
 	public Images() {
@@ -63,8 +63,8 @@ public class Images {
 	@Override
 	public String toString() {
 		return "Images [id=" + id + ", wgsID=" + wgsID + ", cont=" + cont + ", from=" + from + ", state=" + state
-				+ "]\r\n  [wishBean=" + wishBean + "]\r\n  [groupBean=" + groupBean + "]\r\n  [storeBean=" + storeBean + "]\r\n  [stateBean="
-				+ stateBean + "]\r\n";
+				+ "]\r\n  [wishBean=" + wishBean + "]\r\n  [groupBean=" + groupBean + "]\r\n  [storeBean=" + storeBean
+				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -115,11 +115,11 @@ public class Images {
 		this.wishBean = wishBean;
 	}
 
-	public Group getGroupBean() {
+	public Groupon getGroupBean() {
 		return groupBean;
 	}
 
-	public void setGroupBean(Group groupBean) {
+	public void setGroupBean(Groupon groupBean) {
 		this.groupBean = groupBean;
 	}
 

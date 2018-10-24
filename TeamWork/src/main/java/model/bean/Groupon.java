@@ -13,8 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Group")
-public class Group {
+@Table(name = "Groupon")
+public class Groupon {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Group {
 	String title;
 
 	@Column(name = "group_cont", columnDefinition = "nvarchar(max)")
-	String cont;
+	String context;
 
 	@Column(name = "dist_ID", columnDefinition = "int")
 	Integer districtTypeId;
@@ -67,16 +67,16 @@ public class Group {
 	@JoinColumn(name = "group_state", insertable = false, updatable = false)
 	State stateBean;
 
-	public Group() {
+	public Groupon() {
 	}
 
-	public Group(Integer id, Integer memberId, Integer groupClass, String title, String cont, Integer districtTypeId,
-			Date startDate, Date endDate, String goal, Date compTime, Integer state) {
+	public Groupon(Integer id, Integer memberId, Integer groupClass, String title, String context,
+			Integer districtTypeId, Date startDate, Date endDate, String goal, Date compTime, Integer state) {
 		this.id = id;
 		this.memberId = memberId;
 		this.groupClass = groupClass;
 		this.title = title;
-		this.cont = cont;
+		this.context = context;
 		this.districtTypeId = districtTypeId;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -88,10 +88,10 @@ public class Group {
 	@Override
 	public String toString() {
 		return "Group [id=" + id + ", memberId=" + memberId + ", groupClass=" + groupClass + ", title=" + title
-				+ ", cont=" + cont + ", districtTypeId=" + districtTypeId + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", goal=" + goal + ", compTime=" + compTime + ", state=" + state + "]\r\n  [memberBean="
-				+ memberBean + "]\r\n  [productBean=" + productBean + "]\r\n  [districtTypeBean=" + districtTypeBean
-				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
+				+ ", context=" + context + ", districtTypeId=" + districtTypeId + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", goal=" + goal + ", compTime=" + compTime + ", state=" + state
+				+ "]\r\n  [memberBean=" + memberBean + "]\r\n  [productBean=" + productBean
+				+ "]\r\n  [districtTypeBean=" + districtTypeBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -127,11 +127,11 @@ public class Group {
 	}
 
 	public String getCont() {
-		return cont;
+		return context;
 	}
 
-	public void setCont(String cont) {
-		this.cont = cont;
+	public void setCont(String context) {
+		this.context = context;
 	}
 
 	public Integer getDistrictTypeId() {

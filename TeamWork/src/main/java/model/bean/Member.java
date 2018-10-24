@@ -25,8 +25,8 @@ public class Member {
 	@Column(name = "mem_acc", columnDefinition = "nvarchar(MAX)")
 	String account;
 
-	@Column(name = "mem_pass", columnDefinition = "varbinary(MAX)")
-	Byte[] password;
+	@Column(name = "mem_pass", columnDefinition = "nvarchar(MAX)")
+	String password;
 
 	@Column(name = "mem_name", columnDefinition = "nvarchar(MAX)")
 	String name;
@@ -77,7 +77,7 @@ public class Member {
 	public Member() {
 	}
 
-	public Member(Integer id, String account, Byte[] password, String name, String address, String telephone,
+	public Member(Integer id, String account, String password, String name, String address, String telephone,
 			String mail, String position, Integer coin, Blob photo, Integer state, Double wiseAssessSumEE,
 			Double groupAssessSumEE, Double storeAssessSumEE, Double wiseAssessSum, Double groupAssessSum,
 			Double storeAssessSum) {
@@ -102,10 +102,10 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", account=" + account + ", password=" + Arrays.toString(password) + ", name="
-				+ name + ", address=" + address + ", telephone=" + telephone + ", mail=" + mail + ", position="
-				+ position + ", coin=" + coin + ", photo=" + photo + ", state=" + state + ", wiseAssessSumEE="
-				+ wiseAssessSumEE + ", groupAssessSumEE=" + groupAssessSumEE + ", storeAssessSumEE=" + storeAssessSumEE
+		return "Member [id=" + id + ", account=" + account + ", password=" + password + ", name=" + name + ", address="
+				+ address + ", telephone=" + telephone + ", mail=" + mail + ", position=" + position + ", coin=" + coin
+				+ ", photo=" + photo + ", state=" + state + ", wiseAssessSumEE=" + wiseAssessSumEE
+				+ ", groupAssessSumEE=" + groupAssessSumEE + ", storeAssessSumEE=" + storeAssessSumEE
 				+ ", wiseAssessSum=" + wiseAssessSum + ", groupAssessSum=" + groupAssessSum + ", storeAssessSum="
 				+ storeAssessSum + "]\r\n  [stateBean=" + stateBean + "]\r\n";
 	}
@@ -126,11 +126,11 @@ public class Member {
 		this.account = account;
 	}
 
-	public Byte[] getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(Byte[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 

@@ -50,7 +50,7 @@ public class GroupProduct {
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
-	Group groupBean;
+	Groupon groupBean;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
@@ -165,11 +165,11 @@ public class GroupProduct {
 		this.state = state;
 	}
 
-	public Group getGroupBean() {
+	public Groupon getGroupBean() {
 		return groupBean;
 	}
 
-	public void setGroupBean(Group groupBean) {
+	public void setGroupBean(Groupon groupBean) {
 		this.groupBean = groupBean;
 	}
 

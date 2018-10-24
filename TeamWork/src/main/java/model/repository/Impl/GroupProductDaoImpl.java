@@ -7,12 +7,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import misc.SpringJavaConfiguration;
 import model.bean.GroupProduct;
 import model.repository.GroupProductDao;
 
@@ -24,15 +20,6 @@ public class GroupProductDaoImpl implements GroupProductDao {
 
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
-	}
-
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-		GroupProductDaoImpl dao = ctx.getBean(GroupProductDaoImpl.class);
-		dao.getSession().beginTransaction();
-		System.out.println(dao.selectAll());
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
 	}
 
 	@Override
@@ -58,11 +45,31 @@ public class GroupProductDaoImpl implements GroupProductDao {
 	@Override
 	public GroupProduct update(Integer id, Integer groupID, String name, Integer prodID, Integer amt, Integer price,
 			String cont, Integer ver, Date compTime, Integer gpState) throws SQLException {
+		GroupProduct groupProduct = this.getSession().get(GroupProduct.class, id);
+		if (groupProduct != null) {
+			groupProduct.setId(id);
+			groupProduct.setGroupID(groupID);
+			groupProduct.setName(name);
+			groupProduct.setProductId(prodID);
+			groupProduct.setAmount(amt);
+			groupProduct.setPrice(price);
+			groupProduct.setContext(cont);
+			groupProduct.setVersion(ver);
+			groupProduct.setCompleteTime(compTime);
+			groupProduct.setState(gpState);
+			getSession().update(groupProduct);
+			return groupProduct;
+		}
 		return null;
 	}
 
 	@Override
 	public Boolean delete(Integer id) throws SQLException {
+		GroupProduct groupProduct = getSession().get(GroupProduct.class, id);
+		if (groupProduct != null) {
+			getSession().delete(groupProduct);
+			return true;
+		}
 		return false;
 	}
 
