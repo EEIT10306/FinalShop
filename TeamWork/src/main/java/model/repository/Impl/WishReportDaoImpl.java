@@ -23,24 +23,24 @@ public class WishReportDaoImpl implements WishReportDao {
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-	
+
 	public static void main(String[] args) throws SQLException {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 
 		WishReportDaoImpl dao = ctx.getBean(WishReportDaoImpl.class);
 		dao.getSession().beginTransaction();
-			
-		System.out.println(dao.select());//selectAll
+
+		System.out.println(dao.select());// selectAll
 //				
 //		Achievement ach = new Achievement(null,"成就的內容", 10, null);
 //		System.out.println(dao.getSession().save(ach));//insert
 //				
 //		System.out.println(dao.select(1));//selectOne
-		
+
 		dao.getSession().getTransaction().commit();
 		((ConfigurableApplicationContext) ctx).close();
 	}
-	
+
 	@Override
 	public List<WishReport> select() throws SQLException {
 		return getSession().createQuery("from WishReport", WishReport.class).setMaxResults(50).list();
@@ -54,7 +54,7 @@ public class WishReportDaoImpl implements WishReportDao {
 	@Override
 	public WishReport insert(WishReport bean) throws SQLException {
 		WishReport wishReport = getSession().get(WishReport.class, bean.getId());
-		if(wishReport==null) {
+		if (wishReport == null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -64,7 +64,7 @@ public class WishReportDaoImpl implements WishReportDao {
 	@Override
 	public WishReport update(Integer id, String content) throws SQLException {
 		WishReport wishReport = this.getSession().get(WishReport.class, id);
-		if(wishReport != null) {
+		if (wishReport != null) {
 			wishReport.setId(id);
 			wishReport.setContent(content);
 			getSession().update(wishReport);
@@ -75,11 +75,7 @@ public class WishReportDaoImpl implements WishReportDao {
 
 	@Override
 	public boolean delete(Integer id) throws SQLException {
-		WishReport wishReport = this.getSession().get(WishReport.class, id);
-		if(wishReport != null) {
-			getSession().delete(wishReport);
-			return true;
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
 
