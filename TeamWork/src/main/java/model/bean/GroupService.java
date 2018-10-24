@@ -101,16 +101,7 @@ public class GroupService {
 		return groupProductBean;
 	}
 
-	public void setGroupProductBean(GroupProduct groupProductBean) {
-		this.groupProductBean = groupProductBean;
-	}
-
 	public State getStateBean() {
 		return stateBean;
 	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
-	}
-
 }

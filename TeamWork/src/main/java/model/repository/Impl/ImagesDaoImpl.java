@@ -1,6 +1,5 @@
 package model.repository.Impl;
 
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,7 +8,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.Groupon;
 import model.bean.Images;
+import model.bean.State;
+import model.bean.Store;
+import model.bean.Wish;
 import model.repository.ImagesDao;
 
 @Repository
@@ -28,37 +31,48 @@ public class ImagesDaoImpl implements ImagesDao {
 	}
 
 	@Override
-	public Images select(Integer id) throws SQLException {
-		return getSession().get(Images.class, id);
-	}
-
-	@Override
-	public Images insert(Images images) throws SQLException {
-		Images img = getSession().get(Images.class, images.getId());
-		if (img == null) {
-			getSession().save(images);
-			return images;
-		}
-		return null;
-	}
-
-	@Override
-	public Images update(Integer id, Integer wgsID, Blob cont, Integer imState) throws SQLException {
-		Images images = getSession().get(Images.class, id);
+	public Images selectByPk(Images imagesBean) throws SQLException {
+		Images images = getSession().get(Images.class, imagesBean.getId());
 		if (images != null) {
-			images.setId(id);
-			images.setWgsID(wgsID);
-			images.setCont(cont);
-			images.setState(imState);
-			getSession().update(images);
 			return images;
 		}
 		return null;
 	}
 
 	@Override
-	public Boolean delete(Integer id) throws SQLException {
-		Images images = getSession().get(Images.class, id);
+	public Images insert(Images imagesBean) throws SQLException {
+		Images img = getSession().get(Images.class, imagesBean.getId());
+		if (img == null) {
+			getSession().save(imagesBean);
+			return imagesBean;
+		}
+		return null;
+	}
+
+	@Override
+	public Images update(Images imagesBean) throws SQLException {
+		Images images = getSession().get(Images.class, imagesBean.getId());
+		if (images != null) {
+			if ((imagesBean.getFrom().equals("Wish") && getSession().get(Wish.class, imagesBean.getWgsID()) != null)
+					|| (imagesBean.getFrom().equals("Store")
+							&& getSession().get(Store.class, imagesBean.getWgsID()) != null)
+					|| (imagesBean.getFrom().equals("Groupon")
+							&& getSession().get(Groupon.class, imagesBean.getWgsID()) != null)) {
+				if (getSession().get(State.class, imagesBean.getState()) != null) {
+					images.setWgsID(imagesBean.getWgsID());
+					images.setCont(imagesBean.getCont());
+					images.setFrom(imagesBean.getFrom());
+					images.setState(imagesBean.getState());
+					return images;
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean delete(Images imagesBean) throws SQLException {
+		Images images = getSession().get(Images.class, imagesBean.getId());
 		if (images != null) {
 			getSession().delete(images);
 			return true;

@@ -1,6 +1,5 @@
 package model.repository;
 
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,11 +9,11 @@ public interface ImagesDao {
 
 	public List<Images> selectAll() throws SQLException;
 
-	public Images select(Integer id) throws SQLException;
+	public Images selectByPk(Images imagesBean) throws SQLException;
 
-	public Images insert(Images images) throws SQLException;
+	public Images insert(Images imagesBean) throws SQLException;
 
-	public Images update(Integer id, Integer wgsID, Blob cont, Integer imState) throws SQLException;
+	public Images update(Images imagesBean) throws SQLException;
 
-	public Boolean delete(Integer id) throws SQLException;
+	public Boolean delete(Images imagesBean) throws SQLException;
 }
