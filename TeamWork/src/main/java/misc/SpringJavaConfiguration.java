@@ -57,6 +57,7 @@ public class SpringJavaConfiguration {
 		builder.addAnnotatedClass(Achievement.class);
 //		builder.addAnnotatedClass(Member.class);
 		builder.addAnnotatedClass(CommitAchievement.class);
+		
 	
 		return builder.buildSessionFactory();
 	}
