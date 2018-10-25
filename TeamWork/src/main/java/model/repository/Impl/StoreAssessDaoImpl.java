@@ -26,9 +26,6 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 
-	
-	
-
 	@Override
 	public List<StoreAssess> select() throws SQLException {
 		return getSession().createQuery("from StoreAssess", StoreAssess.class).setMaxResults(50).list();

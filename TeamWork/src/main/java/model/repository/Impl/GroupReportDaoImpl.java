@@ -6,13 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import misc.SpringJavaConfiguration;
+import model.bean.GroupProduct;
 import model.bean.GroupReport;
+import model.bean.Member;
+import model.bean.State;
 import model.repository.GroupReportDao;
 
 @Repository
@@ -23,23 +22,6 @@ public class GroupReportDaoImpl implements GroupReportDao {
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-	
-	public static void main(String[] args) throws SQLException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-
-		GroupReportDaoImpl dao = ctx.getBean(GroupReportDaoImpl.class);
-		dao.getSession().beginTransaction();
-			
-		System.out.println(dao.select());//selectAll
-//				
-//		Achievement ach = new Achievement(null,"成就的內容", 10, null);
-//		System.out.println(dao.getSession().save(ach));//insert
-//				
-//		System.out.println(dao.select(1));//selectOne
-		
-		dao.getSession().getTransaction().commit();
-		((ConfigurableApplicationContext) ctx).close();
-	}
 
 	@Override
 	public List<GroupReport> select() throws SQLException {
@@ -47,40 +29,44 @@ public class GroupReportDaoImpl implements GroupReportDao {
 	}
 
 	@Override
-	public GroupReport select(Integer id) throws SQLException {
-		return getSession().get(GroupReport.class, id);
+	public GroupReport selectByPk(GroupReport bean) throws SQLException {
+		return getSession().get(GroupReport.class, bean.getId());
 	}
 
 	@Override
 	public GroupReport insert(GroupReport bean) throws SQLException {
 		GroupReport groupReport = getSession().get(GroupReport.class, bean.getId());
 		if(groupReport==null) {
-			getSession().save(bean);
-			return bean;
+			State simpleState = getSession().get(State.class, bean.getState());
+			Member member = getSession().get(Member.class, bean.getId());
+			GroupProduct groupProduct = getSession().get(GroupProduct.class, bean.getId());
+			if(simpleState != null && member != null && groupProduct != null) {
+								
+				getSession().save(bean);
+				return bean;
+			}
 		}
 		return null;
 	}
 
 	@Override
-	public GroupReport update(Integer id, String content) throws SQLException {
-		GroupReport groupReport = this.getSession().get(GroupReport.class, id);
+	public GroupReport update(GroupReport bean) throws SQLException {
+		GroupReport groupReport = this.getSession().get(GroupReport.class, bean.getId());
 		if(groupReport != null) {
-			groupReport.setId(id);
-			groupReport.setContent(content);
-			getSession().update(groupReport);
-			return groupReport;
+			State simpleState = getSession().get(State.class, bean.getState());
+			Member member = getSession().get(Member.class, bean.getId());
+			GroupProduct groupProduct = getSession().get(GroupProduct.class, bean.getId());
+			if(simpleState != null && member != null && groupProduct != null) {
+								
+				groupReport.setProductId(bean.getProductId());
+				groupReport.setMemberId(bean.getMemberId());;
+				groupReport.setContent(bean.getContent());
+				groupReport.setState(bean.getState());
+				getSession().update(groupReport);
+				return groupReport;
+			}
 		}
 		return null;
-	}
-
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		GroupReport groupReport = this.getSession().get(GroupReport.class, id);
-		if(groupReport != null) {
-			getSession().delete(groupReport);
-			return true;
-		}
-		return false;
 	}
 
 }
