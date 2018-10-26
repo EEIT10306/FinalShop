@@ -7,14 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.bean.Group;
 import model.bean.Groupon;
-import model.repository.GroupDao;
+import model.repository.GrouponDao;
 @Service
 public class _TestServiceGroupon {
 
 	@Autowired
-	private GroupDao groupDaoImpl;
+	private GrouponDao groupDaoImpl;
 	
 	public List<Groupon> getSelect(Groupon groupon) {
 		try {
