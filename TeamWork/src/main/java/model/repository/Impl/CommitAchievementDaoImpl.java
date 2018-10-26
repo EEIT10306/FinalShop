@@ -26,23 +26,6 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 
-//	public static void main(String[] args) throws SQLException {
-//		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-//
-//		CommitAchievementDaoImpl dao = ctx.getBean(CommitAchievementDaoImpl.class);
-//		dao.getSession().beginTransaction();
-//
-//		System.out.println(dao.select());//selectAll
-//				
-//		CommitAchievement comAch = new CommitAchievement(1, 1 , 2);
-//		System.out.println(dao.getSession().save(comAch));// insert
-//		
-//		System.out.println(dao.select(1));//selectOne
-//
-//		dao.getSession().getTransaction().commit();
-//		((ConfigurableApplicationContext) ctx).close();
-//	}
-
 	@Override
 	public List<CommitAchievement> select() throws SQLException {
 		return getSession().createQuery("from CommitAchievement", CommitAchievement.class).setMaxResults(50).list();
@@ -61,7 +44,7 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 			Member member = getSession().get(Member.class, bean.getMemberID());
 			if (achievement != null && member != null) {
 				getSession().save(bean);
-				return bean;				
+				return bean;
 			}
 			return null;
 		}
@@ -74,9 +57,9 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 		if (CA != null) {
 			Achievement achievement = getSession().get(Achievement.class, bean.getAchievementID());
 			Member member = getSession().get(Member.class, bean.getMemberID());
-			if(achievement != null && member != null) {
+			if (achievement != null && member != null) {
 				CA.setAchievementID(bean.getAchievementID());
-				CA.setMemberID(bean.getMemberID());				
+				CA.setMemberID(bean.getMemberID());
 				return CA;
 			}
 			return null;
