@@ -12,7 +12,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import misc.SpringJavaConfiguration;
+import model.bean.State;
 import model.bean.StoreAssess;
+import model.bean.StoreOrder;
 import model.repository.StoreAssessDao;
 
 @Repository
@@ -30,44 +32,41 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 	}
 
 	@Override
-	public StoreAssess select(Integer id) throws SQLException {
-		return getSession().get(StoreAssess.class, id);
+	public StoreAssess selectByPk(StoreAssess bean) throws SQLException {
+		return getSession().get(StoreAssess.class, bean.getId());
 	}
 
 	@Override
 	public StoreAssess insert(StoreAssess bean) throws SQLException {
 		StoreAssess storeAssess = getSession().get(StoreAssess.class, bean.getId());
-		if (storeAssess == null) {
-			getSession().save(bean);
-			return bean;
+		if(storeAssess==null) {
+			State simpleState = getSession().get(State.class, bean.getState());
+			StoreOrder storeOrder = getSession().get(StoreOrder.class, bean.getStoreOrderId());
+			if(simpleState != null && storeOrder != null) {
+				getSession().save(bean);
+				return bean;
+			}
 		}
 		return null;
 	}
 
 	@Override
-	public StoreAssess update(Integer id, Integer storeassessPoint, String storeassessContent,
-			Integer storeassessPointee, String storeassessContee) throws SQLException {
-		StoreAssess storeReport = this.getSession().get(StoreAssess.class, id);
-		if (storeReport != null) {
-			storeReport.setId(id);
-			storeReport.setStoreassessPoint(storeassessPoint);
-			storeReport.setStoreassessContent(storeassessContent);
-			storeReport.setStoreassessPointee(storeassessPointee);
-			storeReport.setStoreassessContee(storeassessContee);
-			getSession().update(storeReport);
-			return storeReport;
+	public StoreAssess update(StoreAssess bean) throws SQLException {
+		StoreAssess storeReport = this.getSession().get(StoreAssess.class, bean.getId());
+		if(storeReport != null) {
+			State simpleState = getSession().get(State.class, bean.getState());
+			StoreOrder storeOrder = getSession().get(StoreOrder.class, bean.getStoreOrderId());
+			if(simpleState != null && storeOrder != null) {
+				storeReport.setPoint(bean.getPoint());
+				storeReport.setContent(bean.getContent());
+				storeReport.setPointEE(bean.getPointEE());
+				storeReport.setContextEE(bean.getContextEE());
+				getSession().update(storeReport);
+				return storeReport;
+			}
 		}
 		return null;
 	}
 
-	@Override
-	public boolean delete(Integer id) throws SQLException {
-		StoreAssess storeAssess = this.getSession().get(StoreAssess.class, id);
-		if (storeAssess != null) {
-			getSession().delete(storeAssess);
-			return true;
-		}
-		return false;
-	}
 
 }

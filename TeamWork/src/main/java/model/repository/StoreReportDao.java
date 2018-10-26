@@ -7,8 +7,8 @@ import model.bean.StoreReport;
 
 public interface StoreReportDao {
 	public List<StoreReport> select() throws SQLException;
-	public StoreReport select(Integer id) throws SQLException;
+	public StoreReport selectByPk(StoreReport bean) throws SQLException;
 	public StoreReport insert(StoreReport bean) throws SQLException;
-	public StoreReport update(Integer id, String content) throws SQLException;
-	public boolean delete(Integer id) throws SQLException;
+	public StoreReport update(StoreReport bean) throws SQLException;
+	
 }

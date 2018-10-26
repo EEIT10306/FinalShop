@@ -424,8 +424,4 @@ $(function () {
     return date;
   }
 });
-$(function () {
-function saveImage() {
-  redraw();
-  saveData("emoji_map.png");
-}});
+

@@ -1,3 +1,16 @@
+/*root setting=========================================================================================================*/
+:root {
+  --white: #fff;
+  --black: #000;
+  --bg: #f8f8f8;
+  --grey: #999;
+  --dark: #1a1a1a;
+  --light: #e6e6e6;
+  --wrapper: 1000px;
+  --blue: #00b0ff;
+  --yellow: #ffce3d;
+}
+
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 @font-face {
   font-family: 'Lato';
@@ -237,16 +250,7 @@ tr:hover{
   box-sizing: border-box;
 }
 
-:root {
-  --white: #fff;
-  --black: #000;
-  --bg: #f8f8f8;
-  --grey: #999;
-  --dark: #1a1a1a;
-  --light: #e6e6e6;
-  --wrapper: 1000px;
-  --blue: #00b0ff;
-}
+
 
 body {
   background-color: var(--bg);

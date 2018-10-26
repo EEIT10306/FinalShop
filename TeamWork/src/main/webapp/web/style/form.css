@@ -1,0 +1,117 @@
+/*root setting=========================================================================================================*/
+:root {
+  --white: #fff;
+  --black: #000;
+  --bg: #f8f8f8;
+  --grey: #999;
+  --light-grey: #f2f2f2;
+  --dark: #3c3e34;
+  --light: #e6e6e6;
+  --wrapper: 1000px;
+  --blue: #00b0ff;
+  --yellow: #ffce3d;
+  --heavy-green: #4CAF50;
+  --heavy-green-hover: #43A047;
+  --green: #4CAF50;
+  --light-green: #8DC26F;
+}
+/* var(--yellow); */
+/*=========================================================================================================*/
+html {
+    background-color: var(--light-green);
+    background-image: url(https://2017.awiclass.monoame.com/img/form_ground.svg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: 0 80%;
+    min-height: 100vh;
+    background: #76b852; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+ 
+*{
+    font-family: 微軟正黑體;
+}
+  form {
+    background-color: var(--light-grey);
+    padding: 30px 100px;
+    color: var(--heavy-green);
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    border-bottom: 5px solid var(--heavy-green-hover);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    letter-spacing: 1px;
+  }
+  form img {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  form > * {
+    margin-bottom: 15px;
+  }
+  form h2 {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+
+  }
+  form input, form textarea, form select {
+    appearance: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 0px;
+    opacity: 0.9;
+    outline: none;
+    background-color: var(--grey);
+  }
+
+  /*更改placaholder樣式*/
+  ::-webkit-input-placeholder {
+    font-weight: bold;
+    color: var(--white);
+  }
+  :-moz-placeholder {/* Firefox 18- */
+    font-weight: bold;
+    color: var(--white);
+  }
+  ::-moz-placeholder{/* Firefox 19+ */
+    font-weight: bold;
+    color: var(--white);
+  }
+  :-ms-input-placeholder {
+    color: var(--white);
+  }
+  
+  form button {
+    transition-duration: 0.5s;
+    padding: 8px;
+    background-color: var(--heavy-green);
+    color: var(--white);
+    cursor: pointer;
+  }
+  form button:hover {
+    background-color: var(--heavy-green-hover);
+  }
+  form .message {
+    margin: 15px 0 0;
+    color: var(--dark);
+    font-size: 14px;
+  }
+  form .message a {
+    color: var(--green);
+    text-decoration: none;
+  }

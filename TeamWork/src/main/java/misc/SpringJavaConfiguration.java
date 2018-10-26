@@ -90,10 +90,12 @@ public class SpringJavaConfiguration {
 	private Properties properties() {
 		Properties props = new Properties();
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServer2012Dialect");
+
 ////		props.put("hibernate.current_session_context_class", "thread");
 ////		props.put("hibernate.show_sql", "true");	
 ////		props.put("hibernate.format_sql", "true");
 		return props;
+
 	}
 
 	@Bean(name = "transactionManager")

@@ -2,20 +2,21 @@
 <html lang="en">
 
 <head>
+
+    <title>商品詳情</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <!-- main CSS -->
-    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="../style/main.css">
     <!-- jQuery first -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <!-- fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
 </head>
 
 <body>
@@ -35,7 +36,7 @@
             <!-- Button trigger modal -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter">
+                    <a class="nav-link" href="form_login.html">
                         <i class="fas fa-user-circle icon"></i>會員登入 Member login
                     </a>
                 </li>
@@ -61,6 +62,7 @@
             </div>
         </div><!-- end of container -->
     </div>
+
     <div class="container">
         <div class="row product-quick-view">
             <div class="col-lg-6">
@@ -97,10 +99,14 @@
             </div>
             <div class="col-lg-6 product-top">
                 <h3 class="detail-title">快速出貨 韓版黑白橫條短袖ㄒ恤【F0225 500】現貨</h3>
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i
-                    class="far fa-star"></i>
-                <span class="fa-star-score">4.8</span>
-                <span>銷售量 3</span>
+                <i class="fas fa-star fa-star-score"></i>
+                <i class="fas fa-star fa-star-score"></i>
+                <i class="fas fa-star fa-star-score"></i>
+                <i class="far fa-star fa-star-score"></i>
+                <i class="far fa-star fa-star-score"></i>
+                <span class="star-score">4.8</span>
+                <span class="sell-text">銷售量</span>
+                <span class="sell-count"> 3581</span>
                 <h4 class="detail-price">$350</h4>
                 <h6>規格</h6>
                 <h6>數量</h6>
@@ -112,41 +118,23 @@
         <!-- 分頁標籤 -->
         <ul class="nav nav-tabs" id="productTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" 
-                   id="detail-information-tab" 
-                   data-toggle="tab" 
-                   href="#detail-information" 
-                   role="tab"
-                   aria-controls="detail-information" 
-                   aria-selected="true">詳細資訊
+                <a class="nav-link active" id="detail-information-tab" data-toggle="tab" href="#detail-information"
+                    role="tab" aria-controls="detail-information" aria-selected="true">詳細資訊
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"
-                   id="buyer-comment-tab" 
-                   data-toggle="tab" 
-                   href="#buyer-comment" 
-                   role="tab" 
-                   aria-controls="buyer-comment"
-                   aria-selected="false">買家評論
+                <a class="nav-link" id="buyer-comment-tab" data-toggle="tab" href="#buyer-comment" role="tab"
+                    aria-controls="buyer-comment" aria-selected="false">買家評論
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" 
-                   id="qustion-answer-tab" 
-                   data-toggle="tab" 
-                   href="#qustion-answer" 
-                   role="tab" 
-                   aria-controls="qustion-answer"
-                   aria-selected="false">問與答
+                <a class="nav-link" id="qustion-answer-tab" data-toggle="tab" href="#qustion-answer" role="tab"
+                    aria-controls="qustion-answer" aria-selected="false">問與答
                 </a>
             </li>
         </ul>
         <div class="tab-content" id="productContent">
-            <div class="tab-pane fade show active" 
-                 id="detail-information" 
-                 role="tabpanel" 
-                 aria-labelledby="detail-information-tab">
+            <div class="tab-pane fade show active" id="detail-information" role="tabpanel" aria-labelledby="detail-information-tab">
                 <!-- 分頁-詳細資訊 -->
                 <h5 class="detail-des-title">商品規格</h5>
 
@@ -158,54 +146,56 @@
                 <p>此外牟恩廣為化解紛爭，決意以「好散」的方式離婚，更請求在判決書內，避免以口出惡言方式，記載任何攻擊防禦方法；北院為達到家事法庭圓融解決家事紛爭及司法為民的理念，以簡易方式記載做出判決，圓領毛衣不限身形
                     穿上都百搭👍👍</p>
             </div>
-        <div class="tab-pane fade" 
-            id="buyer-comment" 
-            role="tabpanel" 
-            aria-labelledby="buyer-comment-tab">
-            <div class="comments-container">
-                <ul id="comments-list" class="comments-list">
-                    <li>
-                        <div class="comment-main-level">
-                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-                                    alt=""></div>
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">可愛兔兔</a></h6>
-                                    <span>hace 20 minutos</span>
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                </div>
-                                <div class="comment-content">
-                                    好寫筆芯讓書寫多了更多樂趣,精緻的圖案筆身,讓靈感及時被留住,每支雙頭雙色設計,每組2支入共四色,共三色筆芯為0.38mm+一色筆芯1mm螢光黃色,讓你靈感創作多多
+            <div class="tab-pane fade" id="buyer-comment" role="tabpanel" aria-labelledby="buyer-comment-tab">
+                <div class="comments-container">
+                    <ul id="comments-list" class="comments-list">
+                        <li>
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+                                        alt=""></div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="http://creaticode.com/blog">可愛兔兔</a></h6>
+                                        <span>hace 20 minutos</span>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                    </div>
+                                    <div class="comment-content">
+                                        好寫筆芯讓書寫多了更多樂趣,精緻的圖案筆身,讓靈感及時被留住,每支雙頭雙色設計,每組2支入共四色,共三色筆芯為0.38mm+一色筆芯1mm螢光黃色,讓你靈感創作多多
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                    <li>
-                        <div class="comment-main-level">
-                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
-                                    alt=""></div>
-                            <!-- Contenedor del Comentario -->
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">淘氣貓貓</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-                                </div>
-                                <div class="comment-content">
-                                    好寫筆芯讓書寫多了更多樂趣,精緻的圖案筆身,讓靈感及時被留住,每支雙頭雙色設計,每組2支入共四色,共三色筆芯為0.38mm+一色筆芯1mm螢光黃色,讓你靈感創作多多
-                                </div>
+                        <li>
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
+                                        alt=""></div>
+                                <!-- Contenedor del Comentario -->
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="http://creaticode.com/blog">淘氣貓貓</a></h6>
+                                        <span>hace 10 minutos</span>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                        <i class="fas fa-star fa-star-score"></i>
+                                        <i class="far fa-star fa-star-score"></i>
+                                        <i class="far fa-star fa-star-score"></i>
+                                    </div>
+                                    <div class="comment-content">
+                                        好寫筆芯讓書寫多了更多樂趣,精緻的圖案筆身,讓靈感及時被留住,每支雙頭雙色設計,每組2支入共四色,共三色筆芯為0.38mm+一色筆芯1mm螢光黃色,讓你靈感創作多多
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-       </div>
-        <div class="tab-pane fade" 
-             id="qustion-answer" 
-             role="tabpanel" 
-             aria-labelledby="qustion-answer-tab">
+            <div class="tab-pane fade" id="qustion-answer" role="tabpanel" aria-labelledby="qustion-answer-tab">
                 <div class="comments-container">
                     <ul id="comments-list" class="comments-list">
                         <li>
@@ -275,109 +265,144 @@
                         </li>
                     </ul>
                 </div>
-                
             </div>
-        </div> <!-- end of container -->
-        
-        <!-- 會員登入表單 -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">會員登入</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Account</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="staticEmail" placeholder="example@example.com">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary">登入</button>
-                        <button type="button" class="btn btn-primary">註冊</button>
-                    </div>
+        </div>
+    </div> <!-- end of container -->
+    <div class="contaminer-fluid">
+        <!-- start of footer -->
+        <div class="container">
+            <div class="row">
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">關注我們</div>
+                    <ul class="footer-category-list">
+                        <li>
+                            <img src="../images/social/facebook.png">
+                            <a href="#">Facebook</a>
+                        </li>
+                        <li>
+                            <img src="../images/social/instagram.png">
+                            <a href="#">Instagram</a>
+                        </li>
+                        <li>
+                            <img src="../images/social/line.png">
+                            <a href="#">LINE</a>
+                        </li>
+                        <li>
+                            <img src="../images/social/linkedin.png">
+                            <a href="#">
+                                Linkedin</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-            <div id="live-chat">
-                <header class="clearfix">
-                    <!-- 關閉的叉叉 -->
-                    <!-- <a href="#" class="chat-close">x</a> -->
-                    <h4>客服小幫手</h4>
-                    <span class="chat-message-counter">3</span>
-                </header>
-                <div class="chat">
-                    <div class="chat-history">
-                        <div class="chat-message clearfix">
-                            <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
-                            <div class="chat-message-content clearfix">
-                                <span class="chat-time">13:35</span>
-                                <h5>可愛阿美姊</h5>
-                                <p>請問您有什麼問題嗎，可以趕快問我喔!</p>
-                            </div> <!-- end chat-message-content -->
-                        </div> <!-- end chat-message -->
-                        <hr>
-                        <div class="chat-message clearfix">
-                            <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
-                            <div class="chat-message-content clearfix">
-                                <span class="chat-time">13:37</span>
-                                <h5>可愛阿美姊</h5>
-                                <p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色。</p>
-                            </div> <!-- end chat-message-content -->
-                        </div> <!-- end chat-message -->
-                        <hr>
-                        <div class="chat-message clearfix">
-                            <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">
-                            <div class="chat-message-content clearfix">
-                                <span class="chat-time">13:38</span>
-                                <h5>顧客林小姐</h5>
-                                <p>是喔，很好喔讚讚讚讚!</p>
-                            </div> <!-- end chat-message-content -->
-                        </div> <!-- end chat-message -->
-                        <hr>
-                    </div> <!-- end chat-history -->
-                    <p class="chat-feedback">Your partner is typing…</p>
-                    <form action="#" method="post">
-                        <fieldset>
-                            <input type="text" placeholder="Type your message…" autofocus>
-                            <input type="hidden">
-                        </fieldset>
-                    </form>
-                </div> <!-- end chat -->
-            </div> <!-- end live-chat -->
+    </div><!-- end of footer -->
 
+    <div id="live-chat">
+        <header class="clearfix">
+            <!-- 關閉的叉叉 -->
+            <!-- <a href="#" class="chat-close">x</a> -->
+            <h4>客服小幫手</h4>
+            <span class="chat-message-counter">3</span>
+        </header>
+        <div class="chat">
+            <div class="chat-history">
+                <div class="chat-message clearfix">
+                    <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32"
+                        height="32">
+                    <div class="chat-message-content clearfix">
+                        <span class="chat-time">13:35</span>
+                        <h5>可愛阿美姊</h5>
+                        <p>請問您有什麼問題嗎，可以趕快問我喔!</p>
+                    </div> <!-- end chat-message-content -->
+                </div> <!-- end chat-message -->
+                <hr>
+                <div class="chat-message clearfix">
+                    <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32"
+                        height="32">
+                    <div class="chat-message-content clearfix">
+                        <span class="chat-time">13:37</span>
+                        <h5>可愛阿美姊</h5>
+                        <p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色。</p>
+                    </div> <!-- end chat-message-content -->
+                </div> <!-- end chat-message -->
+                <hr>
+                <div class="chat-message clearfix">
+                    <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">
+                    <div class="chat-message-content clearfix">
+                        <span class="chat-time">13:38</span>
+                        <h5>顧客林小姐</h5>
+                        <p>是喔，很好喔讚讚讚讚!</p>
+                    </div> <!-- end chat-message-content -->
+                </div> <!-- end chat-message -->
+                <hr>
+            </div> <!-- end chat-history -->
+            <p class="chat-feedback">Your partner is typing…</p>
+            <form action="#" method="post">
+                <fieldset>
+                    <input type="text" placeholder="Type your message…" autofocus>
+                    <input type="hidden">
+                </fieldset>
+            </form>
+        </div> <!-- end chat -->
+    </div> <!-- end live-chat -->
 
+    <!-- Optional JavaScript -->
+    <script src="../js/main.js"></script>
+    <!-- Popper.js, then Bootstrap JS -->
 
-
-
-
-
-
-
-
-
-            <!-- Optional JavaScript -->
-            <script src="js/main.js"></script>
-            <!-- Popper.js, then Bootstrap JS -->
-            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-                crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
