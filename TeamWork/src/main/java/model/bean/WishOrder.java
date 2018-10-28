@@ -9,23 +9,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class WishReport {
+public class WishOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "wR_ID", columnDefinition = "int", nullable = false)
+	@Column(name = "wO_ID", columnDefinition = "int", nullable = false)
 	private Integer id;
 
 	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
 	private Integer wishId;
 
-	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	@Column(name = "memW_IDee", columnDefinition = "int", nullable = false)
 	private Integer memberId;
 
-	@Column(name = "wR_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String content;
+	@Column(name = "wB_sumPrice", columnDefinition = "int", nullable = false)
+	private String sumPrice;
 
-	@Column(name = "wR_state", columnDefinition = "int", nullable = false)
+	@Column(name = "wO_time", columnDefinition = "datetime", nullable = false)
+	private Integer time;
+
+	@Column(name = "wO_state", columnDefinition = "int", nullable = false)
 	private Integer stateId;
 
 	@ManyToOne
@@ -33,29 +36,31 @@ public class WishReport {
 	private Wish Wish;
 
 	@ManyToOne
-	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "memW_IDee", insertable = false, updatable = false)
 	private Member Member;
 
 	@ManyToOne
-	@JoinColumn(name = "wR_state", insertable = false, updatable = false)
+	@JoinColumn(name = "wO_state", insertable = false, updatable = false)
 	private State State;
 
-	public WishReport() {
+	public WishOrder() {
 	}
 
-	public WishReport(Integer id, Integer wishId, Integer memberId, String content, Integer stateId) {
+	public WishOrder(Integer id, Integer wishId, Integer memberId, String sumPrice, Integer time, Integer stateId) {
 		super();
 		this.id = id;
 		this.wishId = wishId;
 		this.memberId = memberId;
-		this.content = content;
+		this.sumPrice = sumPrice;
+		this.time = time;
 		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "WishReport [id=" + id + ", wishId=" + wishId + ", memberId=" + memberId + ", content=" + content
-				+ ", stateId=" + stateId + ", Wish=" + Wish + ", Member=" + Member + ", State=" + State + "]\r\n";
+		return "WishOrder [id=" + id + ", wishId=" + wishId + ", memberId=" + memberId + ", sumPrice=" + sumPrice
+				+ ", time=" + time + ", stateId=" + stateId + ", Wish=" + Wish + ", Member=" + Member + ", State="
+				+ State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -82,12 +87,20 @@ public class WishReport {
 		this.memberId = memberId;
 	}
 
-	public String getContent() {
-		return content;
+	public String getSumPrice() {
+		return sumPrice;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setSumPrice(String sumPrice) {
+		this.sumPrice = sumPrice;
+	}
+
+	public Integer getTime() {
+		return time;
+	}
+
+	public void setTime(Integer time) {
+		this.time = time;
 	}
 
 	public Integer getStateId() {

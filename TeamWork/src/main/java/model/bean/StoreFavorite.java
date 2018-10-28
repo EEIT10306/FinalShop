@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,27 +10,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "StoreFavorite")
 public class StoreFavorite {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "sF_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "sF_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "sP_ID", columnDefinition = "int")
-	Integer storeProductId;
+	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
+	private Integer storeProductId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	StoreProduct storeProductBean;
+	private StoreProduct StoreProduct;
 
 	public StoreFavorite() {
 	}
@@ -44,8 +42,8 @@ public class StoreFavorite {
 
 	@Override
 	public String toString() {
-		return "storeFavorite [id=" + id + ", memberId=" + memberId + ", storeProductId=" + storeProductId
-				+ "]\r\n  [memberBean=" + memberBean + "]\r\n  [storeProductBean=" + storeProductBean + "]\r\n";
+		return "StoreFavorite [id=" + id + ", memberId=" + memberId + ", storeProductId=" + storeProductId + ", Member="
+				+ Member + ", StoreProduct=" + StoreProduct + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -72,20 +70,12 @@ public class StoreFavorite {
 		this.storeProductId = storeProductId;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public StoreProduct getStoreProductBean() {
-		return storeProductBean;
-	}
-
-	public void setStoreProductBean(StoreProduct storeProductBean) {
-		this.storeProductBean = storeProductBean;
+	public StoreProduct getStoreProduct() {
+		return StoreProduct;
 	}
 
 }

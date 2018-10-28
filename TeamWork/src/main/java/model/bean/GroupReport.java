@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,54 +10,53 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "GroupReport")
 public class GroupReport {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "gR_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "gR_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "gProd_ID", columnDefinition = "int")
-	Integer productId;
+	@Column(name = "group_ID", columnDefinition = "int", nullable = false)
+	private Integer groupId;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "gR_cont", columnDefinition = "nvarchar(max)")
-	String content;
+	@Column(name = "gR_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String content;
 
-	@Column(name = "gR_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "gR_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gProd_ID", insertable = false, updatable = false)
-	GroupProduct groupProductBean;
+	@ManyToOne
+	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
+	private Groupon Groupon;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "gR_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public GroupReport() {
 	}
 
-	public GroupReport(Integer id, Integer productId, Integer memberId, String content, Integer state) {
+	public GroupReport(Integer id, Integer groupId, Integer memberId, String content, Integer stateId) {
+		super();
 		this.id = id;
-		this.productId = productId;
+		this.groupId = groupId;
 		this.memberId = memberId;
 		this.content = content;
-		this.state = state;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupReport [id=" + id + ", productId=" + productId + ", memberId=" + memberId + ", content=" + content
-				+ ", state=" + state + "]\r\n  [groupProductBean=" + groupProductBean + "]\r\n  [memberBean="
-				+ memberBean + "[\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "GroupReport [id=" + id + ", groupId=" + groupId + ", memberId=" + memberId + ", content=" + content
+				+ ", stateId=" + stateId + ", Groupon=" + Groupon + ", Member=" + Member + ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -69,12 +67,12 @@ public class GroupReport {
 		this.id = id;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public Integer getGroupId() {
+		return groupId;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
 	}
 
 	public Integer getMemberId() {
@@ -93,36 +91,24 @@ public class GroupReport {
 		this.content = content;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public GroupProduct getGroupProductBean() {
-		return groupProductBean;
+	public Groupon getGroupon() {
+		return Groupon;
 	}
 
-	public void setGroupProductBean(GroupProduct groupProductBean) {
-		this.groupProductBean = groupProductBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
-	}
-
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

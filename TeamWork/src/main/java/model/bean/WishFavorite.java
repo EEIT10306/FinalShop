@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,44 +7,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "WishFavorite")
 public class WishFavorite {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "wF_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "wF_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "wP_ID", columnDefinition = "int")
-	Integer wishProductId;
+	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
+	private Integer wishId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
-	WishProduct wishProductBean;
+	@ManyToOne
+	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
+	private Wish Wish;
 
 	public WishFavorite() {
 	}
 
-	public WishFavorite(Integer id, Integer memberId, Integer wishProductId) {
+	public WishFavorite(Integer id, Integer memberId, Integer wishId) {
+		super();
 		this.id = id;
 		this.memberId = memberId;
-		this.wishProductId = wishProductId;
+		this.wishId = wishId;
 	}
 
 	@Override
 	public String toString() {
-		return "WishFavorite [id=" + id + ", memberId=" + memberId + ", wishProductId=" + wishProductId
-				+ "]\r\n  [memberBean=" + memberBean + "]\r\n  [wishProductBean=" + wishProductBean + "]\r\n";
+		return "WishFavorite [id=" + id + ", memberId=" + memberId + ", wishId=" + wishId + ", Member=" + Member
+				+ ", Wish=" + Wish + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -64,28 +62,20 @@ public class WishFavorite {
 		this.memberId = memberId;
 	}
 
-	public Integer getWishProductId() {
-		return wishProductId;
+	public Integer getWishId() {
+		return wishId;
 	}
 
-	public void setWishProductId(Integer wishProductId) {
-		this.wishProductId = wishProductId;
+	public void setWishId(Integer wishId) {
+		this.wishId = wishId;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public WishProduct getWishProductBean() {
-		return wishProductBean;
-	}
-
-	public void setWishProductBean(WishProduct wishProductBean) {
-		this.wishProductBean = wishProductBean;
+	public Wish getWish() {
+		return Wish;
 	}
 
 }

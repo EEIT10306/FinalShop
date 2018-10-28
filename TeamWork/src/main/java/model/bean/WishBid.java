@@ -9,13 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class WishMessage {
+public class WishBid {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "wM_ID", columnDefinition = "int", nullable = false)
+	@Column(name = "wB_ID", columnDefinition = "int", nullable = false)
 	private Integer id;
 
 	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
@@ -24,17 +25,23 @@ public class WishMessage {
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
 	private Integer memberId;
 
-	@Column(name = "wM_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	@Column(name = "wB_bid", columnDefinition = "int", nullable = false)
+	private Integer bid;
+
+	@Column(name = "wB_cont", columnDefinition = "nvarchar(MAX)", nullable = false)
 	private String context;
 
-	@Column(name = "wM_time", columnDefinition = "daetime", nullable = false)
+	@Column(name = "wB_freight", columnDefinition = "int")
+	private Integer freight;
+
+	@Column(name = "wB_time", columnDefinition = "datetime", nullable = false)
 	private Date time;
 
-	@Column(name = "wM_state", columnDefinition = "int", nullable = false)
+	@Column(name = "wB_state", columnDefinition = "int", nullable = false)
 	private Integer stateId;
 
-	@ManyToOne
-	@JoinColumn(name = "wist_ID", insertable = false, updatable = false)
+	@OneToOne
+	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
 	private Wish Wish;
 
 	@ManyToOne
@@ -42,27 +49,30 @@ public class WishMessage {
 	private Member Member;
 
 	@ManyToOne
-	@JoinColumn(name = "wM_state", insertable = false, updatable = false)
+	@JoinColumn(name = "wB_state", insertable = false, updatable = false)
 	private State State;
 
-	public WishMessage() {
+	public WishBid() {
 	}
 
-	public WishMessage(Integer id, Integer wishId, Integer memberId, String context, Date time, Integer stateId) {
+	public WishBid(Integer id, Integer wishId, Integer memberId, Integer bid, String context, Integer freight,
+			Date time, Integer stateId) {
 		super();
 		this.id = id;
 		this.wishId = wishId;
 		this.memberId = memberId;
+		this.bid = bid;
 		this.context = context;
+		this.freight = freight;
 		this.time = time;
 		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "WishMessage [id=" + id + ", wishId=" + wishId + ", memberId=" + memberId + ", context=" + context
-				+ ", time=" + time + ", stateId=" + stateId + ", Wish=" + Wish + ", Member=" + Member + ", State="
-				+ State + "]\r\n";
+		return "WishBid [id=" + id + ", wishId=" + wishId + ", memberId=" + memberId + ", bid=" + bid + ", context="
+				+ context + ", freight=" + freight + ", time=" + time + ", stateId=" + stateId + ", Wish=" + Wish
+				+ ", Member=" + Member + ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -89,12 +99,28 @@ public class WishMessage {
 		this.memberId = memberId;
 	}
 
+	public Integer getBid() {
+		return bid;
+	}
+
+	public void setBid(Integer bid) {
+		this.bid = bid;
+	}
+
 	public String getContext() {
 		return context;
 	}
 
 	public void setContext(String context) {
 		this.context = context;
+	}
+
+	public Integer getFreight() {
+		return freight;
+	}
+
+	public void setFreight(Integer freight) {
+		this.freight = freight;
 	}
 
 	public Date getTime() {

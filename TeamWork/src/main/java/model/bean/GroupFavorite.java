@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,41 +10,40 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "GroupFavorite")
 public class GroupFavorite {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "gF_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "gF_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "gP_ID", columnDefinition = "int")
-	Integer groupProductId;
+	@Column(name = "group_ID", columnDefinition = "int", nullable = false)
+	private Integer groupId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
-	GroupProduct groupProductBean;
+	@ManyToOne
+	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
+	private Groupon Groupon;
 
 	public GroupFavorite() {
 	}
 
-	public GroupFavorite(Integer id, Integer memberId, Integer groupProductId) {
+	public GroupFavorite(Integer id, Integer memberId, Integer groupId) {
 		this.id = id;
 		this.memberId = memberId;
-		this.groupProductId = groupProductId;
+		this.groupId = groupId;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "GroupFavorite [id=" + id + ", memberId=" + memberId + ", groupProductId=" + groupProductId
-				+ "]\r\n  [memberBean=" + memberBean + "]\r\n  [groupProductBean=" + groupProductBean + "]\r\n";
+		return "GroupFavorite [id=" + id + ", memberId=" + memberId + ", groupId=" + groupId + ", Member=" + Member
+				+ ", Groupon=" + Groupon + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -64,28 +62,20 @@ public class GroupFavorite {
 		this.memberId = memberId;
 	}
 
-	public Integer getGroupProductId() {
-		return groupProductId;
+	public Integer getGroupId() {
+		return groupId;
 	}
 
-	public void setGroupProductId(Integer groupProductId) {
-		this.groupProductId = groupProductId;
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public GroupProduct getGroupProductBean() {
-		return groupProductBean;
-	}
-
-	public void setGroupProductBean(GroupProduct groupProductBean) {
-		this.groupProductBean = groupProductBean;
+	public Groupon getGroupon() {
+		return Groupon;
 	}
 
 }

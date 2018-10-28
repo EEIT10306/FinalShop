@@ -36,7 +36,7 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 	public DistrictType insert(DistrictType bean) throws SQLException {
 		DistrictType simple = getSession().get(DistrictType.class, bean.getId());
 		if (simple == null) {
-			DistrictType dis = getSession().get(DistrictType.class, bean.getParentID());
+			DistrictType dis = getSession().get(DistrictType.class, bean.getParentsId());
 			if (dis != null) {
 				getSession().save(bean);
 				return bean;
@@ -50,10 +50,10 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 	public DistrictType update(DistrictType bean) throws SQLException {
 		DistrictType simple = this.getSession().get(DistrictType.class, bean.getId());
 		if (simple != null) {
-			DistrictType dis = getSession().get(DistrictType.class, bean.getParentID());
+			DistrictType dis = getSession().get(DistrictType.class, bean.getParentsId());
 			if (dis != null) {
 				simple.setName(bean.getName());
-				simple.setParentID(bean.getParentID());
+				simple.setParentsId(bean.getParentsId());
 				simple.setStage(bean.getStage());
 				return simple;
 			}

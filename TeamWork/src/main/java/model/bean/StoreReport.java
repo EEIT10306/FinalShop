@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,57 +7,56 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "StoreReport")
 public class StoreReport {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "sR_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "sR_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "sP_ID", columnDefinition = "int")
-	Integer storeProductId;
+	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
+	private Integer storeProductId;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "sR_cont", columnDefinition = "nvarchar(max)")
-	String content;
+	@Column(name = "sR_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String content;
 
-	@Column(name = "sR_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "sR_state", columnDefinition = "int", nullable = false)
+	private Integer stateI;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	StoreProduct storeProductBean;
+	private StoreProduct StoreProduct;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "sR_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public StoreReport() {
 	}
 
-	public StoreReport(Integer id, Integer storeProductId, Integer memberId, String content, Integer state) {
+	public StoreReport(Integer id, Integer storeProductId, Integer memberId, String content, Integer stateI) {
+		super();
 		this.id = id;
 		this.storeProductId = storeProductId;
 		this.memberId = memberId;
 		this.content = content;
-		this.state = state;
+		this.stateI = stateI;
 	}
 
 	@Override
 	public String toString() {
 		return "StoreReport [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", content="
-				+ content + ", state=" + state + "]\r\n  [storeProductBean=" + storeProductBean + "]\r\n  [memberBean=" + memberBean
-				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
+				+ content + ", stateI=" + stateI + ", StoreProduct=" + StoreProduct + ", Member=" + Member + ", State="
+				+ State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -93,36 +91,24 @@ public class StoreReport {
 		this.content = content;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateI() {
+		return stateI;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateI(Integer stateI) {
+		this.stateI = stateI;
 	}
 
-	public StoreProduct getStoreProductBean() {
-		return storeProductBean;
+	public StoreProduct getStoreProduct() {
+		return StoreProduct;
 	}
 
-	public void setStoreProductBean(StoreProduct storeProductBean) {
-		this.storeProductBean = storeProductBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
-	}
-
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

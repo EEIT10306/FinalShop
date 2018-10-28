@@ -9,44 +9,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class StoreOrder {
+public class GroupOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "sO_ID", columnDefinition = "int", nullable = false)
+	@Column(name = "gO_ID", columnDefinition = "int", nullable = false)
 	private Integer id;
 
-	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
-	private Integer storeProductId;
+	@Column(name = "gP_ID", columnDefinition = "int", nullable = false)
+	private Integer groupProductId;
 
-	@Column(name = "memS_IdEE", columnDefinition = "int", nullable = false)
+	@Column(name = "memG_IDee", columnDefinition = "int", nullable = false)
 	private Integer memberId;
 
-	@Column(name = "sO_amt", columnDefinition = "int", nullable = false)
+	@Column(name = "gO_amt", columnDefinition = "int", nullable = false)
 	private Integer amount;
 
-	@Column(name = "sO_state", columnDefinition = "int", nullable = false)
+	@Column(name = "gO_state", columnDefinition = "int", nullable = false)
 	private Integer stateId;
 
 	@ManyToOne
-	@JoinColumn(name = "prod_id", insertable = false, updatable = false)
-	private StoreProduct StoreProduct;
+	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
+	private GroupProduct GroupProduct;
 
 	@ManyToOne
-	@JoinColumn(name = "memS_IDee", insertable = false, updatable = false)
+	@JoinColumn(name = "memG_IDee", insertable = false, updatable = false)
 	private Member Member;
 
 	@ManyToOne
 	@JoinColumn(name = "state", insertable = false, updatable = false)
 	private State State;
 
-	public StoreOrder() {
+	public GroupOrder() {
 	}
 
-	public StoreOrder(Integer id, Integer storeProductId, Integer memberId, Integer amount, Integer stateId) {
+	public GroupOrder(Integer id, Integer groupProductId, Integer memberId, Integer amount, Integer stateId) {
 		super();
 		this.id = id;
-		this.storeProductId = storeProductId;
+		this.groupProductId = groupProductId;
 		this.memberId = memberId;
 		this.amount = amount;
 		this.stateId = stateId;
@@ -54,8 +54,8 @@ public class StoreOrder {
 
 	@Override
 	public String toString() {
-		return "StoreOrder [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", amount="
-				+ amount + ", stateId=" + stateId + ", StoreProduct=" + StoreProduct + ", Member=" + Member + ", State="
+		return "GroupOrder [id=" + id + ", groupProductId=" + groupProductId + ", memberId=" + memberId + ", amount="
+				+ amount + ", stateId=" + stateId + ", GroupProduct=" + GroupProduct + ", Member=" + Member + ", State="
 				+ State + "]\r\n";
 	}
 
@@ -67,12 +67,12 @@ public class StoreOrder {
 		this.id = id;
 	}
 
-	public Integer getStoreProductId() {
-		return storeProductId;
+	public Integer getGroupProductId() {
+		return groupProductId;
 	}
 
-	public void setStoreProductId(Integer storeProductId) {
-		this.storeProductId = storeProductId;
+	public void setGroupProductId(Integer groupProductId) {
+		this.groupProductId = groupProductId;
 	}
 
 	public Integer getMemberId() {
@@ -99,8 +99,8 @@ public class StoreOrder {
 		this.stateId = stateId;
 	}
 
-	public StoreProduct getStoreProduct() {
-		return StoreProduct;
+	public GroupProduct getGroupProduct() {
+		return GroupProduct;
 	}
 
 	public Member getMember() {

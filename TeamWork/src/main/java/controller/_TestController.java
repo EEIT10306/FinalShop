@@ -12,8 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.google.gson.GsonBuilder;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.Achievement;
 import model.bean.DistrictType;
@@ -49,9 +48,9 @@ public class _TestController {
 	}
 
 	@RequestMapping(path = "/Achievement", method = RequestMethod.GET)
-	public ResponseEntity<List<Achievement>> TestID(Achievement achievement, BindingResult binder) {
-		List<Achievement> list = tes.getSelect(achievement);
-		return new ResponseEntity<List<Achievement>>(list, HttpStatus.OK);
+	@ResponseBody
+	public List<Achievement> TestID(Achievement achievement, BindingResult binder) {
+		return tes.getSelect(achievement);
 	}
 	@RequestMapping(path = "/Wish", method = RequestMethod.GET)
 	public ResponseEntity<List<Wish>> TestID(Wish wish, BindingResult binder) {
@@ -69,9 +68,9 @@ public class _TestController {
 		return new ResponseEntity<List<WishMessage>>(list, HttpStatus.OK);
 	}
 	@RequestMapping(path = "/DistrictType", method = RequestMethod.GET)
-	public ResponseEntity<List<DistrictType>> TestID(DistrictType districtType, BindingResult binder) {
-		List<DistrictType> list = tes4.getSelect(districtType);
-		return new ResponseEntity<List<DistrictType>>(list, HttpStatus.OK);
+	@ResponseBody
+	public List<DistrictType> TestID(DistrictType districtType, BindingResult binder) {
+		return tes4.getSelect(districtType);
 	}
 	@RequestMapping(path = "/Groupon", method = RequestMethod.GET)
 	public ResponseEntity<List<Groupon>> TestID(Groupon groupon, BindingResult binder) {

@@ -1,8 +1,5 @@
 package model.bean;
 
-import java.sql.Blob;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,62 +13,72 @@ import javax.persistence.OneToOne;
 public class Store {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "store_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "store_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "seller_ID", columnDefinition = "int")
-	Integer sellerId;
+	@Column(name = "seller_ID", columnDefinition = "int", nullable = false)
+	private Integer sellerId;
 
-	@Column(name = "store_name", columnDefinition = "nvarchar(max)")
-	String name;
+	@Column(name = "store_name", columnDefinition = "nvarchar(max)", nullable = false)
+	private String name;
 
-	@Column(name = "store_pho", columnDefinition = "varbinary(max)")
-	Blob photo;
+	@Column(name = "store_pho", columnDefinition = "nvarchar(max)")
+	private String photo;
 
-	@Column(name = "prod_ID", columnDefinition = "int")
-	Integer productId;
+	@Column(name = "store_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String context;
+
+	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
+	private Integer productId;
 
 	@Column(name = "store_add", columnDefinition = "nvarchar(max)")
-	String address;
+	private String address;
 
 	@Column(name = "store_tel", columnDefinition = "int")
-	Integer telephone;
+	private Integer telephone;
 
-	@Column(name = "store_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "store_web", columnDefinition = "nvarchar(max)")
+	private String web;
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@Column(name = "store_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
+
+	@OneToOne
 	@JoinColumn(name = "seller_ID", insertable = false, updatable = false)
-	Seller sellerBean;
+	private Seller Seller;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product productBean;
+	private Product Product;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "store_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public Store() {
 	}
 
-	public Store(Integer id, Integer sellerId, String name, Blob photo, Integer productId, String address,
-			Integer telephone, Integer state) {
+	public Store(Integer id, Integer sellerId, String name, String photo, String context, Integer productId,
+			String address, Integer telephone, String web, Integer stateId) {
+		super();
 		this.id = id;
 		this.sellerId = sellerId;
 		this.name = name;
 		this.photo = photo;
+		this.context = context;
 		this.productId = productId;
 		this.address = address;
 		this.telephone = telephone;
-		this.state = state;
+		this.web = web;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "Store [id=" + id + ", sellerId=" + sellerId + ", name=" + name + ", photo=" + photo + ", productId="
-				+ productId + ", address=" + address + ", telephone=" + telephone + ", state=" + state + "]\r\n  [sellerBean="
-				+ sellerBean + "]\r\n  [productBean=" + productBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "Store [id=" + id + ", sellerId=" + sellerId + ", name=" + name + ", photo=" + photo + ", context="
+				+ context + ", productId=" + productId + ", address=" + address + ", telephone=" + telephone + ", web="
+				+ web + ", stateId=" + stateId + ", Seller=" + Seller + ", Product=" + Product + ", State=" + State
+				+ "]\r\n";
 	}
 
 	public Integer getId() {
@@ -98,12 +105,20 @@ public class Store {
 		this.name = name;
 	}
 
-	public Blob getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(Blob photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public String getContext() {
+		return context;
+	}
+
+	public void setContext(String context) {
+		this.context = context;
 	}
 
 	public Integer getProductId() {
@@ -130,36 +145,32 @@ public class Store {
 		this.telephone = telephone;
 	}
 
-	public Integer getState() {
-		return state;
+	public String getWeb() {
+		return web;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setWeb(String web) {
+		this.web = web;
 	}
 
-	public Seller getSellerBean() {
-		return sellerBean;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setSellerBean(Seller sellerBean) {
-		this.sellerBean = sellerBean;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public Product getProductBean() {
-		return productBean;
+	public Seller getSeller() {
+		return Seller;
 	}
 
-	public void setProductBean(Product productBean) {
-		this.productBean = productBean;
+	public Product getProduct() {
+		return Product;
 	}
 
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

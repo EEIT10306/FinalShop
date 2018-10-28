@@ -2,7 +2,6 @@ package model.bean;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,65 +9,77 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Wish")
 public class Wish {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "wish_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "memW_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "memW_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "prod_ID", columnDefinition = "int")
-	Integer productId;
+	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
+	private Integer productId;
 
-	@Column(name = "wish_title", columnDefinition = "nvarchar(Max)")
-	String title;
+	@Column(name = "wish_title", columnDefinition = "nvarchar(Max)", nullable = false)
+	private String title;
 
-	@Column(name = "wish_cont", columnDefinition = "nvarchar(Max)")
-	String context;
+	@Column(name = "wish_cont", columnDefinition = "nvarchar(Max)", nullable = false)
+	private String context;
 
-	@Column(name = "dist_ID", columnDefinition = "int")
-	Integer districtTypeId;
+	@Column(name = "dist_ID", columnDefinition = "int", nullable = false)
+	private Integer districtTypeId;
 
-	@Column(name = "wish_sDate", columnDefinition = "datetime")
-	Date startDate;
+	@Column(name = "wish_sDate", columnDefinition = "datetime", nullable = false)
+	private Date startDate;
 
-	@Column(name = "wish_eDate", columnDefinition = "datetime")
-	Date endDate;
+	@Column(name = "wish_eDate", columnDefinition = "datetime", nullable = false)
+	private Date endDate;
+
+	@Column(name = "wish_sumPriBot", columnDefinition = "int")
+	private Integer sumPriceBottom;
+
+	@Column(name = "wish_sumPriTop", columnDefinition = "int")
+	private Integer sumPriceTop;
+
+	@Column(name = "wish_chanTime", columnDefinition = "datetime", nullable = false)
+	private Date changeTime;
+
+	@Column(name = "wish_hot", columnDefinition = "int", nullable = false)
+	private Integer hot;
 
 	@Column(name = "wish_compTime", columnDefinition = "datetime")
-	Date completeTime;
+	private Date completeTime;
 
-	@Column(name = "wish_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "wish_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "memW_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product productBean;
+	private Product Product;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "dist_ID", insertable = false, updatable = false)
-	DistrictType districtTypeBean;
+	private DistrictType DistrictType;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "wish_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public Wish() {
 	}
 
 	public Wish(Integer id, Integer memberId, Integer productId, String title, String context, Integer districtTypeId,
-			Date startDate, Date endDate, Date completeTime, Integer state) {
+			Date startDate, Date endDate, Integer sumPriceBottom, Integer sumPriceTop, Date changeTime, Integer hot,
+			Date completeTime, Integer stateId) {
+		super();
 		this.id = id;
 		this.memberId = memberId;
 		this.productId = productId;
@@ -77,17 +88,22 @@ public class Wish {
 		this.districtTypeId = districtTypeId;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.sumPriceBottom = sumPriceBottom;
+		this.sumPriceTop = sumPriceTop;
+		this.changeTime = changeTime;
+		this.hot = hot;
 		this.completeTime = completeTime;
-		this.state = state;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
 		return "Wish [id=" + id + ", memberId=" + memberId + ", productId=" + productId + ", title=" + title
 				+ ", context=" + context + ", districtTypeId=" + districtTypeId + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", completeTime=" + completeTime + ", state=" + state + "]\r\n  [memberBean="
-				+ memberBean + "]\r\n  [productBean=" + productBean + "]\r\n  [districtTypeBean=" + districtTypeBean
-				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
+				+ ", endDate=" + endDate + ", sumPriceBottom=" + sumPriceBottom + ", sumPriceTop=" + sumPriceTop
+				+ ", changeTime=" + changeTime + ", hot=" + hot + ", completeTime=" + completeTime + ", stateId="
+				+ stateId + ", Member=" + Member + ", Product=" + Product + ", DistrictType=" + DistrictType
+				+ ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -154,6 +170,38 @@ public class Wish {
 		this.endDate = endDate;
 	}
 
+	public Integer getSumPriceBottom() {
+		return sumPriceBottom;
+	}
+
+	public void setSumPriceBottom(Integer sumPriceBottom) {
+		this.sumPriceBottom = sumPriceBottom;
+	}
+
+	public Integer getSumPriceTop() {
+		return sumPriceTop;
+	}
+
+	public void setSumPriceTop(Integer sumPriceTop) {
+		this.sumPriceTop = sumPriceTop;
+	}
+
+	public Date getChangeTime() {
+		return changeTime;
+	}
+
+	public void setChangeTime(Date changeTime) {
+		this.changeTime = changeTime;
+	}
+
+	public Integer getHot() {
+		return hot;
+	}
+
+	public void setHot(Integer hot) {
+		this.hot = hot;
+	}
+
 	public Date getCompleteTime() {
 		return completeTime;
 	}
@@ -162,44 +210,28 @@ public class Wish {
 		this.completeTime = completeTime;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
+	public Product getProduct() {
+		return Product;
 	}
 
-	public Product getProductBean() {
-		return productBean;
+	public DistrictType getDistrictType() {
+		return DistrictType;
 	}
 
-	public void setProductBean(Product productBean) {
-		this.productBean = productBean;
-	}
-
-	public DistrictType getDistrictTypeBean() {
-		return districtTypeBean;
-	}
-
-	public void setDistrictTypeBean(DistrictType districtTypeBean) {
-		this.districtTypeBean = districtTypeBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

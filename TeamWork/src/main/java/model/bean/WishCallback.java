@@ -9,50 +9,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-public class Conversation {
+public class WishCallback {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "con_ID", columnDefinition = "int", nullable = false)
+	@Column(name = "wC_ID", columnDefinition = "int", nullable = false)
 	private Integer id;
 
-	@Column(name = "memC_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberIdEE;
+	@Column(name = "wM_ID", columnDefinition = "int", nullable = false)
+	private Integer wishMessageId;
 
-	@Column(name = "memC_ID", columnDefinition = "int", nullable = false)
+	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
 	private Integer memberId;
 
-	@Column(name = "con_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	@Column(name = "wC_cont", columnDefinition = "nvarchar(MAX)", nullable = false)
 	private String context;
 
-	@Column(name = "con_time", columnDefinition = "datetime", nullable = false)
+	@Column(name = "wC_time", columnDefinition = "datetime", nullable = false)
 	private Date time;
 
-	@Column(name = "con_state", columnDefinition = "int", nullable = false)
+	@Column(name = "wC_state", columnDefinition = "int", nullable = false)
 	private Integer stateId;
 
 	@ManyToOne
-	@JoinColumn(name = "memC_IDee", insertable = false, updatable = false)
-	private Member MemberEE;
+	@JoinColumn(name = "wM_ID", insertable = false, updatable = false)
+	private WishMessage WishMessage;
 
 	@ManyToOne
-	@JoinColumn(name = "memC_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "mem_IDee", insertable = false, updatable = false)
 	private Member Member;
 
 	@ManyToOne
-	@JoinColumn(name = "con_state", insertable = false, updatable = false)
+	@JoinColumn(name = "wC_state", insertable = false, updatable = false)
 	private State State;
 
-	public Conversation() {
+	public WishCallback() {
 	}
 
-	public Conversation(Integer id, Integer memberIdEE, Integer memberId, String context, Date time, Integer stateId) {
+	public WishCallback(Integer id, Integer wishMessageId, Integer memberId, String context, Date time,
+			Integer stateId) {
 		super();
 		this.id = id;
-		this.memberIdEE = memberIdEE;
+		this.wishMessageId = wishMessageId;
 		this.memberId = memberId;
 		this.context = context;
 		this.time = time;
@@ -61,9 +61,9 @@ public class Conversation {
 
 	@Override
 	public String toString() {
-		return "Conversation [id=" + id + ", memberIdEE=" + memberIdEE + ", memberId=" + memberId + ", context="
-				+ context + ", time=" + time + ", stateId=" + stateId + ", MemberEE=" + MemberEE + ", Member=" + Member
-				+ ", State=" + State + "]\r\n";
+		return "WishCallback [id=" + id + ", wishMessageId=" + wishMessageId + ", memberId=" + memberId + ", context="
+				+ context + ", time=" + time + ", stateId=" + stateId + ", WishMessage=" + WishMessage + ", Member="
+				+ Member + ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -74,12 +74,12 @@ public class Conversation {
 		this.id = id;
 	}
 
-	public Integer getMemberIdEE() {
-		return memberIdEE;
+	public Integer getWishMessageId() {
+		return wishMessageId;
 	}
 
-	public void setMemberIdEE(Integer memberIdEE) {
-		this.memberIdEE = memberIdEE;
+	public void setWishMessageId(Integer wishMessageId) {
+		this.wishMessageId = wishMessageId;
 	}
 
 	public Integer getMemberId() {
@@ -114,8 +114,8 @@ public class Conversation {
 		this.stateId = stateId;
 	}
 
-	public Member getMemberEE() {
-		return MemberEE;
+	public WishMessage getWishMessage() {
+		return WishMessage;
 	}
 
 	public Member getMember() {

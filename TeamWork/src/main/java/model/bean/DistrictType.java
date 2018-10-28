@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,41 +10,41 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "DistrictType")
 public class DistrictType {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "dist_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "dist_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "dist_name", columnDefinition = "nvarchar(max)")
-	String name;
+	@Column(name = "dist_name", columnDefinition = "nvarchar(max)", nullable = false)
+	private String name;
 
 	@Column(name = "dist_parID", columnDefinition = "int")
-	Integer parentID;
+	private Integer parentsId;
 
-	@Column(name = "dist_stage", columnDefinition = "int")
-	Integer stage;
+	@Column(name = "dist_stage", columnDefinition = "int", nullable = false)
+	private Integer stage;
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne
 	@JoinColumn(name = "dist_parID", insertable = false, updatable = false)
-	DistrictType parentsDistrictTypeBean;
+	private DistrictType DistrictType;
 
 	public DistrictType() {
 	}
 
-	public DistrictType(Integer id, String name, Integer parentID, Integer stage) {
+	public DistrictType(Integer id, String name, Integer parentsId, Integer stage) {
+		super();
 		this.id = id;
 		this.name = name;
-		this.parentID = parentID;
+		this.parentsId = parentsId;
 		this.stage = stage;
 	}
 
 	@Override
 	public String toString() {
-		return "DistrictType [id=" + id + ", name=" + name + ", parentID=" + parentID + ", stage=" + stage
-				+ "]\r\n  [parentsDistrictTypeBean=" + parentsDistrictTypeBean + "]\r\n";
+		return "DistrictType [id=" + id + ", name=" + name + ", parentsId=" + parentsId + ", stage=" + stage
+				+ ", DistrictType=" + DistrictType + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -64,28 +63,24 @@ public class DistrictType {
 		this.name = name;
 	}
 
-	public Integer getParentID() {
-		return parentID;
+	public Integer getParentsId() {
+		return parentsId;
 	}
 
-	public void setParentID(Integer parentID) {
-		this.parentID = parentID;
+	public void setParentsId(Integer parentsId) {
+		this.parentsId = parentsId;
 	}
 
 	public Integer getStage() {
 		return stage;
 	}
-	
+
 	public void setStage(Integer stage) {
 		this.stage = stage;
 	}
 
-	public DistrictType getParentsDistrictTypeBean() {
-		return parentsDistrictTypeBean;
+	public DistrictType getDistrictType() {
+		return DistrictType;
 	}
 
-	public void setParentsDistrictTypeBean(DistrictType parentsDistrictTypeBean) {
-		this.parentsDistrictTypeBean = parentsDistrictTypeBean;
-	}
-	
 }

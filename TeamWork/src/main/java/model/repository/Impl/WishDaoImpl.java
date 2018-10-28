@@ -3,10 +3,6 @@ package model.repository.Impl;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +30,7 @@ public class WishDaoImpl implements WishDao {
 		return getSession().createQuery("from Wish", Wish.class).setMaxResults(50).list();
 
 	}
-
+	
 	@Override
 	public Wish select(Integer id) throws SQLException {
 		return getSession().get(Wish.class, id);

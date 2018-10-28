@@ -8,19 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "State")
 public class State {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "sta_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "sta_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "sta_cont", columnDefinition = "nvarchar(MAX)")
-	String context;
+	@Column(name = "sta_cont", columnDefinition = "nvarchar(MAX)", nullable = false)
+	private String context;
 
-	@Column(name = "sta_class", columnDefinition = "nvarchar(MAX)")
-	String className;
+	@Column(name = "sta_class", columnDefinition = "nvarchar(MAX)", nullable = false)
+	private String className;
 
 	public State() {
 	}

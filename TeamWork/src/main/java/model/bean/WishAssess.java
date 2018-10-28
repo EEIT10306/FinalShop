@@ -1,70 +1,58 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "WishAssess")
 public class WishAssess {
-	 
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "wA_ID", columnDefinition = "int")
-	Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "wA_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "wM_ID", columnDefinition = "int")
-	Integer wishMessageId;
-	 
+	@Column(name = "wO_ID", columnDefinition = "int", nullable = false)
+	private Integer wishOrderId;
+
 	@Column(name = "wA_point", columnDefinition = "int")
-	Integer point;
-	
-	@Column(name = "wA_cont", columnDefinition = "nvarchar(max)")
-	String context;
-	
-	@Column(name = "wA_pointee", columnDefinition = "int")
-	Integer pointEE;
-	
-	@Column(name = "wA_contee", columnDefinition = "nvarchar(max)")
-	String contextEE;
-	
-	@Column(name = "wA_state", columnDefinition = "int")
-	Integer state;
-	
-	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wM_ID", insertable = false, updatable = false)
-	WishMessage wishMessageBean;
+	private Integer point;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wA_state", insertable = false, updatable = false)
-	State stateBean;
+	@Column(name = "wA_cont", columnDefinition = "nvarchar(max)")
+	private String context;
+
+	@Column(name = "wA_pointee", columnDefinition = "int")
+	private Integer pointEE;
+
+	@Column(name = "wA_contee", columnDefinition = "nvarchar(max)")
+	private String contextEE;
+
+	@OneToOne
+	@JoinColumn(name = "wo_ID", insertable = false, updatable = false)
+	private WishOrder WishOrder;
 
 	public WishAssess() {
 	}
 
-	public WishAssess(Integer id, Integer wishMessageId, Integer point, String context, Integer pointEE,
-			String contextEE, Integer state) {
+	public WishAssess(Integer id, Integer wishOrderId, Integer point, String context, Integer pointEE,
+			String contextEE) {
+		super();
 		this.id = id;
-		this.wishMessageId = wishMessageId;
+		this.wishOrderId = wishOrderId;
 		this.point = point;
 		this.context = context;
 		this.pointEE = pointEE;
 		this.contextEE = contextEE;
-		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "WishAssess [id=" + id + ", wishMessageId=" + wishMessageId + ", point=" + point + ", context=" + context
-				+ ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", state=" + state + "]\r\n  [wishMessageBean="
-				+ wishMessageBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "WishAssess [id=" + id + ", wishOrderId=" + wishOrderId + ", point=" + point + ", context=" + context
+				+ ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", WishOrder=" + WishOrder + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -75,12 +63,12 @@ public class WishAssess {
 		this.id = id;
 	}
 
-	public Integer getWishMessageId() {
-		return wishMessageId;
+	public Integer getWishOrderId() {
+		return wishOrderId;
 	}
 
-	public void setWishMessageId(Integer wishMessageId) {
-		this.wishMessageId = wishMessageId;
+	public void setWishOrderId(Integer wishOrderId) {
+		this.wishOrderId = wishOrderId;
 	}
 
 	public Integer getPoint() {
@@ -115,28 +103,8 @@ public class WishAssess {
 		this.contextEE = contextEE;
 	}
 
-	public Integer getState() {
-		return state;
+	public WishOrder getWishOrder() {
+		return WishOrder;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
-	public WishMessage getWishMessageBean() {
-		return wishMessageBean;
-	}
-
-	public void setWishMessageBean(WishMessage wishMessageBean) {
-		this.wishMessageBean = wishMessageBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
-	}
-			
 }
