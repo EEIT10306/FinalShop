@@ -9,11 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "gP_ID", "memG_IDee" }) })
+//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "gP_ID", "memG_IDee" }) })
 public class GroupMessage {
 
 	@Id

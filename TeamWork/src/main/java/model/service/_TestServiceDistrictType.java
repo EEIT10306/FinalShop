@@ -19,7 +19,7 @@ public class _TestServiceDistrictType {
 	
 	public List<DistrictType> getSelect(DistrictType districtType) {
 		try {
-				return districtTypeDaoImpl.select();
+				return districtTypeDaoImpl.selectAll();
 		} catch (SQLException e) {
 			System.out.println("_TestService - SQLException");
 			e.printStackTrace();

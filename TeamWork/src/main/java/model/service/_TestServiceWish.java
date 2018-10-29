@@ -18,11 +18,11 @@ public class _TestServiceWish {
 	public List<Wish> getSelect(Wish wish) {
 		try {
 			if (wish.getId() == null) {
-				List<Wish> list = wishDaoImpl.select();
+				List<Wish> list = wishDaoImpl.selectAll();
 				return list;
 			}
 			Wish temp;
-			temp =	wishDaoImpl.select(wish.getId());
+			temp =	wishDaoImpl.selectByPk(wish.getId());
 			List<Wish> list = new ArrayList<>();
 			list.add(temp);
 			return list;

@@ -19,11 +19,11 @@ public class _TestServiceGroupon {
 	public List<Groupon> getSelect(Groupon groupon) {
 		try {
 			if (groupon.getId() == null) {
-				List<Groupon> list = grouponDaoImpl.select();
+				List<Groupon> list = grouponDaoImpl.selectAll();
 				return list;
 			}
 			Groupon temp;
-			temp = grouponDaoImpl.select(groupon.getId());
+			temp = grouponDaoImpl.selectByPk(groupon.getId());
 			List<Groupon> list = new ArrayList<>();
 			list.add(temp);
 			return list;

@@ -56,7 +56,7 @@ public class WishProduct {
 	@JoinColumn(name = "wP_state", insertable = false, updatable = false)
 	private State State;
 
-	@OneToMany(mappedBy = "wgs_ID")
+	@OneToMany(mappedBy = "WishProduct")
 	private Set<Images> Images;
 
 	public WishProduct() {
