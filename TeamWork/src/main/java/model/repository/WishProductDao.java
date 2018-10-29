@@ -11,5 +11,6 @@ public interface WishProductDao {
 	public WishProduct select(Integer id) throws SQLException;
 	public WishProduct insert(WishProduct bean) throws SQLException;
 	public WishProduct update(WishProduct bean) throws SQLException;
+	public List<WishProduct> search(String search) throws SQLException;
 	
 }

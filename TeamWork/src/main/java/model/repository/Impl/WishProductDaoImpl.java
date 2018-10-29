@@ -85,4 +85,10 @@ public class WishProductDaoImpl implements WishProductDao {
 		return null;
 	}
 
+	@Override
+	public List<WishProduct> search(String search) throws SQLException {
+		return getSession().createQuery("from WishProduct WHERE name LIKE '%"+search+"%'", WishProduct.class).setMaxResults(50).list();
+		
+	}
+
 }
