@@ -52,7 +52,7 @@ public class StoreProduct {
 	@JoinColumn(name = "sP_state", insertable = false, updatable = false)
 	private State State;
 
-	@OneToMany(mappedBy = "wgs_ID")
+	@OneToMany(mappedBy = "StoreProduct")
 	private Set<Images> Images;
 
 	public StoreProduct() {

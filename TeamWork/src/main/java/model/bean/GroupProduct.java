@@ -60,7 +60,7 @@ public class GroupProduct {
 	@JoinColumn(name = "gP_state", insertable = false, updatable = false)
 	private State State;
 
-	@OneToMany(mappedBy = "wgs_ID")
+	@OneToMany(mappedBy = "GroupProduct")
 	private Set<Images> Images;
 
 	public GroupProduct() {
