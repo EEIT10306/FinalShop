@@ -22,7 +22,7 @@ public class StoreCallback {
 	private Integer storeMessageId;
 
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberIdEE;
+	private Integer memberId;
 
 	@Column(name = "sC_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String context;
@@ -48,12 +48,12 @@ public class StoreCallback {
 	public StoreCallback() {
 	}
 
-	public StoreCallback(Integer id, Integer storeMessageId, Integer memberIdEE, String context, Date time,
+	public StoreCallback(Integer id, Integer storeMessageId, Integer memberId, String context, Date time,
 			Integer stateId) {
 		super();
 		this.id = id;
 		this.storeMessageId = storeMessageId;
-		this.memberIdEE = memberIdEE;
+		this.memberId = memberId;
 		this.context = context;
 		this.time = time;
 		this.stateId = stateId;
@@ -61,7 +61,7 @@ public class StoreCallback {
 
 	@Override
 	public String toString() {
-		return "StoreCallback [id=" + id + ", storeMessageId=" + storeMessageId + ", memberIdEE=" + memberIdEE
+		return "StoreCallback [id=" + id + ", storeMessageId=" + storeMessageId + ", memberId=" + memberId
 				+ ", context=" + context + ", time=" + time + ", stateId=" + stateId + ", StoreMessage=" + StoreMessage
 				+ ", Member=" + Member + ", State=" + State + "]\r\n";
 	}
@@ -82,12 +82,12 @@ public class StoreCallback {
 		this.storeMessageId = storeMessageId;
 	}
 
-	public Integer getMemberIdEE() {
-		return memberIdEE;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberIdEE(Integer memberIdEE) {
-		this.memberIdEE = memberIdEE;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getContext() {

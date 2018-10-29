@@ -8,9 +8,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Member;
-import model.bean.State;
-import model.bean.WishProduct;
 import model.bean.WishReport;
 import model.repository.WishReportDao;
 
@@ -24,47 +21,51 @@ public class WishReportDaoImpl implements WishReportDao {
 	}
 
 	@Override
-	public List<WishReport> select() throws SQLException {
-		return getSession().createQuery("from WishReport", WishReport.class).setMaxResults(50).list();
+	public List<WishReport> selectAll() throws SQLException {
+		List<WishReport> LWR = getSession().createQuery("from WishReport", WishReport.class).list();
+		System.out.println(LWR);
+		return LWR;
 	}
 
 	@Override
-	public WishReport selectByPk(WishReport bean) throws SQLException {
-		return getSession().get(WishReport.class, bean.getId());
+	public WishReport selectByPk(Integer id) throws SQLException {
+		WishReport WR = getSession().get(WishReport.class, id);
+		System.out.println(WR);
+		return WR;
+	}
+
+	@Override
+	public List<WishReport> selectHql(String hqlString) throws SQLException {
+		String hql = "from WishReport ";
+		hql += hqlString;
+		List<WishReport> LWR = getSession().createQuery(hql, WishReport.class).list();
+		System.out.println(LWR);
+		return LWR;
 	}
 
 	@Override
 	public WishReport insert(WishReport bean) throws SQLException {
-		WishReport wishReport = getSession().get(WishReport.class, bean.getId());
-		if (wishReport == null) {
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member member = getSession().get(Member.class, bean.getMemberID());
-			WishProduct wishProduct = getSession().get(WishProduct.class, bean.getWishProductID());
-			if(simpleState != null && member != null && wishProduct != null) {
-								
-				getSession().save(bean);
-				return bean;
-			}
+		WishReport WR = selectByPk(bean.getId());
+		if (WR == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
 	@Override
 	public WishReport update(WishReport bean) throws SQLException {
-		WishReport wishReport = this.getSession().get(WishReport.class, bean.getId());
-		if (wishReport != null) {
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member member = getSession().get(Member.class, bean.getMemberID());
-			WishProduct wishProduct = getSession().get(WishProduct.class, bean.getWishProductID());
-			if(simpleState != null && member != null && wishProduct != null) {
-				wishReport.setWishProductID(bean.getWishProductID());		
-				wishReport.setMemberID(bean.getMemberID());
-				wishReport.setContent(bean.getContent());
-				wishReport.setState(bean.getState());
-				getSession().update(wishReport);
-				return wishReport;
-			}
-			
+		WishReport WR = selectByPk(bean.getId());
+		if (WR != null) {
+			if (bean.getWishId() != null)
+				WR.setWishId(bean.getWishId());
+			if (bean.getMemberId() != null)
+				WR.setMemberId(bean.getMemberId());
+			if (bean.getContent() != null)
+				WR.setContent(bean.getContent());
+			if (bean.getStateId() != null)
+				WR.setStateId(bean.getStateId());
+			return WR;
 		}
 		return null;
 	}

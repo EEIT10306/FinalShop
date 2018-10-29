@@ -21,26 +21,25 @@ public class AchievementDaoImpl implements AchievementDao {
 	}
 
 	@Override
-	public List<Achievement> select() throws SQLException {
-		List<Achievement> simples = getSession().createQuery("from Achievement", Achievement.class).setMaxResults(50)
-				.list();
-		System.out.println(simples);
-		return simples;
+	public List<Achievement> selectAll() throws SQLException {
+		List<Achievement> LA = getSession().createQuery("from Achievement", Achievement.class).list();
+		System.out.println(LA);
+		return LA;
 	}
 
 	@Override
-	public Achievement selectByPk(Achievement bean) throws SQLException {
-		Achievement simple = getSession().get(Achievement.class, bean.getId());
-		System.out.println(simple);
-		return simple;
+	public Achievement selectByPk(Integer id) throws SQLException {
+		Achievement A = getSession().get(Achievement.class, id);
+		System.out.println(A);
+		return A;
 	}
 
 	@Override
 	public Achievement insert(Achievement bean) throws SQLException {
 		// 查詢此ID有無資料
-		Achievement simple = getSession().get(Achievement.class, bean.getId());
+		Achievement A = selectByPk(bean.getId());
 		// 沒有才新增
-		if (simple == null) {
+		if (A == null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -48,15 +47,27 @@ public class AchievementDaoImpl implements AchievementDao {
 	}
 
 	@Override
+	public List<Achievement> selectHql(String hqlString) throws SQLException {
+		String hql = "from Achievement ";
+		hql += hqlString;
+		List<Achievement> LA = getSession().createQuery(hql, Achievement.class).list();
+		System.out.println(LA);
+		return LA;
+	}
+
+	@Override
 	public Achievement update(Achievement bean) throws SQLException {
 		// 查詢此ID有無資料
-		Achievement simple = getSession().get(Achievement.class, bean.getId());
+		Achievement A = selectByPk(bean.getId());
 		// 有才修改
-		if (simple != null) {
-			simple.setContext(bean.getContext());
-			simple.setBonus(bean.getBonus());
-			simple.setParentsId(bean.getParentsId());
-			return simple;
+		if (A != null) {
+			if (bean.getContext() != null)
+				A.setContext(bean.getContext());
+			if (bean.getBonus() != null)
+				A.setBonus(bean.getBonus());
+			if (bean.getParentsId() != null)
+				A.setParentsId(bean.getParentsId());
+			return A;
 		}
 		return null;
 	}

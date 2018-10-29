@@ -1,6 +1,5 @@
 package model.repository.Impl;
 
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,9 +8,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Product;
-import model.bean.Seller;
-import model.bean.State;
 import model.bean.Store;
 import model.repository.StoreDao;
 
@@ -19,54 +15,67 @@ import model.repository.StoreDao;
 public class StoreDaoImpl implements StoreDao {
 	@Autowired
 	SessionFactory sessionFactory;
-	
+
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
+
 	@Override
-	public List<Store> select() throws SQLException {
-		return this.getSession().createQuery("From Store",Store.class).setMaxResults(50).list();
+	public List<Store> selectAll() throws SQLException {
+		List<Store> LS = getSession().createQuery("From Store", Store.class).list();
+		System.out.println(LS);
+		return LS;
 	}
 
 	@Override
 	public Store selectByPk(Integer id) throws SQLException {
-		return this.getSession().get(Store.class, id);
+		Store S = getSession().get(Store.class, id);
+		System.out.println(S);
+		return S;
+	}
+
+	@Override
+	public List<Store> selectHql(String hqlString) throws SQLException {
+		String hql = "from Store ";
+		hql += hqlString;
+		List<Store> LS = getSession().createQuery(hql, Store.class).list();
+		System.out.println(LS);
+		return LS;
 	}
 
 	@Override
 	public Store insert(Store bean) throws SQLException {
-		Store store = this.getSession().get(Store.class, bean.getId());
-		if(store == null) {
-			Seller seller = this.getSession().get(Seller.class, bean.getSellerId());
-			Product product = this.getSession().get(Product.class, bean.getProductId());
-			State state = this.getSession().get(State.class, bean.getState());
-			if(seller != null && product != null && state != null){
-				this.getSession().save(bean);
-				return bean;				
-			}
-			return null;
+		Store S = selectByPk(bean.getId());
+		if (S == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
 	@Override
 	public Store update(Store bean) throws SQLException {
-		Store store = this.getSession().get(Store.class, bean.getId());
-		if(store != null) {
-			Seller seller = this.getSession().get(Seller.class, bean.getSellerId());
-			Product product = this.getSession().get(Product.class, bean.getProductId());
-			State state = this.getSession().get(State.class, bean.getState());
-			if(seller != null && product != null && state != null) {
-				store.setSellerId(bean.getSellerId());
-				store.setName(bean.getName());
-				store.setPhoto(bean.getPhoto());
-				store.setProductId(bean.getProductId());
-				store.setAddress(bean.getAddress());
-				store.setTelephone(bean.getTelephone());
-				store.setState(bean.getState());
-				return store;
-			}
-			return null;
+		Store S = selectByPk(bean.getId());
+		if (S != null) {
+			if (bean.getSellerId() != null)
+				S.setSellerId(bean.getSellerId());
+			if (bean.getName() != null)
+				S.setName(bean.getName());
+			if (bean.getPhoto() != null)
+				S.setPhoto(bean.getPhoto());
+			if (bean.getContext() != null)
+				S.setContext(bean.getContext());
+			if (bean.getProductId() != null)
+				S.setProductId(bean.getProductId());
+			if (bean.getAddress() != null)
+				S.setAddress(bean.getAddress());
+			if (bean.getTelephone() != null)
+				S.setTelephone(bean.getTelephone());
+			if (bean.getWeb() != null)
+				S.setWeb(bean.getWeb());
+			if (bean.getStateId() != null)
+				S.setStateId(bean.getStateId());
+			return S;
 		}
 		return null;
 	}

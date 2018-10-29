@@ -21,25 +21,34 @@ public class StateDaoImpl implements StateDao {
 	}
 
 	@Override
-	public List<State> select() throws SQLException {
-		List<State> simples = getSession().createQuery("from State", State.class).setMaxResults(50).list();
-		System.out.println(simples);
-		return simples;
+	public List<State> selectAll() throws SQLException {
+		List<State> LS = getSession().createQuery("from State", State.class).list();
+		System.out.println(LS);
+		return LS;
 	}
 
 	@Override
-	public State selectByPk(State bean) throws SQLException {
-		State simple = getSession().get(State.class, bean.getId());
-		System.out.println(simple);
-		return simple;
+	public State selectByPk(Integer id) throws SQLException {
+		State S = getSession().get(State.class, id);
+		System.out.println(S);
+		return S;
+	}
+
+	@Override
+	public List<State> selectHql(String hqlString) throws SQLException {
+		String hql = "from State ";
+		hql += hqlString;
+		List<State> LGF = getSession().createQuery(hql, State.class).list();
+		System.out.println(LGF);
+		return LGF;
 	}
 
 	@Override
 	public State insert(State bean) throws SQLException {
 		// 查詢此ID有無資料
-		State simple = getSession().get(State.class, bean.getId());
+		State S = selectByPk(bean.getId());
 		// 沒有才修改
-		if (simple == null) {
+		if (S == null) {
 			getSession().save(bean);
 			return bean;
 		}
@@ -49,12 +58,14 @@ public class StateDaoImpl implements StateDao {
 	@Override
 	public State update(State bean) throws SQLException {
 		// 查詢此ID有無資料
-		State simple = getSession().get(State.class, bean.getId());
+		State S = selectByPk(bean.getId());
 		// 有才修改
-		if (simple != null) {
-			simple.setContext(bean.getContext());
-			simple.setClassName(bean.getClassName());
-			return simple;
+		if (S != null) {
+			if (bean.getContext() != null)
+				S.setContext(bean.getContext());
+			if (bean.getClassName() != null)
+				S.setClassName(bean.getClassName());
+			return S;
 		}
 		return null;
 	}

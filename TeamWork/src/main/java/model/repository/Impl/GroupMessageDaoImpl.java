@@ -9,10 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.GroupMessage;
-import model.bean.GroupProduct;
-import model.bean.GroupService;
-import model.bean.Member;
-import model.bean.State;
 import model.repository.GroupMessageDao;
 
 @Repository
@@ -27,48 +23,52 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 
 	@Override
 	public List<GroupMessage> selectAll() throws SQLException {
-		return getSession().createQuery("from GroupMessage", GroupMessage.class).setMaxResults(50).list();
+		List<GroupMessage> LGM = getSession().createQuery("from GroupMessage", GroupMessage.class).list();
+		System.out.println(LGM);
+		return LGM;
 	}
 
 	@Override
-	public GroupMessage selectByPk(GroupMessage groupMessageBean) throws SQLException {
-		GroupMessage groupMessage = getSession().get(GroupMessage.class, groupMessageBean.getId());
-		if (groupMessage != null) {
-			return groupMessage;
+	public GroupMessage selectByPk(Integer id) throws SQLException {
+		GroupMessage GM = getSession().get(GroupMessage.class, id);
+		System.out.println(GM);
+		return GM;
+	}
+
+	@Override
+	public List<GroupMessage> selectHql(String hqlString) throws SQLException {
+		String hql = "from GroupMessage ";
+		hql += hqlString;
+		List<GroupMessage> LGM = getSession().createQuery(hql, GroupMessage.class).list();
+		System.out.println(LGM);
+		return LGM;
+	}
+
+	@Override
+	public GroupMessage insert(GroupMessage bean) throws SQLException {
+		GroupMessage GM = selectByPk(bean.getId());
+		if (GM == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
 	@Override
-	public GroupMessage insert(GroupMessage groupMessageBean) throws SQLException {
-		GroupMessage message = getSession().get(GroupMessage.class, groupMessageBean.getId());
-		if (message == null) {
-			getSession().save(groupMessageBean);
-			return groupMessageBean;
-		}
-		return null;
-	}
-
-	@Override
-	public GroupMessage update(GroupMessage groupMessageBean) throws SQLException {
-		GroupMessage groupMessage = getSession().get(GroupMessage.class, groupMessageBean.getId());
-		if (groupMessage != null) {
-			if (getSession().get(GroupProduct.class, groupMessageBean.getGroupProductId()) != null) {
-				if (getSession().get(Member.class, groupMessageBean.getMemberId()) != null) {
-					if (getSession().get(GroupService.class, groupMessageBean.getGroupServiceId()) != null) {
-						if (getSession().get(State.class, groupMessageBean.getState()) != null) {
-							groupMessage.setGroupProductId(groupMessageBean.getGroupProductId());
-							groupMessage.setMemberId(groupMessageBean.getMemberId());
-							groupMessage.setAmount(groupMessageBean.getAmount());
-							groupMessage.setTime(groupMessageBean.getTime());
-							groupMessage.setGroupServiceId(groupMessageBean.getGroupServiceId());
-							groupMessage.setSumPrice(groupMessageBean.getSumPrice());
-							groupMessage.setState(groupMessageBean.getState());
-							return groupMessage;
-						}
-					}
-				}
-			}
+	public GroupMessage update(GroupMessage bean) throws SQLException {
+		GroupMessage GM = selectByPk(bean.getId());
+		if (GM != null) {
+			if (bean.getGroupId() != null)
+				GM.setGroupId(bean.getGroupId());
+			if (bean.getMemberId() != null)
+				GM.setMemberId(bean.getMemberId());
+			if (bean.getContext() != null)
+				GM.setContext(bean.getContext());
+			if (bean.getTime() != null)
+				GM.setTime(bean.getTime());
+			if (bean.getStateId() != null)
+				GM.setStateId(bean.getStateId());
+			return GM;
 		}
 		return null;
 	}

@@ -8,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Member;
 import model.bean.WishFavorite;
-import model.bean.WishProduct;
 import model.repository.WishFavoriteDao;
 
 @Repository
@@ -23,51 +21,36 @@ public class WishFavoriteDaoImpl implements WishFavoriteDao {
 	}
 
 	@Override
-	public List<WishFavorite> select() throws SQLException {
-		List<WishFavorite> simples = getSession().createQuery("from WishFavorite", WishFavorite.class).setMaxResults(50)
-				.list();
-		System.out.println(simples);
-		return simples;
+	public List<WishFavorite> selectAll() throws SQLException {
+		List<WishFavorite> LWF = getSession().createQuery("from WishFavorite", WishFavorite.class).list();
+		System.out.println(LWF);
+		return LWF;
 	}
 
 	@Override
-	public WishFavorite selectByPk(WishFavorite bean) throws SQLException {
-		WishFavorite simple = getSession().get(WishFavorite.class, bean.getId());
-		System.out.println(simple);
-		return simple;
+	public WishFavorite selectByPk(Integer id) throws SQLException {
+		WishFavorite WF = getSession().get(WishFavorite.class, id);
+		System.out.println(WF);
+		return WF;
+	}
+
+	@Override
+	public List<WishFavorite> selectHql(String hqlString) throws SQLException {
+		String hql = "from WishFavorite ";
+		hql += hqlString;
+		List<WishFavorite> LWF = getSession().createQuery(hql, WishFavorite.class).list();
+		System.out.println(LWF);
+		return LWF;
 	}
 
 	@Override
 	public WishFavorite insert(WishFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		WishFavorite simple = getSession().get(WishFavorite.class, bean.getId());
+		WishFavorite WF = selectByPk(bean.getId());
 		// 沒有才新增
-		if (simple == null) {
-			// 外鍵有資料才新增
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			WishProduct simpleWishProduct = getSession().get(WishProduct.class, bean.getWishProductId());
-			if (simpleMember != null && simpleWishProduct != null) {
-				getSession().save(bean);
-				return bean;
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public WishFavorite update(WishFavorite bean) throws SQLException {
-		// 查詢此ID有無資料
-		WishFavorite simple = getSession().get(WishFavorite.class, bean.getId());
-		// 有才修改
-		if (simple != null) {
-			// 外鍵有資料才修改
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			WishProduct simpleWishProduct = getSession().get(WishProduct.class, bean.getWishProductId());
-			if (simpleMember != null && simpleWishProduct != null) {
-				simple.setMemberId(bean.getMemberId());
-				simple.setWishProductId(bean.getWishProductId());
-				return simple;
-			}
+		if (WF == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
@@ -75,10 +58,10 @@ public class WishFavoriteDaoImpl implements WishFavoriteDao {
 	@Override
 	public boolean delete(WishFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		WishFavorite simple = getSession().get(WishFavorite.class, bean.getId());
+		WishFavorite WF = selectByPk(bean.getId());
 		// 有才刪除
-		if (simple != null) {
-			getSession().delete(simple);
+		if (WF != null) {
+			getSession().delete(WF);
 			return true;
 		}
 		return false;

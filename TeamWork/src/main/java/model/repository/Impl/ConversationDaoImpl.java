@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.Conversation;
-import model.bean.Member;
-import model.bean.State;
 import model.repository.ConversationDao;
 
 @Repository
@@ -23,33 +21,36 @@ public class ConversationDaoImpl implements ConversationDao {
 	}
 
 	@Override
-	public List<Conversation> select() throws SQLException {
-		List<Conversation> simples = getSession().createQuery("from Conversation", Conversation.class).setMaxResults(50)
-				.list();
-		System.out.println(simples);
-		return simples;
+	public List<Conversation> selectAll() throws SQLException {
+		List<Conversation> LC = getSession().createQuery("from Conversation", Conversation.class).list();
+		System.out.println(LC);
+		return LC;
 	}
 
 	@Override
-	public Conversation selectByPk(Conversation bean) throws SQLException {
-		Conversation simple = getSession().get(Conversation.class, bean.getId());
-		System.out.println(simple);
-		return simple;
+	public Conversation selectByPk(Integer id) throws SQLException {
+		Conversation C = getSession().get(Conversation.class, id);
+		System.out.println(C);
+		return C;
+	}
+
+	@Override
+	public List<Conversation> selectHql(String hqlString) throws SQLException {
+		String hql = "from Conversation ";
+		hql += hqlString;
+		List<Conversation> LC = getSession().createQuery(hql, Conversation.class).list();
+		System.out.println(LC);
+		return LC;
 	}
 
 	@Override
 	public Conversation insert(Conversation bean) throws SQLException {
 		// 查詢此ID有無資料
-		Conversation simple = getSession().get(Conversation.class, bean.getId());
+		Conversation C = selectByPk(bean.getId());
 		// 沒有才修改
-		if (simple == null) {
-			// 外鍵有資料才新增
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			if (simpleState != null && simpleMember != null) {
-				getSession().save(bean);
-				return bean;
-			}
+		if (C == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
@@ -57,20 +58,15 @@ public class ConversationDaoImpl implements ConversationDao {
 	@Override
 	public Conversation update(Conversation bean) throws SQLException {
 		// 查詢此ID有無資料
-		Conversation simple = getSession().get(Conversation.class, bean.getId());
+		Conversation C = selectByPk(bean.getId());
 		// 有才修改
-		if (simple != null) {
-			// 外鍵有資料才修改
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			if (simpleState != null && simpleMember != null) {
-				simple.setMemberIdEE(bean.getMemberIdEE());
-				simple.setMemberId(bean.getMemberId());
-				simple.setContext(bean.getContext());
-				simple.setAchievementID(bean.getAchievementID());
-				simple.setState(bean.getState());
-				return simple;
-			}
+		if (C != null) {
+			C.setMemberIdEE(bean.getMemberIdEE());
+			C.setMemberId(bean.getMemberId());
+			C.setContext(bean.getContext());
+			C.setTime(bean.getTime());
+			C.setStateId(bean.getStateId());
+			return C;
 		}
 		return null;
 	}

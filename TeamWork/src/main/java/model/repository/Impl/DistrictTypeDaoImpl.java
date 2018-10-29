@@ -22,44 +22,27 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 	}
 
 	@Override
-	public List<DistrictType> select() throws SQLException {
-		return getSession().createQuery("from DistrictType", DistrictType.class).setMaxResults(50).list();
+	public List<DistrictType> selectAll() throws SQLException {
+		List<DistrictType> LDT = getSession().createQuery("from DistrictType", DistrictType.class).list();
+		System.out.println(LDT);
+		return LDT;
 
 	}
 
 	@Override
-	public DistrictType select(Integer id) throws SQLException {
-		return getSession().get(DistrictType.class, id);
+	public DistrictType selectByPk(Integer id) throws SQLException {
+		DistrictType DT = getSession().get(DistrictType.class, id);
+		System.out.println(DT);
+		return DT;
 	}
 
 	@Override
-	public DistrictType insert(DistrictType bean) throws SQLException {
-		DistrictType simple = getSession().get(DistrictType.class, bean.getId());
-		if (simple == null) {
-			DistrictType dis = getSession().get(DistrictType.class, bean.getParentsId());
-			if (dis != null) {
-				getSession().save(bean);
-				return bean;
-			}
-			return null;
-		}
-		return null;
+	public List<DistrictType> selectHql(String hqlString) throws SQLException {
+		String hql = "from DistrictType ";
+		hql += hqlString;
+		List<DistrictType> LDT = getSession().createQuery(hql, DistrictType.class).list();
+		System.out.println(LDT);
+		return LDT;
 	}
 
-	@Override
-	public DistrictType update(DistrictType bean) throws SQLException {
-		DistrictType simple = this.getSession().get(DistrictType.class, bean.getId());
-		if (simple != null) {
-			DistrictType dis = getSession().get(DistrictType.class, bean.getParentsId());
-			if (dis != null) {
-				simple.setName(bean.getName());
-				simple.setParentsId(bean.getParentsId());
-				simple.setStage(bean.getStage());
-				return simple;
-			}
-			return null;
-		}
-		return null;
-	}
-	
 }

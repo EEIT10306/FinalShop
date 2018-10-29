@@ -23,31 +23,36 @@ public class SellerDaoImpl implements SellerDao {
 	}
 
 	@Override
-	public List<Seller> select() throws SQLException {
-		List<Seller> simples = getSession().createQuery("from Seller", Seller.class).setMaxResults(50).list();
-		System.out.println(simples);
-		return simples;
+	public List<Seller> selectAll() throws SQLException {
+		List<Seller> LS = getSession().createQuery("from Seller", Seller.class).list();
+		System.out.println(LS);
+		return LS;
 	}
 
 	@Override
-	public Seller selectByPk(Seller bean) throws SQLException {
-		System.out.println(getSession().get(Seller.class, bean.getId()));
-		return getSession().get(Seller.class, bean.getId());
+	public Seller selectByPk(Integer id) throws SQLException {
+		Seller S = getSession().get(Seller.class, id);
+		System.out.println(S);
+		return S;
+	}
+
+	@Override
+	public List<Seller> selectHql(String hqlString) throws SQLException {
+		String hql = "from Seller ";
+		hql += hqlString;
+		List<Seller> LS = getSession().createQuery(hql, Seller.class).list();
+		System.out.println(LS);
+		return LS;
 	}
 
 	@Override
 	public Seller insert(Seller bean) throws SQLException {
 		// 查詢此ID有無資料
-		Seller simple = getSession().get(Seller.class, bean.getId());
+		Seller S = selectByPk(bean.getId());
 		// 沒有才新增
-		if (simple == null) {
-			// 外鍵有資料才新增
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			if (simpleState != null && simpleMember != null) {
-				getSession().save(bean);
-				return bean;
-			}
+		if (S == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
@@ -55,19 +60,14 @@ public class SellerDaoImpl implements SellerDao {
 	@Override
 	public Seller update(Seller bean) throws SQLException {
 		// 查詢此ID有無資料
-		Seller simple = getSession().get(Seller.class, bean.getId());
+		Seller S = selectByPk(bean.getId());
 		// 有才修改
-		if (simple != null) {
-			// 外鍵有資料才修改
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			if (simpleState != null && simpleMember != null) {
-				simple.setMemberId(bean.getMemberId());
-				simple.setIdCard(bean.getIdCard());
-				simple.setMailVerification(bean.getMailVerification());
-				simple.setState(bean.getState());
-				return simple;
-			}
+		if (S != null) {
+			S.setMemberId(bean.getMemberId());
+			S.setBank(bean.getBank());
+			S.setCard(bean.getCard());
+			S.setStateId(bean.getStateId());
+			return S;
 		}
 		return null;
 	}

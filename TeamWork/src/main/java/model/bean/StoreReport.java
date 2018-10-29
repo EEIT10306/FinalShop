@@ -26,7 +26,7 @@ public class StoreReport {
 	private String content;
 
 	@Column(name = "sR_state", columnDefinition = "int", nullable = false)
-	private Integer stateI;
+	private Integer stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
@@ -43,20 +43,20 @@ public class StoreReport {
 	public StoreReport() {
 	}
 
-	public StoreReport(Integer id, Integer storeProductId, Integer memberId, String content, Integer stateI) {
+	public StoreReport(Integer id, Integer storeProductId, Integer memberId, String content, Integer stateId) {
 		super();
 		this.id = id;
 		this.storeProductId = storeProductId;
 		this.memberId = memberId;
 		this.content = content;
-		this.stateI = stateI;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
 		return "StoreReport [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", content="
-				+ content + ", stateI=" + stateI + ", StoreProduct=" + StoreProduct + ", Member=" + Member + ", State="
-				+ State + "]\r\n";
+				+ content + ", stateId=" + stateId + ", StoreProduct=" + StoreProduct + ", Member=" + Member
+				+ ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -91,12 +91,12 @@ public class StoreReport {
 		this.content = content;
 	}
 
-	public Integer getStateI() {
-		return stateI;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setStateI(Integer stateI) {
-		this.stateI = stateI;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
 	public StoreProduct getStoreProduct() {

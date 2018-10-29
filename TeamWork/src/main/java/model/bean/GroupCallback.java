@@ -22,7 +22,7 @@ public class GroupCallback {
 	private Integer groupMessageId;
 
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberIdEE;
+	private Integer memberId;
 
 	@Column(name = "gC_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String context;
@@ -48,12 +48,12 @@ public class GroupCallback {
 	public GroupCallback() {
 	}
 
-	public GroupCallback(Integer id, Integer groupMessageId, Integer memberIdEE, String context, Date time,
+	public GroupCallback(Integer id, Integer groupMessageId, Integer memberId, String context, Date time,
 			Integer stateId) {
 		super();
 		this.id = id;
 		this.groupMessageId = groupMessageId;
-		this.memberIdEE = memberIdEE;
+		this.memberId = memberId;
 		this.context = context;
 		this.time = time;
 		this.stateId = stateId;
@@ -61,7 +61,7 @@ public class GroupCallback {
 
 	@Override
 	public String toString() {
-		return "GroupCallback [id=" + id + ", groupMessageId=" + groupMessageId + ", memberIdEE=" + memberIdEE
+		return "GroupCallback [id=" + id + ", groupMessageId=" + groupMessageId + ", memberId=" + memberId
 				+ ", context=" + context + ", time=" + time + ", stateId=" + stateId + ", GroupMessage=" + GroupMessage
 				+ ", Member=" + Member + ", State=" + State + "]\r\n";
 	}
@@ -82,12 +82,12 @@ public class GroupCallback {
 		this.groupMessageId = groupMessageId;
 	}
 
-	public Integer getMemberIdEE() {
-		return memberIdEE;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberIdEE(Integer memberIdEE) {
-		this.memberIdEE = memberIdEE;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getContext() {

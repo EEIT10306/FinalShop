@@ -3,20 +3,12 @@ package model.repository.Impl;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.DistrictType;
 import model.bean.Groupon;
-import model.bean.Member;
-import model.bean.Product;
-import model.bean.State;
 import model.repository.GrouponDao;
 
 @Repository
@@ -29,57 +21,64 @@ public class GrouponDaoImpl implements GrouponDao {
 	}
 
 	@Override
-	public List<Groupon> select() throws SQLException {
-		return getSession().createQuery("from Groupon", Groupon.class).setMaxResults(50).list();
+	public List<Groupon> selectAll() throws SQLException {
+		List<Groupon> LG = getSession().createQuery("from Groupon", Groupon.class).list();
+		System.out.println(LG);
+		return LG;
 	}
 
 	@Override
-	public Groupon select(Integer id) throws SQLException {
-		return getSession().get(Groupon.class, id);
+	public Groupon selectByPk(Integer id) throws SQLException {
+		Groupon G = getSession().get(Groupon.class, id);
+		System.out.println(G);
+		return G;
+	}
+
+	@Override
+	public List<Groupon> selectHql(String hqlString) throws SQLException {
+		String hql = "from Groupon ";
+		hql += hqlString;
+		List<Groupon> LG = getSession().createQuery(hql, Groupon.class).list();
+		System.out.println(LG);
+		return LG;
 	}
 
 	@Override
 	public Groupon insert(Groupon bean) throws SQLException {
-		Groupon simple = getSession().get(Groupon.class, bean.getId());
-		if (simple == null) {
-			Member memb = getSession().get(Member.class, bean.getId());
-			DistrictType dist = getSession().get(DistrictType.class, bean.getId());
-			Product prod = getSession().get(Product.class, bean.getId());
-			State simpleState = getSession().get(State.class, bean.getState());
-			if(dist != null && prod != null && simpleState != null && memb!=null ) {	
-				getSession().save(bean);
-				return bean;
-			}
-		}
-		return null;
-	}
-	
-	public Groupon update(Groupon bean)
-			throws SQLException {
-		Groupon simple = getSession().get(Groupon.class, bean.getId());
-		if (simple != null) {
-			Member memb = getSession().get(Member.class, bean.getId());
-			DistrictType dist = getSession().get(DistrictType.class, bean.getId());
-			Product prod = getSession().get(Product.class, bean.getId());
-			State simpleState = getSession().get(State.class, bean.getState());
-			if(dist != null && prod != null && simpleState != null&& memb!=null) {	
-				simple.setMemberId(bean.getMemberId());
-				simple.setGroupClass(bean.getGroupClass());
-				simple.setTitle(bean.getTitle());
-				simple.setCont(bean.getCont());
-				simple.setDistrictTypeId(bean.getDistrictTypeId());
-				simple.setStartDate(bean.getStartDate());
-				simple.setEndDate(bean.getEndDate());
-				simple.setGoal(bean.getGoal());
-				simple.setCompTime(bean.getCompTime());
-				simple.setState(bean.getState());
-				return bean;
-			}
-			return null;
+		Groupon G = selectByPk(bean.getId());
+		if (G == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
+	public Groupon update(Groupon bean) throws SQLException {
+		Groupon G = selectByPk(bean.getId());
+		if (G != null) {
+			if (bean.getSellerId() != null)
+				G.setSellerId(bean.getSellerId());
+			if (bean.getProductId() != null)
+				G.setProductId(bean.getProductId());
+			if (bean.getTitle() != null)
+				G.setTitle(bean.getTitle());
+			if (bean.getContext() != null)
+				G.setContext(bean.getContext());
+			if (bean.getDistrictTypeId() != null)
+				G.setDistrictTypeId(bean.getDistrictTypeId());
+			if (bean.getStartDate() != null)
+				G.setStartDate(bean.getStartDate());
+			if (bean.getEndDate() != null)
+				G.setEndDate(bean.getEndDate());
+			if (bean.getGoal() != null)
+				G.setGoal(bean.getGoal());
+			if (bean.getCompleteTime() != null)
+				G.setCompleteTime(bean.getCompleteTime());
+			if (bean.getStateId() != null)
+				G.setStateId(bean.getStateId());
+			return G;
+		}
+		return null;
 	}
 
-
+}
