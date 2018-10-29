@@ -15,38 +15,55 @@ import model.repository.ProductDao;
 public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
+
 	@Override
-	public List<Product> select() throws SQLException {		
-		return this.getSession().createQuery("From Product", Product.class).setMaxResults(50).list();
+	public List<Product> selectAll() throws SQLException {
+		List<Product> LP = getSession().createQuery("From Product", Product.class).list();
+		System.out.println(LP);
+		return LP;
 	}
 
 	@Override
 	public Product selectByPk(Integer id) throws SQLException {
-		return this.getSession().get(Product.class, id);
+		Product P = getSession().get(Product.class, id);
+		System.out.println(P);
+		return P;
+	}
+
+	@Override
+	public List<Product> selectHql(String hqlString) throws SQLException {
+		String hql = "from Product ";
+		hql += hqlString;
+		List<Product> LP = getSession().createQuery(hql, Product.class).list();
+		System.out.println(LP);
+		return LP;
 	}
 
 	@Override
 	public Product insert(Product bean) throws SQLException {
-		 Product product = this.getSession().get(Product.class, bean.getId());
-		 if(product == null) {
-			 getSession().save(bean);
-			 return bean;
-		 }
-		 return null;
+		Product P = selectByPk(bean.getId());
+		if (P == null) {
+			getSession().save(bean);
+			return bean;
+		}
+		return null;
 	}
 
 	@Override
 	public Product update(Product bean) throws SQLException {
-		Product product = this.getSession().get(Product.class, bean.getId());
-		if(product != null) {
-			product.setName(bean.getName());
-			product.setParentsId(bean.getParentsId());
-			product.setStage(bean.getStage());
-			return product;
+		Product P = selectByPk(bean.getId());
+		if (P != null) {
+			if (bean.getName() != null)
+				P.setName(bean.getName());
+			if (bean.getParentsId() != null)
+				P.setParentsId(bean.getParentsId());
+			if (bean.getStage() != null)
+				P.setStage(bean.getStage());
+			return P;
 		}
 		return null;
 	}

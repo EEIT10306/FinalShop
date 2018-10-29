@@ -1,8 +1,8 @@
 package model.bean;
 
 import java.util.Date;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,61 +10,65 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "GroupProduct")
 public class GroupProduct {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "gP_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "gP_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "group_ID", columnDefinition = "int")
-	Integer groupID;
+	@Column(name = "group_ID", columnDefinition = "int", nullable = false)
+	private Integer groupID;
 
-	@Column(name = "gP_name", columnDefinition = "nvarchar(max)")
-	String name;
+	@Column(name = "gP_name", columnDefinition = "nvarchar(max)", nullable = false)
+	private String name;
 
-	@Column(name = "prod_ID", columnDefinition = "int")
-	Integer productId;
+	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
+	private Integer productId;
 
-	@Column(name = "gP_amt", columnDefinition = "int")
-	Integer amount;
+	@Column(name = "gP_amt", columnDefinition = "int", nullable = false)
+	private Integer amount;
 
-	@Column(name = "gP_price", columnDefinition = "int")
-	Integer price;
+	@Column(name = "gP_price", columnDefinition = "int", nullable = false)
+	private Integer price;
 
-	@Column(name = "gP_cont", columnDefinition = "nvarchar(max)")
-	String context;
+	@Column(name = "gP_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String context;
 
-	@Column(name = "gP_var", columnDefinition = "int")
-	Integer version;
+	@Column(name = "gP_var", columnDefinition = "int", nullable = false)
+	private Integer version;
 
 	@Column(name = "gP_compTime", columnDefinition = "datetime")
-	Date completeTime;
+	private Date completeTime;
 
-	@Column(name = "gP_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "gP_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
-	Groupon groupBean;
+	private Groupon Groupon;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product productBean;
+	private Product Product;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "sta_ID", insertable = false, updatable = false)
-	State stateBean;
+	@ManyToOne
+	@JoinColumn(name = "gP_state", insertable = false, updatable = false)
+	private State State;
+
+	@OneToMany(mappedBy = "wgs_ID")
+	private Set<Images> Images;
 
 	public GroupProduct() {
 	}
 
 	public GroupProduct(Integer id, Integer groupID, String name, Integer productId, Integer amount, Integer price,
-			String context, Integer version, Date completeTime, Integer state) {
+			String context, Integer version, Date completeTime, Integer stateId) {
+		super();
 		this.id = id;
 		this.groupID = groupID;
 		this.name = name;
@@ -74,15 +78,15 @@ public class GroupProduct {
 		this.context = context;
 		this.version = version;
 		this.completeTime = completeTime;
-		this.state = state;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
 		return "GroupProduct [id=" + id + ", groupID=" + groupID + ", name=" + name + ", productId=" + productId
 				+ ", amount=" + amount + ", price=" + price + ", context=" + context + ", version=" + version
-				+ ", completeTime=" + completeTime + ", state=" + state + "]\r\n  [groupBean=" + groupBean
-				+ "]\r\n  [productBean=" + productBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+				+ ", completeTime=" + completeTime + ", stateId=" + stateId + ", Groupon=" + Groupon + ", Product="
+				+ Product + ", State=" + State + ", Images=" + Images + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -157,23 +161,28 @@ public class GroupProduct {
 		this.completeTime = completeTime;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public Groupon getGroupBean() {
-		return groupBean;
+	public Groupon getGroupon() {
+		return Groupon;
 	}
 
-	public Product getProductBean() {
-		return productBean;
+	public Product getProduct() {
+		return Product;
 	}
 
-	public State getStateBean() {
-		return stateBean;
+	public State getState() {
+		return State;
 	}
+
+	public Set<Images> getImages() {
+		return Images;
+	}
+
 }

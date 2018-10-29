@@ -3,19 +3,11 @@ package model.repository.Impl;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.DistrictType;
-import model.bean.Member;
-import model.bean.Product;
-import model.bean.State;
 import model.bean.Wish;
 import model.repository.WishDao;
 
@@ -30,57 +22,69 @@ public class WishDaoImpl implements WishDao {
 	}
 
 	@Override
-	public List<Wish> select() throws SQLException {
-		return getSession().createQuery("from Wish", Wish.class).setMaxResults(50).list();
-
+	public List<Wish> selectAll() throws SQLException {
+		List<Wish> LW = getSession().createQuery("from Wish", Wish.class).list();
+		System.out.println(LW);
+		return LW;
 	}
 
 	@Override
-	public Wish select(Integer id) throws SQLException {
-		return getSession().get(Wish.class, id);
+	public Wish selectByPk(Integer id) throws SQLException {
+		Wish W = getSession().get(Wish.class, id);
+		System.out.println(W);
+		return W;
+	}
+
+	@Override
+	public List<Wish> selectHql(String hqlString) throws SQLException {
+		String hql = "from Wish ";
+		hql += hqlString;
+		List<Wish> LW = getSession().createQuery(hql, Wish.class).list();
+		System.out.println(LW);
+		return LW;
 	}
 
 	@Override
 	public Wish insert(Wish bean) throws SQLException {
-		Wish simple = getSession().get(Wish.class, bean.getId());
-		if (simple == null) {
-			Member memb = getSession().get(Member.class, bean.getId());
-			Product prod = getSession().get(Product.class, bean.getId());
-			DistrictType dist = getSession().get(DistrictType.class, bean.getId());
-			State stat = getSession().get(State.class, bean.getState());
-			if (memb != null && prod != null && dist != null && stat != null) {
-				
-				getSession().save(bean);
-				return bean;
-			}
-			return null;
+		Wish W = selectByPk(bean.getId());
+		if (W == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
-	
-
 	@Override
 	public Wish update(Wish bean) throws SQLException {
-		Wish simple = this.getSession().get(Wish.class, bean.getId());
-		if (simple != null) {
-			Member memb = getSession().get(Member.class, bean.getId());
-			Product prod = getSession().get(Product.class, bean.getId());
-			DistrictType dist = getSession().get(DistrictType.class, bean.getId());
-			State stat = getSession().get(State.class, bean.getState());
-			if (memb != null && prod != null && dist != null && stat != null) {
-				simple.setMemberId(bean.getMemberId());
-				simple.setProductId(bean.getProductId());
-				simple.setTitle(bean.getTitle());
-				simple.setContext(bean.getContext());
-				simple.setDistrictTypeId(bean.getDistrictTypeId());
-				simple.setStartDate(bean.getStartDate());
-				simple.setEndDate(bean.getEndDate());
-				simple.setCompleteTime(bean.getCompleteTime());
-				simple.setState(bean.getState());
-			return simple;
-			}
-			return null;
+		Wish W = selectByPk(bean.getId());
+		if (W != null) {
+			if (bean.getMemberId() != null)
+				W.setMemberId(bean.getMemberId());
+			if (bean.getProductId() != null)
+				W.setProductId(bean.getProductId());
+			if (bean.getTitle() != null)
+				W.setTitle(bean.getTitle());
+			if (bean.getContext() != null)
+				W.setContext(bean.getContext());
+			if (bean.getDistrictTypeId() != null)
+				W.setDistrictTypeId(bean.getDistrictTypeId());
+			if (bean.getStartDate() != null)
+				W.setStartDate(bean.getStartDate());
+			if (bean.getEndDate() != null)
+				W.setEndDate(bean.getEndDate());
+			if (bean.getSumPriceBottom() != null)
+				W.setSumPriceBottom(bean.getSumPriceBottom());
+			if (bean.getSumPriceTop() != null)
+				W.setSumPriceTop(bean.getSumPriceTop());
+			if (bean.getChangeTime() != null)
+				W.setChangeTime(bean.getChangeTime());
+			if (bean.getHot() != null)
+				W.setHot(bean.getHot());
+			if (bean.getCompleteTime() != null)
+				W.setCompleteTime(bean.getCompleteTime());
+			if (bean.getStateId() != null)
+				W.setStateId(bean.getStateId());
+			return W;
 		}
 		return null;
 	}

@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,50 +11,49 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Seller")
 public class Seller {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "sel_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "seller_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "mem_idcard", columnDefinition = "nvarchar(MAX)")
-	String idCard;
+	@Column(name = "seller_bank", columnDefinition = "nvarchar(MAX)")
+	private String bank;
 
-	@Column(name = "mem_mailVer", columnDefinition = "nvarchar(MAX)")
-	String mailVerification;
+	@Column(name = "seller_card", columnDefinition = "nvarchar(MAX)")
+	private String card;
 
-	@Column(name = "seller_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "seller_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "seller_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public Seller() {
 	}
 
-	public Seller(Integer id, Integer memberId, String idCard, String mailVerification, Integer state) {
+	public Seller(Integer id, Integer memberId, String bank, String card, Integer stateId) {
+		super();
 		this.id = id;
 		this.memberId = memberId;
-		this.idCard = idCard;
-		this.mailVerification = mailVerification;
-		this.state = state;
+		this.bank = bank;
+		this.card = card;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "Seller [id=" + id + ", memberId=" + memberId + ", idCard=" + idCard + ", mailVerification="
-				+ mailVerification + ", state=" + state + "]\r\n  [memberBean=" + memberBean + "]\r\n  [stateBean=" + stateBean
-				+ "]\r\n";
+		return "Seller [id=" + id + ", memberId=" + memberId + ", bank=" + bank + ", card=" + card + ", stateId="
+				+ stateId + ", Member=" + Member + ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -74,44 +72,36 @@ public class Seller {
 		this.memberId = memberId;
 	}
 
-	public String getIdCard() {
-		return idCard;
+	public String getBank() {
+		return bank;
 	}
 
-	public void setIdCard(String idCard) {
-		this.idCard = idCard;
+	public void setBank(String bank) {
+		this.bank = bank;
 	}
 
-	public String getMailVerification() {
-		return mailVerification;
+	public String getCard() {
+		return card;
 	}
 
-	public void setMailVerification(String mailVerification) {
-		this.mailVerification = mailVerification;
+	public void setCard(String card) {
+		this.card = card;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

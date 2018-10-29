@@ -8,11 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.State;
 import model.bean.WishAssess;
-import model.bean.WishMessage;
 import model.repository.WishAssessDao;
-
 
 @Repository
 public class WishAssessDaoImpl implements WishAssessDao {
@@ -22,48 +19,53 @@ public class WishAssessDaoImpl implements WishAssessDao {
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-	
+
 	@Override
-	public List<WishAssess> select() throws SQLException {
-		return getSession().createQuery("from WishAssess", WishAssess.class).setMaxResults(50).list();
+	public List<WishAssess> selectAll() throws SQLException {
+		List<WishAssess> LWA = getSession().createQuery("from WishAssess", WishAssess.class).list();
+		System.out.println(LWA);
+		return LWA;
 	}
-	
+
 	@Override
-	public WishAssess selectByPk(WishAssess bean) throws SQLException {
-		return getSession().get(WishAssess.class, bean.getId());
+	public WishAssess selectByPk(Integer id) throws SQLException {
+		WishAssess WA = getSession().get(WishAssess.class, id);
+		System.out.println(WA);
+		return WA;
+	}
+
+	@Override
+	public List<WishAssess> selectHql(String hqlString) throws SQLException {
+		String hql = "from WishAssess ";
+		hql += hqlString;
+		List<WishAssess> LWA = getSession().createQuery(hql, WishAssess.class).list();
+		System.out.println(LWA);
+		return LWA;
 	}
 
 	@Override
 	public WishAssess insert(WishAssess bean) throws SQLException {
-		WishAssess wishAssess = getSession().get(WishAssess.class, bean.getId());
-		if(wishAssess==null) {
-			State simpleState = getSession().get(State.class, bean.getState());
-			WishMessage wishMessage = getSession().get(WishMessage.class, bean.getId());
-			if(simpleState != null && wishMessage != null) {
-				
-				getSession().save(bean);
-				return bean;
-			}
-			
+		WishAssess WA = selectByPk(bean.getId());
+		if (WA == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
 	@Override
 	public WishAssess update(WishAssess bean) throws SQLException {
-		WishAssess wishAssess = this.getSession().get(WishAssess.class, bean.getId());
-		if(wishAssess != null) {
-			State simpleState = getSession().get(State.class, bean.getState());
-			WishMessage wishMessage = getSession().get(WishMessage.class, bean.getId());
-			if(simpleState != null && wishMessage != null) {
-				
-				wishAssess.setPoint(bean.getPoint());
-				wishAssess.setContext(bean.getContext());
-				wishAssess.setPointEE(bean.getPointEE());
-				wishAssess.setContextEE(bean.getContextEE());
-				getSession().update(wishAssess);
-				return wishAssess;
-			}
+		WishAssess WA = selectByPk(bean.getId());
+		if (WA != null) {
+			if (bean.getPoint() != null)
+				WA.setPoint(bean.getPoint());
+			if (bean.getContext() != null)
+				WA.setContext(bean.getContext());
+			if (bean.getPointEE() != null)
+				WA.setPointEE(bean.getPointEE());
+			if (bean.getContextEE() != null)
+				WA.setContextEE(bean.getContextEE());
+			return WA;
 		}
 		return null;
 	}

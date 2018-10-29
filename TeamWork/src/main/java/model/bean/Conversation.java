@@ -2,7 +2,6 @@ package model.bean;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,59 +12,58 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CommitAchievement")
 public class Conversation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "con_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "con_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "memC_IDee", columnDefinition = "int")
-	Integer memberIdEE;
+	@Column(name = "memC_IDee", columnDefinition = "int", nullable = false)
+	private Integer memberIdEE;
 
-	@Column(name = "memC_ID", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "memC_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "con_cont", columnDefinition = "nvarchar(max)")
-	String context;
+	@Column(name = "con_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String context;
 
-	@Column(name = "con_time", columnDefinition = "datetime")
-	Date achievementID;
+	@Column(name = "con_time", columnDefinition = "datetime", nullable = false)
+	private Date time;
 
-	@Column(name = "con_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "con_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "memC_IDee", insertable = false, updatable = false)
-	Member memberEEBean;
+	private Member MemberEE;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "memC_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "con_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public Conversation() {
 	}
 
-	public Conversation(Integer id, Integer memberIdEE, Integer memberId, String context, Date achievementID,
-			Integer state) {
+	public Conversation(Integer id, Integer memberIdEE, Integer memberId, String context, Date time, Integer stateId) {
+		super();
 		this.id = id;
 		this.memberIdEE = memberIdEE;
 		this.memberId = memberId;
 		this.context = context;
-		this.achievementID = achievementID;
-		this.state = state;
+		this.time = time;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
 		return "Conversation [id=" + id + ", memberIdEE=" + memberIdEE + ", memberId=" + memberId + ", context="
-				+ context + ", achievementID=" + achievementID + ", state=" + state + "]\r\n  [memberEEBean="
-				+ memberEEBean + "]\r\n  [memberBean=" + memberBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+				+ context + ", time=" + time + ", stateId=" + stateId + ", MemberEE=" + MemberEE + ", Member=" + Member
+				+ ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -100,44 +98,32 @@ public class Conversation {
 		this.context = context;
 	}
 
-	public Date getAchievementID() {
-		return achievementID;
+	public Date getTime() {
+		return time;
 	}
 
-	public void setAchievementID(Date achievementID) {
-		this.achievementID = achievementID;
+	public void setTime(Date time) {
+		this.time = time;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public Member getMemberEEBean() {
-		return memberEEBean;
+	public Member getMemberEE() {
+		return MemberEE;
 	}
 
-	public void setMemberEEBean(Member memberEEBean) {
-		this.memberEEBean = memberEEBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
-	}
-
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }
