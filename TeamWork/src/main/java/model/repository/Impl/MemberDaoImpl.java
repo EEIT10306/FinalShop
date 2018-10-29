@@ -27,7 +27,8 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(simples);
 		return simples;
 	}
-
+	
+	
 	@Override
 	public Member selectByPk(Member bean) throws SQLException {
 		Member simple = getSession().get(Member.class, bean.getId());

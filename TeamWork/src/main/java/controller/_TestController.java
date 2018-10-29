@@ -12,13 +12,16 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.Achievement;
 import model.bean.DistrictType;
 import model.bean.Groupon;
+import model.bean.Member;
 import model.bean.Wish;
 import model.bean.WishMessage;
 import model.bean.WishProduct;
+import model.service.UserPageService;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceDistrictType;
 import model.service._TestServiceGroupon;
@@ -47,10 +50,11 @@ public class _TestController {
 	}
 
 	@RequestMapping(path = "/Achievement", method = RequestMethod.GET)
-	public ResponseEntity<List<Achievement>> TestID(Achievement achievement, BindingResult binder) {
-		List<Achievement> list = tes.getSelect(achievement);
-		return new ResponseEntity<List<Achievement>>(list, HttpStatus.OK);
+	@ResponseBody
+	public List<Achievement> TestID(Achievement achievement, BindingResult binder) {
+		return tes.getSelect(achievement);
 	}
+
 	@RequestMapping(path = "/Wish", method = RequestMethod.GET)
 	public ResponseEntity<List<Wish>> TestID(Wish wish, BindingResult binder) {
 		List<Wish> list = tes1.getSelect(wish);
@@ -76,5 +80,6 @@ public class _TestController {
 		List<Groupon> list = tes5.getSelect(groupon);
 		return new ResponseEntity<List<Groupon>>(list, HttpStatus.OK);
 	}
+	
 	
 }

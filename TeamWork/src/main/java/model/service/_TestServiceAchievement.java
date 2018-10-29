@@ -24,7 +24,7 @@ public class _TestServiceAchievement {
 				return list;
 			}
 			Achievement temp;
-			temp = achievementDaoImpl.select(achievement.getId());
+			temp = achievementDaoImpl.selectByPk(achievement);
 			List<Achievement> list = new ArrayList<>();
 			list.add(temp);
 			return list;
