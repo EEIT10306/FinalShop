@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,105 +10,94 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CommitAchievement")
 public class CommitAchievement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cA_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "cA_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "ach_ID", columnDefinition = "int")
-	Integer achievementID;
+	@Column(name = "ach_ID", columnDefinition = "int", nullable = false)
+	private Integer achievementId;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberID;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "cA_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "cA_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "ach_ID", insertable = false, updatable = false)
-	Achievement achievement;
+	private Achievement Achievement;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memeberBean;
+	private Member Memeber;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "cA_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public CommitAchievement() {
 	}
 
-	public CommitAchievement(Integer id, Integer achievementID, Integer memberID) {
+	public CommitAchievement(Integer id, Integer achievementId, Integer memberId, Integer stateId) {
+		super();
 		this.id = id;
-		this.achievementID = achievementID;
-		this.memberID = memberID;
+		this.achievementId = achievementId;
+		this.memberId = memberId;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "CommitAchievement [id=" + id + ", achievementID=" + achievementID + ", memberID=" + memberID
-				+ "]\r\n  [achievement=" + achievement + "]\r\n    [memeberBean=" + memeberBean + "]\r\n  [stateBean="
-				+ stateBean + "]\r\n";
+		return "CommitAchievement [id=" + id + ", achievementId=" + achievementId + ", memberId=" + memberId
+				+ ", stateId=" + stateId + ", Achievement=" + Achievement + ", Memeber=" + Memeber + ", State=" + State
+				+ "]\r\n";
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
+	public Integer getAchievementId() {
+		return achievementId;
+	}
+
+	public void setAchievementId(Integer achievementId) {
+		this.achievementId = achievementId;
+	}
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+	public Integer getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Integer getAchievementID() {
-		return achievementID;
-	}
-
-	public void setAchievementID(Integer achievementID) {
-		this.achievementID = achievementID;
-	}
-
-	public Integer getMemberID() {
-		return memberID;
-	}
-
-	public void setMemberID(Integer memberID) {
-		this.memberID = memberID;
-	}
-
-	public Integer getState() {
-		return state;
-	}
-
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
 	public Achievement getAchievement() {
-		return achievement;
+		return Achievement;
 	}
 
-	public void setAchievement(Achievement achievement) {
-		this.achievement = achievement;
+	public Member getMemeber() {
+		return Memeber;
 	}
 
-	public Member getMemeberBean() {
-		return memeberBean;
-	}
-
-	public void setMemeberBean(Member memeberBean) {
-		this.memeberBean = memeberBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

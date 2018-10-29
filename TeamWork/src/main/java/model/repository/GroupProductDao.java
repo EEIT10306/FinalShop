@@ -8,9 +8,12 @@ import model.bean.GroupProduct;
 public interface GroupProductDao {
 	public List<GroupProduct> selectAll() throws SQLException;
 
-	public GroupProduct selectByPk(GroupProduct groupProductBean) throws SQLException;
+	public GroupProduct selectByPk(Integer id) throws SQLException;
+	
+	public List<GroupProduct> selectHql(String hqlString) throws SQLException;
 
-	public GroupProduct insert(GroupProduct groupProductBean) throws SQLException;
+	public GroupProduct insert(GroupProduct bean) throws SQLException;
 
-	public GroupProduct update(GroupProduct groupProductBean) throws SQLException;
+	public GroupProduct update(GroupProduct bean) throws SQLException;
+
 }

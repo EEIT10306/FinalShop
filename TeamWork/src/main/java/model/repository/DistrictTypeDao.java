@@ -6,8 +6,10 @@ import java.util.List;
 import model.bean.DistrictType;
 
 public interface DistrictTypeDao {
-	public List<DistrictType> select() throws SQLException;
-	public DistrictType select(Integer id) throws SQLException;
-	public DistrictType insert(DistrictType bean) throws SQLException;
-	public DistrictType update(DistrictType bean) throws SQLException;
+	public List<DistrictType> selectAll() throws SQLException;
+
+	public DistrictType selectByPk(Integer id) throws SQLException;
+
+	public List<DistrictType> selectHql(String hqlString) throws SQLException;
+
 }

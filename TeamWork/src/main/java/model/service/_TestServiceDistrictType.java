@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.DistrictType;
 import model.repository.DistrictTypeDao;
 @Service
+@Transactional
 public class _TestServiceDistrictType {
 
 	@Autowired
@@ -17,15 +19,7 @@ public class _TestServiceDistrictType {
 	
 	public List<DistrictType> getSelect(DistrictType districtType) {
 		try {
-			if (districtType.getId() == null) {
-				List<DistrictType> list = districtTypeDaoImpl.select();
-				return list;
-			}
-			DistrictType temp;
-			temp =	districtTypeDaoImpl.select(districtType.getId());
-			List<DistrictType> list = new ArrayList<>();
-			list.add(temp);
-			return list;
+				return districtTypeDaoImpl.selectAll();
 		} catch (SQLException e) {
 			System.out.println("_TestService - SQLException");
 			e.printStackTrace();

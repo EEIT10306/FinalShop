@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.GroupAssess;
-import model.bean.GroupMessage;
-import model.bean.State;
 import model.repository.GroupAssessDao;
 
 @Repository
@@ -25,43 +23,52 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 
 	@Override
 	public List<GroupAssess> selectAll() throws SQLException {
-		return getSession().createQuery("from GroupAssess", GroupAssess.class).setMaxResults(50).list();
+		List<GroupAssess> LGA = getSession().createQuery("from GroupAssess", GroupAssess.class).list();
+		System.out.println(LGA);
+		return LGA;
 	}
 
 	@Override
-	public GroupAssess selectByPk(GroupAssess groupAssessBean) throws SQLException {
-		GroupAssess groupAssess = getSession().get(GroupAssess.class, groupAssessBean.getId());
-		if(groupAssess!=null) {
-			return groupAssess;
+	public GroupAssess selectByPk(Integer id) throws SQLException {
+		GroupAssess GA = getSession().get(GroupAssess.class, id);
+		System.out.println(GA);
+		return GA;
+	}
+
+	@Override
+	public List<GroupAssess> selectHql(String hqlString) throws SQLException {
+		String hql = "from GroupAssess ";
+		hql += hqlString;
+		List<GroupAssess> LGA = getSession().createQuery(hql, GroupAssess.class).list();
+		System.out.println(LGA);
+		return LGA;
+	}
+
+	@Override
+	public GroupAssess insert(GroupAssess bean) throws SQLException {
+		GroupAssess GA = selectByPk(bean.getId());
+		if (GA == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
 	@Override
-	public GroupAssess insert(GroupAssess groupAssessBean) throws SQLException {
-		GroupAssess groupAssess = getSession().get(GroupAssess.class, groupAssessBean.getId());
-		if (groupAssess == null) {
-			getSession().save(groupAssessBean);
-			return groupAssessBean;
-		}
-		return null;
-	}
-
-	@Override
-	public GroupAssess update(GroupAssess groupAssessBean) throws SQLException {
-		GroupAssess groupAssess = getSession().get(GroupAssess.class, groupAssessBean.getId());
-		if (groupAssess != null) {
-			if (getSession().get(GroupMessage.class, groupAssessBean.getGroupMessageId()) != null) {
-				if (getSession().get(State.class, groupAssessBean.getState()) != null) {
-					groupAssess.setGroupMessageId(groupAssessBean.getGroupMessageId());
-					groupAssess.setPoint(groupAssessBean.getPoint());
-					groupAssess.setContext(groupAssessBean.getContext());
-					groupAssess.setPointEE(groupAssessBean.getPointEE());
-					groupAssess.setContextEE(groupAssessBean.getContextEE());
-					groupAssess.setState(groupAssessBean.getState());
-					return groupAssess;
-				}
-			}
+	public GroupAssess update(GroupAssess bean) throws SQLException {
+		GroupAssess GA = selectByPk(bean.getId());
+		if (GA != null) {
+			if (bean.getGroupOrderId() != null)
+				GA.setGroupOrderId(bean.getGroupOrderId());
+			if (bean.getPoint() != null)
+				GA.setPoint(bean.getPoint());
+			if (bean.getContext() != null)
+				GA.setContext(bean.getContext());
+			if (bean.getPointEE() != null)
+				GA.setPointEE(bean.getPointEE());
+			if (bean.getContextEE() != null)
+				GA.setContextEE(bean.getContextEE());
+			return GA;
 		}
 		return null;
 	}

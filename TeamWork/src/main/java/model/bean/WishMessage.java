@@ -2,7 +2,6 @@ package model.bean;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,66 +9,60 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "WishMessage")
 public class WishMessage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "wM_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "wM_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "wP_ID", columnDefinition = "int")
-	Integer groupProductId;
+	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
+	private Integer wishId;
 
-	@Column(name = "mem_IDee", columnDefinition = "int")
-	Integer buyerMemberIdEE;
+	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "wM_bid", columnDefinition = "int")
-	Integer bid;
+	@Column(name = "wM_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String context;
 
-	@Column(name = "wM_cont", columnDefinition = "nvarchar(max)")
-	String amount;
+	@Column(name = "wM_time", columnDefinition = "daetime", nullable = false)
+	private Date time;
 
-	@Column(name = "wM_time", columnDefinition = "daetime")
-	Date time;
+	@Column(name = "wM_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@Column(name = "wM_state", columnDefinition = "int")
-	Integer state;
+	@ManyToOne
+	@JoinColumn(name = "wist_ID", insertable = false, updatable = false)
+	private Wish Wish;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
-	GroupProduct groupProductBean;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_IDee", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "wM_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public WishMessage() {
 	}
 
-	public WishMessage(Integer id, Integer groupProductId, Integer buyerMemberIdEE, Integer bid, String amount,
-			Date time, Integer state) {
+	public WishMessage(Integer id, Integer wishId, Integer memberId, String context, Date time, Integer stateId) {
+		super();
 		this.id = id;
-		this.groupProductId = groupProductId;
-		this.buyerMemberIdEE = buyerMemberIdEE;
-		this.bid = bid;
-		this.amount = amount;
+		this.wishId = wishId;
+		this.memberId = memberId;
+		this.context = context;
 		this.time = time;
-		this.state = state;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "WishMessage [id=" + id + ", groupProductId=" + groupProductId + ", buyerMemberIdEE=" + buyerMemberIdEE
-				+ ", bid=" + bid + ", amount=" + amount + ", time=" + time + ", state=" + state + "]\r\n  [groupProductBean="
-				+ groupProductBean + "]\r\n  [memberBean=" + memberBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "WishMessage [id=" + id + ", wishId=" + wishId + ", memberId=" + memberId + ", context=" + context
+				+ ", time=" + time + ", stateId=" + stateId + ", Wish=" + Wish + ", Member=" + Member + ", State="
+				+ State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -80,36 +73,28 @@ public class WishMessage {
 		this.id = id;
 	}
 
-	public Integer getGroupProductId() {
-		return groupProductId;
+	public Integer getWishId() {
+		return wishId;
 	}
 
-	public void setGroupProductId(Integer groupProductId) {
-		this.groupProductId = groupProductId;
+	public void setWishId(Integer wishId) {
+		this.wishId = wishId;
 	}
 
-	public Integer getBuyerMemberIdEE() {
-		return buyerMemberIdEE;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setBuyerMemberIdEE(Integer buyerMemberIdEE) {
-		this.buyerMemberIdEE = buyerMemberIdEE;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
-	public Integer getBid() {
-		return bid;
+	public String getContext() {
+		return context;
 	}
 
-	public void setBid(Integer bid) {
-		this.bid = bid;
-	}
-
-	public String getAmount() {
-		return amount;
-	}
-
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setContext(String context) {
+		this.context = context;
 	}
 
 	public Date getTime() {
@@ -120,36 +105,24 @@ public class WishMessage {
 		this.time = time;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public GroupProduct getGroupProductBean() {
-		return groupProductBean;
+	public Wish getWish() {
+		return Wish;
 	}
 
-	public void setGroupProductBean(GroupProduct groupProductBean) {
-		this.groupProductBean = groupProductBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
-	}
-
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

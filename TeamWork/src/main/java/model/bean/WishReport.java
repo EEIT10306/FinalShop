@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,57 +7,55 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "WishReport")
 public class WishReport {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "wR_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "wR_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "wP_ID", columnDefinition = "int")
-	Integer wishProductID;
+	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
+	private Integer wishId;
 
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer memberID;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "wR_cont", columnDefinition = "nvarchar(max)")
-	String content;
+	@Column(name = "wR_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String content;
 
-	@Column(name = "wR_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "wR_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
-	WishProduct wishProductBean;
+	@ManyToOne
+	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
+	private Wish Wish;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "wR_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public WishReport() {
 	}
 
-	public WishReport(Integer id, Integer wishProductID, Integer memberID, String content, Integer state) {
+	public WishReport(Integer id, Integer wishId, Integer memberId, String content, Integer stateId) {
+		super();
 		this.id = id;
-		this.wishProductID = wishProductID;
-		this.memberID = memberID;
+		this.wishId = wishId;
+		this.memberId = memberId;
 		this.content = content;
-		this.state = state;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "WishReport [id=" + id + ", wishProductID=" + wishProductID + ", memberID=" + memberID + ", content="
-				+ content + ", state=" + state + "]\r\n  [wishProductBean=" + wishProductBean + "]\r\n  [memberBean=" + memberBean
-				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "WishReport [id=" + id + ", wishId=" + wishId + ", memberId=" + memberId + ", content=" + content
+				+ ", stateId=" + stateId + ", Wish=" + Wish + ", Member=" + Member + ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -69,20 +66,20 @@ public class WishReport {
 		this.id = id;
 	}
 
-	public Integer getWishProductID() {
-		return wishProductID;
+	public Integer getWishId() {
+		return wishId;
 	}
 
-	public void setWishProductID(Integer wishProductID) {
-		this.wishProductID = wishProductID;
+	public void setWishId(Integer wishId) {
+		this.wishId = wishId;
 	}
 
-	public Integer getMemberID() {
-		return memberID;
+	public Integer getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberID(Integer memberID) {
-		this.memberID = memberID;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getContent() {
@@ -93,36 +90,24 @@ public class WishReport {
 		this.content = content;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public WishProduct getWishProductBean() {
-		return wishProductBean;
+	public Wish getWish() {
+		return Wish;
 	}
 
-	public void setWishProductBean(WishProduct wishProductBean) {
-		this.wishProductBean = wishProductBean;
+	public Member getMember() {
+		return Member;
 	}
 
-	public Member getMemberBean() {
-		return memberBean;
-	}
-
-	public void setMemberBean(Member memberBean) {
-		this.memberBean = memberBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

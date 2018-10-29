@@ -2,7 +2,6 @@ package model.bean;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,78 +9,61 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "GroupMessage", uniqueConstraints = { @UniqueConstraint(columnNames = { "gP_ID", "memG_IDee" }) })
+//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "gP_ID", "memG_IDee" }) })
 public class GroupMessage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "gM_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "gM_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "gP_ID", columnDefinition = "int")
-	Integer groupProductId;
+	@Column(name = "group_ID", columnDefinition = "int", nullable = false)
+	private Integer groupId;
 
-	@Column(name = "memG_IDee", columnDefinition = "int")
-	Integer memberId;
+	@Column(name = "memG_IDee", columnDefinition = "int", nullable = false)
+	private Integer memberId;
 
-	@Column(name = "gM_amt", columnDefinition = "int")
-	Integer amount;
+	@Column(name = "gM_cont", columnDefinition = "int", nullable = false)
+	private Integer context;
 
-	@Column(name = "gM_time", columnDefinition = "daetime")
-	Date time;
+	@Column(name = "gM_time", columnDefinition = "daetime", nullable = false)
+	private Date time;
 
-	@Column(name = "gS_ID", columnDefinition = "int")
-	Integer groupServiceId;
+	@Column(name = "gM_state", columnDefinition = "int", nullable = false)
+	private Integer stateId;
 
-	@Column(name = "gM_sumPrice", columnDefinition = "int")
-	Integer sumPrice;
+	@ManyToOne
+	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
+	private Groupon Groupon;
 
-	@Column(name = "gM_state", columnDefinition = "int")
-	Integer state;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
-	GroupProduct groupProductBean;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "memG_IDee", insertable = false, updatable = false)
-	Member memberBean;
+	private Member Member;
 
-	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gS_ID", insertable = false, updatable = false)
-	GroupService groupServiceBean;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "gM_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public GroupMessage() {
 	}
 
-	public GroupMessage(Integer id, Integer groupProductId, Integer memberId, Integer amount, Date time,
-			Integer groupServiceId, Integer sumPrice, Integer state) {
+	public GroupMessage(Integer id, Integer groupId, Integer memberId, Integer context, Date time, Integer stateId) {
+		super();
 		this.id = id;
-		this.groupProductId = groupProductId;
+		this.groupId = groupId;
 		this.memberId = memberId;
-		this.amount = amount;
+		this.context = context;
 		this.time = time;
-		this.groupServiceId = groupServiceId;
-		this.sumPrice = sumPrice;
-		this.state = state;
+		this.stateId = stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupMessage [id=" + id + ", groupProductId=" + groupProductId + ", memberId=" + memberId + ", amount="
-				+ amount + ", time=" + time + ", groupServiceId=" + groupServiceId + ", sumPrice=" + sumPrice
-				+ ", state=" + state + "]\r\n  [groupProductBean=" + groupProductBean + "]\r\n  [memberBean="
-				+ memberBean + "]\r\n  [groupServiceBean=" + groupServiceBean + "]\r\n  [stateBean=" + stateBean
-				+ "]\r\n";
+		return "GroupMessage [id=" + id + ", groupId=" + groupId + ", memberId=" + memberId + ", context=" + context
+				+ ", time=" + time + ", stateId=" + stateId + ", Groupon=" + Groupon + ", Member=" + Member + ", State="
+				+ State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -92,12 +74,12 @@ public class GroupMessage {
 		this.id = id;
 	}
 
-	public Integer getGroupProductId() {
-		return groupProductId;
+	public Integer getGroupId() {
+		return groupId;
 	}
 
-	public void setGroupProductId(Integer groupProductId) {
-		this.groupProductId = groupProductId;
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
 	}
 
 	public Integer getMemberId() {
@@ -108,12 +90,12 @@ public class GroupMessage {
 		this.memberId = memberId;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public Integer getContext() {
+		return context;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setContext(Integer context) {
+		this.context = context;
 	}
 
 	public Date getTime() {
@@ -124,43 +106,24 @@ public class GroupMessage {
 		this.time = time;
 	}
 
-	public Integer getGroupServiceId() {
-		return groupServiceId;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setGroupServiceId(Integer groupServiceId) {
-		this.groupServiceId = groupServiceId;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
 
-	public Integer getSumPrice() {
-		return sumPrice;
+	public Groupon getGroupon() {
+		return Groupon;
 	}
 
-	public void setSumPrice(Integer sumPrice) {
-		this.sumPrice = sumPrice;
+	public Member getMember() {
+		return Member;
 	}
 
-	public Integer getState() {
-		return state;
+	public State getState() {
+		return State;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
-	public GroupProduct getGroupProductBean() {
-		return groupProductBean;
-	}
-
-	public Member getMemberBean() {
-		return memberBean;
-	}
-
-	public GroupService getGroupServiceBean() {
-		return groupServiceBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
 }

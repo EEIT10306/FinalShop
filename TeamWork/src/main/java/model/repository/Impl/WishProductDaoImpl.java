@@ -3,18 +3,11 @@ package model.repository.Impl;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Product;
-import model.bean.State;
-import model.bean.Wish;
 import model.bean.WishProduct;
 import model.repository.WishProductDao;
 
@@ -29,58 +22,60 @@ public class WishProductDaoImpl implements WishProductDao {
 	}
 
 	@Override
-	public List<WishProduct> select() throws SQLException {
-		return getSession().createQuery("from WishProduct", WishProduct.class).setMaxResults(50).list();
+	public List<WishProduct> selectAll() throws SQLException {
+		List<WishProduct> LWP = getSession().createQuery("from WishProduct", WishProduct.class).list();
+		System.out.println(LWP);
+		return LWP;
 
 	}
 
 	@Override
-	public WishProduct select(Integer id) throws SQLException {
-		return getSession().get(WishProduct.class, id);
+	public WishProduct selectByPk(Integer id) throws SQLException {
+		WishProduct WP = getSession().get(WishProduct.class, id);
+		System.out.println(WP);
+		return WP;
+	}
+
+	@Override
+	public List<WishProduct> selectHql(String hqlString) throws SQLException {
+		String hql = "from WishProduct ";
+		hql += hqlString;
+		List<WishProduct> LWP = getSession().createQuery(hql, WishProduct.class).list();
+		System.out.println(LWP);
+		return LWP;
 	}
 
 	@Override
 	public WishProduct insert(WishProduct bean) throws SQLException {
-		WishProduct simple = getSession().get(WishProduct.class, bean.getId());
-		if (simple == null) {
-			Wish wish = getSession().get(Wish.class, bean.getId());
-			Product pro= getSession().get(Product.class, bean.getId());
-			State sta = getSession().get(State.class, bean.getState());
-			if(wish!=null&& pro!=null&&sta!=null) {
-				
-				getSession().save(bean);
-				return bean;
-			}
-			return null;
+		WishProduct WP = selectByPk(bean.getId());
+		if (WP == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
-	
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	Product productBean;
-
-	
 	@Override
 	public WishProduct update(WishProduct bean) throws SQLException {
-		WishProduct wishProduct = this.getSession().get(WishProduct.class, bean.getId());
-		if (wishProduct != null) {
-			Wish wish = getSession().get(Wish.class, bean.getId());
-			Product pro= getSession().get(Product.class, bean.getId());
-			State sta = getSession().get(State.class, bean.getState());
-			if(wish!=null&& pro!=null&&sta!=null) {			
-				wishProduct.setWishID(bean.getWishID());
-				wishProduct.setName(bean.getName());
-				wishProduct.setProductID(bean.getProductID());
-				wishProduct.setAmount(bean.getAmount());
-				wishProduct.setPriceBottom(bean.getPriceBottom());
-				wishProduct.setPriceTop(bean.getPriceTop());
-				wishProduct.setCompleteTime(bean.getCompleteTime());
-				wishProduct.setState(bean.getState());
-				return wishProduct;
-			}
-			return null;
+		WishProduct WP = selectByPk(bean.getId());
+		if (WP != null) {
+			if (bean.getWishId() != null)
+				WP.setWishId(bean.getWishId());
+			if (bean.getName() != null)
+				WP.setName(bean.getName());
+			if (bean.getProductId() != null)
+				WP.setProductId(bean.getProductId());
+			if (bean.getAmount() != null)
+				WP.setAmount(bean.getAmount());
+			if (bean.getPriceBottom() != null)
+				WP.setPriceBottom(bean.getPriceBottom());
+			if (bean.getPriceTop() != null)
+				WP.setPriceTop(bean.getPriceTop());
+			if (bean.getCompleteTime() != null)
+				WP.setCompleteTime(bean.getCompleteTime());
+			if (bean.getStateId() != null)
+				WP.setStateId(bean.getStateId());
+			return WP;
 		}
 		return null;
 	}

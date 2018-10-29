@@ -6,8 +6,14 @@ import java.util.List;
 import model.bean.Achievement;
 
 public interface AchievementDao {
-	public List<Achievement> select() throws SQLException;
-	public Achievement selectByPk(Achievement bean) throws SQLException;
+	public List<Achievement> selectAll() throws SQLException;
+
+	public Achievement selectByPk(Integer id) throws SQLException;
+
+	public List<Achievement> selectHql(String hqlString) throws SQLException;
+
 	public Achievement insert(Achievement bean) throws SQLException;
+
 	public Achievement update(Achievement bean) throws SQLException;
+
 }

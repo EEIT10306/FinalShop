@@ -1,70 +1,59 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "GroupAssess")
 public class GroupAssess {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "gA_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "gA_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "gM_ID", columnDefinition = "int")
-	Integer groupMessageId;
+	@Column(name = "gO_ID", columnDefinition = "int", nullable = false)
+	private Integer groupOrderId;
 
 	@Column(name = "gA_point", columnDefinition = "int")
-	Integer point;
+	private Integer point;
 
 	@Column(name = "gA_cont", columnDefinition = "nvarchar(max)")
-	String context;
+	private String context;
 
 	@Column(name = "gA_pointee", columnDefinition = "int")
-	Integer pointEE;
+	private Integer pointEE;
 
 	@Column(name = "gA_contee", columnDefinition = "nvarchar(max)")
-	String contextEE;
+	private String contextEE;
 
-	@Column(name = "gA_state", columnDefinition = "int")
-	Integer state;
-
-	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gM_ID", insertable = false, updatable = false)
-	GroupMessage groupMessageBean;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "gA_state", insertable = false, updatable = false)
-	State stateBean;
+	@OneToOne
+	@JoinColumn(name = "gO_ID", insertable = false, updatable = false)
+	private GroupOrder GroupOrder;
 
 	public GroupAssess() {
 	}
 
-	public GroupAssess(Integer id, Integer groupMessageId, Integer point, String context, Integer pointEE,
-			String contextEE, Integer state) {
+	public GroupAssess(Integer id, Integer groupOrderId, Integer point, String context, Integer pointEE,
+			String contextEE) {
+		super();
 		this.id = id;
-		this.groupMessageId = groupMessageId;
+		this.groupOrderId = groupOrderId;
 		this.point = point;
 		this.context = context;
 		this.pointEE = pointEE;
 		this.contextEE = contextEE;
-		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupAssess [id=" + id + ", groupMessageId=" + groupMessageId + ", point=" + point + ", context="
-				+ context + ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", state=" + state
-				+ "]\r\n  [groupMessageBean=" + groupMessageBean + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "GroupAssess [id=" + id + ", groupOrderId=" + groupOrderId + ", point=" + point + ", context=" + context
+				+ ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", GroupOrder=" + GroupOrder + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -75,12 +64,12 @@ public class GroupAssess {
 		this.id = id;
 	}
 
-	public Integer getGroupMessageId() {
-		return groupMessageId;
+	public Integer getGroupOrderId() {
+		return groupOrderId;
 	}
 
-	public void setGroupMessageId(Integer groupMessageId) {
-		this.groupMessageId = groupMessageId;
+	public void setGroupOrderId(Integer groupOrderId) {
+		this.groupOrderId = groupOrderId;
 	}
 
 	public Integer getPoint() {
@@ -115,19 +104,8 @@ public class GroupAssess {
 		this.contextEE = contextEE;
 	}
 
-	public Integer getState() {
-		return state;
+	public GroupOrder getGroupOrder() {
+		return GroupOrder;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
-
-	public GroupMessage getGroupMessageBean() {
-		return groupMessageBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
 }

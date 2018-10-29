@@ -18,53 +18,63 @@ import model.repository.StoreProductDao;
 public class StoreProductDaoImpl implements StoreProductDao {
 	@Autowired
 	SessionFactory sessionFactory;
-	
+
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
+
 	@Override
-	public List<StoreProduct> select() throws SQLException {
-		return this.getSession().createQuery("From StoreProduct", StoreProduct.class).setMaxResults(50).list();
+	public List<StoreProduct> selectAll() throws SQLException {
+		List<StoreProduct> LSP = getSession().createQuery("From StoreProduct", StoreProduct.class).list();
+		System.out.println(LSP);
+		return LSP;
 	}
 
 	@Override
 	public StoreProduct selectByPk(Integer id) throws SQLException {
-		return this.getSession().get(StoreProduct.class, id);
+		StoreProduct SP = getSession().get(StoreProduct.class, id);
+		System.out.println(SP);
+		return SP;
+	}
+
+	@Override
+	public List<StoreProduct> selectHql(String hqlString) throws SQLException {
+		String hql = "from StoreProduct ";
+		hql += hqlString;
+		List<StoreProduct> LSP = getSession().createQuery(hql, StoreProduct.class).list();
+		System.out.println(LSP);
+		return LSP;
 	}
 
 	@Override
 	public StoreProduct insert(StoreProduct bean) throws SQLException {
-		StoreProduct storeProduct = this.getSession().get(StoreProduct.class, bean.getId());
-		if(storeProduct == null) {
-			Store store = this.getSession().get(Store.class, bean.getStoreId());
-			Product product = this.getSession().get(Product.class, bean.getProductId());
-			State state = this.getSession().get(State.class, bean.getState());
-			if(store != null && product != null && state != null) {
-				this.getSession().save(bean);
-				return bean;				
-			}
-			return null;
+		StoreProduct SP = selectByPk(bean.getId());
+		if (SP == null) {
+			this.getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
 	@Override
 	public StoreProduct update(StoreProduct bean) throws SQLException {
-		StoreProduct storeProduct = this.getSession().get(StoreProduct.class, bean.getId());
-		if(storeProduct != null) {
-			Store store = this.getSession().get(Store.class, bean.getStoreId());
-			Product product = this.getSession().get(Product.class, bean.getProductId());
-			State state = this.getSession().get(State.class, bean.getState());
-			if(store != null && product != null && state != null) {
-				storeProduct.setStoreId(bean.getStoreId());
-				storeProduct.setName(bean.getName());
-				storeProduct.setProductId(bean.getProductId());
-				storeProduct.setAmount(bean.getAmount());
-				storeProduct.setPrice(bean.getPrice());
-				storeProduct.setState(bean.getState());
-				return storeProduct;				
-			}
-			return null;
+		StoreProduct SP = selectByPk(bean.getId());
+		if (SP != null) {
+			if (bean.getStoreId() != null)
+				SP.setStoreId(bean.getStoreId());
+			if (bean.getName() != null)
+				SP.setName(bean.getName());
+			if (bean.getProductId() != null)
+				SP.setProductId(bean.getProductId());
+			if (bean.getAmount() != null)
+				SP.setAmount(bean.getAmount());
+			if (bean.getPrice() != null)
+				SP.setPrice(bean.getPrice());
+			if (bean.getHot() != null)
+				SP.setHot(bean.getHot());
+			if (bean.getStateId() != null)
+				SP.setStateId(bean.getStateId());
+			return SP;
 		}
 		return null;
 	}

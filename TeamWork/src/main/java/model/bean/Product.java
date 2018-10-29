@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,36 +12,37 @@ import javax.persistence.OneToOne;
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "prod_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "prod_name", columnDefinition = "nvarchar(max)")
-	String name;
+	@Column(name = "prod_name", columnDefinition = "nvarchar(max)", nullable = false)
+	private String name;
 
 	@Column(name = "prod_parID", columnDefinition = "nvarchar(max)")
-	Integer parentsId;
+	private Integer parentsId;
 
-	@Column(name = "prod_stage", columnDefinition = "int")
-	Integer stage;
+	@Column(name = "prod_stage", columnDefinition = "int", nullable = false)
+	private Integer stage;
 
-	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "parID", insertable = false, updatable = false)
-	Product parentsProductBean;
+	@OneToOne
+	@JoinColumn(name = "prod_parID", insertable = false, updatable = false)
+	private Product Product;
 
 	public Product() {
 	}
 
-	public Product(Integer id, String name, Integer parentId, Integer stage) {
+	public Product(Integer id, String name, Integer parentsId, Integer stage) {
+		super();
 		this.id = id;
 		this.name = name;
-		this.parentsId = parentId;
+		this.parentsId = parentsId;
 		this.stage = stage;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", parentsId=" + parentsId + ", stage=" + stage
-				+ "]\r\n  [parentsProductBean=" + parentsProductBean + "]\r\n";
+		return "Product [id=" + id + ", name=" + name + ", parentsId=" + parentsId + ", stage=" + stage + ", Product="
+				+ Product + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -78,11 +78,7 @@ public class Product {
 	}
 
 	public Product getProduct() {
-		return parentsProductBean;
-	}
-
-	public void setProduct(Product parentsProductBean) {
-		this.parentsProductBean = parentsProductBean;
+		return Product;
 	}
 
 }

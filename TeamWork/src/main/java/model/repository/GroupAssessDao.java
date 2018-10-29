@@ -6,12 +6,14 @@ import java.util.List;
 import model.bean.GroupAssess;
 
 public interface GroupAssessDao {
-
 	public List<GroupAssess> selectAll() throws SQLException;
 
-	public GroupAssess selectByPk(GroupAssess groupAssessBean) throws SQLException;
+	public GroupAssess selectByPk(Integer id) throws SQLException;
 
-	public GroupAssess insert(GroupAssess groupAssessBean) throws SQLException;
+	public List<GroupAssess> selectHql(String hqlString) throws SQLException;
 
-	public GroupAssess update(GroupAssess groupAssessBean) throws SQLException;
+	public GroupAssess insert(GroupAssess bean) throws SQLException;
+
+	public GroupAssess update(GroupAssess bean) throws SQLException;
+
 }

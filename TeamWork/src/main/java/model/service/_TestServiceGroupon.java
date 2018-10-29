@@ -9,20 +9,21 @@ import org.springframework.stereotype.Service;
 
 import model.bean.Groupon;
 import model.repository.GrouponDao;
+
 @Service
 public class _TestServiceGroupon {
 
 	@Autowired
 	private GrouponDao grouponDaoImpl;
-	
+
 	public List<Groupon> getSelect(Groupon groupon) {
 		try {
 			if (groupon.getId() == null) {
-				List<Groupon> list = grouponDaoImpl.select();
+				List<Groupon> list = grouponDaoImpl.selectAll();
 				return list;
 			}
 			Groupon temp;
-			temp =	grouponDaoImpl.select(groupon.getId());
+			temp = grouponDaoImpl.selectByPk(groupon.getId());
 			List<Groupon> list = new ArrayList<>();
 			list.add(temp);
 			return list;

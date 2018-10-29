@@ -8,10 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.GroupProduct;
 import model.bean.GroupReport;
-import model.bean.Member;
-import model.bean.State;
 import model.repository.GroupReportDao;
 
 @Repository
@@ -24,47 +21,51 @@ public class GroupReportDaoImpl implements GroupReportDao {
 	}
 
 	@Override
-	public List<GroupReport> select() throws SQLException {
-		return getSession().createQuery("from GroupReport", GroupReport.class).setMaxResults(50).list();
+	public List<GroupReport> selectAll() throws SQLException {
+		List<GroupReport> LGR = getSession().createQuery("from GroupReport", GroupReport.class).list();
+		System.out.println(LGR);
+		return LGR;
 	}
 
 	@Override
-	public GroupReport selectByPk(GroupReport bean) throws SQLException {
-		return getSession().get(GroupReport.class, bean.getId());
+	public GroupReport selectByPk(Integer id) throws SQLException {
+		GroupReport GR = getSession().get(GroupReport.class, id);
+		System.out.println(GR);
+		return GR;
+	}
+
+	@Override
+	public List<GroupReport> selectHql(String hqlString) throws SQLException {
+		String hql = "from GroupReport ";
+		hql += hqlString;
+		List<GroupReport> LGR = getSession().createQuery(hql, GroupReport.class).list();
+		System.out.println(LGR);
+		return LGR;
 	}
 
 	@Override
 	public GroupReport insert(GroupReport bean) throws SQLException {
-		GroupReport groupReport = getSession().get(GroupReport.class, bean.getId());
-		if(groupReport==null) {
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member member = getSession().get(Member.class, bean.getId());
-			GroupProduct groupProduct = getSession().get(GroupProduct.class, bean.getId());
-			if(simpleState != null && member != null && groupProduct != null) {
-								
-				getSession().save(bean);
-				return bean;
-			}
+		GroupReport GR = selectByPk(bean.getId());
+		if (GR == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
 
 	@Override
 	public GroupReport update(GroupReport bean) throws SQLException {
-		GroupReport groupReport = this.getSession().get(GroupReport.class, bean.getId());
-		if(groupReport != null) {
-			State simpleState = getSession().get(State.class, bean.getState());
-			Member member = getSession().get(Member.class, bean.getId());
-			GroupProduct groupProduct = getSession().get(GroupProduct.class, bean.getId());
-			if(simpleState != null && member != null && groupProduct != null) {
-								
-				groupReport.setProductId(bean.getProductId());
-				groupReport.setMemberId(bean.getMemberId());;
-				groupReport.setContent(bean.getContent());
-				groupReport.setState(bean.getState());
-				getSession().update(groupReport);
-				return groupReport;
-			}
+		GroupReport GR = selectByPk(bean.getId());
+		if (GR != null) {
+			if (bean.getGroupId() != null)
+				GR.setGroupId(bean.getGroupId());
+			if (bean.getMemberId() != null)
+				GR.setMemberId(bean.getMemberId());
+			if (bean.getContent() != null)
+				GR.setContent(bean.getContent());
+			if (bean.getStateId() != null)
+				GR.setStateId(bean.getStateId());
+			return GR;
 		}
 		return null;
 	}

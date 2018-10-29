@@ -20,11 +20,11 @@ public class _TestServiceAchievement {
 	public List<Achievement> getSelect(Achievement achievement) {
 		try {
 			if (achievement.getId() == null) {
-				List<Achievement> list = achievementDaoImpl.select();
+				List<Achievement> list = achievementDaoImpl.selectAll();
 				return list;
 			}
 			Achievement temp;
-			temp = achievementDaoImpl.selectByPk(achievement);
+			temp = achievementDaoImpl.selectByPk(achievement.getId());
 			List<Achievement> list = new ArrayList<>();
 			list.add(temp);
 			return list;

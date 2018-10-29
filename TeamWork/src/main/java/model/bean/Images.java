@@ -1,8 +1,5 @@
 package model.bean;
 
-import java.sql.Blob;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,58 +10,49 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Images")
 public class Images {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "im_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "im_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "wgs_ID", columnDefinition = "int")
-	Integer wgsID;
+	@Column(name = "wgs_ID", columnDefinition = "int", nullable = false)
+	private Integer wgsId;
 
-	@Column(name = "im_cont", columnDefinition = "varbinary(max)")
-	Blob cont;
+	@Column(name = "im_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String context;
 
-	@Column(name = "im_from", columnDefinition = "nvarchar(max)")
-	String from;
+	@Column(name = "im_from", columnDefinition = "nvarchar(max)", nullable = false)
+	private String from;
 
-	@Column(name = "im_state", columnDefinition = "int")
-	Integer state;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
-	Wish wishBean;
+	private WishProduct WishProduct;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
-	Groupon groupBean;
+	private GroupProduct GroupProduct;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
-	Store storeBean;
-
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "im_state", insertable = false, updatable = false)
-	State stateBean;
+	private StoreProduct StoreProduct;
 
 	public Images() {
 	}
 
-	public Images(Integer id, Integer wgsID, Blob cont, String from, Integer state) {
+	public Images(Integer id, Integer wgsId, String context, String from) {
+		super();
 		this.id = id;
-		this.wgsID = wgsID;
-		this.cont = cont;
+		this.wgsId = wgsId;
+		this.context = context;
 		this.from = from;
-		this.state = state;
 	}
 
 	@Override
 	public String toString() {
-		return "Images [id=" + id + ", wgsID=" + wgsID + ", cont=" + cont + ", from=" + from + ", state=" + state
-				+ "]\r\n  [wishBean=" + wishBean + "]\r\n  [groupBean=" + groupBean + "]\r\n  [storeBean=" + storeBean
-				+ "]\r\n  [stateBean=" + stateBean + "]\r\n";
+		return "Images [id=" + id + ", wgsId=" + wgsId + ", context=" + context + ", from=" + from + ", WishProduct="
+				+ WishProduct + ", GroupProduct=" + GroupProduct + ", StoreProduct=" + StoreProduct + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -75,20 +63,20 @@ public class Images {
 		this.id = id;
 	}
 
-	public Integer getWgsID() {
-		return wgsID;
+	public Integer getWgsId() {
+		return wgsId;
 	}
 
-	public void setWgsID(Integer wgsID) {
-		this.wgsID = wgsID;
+	public void setWgsId(Integer wgsId) {
+		this.wgsId = wgsId;
 	}
 
-	public Blob getCont() {
-		return cont;
+	public String getContext() {
+		return context;
 	}
 
-	public void setCont(Blob cont) {
-		this.cont = cont;
+	public void setContext(String context) {
+		this.context = context;
 	}
 
 	public String getFrom() {
@@ -99,27 +87,16 @@ public class Images {
 		this.from = from;
 	}
 
-	public Integer getState() {
-		return state;
+	public WishProduct getWishProduct() {
+		return WishProduct;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public GroupProduct getGroupProduct() {
+		return GroupProduct;
 	}
 
-	public Wish getWishBean() {
-		return wishBean;
+	public StoreProduct getStoreProduct() {
+		return StoreProduct;
 	}
 
-	public Groupon getGroupBean() {
-		return groupBean;
-	}
-
-	public Store getStoreBean() {
-		return storeBean;
-	}
-
-	public State getStateBean() {
-		return stateBean;
-	}
 }

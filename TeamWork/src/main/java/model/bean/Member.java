@@ -1,9 +1,7 @@
 package model.bean;
 
-import java.sql.Blob;
-import java.util.Arrays;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,73 +12,79 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Member")
 public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "mem_ID", columnDefinition = "int")
-	Integer id;
+	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
+	private Integer id;
 
-	@Column(name = "mem_acc", columnDefinition = "nvarchar(MAX)")
-	String account;
+	@Column(name = "mem_acc", columnDefinition = "nvarchar(MAX)", nullable = false)
+	private String account;
 
 	@Column(name = "mem_pass", columnDefinition = "nvarchar(MAX)")
-	String password;
+	private String password;
 
 	@Column(name = "mem_name", columnDefinition = "nvarchar(MAX)")
-	String name;
+	private String name;
 
 	@Column(name = "mem_add", columnDefinition = "nvarchar(MAX)")
-	String address;
+	private String address;
 
 	@Column(name = "mem_tel", columnDefinition = "nvarchar(MAX)")
-	String telephone;
+	private String telephone;
 
-	@Column(name = "mem_mail", columnDefinition = "nvarchar(MAX)")
-	String mail;
+	@Column(name = "mem_mail", columnDefinition = "nvarchar(MAX)", nullable = false)
+	private String mail;
 
-	@Column(name = "mem_pos", columnDefinition = "nvarchar(MAX)")
-	String position;
+	@Column(name = "mem_pos", columnDefinition = "nvarchar(MAX)", nullable = false)
+	private String position = "member";
 
-	@Column(name = "mem_coin", columnDefinition = "int")
-	Integer coin;
+	@Column(name = "mem_coin", columnDefinition = "int", nullable = false)
+	private Integer coin = 0;
 
-	@Column(name = "mem_pho", columnDefinition = "varbinary(MAX)")
-	Blob photo;
+	@Column(name = "mem_pho", columnDefinition = "nvarchar(MAX)")
+	private String photo;
 
-	@Column(name = "mem_state", columnDefinition = "int")
-	Integer state;
+	@Column(name = "mem_state", columnDefinition = "int", nullable = false)
+	private Integer stateId = 1;
 
-	@Column(name = "wA_sumee", columnDefinition = "float")
-	Double wiseAssessSumEE;
+	@Column(name = "mem_loginCount", columnDefinition = "int", nullable = false)
+	private Integer loginCount = 0;
 
-	@Column(name = "gA_sumee", columnDefinition = "float")
-	Double groupAssessSumEE;
+	@Column(name = "mem_loginTime", columnDefinition = "datetime")
+	private Date loginTime;
 
-	@Column(name = "sA_sumee", columnDefinition = "float")
-	Double storeAssessSumEE;
+	@Column(name = "wA_sumee", columnDefinition = "float", nullable = false)
+	private Double wiseAssessSumEE = 0d;
 
-	@Column(name = "wA_sum", columnDefinition = "float")
-	Double wiseAssessSum;
+	@Column(name = "gA_sumee", columnDefinition = "float", nullable = false)
+	private Double groupAssessSumEE = 0d;
 
-	@Column(name = "gA_sum", columnDefinition = "float")
-	Double groupAssessSum;
+	@Column(name = "sA_sumee", columnDefinition = "float", nullable = false)
+	private Double storeAssessSumEE = 0d;
 
-	@Column(name = "sA_sum", columnDefinition = "float")
-	Double storeAssessSum;
+	@Column(name = "wA_sum", columnDefinition = "float", nullable = false)
+	private Double wiseAssessSum = 0d;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@Column(name = "gA_sum", columnDefinition = "float", nullable = false)
+	private Double groupAssessSum = 0d;
+
+	@Column(name = "sA_sum", columnDefinition = "float", nullable = false)
+	private Double storeAssessSum = 0d;
+
+	@ManyToOne
 	@JoinColumn(name = "mem_state", insertable = false, updatable = false)
-	State stateBean;
+	private State State;
 
 	public Member() {
 	}
 
 	public Member(Integer id, String account, String password, String name, String address, String telephone,
-			String mail, String position, Integer coin, Blob photo, Integer state, Double wiseAssessSumEE,
-			Double groupAssessSumEE, Double storeAssessSumEE, Double wiseAssessSum, Double groupAssessSum,
-			Double storeAssessSum) {
+			String mail, String position, Integer coin, String photo, Integer stateId, Integer loginCount,
+			Date loginTime, Double wiseAssessSumEE, Double groupAssessSumEE, Double storeAssessSumEE,
+			Double wiseAssessSum, Double groupAssessSum, Double storeAssessSum) {
+		super();
 		this.id = id;
 		this.account = account;
 		this.password = password;
@@ -91,7 +95,9 @@ public class Member {
 		this.position = position;
 		this.coin = coin;
 		this.photo = photo;
-		this.state = state;
+		this.stateId = stateId;
+		this.loginCount = loginCount;
+		this.loginTime = loginTime;
 		this.wiseAssessSumEE = wiseAssessSumEE;
 		this.groupAssessSumEE = groupAssessSumEE;
 		this.storeAssessSumEE = storeAssessSumEE;
@@ -104,10 +110,10 @@ public class Member {
 	public String toString() {
 		return "Member [id=" + id + ", account=" + account + ", password=" + password + ", name=" + name + ", address="
 				+ address + ", telephone=" + telephone + ", mail=" + mail + ", position=" + position + ", coin=" + coin
-				+ ", photo=" + photo + ", state=" + state + ", wiseAssessSumEE=" + wiseAssessSumEE
-				+ ", groupAssessSumEE=" + groupAssessSumEE + ", storeAssessSumEE=" + storeAssessSumEE
-				+ ", wiseAssessSum=" + wiseAssessSum + ", groupAssessSum=" + groupAssessSum + ", storeAssessSum="
-				+ storeAssessSum + "]\r\n  [stateBean=" + stateBean + "]\r\n";
+				+ ", photo=" + photo + ", stateId=" + stateId + ", loginCount=" + loginCount + ", loginTime="
+				+ loginTime + ", wiseAssessSumEE=" + wiseAssessSumEE + ", groupAssessSumEE=" + groupAssessSumEE
+				+ ", storeAssessSumEE=" + storeAssessSumEE + ", wiseAssessSum=" + wiseAssessSum + ", groupAssessSum="
+				+ groupAssessSum + ", storeAssessSum=" + storeAssessSum + ", State=" + State + "]\r\n";
 	}
 
 	public Integer getId() {
@@ -182,20 +188,36 @@ public class Member {
 		this.coin = coin;
 	}
 
-	public Blob getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(Blob photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
-	public Integer getState() {
-		return state;
+	public Integer getStateId() {
+		return stateId;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+
+	public Integer getLoginCount() {
+		return loginCount;
+	}
+
+	public void setLoginCount(Integer loginCount) {
+		this.loginCount = loginCount;
+	}
+
+	public Date getLoginTime() {
+		return loginTime;
+	}
+
+	public void setLoginTime(Date loginTime) {
+		this.loginTime = loginTime;
 	}
 
 	public Double getWiseAssessSumEE() {
@@ -246,12 +268,8 @@ public class Member {
 		this.storeAssessSum = storeAssessSum;
 	}
 
-	public State getStateBean() {
-		return stateBean;
-	}
-
-	public void setStateBean(State stateBean) {
-		this.stateBean = stateBean;
+	public State getState() {
+		return State;
 	}
 
 }

@@ -23,51 +23,36 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 	}
 
 	@Override
-	public List<StoreFavorite> select() throws SQLException {
-		List<StoreFavorite> simples = getSession().createQuery("from StoreFavorite", StoreFavorite.class)
-				.setMaxResults(50).list();
-		System.out.println(simples);
-		return simples;
+	public List<StoreFavorite> selectAll() throws SQLException {
+		List<StoreFavorite> LSF = getSession().createQuery("from StoreFavorite", StoreFavorite.class).list();
+		System.out.println(LSF);
+		return LSF;
 	}
 
 	@Override
-	public StoreFavorite selectByPk(StoreFavorite bean) throws SQLException {
-		StoreFavorite simple = getSession().get(StoreFavorite.class, bean.getId());
-		System.out.println(simple);
-		return simple;
+	public List<StoreFavorite> selectHql(String hqlString) throws SQLException {
+		String hql = "from StoreFavorite ";
+		hql += hqlString;
+		List<StoreFavorite> LSF = getSession().createQuery(hql, StoreFavorite.class).list();
+		System.out.println(LSF);
+		return LSF;
+	}
+
+	@Override
+	public StoreFavorite selectByPk(Integer id) throws SQLException {
+		StoreFavorite SF = getSession().get(StoreFavorite.class, id);
+		System.out.println(SF);
+		return SF;
 	}
 
 	@Override
 	public StoreFavorite insert(StoreFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		StoreFavorite simple = getSession().get(StoreFavorite.class, bean.getId());
+		StoreFavorite SF = selectByPk(bean.getId());
 		// 沒有才新增
-		if (simple == null) {
-			// 外鍵有資料才新增
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			StoreProduct simpleStoreProduct = getSession().get(StoreProduct.class, bean.getStoreProductId());
-			if (simpleMember != null && simpleStoreProduct != null) {
-				getSession().save(bean);
-				return bean;
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public StoreFavorite update(StoreFavorite bean) throws SQLException {
-		// 查詢此ID有無資料
-		StoreFavorite simple = getSession().get(StoreFavorite.class, bean.getId());
-		// 有才修改
-		if (simple != null) {
-			// 外鍵有資料才修改
-			Member simpleMember = getSession().get(Member.class, bean.getMemberId());
-			StoreProduct simpleStoreProduct = getSession().get(StoreProduct.class, bean.getStoreProductId());
-			if (simpleMember != null && simpleStoreProduct != null) {
-				simple.setMemberId(bean.getMemberId());
-				simple.setStoreProductId(bean.getStoreProductId());
-				return simple;
-			}
+		if (SF == null) {
+			getSession().save(bean);
+			return bean;
 		}
 		return null;
 	}
@@ -75,10 +60,10 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 	@Override
 	public boolean delete(StoreFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		StoreFavorite simple = getSession().get(StoreFavorite.class, bean.getId());
+		StoreFavorite SF = selectByPk(bean.getId());
 		// 有才刪除
-		if (simple != null) {
-			getSession().delete(simple);
+		if (SF != null) {
+			getSession().delete(SF);
 			return true;
 		}
 		return false;
