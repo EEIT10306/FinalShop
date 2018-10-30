@@ -16,126 +16,126 @@ public class GroupCallback {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "gC_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer gC_id;
 
 	@Column(name = "gM_ID", columnDefinition = "int", nullable = false)
-	private Integer groupMessageId;
+	private Integer gM_id;
 
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idCallback;
 
 	@Column(name = "gC_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String context;
+	private String gC_context;
 
 	@Column(name = "gC_time", columnDefinition = "datetime", nullable = false)
-	private Date time;
+	private Date gC_time;
 
 	@Column(name = "gC_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer gC_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "gM_ID", insertable = false, updatable = false)
-	private GroupMessage GroupMessage;
+	private GroupMessage groupMessage;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_IDee", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "gC_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public GroupCallback() {
 	}
 
-	public GroupCallback(Integer id, Integer groupMessageId, Integer memberId, String context, Date time,
-			Integer stateId) {
+	public GroupCallback(Integer gC_id, Integer gM_id, Integer m_idCallback, String gC_context, Date gC_time,
+			Integer gC_stateId) {
 		super();
-		this.id = id;
-		this.groupMessageId = groupMessageId;
-		this.memberId = memberId;
-		this.context = context;
-		this.time = time;
-		this.stateId = stateId;
+		this.gC_id = gC_id;
+		this.gM_id = gM_id;
+		this.m_idCallback = m_idCallback;
+		this.gC_context = gC_context;
+		this.gC_time = gC_time;
+		this.gC_stateId = gC_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupCallback [id=" + id + ", groupMessageId=" + groupMessageId + ", memberId=" + memberId
-				+ ", context=" + context + ", time=" + time + ", stateId=" + stateId + ", GroupMessage=" + GroupMessage
-				+ ", Member=" + Member + ", State=" + State + "]\r\n";
+		return "GroupCallback [gC_id=" + gC_id + ", gM_id=" + gM_id + ", m_idCallback=" + m_idCallback + ", gC_context="
+				+ gC_context + ", gC_time=" + gC_time + ", gC_stateId=" + gC_stateId + ", groupMessage=" + groupMessage
+				+ ", member=" + member + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getgC_id() {
+		return gC_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setgC_id(Integer gC_id) {
+		this.gC_id = gC_id;
 	}
 
-	public Integer getGroupMessageId() {
-		return groupMessageId;
+	public Integer getgM_id() {
+		return gM_id;
 	}
 
-	public void setGroupMessageId(Integer groupMessageId) {
-		this.groupMessageId = groupMessageId;
+	public void setgM_id(Integer gM_id) {
+		this.gM_id = gM_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idCallback() {
+		return m_idCallback;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idCallback(Integer m_idCallback) {
+		this.m_idCallback = m_idCallback;
 	}
 
-	public String getContext() {
-		return context;
+	public String getgC_context() {
+		return gC_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setgC_context(String gC_context) {
+		this.gC_context = gC_context;
 	}
 
-	public Date getTime() {
-		return time;
+	public Date getgC_time() {
+		return gC_time;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setgC_time(Date gC_time) {
+		this.gC_time = gC_time;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getgC_stateId() {
+		return gC_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setgC_stateId(Integer gC_stateId) {
+		this.gC_stateId = gC_stateId;
 	}
 
 	public GroupMessage getGroupMessage() {
-		return GroupMessage;
-	}
-
-	public Member getMember() {
-		return Member;
-	}
-
-	public State getState() {
-		return State;
+		return groupMessage;
 	}
 
 	public void setGroupMessage(GroupMessage groupMessage) {
-		GroupMessage = groupMessage;
+		this.groupMessage = groupMessage;
+	}
+
+	public Member getMember() {
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

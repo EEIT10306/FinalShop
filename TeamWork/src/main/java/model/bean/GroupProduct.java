@@ -18,186 +18,186 @@ public class GroupProduct {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "gP_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer gP_id;
 
 	@Column(name = "group_ID", columnDefinition = "int", nullable = false)
-	private Integer groupID;
+	private Integer g_iD;
 
 	@Column(name = "gP_name", columnDefinition = "nvarchar(max)", nullable = false)
-	private String name;
+	private String gP_name;
 
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
-	private Integer productId;
+	private Integer p_id;
 
 	@Column(name = "gP_amt", columnDefinition = "int", nullable = false)
-	private Integer amount;
+	private Integer gP_amount;
 
 	@Column(name = "gP_price", columnDefinition = "int", nullable = false)
-	private Integer price;
+	private Integer gP_price;
 
 	@Column(name = "gP_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String context;
+	private String gP_context;
 
 	@Column(name = "gP_var", columnDefinition = "int", nullable = false)
-	private Integer version;
+	private Integer gP_version;
 
 	@Column(name = "gP_compTime", columnDefinition = "datetime")
-	private Date completeTime;
+	private Date gP_completeTime;
 
 	@Column(name = "gP_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer gP_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
-	private Groupon Groupon;
+	private Groupon groupon;
 
 	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	private Product Product;
+	private Product product;
 
 	@ManyToOne
 	@JoinColumn(name = "gP_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
-	@OneToMany(mappedBy = "GroupProduct")
-	private Set<Images> Images;
+	@OneToMany(mappedBy = "groupProduct")
+	private Set<Images> images;
 
 	public GroupProduct() {
 	}
 
-	public GroupProduct(Integer id, Integer groupID, String name, Integer productId, Integer amount, Integer price,
-			String context, Integer version, Date completeTime, Integer stateId) {
+	public GroupProduct(Integer gP_id, Integer g_iD, String gP_name, Integer p_id, Integer gP_amount, Integer gP_price,
+			String gP_context, Integer gP_version, Date gP_completeTime, Integer gP_stateId) {
 		super();
-		this.id = id;
-		this.groupID = groupID;
-		this.name = name;
-		this.productId = productId;
-		this.amount = amount;
-		this.price = price;
-		this.context = context;
-		this.version = version;
-		this.completeTime = completeTime;
-		this.stateId = stateId;
+		this.gP_id = gP_id;
+		this.g_iD = g_iD;
+		this.gP_name = gP_name;
+		this.p_id = p_id;
+		this.gP_amount = gP_amount;
+		this.gP_price = gP_price;
+		this.gP_context = gP_context;
+		this.gP_version = gP_version;
+		this.gP_completeTime = gP_completeTime;
+		this.gP_stateId = gP_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupProduct [id=" + id + ", groupID=" + groupID + ", name=" + name + ", productId=" + productId
-				+ ", amount=" + amount + ", price=" + price + ", context=" + context + ", version=" + version
-				+ ", completeTime=" + completeTime + ", stateId=" + stateId + ", Groupon=" + Groupon + ", Product="
-				+ Product + ", State=" + State + ", Images=" + Images + "]\r\n";
+		return "GroupProduct [gP_id=" + gP_id + ", g_iD=" + g_iD + ", gP_name=" + gP_name + ", p_id=" + p_id
+				+ ", gP_amount=" + gP_amount + ", gP_price=" + gP_price + ", gP_context=" + gP_context + ", gP_version="
+				+ gP_version + ", gP_completeTime=" + gP_completeTime + ", gP_stateId=" + gP_stateId + ", groupon="
+				+ groupon + ", product=" + product + ", state=" + state + ", images=" + images + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getgP_id() {
+		return gP_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setgP_id(Integer gP_id) {
+		this.gP_id = gP_id;
 	}
 
-	public Integer getGroupID() {
-		return groupID;
+	public Integer getG_iD() {
+		return g_iD;
 	}
 
-	public void setGroupID(Integer groupID) {
-		this.groupID = groupID;
+	public void setG_iD(Integer g_iD) {
+		this.g_iD = g_iD;
 	}
 
-	public String getName() {
-		return name;
+	public String getgP_name() {
+		return gP_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setgP_name(String gP_name) {
+		this.gP_name = gP_name;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public Integer getP_id() {
+		return p_id;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public Integer getgP_amount() {
+		return gP_amount;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setgP_amount(Integer gP_amount) {
+		this.gP_amount = gP_amount;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public Integer getgP_price() {
+		return gP_price;
 	}
 
-	public void setPrice(Integer price) {
-		this.price = price;
+	public void setgP_price(Integer gP_price) {
+		this.gP_price = gP_price;
 	}
 
-	public String getContext() {
-		return context;
+	public String getgP_context() {
+		return gP_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setgP_context(String gP_context) {
+		this.gP_context = gP_context;
 	}
 
-	public Integer getVersion() {
-		return version;
+	public Integer getgP_version() {
+		return gP_version;
 	}
 
-	public void setVersion(Integer version) {
-		this.version = version;
+	public void setgP_version(Integer gP_version) {
+		this.gP_version = gP_version;
 	}
 
-	public Date getCompleteTime() {
-		return completeTime;
+	public Date getgP_completeTime() {
+		return gP_completeTime;
 	}
 
-	public void setCompleteTime(Date completeTime) {
-		this.completeTime = completeTime;
+	public void setgP_completeTime(Date gP_completeTime) {
+		this.gP_completeTime = gP_completeTime;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getgP_stateId() {
+		return gP_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setgP_stateId(Integer gP_stateId) {
+		this.gP_stateId = gP_stateId;
 	}
 
 	public Groupon getGroupon() {
-		return Groupon;
-	}
-
-	public Product getProduct() {
-		return Product;
-	}
-
-	public State getState() {
-		return State;
-	}
-
-	public Set<Images> getImages() {
-		return Images;
+		return groupon;
 	}
 
 	public void setGroupon(Groupon groupon) {
-		Groupon = groupon;
+		this.groupon = groupon;
+	}
+
+	public Product getProduct() {
+		return product;
 	}
 
 	public void setProduct(Product product) {
-		Product = product;
+		this.product = product;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
+	}
+
+	public Set<Images> getImages() {
+		return images;
 	}
 
 	public void setImages(Set<Images> images) {
-		Images = images;
+		this.images = images;
 	}
 
 }

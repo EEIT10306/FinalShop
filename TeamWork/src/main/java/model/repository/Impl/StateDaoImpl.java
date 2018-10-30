@@ -48,7 +48,7 @@ public class StateDaoImpl implements StateDao {
 	@Override
 	public State insert(State bean) throws SQLException {
 		// 查詢此ID有無資料
-		State S = selectByPk(bean.getId());
+		State S = selectByPk(bean.getState_id());
 		// 沒有才修改
 		if (S == null) {
 			getSession().save(bean);
@@ -60,13 +60,13 @@ public class StateDaoImpl implements StateDao {
 	@Override
 	public State update(State bean) throws SQLException {
 		// 查詢此ID有無資料
-		State S = selectByPk(bean.getId());
+		State S = selectByPk(bean.getState_id());
 		// 有才修改
 		if (S != null) {
-			if (bean.getContext() != null)
-				S.setContext(bean.getContext());
-			if (bean.getClassName() != null)
-				S.setClassName(bean.getClassName());
+			if (bean.getState_context() != null)
+				S.setState_context(bean.getState_context());
+			if (bean.getState_class() != null)
+				S.setState_class(bean.getState_class());
 			return S;
 		}
 		return null;

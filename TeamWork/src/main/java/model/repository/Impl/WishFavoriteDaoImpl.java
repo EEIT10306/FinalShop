@@ -48,7 +48,7 @@ public class WishFavoriteDaoImpl implements WishFavoriteDao {
 	@Override
 	public WishFavorite insert(WishFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		WishFavorite WF = selectByPk(bean.getId());
+		WishFavorite WF = selectByPk(bean.getwF_id());
 		// 沒有才新增
 		if (WF == null) {
 			getSession().save(bean);
@@ -60,7 +60,7 @@ public class WishFavoriteDaoImpl implements WishFavoriteDao {
 	@Override
 	public boolean delete(WishFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		WishFavorite WF = selectByPk(bean.getId());
+		WishFavorite WF = selectByPk(bean.getwF_id());
 		// 有才刪除
 		if (WF != null) {
 			getSession().delete(WF);

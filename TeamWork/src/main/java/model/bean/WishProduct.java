@@ -18,174 +18,174 @@ public class WishProduct {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wP_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer wP_id;
 
 	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
-	private Integer wishId;
+	private Integer w_id;
 
 	@Column(name = "wP_name", columnDefinition = "nvarchar(max)", nullable = false)
-	private String name;
+	private String wP_name;
 
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
-	private Integer productId;
+	private Integer p_id;
 
 	@Column(name = "wP_amt", columnDefinition = "int", nullable = false)
-	private Integer amount;
+	private Integer wP_amount;
 
 	@Column(name = "wP_pBot", columnDefinition = "int")
-	private Integer priceBottom;
+	private Integer wP_priceBottom;
 
 	@Column(name = "wP_pTop", columnDefinition = "int")
-	private Integer priceTop;
+	private Integer wP_priceTop;
 
 	@Column(name = "wP_compTime", columnDefinition = "datetime")
-	private Date completeTime;
+	private Date wP_completeTime;
 
 	@Column(name = "wP_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer wP_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
-	private Wish Wish;
+	private Wish wish;
 
 	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	private Product Product;
+	private Product product;
 
 	@ManyToOne
 	@JoinColumn(name = "wP_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
-	@OneToMany(mappedBy = "WishProduct")
-	private Set<Images> Images;
+	@OneToMany(mappedBy = "wishProduct")
+	private Set<Images> images;
 
 	public WishProduct() {
 	}
 
-	public WishProduct(Integer id, Integer wishId, String name, Integer productId, Integer amount, Integer priceBottom,
-			Integer priceTop, Date completeTime, Integer stateId) {
+	public WishProduct(Integer wP_id, Integer w_id, String wP_name, Integer p_id, Integer wP_amount,
+			Integer wP_priceBottom, Integer wP_priceTop, Date wP_completeTime, Integer wP_stateId) {
 		super();
-		this.id = id;
-		this.wishId = wishId;
-		this.name = name;
-		this.productId = productId;
-		this.amount = amount;
-		this.priceBottom = priceBottom;
-		this.priceTop = priceTop;
-		this.completeTime = completeTime;
-		this.stateId = stateId;
+		this.wP_id = wP_id;
+		this.w_id = w_id;
+		this.wP_name = wP_name;
+		this.p_id = p_id;
+		this.wP_amount = wP_amount;
+		this.wP_priceBottom = wP_priceBottom;
+		this.wP_priceTop = wP_priceTop;
+		this.wP_completeTime = wP_completeTime;
+		this.wP_stateId = wP_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "WishProduct [id=" + id + ", wishId=" + wishId + ", name=" + name + ", productId=" + productId
-				+ ", amount=" + amount + ", priceBottom=" + priceBottom + ", priceTop=" + priceTop + ", completeTime="
-				+ completeTime + ", stateId=" + stateId + ", Wish=" + Wish + ", Product=" + Product + ", State=" + State
-				+ ", Images=" + Images + "]\r\n";
+		return "WishProduct [wP_id=" + wP_id + ", w_id=" + w_id + ", wP_name=" + wP_name + ", p_id=" + p_id
+				+ ", wP_amount=" + wP_amount + ", wP_priceBottom=" + wP_priceBottom + ", wP_priceTop=" + wP_priceTop
+				+ ", wP_completeTime=" + wP_completeTime + ", wP_stateId=" + wP_stateId + ", wish=" + wish
+				+ ", product=" + product + ", state=" + state + ", images=" + images + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getwP_id() {
+		return wP_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setwP_id(Integer wP_id) {
+		this.wP_id = wP_id;
 	}
 
-	public Integer getWishId() {
-		return wishId;
+	public Integer getW_id() {
+		return w_id;
 	}
 
-	public void setWishId(Integer wishId) {
-		this.wishId = wishId;
+	public void setW_id(Integer w_id) {
+		this.w_id = w_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getwP_name() {
+		return wP_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setwP_name(String wP_name) {
+		this.wP_name = wP_name;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public Integer getP_id() {
+		return p_id;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public Integer getwP_amount() {
+		return wP_amount;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setwP_amount(Integer wP_amount) {
+		this.wP_amount = wP_amount;
 	}
 
-	public Integer getPriceBottom() {
-		return priceBottom;
+	public Integer getwP_priceBottom() {
+		return wP_priceBottom;
 	}
 
-	public void setPriceBottom(Integer priceBottom) {
-		this.priceBottom = priceBottom;
+	public void setwP_priceBottom(Integer wP_priceBottom) {
+		this.wP_priceBottom = wP_priceBottom;
 	}
 
-	public Integer getPriceTop() {
-		return priceTop;
+	public Integer getwP_priceTop() {
+		return wP_priceTop;
 	}
 
-	public void setPriceTop(Integer priceTop) {
-		this.priceTop = priceTop;
+	public void setwP_priceTop(Integer wP_priceTop) {
+		this.wP_priceTop = wP_priceTop;
 	}
 
-	public Date getCompleteTime() {
-		return completeTime;
+	public Date getwP_completeTime() {
+		return wP_completeTime;
 	}
 
-	public void setCompleteTime(Date completeTime) {
-		this.completeTime = completeTime;
+	public void setwP_completeTime(Date wP_completeTime) {
+		this.wP_completeTime = wP_completeTime;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getwP_stateId() {
+		return wP_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setwP_stateId(Integer wP_stateId) {
+		this.wP_stateId = wP_stateId;
 	}
 
 	public Wish getWish() {
-		return Wish;
-	}
-
-	public Product getProduct() {
-		return Product;
-	}
-
-	public State getState() {
-		return State;
-	}
-
-	public Set<Images> getImages() {
-		return Images;
+		return wish;
 	}
 
 	public void setWish(Wish wish) {
-		Wish = wish;
+		this.wish = wish;
+	}
+
+	public Product getProduct() {
+		return product;
 	}
 
 	public void setProduct(Product product) {
-		Product = product;
+		this.product = product;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
+	}
+
+	public Set<Images> getImages() {
+		return images;
 	}
 
 	public void setImages(Set<Images> images) {
-		Images = images;
+		this.images = images;
 	}
 
 }

@@ -12,63 +12,76 @@ public class Achievement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ach_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer a_id;
 
 	@Column(name = "ach_cont", columnDefinition = "nvarchar(MAX)", nullable = false)
-	private String context;
+	private String a_context;
+
+	@Column(name = "ach_amt", columnDefinition = "int", nullable = false)
+	private String a_amount;
 
 	@Column(name = "ach_bon", columnDefinition = "int", nullable = false)
-	private Integer bonus;
+	private Integer a_bonus;
 
 	@Column(name = "ach_parID", columnDefinition = "int")
-	private Integer parentsId;
+	private Integer a_parentsId;
 
 	public Achievement() {
 	}
 
-	public Achievement(Integer id, String context, Integer bonus, Integer parentsId) {
-		this.id = id;
-		this.context = context;
-		this.bonus = bonus;
-		this.parentsId = parentsId;
+	public Achievement(Integer a_id, String a_context, String a_amount, Integer a_bonus, Integer a_parentsId) {
+		super();
+		this.a_id = a_id;
+		this.a_context = a_context;
+		this.a_amount = a_amount;
+		this.a_bonus = a_bonus;
+		this.a_parentsId = a_parentsId;
 	}
 
 	@Override
 	public String toString() {
-		return "Achievement [id=" + id + ", context=" + context + ", bonus=" + bonus + ", parentsId=" + parentsId
-				+ "]\r\n";
+		return "Achievement [a_id=" + a_id + ", a_context=" + a_context + ", a_amount=" + a_amount + ", a_bonus="
+				+ a_bonus + ", a_parentsId=" + a_parentsId + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getA_id() {
+		return a_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setA_id(Integer a_id) {
+		this.a_id = a_id;
 	}
 
-	public String getContext() {
-		return context;
+	public String getA_context() {
+		return a_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setA_context(String a_context) {
+		this.a_context = a_context;
 	}
 
-	public Integer getBonus() {
-		return bonus;
+	public String getA_amount() {
+		return a_amount;
 	}
 
-	public void setBonus(Integer bonus) {
-		this.bonus = bonus;
+	public void setA_amount(String a_amount) {
+		this.a_amount = a_amount;
 	}
 
-	public Integer getParentsId() {
-		return parentsId;
+	public Integer getA_bonus() {
+		return a_bonus;
 	}
 
-	public void setParentsId(Integer parentsId) {
-		this.parentsId = parentsId;
+	public void setA_bonus(Integer a_bonus) {
+		this.a_bonus = a_bonus;
+	}
+
+	public Integer getA_parentsId() {
+		return a_parentsId;
+	}
+
+	public void setA_parentsId(Integer a_parentsId) {
+		this.a_parentsId = a_parentsId;
 	}
 
 }

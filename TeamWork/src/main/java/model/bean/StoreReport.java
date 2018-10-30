@@ -14,113 +14,113 @@ public class StoreReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sR_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer sR_id;
 
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
-	private Integer storeProductId;
+	private Integer sP_id;
 
 	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idReport;
 
 	@Column(name = "sR_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String content;
+	private String sR_content;
 
 	@Column(name = "sR_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer sR_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	private StoreProduct StoreProduct;
+	private StoreProduct storeProduct;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "sR_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public StoreReport() {
 	}
 
-	public StoreReport(Integer id, Integer storeProductId, Integer memberId, String content, Integer stateId) {
+	public StoreReport(Integer sR_id, Integer sP_id, Integer m_idReport, String sR_content, Integer sR_stateId) {
 		super();
-		this.id = id;
-		this.storeProductId = storeProductId;
-		this.memberId = memberId;
-		this.content = content;
-		this.stateId = stateId;
+		this.sR_id = sR_id;
+		this.sP_id = sP_id;
+		this.m_idReport = m_idReport;
+		this.sR_content = sR_content;
+		this.sR_stateId = sR_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreReport [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", content="
-				+ content + ", stateId=" + stateId + ", StoreProduct=" + StoreProduct + ", Member=" + Member
-				+ ", State=" + State + "]\r\n";
+		return "StoreReport [sR_id=" + sR_id + ", sP_id=" + sP_id + ", m_idReport=" + m_idReport + ", sR_content="
+				+ sR_content + ", sR_stateId=" + sR_stateId + ", storeProduct=" + storeProduct + ", member=" + member
+				+ ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getsR_id() {
+		return sR_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setsR_id(Integer sR_id) {
+		this.sR_id = sR_id;
 	}
 
-	public Integer getStoreProductId() {
-		return storeProductId;
+	public Integer getsP_id() {
+		return sP_id;
 	}
 
-	public void setStoreProductId(Integer storeProductId) {
-		this.storeProductId = storeProductId;
+	public void setsP_id(Integer sP_id) {
+		this.sP_id = sP_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idReport() {
+		return m_idReport;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idReport(Integer m_idReport) {
+		this.m_idReport = m_idReport;
 	}
 
-	public String getContent() {
-		return content;
+	public String getsR_content() {
+		return sR_content;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setsR_content(String sR_content) {
+		this.sR_content = sR_content;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getsR_stateId() {
+		return sR_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setsR_stateId(Integer sR_stateId) {
+		this.sR_stateId = sR_stateId;
 	}
 
 	public StoreProduct getStoreProduct() {
-		return StoreProduct;
-	}
-
-	public Member getMember() {
-		return Member;
-	}
-
-	public State getState() {
-		return State;
+		return storeProduct;
 	}
 
 	public void setStoreProduct(StoreProduct storeProduct) {
-		StoreProduct = storeProduct;
+		this.storeProduct = storeProduct;
+	}
+
+	public Member getMember() {
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

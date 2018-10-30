@@ -14,113 +14,113 @@ public class GroupOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "gO_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer gO_id;
 
 	@Column(name = "gP_ID", columnDefinition = "int", nullable = false)
-	private Integer groupProductId;
+	private Integer gP_id;
 
 	@Column(name = "memG_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idOrder;
 
 	@Column(name = "gO_amt", columnDefinition = "int", nullable = false)
-	private Integer amount;
+	private Integer gO_amount;
 
 	@Column(name = "gO_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer gO_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
-	private GroupProduct GroupProduct;
+	private GroupProduct groupProduct;
 
 	@ManyToOne
 	@JoinColumn(name = "memG_IDee", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public GroupOrder() {
 	}
 
-	public GroupOrder(Integer id, Integer groupProductId, Integer memberId, Integer amount, Integer stateId) {
+	public GroupOrder(Integer gO_id, Integer gP_id, Integer m_idOrder, Integer gO_amount, Integer gO_stateId) {
 		super();
-		this.id = id;
-		this.groupProductId = groupProductId;
-		this.memberId = memberId;
-		this.amount = amount;
-		this.stateId = stateId;
+		this.gO_id = gO_id;
+		this.gP_id = gP_id;
+		this.m_idOrder = m_idOrder;
+		this.gO_amount = gO_amount;
+		this.gO_stateId = gO_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupOrder [id=" + id + ", groupProductId=" + groupProductId + ", memberId=" + memberId + ", amount="
-				+ amount + ", stateId=" + stateId + ", GroupProduct=" + GroupProduct + ", Member=" + Member + ", State="
-				+ State + "]\r\n";
+		return "GroupOrder [gO_id=" + gO_id + ", gP_id=" + gP_id + ", m_idOrder=" + m_idOrder + ", gO_amount="
+				+ gO_amount + ", gO_stateId=" + gO_stateId + ", groupProduct=" + groupProduct + ", member=" + member
+				+ ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getgO_id() {
+		return gO_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setgO_id(Integer gO_id) {
+		this.gO_id = gO_id;
 	}
 
-	public Integer getGroupProductId() {
-		return groupProductId;
+	public Integer getgP_id() {
+		return gP_id;
 	}
 
-	public void setGroupProductId(Integer groupProductId) {
-		this.groupProductId = groupProductId;
+	public void setgP_id(Integer gP_id) {
+		this.gP_id = gP_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idOrder() {
+		return m_idOrder;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idOrder(Integer m_idOrder) {
+		this.m_idOrder = m_idOrder;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public Integer getgO_amount() {
+		return gO_amount;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setgO_amount(Integer gO_amount) {
+		this.gO_amount = gO_amount;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getgO_stateId() {
+		return gO_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setgO_stateId(Integer gO_stateId) {
+		this.gO_stateId = gO_stateId;
 	}
 
 	public GroupProduct getGroupProduct() {
-		return GroupProduct;
-	}
-
-	public Member getMember() {
-		return Member;
-	}
-
-	public State getState() {
-		return State;
+		return groupProduct;
 	}
 
 	public void setGroupProduct(GroupProduct groupProduct) {
-		GroupProduct = groupProduct;
+		this.groupProduct = groupProduct;
+	}
+
+	public Member getMember() {
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

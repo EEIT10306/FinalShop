@@ -16,125 +16,126 @@ public class Conversation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "con_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer c_id;
 
 	@Column(name = "memC_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberIdEE;
+	private Integer m_idConversation;
 
 	@Column(name = "memC_ID", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_id;
 
 	@Column(name = "con_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String context;
+	private String c_context;
 
 	@Column(name = "con_time", columnDefinition = "datetime", nullable = false)
-	private Date time;
+	private Date c_time;
 
 	@Column(name = "con_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer c_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "memC_IDee", insertable = false, updatable = false)
-	private Member MemberEE;
+	private Member memberConversation;
 
 	@ManyToOne
 	@JoinColumn(name = "memC_ID", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "con_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public Conversation() {
 	}
 
-	public Conversation(Integer id, Integer memberIdEE, Integer memberId, String context, Date time, Integer stateId) {
+	public Conversation(Integer c_id, Integer m_idConversation, Integer m_id, String c_context, Date c_time,
+			Integer c_stateId) {
 		super();
-		this.id = id;
-		this.memberIdEE = memberIdEE;
-		this.memberId = memberId;
-		this.context = context;
-		this.time = time;
-		this.stateId = stateId;
+		this.c_id = c_id;
+		this.m_idConversation = m_idConversation;
+		this.m_id = m_id;
+		this.c_context = c_context;
+		this.c_time = c_time;
+		this.c_stateId = c_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "Conversation [id=" + id + ", memberIdEE=" + memberIdEE + ", memberId=" + memberId + ", context="
-				+ context + ", time=" + time + ", stateId=" + stateId + ", MemberEE=" + MemberEE + ", Member=" + Member
-				+ ", State=" + State + "]\r\n";
+		return "Conversation [c_id=" + c_id + ", m_idConversation=" + m_idConversation + ", m_id=" + m_id
+				+ ", c_context=" + c_context + ", c_time=" + c_time + ", c_stateId=" + c_stateId
+				+ ", memberConversation=" + memberConversation + ", member=" + member + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getC_id() {
+		return c_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setC_id(Integer c_id) {
+		this.c_id = c_id;
 	}
 
-	public Integer getMemberIdEE() {
-		return memberIdEE;
+	public Integer getM_idConversation() {
+		return m_idConversation;
 	}
 
-	public void setMemberIdEE(Integer memberIdEE) {
-		this.memberIdEE = memberIdEE;
+	public void setM_idConversation(Integer m_idConversation) {
+		this.m_idConversation = m_idConversation;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_id() {
+		return m_id;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_id(Integer m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getContext() {
-		return context;
+	public String getC_context() {
+		return c_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setC_context(String c_context) {
+		this.c_context = c_context;
 	}
 
-	public Date getTime() {
-		return time;
+	public Date getC_time() {
+		return c_time;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setC_time(Date c_time) {
+		this.c_time = c_time;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getC_stateId() {
+		return c_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setC_stateId(Integer c_stateId) {
+		this.c_stateId = c_stateId;
 	}
 
-	public Member getMemberEE() {
-		return MemberEE;
+	public Member getMemberConversation() {
+		return memberConversation;
+	}
+
+	public void setMemberConversation(Member memberConversation) {
+		this.memberConversation = memberConversation;
 	}
 
 	public Member getMember() {
-		return Member;
-	}
-
-	public State getState() {
-		return State;
-	}
-
-	public void setMemberEE(Member memberEE) {
-		MemberEE = memberEE;
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

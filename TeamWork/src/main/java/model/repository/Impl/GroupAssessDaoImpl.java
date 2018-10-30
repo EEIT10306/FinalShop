@@ -48,7 +48,7 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 
 	@Override
 	public GroupAssess insert(GroupAssess bean) throws SQLException {
-		GroupAssess GA = selectByPk(bean.getId());
+		GroupAssess GA = selectByPk(bean.getgA_id());
 		if (GA == null) {
 			getSession().save(bean);
 			return bean;
@@ -58,18 +58,18 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 
 	@Override
 	public GroupAssess update(GroupAssess bean) throws SQLException {
-		GroupAssess GA = selectByPk(bean.getId());
+		GroupAssess GA = selectByPk(bean.getgA_id());
 		if (GA != null) {
-			if (bean.getGroupOrderId() != null)
-				GA.setGroupOrderId(bean.getGroupOrderId());
-			if (bean.getPoint() != null)
-				GA.setPoint(bean.getPoint());
-			if (bean.getContext() != null)
-				GA.setContext(bean.getContext());
-			if (bean.getPointEE() != null)
-				GA.setPointEE(bean.getPointEE());
-			if (bean.getContextEE() != null)
-				GA.setContextEE(bean.getContextEE());
+			if (bean.getgO_id() != null)
+				GA.setgO_id(bean.getgO_id());
+			if (bean.getgA_point() != null)
+				GA.setgA_point(bean.getgA_point());
+			if (bean.getgA_context() != null)
+				GA.setgA_context(bean.getgA_context());
+			if (bean.getgA_pointAssess() != null)
+				GA.setgA_pointAssess(bean.getgA_pointAssess());
+			if (bean.getgA_contextAssess() != null)
+				GA.setgA_contextAssess(bean.getgA_contextAssess());
 			return GA;
 		}
 		return null;

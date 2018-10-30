@@ -14,76 +14,76 @@ public class DistrictType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "dist_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer d_id;
 
 	@Column(name = "dist_name", columnDefinition = "nvarchar(max)", nullable = false)
-	private String name;
+	private String d_name;
 
 	@Column(name = "dist_parID", columnDefinition = "int")
-	private Integer parentsId;
+	private Integer d_parentsId;
 
 	@Column(name = "dist_stage", columnDefinition = "int", nullable = false)
-	private Integer stage;
+	private Integer d_stageId;
 
 	@OneToOne
 	@JoinColumn(name = "dist_parID", insertable = false, updatable = false)
-	private DistrictType DistrictType;
+	private DistrictType districtType;
 
 	public DistrictType() {
 	}
 
-	public DistrictType(Integer id, String name, Integer parentsId, Integer stage) {
+	public DistrictType(Integer d_id, String d_name, Integer d_parentsId, Integer d_stageId) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.parentsId = parentsId;
-		this.stage = stage;
+		this.d_id = d_id;
+		this.d_name = d_name;
+		this.d_parentsId = d_parentsId;
+		this.d_stageId = d_stageId;
 	}
 
 	@Override
 	public String toString() {
-		return "DistrictType [id=" + id + ", name=" + name + ", parentsId=" + parentsId + ", stage=" + stage
-				+ ", DistrictType=" + DistrictType + "]\r\n";
+		return "DistrictType [d_id=" + d_id + ", d_name=" + d_name + ", d_parentsId=" + d_parentsId + ", d_stageId="
+				+ d_stageId + ", districtType=" + districtType + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getD_id() {
+		return d_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setD_id(Integer d_id) {
+		this.d_id = d_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getD_name() {
+		return d_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setD_name(String d_name) {
+		this.d_name = d_name;
 	}
 
-	public Integer getParentsId() {
-		return parentsId;
+	public Integer getD_parentsId() {
+		return d_parentsId;
 	}
 
-	public void setParentsId(Integer parentsId) {
-		this.parentsId = parentsId;
+	public void setD_parentsId(Integer d_parentsId) {
+		this.d_parentsId = d_parentsId;
 	}
 
-	public Integer getStage() {
-		return stage;
+	public Integer getD_stageId() {
+		return d_stageId;
 	}
 
-	public void setStage(Integer stage) {
-		this.stage = stage;
+	public void setD_stageId(Integer d_stageId) {
+		this.d_stageId = d_stageId;
 	}
 
 	public DistrictType getDistrictType() {
-		return DistrictType;
+		return districtType;
 	}
 
 	public void setDistrictType(DistrictType districtType) {
-		DistrictType = districtType;
+		this.districtType = districtType;
 	}
 
 }

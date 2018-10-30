@@ -35,7 +35,7 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 		System.out.println(SO);
 		return SO;
 	}
-	
+
 	@Override
 	public List<StoreOrder> selectHql(String hqlString) throws SQLException {
 		String hql = "from StoreOrder ";
@@ -47,7 +47,7 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 
 	@Override
 	public StoreOrder insert(StoreOrder bean) throws SQLException {
-		StoreOrder SO = selectByPk(bean.getId());
+		StoreOrder SO = selectByPk(bean.getsO_id());
 		if (SO == null) {
 			this.getSession().save(bean);
 			return bean;
@@ -57,16 +57,24 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 
 	@Override
 	public StoreOrder update(StoreOrder bean) throws SQLException {
-		StoreOrder SO = selectByPk(bean.getId());
+		StoreOrder SO = selectByPk(bean.getsO_id());
 		if (SO != null) {
-			if (bean.getStoreProductId() != null)
-				SO.setStoreProductId(bean.getStoreProductId());
-			if (bean.getMemberId() != null)
-				SO.setMemberId(bean.getMemberId());
-			if (bean.getAmount() != null)
-				SO.setAmount(bean.getAmount());
-			if (bean.getStateId() != null)
-				SO.setStateId(bean.getStateId());
+			if (bean.getsP_id() != null)
+				SO.setsP_id(bean.getsP_id());
+			if (bean.getM_idOrder() != null)
+				SO.setM_idOrder(bean.getM_idOrder());
+			if (bean.getsO_transport() != null)
+				SO.setsO_transport(bean.getsO_transport());
+			if (bean.getsO_pay() != null)
+				SO.setsO_pay(bean.getsO_pay());
+			if (bean.getsO_remarks() != null)
+				SO.setsO_remarks(bean.getsO_remarks());
+			if (bean.getsO_amount() != null)
+				SO.setsO_amount(bean.getsO_amount());
+			if (bean.getsO_sumPrice() != null)
+				SO.setsO_sumPrice(bean.getsO_sumPrice());
+			if (bean.getsO_amount() != null)
+				SO.setsO_amount(bean.getsO_stateId());
 			return SO;
 		}
 		return null;

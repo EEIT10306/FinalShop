@@ -47,4 +47,21 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 		return LDT;
 	}
 
+	@Override
+	public DistrictType update(DistrictType bean) throws SQLException {
+		// 查詢此ID有無資料
+		DistrictType DT = selectByPk(bean.getD_id());
+		// 有才修改
+		if (DT != null) {
+			if (bean.getD_name() != null)
+				DT.setD_name(bean.getD_name());
+			if (bean.getD_parentsId() != null)
+				DT.setD_parentsId(bean.getD_parentsId());
+			if (bean.getD_stageId() != null)
+				DT.setD_stageId(bean.getD_stageId());
+			return DT;
+		}
+		return null;
+	}
+
 }
