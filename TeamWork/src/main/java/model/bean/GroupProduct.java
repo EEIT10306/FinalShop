@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 public class GroupProduct {
@@ -183,6 +182,22 @@ public class GroupProduct {
 
 	public Set<Images> getImages() {
 		return Images;
+	}
+
+	public void setGroupon(Groupon groupon) {
+		Groupon = groupon;
+	}
+
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
+	public void setImages(Set<Images> images) {
+		Images = images;
 	}
 
 }

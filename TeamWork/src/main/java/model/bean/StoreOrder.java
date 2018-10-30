@@ -111,4 +111,16 @@ public class StoreOrder {
 		return State;
 	}
 
+	public void setStoreProduct(StoreProduct storeProduct) {
+		StoreProduct = storeProduct;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

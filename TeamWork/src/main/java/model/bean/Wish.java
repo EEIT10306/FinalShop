@@ -234,4 +234,20 @@ public class Wish {
 		return State;
 	}
 
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
+	public void setDistrictType(DistrictType districtType) {
+		DistrictType = districtType;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

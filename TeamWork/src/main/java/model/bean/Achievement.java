@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Achievement {
@@ -36,7 +35,8 @@ public class Achievement {
 
 	@Override
 	public String toString() {
-		return "Achievement [id=" + id + ", context=" + context + ", bonus=" + bonus + ", parentsId=" + parentsId + "]\r\n";
+		return "Achievement [id=" + id + ", context=" + context + ", bonus=" + bonus + ", parentsId=" + parentsId
+				+ "]\r\n";
 	}
 
 	public Integer getId() {

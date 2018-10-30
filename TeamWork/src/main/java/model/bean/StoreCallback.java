@@ -126,4 +126,16 @@ public class StoreCallback {
 		return State;
 	}
 
+	public void setStoreMessage(StoreMessage storeMessage) {
+		StoreMessage = storeMessage;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

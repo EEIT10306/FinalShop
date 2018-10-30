@@ -29,6 +29,8 @@ public class WishReportDaoImpl implements WishReportDao {
 
 	@Override
 	public WishReport selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		WishReport WR = getSession().get(WishReport.class, id);
 		System.out.println(WR);
 		return WR;

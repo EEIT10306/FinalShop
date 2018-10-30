@@ -32,6 +32,8 @@ public class StoreProductDaoImpl implements StoreProductDao {
 
 	@Override
 	public StoreProduct selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		StoreProduct SP = getSession().get(StoreProduct.class, id);
 		System.out.println(SP);
 		return SP;

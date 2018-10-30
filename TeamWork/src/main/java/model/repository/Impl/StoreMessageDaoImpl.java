@@ -30,6 +30,8 @@ public class StoreMessageDaoImpl implements StoreMessageDao {
 
 	@Override
 	public StoreMessage selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		StoreMessage SM = getSession().get(StoreMessage.class, id);
 		System.out.println(SM);
 		return SM;

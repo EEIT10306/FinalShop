@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
 public class StoreAssess {
@@ -106,6 +105,10 @@ public class StoreAssess {
 
 	public StoreOrder getStoreOrder() {
 		return StoreOrder;
+	}
+
+	public void setStoreOrder(StoreOrder storeOrder) {
+		StoreOrder = storeOrder;
 	}
 
 }

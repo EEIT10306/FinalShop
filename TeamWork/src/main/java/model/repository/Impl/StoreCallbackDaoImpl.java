@@ -30,6 +30,8 @@ public class StoreCallbackDaoImpl implements StoreCallbackDao {
 
 	@Override
 	public StoreCallback selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		StoreCallback SC = getSession().get(StoreCallback.class, id);
 		System.out.println(SC);
 		return SC;

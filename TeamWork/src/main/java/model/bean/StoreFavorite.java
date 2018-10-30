@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 public class StoreFavorite {
@@ -76,6 +75,14 @@ public class StoreFavorite {
 
 	public StoreProduct getStoreProduct() {
 		return StoreProduct;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setStoreProduct(StoreProduct storeProduct) {
+		StoreProduct = storeProduct;
 	}
 
 }

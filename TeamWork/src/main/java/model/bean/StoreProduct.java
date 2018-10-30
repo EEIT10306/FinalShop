@@ -158,4 +158,20 @@ public class StoreProduct {
 		return Images;
 	}
 
+	public void setStore(Store store) {
+		Store = store;
+	}
+
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
+	public void setImages(Set<Images> images) {
+		Images = images;
+	}
+
 }

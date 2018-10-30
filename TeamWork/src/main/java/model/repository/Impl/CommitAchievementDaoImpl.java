@@ -30,6 +30,8 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 
 	@Override
 	public CommitAchievement selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
 		System.out.println(CA);
 		return CA;

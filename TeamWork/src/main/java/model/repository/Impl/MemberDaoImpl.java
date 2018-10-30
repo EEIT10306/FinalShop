@@ -29,6 +29,8 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public Member selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Member M = getSession().get(Member.class, id);
 		System.out.println(M);
 		return M;

@@ -81,4 +81,8 @@ public class Product {
 		return Product;
 	}
 
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
 }

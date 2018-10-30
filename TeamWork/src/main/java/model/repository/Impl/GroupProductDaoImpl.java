@@ -30,6 +30,8 @@ public class GroupProductDaoImpl implements GroupProductDao {
 
 	@Override
 	public GroupProduct selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		GroupProduct GP = getSession().get(GroupProduct.class, id);
 		System.out.println(GP);
 		return GP;

@@ -29,6 +29,8 @@ public class ConversationDaoImpl implements ConversationDao {
 
 	@Override
 	public Conversation selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Conversation C = getSession().get(Conversation.class, id);
 		System.out.println(C);
 		return C;

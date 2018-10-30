@@ -29,6 +29,8 @@ public class StoreDaoImpl implements StoreDao {
 
 	@Override
 	public Store selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Store S = getSession().get(Store.class, id);
 		System.out.println(S);
 		return S;

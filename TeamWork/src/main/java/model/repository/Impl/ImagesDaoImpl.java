@@ -30,6 +30,8 @@ public class ImagesDaoImpl implements ImagesDao {
 
 	@Override
 	public Images selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Images I = getSession().get(Images.class, id);
 		System.out.println(I);
 		return I;

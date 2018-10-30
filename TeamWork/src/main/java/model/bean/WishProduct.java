@@ -172,4 +172,20 @@ public class WishProduct {
 		return Images;
 	}
 
+	public void setWish(Wish wish) {
+		Wish = wish;
+	}
+
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
+	public void setImages(Set<Images> images) {
+		Images = images;
+	}
+
 }

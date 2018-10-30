@@ -31,6 +31,8 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 
 	@Override
 	public DistrictType selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		DistrictType DT = getSession().get(DistrictType.class, id);
 		System.out.println(DT);
 		return DT;

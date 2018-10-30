@@ -173,4 +173,16 @@ public class Store {
 		return State;
 	}
 
+	public void setSeller(Seller seller) {
+		Seller = seller;
+	}
+
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

@@ -125,4 +125,16 @@ public class WishMessage {
 		return State;
 	}
 
+	public void setWish(Wish wish) {
+		Wish = wish;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

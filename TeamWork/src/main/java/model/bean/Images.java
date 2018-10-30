@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 public class Images {
@@ -97,6 +96,18 @@ public class Images {
 
 	public StoreProduct getStoreProduct() {
 		return StoreProduct;
+	}
+
+	public void setWishProduct(WishProduct wishProduct) {
+		WishProduct = wishProduct;
+	}
+
+	public void setGroupProduct(GroupProduct groupProduct) {
+		GroupProduct = groupProduct;
+	}
+
+	public void setStoreProduct(StoreProduct storeProduct) {
+		StoreProduct = storeProduct;
 	}
 
 }

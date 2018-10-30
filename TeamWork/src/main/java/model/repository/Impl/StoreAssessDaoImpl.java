@@ -29,6 +29,8 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 
 	@Override
 	public StoreAssess selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		StoreAssess SA = getSession().get(StoreAssess.class, id);
 		System.out.println(SA);
 		return SA;

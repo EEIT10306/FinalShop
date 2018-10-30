@@ -111,4 +111,16 @@ public class GroupOrder {
 		return State;
 	}
 
+	public void setGroupProduct(GroupProduct groupProduct) {
+		GroupProduct = groupProduct;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

@@ -78,4 +78,12 @@ public class WishFavorite {
 		return Wish;
 	}
 
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setWish(Wish wish) {
+		Wish = wish;
+	}
+
 }

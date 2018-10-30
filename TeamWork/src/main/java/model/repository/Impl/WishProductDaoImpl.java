@@ -31,6 +31,8 @@ public class WishProductDaoImpl implements WishProductDao {
 
 	@Override
 	public WishProduct selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		WishProduct WP = getSession().get(WishProduct.class, id);
 		System.out.println(WP);
 		return WP;

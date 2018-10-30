@@ -126,4 +126,16 @@ public class GroupMessage {
 		return State;
 	}
 
+	public void setGroupon(Groupon groupon) {
+		Groupon = groupon;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

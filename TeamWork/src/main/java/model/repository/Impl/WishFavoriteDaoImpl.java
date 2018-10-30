@@ -29,6 +29,8 @@ public class WishFavoriteDaoImpl implements WishFavoriteDao {
 
 	@Override
 	public WishFavorite selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		WishFavorite WF = getSession().get(WishFavorite.class, id);
 		System.out.println(WF);
 		return WF;

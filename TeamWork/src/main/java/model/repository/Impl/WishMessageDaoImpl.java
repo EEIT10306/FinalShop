@@ -30,6 +30,8 @@ public class WishMessageDaoImpl implements WishMessageDao {
 
 	@Override
 	public WishMessage selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		WishMessage WM = getSession().get(WishMessage.class, id);
 		System.out.println(WM);
 		return WM;

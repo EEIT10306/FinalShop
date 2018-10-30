@@ -107,4 +107,8 @@ public class WishAssess {
 		return WishOrder;
 	}
 
+	public void setWishOrder(WishOrder wishOrder) {
+		WishOrder = wishOrder;
+	}
+
 }

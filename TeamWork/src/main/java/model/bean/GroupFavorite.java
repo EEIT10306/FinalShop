@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 public class GroupFavorite {
@@ -39,7 +38,7 @@ public class GroupFavorite {
 		this.memberId = memberId;
 		this.groupId = groupId;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "GroupFavorite [id=" + id + ", memberId=" + memberId + ", groupId=" + groupId + ", Member=" + Member
@@ -76,6 +75,14 @@ public class GroupFavorite {
 
 	public Groupon getGroupon() {
 		return Groupon;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setGroupon(Groupon groupon) {
+		Groupon = groupon;
 	}
 
 }

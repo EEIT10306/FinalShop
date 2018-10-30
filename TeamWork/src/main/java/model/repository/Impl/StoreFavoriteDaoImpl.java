@@ -40,6 +40,8 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 
 	@Override
 	public StoreFavorite selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		StoreFavorite SF = getSession().get(StoreFavorite.class, id);
 		System.out.println(SF);
 		return SF;

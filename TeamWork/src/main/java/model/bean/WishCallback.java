@@ -126,4 +126,16 @@ public class WishCallback {
 		return State;
 	}
 
+	public void setWishMessage(WishMessage wishMessage) {
+		WishMessage = wishMessage;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

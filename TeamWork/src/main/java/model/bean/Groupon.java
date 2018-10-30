@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 public class Groupon {
@@ -195,6 +194,22 @@ public class Groupon {
 
 	public State getState() {
 		return State;
+	}
+
+	public void setSeller(Seller seller) {
+		Seller = seller;
+	}
+
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
+	public void setDistrictType(DistrictType districtType) {
+		DistrictType = districtType;
+	}
+
+	public void setState(State state) {
+		State = state;
 	}
 
 }

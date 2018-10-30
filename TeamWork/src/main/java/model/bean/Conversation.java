@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 public class Conversation {
@@ -124,6 +123,18 @@ public class Conversation {
 
 	public State getState() {
 		return State;
+	}
+
+	public void setMemberEE(Member memberEE) {
+		MemberEE = memberEE;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
 	}
 
 }

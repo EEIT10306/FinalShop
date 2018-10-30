@@ -29,9 +29,12 @@ public class AchievementDaoImpl implements AchievementDao {
 
 	@Override
 	public Achievement selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Achievement A = getSession().get(Achievement.class, id);
 		System.out.println(A);
 		return A;
+
 	}
 
 	@Override

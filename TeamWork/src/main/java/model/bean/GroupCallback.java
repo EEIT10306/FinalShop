@@ -126,4 +126,16 @@ public class GroupCallback {
 		return State;
 	}
 
+	public void setGroupMessage(GroupMessage groupMessage) {
+		GroupMessage = groupMessage;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
+	}
+
 }

@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
 public class DistrictType {
@@ -81,6 +80,10 @@ public class DistrictType {
 
 	public DistrictType getDistrictType() {
 		return DistrictType;
+	}
+
+	public void setDistrictType(DistrictType districtType) {
+		DistrictType = districtType;
 	}
 
 }

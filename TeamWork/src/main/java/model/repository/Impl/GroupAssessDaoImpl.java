@@ -30,6 +30,8 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 
 	@Override
 	public GroupAssess selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		GroupAssess GA = getSession().get(GroupAssess.class, id);
 		System.out.println(GA);
 		return GA;

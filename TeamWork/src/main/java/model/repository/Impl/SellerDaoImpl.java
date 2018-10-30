@@ -31,6 +31,8 @@ public class SellerDaoImpl implements SellerDao {
 
 	@Override
 	public Seller selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Seller S = getSession().get(Seller.class, id);
 		System.out.println(S);
 		return S;

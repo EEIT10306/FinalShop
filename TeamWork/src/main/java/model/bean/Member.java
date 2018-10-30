@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 public class Member {
@@ -270,6 +269,10 @@ public class Member {
 
 	public State getState() {
 		return State;
+	}
+
+	public void setState(State state) {
+		State = state;
 	}
 
 }

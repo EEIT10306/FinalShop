@@ -30,6 +30,8 @@ public class WishCallbackDaoImpl implements WishCallbackDao {
 
 	@Override
 	public WishCallback selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		WishCallback WC = getSession().get(WishCallback.class, id);
 		System.out.println(WC);
 		return WC;
