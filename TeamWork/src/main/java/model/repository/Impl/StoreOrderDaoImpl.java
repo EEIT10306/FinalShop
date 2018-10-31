@@ -79,4 +79,24 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 		}
 		return null;
 	}
+
+	public StoreOrder update(StoreOrder SO, StoreOrder bean) throws SQLException {
+		if (bean.getsP_id() != null)
+			SO.setsP_id(bean.getsP_id());
+		if (bean.getM_idOrder() != null)
+			SO.setM_idOrder(bean.getM_idOrder());
+		if (bean.getsO_transport() != null)
+			SO.setsO_transport(bean.getsO_transport());
+		if (bean.getsO_pay() != null)
+			SO.setsO_pay(bean.getsO_pay());
+		if (bean.getsO_remarks() != null)
+			SO.setsO_remarks(bean.getsO_remarks());
+		if (bean.getsO_amount() != null)
+			SO.setsO_amount(bean.getsO_amount());
+		if (bean.getsO_sumPrice() != null)
+			SO.setsO_sumPrice(bean.getsO_sumPrice());
+		if (bean.getsO_amount() != null)
+			SO.setsO_amount(bean.getsO_stateId());
+		return SO;
+	}
 }

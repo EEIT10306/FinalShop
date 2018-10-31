@@ -74,4 +74,17 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 		return null;
 	}
 
+	public StoreAssess update(StoreAssess SA, StoreAssess bean) throws SQLException {
+		if (bean.getsO_id() != null)
+			SA.setsO_id(bean.getsO_id());
+		if (bean.getsA_point() != null)
+			SA.setsA_point(bean.getsA_point());
+		if (bean.getsA_content() != null)
+			SA.setsA_content(bean.getsA_content());
+		if (bean.getsA_pointAssess() != null)
+			SA.setsA_pointAssess(bean.getsA_pointAssess());
+		if (bean.getsA_contextAssess() != null)
+			SA.setsA_contextAssess(bean.getsA_contextAssess());
+		return SA;
+	}
 }

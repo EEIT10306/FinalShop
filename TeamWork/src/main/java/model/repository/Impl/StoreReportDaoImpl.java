@@ -71,4 +71,16 @@ public class StoreReportDaoImpl implements StoreReportDao {
 		}
 		return null;
 	}
+
+	public StoreReport update(StoreReport SR, StoreReport bean) throws SQLException {
+		if (bean.getsP_id() != null)
+			SR.setsP_id(bean.getsP_id());
+		if (bean.getM_idReport() != null)
+			SR.setM_idReport(bean.getM_idReport());
+		if (bean.getsR_content() != null)
+			SR.setsR_content(bean.getsR_content());
+		if (bean.getsR_stateId() != null)
+			SR.setsR_stateId(bean.getsR_stateId());
+		return SR;
+	}
 }

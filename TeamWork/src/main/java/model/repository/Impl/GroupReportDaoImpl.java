@@ -72,4 +72,16 @@ public class GroupReportDaoImpl implements GroupReportDao {
 		return null;
 	}
 
+	public GroupReport update(GroupReport GR, GroupReport bean) throws SQLException {
+		if (bean.getG_id() != null)
+			GR.setG_id(bean.getG_id());
+		if (bean.getM_idReport() != null)
+			GR.setM_idReport(bean.getM_idReport());
+		if (bean.getgR_content() != null)
+			GR.setgR_content(bean.getgR_content());
+		if (bean.getgR_stateId() != null)
+			GR.setgR_stateId(bean.getgR_stateId());
+		return GR;
+	}
+
 }

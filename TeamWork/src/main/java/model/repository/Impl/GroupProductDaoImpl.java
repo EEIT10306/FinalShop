@@ -82,4 +82,26 @@ public class GroupProductDaoImpl implements GroupProductDao {
 		}
 		return null;
 	}
+
+	public GroupProduct update(GroupProduct GP, GroupProduct bean) throws SQLException {
+		if (bean.getG_iD() != null)
+			GP.setG_iD(bean.getG_iD());
+		if (bean.getgP_name() != null)
+			GP.setgP_name(bean.getgP_name());
+		if (bean.getP_id() != null)
+			GP.setP_id(bean.getP_id());
+		if (bean.getgP_amount() != null)
+			GP.setgP_amount(bean.getgP_amount());
+		if (bean.getgP_price() != null)
+			GP.setgP_price(bean.getgP_price());
+		if (bean.getgP_context() != null)
+			GP.setgP_context(bean.getgP_context());
+		if (bean.getgP_version() != null)
+			GP.setgP_version(bean.getgP_version());
+		if (bean.getgP_completeTime() != null)
+			GP.setgP_completeTime(bean.getgP_completeTime());
+		if (bean.getgP_stateId() != null)
+			GP.setgP_stateId(bean.getgP_stateId());
+		return GP;
+	}
 }

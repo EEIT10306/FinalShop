@@ -73,4 +73,18 @@ public class WishOrderDaoImpl implements WishOrderDao {
 		}
 		return null;
 	}
+
+	public WishOrder update(WishOrder WO, WishOrder bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WO.setW_id(bean.getW_id());
+		if (bean.getM_idOrder() != null)
+			WO.setM_idOrder(bean.getM_idOrder());
+		if (bean.getwO_sumPrice() != null)
+			WO.setwO_sumPrice(bean.getwO_sumPrice());
+		if (bean.getwO_time() != null)
+			WO.setwO_time(bean.getwO_time());
+		if (bean.getwO_stateId() != null)
+			WO.setwO_stateId(bean.getwO_stateId());
+		return WO;
+	}
 }

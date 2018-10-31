@@ -74,4 +74,18 @@ public class StoreMessageDaoImpl implements StoreMessageDao {
 		}
 		return null;
 	}
+
+	public StoreMessage update(StoreMessage SM, StoreMessage bean) throws SQLException {
+		if (bean.getsP_id() != null)
+			SM.setsP_id(bean.getsP_id());
+		if (bean.getM_idMessage() != null)
+			SM.setM_idMessage(bean.getM_idMessage());
+		if (bean.getsM_context() != null)
+			SM.setsM_context(bean.getsM_context());
+		if (bean.getsM_time() != null)
+			SM.setsM_time(bean.getsM_time());
+		if (bean.getsM_stateId() != null)
+			SM.setsM_stateId(bean.getsM_stateId());
+		return SM;
+	}
 }

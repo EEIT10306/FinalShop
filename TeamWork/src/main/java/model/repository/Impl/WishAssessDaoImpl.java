@@ -74,4 +74,18 @@ public class WishAssessDaoImpl implements WishAssessDao {
 		return null;
 	}
 
+	public WishAssess update(WishAssess WA, WishAssess bean) throws SQLException {
+		if (bean.getwO_id() != null)
+			WA.setwO_id(bean.getwO_id());
+		if (bean.getwA_point() != null)
+			WA.setwA_point(bean.getwA_point());
+		if (bean.getwA_context() != null)
+			WA.setwA_context(bean.getwA_context());
+		if (bean.getwA_pointAssess() != null)
+			WA.setwA_pointAssess(bean.getwA_pointAssess());
+		if (bean.getwA_contextAssess() != null)
+			WA.setwA_contextAssess(bean.getwA_contextAssess());
+		return WA;
+	}
+
 }

@@ -74,4 +74,18 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 		}
 		return null;
 	}
+
+	public GroupMessage update(GroupMessage GM, GroupMessage bean) throws SQLException {
+		if (bean.getG_id() != null)
+			GM.setG_id(bean.getG_id());
+		if (bean.getM_idMessage() != null)
+			GM.setM_idMessage(bean.getM_idMessage());
+		if (bean.getgM_context() != null)
+			GM.setgM_context(bean.getgM_context());
+		if (bean.getgM_time() != null)
+			GM.setgM_time(bean.getgM_time());
+		if (bean.getgM_stateId() != null)
+			GM.setgM_stateId(bean.getgM_stateId());
+		return GM;
+	}
 }

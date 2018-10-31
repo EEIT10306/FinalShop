@@ -70,4 +70,13 @@ public class ProductDaoImpl implements ProductDao {
 		return null;
 	}
 
+	public Product update(Product P, Product bean) throws SQLException {
+		if (bean.getP_name() != null)
+			P.setP_name(bean.getP_name());
+		if (bean.getP_parentsId() != null)
+			P.setP_parentsId(bean.getP_parentsId());
+		if (bean.getP_stage() != null)
+			P.setP_stage(bean.getP_stage());
+		return P;
+	}
 }

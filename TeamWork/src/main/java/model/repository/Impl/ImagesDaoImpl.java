@@ -71,6 +71,16 @@ public class ImagesDaoImpl implements ImagesDao {
 		return null;
 	}
 
+	public Images update(Images I, Images bean) throws SQLException {
+		if (bean.getWgs_id() != null)
+			I.setWgs_id(bean.getWgs_id());
+		if (bean.getI_context() != null)
+			I.setI_context(bean.getI_context());
+		if (bean.getI_from() != null)
+			I.setI_from(bean.getI_from());
+		return I;
+	}
+
 	@Override
 	public Boolean delete(Images bean) throws SQLException {
 		Images I = selectByPk(bean.getI_id());

@@ -78,4 +78,22 @@ public class WishBidDaoImpl implements WishBidDao {
 		}
 		return null;
 	}
+
+	public WishBid update(WishBid WB, WishBid bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WB.setW_id(bean.getW_id());
+		if (bean.getM_idBid() != null)
+			WB.setM_idBid(bean.getM_idBid());
+		if (bean.getwB_bid() != null)
+			WB.setwB_bid(bean.getwB_bid());
+		if (bean.getwB_context() != null)
+			WB.setwB_context(bean.getwB_context());
+		if (bean.getwB_freight() != null)
+			WB.setwB_freight(bean.getwB_freight());
+		if (bean.getwB_time() != null)
+			WB.setwB_time(bean.getwB_time());
+		if (bean.getwB_stateId() != null)
+			WB.setwB_stateId(bean.getwB_stateId());
+		return WB;
+	}
 }

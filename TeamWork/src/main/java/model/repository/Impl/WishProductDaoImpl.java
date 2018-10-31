@@ -81,4 +81,24 @@ public class WishProductDaoImpl implements WishProductDao {
 		return null;
 	}
 
+	public WishProduct update(WishProduct WP, WishProduct bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WP.setW_id(bean.getW_id());
+		if (bean.getwP_name() != null)
+			WP.setwP_name(bean.getwP_name());
+		if (bean.getP_id() != null)
+			WP.setP_id(bean.getP_id());
+		if (bean.getwP_amount() != null)
+			WP.setwP_amount(bean.getwP_amount());
+		if (bean.getwP_priceBottom() != null)
+			WP.setwP_priceBottom(bean.getwP_priceBottom());
+		if (bean.getwP_priceTop() != null)
+			WP.setwP_priceTop(bean.getwP_priceTop());
+		if (bean.getwP_completeTime() != null)
+			WP.setwP_completeTime(bean.getwP_completeTime());
+		if (bean.getwP_stateId() != null)
+			WP.setwP_stateId(bean.getwP_stateId());
+		return WP;
+	}
+
 }
