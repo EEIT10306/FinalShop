@@ -3,8 +3,11 @@ package model.repository.Impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -52,12 +55,40 @@ public class MemberDaoImpl implements MemberDao {
 		Member M = selectByPk(bean.getM_id());
 		// 沒有才新增
 		if (M == null) {
+			bean.setM_coin(0);
+			bean.setM_loginCount(0);
+			bean.setM_position("member");
+			bean.setM_wishAssessSumEE(0d);
+			bean.setM_groupAssessSumEE(0d);
+			bean.setM_storeAssessSumEE(0d);
+			bean.setM_wishAssessSum(0d);
+			bean.setM_groupAssessSum(0d);
+			bean.setM_storeAssessSum(0d);
+			bean.setM_stateId(1);
 			getSession().save(bean);
 			return bean;
 		}
 		return null;
 	}
-
+	
+	@Override
+	public boolean idExists(String acount) {
+		boolean exist = false;
+		Member mb = null;
+		String hql = "FROM Member m WHERE m.m_account = :account ";
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		query = query.setParameter("account", acount);
+		try {
+			mb = (Member) query.getSingleResult();
+			exist = true;
+		} catch(NoResultException ex) {
+			exist = false;
+		}
+		return exist;
+	}
+	// 判斷參數id(會員帳號)是否已經被現有客戶使用，如果是，傳回true，表示此id不能使用，
+	// 否則傳回false，表示此id可使用。
 	@Override
 	public Member update(Member bean) throws SQLException {
 		// 查詢此ID有無資料
@@ -88,14 +119,14 @@ public class MemberDaoImpl implements MemberDao {
 				M.setM_loginTime(bean.getM_loginTime());
 			if (bean.getM_stateId() != null)
 				M.setM_stateId(bean.getM_stateId());
-			if (bean.getM_wiseAssessSumEE() != null)
-				M.setM_wiseAssessSumEE(bean.getM_wiseAssessSumEE());
+			if (bean.getM_wishAssessSumEE() != null)
+				M.setM_wishAssessSumEE(bean.getM_wishAssessSumEE());
 			if (bean.getM_groupAssessSumEE() != null)
 				M.setM_groupAssessSumEE(bean.getM_groupAssessSumEE());
 			if (bean.getM_storeAssessSumEE() != null)
 				M.setM_storeAssessSumEE(bean.getM_storeAssessSumEE());
-			if (bean.getM_wiseAssessSum() != null)
-				M.setM_wiseAssessSum(bean.getM_wiseAssessSum());
+			if (bean.getM_wishAssessSum() != null)
+				M.setM_wishAssessSum(bean.getM_wishAssessSum());
 			if (bean.getM_groupAssessSum() != null)
 				M.setM_groupAssessSum(bean.getM_groupAssessSum());
 			if (bean.getM_storeAssessSum() != null)
@@ -130,14 +161,14 @@ public class MemberDaoImpl implements MemberDao {
 			M.setM_loginTime(bean.getM_loginTime());
 		if (bean.getM_stateId() != null)
 			M.setM_stateId(bean.getM_stateId());
-		if (bean.getM_wiseAssessSumEE() != null)
-			M.setM_wiseAssessSumEE(bean.getM_wiseAssessSumEE());
+		if (bean.getM_wishAssessSumEE() != null)
+			M.setM_wishAssessSumEE(bean.getM_wishAssessSumEE());
 		if (bean.getM_groupAssessSumEE() != null)
 			M.setM_groupAssessSumEE(bean.getM_groupAssessSumEE());
 		if (bean.getM_storeAssessSumEE() != null)
 			M.setM_storeAssessSumEE(bean.getM_storeAssessSumEE());
-		if (bean.getM_wiseAssessSum() != null)
-			M.setM_wiseAssessSum(bean.getM_wiseAssessSum());
+		if (bean.getM_wishAssessSum() != null)
+			M.setM_wishAssessSum(bean.getM_wishAssessSum());
 		if (bean.getM_groupAssessSum() != null)
 			M.setM_groupAssessSum(bean.getM_groupAssessSum());
 		if (bean.getM_storeAssessSum() != null)

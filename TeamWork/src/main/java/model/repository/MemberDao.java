@@ -15,4 +15,6 @@ public interface MemberDao {
 	public Member insert(Member bean) throws SQLException;
 
 	public Member update(Member bean) throws SQLException;
+
+	public boolean idExists(String acount);
 }
