@@ -55,7 +55,7 @@
 			$.ajax({
 	            type: "post",
 	            url : "/TeamWork/RegisterServlet",
-	            data: {"account":mail,"name":name , "password":password,"mail":repassword},
+	            data: {"m_account":mail,"m_name":name , "m_password":password,"m_mail":mail},
 	            success: function(data) {
 
 	            	if(data=="accountNull"){

@@ -33,32 +33,32 @@ public class RegisterController {
 		//接收資料
 		System.out.println(member);
 		//驗證資料
-		if (member.getAccount() == null|| member.getAccount().trim().length() == 0) {
+		if (member.getM_account() == null|| member.getM_account().trim().length() == 0) {
 			return "accountNull";
 		} else {
-			member.setAccount(replaceSpecialCharater(member.getAccount()));
+			member.setM_account(replaceSpecialCharater(member.getM_account()));
 		}
-		if (member.getPassword() == null|| member.getPassword().trim().length() == 0) {
+		if (member.getM_password() == null|| member.getM_password().trim().length() == 0) {
 			return "passwordNull";
-		} else if(member.getPassword() != null|| member.getPassword().trim().length() != 0) {
-			member.setPassword(replaceSpecialCharater(member.getPassword()));
+		} else if(member.getM_password() != null|| member.getM_password().trim().length() != 0) {
+			member.setM_password(replaceSpecialCharater(member.getM_password()));
 			pattern = Pattern.compile(PASSWORD_PATTERN);
-			matcher = pattern.matcher(member.getPassword());
+			matcher = pattern.matcher(member.getM_password());
 			if (matcher.matches()) {
-				member.setPassword(replaceSpecialCharater(member.getPassword()));
+				member.setM_password(replaceSpecialCharater(member.getM_password()));
 			} else {
 				return "passwordNull";
 			}
 		}
-		if (member.getName() == null|| member.getName().trim().length() == 0) {
+		if (member.getM_name() == null|| member.getM_name().trim().length() == 0) {
 			return "accountNull";
 		} else {
-			member.setName(replaceSpecialCharater(member.getName()));
+			member.setM_name(replaceSpecialCharater(member.getM_name()));
 		}
 		
 		//呼叫model
 		//根據model執行結果，導向view
-		if(ms.idExists(member.getAccount())) {
+		if(ms.idExists(member.getM_account())) {
 			return "existsAccount";
 		} else {
 			try {

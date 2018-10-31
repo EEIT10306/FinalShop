@@ -55,7 +55,7 @@ public class Member {
 	private Integer m_stateId;
 
 	@Column(name = "wA_sumee", columnDefinition = "float", nullable = false)
-	private Double m_wiseAssessSumEE;
+	private Double m_wishAssessSumEE;
 
 	@Column(name = "gA_sumee", columnDefinition = "float", nullable = false)
 	private Double m_groupAssessSumEE;
@@ -64,7 +64,7 @@ public class Member {
 	private Double m_storeAssessSumEE;
 
 	@Column(name = "wA_sum", columnDefinition = "float", nullable = false)
-	private Double m_wiseAssessSum;
+	private Double m_wishAssessSum;
 
 	@Column(name = "gA_sum", columnDefinition = "float", nullable = false)
 	private Double m_groupAssessSum;
@@ -81,8 +81,8 @@ public class Member {
 
 	public Member(Integer m_id, String m_account, String m_password, String m_name, String m_address,
 			String m_telephone, String m_mail, String m_position, Integer m_coin, String m_photo, Integer m_loginCount,
-			Date m_loginTime, Integer m_stateId, Double m_wiseAssessSumEE, Double m_groupAssessSumEE,
-			Double m_storeAssessSumEE, Double m_wiseAssessSum, Double m_groupAssessSum, Double m_storeAssessSum) {
+			Date m_loginTime, Integer m_stateId, Double m_wishAssessSumEE, Double m_groupAssessSumEE,
+			Double m_storeAssessSumEE, Double m_wishAssessSum, Double m_groupAssessSum, Double m_storeAssessSum) {
 		super();
 		this.m_id = m_id;
 		this.m_account = m_account;
@@ -97,10 +97,10 @@ public class Member {
 		this.m_loginCount = m_loginCount;
 		this.m_loginTime = m_loginTime;
 		this.m_stateId = m_stateId;
-		this.m_wiseAssessSumEE = m_wiseAssessSumEE;
+		this.m_wishAssessSumEE = m_wishAssessSumEE;
 		this.m_groupAssessSumEE = m_groupAssessSumEE;
 		this.m_storeAssessSumEE = m_storeAssessSumEE;
-		this.m_wiseAssessSum = m_wiseAssessSum;
+		this.m_wishAssessSum = m_wishAssessSum;
 		this.m_groupAssessSum = m_groupAssessSum;
 		this.m_storeAssessSum = m_storeAssessSum;
 	}
@@ -110,9 +110,9 @@ public class Member {
 		return "Member [m_id=" + m_id + ", m_account=" + m_account + ", m_password=" + m_password + ", m_name=" + m_name
 				+ ", m_address=" + m_address + ", m_telephone=" + m_telephone + ", m_mail=" + m_mail + ", m_position="
 				+ m_position + ", m_coin=" + m_coin + ", m_photo=" + m_photo + ", m_loginCount=" + m_loginCount
-				+ ", m_loginTime=" + m_loginTime + ", m_stateId=" + m_stateId + ", m_wiseAssessSumEE="
-				+ m_wiseAssessSumEE + ", m_groupAssessSumEE=" + m_groupAssessSumEE + ", m_storeAssessSumEE="
-				+ m_storeAssessSumEE + ", m_wiseAssessSum=" + m_wiseAssessSum + ", m_groupAssessSum=" + m_groupAssessSum
+				+ ", m_loginTime=" + m_loginTime + ", m_stateId=" + m_stateId + ", m_wishAssessSumEE="
+				+ m_wishAssessSumEE + ", m_groupAssessSumEE=" + m_groupAssessSumEE + ", m_storeAssessSumEE="
+				+ m_storeAssessSumEE + ", m_wishAssessSum=" + m_wishAssessSum + ", m_groupAssessSum=" + m_groupAssessSum
 				+ ", m_storeAssessSum=" + m_storeAssessSum + ", state=" + state + "]\r\n";
 	}
 
@@ -220,12 +220,12 @@ public class Member {
 		this.m_stateId = m_stateId;
 	}
 
-	public Double getM_wiseAssessSumEE() {
-		return m_wiseAssessSumEE;
+	public Double getM_wishAssessSumEE() {
+		return m_wishAssessSumEE;
 	}
 
-	public void setM_wiseAssessSumEE(Double m_wiseAssessSumEE) {
-		this.m_wiseAssessSumEE = m_wiseAssessSumEE;
+	public void setM_wishAssessSumEE(Double m_wishAssessSumEE) {
+		this.m_wishAssessSumEE = m_wishAssessSumEE;
 	}
 
 	public Double getM_groupAssessSumEE() {
@@ -244,12 +244,12 @@ public class Member {
 		this.m_storeAssessSumEE = m_storeAssessSumEE;
 	}
 
-	public Double getM_wiseAssessSum() {
-		return m_wiseAssessSum;
+	public Double getM_wishAssessSum() {
+		return m_wishAssessSum;
 	}
 
-	public void setM_wiseAssessSum(Double m_wiseAssessSum) {
-		this.m_wiseAssessSum = m_wiseAssessSum;
+	public void setM_wishAssessSum(Double m_wishAssessSum) {
+		this.m_wishAssessSum = m_wishAssessSum;
 	}
 
 	public Double getM_groupAssessSum() {

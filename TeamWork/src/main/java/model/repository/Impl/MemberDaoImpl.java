@@ -54,6 +54,16 @@ public class MemberDaoImpl implements MemberDao {
 		Member M = selectByPk(bean.getM_id());
 		// 沒有才新增
 		if (M == null) {
+			bean.setM_coin(0);
+			bean.setM_loginCount(0);
+			bean.setM_position("member");
+			bean.setM_wishAssessSumEE(0d);
+			bean.setM_groupAssessSumEE(0d);
+			bean.setM_storeAssessSumEE(0d);
+			bean.setM_wishAssessSum(0d);
+			bean.setM_groupAssessSum(0d);
+			bean.setM_storeAssessSum(0d);
+			bean.setM_stateId(1);
 			getSession().save(bean);
 			return bean;
 		}
@@ -64,7 +74,7 @@ public class MemberDaoImpl implements MemberDao {
 	public boolean idExists(String acount) {
 		boolean exist = false;
 		Member mb = null;
-		String hql = "FROM Member m WHERE m.account = :account ";
+		String hql = "FROM Member m WHERE m.m_account = :account ";
 		Session session = getSession();
 		Query query = session.createQuery(hql);
 		query = query.setParameter("account", acount);
@@ -108,14 +118,14 @@ public class MemberDaoImpl implements MemberDao {
 				M.setM_loginTime(bean.getM_loginTime());
 			if (bean.getM_stateId() != null)
 				M.setM_stateId(bean.getM_stateId());
-			if (bean.getM_wiseAssessSumEE() != null)
-				M.setM_wiseAssessSumEE(bean.getM_wiseAssessSumEE());
+			if (bean.getM_wishAssessSumEE() != null)
+				M.setM_wishAssessSumEE(bean.getM_wishAssessSumEE());
 			if (bean.getM_groupAssessSumEE() != null)
 				M.setM_groupAssessSumEE(bean.getM_groupAssessSumEE());
 			if (bean.getM_storeAssessSumEE() != null)
 				M.setM_storeAssessSumEE(bean.getM_storeAssessSumEE());
-			if (bean.getM_wiseAssessSum() != null)
-				M.setM_wiseAssessSum(bean.getM_wiseAssessSum());
+			if (bean.getM_wishAssessSum() != null)
+				M.setM_wishAssessSum(bean.getM_wishAssessSum());
 			if (bean.getM_groupAssessSum() != null)
 				M.setM_groupAssessSum(bean.getM_groupAssessSum());
 			if (bean.getM_storeAssessSum() != null)
@@ -150,14 +160,14 @@ public class MemberDaoImpl implements MemberDao {
 			M.setM_loginTime(bean.getM_loginTime());
 		if (bean.getM_stateId() != null)
 			M.setM_stateId(bean.getM_stateId());
-		if (bean.getM_wiseAssessSumEE() != null)
-			M.setM_wiseAssessSumEE(bean.getM_wiseAssessSumEE());
+		if (bean.getM_wishAssessSumEE() != null)
+			M.setM_wishAssessSumEE(bean.getM_wishAssessSumEE());
 		if (bean.getM_groupAssessSumEE() != null)
 			M.setM_groupAssessSumEE(bean.getM_groupAssessSumEE());
 		if (bean.getM_storeAssessSumEE() != null)
 			M.setM_storeAssessSumEE(bean.getM_storeAssessSumEE());
-		if (bean.getM_wiseAssessSum() != null)
-			M.setM_wiseAssessSum(bean.getM_wiseAssessSum());
+		if (bean.getM_wishAssessSum() != null)
+			M.setM_wishAssessSum(bean.getM_wishAssessSum());
 		if (bean.getM_groupAssessSum() != null)
 			M.setM_groupAssessSum(bean.getM_groupAssessSum());
 		if (bean.getM_storeAssessSum() != null)
