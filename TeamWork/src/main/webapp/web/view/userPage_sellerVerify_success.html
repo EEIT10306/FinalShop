@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>賣家驗證</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
+
+	<!-- main CSS -->
+	<link rel="stylesheet" href="../style/main.css">
+	<link rel="stylesheet" href="../style/userPage.css">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	 crossorigin="anonymous">
+
+
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-yellow">
+		<a class="navbar-brand" href="#">DayDayGo!</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+		 aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
+
+			</ul>
+			<!-- Button trigger modal -->
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="form_login.html">
+						<i class="fas fa-user-circle icon"></i>會員登入 Member login
+					</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="belowNavbar">
+		<div class="container">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+					 aria-expanded="false">項目</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">許願池</a> <a class="dropdown-item" href="#">限時團購</a> <a class="dropdown-item"
+						 href="#">購物商城</a>
+					</div>
+				</div>
+				<input type="text" class="form-control" aria-label="Text input with dropdown button">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button">Search</button>
+				</div>
+			</div>
+		</div>
+		<!-- end of container -->
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="user-page-slidebar col-lg-2">
+				<div class="user-page-brief">
+					<a class="user-page-brief_avatar" href="#">
+						<div class="user-avatar_placeholder">
+							<img src="../images/user/account/profile/001.png" alt="">
+						</div>
+					</a>
+					<div class="user-page-brief_right">
+						<div class="user-page-brief__username"></div>
+						<div>
+							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
+						</div>
+					</div>
+				</div>
+				<div class="userpage-sidebar-menu">
+					<a href="" class="userpage-sidebar-menu_item">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Man.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">我的帳戶</div>
+					</a> <a href="" class="userpage-sidebar-menu_item">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user//Checklist.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">購買清單</div>
+					</a> <a href="" class="userpage-sidebar-menu_item">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Medal.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">我的成就</div>
+					</a> <a href="" class="userpage-sidebar-menu_item">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Love-Letter.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">通知記錄</div>
+					</a> <a href="" class="userpage-sidebar-menu_item">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Analytics.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">賣家驗證</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="user-page_wrapper col-lg-10">
+				<div class="seller-verify_header">
+					<h2 class="step1">
+						<i class="fas fa-dot-circle step1"></i>
+						銀行帳號
+					</h2>
+					<h2 class="step2 step">></h2>
+					<h2 class="step2 step">
+						<i class="fas step2"></i>
+						基本資料
+					</h2>
+					<h2 class="step3 step">></h2>
+					<h2 class="step3 step">
+						<i class="fas step3"></i>
+						詳細資料
+					</h2>
+				</div>
+				<div class="seller-verify_content">
+					<form class="form-wrapper" id="seller-verify_form" method="post" action="/TeamWork/sellerVerify.do">
+						<fieldset class="section" id="form-step-1">
+							<div class="form-group row">
+								<label for="bard" class="col-sm-5 col-form-label">銀行名稱</label>
+								<div class="col-sm-7">
+									<select class="form-control" id="bard" name="Seller.bank">
+										<option value="1">華南商業銀行</option>
+										<option value="2">臺灣銀行</option>
+										<option value="3">臺灣土地銀行</option>
+										<option value="4">合作金庫商業銀行</option>
+										<option value="5">第一商業銀行</option>
+										<option value="6">彰化商業銀行</option>
+										<option value="7">上海商業儲蓄銀行</option>
+										<option value="8">台北富邦商業銀行</option>
+										<option value="9">國泰世華商業銀行</option>
+										<option value="10">高雄銀行</option>
+										<option value="11">兆豐國際商業銀行</option>
+										<option value="12">全國農業金庫</option>
+										<option value="13">花旗（臺灣）商業銀行</option>
+										<option value="14">中華開發工業銀行</option>
+										<option value="15">臺灣中小企業銀行</option>
+										<option value="16">渣打國際商業銀行</option>
+										<option value="17">台中商業銀行</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="bardName" class="col-sm-5 col-form-label">分行名稱</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="bardName" placeholder="請輸入分行名稱" name="bardName">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="cardName" class="col-sm-5 col-form-label">銀行戶名</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="cardName" placeholder="請輸入銀行戶名" name="cardName">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="card" class="col-sm-5 col-form-label">銀行帳號</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="card" placeholder="請輸入銀行帳號" name="Seller.card">
+								</div>
+							</div>
+							<div class="form-group row stepControlRow">
+									<div class="col-sm-5"></div>
+									<div class="col-sm-7">
+										<input type="button" class="btn btn-sm seller-verify_btn btn_nextStep" value="NEXT" />
+									</div>
+							</div>
+						</fieldset>
+						<fieldset class="section" id="form-step-2">
+							<input type="hidden" name="Seller.memberId" value="5">
+							<!-- <div class="form-group row">
+									<label for="idNumType" class="col-sm-5 col-form-label">身份 / 證件類型</label>
+									<div class="col-sm-7">
+										<select class="form-control" id="idNumType" name="idNumType">
+											<option>台灣公民/身份證</option>
+											<option>外國友人 / 統一證號</option>
+											<option>公司名稱/ 公司編號</option>
+										</select>
+									</div>
+								</div> -->
+							<div class="form-group row">
+								<label for="store_name" class="col-sm-5 col-form-label">賣場名稱</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="store_name" placeholder="請輸入賣場名稱" name="name">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="store_tel" class="col-sm-5 col-form-label">店家電話</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="store_tel" placeholder="請輸入身分證字號" name="telephone">
+								</div>
+							</div>
+							<!-- <div class="form-group row">
+									<label for="birth" class="col-sm-5 col-form-label">生日</label>
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="birth" placeholder="請輸入MM/dd/yy格式" name="birth">
+									</div>
+								</div> -->
+							<div class="form-group row">
+								<label for="store_add" class="col-sm-5 col-form-label">店家地址</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="store_add" placeholder="請輸入地址" name="address">
+								</div>
+							</div>
+							<div class="form-group row stepControlRow">
+
+
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4">
+										<input type="button" class="btn btn-sm seller-verify_btn btn_preStep" value="PREVIOUS" />
+									</div>
+									<div class="col-sm-4">
+										<input type="button" class="btn btn-sm seller-verify_btn btn_nextStep" value="NEXT" />
+									</div>
+								
+							</div>
+						</fieldset>
+
+						<fieldset class="section" id="form-step-3">
+							<div class="form-group row">
+								<label for="prod_ID" class="col-sm-5 col-form-label">主要商品類型</label>
+								<div class="col-sm-7">
+									<select class="form-control" id="prod_ID" name="productId">
+										<option value="1">女生衣著</option>
+										<option value="2">南生衣著</option>
+										<option value="5">美妝保健</option>
+										<option value="4">手機平板與周邊</option>
+										<option value="5">婦嬰用品</option>
+										<option value="6">3C</option>
+										<option value="7">居家生活</option>
+										<option value="8">家電</option>
+										<option value="9">女生配件</option>
+										<option value="10">男生包包與配件</option>
+										<option value="11">女鞋</option>
+										<option value="12">男鞋</option>
+										<option value="13">女生包包/精品</option>
+										<option value="14">戶外與運動用品</option>
+										<option value="15">美食、伴手禮</option>
+										<option value="16">汽機車零件百貨</option>
+										<option value="17">寵物</option>
+										<option value="18">娛樂、收藏</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword" class="col-sm-5 col-form-label">商場描述</label>
+								<div class="col-sm-7">
+									<textarea name="" id="" rows="3" class="form-control" placeholder="請輸入簡略商場描述" name="context"></textarea>
+								</div>
+							</div>
+							<div class="form-group row stepControlRow">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4">
+										<input type="button" class="btn btn-sm seller-verify_btn btn_preStep" value="PREVIOUS" />
+									</div>
+									<div class="col-sm-4">
+										<input type="submit" class="btn btn-sm seller-verify_btn" value="COMPLETE" />
+									</div>
+
+
+
+								
+						</fieldset>
+
+
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+	<!-- start of footer -->
+	<div class="contaminer-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">關注我們</div>
+					<ul class="footer-category-list">
+						<li>
+							<img src="../images/social/facebook.png">
+							<a href="#">Facebook</a>
+						</li>
+						<li>
+							<img src="../images/social/instagram.png">
+							<a href="#">Instagram</a>
+						</li>
+						<li>
+							<img src="../images/social/line.png">
+							<a href="#">LINE</a>
+						</li>
+						<li>
+							<img src="../images/social/linkedin.png">
+							<a href="#">
+								Linkedin</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div><!-- end of footer -->
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	 crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function () {
+			var currentStep = 1;
+			$(".btn_nextStep").click(function () {
+				$("#form-step-" + currentStep).hide();
+				currentStep += 1;
+				$("#form-step-" + currentStep).show();
+				$("i.fa-dot-circle").removeClass("fa-dot-circle").addClass("fa-check-circle");
+				$("i.step" + currentStep).addClass("fa-dot-circle");
+				$(".step" + currentStep).removeClass("step");
+			});
+			$(".btn_preStep").click(function () {
+				$("#form-step-" + currentStep).hide();
+				$(".step" + currentStep).addClass("step");
+				$("i.step" + currentStep).removeClass("fa-dot-circle");
+				currentStep -= 1;
+				$("#form-step-" + currentStep).show();
+				$("i.step" + currentStep).removeClass("fa-check-circle").addClass("fa-dot-circle");
+			});
+		});
+
+
+	</script>
+</body>
+
+</html>
