@@ -3,8 +3,11 @@ package model.repository.Impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +32,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public Member selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		Member M = getSession().get(Member.class, id);
 		System.out.println(M);
@@ -56,7 +59,25 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return null;
 	}
-
+	
+	@Override
+	public boolean idExists(String acount) {
+		boolean exist = false;
+		Member mb = null;
+		String hql = "FROM Member m WHERE m.account = :account ";
+		Session session = getSession();
+		Query query = session.createQuery(hql);
+		query = query.setParameter("account", acount);
+		try {
+			mb = (Member) query.getSingleResult();
+			exist = true;
+		} catch(NoResultException ex) {
+			exist = false;
+		}
+		return exist;
+	}
+	// 判斷參數id(會員帳號)是否已經被現有客戶使用，如果是，傳回true，表示此id不能使用，
+	// 否則傳回false，表示此id可使用。
 	@Override
 	public Member update(Member bean) throws SQLException {
 		// 查詢此ID有無資料
