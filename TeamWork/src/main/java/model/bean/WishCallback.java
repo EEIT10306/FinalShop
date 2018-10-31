@@ -16,126 +16,126 @@ public class WishCallback {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wC_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer wC_id;
 
 	@Column(name = "wM_ID", columnDefinition = "int", nullable = false)
-	private Integer wishMessageId;
+	private Integer wM_id;
 
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idCallback;
 
 	@Column(name = "wC_cont", columnDefinition = "nvarchar(MAX)", nullable = false)
-	private String context;
+	private String wC_context;
 
 	@Column(name = "wC_time", columnDefinition = "datetime", nullable = false)
-	private Date time;
+	private Date wC_time;
 
 	@Column(name = "wC_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer wC_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "wM_ID", insertable = false, updatable = false)
-	private WishMessage WishMessage;
+	private WishMessage wishMessage;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_IDee", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "wC_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public WishCallback() {
 	}
 
-	public WishCallback(Integer id, Integer wishMessageId, Integer memberId, String context, Date time,
-			Integer stateId) {
+	public WishCallback(Integer wC_id, Integer wM_id, Integer m_idCallback, String wC_context, Date wC_time,
+			Integer wC_stateId) {
 		super();
-		this.id = id;
-		this.wishMessageId = wishMessageId;
-		this.memberId = memberId;
-		this.context = context;
-		this.time = time;
-		this.stateId = stateId;
+		this.wC_id = wC_id;
+		this.wM_id = wM_id;
+		this.m_idCallback = m_idCallback;
+		this.wC_context = wC_context;
+		this.wC_time = wC_time;
+		this.wC_stateId = wC_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "WishCallback [id=" + id + ", wishMessageId=" + wishMessageId + ", memberId=" + memberId + ", context="
-				+ context + ", time=" + time + ", stateId=" + stateId + ", WishMessage=" + WishMessage + ", Member="
-				+ Member + ", State=" + State + "]\r\n";
+		return "WishCallback [wC_id=" + wC_id + ", wM_id=" + wM_id + ", m_idCallback=" + m_idCallback + ", wC_context="
+				+ wC_context + ", wC_time=" + wC_time + ", wC_stateId=" + wC_stateId + ", wishMessage=" + wishMessage
+				+ ", member=" + member + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getwC_id() {
+		return wC_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setwC_id(Integer wC_id) {
+		this.wC_id = wC_id;
 	}
 
-	public Integer getWishMessageId() {
-		return wishMessageId;
+	public Integer getwM_id() {
+		return wM_id;
 	}
 
-	public void setWishMessageId(Integer wishMessageId) {
-		this.wishMessageId = wishMessageId;
+	public void setwM_id(Integer wM_id) {
+		this.wM_id = wM_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idCallback() {
+		return m_idCallback;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idCallback(Integer m_idCallback) {
+		this.m_idCallback = m_idCallback;
 	}
 
-	public String getContext() {
-		return context;
+	public String getwC_context() {
+		return wC_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setwC_context(String wC_context) {
+		this.wC_context = wC_context;
 	}
 
-	public Date getTime() {
-		return time;
+	public Date getwC_time() {
+		return wC_time;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setwC_time(Date wC_time) {
+		this.wC_time = wC_time;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getwC_stateId() {
+		return wC_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setwC_stateId(Integer wC_stateId) {
+		this.wC_stateId = wC_stateId;
 	}
 
 	public WishMessage getWishMessage() {
-		return WishMessage;
-	}
-
-	public Member getMember() {
-		return Member;
-	}
-
-	public State getState() {
-		return State;
+		return wishMessage;
 	}
 
 	public void setWishMessage(WishMessage wishMessage) {
-		WishMessage = wishMessage;
+		this.wishMessage = wishMessage;
+	}
+
+	public Member getMember() {
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

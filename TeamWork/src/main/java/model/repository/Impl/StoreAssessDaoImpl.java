@@ -29,7 +29,7 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 
 	@Override
 	public StoreAssess selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		StoreAssess SA = getSession().get(StoreAssess.class, id);
 		System.out.println(SA);
@@ -47,7 +47,7 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 
 	@Override
 	public StoreAssess insert(StoreAssess bean) throws SQLException {
-		StoreAssess SA = selectByPk(bean.getId());
+		StoreAssess SA = selectByPk(bean.getsA_id());
 		if (SA == null) {
 			getSession().save(bean);
 			return bean;
@@ -57,21 +57,34 @@ public class StoreAssessDaoImpl implements StoreAssessDao {
 
 	@Override
 	public StoreAssess update(StoreAssess bean) throws SQLException {
-		StoreAssess SA = selectByPk(bean.getId());
+		StoreAssess SA = selectByPk(bean.getsA_id());
 		if (SA != null) {
-			if (bean.getStoreOrderId() != null)
-				SA.setStoreOrderId(bean.getStoreOrderId());
-			if (bean.getPoint() != null)
-				SA.setPoint(bean.getPoint());
-			if (bean.getContent() != null)
-				SA.setContent(bean.getContent());
-			if (bean.getPointEE() != null)
-				SA.setPointEE(bean.getPointEE());
-			if (bean.getContextEE() != null)
-				SA.setContextEE(bean.getContextEE());
+			if (bean.getsO_id() != null)
+				SA.setsO_id(bean.getsO_id());
+			if (bean.getsA_point() != null)
+				SA.setsA_point(bean.getsA_point());
+			if (bean.getsA_content() != null)
+				SA.setsA_content(bean.getsA_content());
+			if (bean.getsA_pointAssess() != null)
+				SA.setsA_pointAssess(bean.getsA_pointAssess());
+			if (bean.getsA_contextAssess() != null)
+				SA.setsA_contextAssess(bean.getsA_contextAssess());
 			return SA;
 		}
 		return null;
 	}
 
+	public StoreAssess update(StoreAssess SA, StoreAssess bean) throws SQLException {
+		if (bean.getsO_id() != null)
+			SA.setsO_id(bean.getsO_id());
+		if (bean.getsA_point() != null)
+			SA.setsA_point(bean.getsA_point());
+		if (bean.getsA_content() != null)
+			SA.setsA_content(bean.getsA_content());
+		if (bean.getsA_pointAssess() != null)
+			SA.setsA_pointAssess(bean.getsA_pointAssess());
+		if (bean.getsA_contextAssess() != null)
+			SA.setsA_contextAssess(bean.getsA_contextAssess());
+		return SA;
+	}
 }

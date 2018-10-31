@@ -14,101 +14,102 @@ public class StoreAssess {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sA_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer sA_id;
 
 	@Column(name = "sO_ID", columnDefinition = "int", nullable = false)
-	private Integer storeOrderId;
+	private Integer sO_id;
 
 	@Column(name = "sA_point", columnDefinition = "int")
-	private Integer point;
+	private Integer sA_point;
 
 	@Column(name = "sA_cont", columnDefinition = "nvarchar(max)")
-	private String content;
+	private String sA_content;
 
 	@Column(name = "sA_pointee", columnDefinition = "int")
-	private Integer pointEE;
+	private Integer sA_pointAssess;
 
 	@Column(name = "sA_contee", columnDefinition = "nvarchar(max)")
-	private String contextEE;
+	private String sA_contextAssess;
 
 	@OneToOne
 	@JoinColumn(name = "sO_ID", insertable = false, updatable = false)
-	private StoreOrder StoreOrder;
+	private StoreOrder storeOrder;
 
 	public StoreAssess() {
 	}
 
-	public StoreAssess(Integer id, Integer storeOrderId, Integer point, String content, Integer pointEE,
-			String contextEE) {
+	public StoreAssess(Integer sA_id, Integer sO_id, Integer sA_point, String sA_content, Integer sA_pointAssess,
+			String sA_contextAssess) {
 		super();
-		this.id = id;
-		this.storeOrderId = storeOrderId;
-		this.point = point;
-		this.content = content;
-		this.pointEE = pointEE;
-		this.contextEE = contextEE;
+		this.sA_id = sA_id;
+		this.sO_id = sO_id;
+		this.sA_point = sA_point;
+		this.sA_content = sA_content;
+		this.sA_pointAssess = sA_pointAssess;
+		this.sA_contextAssess = sA_contextAssess;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreAssess [id=" + id + ", storeOrderId=" + storeOrderId + ", point=" + point + ", content=" + content
-				+ ", pointEE=" + pointEE + ", contextEE=" + contextEE + ", StoreOrder=" + StoreOrder + "]\r\n";
+		return "StoreAssess [sA_id=" + sA_id + ", sO_id=" + sO_id + ", sA_point=" + sA_point + ", sA_content="
+				+ sA_content + ", sA_pointAssess=" + sA_pointAssess + ", sA_contextAssess=" + sA_contextAssess
+				+ ", storeOrder=" + storeOrder + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getsA_id() {
+		return sA_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setsA_id(Integer sA_id) {
+		this.sA_id = sA_id;
 	}
 
-	public Integer getStoreOrderId() {
-		return storeOrderId;
+	public Integer getsO_id() {
+		return sO_id;
 	}
 
-	public void setStoreOrderId(Integer storeOrderId) {
-		this.storeOrderId = storeOrderId;
+	public void setsO_id(Integer sO_id) {
+		this.sO_id = sO_id;
 	}
 
-	public Integer getPoint() {
-		return point;
+	public Integer getsA_point() {
+		return sA_point;
 	}
 
-	public void setPoint(Integer point) {
-		this.point = point;
+	public void setsA_point(Integer sA_point) {
+		this.sA_point = sA_point;
 	}
 
-	public String getContent() {
-		return content;
+	public String getsA_content() {
+		return sA_content;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setsA_content(String sA_content) {
+		this.sA_content = sA_content;
 	}
 
-	public Integer getPointEE() {
-		return pointEE;
+	public Integer getsA_pointAssess() {
+		return sA_pointAssess;
 	}
 
-	public void setPointEE(Integer pointEE) {
-		this.pointEE = pointEE;
+	public void setsA_pointAssess(Integer sA_pointAssess) {
+		this.sA_pointAssess = sA_pointAssess;
 	}
 
-	public String getContextEE() {
-		return contextEE;
+	public String getsA_contextAssess() {
+		return sA_contextAssess;
 	}
 
-	public void setContextEE(String contextEE) {
-		this.contextEE = contextEE;
+	public void setsA_contextAssess(String sA_contextAssess) {
+		this.sA_contextAssess = sA_contextAssess;
 	}
 
 	public StoreOrder getStoreOrder() {
-		return StoreOrder;
+		return storeOrder;
 	}
 
 	public void setStoreOrder(StoreOrder storeOrder) {
-		StoreOrder = storeOrder;
+		this.storeOrder = storeOrder;
 	}
 
 }

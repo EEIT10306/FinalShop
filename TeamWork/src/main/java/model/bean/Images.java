@@ -14,100 +14,101 @@ public class Images {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "im_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer i_id;
 
 	@Column(name = "wgs_ID", columnDefinition = "int", nullable = false)
-	private Integer wgsId;
+	private Integer wgs_id;
 
 	@Column(name = "im_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String context;
+	private String i_context;
 
 	@Column(name = "im_from", columnDefinition = "nvarchar(max)", nullable = false)
-	private String from;
+	private String i_from;
 
 	@ManyToOne
 	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
-	private WishProduct WishProduct;
+	private WishProduct wishProduct;
 
 	@ManyToOne
 	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
-	private GroupProduct GroupProduct;
+	private GroupProduct groupProduct;
 
 	@ManyToOne
 	@JoinColumn(name = "wgs_ID", insertable = false, updatable = false)
-	private StoreProduct StoreProduct;
+	private StoreProduct storeProduct;
 
 	public Images() {
 	}
 
-	public Images(Integer id, Integer wgsId, String context, String from) {
+	public Images(Integer i_id, Integer wgs_id, String i_context, String i_from) {
 		super();
-		this.id = id;
-		this.wgsId = wgsId;
-		this.context = context;
-		this.from = from;
+		this.i_id = i_id;
+		this.wgs_id = wgs_id;
+		this.i_context = i_context;
+		this.i_from = i_from;
 	}
 
 	@Override
 	public String toString() {
-		return "Images [id=" + id + ", wgsId=" + wgsId + ", context=" + context + ", from=" + from + ", WishProduct="
-				+ WishProduct + ", GroupProduct=" + GroupProduct + ", StoreProduct=" + StoreProduct + "]\r\n";
+		return "Images [i_id=" + i_id + ", wgs_id=" + wgs_id + ", i_context=" + i_context + ", i_from=" + i_from
+				+ ", wishProduct=" + wishProduct + ", groupProduct=" + groupProduct + ", storeProduct=" + storeProduct
+				+ "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getI_id() {
+		return i_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setI_id(Integer i_id) {
+		this.i_id = i_id;
 	}
 
-	public Integer getWgsId() {
-		return wgsId;
+	public Integer getWgs_id() {
+		return wgs_id;
 	}
 
-	public void setWgsId(Integer wgsId) {
-		this.wgsId = wgsId;
+	public void setWgs_id(Integer wgs_id) {
+		this.wgs_id = wgs_id;
 	}
 
-	public String getContext() {
-		return context;
+	public String getI_context() {
+		return i_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setI_context(String i_context) {
+		this.i_context = i_context;
 	}
 
-	public String getFrom() {
-		return from;
+	public String getI_from() {
+		return i_from;
 	}
 
-	public void setFrom(String from) {
-		this.from = from;
+	public void setI_from(String i_from) {
+		this.i_from = i_from;
 	}
 
 	public WishProduct getWishProduct() {
-		return WishProduct;
-	}
-
-	public GroupProduct getGroupProduct() {
-		return GroupProduct;
-	}
-
-	public StoreProduct getStoreProduct() {
-		return StoreProduct;
+		return wishProduct;
 	}
 
 	public void setWishProduct(WishProduct wishProduct) {
-		WishProduct = wishProduct;
+		this.wishProduct = wishProduct;
+	}
+
+	public GroupProduct getGroupProduct() {
+		return groupProduct;
 	}
 
 	public void setGroupProduct(GroupProduct groupProduct) {
-		GroupProduct = groupProduct;
+		this.groupProduct = groupProduct;
+	}
+
+	public StoreProduct getStoreProduct() {
+		return storeProduct;
 	}
 
 	public void setStoreProduct(StoreProduct storeProduct) {
-		StoreProduct = storeProduct;
+		this.storeProduct = storeProduct;
 	}
 
 }

@@ -17,125 +17,126 @@ public class GroupMessage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "gM_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer gM_id;
 
 	@Column(name = "group_ID", columnDefinition = "int", nullable = false)
-	private Integer groupId;
+	private Integer g_id;
 
 	@Column(name = "memG_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idMessage;
 
 	@Column(name = "gM_cont", columnDefinition = "int", nullable = false)
-	private Integer context;
+	private Integer gM_context;
 
 	@Column(name = "gM_time", columnDefinition = "daetime", nullable = false)
-	private Date time;
+	private Date gM_time;
 
 	@Column(name = "gM_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer gM_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "group_ID", insertable = false, updatable = false)
-	private Groupon Groupon;
+	private Groupon groupon;
 
 	@ManyToOne
 	@JoinColumn(name = "memG_IDee", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "gM_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public GroupMessage() {
 	}
 
-	public GroupMessage(Integer id, Integer groupId, Integer memberId, Integer context, Date time, Integer stateId) {
+	public GroupMessage(Integer gM_id, Integer g_id, Integer m_idMessage, Integer gM_context, Date gM_time,
+			Integer gM_stateId) {
 		super();
-		this.id = id;
-		this.groupId = groupId;
-		this.memberId = memberId;
-		this.context = context;
-		this.time = time;
-		this.stateId = stateId;
+		this.gM_id = gM_id;
+		this.g_id = g_id;
+		this.m_idMessage = m_idMessage;
+		this.gM_context = gM_context;
+		this.gM_time = gM_time;
+		this.gM_stateId = gM_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "GroupMessage [id=" + id + ", groupId=" + groupId + ", memberId=" + memberId + ", context=" + context
-				+ ", time=" + time + ", stateId=" + stateId + ", Groupon=" + Groupon + ", Member=" + Member + ", State="
-				+ State + "]\r\n";
+		return "GroupMessage [gM_id=" + gM_id + ", g_id=" + g_id + ", m_idMessage=" + m_idMessage + ", gM_context="
+				+ gM_context + ", gM_time=" + gM_time + ", gM_stateId=" + gM_stateId + ", groupon=" + groupon
+				+ ", member=" + member + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getgM_id() {
+		return gM_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setgM_id(Integer gM_id) {
+		this.gM_id = gM_id;
 	}
 
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getG_id() {
+		return g_id;
 	}
 
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setG_id(Integer g_id) {
+		this.g_id = g_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idMessage() {
+		return m_idMessage;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idMessage(Integer m_idMessage) {
+		this.m_idMessage = m_idMessage;
 	}
 
-	public Integer getContext() {
-		return context;
+	public Integer getgM_context() {
+		return gM_context;
 	}
 
-	public void setContext(Integer context) {
-		this.context = context;
+	public void setgM_context(Integer gM_context) {
+		this.gM_context = gM_context;
 	}
 
-	public Date getTime() {
-		return time;
+	public Date getgM_time() {
+		return gM_time;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setgM_time(Date gM_time) {
+		this.gM_time = gM_time;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getgM_stateId() {
+		return gM_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setgM_stateId(Integer gM_stateId) {
+		this.gM_stateId = gM_stateId;
 	}
 
 	public Groupon getGroupon() {
-		return Groupon;
-	}
-
-	public Member getMember() {
-		return Member;
-	}
-
-	public State getState() {
-		return State;
+		return groupon;
 	}
 
 	public void setGroupon(Groupon groupon) {
-		Groupon = groupon;
+		this.groupon = groupon;
+	}
+
+	public Member getMember() {
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

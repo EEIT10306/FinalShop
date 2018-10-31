@@ -29,7 +29,7 @@ public class WishOrderDaoImpl implements WishOrderDao {
 
 	@Override
 	public WishOrder selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishOrder WO = getSession().get(WishOrder.class, id);
 		System.out.println(WO);
@@ -47,7 +47,7 @@ public class WishOrderDaoImpl implements WishOrderDao {
 
 	@Override
 	public WishOrder insert(WishOrder bean) throws SQLException {
-		WishOrder WO = selectByPk(bean.getId());
+		WishOrder WO = selectByPk(bean.getwO_id());
 		if (WO == null) {
 			this.getSession().save(bean);
 			return bean;
@@ -57,20 +57,34 @@ public class WishOrderDaoImpl implements WishOrderDao {
 
 	@Override
 	public WishOrder update(WishOrder bean) throws SQLException {
-		WishOrder WO = selectByPk(bean.getId());
+		WishOrder WO = selectByPk(bean.getwO_id());
 		if (WO != null) {
-			if (bean.getWishId() != null)
-				WO.setWishId(bean.getWishId());
-			if (bean.getMemberId() != null)
-				WO.setMemberId(bean.getMemberId());
-			if (bean.getSumPrice() != null)
-				WO.setSumPrice(bean.getSumPrice());
-			if (bean.getTime() != null)
-				WO.setTime(bean.getTime());
-			if (bean.getStateId() != null)
-				WO.setStateId(bean.getStateId());
+			if (bean.getW_id() != null)
+				WO.setW_id(bean.getW_id());
+			if (bean.getM_idOrder() != null)
+				WO.setM_idOrder(bean.getM_idOrder());
+			if (bean.getwO_sumPrice() != null)
+				WO.setwO_sumPrice(bean.getwO_sumPrice());
+			if (bean.getwO_time() != null)
+				WO.setwO_time(bean.getwO_time());
+			if (bean.getwO_stateId() != null)
+				WO.setwO_stateId(bean.getwO_stateId());
 			return WO;
 		}
 		return null;
+	}
+
+	public WishOrder update(WishOrder WO, WishOrder bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WO.setW_id(bean.getW_id());
+		if (bean.getM_idOrder() != null)
+			WO.setM_idOrder(bean.getM_idOrder());
+		if (bean.getwO_sumPrice() != null)
+			WO.setwO_sumPrice(bean.getwO_sumPrice());
+		if (bean.getwO_time() != null)
+			WO.setwO_time(bean.getwO_time());
+		if (bean.getwO_stateId() != null)
+			WO.setwO_stateId(bean.getwO_stateId());
+		return WO;
 	}
 }

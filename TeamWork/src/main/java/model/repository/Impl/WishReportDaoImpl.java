@@ -29,7 +29,7 @@ public class WishReportDaoImpl implements WishReportDao {
 
 	@Override
 	public WishReport selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishReport WR = getSession().get(WishReport.class, id);
 		System.out.println(WR);
@@ -47,7 +47,7 @@ public class WishReportDaoImpl implements WishReportDao {
 
 	@Override
 	public WishReport insert(WishReport bean) throws SQLException {
-		WishReport WR = selectByPk(bean.getId());
+		WishReport WR = selectByPk(bean.getwR_id());
 		if (WR == null) {
 			getSession().save(bean);
 			return bean;
@@ -57,19 +57,31 @@ public class WishReportDaoImpl implements WishReportDao {
 
 	@Override
 	public WishReport update(WishReport bean) throws SQLException {
-		WishReport WR = selectByPk(bean.getId());
+		WishReport WR = selectByPk(bean.getwR_id());
 		if (WR != null) {
-			if (bean.getWishId() != null)
-				WR.setWishId(bean.getWishId());
-			if (bean.getMemberId() != null)
-				WR.setMemberId(bean.getMemberId());
-			if (bean.getContent() != null)
-				WR.setContent(bean.getContent());
-			if (bean.getStateId() != null)
-				WR.setStateId(bean.getStateId());
+			if (bean.getW_id() != null)
+				WR.setW_id(bean.getW_id());
+			if (bean.getM_idReport() != null)
+				WR.setM_idReport(bean.getM_idReport());
+			if (bean.getwR_content() != null)
+				WR.setwR_content(bean.getwR_content());
+			if (bean.getwR_stateId() != null)
+				WR.setwR_stateId(bean.getwR_stateId());
 			return WR;
 		}
 		return null;
+	}
+
+	public WishReport update(WishReport WR, WishReport bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WR.setW_id(bean.getW_id());
+		if (bean.getM_idReport() != null)
+			WR.setM_idReport(bean.getM_idReport());
+		if (bean.getwR_content() != null)
+			WR.setwR_content(bean.getwR_content());
+		if (bean.getwR_stateId() != null)
+			WR.setwR_stateId(bean.getwR_stateId());
+		return WR;
 	}
 
 }

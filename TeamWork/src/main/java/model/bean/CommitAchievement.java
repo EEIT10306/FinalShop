@@ -14,101 +14,113 @@ public class CommitAchievement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cA_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer cA_id;
 
 	@Column(name = "ach_ID", columnDefinition = "int", nullable = false)
-	private Integer achievementId;
+	private Integer a_id;
 
 	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_id;
+
+	@Column(name = "cA_amt", columnDefinition = "int", nullable = false)
+	private Integer cA_amount;
 
 	@Column(name = "cA_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer cA_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "ach_ID", insertable = false, updatable = false)
-	private Achievement Achievement;
+	private Achievement achievement;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	private Member Memeber;
+	private Member memeber;
 
 	@ManyToOne
 	@JoinColumn(name = "cA_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public CommitAchievement() {
 	}
 
-	public CommitAchievement(Integer id, Integer achievementId, Integer memberId, Integer stateId) {
+	public CommitAchievement(Integer cA_id, Integer a_id, Integer m_id, Integer cA_amount, Integer cA_stateId) {
 		super();
-		this.id = id;
-		this.achievementId = achievementId;
-		this.memberId = memberId;
-		this.stateId = stateId;
+		this.cA_id = cA_id;
+		this.a_id = a_id;
+		this.m_id = m_id;
+		this.cA_amount = cA_amount;
+		this.cA_stateId = cA_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "CommitAchievement [id=" + id + ", achievementId=" + achievementId + ", memberId=" + memberId
-				+ ", stateId=" + stateId + ", Achievement=" + Achievement + ", Memeber=" + Memeber + ", State=" + State
-				+ "]\r\n";
+		return "CommitAchievement [cA_id=" + cA_id + ", a_id=" + a_id + ", m_id=" + m_id + ", cA_amount=" + cA_amount
+				+ ", cA_stateId=" + cA_stateId + ", achievement=" + achievement + ", memeber=" + memeber + ", state="
+				+ state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getcA_id() {
+		return cA_id;
 	}
 
-	public Integer getAchievementId() {
-		return achievementId;
+	public void setcA_id(Integer cA_id) {
+		this.cA_id = cA_id;
 	}
 
-	public void setAchievementId(Integer achievementId) {
-		this.achievementId = achievementId;
+	public Integer getA_id() {
+		return a_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public void setA_id(Integer a_id) {
+		this.a_id = a_id;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public Integer getM_id() {
+		return m_id;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public void setM_id(Integer m_id) {
+		this.m_id = m_id;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public Integer getcA_amount() {
+		return cA_amount;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setcA_amount(Integer cA_amount) {
+		this.cA_amount = cA_amount;
+	}
+
+	public Integer getcA_stateId() {
+		return cA_stateId;
+	}
+
+	public void setcA_stateId(Integer cA_stateId) {
+		this.cA_stateId = cA_stateId;
 	}
 
 	public Achievement getAchievement() {
-		return Achievement;
-	}
-
-	public Member getMemeber() {
-		return Memeber;
-	}
-
-	public State getState() {
-		return State;
+		return achievement;
 	}
 
 	public void setAchievement(Achievement achievement) {
-		Achievement = achievement;
+		this.achievement = achievement;
+	}
+
+	public Member getMemeber() {
+		return memeber;
 	}
 
 	public void setMemeber(Member memeber) {
-		Memeber = memeber;
+		this.memeber = memeber;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

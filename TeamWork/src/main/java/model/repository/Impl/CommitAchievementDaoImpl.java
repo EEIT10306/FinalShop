@@ -30,7 +30,7 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 
 	@Override
 	public CommitAchievement selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		CommitAchievement CA = getSession().get(CommitAchievement.class, id);
 		System.out.println(CA);
@@ -48,7 +48,7 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 
 	@Override
 	public CommitAchievement insert(CommitAchievement bean) throws SQLException {
-		CommitAchievement CA = selectByPk(bean.getId());
+		CommitAchievement CA = selectByPk(bean.getcA_id());
 		if (CA == null) {
 			getSession().save(bean);
 			return bean;
@@ -58,17 +58,31 @@ public class CommitAchievementDaoImpl implements CommitAchievementDao {
 
 	@Override
 	public CommitAchievement update(CommitAchievement bean) throws SQLException {
-		CommitAchievement CA = selectByPk(bean.getId());
+		CommitAchievement CA = selectByPk(bean.getcA_id());
 		if (CA != null) {
-			if (bean.getAchievementId() != null)
-				CA.setAchievementId(bean.getAchievementId());
-			if (bean.getMemberId() != null)
-				CA.setMemberId(bean.getMemberId());
-			if (bean.getStateId() != null)
-				CA.setStateId(bean.getStateId());
+			if (bean.getA_id() != null)
+				CA.setA_id(bean.getA_id());
+			if (bean.getM_id() != null)
+				CA.setM_id(bean.getM_id());
+			if (bean.getcA_amount() != null)
+				CA.setcA_amount(bean.getcA_amount());
+			if (bean.getcA_stateId() != null)
+				CA.setcA_stateId(bean.getcA_stateId());
 			return CA;
 		}
 		return null;
+	}
+
+	public CommitAchievement update(CommitAchievement CA, CommitAchievement bean) throws SQLException {
+		if (bean.getA_id() != null)
+			CA.setA_id(bean.getA_id());
+		if (bean.getM_id() != null)
+			CA.setM_id(bean.getM_id());
+		if (bean.getcA_amount() != null)
+			CA.setcA_amount(bean.getcA_amount());
+		if (bean.getcA_stateId() != null)
+			CA.setcA_stateId(bean.getcA_stateId());
+		return CA;
 	}
 
 }

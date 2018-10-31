@@ -29,7 +29,7 @@ public class WishAssessDaoImpl implements WishAssessDao {
 
 	@Override
 	public WishAssess selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishAssess WA = getSession().get(WishAssess.class, id);
 		System.out.println(WA);
@@ -47,7 +47,7 @@ public class WishAssessDaoImpl implements WishAssessDao {
 
 	@Override
 	public WishAssess insert(WishAssess bean) throws SQLException {
-		WishAssess WA = selectByPk(bean.getId());
+		WishAssess WA = selectByPk(bean.getwA_id());
 		if (WA == null) {
 			getSession().save(bean);
 			return bean;
@@ -57,19 +57,35 @@ public class WishAssessDaoImpl implements WishAssessDao {
 
 	@Override
 	public WishAssess update(WishAssess bean) throws SQLException {
-		WishAssess WA = selectByPk(bean.getId());
+		WishAssess WA = selectByPk(bean.getwA_id());
 		if (WA != null) {
-			if (bean.getPoint() != null)
-				WA.setPoint(bean.getPoint());
-			if (bean.getContext() != null)
-				WA.setContext(bean.getContext());
-			if (bean.getPointEE() != null)
-				WA.setPointEE(bean.getPointEE());
-			if (bean.getContextEE() != null)
-				WA.setContextEE(bean.getContextEE());
+			if (bean.getwO_id() != null)
+				WA.setwO_id(bean.getwO_id());
+			if (bean.getwA_point() != null)
+				WA.setwA_point(bean.getwA_point());
+			if (bean.getwA_context() != null)
+				WA.setwA_context(bean.getwA_context());
+			if (bean.getwA_pointAssess() != null)
+				WA.setwA_pointAssess(bean.getwA_pointAssess());
+			if (bean.getwA_contextAssess() != null)
+				WA.setwA_contextAssess(bean.getwA_contextAssess());
 			return WA;
 		}
 		return null;
+	}
+
+	public WishAssess update(WishAssess WA, WishAssess bean) throws SQLException {
+		if (bean.getwO_id() != null)
+			WA.setwO_id(bean.getwO_id());
+		if (bean.getwA_point() != null)
+			WA.setwA_point(bean.getwA_point());
+		if (bean.getwA_context() != null)
+			WA.setwA_context(bean.getwA_context());
+		if (bean.getwA_pointAssess() != null)
+			WA.setwA_pointAssess(bean.getwA_pointAssess());
+		if (bean.getwA_contextAssess() != null)
+			WA.setwA_contextAssess(bean.getwA_contextAssess());
+		return WA;
 	}
 
 }

@@ -29,7 +29,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 
 	@Override
 	public StoreReport selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		StoreReport SR = getSession().get(StoreReport.class, id);
 		System.out.println(SR);
@@ -47,7 +47,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 
 	@Override
 	public StoreReport insert(StoreReport bean) throws SQLException {
-		StoreReport SR = selectByPk(bean.getId());
+		StoreReport SR = selectByPk(bean.getsR_id());
 		if (SR == null) {
 			getSession().save(bean);
 			return bean;
@@ -57,18 +57,30 @@ public class StoreReportDaoImpl implements StoreReportDao {
 
 	@Override
 	public StoreReport update(StoreReport bean) throws SQLException {
-		StoreReport SR = selectByPk(bean.getId());
+		StoreReport SR = selectByPk(bean.getsR_id());
 		if (SR != null) {
-			if (bean.getStoreProductId() != null)
-				SR.setStoreProductId(bean.getStoreProductId());
-			if (bean.getMemberId() != null)
-				SR.setMemberId(bean.getMemberId());
-			if (bean.getContent() != null)
-				SR.setContent(bean.getContent());
-			if (bean.getStateId() != null)
-				SR.setStateId(bean.getStateId());
+			if (bean.getsP_id() != null)
+				SR.setsP_id(bean.getsP_id());
+			if (bean.getM_idReport() != null)
+				SR.setM_idReport(bean.getM_idReport());
+			if (bean.getsR_content() != null)
+				SR.setsR_content(bean.getsR_content());
+			if (bean.getsR_stateId() != null)
+				SR.setsR_stateId(bean.getsR_stateId());
 			return SR;
 		}
 		return null;
+	}
+
+	public StoreReport update(StoreReport SR, StoreReport bean) throws SQLException {
+		if (bean.getsP_id() != null)
+			SR.setsP_id(bean.getsP_id());
+		if (bean.getM_idReport() != null)
+			SR.setM_idReport(bean.getM_idReport());
+		if (bean.getsR_content() != null)
+			SR.setsR_content(bean.getsR_content());
+		if (bean.getsR_stateId() != null)
+			SR.setsR_stateId(bean.getsR_stateId());
+		return SR;
 	}
 }

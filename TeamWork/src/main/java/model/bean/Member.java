@@ -16,263 +16,264 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer m_id;
 
 	@Column(name = "mem_acc", columnDefinition = "nvarchar(MAX)", nullable = false)
-	private String account;
+	private String m_account;
 
 	@Column(name = "mem_pass", columnDefinition = "nvarchar(MAX)")
-	private String password;
+	private String m_password;
 
 	@Column(name = "mem_name", columnDefinition = "nvarchar(MAX)")
-	private String name;
+	private String m_name;
 
 	@Column(name = "mem_add", columnDefinition = "nvarchar(MAX)")
-	private String address;
+	private String m_address;
 
 	@Column(name = "mem_tel", columnDefinition = "nvarchar(MAX)")
-	private String telephone;
+	private String m_telephone;
 
 	@Column(name = "mem_mail", columnDefinition = "nvarchar(MAX)", nullable = false)
-	private String mail;
+	private String m_mail;
 
 	@Column(name = "mem_pos", columnDefinition = "nvarchar(MAX)", nullable = false)
-	private String position = "member";
+	private String m_position;
 
 	@Column(name = "mem_coin", columnDefinition = "int", nullable = false)
-	private Integer coin = 0;
+	private Integer m_coin;
 
 	@Column(name = "mem_pho", columnDefinition = "nvarchar(MAX)")
-	private String photo;
-
-	@Column(name = "mem_state", columnDefinition = "int", nullable = false)
-	private Integer stateId = 1;
+	private String m_photo;
 
 	@Column(name = "mem_loginCount", columnDefinition = "int", nullable = false)
-	private Integer loginCount = 0;
+	private Integer m_loginCount;
 
 	@Column(name = "mem_loginTime", columnDefinition = "datetime")
-	private Date loginTime;
+	private Date m_loginTime;
+
+	@Column(name = "mem_state", columnDefinition = "int", nullable = false)
+	private Integer m_stateId;
 
 	@Column(name = "wA_sumee", columnDefinition = "float", nullable = false)
-	private Double wiseAssessSumEE = 0d;
+	private Double m_wiseAssessSumEE;
 
 	@Column(name = "gA_sumee", columnDefinition = "float", nullable = false)
-	private Double groupAssessSumEE = 0d;
+	private Double m_groupAssessSumEE;
 
 	@Column(name = "sA_sumee", columnDefinition = "float", nullable = false)
-	private Double storeAssessSumEE = 0d;
+	private Double m_storeAssessSumEE;
 
 	@Column(name = "wA_sum", columnDefinition = "float", nullable = false)
-	private Double wiseAssessSum = 0d;
+	private Double m_wiseAssessSum;
 
 	@Column(name = "gA_sum", columnDefinition = "float", nullable = false)
-	private Double groupAssessSum = 0d;
+	private Double m_groupAssessSum;
 
 	@Column(name = "sA_sum", columnDefinition = "float", nullable = false)
-	private Double storeAssessSum = 0d;
+	private Double m_storeAssessSum;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public Member() {
 	}
 
-	public Member(Integer id, String account, String password, String name, String address, String telephone,
-			String mail, String position, Integer coin, String photo, Integer stateId, Integer loginCount,
-			Date loginTime, Double wiseAssessSumEE, Double groupAssessSumEE, Double storeAssessSumEE,
-			Double wiseAssessSum, Double groupAssessSum, Double storeAssessSum) {
+	public Member(Integer m_id, String m_account, String m_password, String m_name, String m_address,
+			String m_telephone, String m_mail, String m_position, Integer m_coin, String m_photo, Integer m_loginCount,
+			Date m_loginTime, Integer m_stateId, Double m_wiseAssessSumEE, Double m_groupAssessSumEE,
+			Double m_storeAssessSumEE, Double m_wiseAssessSum, Double m_groupAssessSum, Double m_storeAssessSum) {
 		super();
-		this.id = id;
-		this.account = account;
-		this.password = password;
-		this.name = name;
-		this.address = address;
-		this.telephone = telephone;
-		this.mail = mail;
-		this.position = position;
-		this.coin = coin;
-		this.photo = photo;
-		this.stateId = stateId;
-		this.loginCount = loginCount;
-		this.loginTime = loginTime;
-		this.wiseAssessSumEE = wiseAssessSumEE;
-		this.groupAssessSumEE = groupAssessSumEE;
-		this.storeAssessSumEE = storeAssessSumEE;
-		this.wiseAssessSum = wiseAssessSum;
-		this.groupAssessSum = groupAssessSum;
-		this.storeAssessSum = storeAssessSum;
+		this.m_id = m_id;
+		this.m_account = m_account;
+		this.m_password = m_password;
+		this.m_name = m_name;
+		this.m_address = m_address;
+		this.m_telephone = m_telephone;
+		this.m_mail = m_mail;
+		this.m_position = m_position;
+		this.m_coin = m_coin;
+		this.m_photo = m_photo;
+		this.m_loginCount = m_loginCount;
+		this.m_loginTime = m_loginTime;
+		this.m_stateId = m_stateId;
+		this.m_wiseAssessSumEE = m_wiseAssessSumEE;
+		this.m_groupAssessSumEE = m_groupAssessSumEE;
+		this.m_storeAssessSumEE = m_storeAssessSumEE;
+		this.m_wiseAssessSum = m_wiseAssessSum;
+		this.m_groupAssessSum = m_groupAssessSum;
+		this.m_storeAssessSum = m_storeAssessSum;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", account=" + account + ", password=" + password + ", name=" + name + ", address="
-				+ address + ", telephone=" + telephone + ", mail=" + mail + ", position=" + position + ", coin=" + coin
-				+ ", photo=" + photo + ", stateId=" + stateId + ", loginCount=" + loginCount + ", loginTime="
-				+ loginTime + ", wiseAssessSumEE=" + wiseAssessSumEE + ", groupAssessSumEE=" + groupAssessSumEE
-				+ ", storeAssessSumEE=" + storeAssessSumEE + ", wiseAssessSum=" + wiseAssessSum + ", groupAssessSum="
-				+ groupAssessSum + ", storeAssessSum=" + storeAssessSum + ", State=" + State + "]\r\n";
+		return "Member [m_id=" + m_id + ", m_account=" + m_account + ", m_password=" + m_password + ", m_name=" + m_name
+				+ ", m_address=" + m_address + ", m_telephone=" + m_telephone + ", m_mail=" + m_mail + ", m_position="
+				+ m_position + ", m_coin=" + m_coin + ", m_photo=" + m_photo + ", m_loginCount=" + m_loginCount
+				+ ", m_loginTime=" + m_loginTime + ", m_stateId=" + m_stateId + ", m_wiseAssessSumEE="
+				+ m_wiseAssessSumEE + ", m_groupAssessSumEE=" + m_groupAssessSumEE + ", m_storeAssessSumEE="
+				+ m_storeAssessSumEE + ", m_wiseAssessSum=" + m_wiseAssessSum + ", m_groupAssessSum=" + m_groupAssessSum
+				+ ", m_storeAssessSum=" + m_storeAssessSum + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getM_id() {
+		return m_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setM_id(Integer m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getAccount() {
-		return account;
+	public String getM_account() {
+		return m_account;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setM_account(String m_account) {
+		this.m_account = m_account;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getM_password() {
+		return m_password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setM_password(String m_password) {
+		this.m_password = m_password;
 	}
 
-	public String getName() {
-		return name;
+	public String getM_name() {
+		return m_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getM_address() {
+		return m_address;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setM_address(String m_address) {
+		this.m_address = m_address;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getM_telephone() {
+		return m_telephone;
 	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setM_telephone(String m_telephone) {
+		this.m_telephone = m_telephone;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getM_mail() {
+		return m_mail;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setM_mail(String m_mail) {
+		this.m_mail = m_mail;
 	}
 
-	public String getPosition() {
-		return position;
+	public String getM_position() {
+		return m_position;
 	}
 
-	public void setPosition(String position) {
-		this.position = position;
+	public void setM_position(String m_position) {
+		this.m_position = m_position;
 	}
 
-	public Integer getCoin() {
-		return coin;
+	public Integer getM_coin() {
+		return m_coin;
 	}
 
-	public void setCoin(Integer coin) {
-		this.coin = coin;
+	public void setM_coin(Integer m_coin) {
+		this.m_coin = m_coin;
 	}
 
-	public String getPhoto() {
-		return photo;
+	public String getM_photo() {
+		return m_photo;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setM_photo(String m_photo) {
+		this.m_photo = m_photo;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getM_loginCount() {
+		return m_loginCount;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setM_loginCount(Integer m_loginCount) {
+		this.m_loginCount = m_loginCount;
 	}
 
-	public Integer getLoginCount() {
-		return loginCount;
+	public Date getM_loginTime() {
+		return m_loginTime;
 	}
 
-	public void setLoginCount(Integer loginCount) {
-		this.loginCount = loginCount;
+	public void setM_loginTime(Date m_loginTime) {
+		this.m_loginTime = m_loginTime;
 	}
 
-	public Date getLoginTime() {
-		return loginTime;
+	public Integer getM_stateId() {
+		return m_stateId;
 	}
 
-	public void setLoginTime(Date loginTime) {
-		this.loginTime = loginTime;
+	public void setM_stateId(Integer m_stateId) {
+		this.m_stateId = m_stateId;
 	}
 
-	public Double getWiseAssessSumEE() {
-		return wiseAssessSumEE;
+	public Double getM_wiseAssessSumEE() {
+		return m_wiseAssessSumEE;
 	}
 
-	public void setWiseAssessSumEE(Double wiseAssessSumEE) {
-		this.wiseAssessSumEE = wiseAssessSumEE;
+	public void setM_wiseAssessSumEE(Double m_wiseAssessSumEE) {
+		this.m_wiseAssessSumEE = m_wiseAssessSumEE;
 	}
 
-	public Double getGroupAssessSumEE() {
-		return groupAssessSumEE;
+	public Double getM_groupAssessSumEE() {
+		return m_groupAssessSumEE;
 	}
 
-	public void setGroupAssessSumEE(Double groupAssessSumEE) {
-		this.groupAssessSumEE = groupAssessSumEE;
+	public void setM_groupAssessSumEE(Double m_groupAssessSumEE) {
+		this.m_groupAssessSumEE = m_groupAssessSumEE;
 	}
 
-	public Double getStoreAssessSumEE() {
-		return storeAssessSumEE;
+	public Double getM_storeAssessSumEE() {
+		return m_storeAssessSumEE;
 	}
 
-	public void setStoreAssessSumEE(Double storeAssessSumEE) {
-		this.storeAssessSumEE = storeAssessSumEE;
+	public void setM_storeAssessSumEE(Double m_storeAssessSumEE) {
+		this.m_storeAssessSumEE = m_storeAssessSumEE;
 	}
 
-	public Double getWiseAssessSum() {
-		return wiseAssessSum;
+	public Double getM_wiseAssessSum() {
+		return m_wiseAssessSum;
 	}
 
-	public void setWiseAssessSum(Double wiseAssessSum) {
-		this.wiseAssessSum = wiseAssessSum;
+	public void setM_wiseAssessSum(Double m_wiseAssessSum) {
+		this.m_wiseAssessSum = m_wiseAssessSum;
 	}
 
-	public Double getGroupAssessSum() {
-		return groupAssessSum;
+	public Double getM_groupAssessSum() {
+		return m_groupAssessSum;
 	}
 
-	public void setGroupAssessSum(Double groupAssessSum) {
-		this.groupAssessSum = groupAssessSum;
+	public void setM_groupAssessSum(Double m_groupAssessSum) {
+		this.m_groupAssessSum = m_groupAssessSum;
 	}
 
-	public Double getStoreAssessSum() {
-		return storeAssessSum;
+	public Double getM_storeAssessSum() {
+		return m_storeAssessSum;
 	}
 
-	public void setStoreAssessSum(Double storeAssessSum) {
-		this.storeAssessSum = storeAssessSum;
+	public void setM_storeAssessSum(Double m_storeAssessSum) {
+		this.m_storeAssessSum = m_storeAssessSum;
 	}
 
 	public State getState() {
-		return State;
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

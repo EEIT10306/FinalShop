@@ -16,238 +16,250 @@ public class Wish {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer w_id;
 
 	@Column(name = "memW_ID", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_id;
 
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
-	private Integer productId;
+	private Integer p_id;
 
 	@Column(name = "wish_title", columnDefinition = "nvarchar(Max)", nullable = false)
-	private String title;
+	private String w_title;
 
 	@Column(name = "wish_cont", columnDefinition = "nvarchar(Max)", nullable = false)
-	private String context;
+	private String w_context;
 
 	@Column(name = "dist_ID", columnDefinition = "int", nullable = false)
-	private Integer districtTypeId;
+	private Integer d_id;
 
 	@Column(name = "wish_sDate", columnDefinition = "datetime", nullable = false)
-	private Date startDate;
+	private Date w_startDate;
 
 	@Column(name = "wish_eDate", columnDefinition = "datetime", nullable = false)
-	private Date endDate;
+	private Date w_endDate;
 
 	@Column(name = "wish_sumPriBot", columnDefinition = "int")
-	private Integer sumPriceBottom;
+	private Integer w_sumPriceBottom;
 
 	@Column(name = "wish_sumPriTop", columnDefinition = "int")
-	private Integer sumPriceTop;
+	private Integer w_sumPriceTop;
 
 	@Column(name = "wish_chanTime", columnDefinition = "datetime", nullable = false)
-	private Date changeTime;
+	private Date w_changeTime;
 
 	@Column(name = "wish_hot", columnDefinition = "int", nullable = false)
-	private Integer hot;
+	private Integer w_hot;
+
+	@Column(name = "wish_amtFav", columnDefinition = "int", nullable = false)
+	private Integer w_amountFavorite;
 
 	@Column(name = "wish_compTime", columnDefinition = "datetime")
-	private Date completeTime;
+	private Date w_completeTime;
 
 	@Column(name = "wish_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer w_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "memW_ID", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	private Product Product;
+	private Product product;
 
 	@ManyToOne
 	@JoinColumn(name = "dist_ID", insertable = false, updatable = false)
-	private DistrictType DistrictType;
+	private DistrictType districtType;
 
 	@ManyToOne
 	@JoinColumn(name = "wish_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public Wish() {
 	}
 
-	public Wish(Integer id, Integer memberId, Integer productId, String title, String context, Integer districtTypeId,
-			Date startDate, Date endDate, Integer sumPriceBottom, Integer sumPriceTop, Date changeTime, Integer hot,
-			Date completeTime, Integer stateId) {
+	public Wish(Integer w_id, Integer m_id, Integer p_id, String w_title, String w_context, Integer d_id,
+			Date w_startDate, Date w_endDate, Integer w_sumPriceBottom, Integer w_sumPriceTop, Date w_changeTime,
+			Integer w_hot, Integer w_amountFavorite, Date w_completeTime, Integer w_stateId) {
 		super();
-		this.id = id;
-		this.memberId = memberId;
-		this.productId = productId;
-		this.title = title;
-		this.context = context;
-		this.districtTypeId = districtTypeId;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.sumPriceBottom = sumPriceBottom;
-		this.sumPriceTop = sumPriceTop;
-		this.changeTime = changeTime;
-		this.hot = hot;
-		this.completeTime = completeTime;
-		this.stateId = stateId;
+		this.w_id = w_id;
+		this.m_id = m_id;
+		this.p_id = p_id;
+		this.w_title = w_title;
+		this.w_context = w_context;
+		this.d_id = d_id;
+		this.w_startDate = w_startDate;
+		this.w_endDate = w_endDate;
+		this.w_sumPriceBottom = w_sumPriceBottom;
+		this.w_sumPriceTop = w_sumPriceTop;
+		this.w_changeTime = w_changeTime;
+		this.w_hot = w_hot;
+		this.w_amountFavorite = w_amountFavorite;
+		this.w_completeTime = w_completeTime;
+		this.w_stateId = w_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "Wish [id=" + id + ", memberId=" + memberId + ", productId=" + productId + ", title=" + title
-				+ ", context=" + context + ", districtTypeId=" + districtTypeId + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", sumPriceBottom=" + sumPriceBottom + ", sumPriceTop=" + sumPriceTop
-				+ ", changeTime=" + changeTime + ", hot=" + hot + ", completeTime=" + completeTime + ", stateId="
-				+ stateId + ", Member=" + Member + ", Product=" + Product + ", DistrictType=" + DistrictType
-				+ ", State=" + State + "]\r\n";
+		return "Wish [w_id=" + w_id + ", m_id=" + m_id + ", p_id=" + p_id + ", w_title=" + w_title + ", w_context="
+				+ w_context + ", d_id=" + d_id + ", w_startDate=" + w_startDate + ", w_endDate=" + w_endDate
+				+ ", w_sumPriceBottom=" + w_sumPriceBottom + ", w_sumPriceTop=" + w_sumPriceTop + ", w_changeTime="
+				+ w_changeTime + ", w_hot=" + w_hot + ", w_amountFavorite=" + w_amountFavorite + ", w_completeTime="
+				+ w_completeTime + ", w_stateId=" + w_stateId + ", member=" + member + ", product=" + product
+				+ ", districtType=" + districtType + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getW_id() {
+		return w_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setW_id(Integer w_id) {
+		this.w_id = w_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_id() {
+		return m_id;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_id(Integer m_id) {
+		this.m_id = m_id;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public Integer getP_id() {
+		return p_id;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getW_title() {
+		return w_title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setW_title(String w_title) {
+		this.w_title = w_title;
 	}
 
-	public String getContext() {
-		return context;
+	public String getW_context() {
+		return w_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setW_context(String w_context) {
+		this.w_context = w_context;
 	}
 
-	public Integer getDistrictTypeId() {
-		return districtTypeId;
+	public Integer getD_id() {
+		return d_id;
 	}
 
-	public void setDistrictTypeId(Integer districtTypeId) {
-		this.districtTypeId = districtTypeId;
+	public void setD_id(Integer d_id) {
+		this.d_id = d_id;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getW_startDate() {
+		return w_startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setW_startDate(Date w_startDate) {
+		this.w_startDate = w_startDate;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getW_endDate() {
+		return w_endDate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setW_endDate(Date w_endDate) {
+		this.w_endDate = w_endDate;
 	}
 
-	public Integer getSumPriceBottom() {
-		return sumPriceBottom;
+	public Integer getW_sumPriceBottom() {
+		return w_sumPriceBottom;
 	}
 
-	public void setSumPriceBottom(Integer sumPriceBottom) {
-		this.sumPriceBottom = sumPriceBottom;
+	public void setW_sumPriceBottom(Integer w_sumPriceBottom) {
+		this.w_sumPriceBottom = w_sumPriceBottom;
 	}
 
-	public Integer getSumPriceTop() {
-		return sumPriceTop;
+	public Integer getW_sumPriceTop() {
+		return w_sumPriceTop;
 	}
 
-	public void setSumPriceTop(Integer sumPriceTop) {
-		this.sumPriceTop = sumPriceTop;
+	public void setW_sumPriceTop(Integer w_sumPriceTop) {
+		this.w_sumPriceTop = w_sumPriceTop;
 	}
 
-	public Date getChangeTime() {
-		return changeTime;
+	public Date getW_changeTime() {
+		return w_changeTime;
 	}
 
-	public void setChangeTime(Date changeTime) {
-		this.changeTime = changeTime;
+	public void setW_changeTime(Date w_changeTime) {
+		this.w_changeTime = w_changeTime;
 	}
 
-	public Integer getHot() {
-		return hot;
+	public Integer getW_hot() {
+		return w_hot;
 	}
 
-	public void setHot(Integer hot) {
-		this.hot = hot;
+	public void setW_hot(Integer w_hot) {
+		this.w_hot = w_hot;
 	}
 
-	public Date getCompleteTime() {
-		return completeTime;
+	public Integer getW_amountFavorite() {
+		return w_amountFavorite;
 	}
 
-	public void setCompleteTime(Date completeTime) {
-		this.completeTime = completeTime;
+	public void setW_amountFavorite(Integer w_amountFavorite) {
+		this.w_amountFavorite = w_amountFavorite;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Date getW_completeTime() {
+		return w_completeTime;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setW_completeTime(Date w_completeTime) {
+		this.w_completeTime = w_completeTime;
+	}
+
+	public Integer getW_stateId() {
+		return w_stateId;
+	}
+
+	public void setW_stateId(Integer w_stateId) {
+		this.w_stateId = w_stateId;
 	}
 
 	public Member getMember() {
-		return Member;
-	}
-
-	public Product getProduct() {
-		return Product;
-	}
-
-	public DistrictType getDistrictType() {
-		return DistrictType;
-	}
-
-	public State getState() {
-		return State;
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public Product getProduct() {
+		return product;
 	}
 
 	public void setProduct(Product product) {
-		Product = product;
+		this.product = product;
+	}
+
+	public DistrictType getDistrictType() {
+		return districtType;
 	}
 
 	public void setDistrictType(DistrictType districtType) {
-		DistrictType = districtType;
+		this.districtType = districtType;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

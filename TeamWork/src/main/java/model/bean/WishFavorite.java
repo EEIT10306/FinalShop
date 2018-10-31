@@ -14,76 +14,76 @@ public class WishFavorite {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wF_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer wF_id;
 
 	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idFavorite;
 
 	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
-	private Integer wishId;
+	private Integer w_id;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
-	private Wish Wish;
+	private Wish wish;
 
 	public WishFavorite() {
 	}
 
-	public WishFavorite(Integer id, Integer memberId, Integer wishId) {
+	public WishFavorite(Integer wF_id, Integer m_idFavorite, Integer w_id) {
 		super();
-		this.id = id;
-		this.memberId = memberId;
-		this.wishId = wishId;
+		this.wF_id = wF_id;
+		this.m_idFavorite = m_idFavorite;
+		this.w_id = w_id;
 	}
 
 	@Override
 	public String toString() {
-		return "WishFavorite [id=" + id + ", memberId=" + memberId + ", wishId=" + wishId + ", Member=" + Member
-				+ ", Wish=" + Wish + "]\r\n";
+		return "WishFavorite [wF_id=" + wF_id + ", m_idFavorite=" + m_idFavorite + ", w_id=" + w_id + ", member="
+				+ member + ", wish=" + wish + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getwF_id() {
+		return wF_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setwF_id(Integer wF_id) {
+		this.wF_id = wF_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idFavorite() {
+		return m_idFavorite;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idFavorite(Integer m_idFavorite) {
+		this.m_idFavorite = m_idFavorite;
 	}
 
-	public Integer getWishId() {
-		return wishId;
+	public Integer getW_id() {
+		return w_id;
 	}
 
-	public void setWishId(Integer wishId) {
-		this.wishId = wishId;
+	public void setW_id(Integer w_id) {
+		this.w_id = w_id;
 	}
 
 	public Member getMember() {
-		return Member;
-	}
-
-	public Wish getWish() {
-		return Wish;
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public Wish getWish() {
+		return wish;
 	}
 
 	public void setWish(Wish wish) {
-		Wish = wish;
+		this.wish = wish;
 	}
 
 }

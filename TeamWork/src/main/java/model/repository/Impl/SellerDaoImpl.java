@@ -8,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Member;
 import model.bean.Seller;
-import model.bean.State;
 import model.repository.SellerDao;
 
 @Repository
@@ -31,7 +29,7 @@ public class SellerDaoImpl implements SellerDao {
 
 	@Override
 	public Seller selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		Seller S = getSession().get(Seller.class, id);
 		System.out.println(S);
@@ -50,7 +48,7 @@ public class SellerDaoImpl implements SellerDao {
 	@Override
 	public Seller insert(Seller bean) throws SQLException {
 		// 查詢此ID有無資料
-		Seller S = selectByPk(bean.getId());
+		Seller S = selectByPk(bean.getSeller_id());
 		// 沒有才新增
 		if (S == null) {
 			getSession().save(bean);
@@ -62,16 +60,31 @@ public class SellerDaoImpl implements SellerDao {
 	@Override
 	public Seller update(Seller bean) throws SQLException {
 		// 查詢此ID有無資料
-		Seller S = selectByPk(bean.getId());
+		Seller S = selectByPk(bean.getSeller_id());
 		// 有才修改
 		if (S != null) {
-			S.setMemberId(bean.getMemberId());
-			S.setBank(bean.getBank());
-			S.setCard(bean.getCard());
-			S.setStateId(bean.getStateId());
+			if (bean.getM_id() != null)
+				S.setM_id(bean.getM_id());
+			if (bean.getSeller_bank() != null)
+				S.setSeller_bank(bean.getSeller_bank());
+			if (bean.getSeller_card() != null)
+				S.setSeller_card(bean.getSeller_card());
+			if (bean.getSeller_stateId() != null)
+				S.setSeller_stateId(bean.getSeller_stateId());
 			return S;
 		}
 		return null;
 	}
 
+	public Seller update(Seller S, Seller bean) throws SQLException {
+		if (bean.getM_id() != null)
+			S.setM_id(bean.getM_id());
+		if (bean.getSeller_bank() != null)
+			S.setSeller_bank(bean.getSeller_bank());
+		if (bean.getSeller_card() != null)
+			S.setSeller_card(bean.getSeller_card());
+		if (bean.getSeller_stateId() != null)
+			S.setSeller_stateId(bean.getSeller_stateId());
+		return S;
+	}
 }

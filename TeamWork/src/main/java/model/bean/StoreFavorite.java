@@ -14,75 +14,76 @@ public class StoreFavorite {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sF_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer sF_id;
 
 	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idFavorite;
 
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
-	private Integer storeProductId;
+	private Integer sP_id;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	private StoreProduct StoreProduct;
+	private StoreProduct storeProduct;
 
 	public StoreFavorite() {
 	}
 
-	public StoreFavorite(Integer id, Integer memberId, Integer storeProductId) {
-		this.id = id;
-		this.memberId = memberId;
-		this.storeProductId = storeProductId;
+	public StoreFavorite(Integer sF_id, Integer m_idFavorite, Integer sP_id) {
+		super();
+		this.sF_id = sF_id;
+		this.m_idFavorite = m_idFavorite;
+		this.sP_id = sP_id;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreFavorite [id=" + id + ", memberId=" + memberId + ", storeProductId=" + storeProductId + ", Member="
-				+ Member + ", StoreProduct=" + StoreProduct + "]\r\n";
+		return "StoreFavorite [sF_id=" + sF_id + ", m_idFavorite=" + m_idFavorite + ", sP_id=" + sP_id + ", member="
+				+ member + ", storeProduct=" + storeProduct + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getsF_id() {
+		return sF_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setsF_id(Integer sF_id) {
+		this.sF_id = sF_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idFavorite() {
+		return m_idFavorite;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idFavorite(Integer m_idFavorite) {
+		this.m_idFavorite = m_idFavorite;
 	}
 
-	public Integer getStoreProductId() {
-		return storeProductId;
+	public Integer getsP_id() {
+		return sP_id;
 	}
 
-	public void setStoreProductId(Integer storeProductId) {
-		this.storeProductId = storeProductId;
+	public void setsP_id(Integer sP_id) {
+		this.sP_id = sP_id;
 	}
 
 	public Member getMember() {
-		return Member;
-	}
-
-	public StoreProduct getStoreProduct() {
-		return StoreProduct;
+		return member;
 	}
 
 	public void setMember(Member member) {
-		Member = member;
+		this.member = member;
+	}
+
+	public StoreProduct getStoreProduct() {
+		return storeProduct;
 	}
 
 	public void setStoreProduct(StoreProduct storeProduct) {
-		StoreProduct = storeProduct;
+		this.storeProduct = storeProduct;
 	}
 
 }

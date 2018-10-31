@@ -30,7 +30,7 @@ public class GroupProductDaoImpl implements GroupProductDao {
 
 	@Override
 	public GroupProduct selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupProduct GP = getSession().get(GroupProduct.class, id);
 		System.out.println(GP);
@@ -48,7 +48,7 @@ public class GroupProductDaoImpl implements GroupProductDao {
 
 	@Override
 	public GroupProduct insert(GroupProduct bean) throws SQLException {
-		GroupProduct GP = selectByPk(bean.getId());
+		GroupProduct GP = selectByPk(bean.getgP_id());
 		if (GP == null) {
 			getSession().save(bean);
 			return bean;
@@ -58,28 +58,50 @@ public class GroupProductDaoImpl implements GroupProductDao {
 
 	@Override
 	public GroupProduct update(GroupProduct bean) throws SQLException {
-		GroupProduct GP = selectByPk(bean.getId());
+		GroupProduct GP = selectByPk(bean.getgP_id());
 		if (GP != null) {
-			if (bean.getGroupID() != null)
-				GP.setGroupID(bean.getGroupID());
-			if (bean.getName() != null)
-				GP.setName(bean.getName());
-			if (bean.getProductId() != null)
-				GP.setProductId(bean.getProductId());
-			if (bean.getAmount() != null)
-				GP.setAmount(bean.getAmount());
-			if (bean.getPrice() != null)
-				GP.setPrice(bean.getPrice());
-			if (bean.getContext() != null)
-				GP.setContext(bean.getContext());
-			if (bean.getVersion() != null)
-				GP.setVersion(bean.getVersion());
-			if (bean.getCompleteTime() != null)
-				GP.setCompleteTime(bean.getCompleteTime());
-			if (bean.getStateId() != null)
-				GP.setStateId(bean.getStateId());
+			if (bean.getG_iD() != null)
+				GP.setG_iD(bean.getG_iD());
+			if (bean.getgP_name() != null)
+				GP.setgP_name(bean.getgP_name());
+			if (bean.getP_id() != null)
+				GP.setP_id(bean.getP_id());
+			if (bean.getgP_amount() != null)
+				GP.setgP_amount(bean.getgP_amount());
+			if (bean.getgP_price() != null)
+				GP.setgP_price(bean.getgP_price());
+			if (bean.getgP_context() != null)
+				GP.setgP_context(bean.getgP_context());
+			if (bean.getgP_version() != null)
+				GP.setgP_version(bean.getgP_version());
+			if (bean.getgP_completeTime() != null)
+				GP.setgP_completeTime(bean.getgP_completeTime());
+			if (bean.getgP_stateId() != null)
+				GP.setgP_stateId(bean.getgP_stateId());
 			return GP;
 		}
 		return null;
+	}
+
+	public GroupProduct update(GroupProduct GP, GroupProduct bean) throws SQLException {
+		if (bean.getG_iD() != null)
+			GP.setG_iD(bean.getG_iD());
+		if (bean.getgP_name() != null)
+			GP.setgP_name(bean.getgP_name());
+		if (bean.getP_id() != null)
+			GP.setP_id(bean.getP_id());
+		if (bean.getgP_amount() != null)
+			GP.setgP_amount(bean.getgP_amount());
+		if (bean.getgP_price() != null)
+			GP.setgP_price(bean.getgP_price());
+		if (bean.getgP_context() != null)
+			GP.setgP_context(bean.getgP_context());
+		if (bean.getgP_version() != null)
+			GP.setgP_version(bean.getgP_version());
+		if (bean.getgP_completeTime() != null)
+			GP.setgP_completeTime(bean.getgP_completeTime());
+		if (bean.getgP_stateId() != null)
+			GP.setgP_stateId(bean.getgP_stateId());
+		return GP;
 	}
 }

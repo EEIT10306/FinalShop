@@ -29,7 +29,7 @@ public class GroupReportDaoImpl implements GroupReportDao {
 
 	@Override
 	public GroupReport selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupReport GR = getSession().get(GroupReport.class, id);
 		System.out.println(GR);
@@ -47,7 +47,7 @@ public class GroupReportDaoImpl implements GroupReportDao {
 
 	@Override
 	public GroupReport insert(GroupReport bean) throws SQLException {
-		GroupReport GR = selectByPk(bean.getId());
+		GroupReport GR = selectByPk(bean.getgR_id());
 		if (GR == null) {
 			getSession().save(bean);
 			return bean;
@@ -57,19 +57,31 @@ public class GroupReportDaoImpl implements GroupReportDao {
 
 	@Override
 	public GroupReport update(GroupReport bean) throws SQLException {
-		GroupReport GR = selectByPk(bean.getId());
+		GroupReport GR = selectByPk(bean.getgR_id());
 		if (GR != null) {
-			if (bean.getGroupId() != null)
-				GR.setGroupId(bean.getGroupId());
-			if (bean.getMemberId() != null)
-				GR.setMemberId(bean.getMemberId());
-			if (bean.getContent() != null)
-				GR.setContent(bean.getContent());
-			if (bean.getStateId() != null)
-				GR.setStateId(bean.getStateId());
+			if (bean.getG_id() != null)
+				GR.setG_id(bean.getG_id());
+			if (bean.getM_idReport() != null)
+				GR.setM_idReport(bean.getM_idReport());
+			if (bean.getgR_content() != null)
+				GR.setgR_content(bean.getgR_content());
+			if (bean.getgR_stateId() != null)
+				GR.setgR_stateId(bean.getgR_stateId());
 			return GR;
 		}
 		return null;
+	}
+
+	public GroupReport update(GroupReport GR, GroupReport bean) throws SQLException {
+		if (bean.getG_id() != null)
+			GR.setG_id(bean.getG_id());
+		if (bean.getM_idReport() != null)
+			GR.setM_idReport(bean.getM_idReport());
+		if (bean.getgR_content() != null)
+			GR.setgR_content(bean.getgR_content());
+		if (bean.getgR_stateId() != null)
+			GR.setgR_stateId(bean.getgR_stateId());
+		return GR;
 	}
 
 }

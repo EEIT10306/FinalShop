@@ -26,12 +26,11 @@ public class WishProductDaoImpl implements WishProductDao {
 		List<WishProduct> LWP = getSession().createQuery("from WishProduct", WishProduct.class).list();
 		System.out.println(LWP);
 		return LWP;
-
 	}
 
 	@Override
 	public WishProduct selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishProduct WP = getSession().get(WishProduct.class, id);
 		System.out.println(WP);
@@ -49,7 +48,7 @@ public class WishProductDaoImpl implements WishProductDao {
 
 	@Override
 	public WishProduct insert(WishProduct bean) throws SQLException {
-		WishProduct WP = selectByPk(bean.getId());
+		WishProduct WP = selectByPk(bean.getwP_id());
 		if (WP == null) {
 			getSession().save(bean);
 			return bean;
@@ -59,27 +58,47 @@ public class WishProductDaoImpl implements WishProductDao {
 
 	@Override
 	public WishProduct update(WishProduct bean) throws SQLException {
-		WishProduct WP = selectByPk(bean.getId());
+		WishProduct WP = selectByPk(bean.getwP_id());
 		if (WP != null) {
-			if (bean.getWishId() != null)
-				WP.setWishId(bean.getWishId());
-			if (bean.getName() != null)
-				WP.setName(bean.getName());
-			if (bean.getProductId() != null)
-				WP.setProductId(bean.getProductId());
-			if (bean.getAmount() != null)
-				WP.setAmount(bean.getAmount());
-			if (bean.getPriceBottom() != null)
-				WP.setPriceBottom(bean.getPriceBottom());
-			if (bean.getPriceTop() != null)
-				WP.setPriceTop(bean.getPriceTop());
-			if (bean.getCompleteTime() != null)
-				WP.setCompleteTime(bean.getCompleteTime());
-			if (bean.getStateId() != null)
-				WP.setStateId(bean.getStateId());
+			if (bean.getW_id() != null)
+				WP.setW_id(bean.getW_id());
+			if (bean.getwP_name() != null)
+				WP.setwP_name(bean.getwP_name());
+			if (bean.getP_id() != null)
+				WP.setP_id(bean.getP_id());
+			if (bean.getwP_amount() != null)
+				WP.setwP_amount(bean.getwP_amount());
+			if (bean.getwP_priceBottom() != null)
+				WP.setwP_priceBottom(bean.getwP_priceBottom());
+			if (bean.getwP_priceTop() != null)
+				WP.setwP_priceTop(bean.getwP_priceTop());
+			if (bean.getwP_completeTime() != null)
+				WP.setwP_completeTime(bean.getwP_completeTime());
+			if (bean.getwP_stateId() != null)
+				WP.setwP_stateId(bean.getwP_stateId());
 			return WP;
 		}
 		return null;
+	}
+
+	public WishProduct update(WishProduct WP, WishProduct bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WP.setW_id(bean.getW_id());
+		if (bean.getwP_name() != null)
+			WP.setwP_name(bean.getwP_name());
+		if (bean.getP_id() != null)
+			WP.setP_id(bean.getP_id());
+		if (bean.getwP_amount() != null)
+			WP.setwP_amount(bean.getwP_amount());
+		if (bean.getwP_priceBottom() != null)
+			WP.setwP_priceBottom(bean.getwP_priceBottom());
+		if (bean.getwP_priceTop() != null)
+			WP.setwP_priceTop(bean.getwP_priceTop());
+		if (bean.getwP_completeTime() != null)
+			WP.setwP_completeTime(bean.getwP_completeTime());
+		if (bean.getwP_stateId() != null)
+			WP.setwP_stateId(bean.getwP_stateId());
+		return WP;
 	}
 
 }

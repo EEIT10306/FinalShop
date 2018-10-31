@@ -29,7 +29,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		Product P = getSession().get(Product.class, id);
 		System.out.println(P);
@@ -47,7 +47,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product insert(Product bean) throws SQLException {
-		Product P = selectByPk(bean.getId());
+		Product P = selectByPk(bean.getP_id());
 		if (P == null) {
 			getSession().save(bean);
 			return bean;
@@ -57,17 +57,26 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product update(Product bean) throws SQLException {
-		Product P = selectByPk(bean.getId());
+		Product P = selectByPk(bean.getP_id());
 		if (P != null) {
-			if (bean.getName() != null)
-				P.setName(bean.getName());
-			if (bean.getParentsId() != null)
-				P.setParentsId(bean.getParentsId());
-			if (bean.getStage() != null)
-				P.setStage(bean.getStage());
+			if (bean.getP_name() != null)
+				P.setP_name(bean.getP_name());
+			if (bean.getP_parentsId() != null)
+				P.setP_parentsId(bean.getP_parentsId());
+			if (bean.getP_stage() != null)
+				P.setP_stage(bean.getP_stage());
 			return P;
 		}
 		return null;
 	}
 
+	public Product update(Product P, Product bean) throws SQLException {
+		if (bean.getP_name() != null)
+			P.setP_name(bean.getP_name());
+		if (bean.getP_parentsId() != null)
+			P.setP_parentsId(bean.getP_parentsId());
+		if (bean.getP_stage() != null)
+			P.setP_stage(bean.getP_stage());
+		return P;
+	}
 }

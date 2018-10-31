@@ -30,7 +30,7 @@ public class WishBidDaoImpl implements WishBidDao {
 
 	@Override
 	public WishBid selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishBid WB = getSession().get(WishBid.class, id);
 		System.out.println(WB);
@@ -48,7 +48,7 @@ public class WishBidDaoImpl implements WishBidDao {
 
 	@Override
 	public WishBid insert(WishBid bean) throws SQLException {
-		WishBid WB = selectByPk(bean.getId());
+		WishBid WB = selectByPk(bean.getwB_id());
 		if (WB == null) {
 			getSession().save(bean);
 			return bean;
@@ -58,24 +58,42 @@ public class WishBidDaoImpl implements WishBidDao {
 
 	@Override
 	public WishBid update(WishBid bean) throws SQLException {
-		WishBid WB = selectByPk(bean.getId());
+		WishBid WB = selectByPk(bean.getwB_id());
 		if (WB != null) {
-			if (bean.getWishId() != null)
-				WB.setWishId(bean.getWishId());
-			if (bean.getMemberId() != null)
-				WB.setMemberId(bean.getMemberId());
-			if (bean.getBid() != null)
-				WB.setBid(bean.getBid());
-			if (bean.getContext() != null)
-				WB.setContext(bean.getContext());
-			if (bean.getFreight() != null)
-				WB.setFreight(bean.getFreight());
-			if (bean.getTime() != null)
-				WB.setTime(bean.getTime());
-			if (bean.getStateId() != null)
-				WB.setStateId(bean.getStateId());
+			if (bean.getW_id() != null)
+				WB.setW_id(bean.getW_id());
+			if (bean.getM_idBid() != null)
+				WB.setM_idBid(bean.getM_idBid());
+			if (bean.getwB_bid() != null)
+				WB.setwB_bid(bean.getwB_bid());
+			if (bean.getwB_context() != null)
+				WB.setwB_context(bean.getwB_context());
+			if (bean.getwB_freight() != null)
+				WB.setwB_freight(bean.getwB_freight());
+			if (bean.getwB_time() != null)
+				WB.setwB_time(bean.getwB_time());
+			if (bean.getwB_stateId() != null)
+				WB.setwB_stateId(bean.getwB_stateId());
 			return WB;
 		}
 		return null;
+	}
+
+	public WishBid update(WishBid WB, WishBid bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WB.setW_id(bean.getW_id());
+		if (bean.getM_idBid() != null)
+			WB.setM_idBid(bean.getM_idBid());
+		if (bean.getwB_bid() != null)
+			WB.setwB_bid(bean.getwB_bid());
+		if (bean.getwB_context() != null)
+			WB.setwB_context(bean.getwB_context());
+		if (bean.getwB_freight() != null)
+			WB.setwB_freight(bean.getwB_freight());
+		if (bean.getwB_time() != null)
+			WB.setwB_time(bean.getwB_time());
+		if (bean.getwB_stateId() != null)
+			WB.setwB_stateId(bean.getwB_stateId());
+		return WB;
 	}
 }
