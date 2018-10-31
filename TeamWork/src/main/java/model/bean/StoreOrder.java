@@ -19,7 +19,7 @@ public class StoreOrder {
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
 	private Integer sP_id;
 
-	@Column(name = "memS_IdEE", columnDefinition = "int", nullable = false)
+	@Column(name = "memS_IDee", columnDefinition = "int", nullable = false)
 	private Integer m_idOrder;
 
 	@Column(name = "sO_tran", columnDefinition = "nvarchar(max)", nullable = false)

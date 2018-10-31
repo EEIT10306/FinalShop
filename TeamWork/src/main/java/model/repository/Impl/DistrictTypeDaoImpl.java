@@ -64,4 +64,14 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 		return null;
 	}
 
+	public DistrictType update(DistrictType DT, DistrictType bean) throws SQLException {
+		if (bean.getD_name() != null)
+			DT.setD_name(bean.getD_name());
+		if (bean.getD_parentsId() != null)
+			DT.setD_parentsId(bean.getD_parentsId());
+		if (bean.getD_stageId() != null)
+			DT.setD_stageId(bean.getD_stageId());
+		return DT;
+	}
+
 }

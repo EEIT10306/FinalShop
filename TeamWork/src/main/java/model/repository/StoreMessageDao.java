@@ -16,4 +16,6 @@ public interface StoreMessageDao {
 
 	public StoreMessage update(StoreMessage bean) throws SQLException;
 
+	public StoreMessage update(StoreMessage SM, StoreMessage bean) throws SQLException;
+
 }

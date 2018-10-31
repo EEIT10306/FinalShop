@@ -15,4 +15,7 @@ public interface StateDao {
 	public State insert(State bean) throws SQLException;
 
 	public State update(State bean) throws SQLException;
+
+	public State update(State S, State bean) throws SQLException;
+	
 }

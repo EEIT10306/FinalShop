@@ -16,4 +16,6 @@ public interface GrouponDao {
 
 	public Groupon update(Groupon bean) throws SQLException;
 
+	public Groupon update(Groupon G, Groupon bean) throws SQLException;
+
 }

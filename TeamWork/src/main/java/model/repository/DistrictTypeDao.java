@@ -13,5 +13,7 @@ public interface DistrictTypeDao {
 	public List<DistrictType> selectHql(String hqlString) throws SQLException;
 
 	public DistrictType update(DistrictType bean) throws SQLException;
-	
+
+	public DistrictType update(DistrictType DT, DistrictType bean) throws SQLException;
+
 }

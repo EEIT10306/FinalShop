@@ -46,7 +46,7 @@ public class StoreProduct {
 	@Column(name = "sP_avgAss", columnDefinition = "float", nullable = false)
 	private Integer sP_averageAssess;
 
-	@Column(name = "sP_amtass", columnDefinition = "int", nullable = false)
+	@Column(name = "sP_amtAss", columnDefinition = "int", nullable = false)
 	private Integer sP_amountAssess;
 
 	@Column(name = "sP_state", columnDefinition = "int", nullable = false)

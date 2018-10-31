@@ -12,9 +12,11 @@ public interface ImagesDao {
 
 	public List<Images> selectHql(String hqlString) throws SQLException;
 
-	public Images insert(Images imagesBean) throws SQLException;
+	public Images insert(Images bean) throws SQLException;
 
-	public Images update(Images imagesBean) throws SQLException;
+	public Images update(Images bean) throws SQLException;
 
-	public Boolean delete(Images imagesBean) throws SQLException;
+	public Images update(Images I, Images bean) throws SQLException;
+
+	public Boolean delete(Images bean) throws SQLException;
 }
