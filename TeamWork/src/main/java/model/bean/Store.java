@@ -34,8 +34,8 @@ public class Store {
 	@Column(name = "store_add", columnDefinition = "nvarchar(max)")
 	private String s_address;
 
-	@Column(name = "store_tel", columnDefinition = "int")
-	private Integer s_telephone;
+	@Column(name = "store_tel", columnDefinition = "nvarchar(max)")
+	private String s_telephone;
 
 	@Column(name = "store_web", columnDefinition = "nvarchar(max)")
 	private String s_web;
@@ -59,7 +59,7 @@ public class Store {
 	}
 
 	public Store(Integer s_id, Integer seller_id, String s_name, String s_photo, String s_context, Integer p_id,
-			String s_address, Integer s_telephone, String s_web, Integer s_stateId) {
+			String s_address, String s_telephone, String s_web, Integer s_stateId) {
 		super();
 		this.s_id = s_id;
 		this.seller_id = seller_id;
@@ -137,11 +137,11 @@ public class Store {
 		this.s_address = s_address;
 	}
 
-	public Integer getS_telephone() {
+	public String getS_telephone() {
 		return s_telephone;
 	}
 
-	public void setS_telephone(Integer s_telephone) {
+	public void setS_telephone(String s_telephone) {
 		this.s_telephone = s_telephone;
 	}
 
