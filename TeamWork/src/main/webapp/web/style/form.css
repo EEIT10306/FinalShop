@@ -96,14 +96,14 @@ html {
     color: var(--white);
   }
   
-  form button {
+  .button {
     transition-duration: 0.5s;
     padding: 8px;
     background-color: var(--heavy-green);
     color: var(--white);
     cursor: pointer;
   }
-  form button:hover {
+ .button:hover {
     background-color: var(--heavy-green-hover);
   }
   form .message {
