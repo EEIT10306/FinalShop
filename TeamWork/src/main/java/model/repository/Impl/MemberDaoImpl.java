@@ -105,4 +105,44 @@ public class MemberDaoImpl implements MemberDao {
 		return null;
 	}
 
+	public Member update(Member M, Member bean) throws SQLException {
+		if (bean.getM_account() != null)
+			M.setM_account(bean.getM_account());
+		if (bean.getM_password() != null)
+			M.setM_password(bean.getM_password());
+		if (bean.getM_name() != null)
+			M.setM_name(bean.getM_name());
+		if (bean.getM_address() != null)
+			M.setM_address(bean.getM_address());
+		if (bean.getM_telephone() != null)
+			M.setM_telephone(bean.getM_telephone());
+		if (bean.getM_mail() != null)
+			M.setM_mail(bean.getM_mail());
+		if (bean.getM_position() != null)
+			M.setM_position(bean.getM_position());
+		if (bean.getM_coin() != null)
+			M.setM_coin(bean.getM_coin());
+		if (bean.getM_photo() != null)
+			M.setM_photo(bean.getM_photo());
+		if (bean.getM_loginCount() != null)
+			M.setM_loginCount(bean.getM_loginCount());
+		if (bean.getM_loginTime() != null)
+			M.setM_loginTime(bean.getM_loginTime());
+		if (bean.getM_stateId() != null)
+			M.setM_stateId(bean.getM_stateId());
+		if (bean.getM_wiseAssessSumEE() != null)
+			M.setM_wiseAssessSumEE(bean.getM_wiseAssessSumEE());
+		if (bean.getM_groupAssessSumEE() != null)
+			M.setM_groupAssessSumEE(bean.getM_groupAssessSumEE());
+		if (bean.getM_storeAssessSumEE() != null)
+			M.setM_storeAssessSumEE(bean.getM_storeAssessSumEE());
+		if (bean.getM_wiseAssessSum() != null)
+			M.setM_wiseAssessSum(bean.getM_wiseAssessSum());
+		if (bean.getM_groupAssessSum() != null)
+			M.setM_groupAssessSum(bean.getM_groupAssessSum());
+		if (bean.getM_storeAssessSum() != null)
+			M.setM_storeAssessSum(bean.getM_storeAssessSum());
+		return M;
+	}
+
 }

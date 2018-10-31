@@ -77,4 +77,15 @@ public class SellerDaoImpl implements SellerDao {
 		return null;
 	}
 
+	public Seller update(Seller S, Seller bean) throws SQLException {
+		if (bean.getM_id() != null)
+			S.setM_id(bean.getM_id());
+		if (bean.getSeller_bank() != null)
+			S.setSeller_bank(bean.getSeller_bank());
+		if (bean.getSeller_card() != null)
+			S.setSeller_card(bean.getSeller_card());
+		if (bean.getSeller_stateId() != null)
+			S.setSeller_stateId(bean.getSeller_stateId());
+		return S;
+	}
 }

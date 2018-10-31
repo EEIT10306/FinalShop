@@ -30,7 +30,7 @@ public class GroupCallbackDaoImpl implements GroupCallbackDao {
 
 	@Override
 	public GroupCallback selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupCallback GC = getSession().get(GroupCallback.class, id);
 		System.out.println(GC);
@@ -73,5 +73,19 @@ public class GroupCallbackDaoImpl implements GroupCallbackDao {
 			return GC;
 		}
 		return null;
+	}
+
+	public GroupCallback update(GroupCallback GC, GroupCallback bean) throws SQLException {
+		if (bean.getgM_id() != null)
+			GC.setgM_id(bean.getgM_id());
+		if (bean.getM_idCallback() != null)
+			GC.setM_idCallback(bean.getM_idCallback());
+		if (bean.getgC_context() != null)
+			GC.setgC_context(bean.getgC_context());
+		if (bean.getgC_time() != null)
+			GC.setgC_time(bean.getgC_time());
+		if (bean.getgC_stateId() != null)
+			GC.setgC_stateId(bean.getgC_stateId());
+		return GC;
 	}
 }

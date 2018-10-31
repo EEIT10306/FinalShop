@@ -30,7 +30,7 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 
 	@Override
 	public GroupAssess selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupAssess GA = getSession().get(GroupAssess.class, id);
 		System.out.println(GA);
@@ -74,4 +74,19 @@ public class GroupAssessDaoImpl implements GroupAssessDao {
 		}
 		return null;
 	}
+
+	public GroupAssess update(GroupAssess GA, GroupAssess bean) throws SQLException {
+		if (bean.getgO_id() != null)
+			GA.setgO_id(bean.getgO_id());
+		if (bean.getgA_point() != null)
+			GA.setgA_point(bean.getgA_point());
+		if (bean.getgA_context() != null)
+			GA.setgA_context(bean.getgA_context());
+		if (bean.getgA_pointAssess() != null)
+			GA.setgA_pointAssess(bean.getgA_pointAssess());
+		if (bean.getgA_contextAssess() != null)
+			GA.setgA_contextAssess(bean.getgA_contextAssess());
+		return GA;
+	}
+
 }

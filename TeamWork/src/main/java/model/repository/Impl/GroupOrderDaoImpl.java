@@ -30,7 +30,7 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 
 	@Override
 	public GroupOrder selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupOrder GO = getSession().get(GroupOrder.class, id);
 		System.out.println(GO);
@@ -72,4 +72,17 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 		}
 		return null;
 	}
+
+	public GroupOrder update(GroupOrder GO, GroupOrder bean) throws SQLException {
+		if (bean.getgP_id() != null)
+			GO.setgP_id(bean.getgP_id());
+		if (bean.getM_idOrder() != null)
+			GO.setM_idOrder(bean.getM_idOrder());
+		if (bean.getgO_amount() != null)
+			GO.setgO_amount(bean.getgO_amount());
+		if (bean.getgO_stateId() != null)
+			GO.setgO_stateId(bean.getgO_stateId());
+		return GO;
+	}
+
 }

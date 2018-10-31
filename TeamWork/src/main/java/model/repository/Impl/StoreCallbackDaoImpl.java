@@ -30,7 +30,7 @@ public class StoreCallbackDaoImpl implements StoreCallbackDao {
 
 	@Override
 	public StoreCallback selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		StoreCallback SC = getSession().get(StoreCallback.class, id);
 		System.out.println(SC);
@@ -73,5 +73,19 @@ public class StoreCallbackDaoImpl implements StoreCallbackDao {
 			return SC;
 		}
 		return null;
+	}
+
+	public StoreCallback update(StoreCallback SC, StoreCallback bean) throws SQLException {
+		if (bean.getsM_id() != null)
+			SC.setsM_id(bean.getsM_id());
+		if (bean.getM_idCallback() != null)
+			SC.setM_idCallback(bean.getM_idCallback());
+		if (bean.getsC_context() != null)
+			SC.setsC_context(bean.getsC_context());
+		if (bean.getsC_time() != null)
+			SC.setsC_time(bean.getsC_time());
+		if (bean.getsC_stateId() != null)
+			SC.setsC_stateId(bean.getsC_stateId());
+		return SC;
 	}
 }

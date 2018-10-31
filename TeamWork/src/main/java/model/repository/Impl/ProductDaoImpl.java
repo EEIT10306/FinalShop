@@ -29,7 +29,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		Product P = getSession().get(Product.class, id);
 		System.out.println(P);
@@ -70,4 +70,13 @@ public class ProductDaoImpl implements ProductDao {
 		return null;
 	}
 
+	public Product update(Product P, Product bean) throws SQLException {
+		if (bean.getP_name() != null)
+			P.setP_name(bean.getP_name());
+		if (bean.getP_parentsId() != null)
+			P.setP_parentsId(bean.getP_parentsId());
+		if (bean.getP_stage() != null)
+			P.setP_stage(bean.getP_stage());
+		return P;
+	}
 }

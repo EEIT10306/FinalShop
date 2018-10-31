@@ -30,7 +30,7 @@ public class WishMessageDaoImpl implements WishMessageDao {
 
 	@Override
 	public WishMessage selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishMessage WM = getSession().get(WishMessage.class, id);
 		System.out.println(WM);
@@ -73,5 +73,19 @@ public class WishMessageDaoImpl implements WishMessageDao {
 			return WM;
 		}
 		return null;
+	}
+
+	public WishMessage update(WishMessage WM, WishMessage bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WM.setW_id(bean.getW_id());
+		if (bean.getM_idMessage() != null)
+			WM.setM_idMessage(bean.getM_idMessage());
+		if (bean.getwM_context() != null)
+			WM.setwM_context(bean.getwM_context());
+		if (bean.getwM_time() != null)
+			WM.setwM_time(bean.getwM_time());
+		if (bean.getwM_stateId() != null)
+			WM.setwM_stateId(bean.getwM_stateId());
+		return WM;
 	}
 }

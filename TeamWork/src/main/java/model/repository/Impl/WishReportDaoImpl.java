@@ -29,7 +29,7 @@ public class WishReportDaoImpl implements WishReportDao {
 
 	@Override
 	public WishReport selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishReport WR = getSession().get(WishReport.class, id);
 		System.out.println(WR);
@@ -70,6 +70,18 @@ public class WishReportDaoImpl implements WishReportDao {
 			return WR;
 		}
 		return null;
+	}
+
+	public WishReport update(WishReport WR, WishReport bean) throws SQLException {
+		if (bean.getW_id() != null)
+			WR.setW_id(bean.getW_id());
+		if (bean.getM_idReport() != null)
+			WR.setM_idReport(bean.getM_idReport());
+		if (bean.getwR_content() != null)
+			WR.setwR_content(bean.getwR_content());
+		if (bean.getwR_stateId() != null)
+			WR.setwR_stateId(bean.getwR_stateId());
+		return WR;
 	}
 
 }

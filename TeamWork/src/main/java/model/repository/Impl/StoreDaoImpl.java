@@ -82,4 +82,26 @@ public class StoreDaoImpl implements StoreDao {
 		return null;
 	}
 
+	public Store update(Store S, Store bean) throws SQLException {
+		if (bean.getSeller_id() != null)
+			S.setSeller_id(bean.getSeller_id());
+		if (bean.getS_name() != null)
+			S.setS_name(bean.getS_name());
+		if (bean.getS_photo() != null)
+			S.setS_photo(bean.getS_photo());
+		if (bean.getS_context() != null)
+			S.setS_context(bean.getS_context());
+		if (bean.getP_id() != null)
+			S.setP_id(bean.getP_id());
+		if (bean.getS_address() != null)
+			S.setS_address(bean.getS_address());
+		if (bean.getS_telephone() != null)
+			S.setS_telephone(bean.getS_telephone());
+		if (bean.getS_web() != null)
+			S.setS_web(bean.getS_web());
+		if (bean.getS_stateId() != null)
+			S.setS_stateId(bean.getS_stateId());
+		return S;
+	}
+
 }

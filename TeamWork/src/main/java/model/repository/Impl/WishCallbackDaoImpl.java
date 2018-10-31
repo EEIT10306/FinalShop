@@ -30,7 +30,7 @@ public class WishCallbackDaoImpl implements WishCallbackDao {
 
 	@Override
 	public WishCallback selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishCallback WC = getSession().get(WishCallback.class, id);
 		System.out.println(WC);
@@ -73,5 +73,19 @@ public class WishCallbackDaoImpl implements WishCallbackDao {
 			return WC;
 		}
 		return null;
+	}
+
+	public WishCallback update(WishCallback WC, WishCallback bean) throws SQLException {
+		if (bean.getwM_id() != null)
+			WC.setwM_id(bean.getwM_id());
+		if (bean.getM_idCallback() != null)
+			WC.setM_idCallback(bean.getM_idCallback());
+		if (bean.getwC_context() != null)
+			WC.setwC_context(bean.getwC_context());
+		if (bean.getwC_time() != null)
+			WC.setwC_time(bean.getwC_time());
+		if (bean.getwC_stateId() != null)
+			WC.setwC_stateId(bean.getwC_stateId());
+		return WC;
 	}
 }

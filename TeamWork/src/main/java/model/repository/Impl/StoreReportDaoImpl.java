@@ -29,7 +29,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 
 	@Override
 	public StoreReport selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		StoreReport SR = getSession().get(StoreReport.class, id);
 		System.out.println(SR);
@@ -70,5 +70,17 @@ public class StoreReportDaoImpl implements StoreReportDao {
 			return SR;
 		}
 		return null;
+	}
+
+	public StoreReport update(StoreReport SR, StoreReport bean) throws SQLException {
+		if (bean.getsP_id() != null)
+			SR.setsP_id(bean.getsP_id());
+		if (bean.getM_idReport() != null)
+			SR.setM_idReport(bean.getM_idReport());
+		if (bean.getsR_content() != null)
+			SR.setsR_content(bean.getsR_content());
+		if (bean.getsR_stateId() != null)
+			SR.setsR_stateId(bean.getsR_stateId());
+		return SR;
 	}
 }

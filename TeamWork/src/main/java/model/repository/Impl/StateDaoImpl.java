@@ -29,7 +29,7 @@ public class StateDaoImpl implements StateDao {
 
 	@Override
 	public State selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		State S = getSession().get(State.class, id);
 		System.out.println(S);
@@ -72,4 +72,11 @@ public class StateDaoImpl implements StateDao {
 		return null;
 	}
 
+	public State update(State S, State bean) throws SQLException {
+		if (bean.getState_context() != null)
+			S.setState_context(bean.getState_context());
+		if (bean.getState_class() != null)
+			S.setState_class(bean.getState_class());
+		return S;
+	}
 }

@@ -30,7 +30,7 @@ public class ImagesDaoImpl implements ImagesDao {
 
 	@Override
 	public Images selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		Images I = getSession().get(Images.class, id);
 		System.out.println(I);
@@ -69,6 +69,16 @@ public class ImagesDaoImpl implements ImagesDao {
 			return I;
 		}
 		return null;
+	}
+
+	public Images update(Images I, Images bean) throws SQLException {
+		if (bean.getWgs_id() != null)
+			I.setWgs_id(bean.getWgs_id());
+		if (bean.getI_context() != null)
+			I.setI_context(bean.getI_context());
+		if (bean.getI_from() != null)
+			I.setI_from(bean.getI_from());
+		return I;
 	}
 
 	@Override
