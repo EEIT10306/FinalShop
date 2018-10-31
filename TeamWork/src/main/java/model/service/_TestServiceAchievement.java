@@ -23,12 +23,12 @@ public class _TestServiceAchievement {
 
 	public List<Achievement> getSelect(Achievement achievement) {
 		try {
-			if (achievement.getId() == null) {
+			if (achievement.getA_id() == null) {
 				List<Achievement> list = achievementDaoImpl.selectAll();
 				return list;
 			}
 			Achievement temp;
-			temp = achievementDaoImpl.selectByPk(achievement.getId());
+			temp = achievementDaoImpl.selectByPk(achievement.getA_id());
 			List<Achievement> list = new ArrayList<>();
 			list.add(temp);
 			return list;
@@ -36,7 +36,7 @@ public class _TestServiceAchievement {
 			System.out.println("_TestService - Achievement - SQLException");
 			e.printStackTrace();
 			return null;
-		}
+		}		
 	}
 	public Member getInsert(Member member) throws SQLException {
 		return memberDaoImpl.insert(member);

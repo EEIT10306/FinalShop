@@ -30,6 +30,8 @@ public class StoreMessageDaoImpl implements StoreMessageDao {
 
 	@Override
 	public StoreMessage selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		StoreMessage SM = getSession().get(StoreMessage.class, id);
 		System.out.println(SM);
 		return SM;
@@ -46,7 +48,7 @@ public class StoreMessageDaoImpl implements StoreMessageDao {
 
 	@Override
 	public StoreMessage insert(StoreMessage bean) throws SQLException {
-		StoreMessage SM = selectByPk(bean.getId());
+		StoreMessage SM = selectByPk(bean.getsM_id());
 		if (SM == null) {
 			getSession().save(bean);
 			return bean;
@@ -56,18 +58,18 @@ public class StoreMessageDaoImpl implements StoreMessageDao {
 
 	@Override
 	public StoreMessage update(StoreMessage bean) throws SQLException {
-		StoreMessage SM = selectByPk(bean.getId());
+		StoreMessage SM = selectByPk(bean.getsM_id());
 		if (SM != null) {
-			if (bean.getStoreProductId() != null)
-				SM.setStoreProductId(bean.getStoreProductId());
-			if (bean.getMemberId() != null)
-				SM.setMemberId(bean.getMemberId());
-			if (bean.getContext() != null)
-				SM.setContext(bean.getContext());
-			if (bean.getTime() != null)
-				SM.setTime(bean.getTime());
-			if (bean.getStateId() != null)
-				SM.setStateId(bean.getStateId());
+			if (bean.getsP_id() != null)
+				SM.setsP_id(bean.getsP_id());
+			if (bean.getM_idMessage() != null)
+				SM.setM_idMessage(bean.getM_idMessage());
+			if (bean.getsM_context() != null)
+				SM.setsM_context(bean.getsM_context());
+			if (bean.getsM_time() != null)
+				SM.setsM_time(bean.getsM_time());
+			if (bean.getsM_stateId() != null)
+				SM.setsM_stateId(bean.getsM_stateId());
 			return SM;
 		}
 		return null;

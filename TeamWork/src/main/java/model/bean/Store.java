@@ -14,175 +14,175 @@ public class Store {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "store_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer s_id;
 
 	@Column(name = "seller_ID", columnDefinition = "int", nullable = false)
-	private Integer sellerId;
+	private Integer seller_id;
 
 	@Column(name = "store_name", columnDefinition = "nvarchar(max)", nullable = false)
-	private String name;
+	private String s_name;
 
 	@Column(name = "store_pho", columnDefinition = "nvarchar(max)")
-	private String photo;
+	private String s_photo;
 
 	@Column(name = "store_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String context;
+	private String s_context;
 
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
-	private Integer productId;
+	private Integer p_id;
 
 	@Column(name = "store_add", columnDefinition = "nvarchar(max)")
-	private String address;
+	private String s_address;
 
-	@Column(name = "store_tel", columnDefinition = "int")
-	private String telephone;
+	@Column(name = "store_tel", columnDefinition = "nvarchar(max)")
+	private String s_telephone;
 
 	@Column(name = "store_web", columnDefinition = "nvarchar(max)")
-	private String web;
+	private String s_web;
 
 	@Column(name = "store_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer s_stateId;
 
 	@OneToOne
 	@JoinColumn(name = "seller_ID", insertable = false, updatable = false)
-	private Seller Seller;
+	private Seller seller;
 
 	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	private Product Product;
+	private Product product;
 
 	@ManyToOne
 	@JoinColumn(name = "store_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public Store() {
 	}
 
-	public Store(Integer id, Integer sellerId, String name, String photo, String context, Integer productId,
-			String address, String telephone, String web, Integer stateId) {
+	public Store(Integer s_id, Integer seller_id, String s_name, String s_photo, String s_context, Integer p_id,
+			String s_address, String s_telephone, String s_web, Integer s_stateId) {
 		super();
-		this.id = id;
-		this.sellerId = sellerId;
-		this.name = name;
-		this.photo = photo;
-		this.context = context;
-		this.productId = productId;
-		this.address = address;
-		this.telephone = telephone;
-		this.web = web;
-		this.stateId = stateId;
+		this.s_id = s_id;
+		this.seller_id = seller_id;
+		this.s_name = s_name;
+		this.s_photo = s_photo;
+		this.s_context = s_context;
+		this.p_id = p_id;
+		this.s_address = s_address;
+		this.s_telephone = s_telephone;
+		this.s_web = s_web;
+		this.s_stateId = s_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "Store [id=" + id + ", sellerId=" + sellerId + ", name=" + name + ", photo=" + photo + ", context="
-				+ context + ", productId=" + productId + ", address=" + address + ", telephone=" + telephone + ", web="
-				+ web + ", stateId=" + stateId + ", Seller=" + Seller + ", Product=" + Product + ", State=" + State
-				+ "]\r\n";
+		return "Store [s_id=" + s_id + ", seller_id=" + seller_id + ", s_name=" + s_name + ", s_photo=" + s_photo
+				+ ", s_context=" + s_context + ", p_id=" + p_id + ", s_address=" + s_address + ", s_telephone="
+				+ s_telephone + ", s_web=" + s_web + ", s_stateId=" + s_stateId + ", seller=" + seller + ", product="
+				+ product + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getS_id() {
+		return s_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setS_id(Integer s_id) {
+		this.s_id = s_id;
 	}
 
-	public Integer getSellerId() {
-		return sellerId;
+	public Integer getSeller_id() {
+		return seller_id;
 	}
 
-	public void setSellerId(Integer sellerId) {
-		this.sellerId = sellerId;
+	public void setSeller_id(Integer seller_id) {
+		this.seller_id = seller_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getS_name() {
+		return s_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setS_name(String s_name) {
+		this.s_name = s_name;
 	}
 
-	public String getPhoto() {
-		return photo;
+	public String getS_photo() {
+		return s_photo;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setS_photo(String s_photo) {
+		this.s_photo = s_photo;
 	}
 
-	public String getContext() {
-		return context;
+	public String getS_context() {
+		return s_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setS_context(String s_context) {
+		this.s_context = s_context;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public Integer getP_id() {
+		return p_id;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getS_address() {
+		return s_address;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setS_address(String s_address) {
+		this.s_address = s_address;
 	}
 
-	public String getTelephone() {
-		return telephone;
+	public String getS_telephone() {
+		return s_telephone;
 	}
 
-	public void setTelephone(String store_tel) {
-		this.telephone = store_tel;
+	public void setS_telephone(String s_telephone) {
+		this.s_telephone = s_telephone;
 	}
 
-	public String getWeb() {
-		return web;
+	public String getS_web() {
+		return s_web;
 	}
 
-	public void setWeb(String web) {
-		this.web = web;
+	public void setS_web(String s_web) {
+		this.s_web = s_web;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getS_stateId() {
+		return s_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setS_stateId(Integer s_stateId) {
+		this.s_stateId = s_stateId;
 	}
 
 	public Seller getSeller() {
-		return Seller;
-	}
-
-	public Product getProduct() {
-		return Product;
-	}
-
-	public State getState() {
-		return State;
+		return seller;
 	}
 
 	public void setSeller(Seller seller) {
-		Seller = seller;
+		this.seller = seller;
+	}
+
+	public Product getProduct() {
+		return product;
 	}
 
 	public void setProduct(Product product) {
-		Product = product;
+		this.product = product;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public void setState(State state) {
-		State = state;
+		this.state = state;
 	}
 
 }

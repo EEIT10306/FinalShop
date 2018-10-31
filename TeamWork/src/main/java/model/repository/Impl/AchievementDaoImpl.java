@@ -29,15 +29,18 @@ public class AchievementDaoImpl implements AchievementDao {
 
 	@Override
 	public Achievement selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Achievement A = getSession().get(Achievement.class, id);
 		System.out.println(A);
 		return A;
+
 	}
 
 	@Override
 	public Achievement insert(Achievement bean) throws SQLException {
 		// 查詢此ID有無資料
-		Achievement A = selectByPk(bean.getId());
+		Achievement A = selectByPk(bean.getA_id());
 		// 沒有才新增
 		if (A == null) {
 			getSession().save(bean);
@@ -58,15 +61,17 @@ public class AchievementDaoImpl implements AchievementDao {
 	@Override
 	public Achievement update(Achievement bean) throws SQLException {
 		// 查詢此ID有無資料
-		Achievement A = selectByPk(bean.getId());
+		Achievement A = selectByPk(bean.getA_id());
 		// 有才修改
 		if (A != null) {
-			if (bean.getContext() != null)
-				A.setContext(bean.getContext());
-			if (bean.getBonus() != null)
-				A.setBonus(bean.getBonus());
-			if (bean.getParentsId() != null)
-				A.setParentsId(bean.getParentsId());
+			if (bean.getA_context() != null)
+				A.setA_context(bean.getA_context());
+			if (bean.getA_amount() != null)
+				A.setA_amount(bean.getA_amount());
+			if (bean.getA_bonus() != null)
+				A.setA_bonus(bean.getA_bonus());
+			if (bean.getA_parentsId() != null)
+				A.setA_parentsId(bean.getA_parentsId());
 			return A;
 		}
 		return null;

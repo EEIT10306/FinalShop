@@ -29,6 +29,8 @@ public class StoreDaoImpl implements StoreDao {
 
 	@Override
 	public Store selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		Store S = getSession().get(Store.class, id);
 		System.out.println(S);
 		return S;
@@ -45,7 +47,7 @@ public class StoreDaoImpl implements StoreDao {
 
 	@Override
 	public Store insert(Store bean) throws SQLException {
-		Store S = selectByPk(bean.getId());
+		Store S = selectByPk(bean.getS_id());
 		if (S == null) {
 			getSession().save(bean);
 			return bean;
@@ -55,26 +57,26 @@ public class StoreDaoImpl implements StoreDao {
 
 	@Override
 	public Store update(Store bean) throws SQLException {
-		Store S = selectByPk(bean.getId());
+		Store S = selectByPk(bean.getS_id());
 		if (S != null) {
-			if (bean.getSellerId() != null)
-				S.setSellerId(bean.getSellerId());
-			if (bean.getName() != null)
-				S.setName(bean.getName());
-			if (bean.getPhoto() != null)
-				S.setPhoto(bean.getPhoto());
-			if (bean.getContext() != null)
-				S.setContext(bean.getContext());
-			if (bean.getProductId() != null)
-				S.setProductId(bean.getProductId());
-			if (bean.getAddress() != null)
-				S.setAddress(bean.getAddress());
-			if (bean.getTelephone() != null)
-				S.setTelephone(bean.getTelephone());
-			if (bean.getWeb() != null)
-				S.setWeb(bean.getWeb());
-			if (bean.getStateId() != null)
-				S.setStateId(bean.getStateId());
+			if (bean.getSeller_id() != null)
+				S.setSeller_id(bean.getSeller_id());
+			if (bean.getS_name() != null)
+				S.setS_name(bean.getS_name());
+			if (bean.getS_photo() != null)
+				S.setS_photo(bean.getS_photo());
+			if (bean.getS_context() != null)
+				S.setS_context(bean.getS_context());
+			if (bean.getP_id() != null)
+				S.setP_id(bean.getP_id());
+			if (bean.getS_address() != null)
+				S.setS_address(bean.getS_address());
+			if (bean.getS_telephone() != null)
+				S.setS_telephone(bean.getS_telephone());
+			if (bean.getS_web() != null)
+				S.setS_web(bean.getS_web());
+			if (bean.getS_stateId() != null)
+				S.setS_stateId(bean.getS_stateId());
 			return S;
 		}
 		return null;

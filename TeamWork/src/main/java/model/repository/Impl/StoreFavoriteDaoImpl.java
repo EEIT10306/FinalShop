@@ -8,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Member;
 import model.bean.StoreFavorite;
-import model.bean.StoreProduct;
 import model.repository.StoreFavoriteDao;
 
 @Repository
@@ -40,6 +38,8 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 
 	@Override
 	public StoreFavorite selectByPk(Integer id) throws SQLException {
+		if (id != null)
+			return null;
 		StoreFavorite SF = getSession().get(StoreFavorite.class, id);
 		System.out.println(SF);
 		return SF;
@@ -48,7 +48,7 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 	@Override
 	public StoreFavorite insert(StoreFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		StoreFavorite SF = selectByPk(bean.getId());
+		StoreFavorite SF = selectByPk(bean.getsF_id());
 		// 沒有才新增
 		if (SF == null) {
 			getSession().save(bean);
@@ -60,7 +60,7 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 	@Override
 	public boolean delete(StoreFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		StoreFavorite SF = selectByPk(bean.getId());
+		StoreFavorite SF = selectByPk(bean.getsF_id());
 		// 有才刪除
 		if (SF != null) {
 			getSession().delete(SF);
