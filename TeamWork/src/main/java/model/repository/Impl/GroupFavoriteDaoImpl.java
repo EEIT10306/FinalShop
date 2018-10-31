@@ -29,7 +29,7 @@ public class GroupFavoriteDaoImpl implements GroupFavoriteDao {
 
 	@Override
 	public GroupFavorite selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupFavorite GF = getSession().get(GroupFavorite.class, id);
 		System.out.println(GF);

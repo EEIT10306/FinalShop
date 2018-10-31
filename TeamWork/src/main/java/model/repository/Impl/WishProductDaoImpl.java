@@ -26,12 +26,11 @@ public class WishProductDaoImpl implements WishProductDao {
 		List<WishProduct> LWP = getSession().createQuery("from WishProduct", WishProduct.class).list();
 		System.out.println(LWP);
 		return LWP;
-
 	}
 
 	@Override
 	public WishProduct selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishProduct WP = getSession().get(WishProduct.class, id);
 		System.out.println(WP);

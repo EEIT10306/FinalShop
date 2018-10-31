@@ -29,7 +29,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		Product P = getSession().get(Product.class, id);
 		System.out.println(P);

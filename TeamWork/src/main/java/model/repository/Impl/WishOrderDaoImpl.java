@@ -29,7 +29,7 @@ public class WishOrderDaoImpl implements WishOrderDao {
 
 	@Override
 	public WishOrder selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishOrder WO = getSession().get(WishOrder.class, id);
 		System.out.println(WO);

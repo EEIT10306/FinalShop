@@ -29,7 +29,7 @@ public class GroupReportDaoImpl implements GroupReportDao {
 
 	@Override
 	public GroupReport selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupReport GR = getSession().get(GroupReport.class, id);
 		System.out.println(GR);

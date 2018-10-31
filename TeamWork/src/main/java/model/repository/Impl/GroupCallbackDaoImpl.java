@@ -30,7 +30,7 @@ public class GroupCallbackDaoImpl implements GroupCallbackDao {
 
 	@Override
 	public GroupCallback selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupCallback GC = getSession().get(GroupCallback.class, id);
 		System.out.println(GC);

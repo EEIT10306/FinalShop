@@ -26,6 +26,15 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 		System.out.println(LSF);
 		return LSF;
 	}
+	
+	@Override
+	public StoreFavorite selectByPk(Integer id) throws SQLException {
+		if (id == null)
+			return null;
+		StoreFavorite SF = getSession().get(StoreFavorite.class, id);
+		System.out.println(SF);
+		return SF;
+	}
 
 	@Override
 	public List<StoreFavorite> selectHql(String hqlString) throws SQLException {
@@ -34,15 +43,6 @@ public class StoreFavoriteDaoImpl implements StoreFavoriteDao {
 		List<StoreFavorite> LSF = getSession().createQuery(hql, StoreFavorite.class).list();
 		System.out.println(LSF);
 		return LSF;
-	}
-
-	@Override
-	public StoreFavorite selectByPk(Integer id) throws SQLException {
-		if (id != null)
-			return null;
-		StoreFavorite SF = getSession().get(StoreFavorite.class, id);
-		System.out.println(SF);
-		return SF;
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class WishAssessDaoImpl implements WishAssessDao {
 
 	@Override
 	public WishAssess selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishAssess WA = getSession().get(WishAssess.class, id);
 		System.out.println(WA);

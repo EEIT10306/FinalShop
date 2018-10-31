@@ -30,7 +30,7 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 
 	@Override
 	public GroupOrder selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupOrder GO = getSession().get(GroupOrder.class, id);
 		System.out.println(GO);

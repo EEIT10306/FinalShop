@@ -30,7 +30,7 @@ public class WishBidDaoImpl implements WishBidDao {
 
 	@Override
 	public WishBid selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		WishBid WB = getSession().get(WishBid.class, id);
 		System.out.println(WB);

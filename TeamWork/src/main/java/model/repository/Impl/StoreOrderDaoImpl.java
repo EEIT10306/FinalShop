@@ -29,7 +29,7 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 
 	@Override
 	public StoreOrder selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		StoreOrder SO = getSession().get(StoreOrder.class, id);
 		System.out.println(SO);

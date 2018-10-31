@@ -29,7 +29,7 @@ public class StoreReportDaoImpl implements StoreReportDao {
 
 	@Override
 	public StoreReport selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		StoreReport SR = getSession().get(StoreReport.class, id);
 		System.out.println(SR);

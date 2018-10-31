@@ -30,7 +30,7 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 
 	@Override
 	public GroupMessage selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		GroupMessage GM = getSession().get(GroupMessage.class, id);
 		System.out.println(GM);

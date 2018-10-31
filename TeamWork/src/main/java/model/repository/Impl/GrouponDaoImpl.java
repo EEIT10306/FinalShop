@@ -29,7 +29,7 @@ public class GrouponDaoImpl implements GrouponDao {
 
 	@Override
 	public Groupon selectByPk(Integer id) throws SQLException {
-		if (id != null)
+		if (id == null)
 			return null;
 		Groupon G = getSession().get(Groupon.class, id);
 		System.out.println(G);
