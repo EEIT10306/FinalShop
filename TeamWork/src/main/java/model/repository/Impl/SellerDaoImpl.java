@@ -8,9 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.bean.Member;
 import model.bean.Seller;
-import model.bean.State;
 import model.repository.SellerDao;
 
 @Repository
@@ -48,9 +46,12 @@ public class SellerDaoImpl implements SellerDao {
 	@Override
 	public Seller insert(Seller bean) throws SQLException {
 		// 查詢此ID有無資料
-		Seller S = selectByPk(bean.getId());
+		Seller S = null;
+		if (bean.getId() != null)
+			S = selectByPk(bean.getId());
 		// 沒有才新增
 		if (S == null) {
+			bean.setStateId(1);
 			getSession().save(bean);
 			return bean;
 		}

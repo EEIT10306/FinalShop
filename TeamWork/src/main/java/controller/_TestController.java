@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,8 @@ public class _TestController {
 	private _TestServiceDistrictType tes4;
 	@Autowired
 	private _TestServiceGroupon tes5;
+	@Autowired
+	private _TestServiceAchievement memtes;
 
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
@@ -54,7 +57,7 @@ public class _TestController {
 	public List<Achievement> TestID(Achievement achievement, BindingResult binder) {
 		return tes.getSelect(achievement);
 	}
-
+	
 	@RequestMapping(path = "/Wish", method = RequestMethod.GET)
 	public ResponseEntity<List<Wish>> TestID(Wish wish, BindingResult binder) {
 		List<Wish> list = tes1.getSelect(wish);

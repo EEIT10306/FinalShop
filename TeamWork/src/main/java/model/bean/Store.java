@@ -35,7 +35,7 @@ public class Store {
 	private String address;
 
 	@Column(name = "store_tel", columnDefinition = "int")
-	private Integer telephone;
+	private String telephone;
 
 	@Column(name = "store_web", columnDefinition = "nvarchar(max)")
 	private String web;
@@ -59,7 +59,7 @@ public class Store {
 	}
 
 	public Store(Integer id, Integer sellerId, String name, String photo, String context, Integer productId,
-			String address, Integer telephone, String web, Integer stateId) {
+			String address, String telephone, String web, Integer stateId) {
 		super();
 		this.id = id;
 		this.sellerId = sellerId;
@@ -137,12 +137,12 @@ public class Store {
 		this.address = address;
 	}
 
-	public Integer getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(Integer telephone) {
-		this.telephone = telephone;
+	public void setTelephone(String store_tel) {
+		this.telephone = store_tel;
 	}
 
 	public String getWeb() {
@@ -171,6 +171,18 @@ public class Store {
 
 	public State getState() {
 		return State;
+	}
+
+	public void setSeller(Seller seller) {
+		Seller = seller;
+	}
+
+	public void setProduct(Product product) {
+		Product = product;
+	}
+
+	public void setState(State state) {
+		State = state;
 	}
 
 }

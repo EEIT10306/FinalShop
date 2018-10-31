@@ -9,13 +9,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.Achievement;
+import model.bean.Member;
 import model.repository.AchievementDao;
+import model.repository.MemberDao;
 
 @Service
 @Transactional
 public class _TestServiceAchievement {
 	@Autowired
 	private AchievementDao achievementDaoImpl;
+	@Autowired
+	private MemberDao memberDaoImpl;
 
 	public List<Achievement> getSelect(Achievement achievement) {
 		try {
@@ -33,5 +37,8 @@ public class _TestServiceAchievement {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public Member getInsert(Member member) throws SQLException {
+		return memberDaoImpl.insert(member);
 	}
 }

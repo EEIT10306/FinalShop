@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
 public class Seller {
@@ -28,7 +27,7 @@ public class Seller {
 	private String card;
 
 	@Column(name = "seller_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer stateId = 1;
 
 	@OneToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
@@ -102,6 +101,14 @@ public class Seller {
 
 	public State getState() {
 		return State;
+	}
+
+	public void setMember(Member member) {
+		Member = member;
+	}
+
+	public void setState(State state) {
+		State = state;
 	}
 
 }
