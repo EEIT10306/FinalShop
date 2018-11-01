@@ -78,9 +78,9 @@ public class RegisterController {
 		return value;
 	}
 	
-	@RequestMapping(value = "/FBLogin", method = RequestMethod.POST)
+	@RequestMapping(value = "/FBRegister", method = RequestMethod.POST)
 	@ResponseBody
-	public String getUserInfo(String userInfo) {
+	public String getFbUserInfo(String userInfo) {
 		System.out.println(userInfo);
 		JSONObject json = new JSONObject(userInfo);
 		System.out.println(json.getString("email"));
@@ -91,6 +91,31 @@ public class RegisterController {
 			try {
 				Member member = new Member();
 				member.setM_account(json.getString("email"));
+				member.setM_password("facebook");
+				member.setM_name(json.getString("name"));
+				member.setM_mail(json.getString("email"));
+				memberservice.insert(member);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "account";
+		}
+	}
+	
+	@RequestMapping(value = "/GoogleRegister", method = RequestMethod.POST)
+	@ResponseBody
+	public String getGgUserInfo(String userInfo) {
+		System.out.println(userInfo);
+		JSONObject json = new JSONObject(userInfo);
+		System.out.println(json.getString("email"));
+		
+		if(memberservice.idExists(json.getString("email"))) {
+			return "existsAccount";
+		} else {
+			try {
+				Member member = new Member();
+				member.setM_account(json.getString("email"));
+				member.setM_password("google");
 				member.setM_name(json.getString("name"));
 				member.setM_mail(json.getString("email"));
 				memberservice.insert(member);
@@ -100,7 +125,6 @@ public class RegisterController {
 			return "account";
 		}
 		
-
 	}
 }
 

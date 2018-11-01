@@ -47,7 +47,7 @@ function testAPI() {
             console.log(response);
             $.ajax({
                 type:"post",
-                url: "/TeamWork/FBLogin",
+                url: "/TeamWork/FBRegister",
                 data: {
                     userInfo: JSON.stringify(response)
                 },
@@ -111,17 +111,21 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     //測試有無進入google登入的方訊
     alert("這裡是google的登入:" + profile.getEmail())
-
+    var id =profile.getId();
+    var name = profile.getName();
+    var email = profile.getEmail();
+    var combie =  {"id":id , "name":name , "email" : email} ; 
+    
     $.ajax({
         type: "POST",
-        url: "processGoogleLogin",
+        url: "/TeamWork/GoogleRegister",
         data: {
-            name: profile.getName(),
-            email: profile.getEmail()
+            userInfo: JSON.stringify(combie)
         },
+        dataType: "json",
         success: function (data) {
             alert('這裡是google的登入成功後的方訊 :' + data);
-            window.location.href = "http://localhost:8090/FinalProject/git/repository/FinalProject/src/main/webapp/FirstPage.html";
+            // window.location.href = "";
         }
     });
 }
