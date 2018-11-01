@@ -16,4 +16,6 @@ public interface WishCallbackDao {
 
 	public WishCallback update(WishCallback bean) throws SQLException;
 
+	public WishCallback update(WishCallback WC, WishCallback bean) throws SQLException;
+
 }

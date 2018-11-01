@@ -29,6 +29,8 @@ public class GroupFavoriteDaoImpl implements GroupFavoriteDao {
 
 	@Override
 	public GroupFavorite selectByPk(Integer id) throws SQLException {
+		if (id == null)
+			return null;
 		GroupFavorite GF = getSession().get(GroupFavorite.class, id);
 		System.out.println(GF);
 		return GF;
@@ -46,7 +48,7 @@ public class GroupFavoriteDaoImpl implements GroupFavoriteDao {
 	@Override
 	public GroupFavorite insert(GroupFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		GroupFavorite GF = selectByPk(bean.getId());
+		GroupFavorite GF = selectByPk(bean.getgF_id());
 		// 沒有才新增
 		if (GF == null) {
 			getSession().save(bean);
@@ -58,7 +60,7 @@ public class GroupFavoriteDaoImpl implements GroupFavoriteDao {
 	@Override
 	public boolean delete(GroupFavorite bean) throws SQLException {
 		// 查詢此ID有無資料
-		GroupFavorite GF = selectByPk(bean.getId());
+		GroupFavorite GF = selectByPk(bean.getgF_id());
 		// 有才刪除
 		if (GF != null) {
 			getSession().delete(GF);

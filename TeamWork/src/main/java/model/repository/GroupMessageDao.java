@@ -16,4 +16,6 @@ public interface GroupMessageDao {
 
 	public GroupMessage update(GroupMessage bean) throws SQLException;
 
+	public GroupMessage update(GroupMessage GM, GroupMessage bean) throws SQLException;
+
 }

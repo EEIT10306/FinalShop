@@ -16,114 +16,126 @@ public class StoreMessage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sM_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer sM_id;
 
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
-	private Integer storeProductId;
+	private Integer sP_id;
 
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idMessage;
 
 	@Column(name = "sM_cont", columnDefinition = "int", nullable = false)
-	private Integer context;
+	private Integer sM_context;
 
 	@Column(name = "sM_time", columnDefinition = "daetime", nullable = false)
-	private Date time;
+	private Date sM_time;
 
 	@Column(name = "sM_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer sM_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	private StoreProduct StoreProduct;
+	private StoreProduct storeProduct;
 
 	@ManyToOne
 	@JoinColumn(name = "memG_IDee", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "gM_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public StoreMessage() {
 	}
 
-	public StoreMessage(Integer id, Integer storeProductId, Integer memberId, Integer context, Date time,
-			Integer stateId) {
+	public StoreMessage(Integer sM_id, Integer sP_id, Integer m_idMessage, Integer sM_context, Date sM_time,
+			Integer sM_stateId) {
 		super();
-		this.id = id;
-		this.storeProductId = storeProductId;
-		this.memberId = memberId;
-		this.context = context;
-		this.time = time;
-		this.stateId = stateId;
+		this.sM_id = sM_id;
+		this.sP_id = sP_id;
+		this.m_idMessage = m_idMessage;
+		this.sM_context = sM_context;
+		this.sM_time = sM_time;
+		this.sM_stateId = sM_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreMessage [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", context="
-				+ context + ", time=" + time + ", stateId=" + stateId + ", StoreProduct=" + StoreProduct + ", Member="
-				+ Member + ", State=" + State + "]\r\n";
+		return "StoreMessage [sM_id=" + sM_id + ", sP_id=" + sP_id + ", m_idMessage=" + m_idMessage + ", sM_context="
+				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + ", storeProduct=" + storeProduct
+				+ ", member=" + member + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getsM_id() {
+		return sM_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setsM_id(Integer sM_id) {
+		this.sM_id = sM_id;
 	}
 
-	public Integer getStoreProductId() {
-		return storeProductId;
+	public Integer getsP_id() {
+		return sP_id;
 	}
 
-	public void setStoreProductId(Integer storeProductId) {
-		this.storeProductId = storeProductId;
+	public void setsP_id(Integer sP_id) {
+		this.sP_id = sP_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idMessage() {
+		return m_idMessage;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idMessage(Integer m_idMessage) {
+		this.m_idMessage = m_idMessage;
 	}
 
-	public Integer getContext() {
-		return context;
+	public Integer getsM_context() {
+		return sM_context;
 	}
 
-	public void setContext(Integer context) {
-		this.context = context;
+	public void setsM_context(Integer sM_context) {
+		this.sM_context = sM_context;
 	}
 
-	public Date getTime() {
-		return time;
+	public Date getsM_time() {
+		return sM_time;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setsM_time(Date sM_time) {
+		this.sM_time = sM_time;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getsM_stateId() {
+		return sM_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setsM_stateId(Integer sM_stateId) {
+		this.sM_stateId = sM_stateId;
 	}
 
 	public StoreProduct getStoreProduct() {
-		return StoreProduct;
+		return storeProduct;
+	}
+
+	public void setStoreProduct(StoreProduct storeProduct) {
+		this.storeProduct = storeProduct;
 	}
 
 	public Member getMember() {
-		return Member;
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public State getState() {
-		return State;
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 }

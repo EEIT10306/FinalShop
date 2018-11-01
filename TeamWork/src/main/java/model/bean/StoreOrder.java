@@ -14,101 +14,163 @@ public class StoreOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sO_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer sO_id;
 
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
-	private Integer storeProductId;
+	private Integer sP_id;
 
-	@Column(name = "memS_IdEE", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	@Column(name = "memS_IDee", columnDefinition = "int", nullable = false)
+	private Integer m_idOrder;
+
+	@Column(name = "sO_tran", columnDefinition = "nvarchar(max)", nullable = false)
+	private String sO_transport;
+
+	@Column(name = "sO_pay", columnDefinition = "nvarchar(max)", nullable = false)
+	private String sO_pay;
+
+	@Column(name = "sO_rem", columnDefinition = "nvarchar(max)")
+	private String sO_remarks;
 
 	@Column(name = "sO_amt", columnDefinition = "int", nullable = false)
-	private Integer amount;
+	private Integer sO_amount;
+
+	@Column(name = "sO_sumPri", columnDefinition = "int", nullable = false)
+	private Integer sO_sumPrice;
 
 	@Column(name = "sO_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer sO_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "prod_id", insertable = false, updatable = false)
-	private StoreProduct StoreProduct;
+	private StoreProduct storeProduct;
 
 	@ManyToOne
 	@JoinColumn(name = "memS_IDee", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public StoreOrder() {
 	}
 
-	public StoreOrder(Integer id, Integer storeProductId, Integer memberId, Integer amount, Integer stateId) {
+	public StoreOrder(Integer sO_id, Integer sP_id, Integer m_idOrder, String sO_transport, String sO_pay,
+			String sO_remarks, Integer sO_amount, Integer sO_sumPrice, Integer sO_stateId) {
 		super();
-		this.id = id;
-		this.storeProductId = storeProductId;
-		this.memberId = memberId;
-		this.amount = amount;
-		this.stateId = stateId;
+		this.sO_id = sO_id;
+		this.sP_id = sP_id;
+		this.m_idOrder = m_idOrder;
+		this.sO_transport = sO_transport;
+		this.sO_pay = sO_pay;
+		this.sO_remarks = sO_remarks;
+		this.sO_amount = sO_amount;
+		this.sO_sumPrice = sO_sumPrice;
+		this.sO_stateId = sO_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreOrder [id=" + id + ", storeProductId=" + storeProductId + ", memberId=" + memberId + ", amount="
-				+ amount + ", stateId=" + stateId + ", StoreProduct=" + StoreProduct + ", Member=" + Member + ", State="
-				+ State + "]\r\n";
+		return "StoreOrder [sO_id=" + sO_id + ", sP_id=" + sP_id + ", m_idOrder=" + m_idOrder + ", sO_transport="
+				+ sO_transport + ", sO_pay=" + sO_pay + ", sO_remarks=" + sO_remarks + ", sO_amount=" + sO_amount
+				+ ", sO_sumPrice=" + sO_sumPrice + ", sO_stateId=" + sO_stateId + ", storeProduct=" + storeProduct
+				+ ", member=" + member + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getsO_id() {
+		return sO_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setsO_id(Integer sO_id) {
+		this.sO_id = sO_id;
 	}
 
-	public Integer getStoreProductId() {
-		return storeProductId;
+	public Integer getsP_id() {
+		return sP_id;
 	}
 
-	public void setStoreProductId(Integer storeProductId) {
-		this.storeProductId = storeProductId;
+	public void setsP_id(Integer sP_id) {
+		this.sP_id = sP_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idOrder() {
+		return m_idOrder;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idOrder(Integer m_idOrder) {
+		this.m_idOrder = m_idOrder;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public String getsO_transport() {
+		return sO_transport;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setsO_transport(String sO_transport) {
+		this.sO_transport = sO_transport;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public String getsO_pay() {
+		return sO_pay;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setsO_pay(String sO_pay) {
+		this.sO_pay = sO_pay;
+	}
+
+	public String getsO_remarks() {
+		return sO_remarks;
+	}
+
+	public void setsO_remarks(String sO_remarks) {
+		this.sO_remarks = sO_remarks;
+	}
+
+	public Integer getsO_amount() {
+		return sO_amount;
+	}
+
+	public void setsO_amount(Integer sO_amount) {
+		this.sO_amount = sO_amount;
+	}
+
+	public Integer getsO_sumPrice() {
+		return sO_sumPrice;
+	}
+
+	public void setsO_sumPrice(Integer sO_sumPrice) {
+		this.sO_sumPrice = sO_sumPrice;
+	}
+
+	public Integer getsO_stateId() {
+		return sO_stateId;
+	}
+
+	public void setsO_stateId(Integer sO_stateId) {
+		this.sO_stateId = sO_stateId;
 	}
 
 	public StoreProduct getStoreProduct() {
-		return StoreProduct;
+		return storeProduct;
+	}
+
+	public void setStoreProduct(StoreProduct storeProduct) {
+		this.storeProduct = storeProduct;
 	}
 
 	public Member getMember() {
-		return Member;
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public State getState() {
-		return State;
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 }

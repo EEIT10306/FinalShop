@@ -16,114 +16,126 @@ public class StoreCallback {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sC_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer sC_id;
 
 	@Column(name = "sM_ID", columnDefinition = "int", nullable = false)
-	private Integer storeMessageId;
+	private Integer sM_id;
 
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_idCallback;
 
 	@Column(name = "sC_cont", columnDefinition = "nvarchar(max)", nullable = false)
-	private String context;
+	private String sC_context;
 
 	@Column(name = "sC_time", columnDefinition = "datetime", nullable = false)
-	private Date time;
+	private Date sC_time;
 
 	@Column(name = "sC_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer sC_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "sM_ID", insertable = false, updatable = false)
-	private StoreMessage StoreMessage;
+	private StoreMessage storeMessage;
 
 	@ManyToOne
 	@JoinColumn(name = "mem_IDee", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "sC_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public StoreCallback() {
 	}
 
-	public StoreCallback(Integer id, Integer storeMessageId, Integer memberId, String context, Date time,
-			Integer stateId) {
+	public StoreCallback(Integer sC_id, Integer sM_id, Integer m_idCallback, String sC_context, Date sC_time,
+			Integer sC_stateId) {
 		super();
-		this.id = id;
-		this.storeMessageId = storeMessageId;
-		this.memberId = memberId;
-		this.context = context;
-		this.time = time;
-		this.stateId = stateId;
+		this.sC_id = sC_id;
+		this.sM_id = sM_id;
+		this.m_idCallback = m_idCallback;
+		this.sC_context = sC_context;
+		this.sC_time = sC_time;
+		this.sC_stateId = sC_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreCallback [id=" + id + ", storeMessageId=" + storeMessageId + ", memberId=" + memberId
-				+ ", context=" + context + ", time=" + time + ", stateId=" + stateId + ", StoreMessage=" + StoreMessage
-				+ ", Member=" + Member + ", State=" + State + "]\r\n";
+		return "StoreCallback [sC_id=" + sC_id + ", sM_id=" + sM_id + ", m_idCallback=" + m_idCallback + ", sC_context="
+				+ sC_context + ", sC_time=" + sC_time + ", sC_stateId=" + sC_stateId + ", storeMessage=" + storeMessage
+				+ ", member=" + member + ", state=" + state + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getsC_id() {
+		return sC_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setsC_id(Integer sC_id) {
+		this.sC_id = sC_id;
 	}
 
-	public Integer getStoreMessageId() {
-		return storeMessageId;
+	public Integer getsM_id() {
+		return sM_id;
 	}
 
-	public void setStoreMessageId(Integer storeMessageId) {
-		this.storeMessageId = storeMessageId;
+	public void setsM_id(Integer sM_id) {
+		this.sM_id = sM_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_idCallback() {
+		return m_idCallback;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_idCallback(Integer m_idCallback) {
+		this.m_idCallback = m_idCallback;
 	}
 
-	public String getContext() {
-		return context;
+	public String getsC_context() {
+		return sC_context;
 	}
 
-	public void setContext(String context) {
-		this.context = context;
+	public void setsC_context(String sC_context) {
+		this.sC_context = sC_context;
 	}
 
-	public Date getTime() {
-		return time;
+	public Date getsC_time() {
+		return sC_time;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setsC_time(Date sC_time) {
+		this.sC_time = sC_time;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getsC_stateId() {
+		return sC_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setsC_stateId(Integer sC_stateId) {
+		this.sC_stateId = sC_stateId;
 	}
 
 	public StoreMessage getStoreMessage() {
-		return StoreMessage;
+		return storeMessage;
+	}
+
+	public void setStoreMessage(StoreMessage storeMessage) {
+		this.storeMessage = storeMessage;
 	}
 
 	public Member getMember() {
-		return Member;
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public State getState() {
-		return State;
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 }

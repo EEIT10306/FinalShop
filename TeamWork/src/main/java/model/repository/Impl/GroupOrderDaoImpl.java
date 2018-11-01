@@ -30,6 +30,8 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 
 	@Override
 	public GroupOrder selectByPk(Integer id) throws SQLException {
+		if (id == null)
+			return null;
 		GroupOrder GO = getSession().get(GroupOrder.class, id);
 		System.out.println(GO);
 		return GO;
@@ -46,7 +48,7 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 
 	@Override
 	public GroupOrder insert(GroupOrder bean) throws SQLException {
-		GroupOrder GO = selectByPk(bean.getId());
+		GroupOrder GO = selectByPk(bean.getgO_id());
 		if (GO == null) {
 			getSession().save(bean);
 			return bean;
@@ -56,18 +58,31 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 
 	@Override
 	public GroupOrder update(GroupOrder bean) throws SQLException {
-		GroupOrder GO = selectByPk(bean.getId());
+		GroupOrder GO = selectByPk(bean.getgO_id());
 		if (GO != null) {
-			if (bean.getGroupProductId() != null)
-				GO.setGroupProductId(bean.getGroupProductId());
-			if (bean.getMemberId() != null)
-				GO.setMemberId(bean.getMemberId());
-			if (bean.getAmount() != null)
-				GO.setAmount(bean.getAmount());
-			if (bean.getStateId() != null)
-				GO.setStateId(bean.getStateId());
+			if (bean.getgP_id() != null)
+				GO.setgP_id(bean.getgP_id());
+			if (bean.getM_idOrder() != null)
+				GO.setM_idOrder(bean.getM_idOrder());
+			if (bean.getgO_amount() != null)
+				GO.setgO_amount(bean.getgO_amount());
+			if (bean.getgO_stateId() != null)
+				GO.setgO_stateId(bean.getgO_stateId());
 			return GO;
 		}
 		return null;
 	}
+
+	public GroupOrder update(GroupOrder GO, GroupOrder bean) throws SQLException {
+		if (bean.getgP_id() != null)
+			GO.setgP_id(bean.getgP_id());
+		if (bean.getM_idOrder() != null)
+			GO.setM_idOrder(bean.getM_idOrder());
+		if (bean.getgO_amount() != null)
+			GO.setgO_amount(bean.getgO_amount());
+		if (bean.getgO_stateId() != null)
+			GO.setgO_stateId(bean.getgO_stateId());
+		return GO;
+	}
+
 }

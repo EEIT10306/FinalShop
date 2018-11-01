@@ -15,5 +15,7 @@ public interface SellerDao {
 	public Seller insert(Seller bean) throws SQLException;
 
 	public Seller update(Seller bean) throws SQLException;
+	
+	public Seller update(Seller S, Seller bean) throws SQLException;
 
 }

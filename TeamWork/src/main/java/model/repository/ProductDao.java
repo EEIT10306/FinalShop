@@ -16,4 +16,6 @@ public interface ProductDao {
 
 	public Product update(Product bean) throws SQLException;
 
+	public Product update(Product P, Product bean) throws SQLException;
+
 }

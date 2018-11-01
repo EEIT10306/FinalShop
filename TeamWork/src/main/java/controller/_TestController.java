@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import model.bean.Achievement;
 import model.bean.DistrictType;
 import model.bean.Groupon;
+import model.bean.Member;
 import model.bean.Wish;
 import model.bean.WishProduct;
+import model.service.UserPageService;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceDistrictType;
 import model.service._TestServiceGroupon;
@@ -37,6 +40,8 @@ public class _TestController {
 	private _TestServiceDistrictType tes4;
 	@Autowired
 	private _TestServiceGroupon tes5;
+	@Autowired
+	private _TestServiceAchievement memtes;
 
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
@@ -48,6 +53,7 @@ public class _TestController {
 	public List<Achievement> TestID(Achievement achievement, BindingResult binder) {
 		return tes.getSelect(achievement);
 	}
+	
 	@RequestMapping(path = "/Wish", method = RequestMethod.GET)
 	public ResponseEntity<List<Wish>> TestID(Wish wish, BindingResult binder) {
 		List<Wish> list = tes1.getSelect(wish);
@@ -69,5 +75,6 @@ public class _TestController {
 		List<Groupon> list = tes5.getSelect(groupon);
 		return new ResponseEntity<List<Groupon>>(list, HttpStatus.OK);
 	}
+	
 	
 }

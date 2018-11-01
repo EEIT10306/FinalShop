@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
 public class Seller {
@@ -16,92 +15,101 @@ public class Seller {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "seller_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer seller_id;
 
 	@Column(name = "mem_ID", columnDefinition = "int", nullable = false)
-	private Integer memberId;
+	private Integer m_id;
 
 	@Column(name = "seller_bank", columnDefinition = "nvarchar(MAX)")
-	private String bank;
+	private String seller_bank;
 
 	@Column(name = "seller_card", columnDefinition = "nvarchar(MAX)")
-	private String card;
+	private String seller_card;
 
 	@Column(name = "seller_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer seller_stateId;
 
 	@OneToOne
 	@JoinColumn(name = "mem_ID", insertable = false, updatable = false)
-	private Member Member;
+	private Member member;
 
 	@ManyToOne
 	@JoinColumn(name = "seller_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
 	public Seller() {
 	}
 
-	public Seller(Integer id, Integer memberId, String bank, String card, Integer stateId) {
+	public Seller(Integer seller_id, Integer m_id, String seller_bank, String seller_card, Integer seller_stateId) {
 		super();
-		this.id = id;
-		this.memberId = memberId;
-		this.bank = bank;
-		this.card = card;
-		this.stateId = stateId;
+		this.seller_id = seller_id;
+		this.m_id = m_id;
+		this.seller_bank = seller_bank;
+		this.seller_card = seller_card;
+		this.seller_stateId = seller_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "Seller [id=" + id + ", memberId=" + memberId + ", bank=" + bank + ", card=" + card + ", stateId="
-				+ stateId + ", Member=" + Member + ", State=" + State + "]\r\n";
+		return "Seller [seller_id=" + seller_id + ", m_id=" + m_id + ", seller_bank=" + seller_bank + ", seller_card="
+				+ seller_card + ", seller_stateId=" + seller_stateId + ", member=" + member + ", state=" + state
+				+ "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getSeller_id() {
+		return seller_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setSeller_id(Integer seller_id) {
+		this.seller_id = seller_id;
 	}
 
-	public Integer getMemberId() {
-		return memberId;
+	public Integer getM_id() {
+		return m_id;
 	}
 
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setM_id(Integer m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getBank() {
-		return bank;
+	public String getSeller_bank() {
+		return seller_bank;
 	}
 
-	public void setBank(String bank) {
-		this.bank = bank;
+	public void setSeller_bank(String seller_bank) {
+		this.seller_bank = seller_bank;
 	}
 
-	public String getCard() {
-		return card;
+	public String getSeller_card() {
+		return seller_card;
 	}
 
-	public void setCard(String card) {
-		this.card = card;
+	public void setSeller_card(String seller_card) {
+		this.seller_card = seller_card;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getSeller_stateId() {
+		return seller_stateId;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setSeller_stateId(Integer seller_stateId) {
+		this.seller_stateId = seller_stateId;
 	}
 
 	public Member getMember() {
-		return Member;
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public State getState() {
-		return State;
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 }
