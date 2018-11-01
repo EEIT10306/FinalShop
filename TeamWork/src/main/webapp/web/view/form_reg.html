@@ -39,10 +39,10 @@
     <script>
     $("#register").click(function(e){
 
-        var name = $("[name = 'name']").val();
         var mail = $("[name = 'email']").val();
         var password = $("[name = 'password']").val();
         var repassword = $("[name = 'repassword']").val();
+        var name = $("[name = 'name']").val();
         
 //      var combie = {"account":mail,"name":name , "password":password};
 //      var json   = JSON.stringify(combie);
@@ -57,7 +57,9 @@
 	            url : "/TeamWork/RegisterServlet",
 	            data: {"m_account":mail,"m_name":name , "m_password":password,"m_mail":mail},
 	            success: function(data) {
-
+	            	$("#errorAccount").html("")
+	    			$("#errorPassword").html("")
+	    			
 	            	if(data=="accountNull"){
 	            		$("#errorAccount").html("請輸入欄位")
 	            	}
@@ -66,6 +68,9 @@
 	            	}
 	            	if(data=="passwordNull"){
 	            		$("#errorPassword").html("密碼必須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
+	            	}
+	            	if(data == mail){
+	            		alert("導到登入畫面?驗證畫面?自動登入?")
 	            	}
 	                
 	            }

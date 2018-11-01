@@ -31,7 +31,6 @@ public class RegisterController {
 	private String RegisterServlet(Member member) {
 		System.out.println("RegisterServlet");
 		//接收資料
-		System.out.println(member);
 		//驗證資料
 		if (member.getM_account() == null|| member.getM_account().trim().length() == 0) {
 			return "accountNull";
