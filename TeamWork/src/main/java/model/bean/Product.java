@@ -13,72 +13,76 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer p_id;
 
 	@Column(name = "prod_name", columnDefinition = "nvarchar(max)", nullable = false)
-	private String name;
+	private String p_name;
 
 	@Column(name = "prod_parID", columnDefinition = "nvarchar(max)")
-	private Integer parentsId;
+	private Integer p_parentsId;
 
 	@Column(name = "prod_stage", columnDefinition = "int", nullable = false)
-	private Integer stage;
+	private Integer p_stage;
 
 	@OneToOne
 	@JoinColumn(name = "prod_parID", insertable = false, updatable = false)
-	private Product Product;
+	private Product product;
 
 	public Product() {
 	}
 
-	public Product(Integer id, String name, Integer parentsId, Integer stage) {
+	public Product(Integer p_id, String p_name, Integer p_parentsId, Integer p_stage) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.parentsId = parentsId;
-		this.stage = stage;
+		this.p_id = p_id;
+		this.p_name = p_name;
+		this.p_parentsId = p_parentsId;
+		this.p_stage = p_stage;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", parentsId=" + parentsId + ", stage=" + stage + ", Product="
-				+ Product + "]\r\n";
+		return "Product [p_id=" + p_id + ", p_name=" + p_name + ", p_parentsId=" + p_parentsId + ", p_stage=" + p_stage
+				+ ", product=" + product + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getP_id() {
+		return p_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getP_name() {
+		return p_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
 	}
 
-	public Integer getParentsId() {
-		return parentsId;
+	public Integer getP_parentsId() {
+		return p_parentsId;
 	}
 
-	public void setParentsId(Integer parentsId) {
-		this.parentsId = parentsId;
+	public void setP_parentsId(Integer p_parentsId) {
+		this.p_parentsId = p_parentsId;
 	}
 
-	public Integer getStage() {
-		return stage;
+	public Integer getP_stage() {
+		return p_stage;
 	}
 
-	public void setStage(Integer stage) {
-		this.stage = stage;
+	public void setP_stage(Integer p_stage) {
+		this.p_stage = p_stage;
 	}
 
 	public Product getProduct() {
-		return Product;
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 }

@@ -16,4 +16,6 @@ public interface GroupCallbackDao {
 
 	public GroupCallback update(GroupCallback bean) throws SQLException;
 
+	public GroupCallback update(GroupCallback GC, GroupCallback bean) throws SQLException;
+
 }

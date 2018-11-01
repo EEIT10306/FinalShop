@@ -30,6 +30,8 @@ public class WishCallbackDaoImpl implements WishCallbackDao {
 
 	@Override
 	public WishCallback selectByPk(Integer id) throws SQLException {
+		if (id == null)
+			return null;
 		WishCallback WC = getSession().get(WishCallback.class, id);
 		System.out.println(WC);
 		return WC;
@@ -46,7 +48,7 @@ public class WishCallbackDaoImpl implements WishCallbackDao {
 
 	@Override
 	public WishCallback insert(WishCallback bean) throws SQLException {
-		WishCallback WC = selectByPk(bean.getId());
+		WishCallback WC = selectByPk(bean.getwC_id());
 		if (WC == null) {
 			getSession().save(bean);
 			return bean;
@@ -56,20 +58,34 @@ public class WishCallbackDaoImpl implements WishCallbackDao {
 
 	@Override
 	public WishCallback update(WishCallback bean) throws SQLException {
-		WishCallback WC = selectByPk(bean.getId());
+		WishCallback WC = selectByPk(bean.getwC_id());
 		if (WC != null) {
-			if (bean.getWishMessageId() != null)
-				WC.setWishMessageId(bean.getWishMessageId());
-			if (bean.getMemberId() != null)
-				WC.setMemberId(bean.getMemberId());
-			if (bean.getContext() != null)
-				WC.setContext(bean.getContext());
-			if (bean.getTime() != null)
-				WC.setTime(bean.getTime());
-			if (bean.getStateId() != null)
-				WC.setStateId(bean.getStateId());
+			if (bean.getwM_id() != null)
+				WC.setwM_id(bean.getwM_id());
+			if (bean.getM_idCallback() != null)
+				WC.setM_idCallback(bean.getM_idCallback());
+			if (bean.getwC_context() != null)
+				WC.setwC_context(bean.getwC_context());
+			if (bean.getwC_time() != null)
+				WC.setwC_time(bean.getwC_time());
+			if (bean.getwC_stateId() != null)
+				WC.setwC_stateId(bean.getwC_stateId());
 			return WC;
 		}
 		return null;
+	}
+
+	public WishCallback update(WishCallback WC, WishCallback bean) throws SQLException {
+		if (bean.getwM_id() != null)
+			WC.setwM_id(bean.getwM_id());
+		if (bean.getM_idCallback() != null)
+			WC.setM_idCallback(bean.getM_idCallback());
+		if (bean.getwC_context() != null)
+			WC.setwC_context(bean.getwC_context());
+		if (bean.getwC_time() != null)
+			WC.setwC_time(bean.getwC_time());
+		if (bean.getwC_stateId() != null)
+			WC.setwC_stateId(bean.getwC_stateId());
+		return WC;
 	}
 }

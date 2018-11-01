@@ -16,4 +16,6 @@ public interface CommitAchievementDao {
 
 	public CommitAchievement update(CommitAchievement bean) throws SQLException;
 
+	public CommitAchievement update(CommitAchievement CA, CommitAchievement bean) throws SQLException;
+
 }

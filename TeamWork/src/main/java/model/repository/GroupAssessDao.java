@@ -16,4 +16,6 @@ public interface GroupAssessDao {
 
 	public GroupAssess update(GroupAssess bean) throws SQLException;
 
+	public GroupAssess update(GroupAssess GA, GroupAssess bean) throws SQLException;
+
 }

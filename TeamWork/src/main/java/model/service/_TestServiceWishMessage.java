@@ -17,12 +17,12 @@ public class _TestServiceWishMessage {
 	
 	public List<WishMessage> getSelect(WishMessage wishMessage) {
 		try {
-			if (wishMessage.getId() == null) {
+			if (wishMessage.getwM_id() == null) {
 				List<WishMessage> list = wishMessageDaoImpl.selectAll();
 				return list;
 			}
 			WishMessage temp;
-			temp =	wishMessageDaoImpl.selectByPk(wishMessage.getId());
+			temp =	wishMessageDaoImpl.selectByPk(wishMessage.getwM_id());
 			List<WishMessage> list = new ArrayList<>();
 			list.add(temp);
 			return list;

@@ -17,145 +17,212 @@ public class StoreProduct {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
-	private Integer id;
+	private Integer sP_id;
 
 	@Column(name = "store_ID", columnDefinition = "int", nullable = false)
-	private Integer storeId;
+	private Integer s_id;
 
 	@Column(name = "sP_name", columnDefinition = "nvarchar(max)", nullable = false)
-	private String name;
+	private String sP_name;
+
+	@Column(name = "sP_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String sP_context;
 
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
-	private Integer productId;
+	private Integer p_id;
 
 	@Column(name = "sP_amt", columnDefinition = "int", nullable = false)
-	private Integer amount;
+	private Integer sP_amount;
 
 	@Column(name = "sP_price", columnDefinition = "int", nullable = false)
-	private Integer price;
+	private Integer sP_price;
 
 	@Column(name = "sP_hot", columnDefinition = "int", nullable = false)
-	private Integer hot;
+	private Integer sP_hot;
+
+	@Column(name = "sP_amtFav", columnDefinition = "int", nullable = false)
+	private Integer sP_amountFavorite;
+
+	@Column(name = "sP_avgAss", columnDefinition = "float", nullable = false)
+	private Integer sP_averageAssess;
+
+	@Column(name = "sP_amtAss", columnDefinition = "int", nullable = false)
+	private Integer sP_amountAssess;
 
 	@Column(name = "sP_state", columnDefinition = "int", nullable = false)
-	private Integer stateId;
+	private Integer sP_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "store_ID", insertable = false, updatable = false)
-	private Store Store;
+	private Store store;
 
 	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
-	private Product Product;
+	private Product product;
 
 	@ManyToOne
 	@JoinColumn(name = "sP_state", insertable = false, updatable = false)
-	private State State;
+	private State state;
 
-	@OneToMany(mappedBy = "StoreProduct")
-	private Set<Images> Images;
+	@OneToMany(mappedBy = "storeProduct")
+	private Set<Images> images;
 
 	public StoreProduct() {
 	}
 
-	public StoreProduct(Integer id, Integer storeId, String name, Integer productId, Integer amount, Integer price,
-			Integer hot, Integer stateId) {
+	public StoreProduct(Integer sP_id, Integer s_id, String sP_name, String sP_context, Integer p_id, Integer sP_amount,
+			Integer sP_price, Integer sP_hot, Integer sP_amountFavorite, Integer sP_averageAssess,
+			Integer sP_amountAssess, Integer sP_stateId) {
 		super();
-		this.id = id;
-		this.storeId = storeId;
-		this.name = name;
-		this.productId = productId;
-		this.amount = amount;
-		this.price = price;
-		this.hot = hot;
-		this.stateId = stateId;
+		this.sP_id = sP_id;
+		this.s_id = s_id;
+		this.sP_name = sP_name;
+		this.sP_context = sP_context;
+		this.p_id = p_id;
+		this.sP_amount = sP_amount;
+		this.sP_price = sP_price;
+		this.sP_hot = sP_hot;
+		this.sP_amountFavorite = sP_amountFavorite;
+		this.sP_averageAssess = sP_averageAssess;
+		this.sP_amountAssess = sP_amountAssess;
+		this.sP_stateId = sP_stateId;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreProduct [id=" + id + ", storeId=" + storeId + ", name=" + name + ", productId=" + productId
-				+ ", amount=" + amount + ", price=" + price + ", hot=" + hot + ", stateId=" + stateId + ", Store="
-				+ Store + ", Product=" + Product + ", State=" + State + ", Images=" + Images + "]\r\n";
+		return "StoreProduct [sP_id=" + sP_id + ", s_id=" + s_id + ", sP_name=" + sP_name + ", sP_context=" + sP_context
+				+ ", p_id=" + p_id + ", sP_amount=" + sP_amount + ", sP_price=" + sP_price + ", sP_hot=" + sP_hot
+				+ ", sP_amountFavorite=" + sP_amountFavorite + ", sP_averageAssess=" + sP_averageAssess
+				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + ", store=" + store
+				+ ", product=" + product + ", state=" + state + ", images=" + images + "]\r\n";
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getsP_id() {
+		return sP_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setsP_id(Integer sP_id) {
+		this.sP_id = sP_id;
 	}
 
-	public Integer getStoreId() {
-		return storeId;
+	public Integer getS_id() {
+		return s_id;
 	}
 
-	public void setStoreId(Integer storeId) {
-		this.storeId = storeId;
+	public void setS_id(Integer s_id) {
+		this.s_id = s_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getsP_name() {
+		return sP_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setsP_name(String sP_name) {
+		this.sP_name = sP_name;
 	}
 
-	public Integer getProductId() {
-		return productId;
+	public String getsP_context() {
+		return sP_context;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setsP_context(String sP_context) {
+		this.sP_context = sP_context;
 	}
 
-	public Integer getAmount() {
-		return amount;
+	public Integer getP_id() {
+		return p_id;
 	}
 
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setP_id(Integer p_id) {
+		this.p_id = p_id;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public Integer getsP_amount() {
+		return sP_amount;
 	}
 
-	public void setPrice(Integer price) {
-		this.price = price;
+	public void setsP_amount(Integer sP_amount) {
+		this.sP_amount = sP_amount;
 	}
 
-	public Integer getHot() {
-		return hot;
+	public Integer getsP_price() {
+		return sP_price;
 	}
 
-	public void setHot(Integer hot) {
-		this.hot = hot;
+	public void setsP_price(Integer sP_price) {
+		this.sP_price = sP_price;
 	}
 
-	public Integer getStateId() {
-		return stateId;
+	public Integer getsP_hot() {
+		return sP_hot;
 	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
+	public void setsP_hot(Integer sP_hot) {
+		this.sP_hot = sP_hot;
+	}
+
+	public Integer getsP_amountFavorite() {
+		return sP_amountFavorite;
+	}
+
+	public void setsP_amountFavorite(Integer sP_amountFavorite) {
+		this.sP_amountFavorite = sP_amountFavorite;
+	}
+
+	public Integer getsP_averageAssess() {
+		return sP_averageAssess;
+	}
+
+	public void setsP_averageAssess(Integer sP_averageAssess) {
+		this.sP_averageAssess = sP_averageAssess;
+	}
+
+	public Integer getsP_amountAssess() {
+		return sP_amountAssess;
+	}
+
+	public void setsP_amountAssess(Integer sP_amountAssess) {
+		this.sP_amountAssess = sP_amountAssess;
+	}
+
+	public Integer getsP_stateId() {
+		return sP_stateId;
+	}
+
+	public void setsP_stateId(Integer sP_stateId) {
+		this.sP_stateId = sP_stateId;
 	}
 
 	public Store getStore() {
-		return Store;
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 	public Product getProduct() {
-		return Product;
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public State getState() {
-		return State;
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	public Set<Images> getImages() {
-		return Images;
+		return images;
+	}
+
+	public void setImages(Set<Images> images) {
+		this.images = images;
 	}
 
 }

@@ -30,6 +30,8 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 
 	@Override
 	public GroupMessage selectByPk(Integer id) throws SQLException {
+		if (id == null)
+			return null;
 		GroupMessage GM = getSession().get(GroupMessage.class, id);
 		System.out.println(GM);
 		return GM;
@@ -46,7 +48,7 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 
 	@Override
 	public GroupMessage insert(GroupMessage bean) throws SQLException {
-		GroupMessage GM = selectByPk(bean.getId());
+		GroupMessage GM = selectByPk(bean.getgM_id());
 		if (GM == null) {
 			getSession().save(bean);
 			return bean;
@@ -56,20 +58,34 @@ public class GroupMessageDaoImpl implements GroupMessageDao {
 
 	@Override
 	public GroupMessage update(GroupMessage bean) throws SQLException {
-		GroupMessage GM = selectByPk(bean.getId());
+		GroupMessage GM = selectByPk(bean.getgM_id());
 		if (GM != null) {
-			if (bean.getGroupId() != null)
-				GM.setGroupId(bean.getGroupId());
-			if (bean.getMemberId() != null)
-				GM.setMemberId(bean.getMemberId());
-			if (bean.getContext() != null)
-				GM.setContext(bean.getContext());
-			if (bean.getTime() != null)
-				GM.setTime(bean.getTime());
-			if (bean.getStateId() != null)
-				GM.setStateId(bean.getStateId());
+			if (bean.getG_id() != null)
+				GM.setG_id(bean.getG_id());
+			if (bean.getM_idMessage() != null)
+				GM.setM_idMessage(bean.getM_idMessage());
+			if (bean.getgM_context() != null)
+				GM.setgM_context(bean.getgM_context());
+			if (bean.getgM_time() != null)
+				GM.setgM_time(bean.getgM_time());
+			if (bean.getgM_stateId() != null)
+				GM.setgM_stateId(bean.getgM_stateId());
 			return GM;
 		}
 		return null;
+	}
+
+	public GroupMessage update(GroupMessage GM, GroupMessage bean) throws SQLException {
+		if (bean.getG_id() != null)
+			GM.setG_id(bean.getG_id());
+		if (bean.getM_idMessage() != null)
+			GM.setM_idMessage(bean.getM_idMessage());
+		if (bean.getgM_context() != null)
+			GM.setgM_context(bean.getgM_context());
+		if (bean.getgM_time() != null)
+			GM.setgM_time(bean.getgM_time());
+		if (bean.getgM_stateId() != null)
+			GM.setgM_stateId(bean.getgM_stateId());
+		return GM;
 	}
 }

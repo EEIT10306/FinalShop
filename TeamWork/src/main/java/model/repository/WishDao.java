@@ -16,4 +16,6 @@ public interface WishDao {
 
 	public Wish update(Wish bean) throws SQLException;
 
+	public Wish update(Wish W, Wish bean) throws SQLException;
+
 }
