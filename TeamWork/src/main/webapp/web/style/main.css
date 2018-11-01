@@ -38,7 +38,8 @@ form {
     margin-top: 1.5em;
 }
 .filter-button {
-    width: 100%;
+	width: 100%;
+	margin-top: 20px;
 }
 /*card*/
 .card-search {
@@ -635,3 +636,19 @@ a.userpage-sidebar-menu_item {
 	letter-spacing: 1px;
 }
 
+option.dropdown-item {
+	background-color: #fff;
+	appearance: none;
+	border: none;
+    
+}
+
+.form-control{
+	margin-top: 2px;
+	margin-bottom: 5px;
+}
+
+.btn .btn-outline-warning .filter-button {
+	margin-top: 20px;
+	
+}

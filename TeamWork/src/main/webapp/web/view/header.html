@@ -18,7 +18,7 @@
         crossorigin="anonymous">
 
     <!-- main CSS -->
-    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="/TeamWork/web/style/main.css">
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
@@ -58,23 +58,24 @@
 </nav>
 <div class="belowNavbar">
     <div class="container">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">項目</button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">許願池</a>
-                    <a class="dropdown-item" href="#">限時團購</a>
-                    <a class="dropdown-item" href="#">購物商城</a>
+        <form method="GET" action="/TeamWork/search">
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+                            <option  value="wish" class="dropdown-item">許願池</option>
+                            <option  value="groupon" class="dropdown-item">限時團購</option>
+                            <option  value="store" class="dropdown-item">購物商城</option>
+                        </select>
+                    </div>
+                    <input name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-append">
+                        <button   class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
                 </div>
-            </div>
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Search</button>
-            </div>
-        </div>
+            </form>
     </div><!-- end of container -->
 </div>
+
 
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

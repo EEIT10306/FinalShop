@@ -6,25 +6,25 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.Product;
 import model.bean.WishMessage;
+import model.repository.ProductDao;
 import model.repository.WishMessageDao;
+
 @Service
-public class _TestServiceWishMessage {
+@Transactional
+public class _TestServiceProduct {
 
 	@Autowired
-	private WishMessageDao wishMessageDaoImpl;
-	
-	public List<WishMessage> getSelect(WishMessage wishMessage) {
+	private ProductDao productDaoImpl;
+
+	public List<Product> getSelect(Product product) {
+		String str;
+		str = "Where parentsId = " + product.getId();
 		try {
-			if (wishMessage.getId() == null) {
-				List<WishMessage> list = wishMessageDaoImpl.selectAll();
-				return list;
-			}
-			WishMessage temp;
-			temp =	wishMessageDaoImpl.selectByPk(wishMessage.getId());
-			List<WishMessage> list = new ArrayList<>();
-			list.add(temp);
+			List<Product> list = productDaoImpl.selectHql(str);
 			return list;
 		} catch (SQLException e) {
 			System.out.println("_TestService - SQLException");
@@ -33,4 +33,3 @@ public class _TestServiceWishMessage {
 		}
 	}
 }
-

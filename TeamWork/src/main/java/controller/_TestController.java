@@ -18,13 +18,11 @@ import model.bean.Achievement;
 import model.bean.DistrictType;
 import model.bean.Groupon;
 import model.bean.Wish;
-import model.bean.WishMessage;
 import model.bean.WishProduct;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceDistrictType;
 import model.service._TestServiceGroupon;
 import model.service._TestServiceWish;
-import model.service._TestServiceWishMessage;
 import model.service._TestServiceWishProduct;
 
 @Controller
@@ -35,8 +33,6 @@ public class _TestController {
 	private _TestServiceWish tes1;
 	@Autowired
 	private _TestServiceWishProduct tes2;
-	@Autowired
-	private _TestServiceWishMessage tes3;
 	@Autowired
 	private _TestServiceDistrictType tes4;
 	@Autowired
@@ -62,11 +58,7 @@ public class _TestController {
 		List<WishProduct> list = tes2.getSelect(wishProduct);
 		return new ResponseEntity<List<WishProduct>>(list, HttpStatus.OK);
 	}
-	@RequestMapping(path = "/WishMessage", method = RequestMethod.GET)
-	public ResponseEntity<List<WishMessage>> TestID(WishMessage wishMessage, BindingResult binder) {
-		List<WishMessage> list = tes3.getSelect(wishMessage);
-		return new ResponseEntity<List<WishMessage>>(list, HttpStatus.OK);
-	}
+
 	@RequestMapping(path = "/DistrictType", method = RequestMethod.GET)
 	@ResponseBody
 	public List<DistrictType> TestID(DistrictType districtType, BindingResult binder) {
