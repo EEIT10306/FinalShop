@@ -8,7 +8,9 @@
     <!-- main CSS -->
     <link rel="stylesheet" href="../style/form.css">
 	
-	<link rel="Shortcut Icon" type="image/x-icon" href="images/others/icon.png" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="images/others/icon.png" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
+    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'><!--google登入用-->
     <title>會員註冊</title>
     <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 </head>
@@ -32,10 +34,22 @@
         <input id="register" class="button" type="button" value="Register">
         <p class="message">Already registered? <a href="form_login.html">Sign In</a></p>
 
+        <fb:login-button scope="public_profile,email"
+    		onlogin="checkLoginState();"
+    		auto_logout_link="true"
+    		size="large"
+    		show_faces="false">
+        </fb:login-button><!-- facebook 按钮 -->
+        <!--<div id="status"></div> 登陸狀態顯示 -->
+        <!-- google 登入按鈕 -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <!-- google 登出按鈕-->
+        <a href="#" onclick="signOut();">Sign out</a>
     </form>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    
+    <script src="../js/OAuthFB_Google.js"></script>
+
     <script>
     $("#register").click(function(e){
 
@@ -57,9 +71,7 @@
 	            url : "/TeamWork/RegisterServlet",
 	            data: {"m_account":mail,"m_name":name , "m_password":password,"m_mail":mail},
 	            success: function(data) {
-	            	$("#errorAccount").html("")
-	    			$("#errorPassword").html("")
-	    			
+
 	            	if(data=="accountNull"){
 	            		$("#errorAccount").html("請輸入欄位")
 	            	}
@@ -70,7 +82,7 @@
 	            		$("#errorPassword").html("密碼必須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
 	            	}
 	            	if(data == mail){
-	            		alert("導到登入畫面?驗證畫面?自動登入?")
+	            		window.location.href="form_login.html";
 	            	}
 	                
 	            }
