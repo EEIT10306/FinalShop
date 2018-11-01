@@ -116,6 +116,10 @@ p.card-text {
     background-size:  cover;
     background-repeat: no-repeat;
 }
+.hotSale-box{
+			border: 1px solid gray;
+			margin: auto;			
+		}
 
 /*分頁標籤*/
 .nav-tabs li.nav-item>a {
