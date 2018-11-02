@@ -1,5 +1,8 @@
 package model.service;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,5 +26,10 @@ public class MemberService {
 	
 	public boolean idExists(String string) {
 		return memberDaoImpl.idExists(string);
+	}
+	
+	public List<Member> selectHql(String hqlString) throws SQLException{
+		return memberDaoImpl.selectHql(hqlString);
+		
 	}
 }
