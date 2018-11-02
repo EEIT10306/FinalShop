@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +28,7 @@ public class WishOrder {
 	private String wO_sumPrice;
 
 	@Column(name = "wO_time", columnDefinition = "datetime", nullable = false)
-	private Integer wO_time;
+	private Date wO_time;
 
 	@Column(name = "wO_state", columnDefinition = "int", nullable = false)
 	private Integer wO_stateId;
@@ -46,7 +48,7 @@ public class WishOrder {
 	public WishOrder() {
 	}
 
-	public WishOrder(Integer wO_id, Integer w_id, Integer m_idOrder, String wO_sumPrice, Integer wO_time,
+	public WishOrder(Integer wO_id, Integer w_id, Integer m_idOrder, String wO_sumPrice, Date wO_time,
 			Integer wO_stateId) {
 		super();
 		this.wO_id = wO_id;
@@ -96,11 +98,11 @@ public class WishOrder {
 		this.wO_sumPrice = wO_sumPrice;
 	}
 
-	public Integer getwO_time() {
+	public Date getwO_time() {
 		return wO_time;
 	}
 
-	public void setwO_time(Integer wO_time) {
+	public void setwO_time(Date wO_time) {
 		this.wO_time = wO_time;
 	}
 

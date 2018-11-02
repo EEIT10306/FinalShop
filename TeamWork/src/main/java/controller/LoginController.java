@@ -3,6 +3,7 @@ package controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,8 +50,66 @@ public class LoginController {
 		} else {
 			return member.getM_account();
 		}
+	
+	}
+	
+	@RequestMapping(value = "/LoginFb" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
+	@ResponseBody
+	private String LogingFbServlet(String userInfo) {
+		System.out.println("LoginFb");
+		//接收資料
+		JSONObject json = new JSONObject(userInfo);
+		System.out.println(json.getString("email"));
+		//驗證資料
 
+		//呼叫model
 		
+		String hql = "WHERE m_account = '"+json.getString("email")
+		            +"' and m_password = 'facebook'";
+		List<Member> bean = null;
+		try {
+			bean = memberService.selectHql(hql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
+		System.out.println(bean);
+		//根據model執行結果，導向view
+		if(bean.size()==0) {
+			return "beanNull";
+		} else {
+			return json.getString("email");
+		}
+	
+	}
+	
+	@RequestMapping(value = "/LoginGg" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
+	@ResponseBody
+	private String LogingGgServlet(String userInfo) {
+		System.out.println("LoginGg");
+		//接收資料
+		JSONObject json = new JSONObject(userInfo);
+		System.out.println(json.getString("email"));
+		//驗證資料
+
+		//呼叫model
+		
+		String hql = "WHERE m_account = '"+json.getString("email")
+		            +"' and m_password = 'google'";
+		List<Member> bean = null;
+		try {
+			bean = memberService.selectHql(hql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(bean);
+		//根據model執行結果，導向view
+		if(bean.size()==0) {
+			return "beanNull";
+		} else {
+			return json.getString("email");
+		}
+	
 	}
 }

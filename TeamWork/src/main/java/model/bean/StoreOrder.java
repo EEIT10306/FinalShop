@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,11 +39,14 @@ public class StoreOrder {
 	@Column(name = "sO_sumPri", columnDefinition = "int", nullable = false)
 	private Integer sO_sumPrice;
 
+	@Column(name = "sO_time", columnDefinition = "datetime", nullable = false)
+	private Date sO_time;
+
 	@Column(name = "sO_state", columnDefinition = "int", nullable = false)
 	private Integer sO_stateId;
 
 	@ManyToOne
-	@JoinColumn(name = "prod_id", insertable = false, updatable = false)
+	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
 	private StoreProduct storeProduct;
 
 	@ManyToOne
@@ -49,7 +54,7 @@ public class StoreOrder {
 	private Member member;
 
 	@ManyToOne
-	@JoinColumn(name = "state", insertable = false, updatable = false)
+	@JoinColumn(name = "sO_state", insertable = false, updatable = false)
 	private State state;
 
 	public StoreOrder() {
