@@ -44,7 +44,29 @@ function checkLoginState() {
 function testAPI() {
     FB.api('/me?fields=name,first_name,last_name,email', function (response) {
         if (response && !response.error) {
+            //========存取cookie============================
+            var cookies =document.cookie; 
+            console.log(cookies);
             console.log(response);
+            console.log(response.name);
+            if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
+                console.log("沒有cookie");
+            } else if(cookies.includes("email")){
+                var email = cookies.split("email=")[1];
+                $.ajax({
+                    type:"post",
+                    url:"/TeamWork/checkAccount",
+                    data:{"m_account":email},
+                    success:function(data){
+                        console.log(data);
+                        alert("抓帳號cookie成功是網站的帳號自動登入")
+                    }
+                });
+            }
+            // var exp =newDate();
+            // exp.setTime(exp.getTime() + 60*1000);
+            //7*24*60*60*1000 存活7天
+            // cookies = response.name;
             $.ajax({
                 type:"post",
                 url: "/TeamWork/LoginFb",
@@ -53,10 +75,11 @@ function testAPI() {
                 },
                 dataType: "json",
                 async:false,
-                // success: function (data) {
+                success: function (data) {
+                    alert("FB登入成功")
                     // document.getElementById('status').innerHTML =
                     //     'Thanks for logging in, ' + response.name + '!';
-                // }
+                }
             });
             //buildProfile(response);
         }
