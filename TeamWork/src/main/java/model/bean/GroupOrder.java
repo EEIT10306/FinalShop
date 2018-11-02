@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +26,14 @@ public class GroupOrder {
 
 	@Column(name = "gO_amt", columnDefinition = "int", nullable = false)
 	private Integer gO_amount;
+	
+	@Column(name = "gO_sumPri", columnDefinition = "int", nullable = false)
+	private Integer gO_sumPrice;
+
+	
+	@Column(name = "gO_time", columnDefinition = "datetime", nullable = false)
+	private Date gO_time;
+
 
 	@Column(name = "gO_state", columnDefinition = "int", nullable = false)
 	private Integer gO_stateId;
@@ -37,7 +47,7 @@ public class GroupOrder {
 	private Member member;
 
 	@ManyToOne
-	@JoinColumn(name = "state", insertable = false, updatable = false)
+	@JoinColumn(name = "gO_state", insertable = false, updatable = false)
 	private State state;
 
 	public GroupOrder() {

@@ -38,11 +38,11 @@ public class StoreMessage {
 	private StoreProduct storeProduct;
 
 	@ManyToOne
-	@JoinColumn(name = "memG_IDee", insertable = false, updatable = false)
+	@JoinColumn(name = "mem_IDee", insertable = false, updatable = false)
 	private Member member;
 
 	@ManyToOne
-	@JoinColumn(name = "gM_state", insertable = false, updatable = false)
+	@JoinColumn(name = "sM_state", insertable = false, updatable = false)
 	private State state;
 
 	public StoreMessage() {

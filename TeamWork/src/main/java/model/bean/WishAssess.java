@@ -32,7 +32,7 @@ public class WishAssess {
 	private String wA_contextAssess;
 
 	@OneToOne
-	@JoinColumn(name = "wo_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "wO_ID", insertable = false, updatable = false)
 	private WishOrder wishOrder;
 
 	public WishAssess() {
