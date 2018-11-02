@@ -1,30 +1,31 @@
 package model.service;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.bean.Product;
-import model.bean.WishMessage;
-import model.repository.ProductDao;
-import model.repository.WishMessageDao;
+import model.bean.StoreProduct;
+import model.repository.StoreProductDao;
 
 @Service
 @Transactional
-public class _TestServiceProduct {
+public class _TestServiceStoreProduct {
 
 	@Autowired
-	private ProductDao productDaoImpl;
+	private StoreProductDao storeProductDaoImpl;
 
-	public List<Product> getSelect(Product product) {
-		String str;
-		str = "Where parentsId = " + product.getP_id();
+	
+	public List<StoreProduct> getStoreProductForm(String storeProduct) {
+		String str="";
+		if(storeProduct!=null) {
+		str += "Where sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%'" ;
+		}
+		
 		try {
-			List<Product> list = productDaoImpl.selectHql(str);
+			List<StoreProduct> list = storeProductDaoImpl.selectHql(str);
 			return list;
 		} catch (SQLException e) {
 			System.out.println("_TestService - SQLException");
@@ -32,8 +33,8 @@ public class _TestServiceProduct {
 			return null;
 		}
 		
+		
 	}
-
 	
 	
 }

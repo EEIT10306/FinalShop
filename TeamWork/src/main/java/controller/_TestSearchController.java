@@ -1,5 +1,7 @@
 package controller;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
@@ -9,12 +11,16 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
 
 import model.bean.Product;
+import model.bean.StoreProduct;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceProduct;
+import model.service._TestServiceStoreProduct;
 @Controller
 public class _TestSearchController {
 	@Autowired
@@ -87,30 +93,52 @@ public class _TestSearchController {
 //	        return modelAndView;
 //	    }
 	 @RequestMapping(value = "/search") 
-	 public String toResultViewForNormal(String selectone, String search) {
-		 System.out.println("進入 "+selectone);
+	 public ModelAndView toResultViewForNormal(String selectone, String search) {
+		 System.out.println("進入======================== "+selectone);
 		 System.out.println("search= "+search);
+		 Map map= new HashMap();
+		    map.put("search", search);    
+		    
+		    ModelAndView modelAndView = new ModelAndView(new RedirectView("web/view/_testProduct-search2.html?"),map);
 	  if(selectone.equals("groupon"))
-	   return "redirect:web/view/_testGroupBuying-search.html?search="+search; 
+	//   return "redirect:web/view/_testGroupBuying-search.html?search="+search; 
+	  return new ModelAndView(new RedirectView("web/view/_testGroupBuying-search.html?"),map) ; 
 	  if(selectone.equals("store"))
-	   return "redirect:web/view/_testProduct-search2.html?search="+search; 
+	//   return  "redirect:web/view/_testProduct-search2.html?search="+search; 
+	  return new ModelAndView(new RedirectView("web/view/_testProduct-search2.html?"),map) ; 
 	  
-	  return "redirect:web/view/_testWish-search.html?search="+search; 
+	//  return "redirect:web/view/_testWish-search.html?search="+search; 
+	  return new ModelAndView(new RedirectView("web/view/_testWish-search.html?"),map) ; 
 	 }
 	 	@Autowired
 		private _TestServiceProduct pro;
 	 
 		@ResponseBody
-		@RequestMapping(path = "/changeStoreFormSelect", method = RequestMethod.POST)
-		public List<Product> search(Product product) {
-			
+		@RequestMapping(path = "/changeStoreFormSelect", method = RequestMethod.GET,produces="application/json;chartset=UTF-8")
+//		public List<Product> search(Product product) {
+			public String search(Product product) {	
 				List<Product> lis =pro.getSelect(product);
 				System.out.println(lis);
-//			  Gson gson = new Gson();
-//			   String json = gson.toJson(lis);
+			   Gson gson = new Gson();
+			   String json = gson.toJson(lis);
+			   return json;
 				//return new JSONArray(lis);
 //			   System.out.println(json);
-			   return lis ; 
+//			   return lis ; 
 			
 	}
+		@Autowired
+		private _TestServiceStoreProduct spro;
+	 
+		@ResponseBody
+		@RequestMapping(path = "/StoreProductForm", method = RequestMethod.GET)
+		public List<StoreProduct> StoreProductForm(String search) {
+			System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+				System.out.println(search);
+				System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuul");
+				List<StoreProduct> lis =spro.getStoreProductForm(search);
+				System.out.println(lis);
+				return lis;
+		}
+		
 }
