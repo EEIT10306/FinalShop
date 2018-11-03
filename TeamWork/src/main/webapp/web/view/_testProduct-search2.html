@@ -10,6 +10,7 @@
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -21,6 +22,7 @@
 
 <!-- main CSS -->
 <link rel="stylesheet" href="../style/main.css">
+<link rel="stylesheet" href="../style/main2.css">
 
 <!-- fontawesome -->
 <link rel="stylesheet"
@@ -61,27 +63,24 @@
 		</div>
 	</nav>
 	<div class="belowNavbar">
-		<div class="container">
-			<form method="GET" action="/TeamWork/search">
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<select name="selectone"
-							class="btn btn-outline-secondary dropdown-toggle">
-							<option value="store" class="dropdown-item">購物商城</option>
-							<option value="wish" class="dropdown-item">許願池</option>
-							<option value="groupon" class="dropdown-item">限時團購</option>
-						</select>
-					</div>
-					<input name="search" type="text" class="form-control"
-						aria-label="Text input with dropdown button">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="submit">Search</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<!-- end of container -->
-	</div>
+    <div class="container">
+        <form method="GET" action="/TeamWork/search">
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+                            <option  value="store" class="dropdown-item">購物商城</option>
+                            <option  value="wish" class="dropdown-item">許願池</option>
+                            <option  value="groupon" class="dropdown-item">限時團購</option>
+                        </select>
+                    </div>
+                    <input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-append">
+                        <button   class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+    </div><!-- end of container -->
+    </div>
 	<div class="container" id="container">
 		<div class="row">
 			<section class="col-lg-2">
@@ -202,18 +201,15 @@
 					</form>
 					<hr>
 				</form>
+				
 				<!-- end of form.select-filter -->
 			</section>
-			<section class="col-lg-10">
-				<div style="height: 50px">
-					<button>綜合排名</button>
-					<button>最新</button>
-					<button>最熱銷</button>
-					<button>價格</button>
-				</div>
+			<section id="sectionbot" class="col-lg-10">
+			
+		
 				<div class="row row-card" id="tableMenu"></div>
 			</section>
-		</div>
+	</div>
 	</div>
 	<!-- end of container -->
 	<div class="contaminer-fluid">
@@ -313,10 +309,14 @@
 										//若str等於想要抓取參數 如:b
 										alert(ary[i])
 										str_value = decodeURI(ary[i]);
+										search_value = decodeURI(ary[i].split("=")[1]);
 										//取得b等號右邊的值並經過中文轉碼後存入str_value
 									}
 								}
 								alert(str_value)
+								alert(search_value)
+								$("#headsearch").val(search_value);
+								
 							}
 							$
 									.ajax({
@@ -327,24 +327,47 @@
 
 										success : function(jsonback) {
 											alert("server傳回 = " + jsonback);
-											alert(jsonback[0].images[0])
-											alert(jsonback[0].images[1])
+																				
+											if(jsonback==""){
+												var txt = "<div ><p>我們找不到 "+search_value+" 商品";
+													$("#sectionbot").html(txt);
+											}
+											
 											//	var json=JSON.parse(jsonback);
-											var txt = "";
-											//	alert(json);
 
+											//	alert(json);
+											else{
+											var txt1="";
+											var txt="";
+											txt1+="<div class='row' style='height:50px'>"
+												txt1+="<button>綜合排名</button>"
+												txt1+="<button>最新</button>"
+												txt1+="<button>最熱銷</button>"
+												txt1+="<button>價格</button>"
+												txt1+="</div>"
+													$("#sectionbot").prepend(txt1);
 											for (x = 0; x < jsonback.length; x++) {
-												txt += "<div class='col-lg-3' onclick='location.href='http://localhost:8080/TeamWork/web/view/product-detail.html?sP_id='"
-														+ jsonback.sP_id + ";>";
+// 												alert("in txt")
+												txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id="+jsonback[x].sP_id+"\"';>";
+														
 												txt += "<div class='card card-search'>";
-												txt += "<img class='card-img-top' src='/TeamWork/web/images/form-cat.png' alt='Card image cap'>";
+												
+												if (jsonback[x].storeImages == ""){
+													showStoreImages = "/TeamWork/web/images/form-cat.png";
+												}else {
+// 													alert(jsonback[6].storeImages[0].sI_context)
+// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
+													showStoreImages = jsonback[x].storeImages[0].sI_context;
+												}
+												
+												txt += "<img class='card-img-top' src='"+showStoreImages+"' alt='Card image cap'>";
 												txt += "<div class='card-body'>";
 												txt += "<h5 class='card-title'>"
 														+ jsonback[x].sP_name
 														+ "</h5>";
-												txt += "<p class='card-text'>"
+												txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
 														+ jsonback[x].sP_context
-														+ "</p>";
+														+ "</p></div>";
 												txt += "<p class='card-text'>$"
 														+ jsonback[x].sP_price
 														+ "</p>"
@@ -357,14 +380,16 @@
 														+ jsonback[x].sP_amountAssess
 														+ ")</p>"
 
+												 txt += "</div>";
+												 txt += "</div>";
 												txt += "</div>";
-												txt += "</div>";
-												txt += "</div>";
-
+// 												alert(txt)
 											}
-
 											$("#tableMenu").html(txt);
-										}
+											}
+											
+											}
+										
 									});
 
 							$("#exampleFormControlSelect1")
@@ -374,15 +399,11 @@
 														"#exampleFormControlSelect1")
 														.val();
 
-												$
-														.ajax({
+												$.ajax({
 															type : "POST",
 															url : "/TeamWork/changeStoreFormSelect",
-															data : {
-																"id" : exampleFormControlSelect1
-															},
-															success : function(
-																	jsonback) {
+															data : {"p_id" : exampleFormControlSelect1},
+															success : function(jsonback) {
 																alert("server傳回 = "
 																		+ jsonback);
 																//             	var json=JSON.parse(jsonback);
@@ -397,15 +418,12 @@
 																alert(jsonback[0].name);
 																for (x = 0; x < jsonback.length; x++) {
 																	txtselect += "<option value="+x+">"
-																			+ jsonback[x].name
+																			+ jsonback[x].p_name
 																			+ "</option>";
 
 																}
 
-																$(
-																		"#exampleFormControlSelect2")
-																		.html(
-																				txtselect);
+																$("#exampleFormControlSelect2").html(txtselect);
 															}
 														});
 											});
@@ -509,9 +527,9 @@
 
 																}
 
-																$("#tableMenu")
-																		.html(
-																				txtleftselect);
+// 																$("#tableMenu")
+// 																		.html(
+// 																				txtleftselect);
 
 															}
 														});

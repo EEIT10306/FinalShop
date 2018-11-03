@@ -23,7 +23,7 @@ public class StoreImages {
 	private String sI_context;
 
 	@ManyToOne
-	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
 	private StoreProduct storeProduct;
 
 	public StoreImages() {

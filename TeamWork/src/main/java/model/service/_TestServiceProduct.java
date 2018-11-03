@@ -22,7 +22,7 @@ public class _TestServiceProduct {
 
 	public List<Product> getSelect(Product product) {
 		String str;
-		str = "Where parentsId = " + product.getP_id();
+		str = "Where p_parentsId = " + product.getP_id();
 		try {
 			List<Product> list = productDaoImpl.selectHql(str);
 			return list;
