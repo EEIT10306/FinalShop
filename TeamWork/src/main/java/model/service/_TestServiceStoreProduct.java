@@ -25,7 +25,7 @@ public class _TestServiceStoreProduct {
 		if(storeProduct!=null) {
 		str += "Where sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%'" ;
 		}
-		
+//		as sp left join sp.product as pro left join sp.state as st
 		try {
 			List<StoreProduct> list = storeProductDaoImpl.selectHql(str);
 			for(StoreProduct sp:list) {
@@ -41,6 +41,7 @@ public class _TestServiceStoreProduct {
 			e.printStackTrace();
 			return null;
 		}
+		
 		
 		
 	}

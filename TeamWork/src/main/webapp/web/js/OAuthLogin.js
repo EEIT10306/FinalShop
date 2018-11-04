@@ -26,11 +26,35 @@ window.fbAsyncInit = function () {
 
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
-        console.log('Logged in and authenticated');
+        console.log('FB自動連線');
         //           setElements(true);
-        testAPI();
+        
+        
+        // var cookies = document.cookie;
+            
+        // console.log(cookies);
+        // console.log(cookies.indexOf("email"));
+        // console.log(cookies.includes("email"));
+        // console.log(cookies.split("email=")[1]);
+            
+        // if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
+        //     console.log("沒有cookie");
+        // } else if(cookies.includes("email")){
+        //     var email = cookies.split("email=")[1];
+        //     $.ajax({
+        //         type:"post",
+        //         url:"/TeamWork/checkAccount",
+        //         data:{"m_account":email},
+        //         success:function(data){
+        //             console.log(data);
+        //             alert("抓帳號cookie成功是網站的帳號自動登入")
+        //         }
+        //     });
+        // }
+
+        loginAPI();
     } else {
-        console.log('Not authenticated');
+        console.log('FB沒有自動連線');
         //           setElements(false);
     }
 }
@@ -41,46 +65,39 @@ function checkLoginState() {
     });
 }
 
-function testAPI() {
+function loginAPI() {
     FB.api('/me?fields=name,first_name,last_name,email', function (response) {
         if (response && !response.error) {
-            //========存取cookie============================
+            
             var cookies =document.cookie; 
             console.log(cookies);
             console.log(response);
-            console.log(response.name);
-            if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
-                console.log("沒有cookie");
-            } else if(cookies.includes("email")){
-                var email = cookies.split("email=")[1];
-                $.ajax({
-                    type:"post",
-                    url:"/TeamWork/checkAccount",
-                    data:{"m_account":email},
-                    success:function(data){
-                        console.log(data);
-                        alert("抓帳號cookie成功是網站的帳號自動登入")
-                    }
-                });
-            }
-            // var exp =newDate();
-            // exp.setTime(exp.getTime() + 60*1000);
-            //7*24*60*60*1000 存活7天
-            // cookies = response.name;
+            console.log(response.email);
             $.ajax({
                 type:"post",
-                url: "/TeamWork/LoginFb",
-                data: {
-                    userInfo: JSON.stringify(response)
-                },
-                dataType: "json",
-                async:false,
-                success: function (data) {
-                    alert("FB登入成功")
+                url:"/TeamWork/LoginFb",
+                data:{userInfo: JSON.stringify(response)},
+                success:function(data){
+                    console.log(data);
+                    console.log(response.email);
+                    if(data==response.email){
+                        alert("FB登入成功")
+                    }
                     // document.getElementById('status').innerHTML =
                     //     'Thanks for logging in, ' + response.name + '!';
-                }
+                },
+                error: function(data){
+                    console.log(data);
+                    console.log(response.email);
+                    if(data=="beanNull"){
+                        alert("FB登入失敗")
+                    }
+                },
             });
+           
+
+                    
+            
             //buildProfile(response);
         }
         //           FB.api('/me/feed', function(response){
@@ -133,6 +150,7 @@ function onSignIn(googleUser) {
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     //測試有無進入google登入的方訊
+    console.log('Google自動連線');
     alert("這裡是google的登入:" + profile.getEmail())
     var id =profile.getId();
     var name = profile.getName();
