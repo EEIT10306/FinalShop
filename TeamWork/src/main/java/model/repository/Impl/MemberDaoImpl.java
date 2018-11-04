@@ -45,7 +45,7 @@ public class MemberDaoImpl implements MemberDao {
 		String hql = "from Member ";
 		hql += hqlString;
 		List<Member> LM = getSession().createQuery(hql, Member.class).list();
-		System.out.println(LM);
+//		System.out.println(LM);
 		return LM;
 	}
 

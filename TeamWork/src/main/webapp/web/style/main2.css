@@ -59,7 +59,7 @@ h5.card-title {
 p.card-text {
     font-size: 0.9rem;
 }
-.fa-star-score, .fa-star-half{
+.fa-star-score {
     /*評分星星的顏色*/
     color:#ffce3d;
 }
@@ -747,4 +747,15 @@ option.dropdown-item {
 #form-step-2,#form-step-3{
 	display: none;
   }
+  
+  
+.ellipsis{
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.ellipsis-box{
+	height: 4rem;
+	border: #ef5c28 1px solid;
+}
 >>>>>>> branch 'master' of https://github.com/EEIT10306/FinalShop.git

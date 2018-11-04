@@ -1,6 +1,7 @@
 package model.bean;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -60,7 +61,7 @@ public class GroupProduct {
 	private State state;
 
 	@OneToMany(mappedBy = "groupProduct")
-	private Set<Images> images;
+	private Set<GroupImages> groupImages = new LinkedHashSet<>();
 
 	public GroupProduct() {
 	}
@@ -85,7 +86,7 @@ public class GroupProduct {
 		return "GroupProduct [gP_id=" + gP_id + ", g_iD=" + g_iD + ", gP_name=" + gP_name + ", p_id=" + p_id
 				+ ", gP_amount=" + gP_amount + ", gP_price=" + gP_price + ", gP_context=" + gP_context + ", gP_version="
 				+ gP_version + ", gP_completeTime=" + gP_completeTime + ", gP_stateId=" + gP_stateId + ", groupon="
-				+ groupon + ", product=" + product + ", state=" + state + ", images=" + images + "]\r\n";
+				+ groupon + ", product=" + product + ", state=" + state + ", groupImages=" + groupImages + "]\r\n";
 	}
 
 	public Integer getgP_id() {
@@ -192,12 +193,12 @@ public class GroupProduct {
 		this.state = state;
 	}
 
-	public Set<Images> getImages() {
-		return images;
+	public Set<GroupImages> getGroupImages() {
+		return groupImages;
 	}
 
-	public void setImages(Set<Images> images) {
-		this.images = images;
+	public void setGroupImages(Set<GroupImages> groupImages) {
+		this.groupImages = groupImages;
 	}
 
 }

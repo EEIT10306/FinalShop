@@ -67,43 +67,103 @@
     <div class="container">
         <div class="row">
             <section class="col-lg-2">
-                <form class="select-filter">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">評價</label>
+              <form class="select-filter">
+                <div class="form-group">
+                   <h3>條件篩選</h3>
+                   </div>
+                   <hr>
+                       <form>
+                         <div class="form-group">
+                        <label for="exampleFormControlSelect1">分類</label>
                         <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1顆星以上</option>
-                            <option>2顆星以上</option>
-                            <option>3顆星以上</option>
-                            <option>4顆星以上</option>
-                            <option>5顆星</option>
+                            <option value="0">--請選擇--</option>
+                            <option value="1">團購美食</option>
+                            <option value="2">保養美妝</option>
+                            <option value="3">服飾配件</option>
+                            <option value="4">育兒親子</option>
+                            <option value="5">居家生活</option>
+                            <option value="6">休閒娛樂</option>   
+                        </select>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option value>--請選擇--</option>
                         </select>
                     </div>
-                    <form>
+                    </form>
+
+                   <hr>
+                   <div class="form-group">
+                   <p>運送方式
+                   </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">全家</label>
+                    </div>
+                    <div class="form-group form-check">
+						 <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label" for="exampleCheck1">7-11</label>	                    
+               		</div>
+               		<div class="form-group form-check">
+						 <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label" for="exampleCheck1">萊爾富</label>	                    
+               		</div>
+               		<div class="form-group form-check">
+						 <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label" for="exampleCheck1">中華郵政</label>	                    
+               		</div>
+               		<div class="form-group form-check">
+						 <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label" for="exampleCheck1">賣家宅配</label>	                    
+               		</div>
+            		<hr>
+            		<div class="form-group">
+                        <label for="exampleFormControlSelect1">賣家評價</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>5顆星</option>
+                            <option>4顆星以上</option>
+                            <option>3顆星以上</option>
+                            <option>2顆星以上</option>
+                            <option>1顆星以上</option>
+                        </select>
+                    </div>
+                    <hr>
+            		<div class="form-group">
+                   <p>商品狀況
+                   </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="conditionCheck1">
+                        <label class="form-check-label" for="exampleCheck1">全新商品</label>
+                    </div>
+                    <div class="form-group form-check">
+						 <input type="checkbox" class="form-check-input" id="conditionCheck2">
+                        <label class="form-check-label" for="exampleCheck1">二手商品</label>	                    
+               		</div>
+               		<hr>
+                   <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">價格範圍</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="$ 最大值">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 placeholder="$ 最小值">
+                                <div style="text-align:center"><p>｜</div>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="$ 最大值">
                             <button type="submit" class="btn btn-outline-warning filter-button btn-sm">套用</button>
                         </div>
                     </form>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    fa-star-score
+                    <hr>
                 </form><!-- end of form.select-filter -->
             </section>
             <section class="col-lg-10">
+            <div style="height:50px">
+            <button>綜合排名</button>
+             <button>最新</button>
+              <button>最熱銷</button>
+               <button>價格</button>
+            </div>
                 <div class="row row-card">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" onclick="location.href=
+'http://www.YAHOO.com/';">
                         <!-- <a href="test.html"> -->
-                        <div class="card card-search">
+                        <div class="card card-search" ">
                             <img class="card-img-top" src="../images/product/001.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">SHINBA 職人口罩</h5>
@@ -143,7 +203,7 @@
                                 <p class="card-small-text">（37）</p>
                             </div>
                         </div>
-                    </div>   
+                    </div>
                     <div class="col-lg-3">
                         <div class="card card-search">
                             <img class="card-img-top" src="../images/product/001.jpg" alt="Card image cap">

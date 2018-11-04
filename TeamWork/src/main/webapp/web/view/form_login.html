@@ -8,7 +8,9 @@
     <!-- main CSS -->
     <link rel="stylesheet" href="../style/form.css">
     
-	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
+    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'><!--google登入用-->
     
     <title>登入 Sign in</title>
 </head>
@@ -20,16 +22,71 @@
         <input type="text" name="email" placeholder="Email" required/>
         <span class="errorMsg" id="errorAccount"></span>
         <input type="password"name="password" placeholder="Password" required/>
+        <!--         // 設定密碼欄位必須由大寫字母、小寫字母、數字與 !@#$%!^'" 等四組資料組合而成，且長度不能小於八個字元 -->
+        <!--  required pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,}$"-->
+        
         <span class="errorMsg" id="errorPassword"></span>
         <div class="feedback"></div>
 
         <input id="Login" class="button" type="button" value="Login">
         <p class="message">Not registered? <a href="form_reg.html">Create an account</a></p>
+
+        <fb:login-button scope="public_profile,email"
+    		onlogin="checkLoginState();"
+    		auto_logout_link="true"
+    		size="large"
+    		show_faces="false">
+        </fb:login-button><!-- facebook 按钮 -->
+        <!--<div id="status"></div> 登陸狀態顯示 -->
+        <!-- google 登入按鈕 -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <!-- google 登出按鈕-->
+        <a href="#" onclick="signOut();">Sign out</a>
+        
+        
     </form>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="../js/OAuthLogin.js"></script>
 <!--     <script src="js/main.js"></script> -->
+    <script>
+    $(document)
+        .ready(function(){
+            var cookies = document.cookie;
+            
+            console.log(cookies);
+            console.log(cookies.indexOf("email"));
+            console.log(cookies.includes("email"));
+            console.log(cookies.split("email=")[1]);
+            
+            if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
+                console.log("沒有cookie");
+            } else if(cookies.includes("email")){
+                var email = cookies.split("email=")[1];
+                $.ajax({
+                    type:"post",
+                    url:"/TeamWork/checkAccount",
+                    data:{"m_account":email},
+                    success:function(data){
+                        console.log(data);
+                        alert("抓帳號cookie成功是網站的帳號自動登入")
+                    }
+                });
+            }
+            /*
+            //====設定cookie====================
+            //expire_days = 1; // 過期日期(天)
+            var date = new Date();
+            //date.setTime(date.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+            date.setTime(date.getTime() + (60 * 1000));
+            var expires = "expires=" + date.toGMTString();
+            // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+            document.cookie = "name=test" + "; " + expires + '; path=/';
+            alert(document.cookie)
+            */
 
+        })
+    </script>
     <script>
     $("#Login").click(function(e){
 
@@ -42,6 +99,7 @@
             data:{"m_account":account,"m_password":password},
             
             success:function(data){
+                alert(data);
             	$("#errorAccount").html("")
     			$("#errorPassword").html("")
             	
@@ -52,7 +110,18 @@
             		$("#errorPassword").html("密碼須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
             	}
             	if(data== account){
-            		alert("導到首頁")
+                    alert("導到首頁")
+                     //====設定cookie====================
+                    //expire_days = 1; // 過期日期(天)
+                    var day = new Date();
+                    //date.setTime(date.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+                    day.setTime(day.getTime() + (60 * 1000));
+                    var expires = "expires=" + day.toGMTString();
+                    // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+                    document.cookie = "email="+ data + "; " + expires + '; path=/';
+                    alert(document.cookie)
+                    
+                    
             	}
             	if(data== "beanNull"){
             		$("#errorAccount").html("該帳號不存在或密碼錯誤")
