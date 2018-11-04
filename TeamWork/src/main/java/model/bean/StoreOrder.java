@@ -41,7 +41,7 @@ public class StoreOrder {
 	private Integer sO_stateId;
 
 	@ManyToOne
-	@JoinColumn(name = "prod_id", insertable = false, updatable = false)
+	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
 	private StoreProduct storeProduct;
 
 	@ManyToOne
@@ -49,7 +49,7 @@ public class StoreOrder {
 	private Member member;
 
 	@ManyToOne
-	@JoinColumn(name = "state", insertable = false, updatable = false)
+	@JoinColumn(name = "sO_state", insertable = false, updatable = false)
 	private State state;
 
 	public StoreOrder() {
