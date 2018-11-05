@@ -58,8 +58,7 @@ public class CommitAchievement {
 	@Override
 	public String toString() {
 		return "CommitAchievement [cA_id=" + cA_id + ", a_id=" + a_id + ", m_id=" + m_id + ", cA_amount=" + cA_amount
-				+ ", cA_stateId=" + cA_stateId + ", achievement=" + achievement + ", memeber=" + memeber + ", state="
-				+ state + "]\r\n";
+				+ ", cA_stateId=" + cA_stateId + "]\r\n";
 	}
 
 	public Integer getcA_id() {

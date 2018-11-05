@@ -1,5 +1,6 @@
 package model.bean;
 
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -38,11 +39,20 @@ public class StoreProduct {
 	@Column(name = "sP_price", columnDefinition = "int", nullable = false)
 	private Integer sP_price;
 
+	@Column(name = "sP_tran", columnDefinition = "nvarchar(max)")
+	private String sP_transport;
+
+	@Column(name = "sP_new", columnDefinition = "bit")
+	private Boolean sP_new;
+
 	@Column(name = "sP_hot", columnDefinition = "int", nullable = false)
 	private Integer sP_hot;
 
 	@Column(name = "sP_amtFav", columnDefinition = "int", nullable = false)
 	private Integer sP_amountFavorite;
+
+	@Column(name = "sP_time", columnDefinition = "datetime", nullable = false)
+	private Date sP_time;
 
 	@Column(name = "sP_avgAss", columnDefinition = "float", nullable = false)
 	private Integer sP_averageAssess;
@@ -72,8 +82,8 @@ public class StoreProduct {
 	}
 
 	public StoreProduct(Integer sP_id, Integer s_id, String sP_name, String sP_context, Integer p_id, Integer sP_amount,
-			Integer sP_price, Integer sP_hot, Integer sP_amountFavorite, Integer sP_averageAssess,
-			Integer sP_amountAssess, Integer sP_stateId) {
+			Integer sP_price, String sP_transport, Boolean sP_new, Integer sP_hot, Integer sP_amountFavorite,
+			Date sP_time, Integer sP_averageAssess, Integer sP_amountAssess, Integer sP_stateId) {
 		super();
 		this.sP_id = sP_id;
 		this.s_id = s_id;
@@ -82,8 +92,11 @@ public class StoreProduct {
 		this.p_id = p_id;
 		this.sP_amount = sP_amount;
 		this.sP_price = sP_price;
+		this.sP_transport = sP_transport;
+		this.sP_new = sP_new;
 		this.sP_hot = sP_hot;
 		this.sP_amountFavorite = sP_amountFavorite;
+		this.sP_time = sP_time;
 		this.sP_averageAssess = sP_averageAssess;
 		this.sP_amountAssess = sP_amountAssess;
 		this.sP_stateId = sP_stateId;
@@ -92,10 +105,10 @@ public class StoreProduct {
 	@Override
 	public String toString() {
 		return "StoreProduct [sP_id=" + sP_id + ", s_id=" + s_id + ", sP_name=" + sP_name + ", sP_context=" + sP_context
-				+ ", p_id=" + p_id + ", sP_amount=" + sP_amount + ", sP_price=" + sP_price + ", sP_hot=" + sP_hot
-				+ ", sP_amountFavorite=" + sP_amountFavorite + ", sP_averageAssess=" + sP_averageAssess
-				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + ", store=" + store
-				+ ", product=" + product + ", state=" + state + ", storeImages=" + storeImages + "]\r\n";
+				+ ", p_id=" + p_id + ", sP_amount=" + sP_amount + ", sP_price=" + sP_price + ", sP_transport="
+				+ sP_transport + ", sP_new=" + sP_new + ", sP_hot=" + sP_hot + ", sP_amountFavorite="
+				+ sP_amountFavorite + ", sP_time=" + sP_time + ", sP_averageAssess=" + sP_averageAssess
+				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + "]\r\n";
 	}
 
 	public Integer getsP_id() {
@@ -154,6 +167,22 @@ public class StoreProduct {
 		this.sP_price = sP_price;
 	}
 
+	public String getsP_transport() {
+		return sP_transport;
+	}
+
+	public void setsP_transport(String sP_transport) {
+		this.sP_transport = sP_transport;
+	}
+
+	public Boolean getsP_new() {
+		return sP_new;
+	}
+
+	public void setsP_new(Boolean sP_new) {
+		this.sP_new = sP_new;
+	}
+
 	public Integer getsP_hot() {
 		return sP_hot;
 	}
@@ -168,6 +197,14 @@ public class StoreProduct {
 
 	public void setsP_amountFavorite(Integer sP_amountFavorite) {
 		this.sP_amountFavorite = sP_amountFavorite;
+	}
+
+	public Date getsP_time() {
+		return sP_time;
+	}
+
+	public void setsP_time(Date sP_time) {
+		this.sP_time = sP_time;
 	}
 
 	public Integer getsP_averageAssess() {

@@ -102,8 +102,7 @@ public class Groupon {
 				+ ", g_context=" + g_context + ", d_id=" + d_id + ", g_startDate=" + g_startDate + ", g_endDate="
 				+ g_endDate + ", g_goal=" + g_goal + ", g_sumPrice=" + g_sumPrice + ", g_hot=" + g_hot
 				+ ", g_amountFavorite=" + g_amountFavorite + ", g_completeTime=" + g_completeTime + ", g_stateId="
-				+ g_stateId + ", seller=" + seller + ", product=" + product + ", districtType=" + districtType
-				+ ", state=" + state + "]\r\n";
+				+ g_stateId + "]\r\n";
 	}
 
 	public Integer getG_id() {
