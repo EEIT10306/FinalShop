@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.GroupOrder;
 import model.bean.StoreOrder;
 import model.bean.Wish;
+import model.bean.WishBid;
 import model.bean.WishOrder;
+import model.repository.GroupOrderDao;
 import model.repository.StoreOrderDao;
+import model.repository.WishBidDao;
 import model.repository.WishDao;
 import model.repository.WishOrderDao;
 
@@ -26,7 +30,12 @@ public class OrderService {
 	WishOrderDao wishOrderDao;
 
 	@Autowired
+	WishBidDao wishBidDao;
+	@Autowired
 	WishDao wishDao;
+
+	@Autowired
+	GroupOrderDao groupOrderDao;
 
 	public OrderService() {
 	}
@@ -42,28 +51,27 @@ public class OrderService {
 			return storeOrderDao.selectHql(hql);
 		}
 	}
-	
-	
-	//這個方法還有問題
+
+	// 這個方法還有問題
 	public List<StoreOrder> getStoreOrderByBuyerIdAndState(StoreOrder storeOrder) throws SQLException {
 		Integer MemberId = storeOrder.getM_idOrder();
 		Integer OrderState = storeOrder.getsO_stateId();
 		String hql = "";
 		if (MemberId == null && OrderState == null) {
 			// 若無給予指定使用者ID與狀態ID則回傳全部
-			System.out.println("1=============================================="+MemberId+":"+MemberId);
+			System.out.println("1==============================================" + MemberId + ":" + MemberId);
 			return storeOrderDao.selectAll();
-		} else if(MemberId != null && OrderState == null){
-			System.out.println("2=============================================="+MemberId+":"+MemberId);
+		} else if (MemberId != null && OrderState == null) {
+			System.out.println("2==============================================" + MemberId + ":" + MemberId);
 			hql = "WHERE memS_IDee =" + MemberId;
 			return storeOrderDao.selectHql(hql);
-		} else if(MemberId == null && OrderState != null) {
-			System.out.println("3=============================================="+MemberId+":"+MemberId);
+		} else if (MemberId == null && OrderState != null) {
+			System.out.println("3==============================================" + MemberId + ":" + MemberId);
 			hql = "WHERE sO_state =" + OrderState;
 			return storeOrderDao.selectHql(hql);
 		} else {
-			System.out.println("4=============================================="+MemberId+":"+MemberId);
-			hql = "WHERE memS_IDee = "+MemberId+" AND sO_state = "+OrderState;
+			System.out.println("4==============================================" + MemberId + ":" + MemberId);
+			hql = "WHERE memS_IDee = " + MemberId + " AND sO_state = " + OrderState;
 			return storeOrderDao.selectHql(hql);
 		}
 	}
@@ -96,6 +104,28 @@ public class OrderService {
 		} else {
 			String hql = "WHERE m_id = " + buyerId;
 			return wishDao.selectHql(hql);
+		}
+	}
+
+	// 取得許願競標資料
+	public List<WishBid> getWishBidListByW_id(WishBid wishbid) throws SQLException {
+		Integer w_id = wishbid.getW_id();
+		if (w_id == null) {
+			return wishBidDao.selectAll();
+		} else {
+			String hql = "WHERE w_id = " + w_id;
+			return wishBidDao.selectHql(hql);
+		}
+	}
+
+	// 利用使用者資料取得開團資料
+	public List<GroupOrder> getGroupOrderListByM_idOrder(GroupOrder groupOrder) throws SQLException {
+		Integer buyerId = groupOrder.getM_idOrder();
+		if (buyerId == null) {
+			return groupOrderDao.selectAll();
+		} else {
+			String hql = "WHERE m_idOrder = " + buyerId;
+			return groupOrderDao.selectHql(hql);
 		}
 	}
 

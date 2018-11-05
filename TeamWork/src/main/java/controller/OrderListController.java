@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import model.bean.GroupOrder;
 import model.bean.StoreOrder;
 import model.bean.Wish;
+import model.bean.WishBid;
 import model.bean.WishOrder;
 import model.service.OrderService;
 
@@ -50,5 +52,18 @@ public class OrderListController {
 		return orderService.getWishOrderByBuyerId(wish);
 	}
 
+	// 利用許願ID取得許願競標資料
+	@RequestMapping(value = "/WishBidList", method = RequestMethod.GET, produces = { "application/json" })
+	@ResponseBody
+	public List<WishBid> getWishBidListByW_Id(WishBid wishBid) throws SQLException {
+		return orderService.getWishBidListByW_id(wishBid);
+	}
+
+	// 利用跟團者ID取得跟團訂單資料
+	@RequestMapping(value = "/GroupOrderList", method = RequestMethod.GET, produces = { "application/json" })
+	@ResponseBody
+	public List<GroupOrder> getGroupOrderListByM_idOrder(GroupOrder groupOrder) throws SQLException {
+		return orderService.getGroupOrderListByM_idOrder(groupOrder);
+	}
 
 }

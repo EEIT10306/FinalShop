@@ -2,6 +2,10 @@
 .user-page-slidebar {
 	margin-top: 1.8rem;
 }
+body{
+	margin: 0;
+	padding: 0;
+}
 .user-page-brief{
 	margin: 1rem;
 	display: flex;
@@ -63,6 +67,7 @@ a.userpage-sidebar-menu_item {
 	padding-bottom: 20px;
 	cursor: pointer;
 	border-bottom: solid 1px #525abb;
+	transition-duration: 0.5s;
 }
 
 .tab_lock {
@@ -70,6 +75,7 @@ a.userpage-sidebar-menu_item {
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	background-color: #525abb;
 	color: #fff;
+	
 }
 .purchase-list-page_tab:hover {
 	font-weight: bold;
@@ -143,6 +149,7 @@ a.userpage-sidebar-menu_item {
 	background-color: transparent;
 	padding: 5px 20px;
 	width: 100%;
+	transition-duration: 0.5s;
   }
   .seller-verify_btn:hover {
 	  color: #fff;
@@ -191,6 +198,7 @@ a.userpage-sidebar-menu_item {
 		overflow: hidden;
 		background-color: rgba(255,255,255,0.8);
 		box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+		transition-duration: 0.5s;
 	}
 	.order-card:hover {
 		border: solid 1px #525abb;
@@ -199,11 +207,13 @@ a.userpage-sidebar-menu_item {
 		
 	}
 	.order-content_header {
+		color: #595959;
 		padding: 0.7rem 2rem;
 		border-bottom: 1px solid #a1a1a1;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		align-items: center;
 	}
 	.order-content-header_left {
 		display: flex;
@@ -229,7 +239,6 @@ a.userpage-sidebar-menu_item {
 	}
 	
 	.seller-name {
-		color: #595959;
 		font-size: 1rem;
 		font-weight: bold;
 		padding-left: 15px;
@@ -243,12 +252,12 @@ a.userpage-sidebar-menu_item {
 	}
 	.order-content_item {
 		padding: 1rem 2rem 2rem 2rem;
+		color: #595959;
 	}
 	.item-name {
-		
+		font-weight: bold;
 		font-size: 1.2rem;
 		letter-spacing: 1px;
-		color: #595959;
 	}
 	.item-misc {
 		display: flex;
@@ -276,6 +285,7 @@ a.userpage-sidebar-menu_item {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
+		transition-duration: 0.5s;
 	}
 	.order_btn:hover {
 		background-color: #525abb;
@@ -402,4 +412,55 @@ a.userpage-sidebar-menu_item {
 	font-size: 1rem;
 	margin-top: 0.5rem;
 	
+}
+
+/*許願清單-我的許願*/
+.myWish-card {
+	border: solid 1px rgb(218, 218, 218);
+	padding-right: 2rem;
+	padding-left: 2rem;
+	margin: 1rem 3rem;
+	overflow: hidden;
+	background-color: rgba(255,255,255,0.8);
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+	cursor: pointer;
+	transition-duration: 0.5s;
+}
+
+.wish-dataRange {
+	letter-spacing: 0.5px;
+	font-weight: bold;
+	color: #525abb;
+}
+.wish-priceRange {
+	color: #d0011b;
+	font-size: 1.5rem;
+}
+.add_icon{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background-color: #525abb;
+	color: #fff;
+	text-align: center;
+	line-height: 50px;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+	right: 20px;
+	bottom: 20px;
+	cursor: pointer;
+	transition-duration: 0.5s;
+}
+.add_icon:hover{
+	transform: translateY(-5px);
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+}
+/*彈出視窗*/
+.modal-title{
+	font-weight: bold;
+	color: #595959;
+}
+form.popperForm {
+	margin-top: 0;
+	font-weight: bold;
 }
