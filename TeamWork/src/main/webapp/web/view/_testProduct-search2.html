@@ -32,7 +32,8 @@
 </head>
 
 <body>
-
+<div id="header"></div>	
+<!-- 測試include header 以下是原程式碼
 	<nav class="navbar navbar-expand-lg navbar-light bg-yellow">
 		<a class="navbar-brand" href="#">DayDayGo!</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -51,7 +52,7 @@
 
 			</ul>
 
-			<!-- Button trigger modal -->
+			
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="form_login.html">
 						<i class="fas fa-bell icon"></i>會員通知
@@ -79,7 +80,8 @@
                     </div>
                 </div>
             </form>
-    </div><!-- end of container -->
+	</div> end of container 
+-->
     </div>
 	<div class="container" id="container">
 		<div class="row">
@@ -283,9 +285,18 @@
 	<!-- end of footer -->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<!--     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
-	<!--         crossorigin="anonymous"></script> -->
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script>
+	//以下是JS的include方式
+	$(document).ready(function(){
+		console.log("看看有沒有跑INCLUDE")
+		$.get("testheader.html",function(data){
+		$("#header").html(data);
+		});
+	})
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
 		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 		crossorigin="anonymous"></script>
 	<script>
