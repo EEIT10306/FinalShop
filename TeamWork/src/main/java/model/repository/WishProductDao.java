@@ -16,4 +16,8 @@ public interface WishProductDao {
 
 	public WishProduct update(WishProduct bean) throws SQLException;
 
+	public List<WishProduct> search(String search) throws SQLException;
+
+	public WishProduct update(WishProduct WP, WishProduct bean) throws SQLException;
+
 }

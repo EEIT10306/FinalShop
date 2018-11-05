@@ -41,7 +41,7 @@ public class StoreProductDaoImpl implements StoreProductDao {
 		String hql = "from StoreProduct ";
 		hql += hqlString;
 		List<StoreProduct> LSP = getSession().createQuery(hql, StoreProduct.class).list();
-		System.out.println(LSP);
+//		System.out.println(LSP);
 		return LSP;
 	}
 

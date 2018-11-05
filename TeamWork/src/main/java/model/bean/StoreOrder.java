@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class StoreOrder {
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
 	private Integer sP_id;
 
-	@Column(name = "memS_IdEE", columnDefinition = "int", nullable = false)
+	@Column(name = "memS_IDee", columnDefinition = "int", nullable = false)
 	private Integer m_idOrder;
 
 	@Column(name = "sO_tran", columnDefinition = "nvarchar(max)", nullable = false)
@@ -36,6 +38,9 @@ public class StoreOrder {
 
 	@Column(name = "sO_sumPri", columnDefinition = "int", nullable = false)
 	private Integer sO_sumPrice;
+
+	@Column(name = "sO_time", columnDefinition = "datetime", nullable = false)
+	private Date sO_time;
 
 	@Column(name = "sO_state", columnDefinition = "int", nullable = false)
 	private Integer sO_stateId;

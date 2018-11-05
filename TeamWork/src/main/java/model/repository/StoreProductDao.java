@@ -16,4 +16,6 @@ public interface StoreProductDao {
 
 	public StoreProduct update(StoreProduct bean) throws SQLException;
 
+	public StoreProduct update(StoreProduct SP, StoreProduct bean) throws SQLException;
+
 }

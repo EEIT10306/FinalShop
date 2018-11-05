@@ -665,3 +665,25 @@ svg{
   background-color: rgba(255,255,255,0.8);
   box-shadow: 2px 5px 10px rgba(22,20,19,0.1);
 }
+
+
+
+/*布告欄*/
+.bulletin-list {
+  list-style-type:none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.bulletin-list>li {
+  margin: 1rem;
+  list-style-type:none;
+  
+}
+.bulletin-list>li>a  {
+  text-decoration: none;
+  border-bottom: #999 1px solid;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

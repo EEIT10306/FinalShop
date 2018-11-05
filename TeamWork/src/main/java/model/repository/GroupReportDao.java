@@ -16,4 +16,6 @@ public interface GroupReportDao {
 
 	public GroupReport update(GroupReport bean) throws SQLException;
 
+	public GroupReport update(GroupReport GR, GroupReport bean) throws SQLException;
+
 }

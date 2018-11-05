@@ -1,5 +1,6 @@
 package model.bean;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -46,7 +47,7 @@ public class StoreProduct {
 	@Column(name = "sP_avgAss", columnDefinition = "float", nullable = false)
 	private Integer sP_averageAssess;
 
-	@Column(name = "sP_amtass", columnDefinition = "int", nullable = false)
+	@Column(name = "sP_amtAss", columnDefinition = "int", nullable = false)
 	private Integer sP_amountAssess;
 
 	@Column(name = "sP_state", columnDefinition = "int", nullable = false)
@@ -65,7 +66,7 @@ public class StoreProduct {
 	private State state;
 
 	@OneToMany(mappedBy = "storeProduct")
-	private Set<Images> images;
+	private Set<StoreImages> storeImages = new LinkedHashSet<>();
 
 	public StoreProduct() {
 	}
@@ -94,7 +95,7 @@ public class StoreProduct {
 				+ ", p_id=" + p_id + ", sP_amount=" + sP_amount + ", sP_price=" + sP_price + ", sP_hot=" + sP_hot
 				+ ", sP_amountFavorite=" + sP_amountFavorite + ", sP_averageAssess=" + sP_averageAssess
 				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + ", store=" + store
-				+ ", product=" + product + ", state=" + state + ", images=" + images + "]\r\n";
+				+ ", product=" + product + ", state=" + state + ", storeImages=" + storeImages + "]\r\n";
 	}
 
 	public Integer getsP_id() {
@@ -217,12 +218,12 @@ public class StoreProduct {
 		this.state = state;
 	}
 
-	public Set<Images> getImages() {
-		return images;
+	public Set<StoreImages> getStoreImages() {
+		return storeImages;
 	}
 
-	public void setImages(Set<Images> images) {
-		this.images = images;
+	public void setStoreImages(Set<StoreImages> storeImages) {
+		this.storeImages = storeImages;
 	}
 
 }

@@ -16,4 +16,6 @@ public interface StoreCallbackDao {
 
 	public StoreCallback update(StoreCallback bean) throws SQLException;
 
+	public StoreCallback update(StoreCallback SC, StoreCallback bean) throws SQLException;
+
 }

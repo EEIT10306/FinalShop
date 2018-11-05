@@ -3,6 +3,7 @@ package controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +25,13 @@ public class RegisterController {
 	private Matcher matcher = null;
 	
 	@Autowired
-	MemberService ms;
+	MemberService memberservice;
 	
 	@RequestMapping(value = "/RegisterServlet" , method = RequestMethod.POST )
 	@ResponseBody
 	private String RegisterServlet(Member member) {
 		System.out.println("RegisterServlet");
 		//接收資料
-		System.out.println(member);
 		//驗證資料
 		if (member.getM_account() == null|| member.getM_account().trim().length() == 0) {
 			return "accountNull";
@@ -58,11 +58,11 @@ public class RegisterController {
 		
 		//呼叫model
 		//根據model執行結果，導向view
-		if(ms.idExists(member.getM_account())) {
+		if(memberservice.idExists(member.getM_account())) {
 			return "existsAccount";
 		} else {
 			try {
-				ms.insert(member);
+				memberservice.insert(member);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -76,6 +76,55 @@ public class RegisterController {
 		value = value.replaceAll("<", "&lt;");
 		value = value.replaceAll(">", "&gt;");
 		return value;
+	}
+	
+	@RequestMapping(value = "/FBRegister", method = RequestMethod.POST)
+	@ResponseBody
+	public String getFbUserInfo(String userInfo) {
+		System.out.println(userInfo);
+		JSONObject json = new JSONObject(userInfo);
+		System.out.println(json.getString("email"));
+		
+		if(memberservice.idExists(json.getString("email"))) {
+			return "existsAccount";
+		} else {
+			try {
+				Member member = new Member();
+				member.setM_account(json.getString("email"));
+				member.setM_password("facebook");
+				member.setM_name(json.getString("name"));
+				member.setM_mail(json.getString("email"));
+				memberservice.insert(member);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "account";
+		}
+	}
+	
+	@RequestMapping(value = "/GoogleRegister", method = RequestMethod.POST)
+	@ResponseBody
+	public String getGgUserInfo(String userInfo) {
+		System.out.println(userInfo);
+		JSONObject json = new JSONObject(userInfo);
+		System.out.println(json.getString("email"));
+		
+		if(memberservice.idExists(json.getString("email"))) {
+			return "existsAccount";
+		} else {
+			try {
+				Member member = new Member();
+				member.setM_account(json.getString("email"));
+				member.setM_password("google");
+				member.setM_name(json.getString("name"));
+				member.setM_mail(json.getString("email"));
+				memberservice.insert(member);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "account";
+		}
+		
 	}
 }
 
