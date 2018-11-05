@@ -89,6 +89,7 @@ public class AchievementService {
 		//會員ID，增加該會員金幣
 		Member m_bean = memberDao.selectByPk(cA_bean.getM_id());
 		m_bean.setM_coin(m_bean.getM_coin()+bounce);
+
 	}
 
 }

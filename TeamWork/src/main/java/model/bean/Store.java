@@ -1,6 +1,5 @@
 package model.bean;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -78,8 +77,7 @@ public class Store {
 	public String toString() {
 		return "Store [s_id=" + s_id + ", seller_id=" + seller_id + ", s_name=" + s_name + ", s_photo=" + s_photo
 				+ ", s_context=" + s_context + ", p_id=" + p_id + ", s_address=" + s_address + ", s_telephone="
-				+ s_telephone + ", s_web=" + s_web + ", s_stateId=" + s_stateId + ", seller=" + seller + ", product="
-				+ product + ", state=" + state + "]\r\n";
+				+ s_telephone + ", s_web=" + s_web + ", s_stateId=" + s_stateId + "]\r\n";
 	}
 
 	public Integer getS_id() {

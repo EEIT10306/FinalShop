@@ -18,13 +18,15 @@
         crossorigin="anonymous">
 
     <!-- main CSS -->
-    <link rel="stylesheet" href="../style/main.css">
+    <!-- <link rel="stylesheet" href="/TeamWork/web/style/main.css"> -->
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
-        
+          
+    <script>
     
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
@@ -48,9 +50,13 @@
                             <i class="fas fa-bell icon"></i>會員通知
                         </a>
                     </li>
-            <li class="nav-item">
-                <a class="nav-link" href="form_login.html">
+
+            <li class="nav-item" id="Memberlogin">
+                <a class="nav-link" href="form_login.html" name="MemberLogin">
                     <i class="fas fa-user-circle icon"></i>會員登入 Member login
+                </a>
+                <a class="nav-link" href="form_login.html" name="MemberName" style="display:none">
+                    <i class="fas fa-user-circle icon"></i>會員名稱
                 </a>
             </li>
         </ul>
@@ -58,31 +64,67 @@
 </nav>
 <div class="belowNavbar">
     <div class="container">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">項目</button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">許願池</a>
-                    <a class="dropdown-item" href="#">限時團購</a>
-                    <a class="dropdown-item" href="#">購物商城</a>
+        <form method="GET" action="/TeamWork/search">
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+                            <option  value="wish" class="dropdown-item">許願池</option>
+                            <option  value="groupon" class="dropdown-item">限時團購</option>
+                            <option  value="store" class="dropdown-item">購物商城</option>
+                        </select>
+                    </div>
+                    <input name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-append">
+                        <button   class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
                 </div>
-            </div>
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Search</button>
-            </div>
-        </div>
+            </form>
     </div><!-- end of container -->
 </div>
-
+<div id="footer"></div>
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            console.log("看看有沒有跑INCLUDE")
+            $.get("testfooter.html",function(data){
+            $("#footer").html(data);
+            });
+        })
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    
+    <script>
+    $(document).ready(function(){
+        
+        var cookies = document.cookie;
+        //====設定cookie====================
+        //expire_days = 1; // 過期日期(天)
+        var day = new Date();
+        //date.setTime(date.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+        day.setTime(day.getTime() + (60 * 1000));
+        var expires = "expires=" + day.toGMTString();
+        // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+        document.cookie = "email=mity@123;" + expires + '; path=/';
+        console.log(document.cookie)
+
+        if (cookies==null|cookies==false|cookies==undefined|cookies=="undefined") {
+            console.log("cookies是null")
+        } else {
+            console.log("cookies有帳號")
+            $("[name='MemberLogin']").hide();
+            $("[name='MemberName']").show();
+        }
+    })
+    </script>
 </body>
 </html>

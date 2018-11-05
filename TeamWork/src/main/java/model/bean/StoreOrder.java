@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class StoreOrder {
 	@Column(name = "sP_ID", columnDefinition = "int", nullable = false)
 	private Integer sP_id;
 
-	@Column(name = "memS_IdEE", columnDefinition = "int", nullable = false)
+	@Column(name = "memS_IDee", columnDefinition = "int", nullable = false)
 	private Integer m_idOrder;
 
 	@Column(name = "sO_tran", columnDefinition = "nvarchar(max)", nullable = false)
@@ -36,6 +38,9 @@ public class StoreOrder {
 
 	@Column(name = "sO_sumPri", columnDefinition = "int", nullable = false)
 	private Integer sO_sumPrice;
+
+	@Column(name = "sO_time", columnDefinition = "datetime", nullable = false)
+	private Date sO_time;
 
 	@Column(name = "sO_state", columnDefinition = "int", nullable = false)
 	private Integer sO_stateId;
@@ -56,7 +61,7 @@ public class StoreOrder {
 	}
 
 	public StoreOrder(Integer sO_id, Integer sP_id, Integer m_idOrder, String sO_transport, String sO_pay,
-			String sO_remarks, Integer sO_amount, Integer sO_sumPrice, Integer sO_stateId) {
+			String sO_remarks, Integer sO_amount, Integer sO_sumPrice, Date sO_time, Integer sO_stateId) {
 		super();
 		this.sO_id = sO_id;
 		this.sP_id = sP_id;
@@ -66,6 +71,7 @@ public class StoreOrder {
 		this.sO_remarks = sO_remarks;
 		this.sO_amount = sO_amount;
 		this.sO_sumPrice = sO_sumPrice;
+		this.sO_time = sO_time;
 		this.sO_stateId = sO_stateId;
 	}
 
@@ -73,8 +79,7 @@ public class StoreOrder {
 	public String toString() {
 		return "StoreOrder [sO_id=" + sO_id + ", sP_id=" + sP_id + ", m_idOrder=" + m_idOrder + ", sO_transport="
 				+ sO_transport + ", sO_pay=" + sO_pay + ", sO_remarks=" + sO_remarks + ", sO_amount=" + sO_amount
-				+ ", sO_sumPrice=" + sO_sumPrice + ", sO_stateId=" + sO_stateId + ", storeProduct=" + storeProduct
-				+ ", member=" + member + ", state=" + state + "]\r\n";
+				+ ", sO_sumPrice=" + sO_sumPrice + ", sO_time=" + sO_time + ", sO_stateId=" + sO_stateId + "]\r\n";
 	}
 
 	public Integer getsO_id() {
@@ -139,6 +144,14 @@ public class StoreOrder {
 
 	public void setsO_sumPrice(Integer sO_sumPrice) {
 		this.sO_sumPrice = sO_sumPrice;
+	}
+
+	public Date getsO_time() {
+		return sO_time;
+	}
+
+	public void setsO_time(Date sO_time) {
+		this.sO_time = sO_time;
 	}
 
 	public Integer getsO_stateId() {

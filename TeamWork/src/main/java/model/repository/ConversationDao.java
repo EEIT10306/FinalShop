@@ -16,4 +16,6 @@ public interface ConversationDao {
 
 	public Conversation update(Conversation bean) throws SQLException;
 
+	public Conversation update(Conversation C, Conversation bean) throws SQLException;
+
 }

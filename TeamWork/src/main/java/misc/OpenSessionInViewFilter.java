@@ -16,7 +16,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 //@WebFilter(
-//		urlPatterns= {"/*"}
+//		urlPatterns= {"/StoreProductForm"}
 //)
 public class OpenSessionInViewFilter implements Filter {
 	private SessionFactory sessionFactory;
@@ -25,7 +25,7 @@ public class OpenSessionInViewFilter implements Filter {
 		ServletContext application = filterConfig.getServletContext();
 		ApplicationContext context = (ApplicationContext)
 				application.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-		sessionFactory = (SessionFactory) context.getBean("sessionFactory");
+		sessionFactory = (SessionFactory) context.getBean("sessionF");
 	}
 	@Override
 	public void doFilter(ServletRequest req,

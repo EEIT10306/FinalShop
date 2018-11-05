@@ -41,7 +41,7 @@ public class StoreProductDaoImpl implements StoreProductDao {
 		String hql = "from StoreProduct ";
 		hql += hqlString;
 		List<StoreProduct> LSP = getSession().createQuery(hql, StoreProduct.class).list();
-		System.out.println(LSP);
+//		System.out.println(LSP);
 		return LSP;
 	}
 
@@ -73,8 +73,14 @@ public class StoreProductDaoImpl implements StoreProductDao {
 				SP.setsP_amount(bean.getsP_amount());
 			if (bean.getsP_price() != null)
 				SP.setsP_price(bean.getsP_price());
+			if (bean.getsP_transport() != null)
+				SP.setsP_transport(bean.getsP_transport());
+			if (bean.getsP_new() != null)
+				SP.setsP_new(bean.getsP_new());
 			if (bean.getsP_hot() != null)
 				SP.setsP_hot(bean.getsP_hot());
+			if (bean.getsP_time() != null)
+				SP.setsP_time(bean.getsP_time());
 			if (bean.getsP_amountFavorite() != null)
 				SP.setsP_amountFavorite(bean.getsP_amountFavorite());
 			if (bean.getsP_averageAssess() != null)
@@ -103,8 +109,14 @@ public class StoreProductDaoImpl implements StoreProductDao {
 			SP.setsP_amount(bean.getsP_amount());
 		if (bean.getsP_price() != null)
 			SP.setsP_price(bean.getsP_price());
+		if (bean.getsP_transport() != null)
+			SP.setsP_transport(bean.getsP_transport());
+		if (bean.getsP_new() != null)
+			SP.setsP_new(bean.getsP_new());
 		if (bean.getsP_hot() != null)
 			SP.setsP_hot(bean.getsP_hot());
+		if (bean.getsP_time() != null)
+			SP.setsP_time(bean.getsP_time());
 		if (bean.getsP_amountFavorite() != null)
 			SP.setsP_amountFavorite(bean.getsP_amountFavorite());
 		if (bean.getsP_averageAssess() != null)

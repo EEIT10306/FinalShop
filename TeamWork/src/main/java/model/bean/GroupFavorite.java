@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "mem_ID", "group_ID" }) })
 public class GroupFavorite {
 
 	@Id
@@ -42,8 +45,7 @@ public class GroupFavorite {
 
 	@Override
 	public String toString() {
-		return "GroupFavorite [gF_id=" + gF_id + ", m_idFavorite=" + m_idFavorite + ", g_id=" + g_id + ", member="
-				+ member + ", groupon=" + groupon + "]\r\n";
+		return "GroupFavorite [gF_id=" + gF_id + ", m_idFavorite=" + m_idFavorite + ", g_id=" + g_id + "]\r\n";
 	}
 
 	public Integer getgF_id() {

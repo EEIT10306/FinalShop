@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "wish_ID", "mem_IDee" }) })
 public class WishBid {
 
 	@Id
@@ -72,7 +75,7 @@ public class WishBid {
 	public String toString() {
 		return "WishBid [wB_id=" + wB_id + ", w_id=" + w_id + ", m_idBid=" + m_idBid + ", wB_bid=" + wB_bid
 				+ ", wB_context=" + wB_context + ", wB_freight=" + wB_freight + ", wB_time=" + wB_time + ", wB_stateId="
-				+ wB_stateId + ", wish=" + wish + ", member=" + member + ", state=" + state + "]\r\n";
+				+ wB_stateId + "]\r\n";
 	}
 
 	public Integer getwB_id() {

@@ -16,4 +16,6 @@ public interface WishAssessDao {
 
 	public WishAssess update(WishAssess bean) throws SQLException;
 
+	public WishAssess update(WishAssess WA, WishAssess bean) throws SQLException;
+
 }

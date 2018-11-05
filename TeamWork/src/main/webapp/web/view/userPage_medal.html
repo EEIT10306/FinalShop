@@ -222,6 +222,7 @@
             var userData = [];
             var userData2 = [];
             var state = 6;
+<<<<<<< HEAD
             loadData();
             function loadData(){
             //下載資料
@@ -299,6 +300,66 @@
                     if ($(".container-wrapper").html() == "") {
                         initData();
                     }
+=======
+            //下載資料
+            $.ajax({
+                url: dataurl,
+                error: function () {
+                    console.log("載入失敗")
+                },
+                success: function (res) {
+                    userData = res
+                    console.log("載入資料" + userData.length)
+                    updateData()
+                }
+            })
+            $.ajax({
+                url: dataurl2,
+                error: function () {
+                    console.log("載入失敗")
+                },
+                success: function (res) {
+                    userData2 = res
+                    console.log("載入資料" + userData2.length)
+                }
+            })
+            function updateData() {
+                if (state == 0) {
+                    Task();
+                } else {
+                    $(".container-wrapper").html("");
+                    userData.forEach(function (item) {
+                        if (state == item.cA_stateId) {
+                            var amount = parseInt(item.cA_amount);
+                            console.log("parseInt(item.cA_amount)=" + amount);
+                            var total = parseInt(item.achievement.a_amount);
+                            console.log("parseInt(item.achievement.a_amount)=" + total);
+                            var number = (amount / total * 100).toFixed();
+                            var itemEl = $(`
+                                <div class="medal-card flag${item.cA_stateId}" id="${item.cA_id}">
+                                    <div class="medal-img">
+                                        <img src="../images/user/medal/${item.a_id}.svg">
+                                    </div>
+                                    <div class="medal-detail">
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar" style="width: ${number}%;">${number}%</div>
+                                        </div>
+                                        <div class="medal-detail-text">
+                                            <div class="medal-name">${item.achievement.a_context}</div>
+                                            <div class="progress-text">${item.cA_amount}/${item.achievement.a_amount}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `)
+                            $(".container-wrapper").append(itemEl);
+                        }
+                    });
+                    $(".flag7").click(function () {
+                        var cA_ID = $(this).attr("id");
+                        alert(cA_ID);
+                        
+                    });
+>>>>>>> branch 'master' of https://github.com/EEIT10306/FinalShop.git
                 }
             }
             function initData() {

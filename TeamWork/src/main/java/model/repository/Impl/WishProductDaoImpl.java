@@ -81,6 +81,10 @@ public class WishProductDaoImpl implements WishProductDao {
 		return null;
 	}
 
+	public List<WishProduct> search(String search) throws SQLException {
+		return getSession().createQuery("from WishProduct WHERE name LIKE '%"+search+"%'", WishProduct.class).setMaxResults(50).list();
+	
+	}
 	public WishProduct update(WishProduct WP, WishProduct bean) throws SQLException {
 		if (bean.getW_id() != null)
 			WP.setW_id(bean.getW_id());

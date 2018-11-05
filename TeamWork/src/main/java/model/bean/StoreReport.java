@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "sP_ID", "mem_ID" }) })
 public class StoreReport {
 
 	@Id
@@ -55,8 +58,7 @@ public class StoreReport {
 	@Override
 	public String toString() {
 		return "StoreReport [sR_id=" + sR_id + ", sP_id=" + sP_id + ", m_idReport=" + m_idReport + ", sR_content="
-				+ sR_content + ", sR_stateId=" + sR_stateId + ", storeProduct=" + storeProduct + ", member=" + member
-				+ ", state=" + state + "]\r\n";
+				+ sR_content + ", sR_stateId=" + sR_stateId + "]\r\n";
 	}
 
 	public Integer getsR_id() {

@@ -13,7 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import model.bean.StoreImages;
+import model.bean.StoreProduct;
 
 @Configuration
 @ComponentScan(basePackages = { "model" })
@@ -43,36 +47,13 @@ public class SpringJavaConfiguration {
 	}
 	
 ////不自動開交易	properties()需加入 ("hibernate.current_session_context_class" , "thread")
-//	@Bean
-//	public SessionFactory sessionFactory() {
+//	@Bean(name="sessionF")
+//	public SessionFactory sessionFactoryHAHA() {
 //		LocalSessionFactoryBuilder builder =
 //				new LocalSessionFactoryBuilder(dataSource());
 //		builder.addProperties(properties());
-//		builder.addAnnotatedClass(State.class);
-//		builder.addAnnotatedClass(Member.class);
-//		builder.addAnnotatedClass(Conversation.class);
-//		builder.addAnnotatedClass(Achievement.class);
-//		builder.addAnnotatedClass(Seller.class);
-//		builder.addAnnotatedClass(Product.class);
-//		builder.addAnnotatedClass(CommitAchievement.class);
-//		builder.addAnnotatedClass(Store.class);
-//		builder.addAnnotatedClass(StoreProduct.class);
-//		builder.addAnnotatedClass(StoreOrder.class);
-//		builder.addAnnotatedClass(StoreReport.class);
-//		builder.addAnnotatedClass(StoreAssess.class);
-//		builder.addAnnotatedClass(DistrictType.class);	
-//		builder.addAnnotatedClass(Wish.class);	
-//		builder.addAnnotatedClass(WishProduct.class);	
-//		builder.addAnnotatedClass(WishMessage.class);	
-//		builder.addAnnotatedClass(WishReport.class);	
-//		builder.addAnnotatedClass(WishAssess.class);	
-//		builder.addAnnotatedClass(Group.class);	
-//		builder.addAnnotatedClass(GroupProduct.class);	
-//		builder.addAnnotatedClass(GroupService.class);	
-//		builder.addAnnotatedClass(GroupMessage.class);	
-//		builder.addAnnotatedClass(GroupReport.class);	
-//		builder.addAnnotatedClass(GroupAssess.class);	
-//		builder.addAnnotatedClass(Images.class);			
+//		builder.addAnnotatedClass(StoreImages.class);
+//		builder.addAnnotatedClass(StoreProduct.class);			
 //		return builder.buildSessionFactory();
 //	}
 	

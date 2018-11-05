@@ -38,7 +38,8 @@ form {
     margin-top: 1.5em;
 }
 .filter-button {
-    width: 100%;
+	width: 100%;
+	margin-top: 20px;
 }
 /*card*/
 .card-search {
@@ -116,6 +117,10 @@ p.card-text {
     background-size:  cover;
     background-repeat: no-repeat;
 }
+.hotSale-box{
+			border: 1px solid gray;
+			margin: auto;			
+		}
 
 /*分頁標籤*/
 .nav-tabs li.nav-item>a {
@@ -554,6 +559,24 @@ p { margin: 0; }
 	letter-spacing: 1px;
 }
 
+<<<<<<< HEAD
+option.dropdown-item {
+	background-color: #fff;
+	appearance: none;
+	border: none;
+    
+}
+
+.form-control{
+	margin-top: 2px;
+	margin-bottom: 5px;
+}
+
+.btn .btn-outline-warning .filter-button {
+	margin-top: 20px;
+	
+}
+=======
 
 
 
@@ -643,3 +666,4 @@ p { margin: 0; }
 #form-step-2,#form-step-3{
 	display: none;
   }
+>>>>>>> branch 'master' of https://github.com/EEIT10306/FinalShop.git
