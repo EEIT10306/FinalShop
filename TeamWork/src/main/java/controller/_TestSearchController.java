@@ -1,6 +1,5 @@
 package controller;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import model.bean.Product;
-import model.bean.StoreImages;
 import model.bean.StoreProduct;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceProduct;
@@ -117,15 +116,16 @@ public class _TestSearchController {
 		private _TestServiceProduct pro;
 	 
 		@ResponseBody
-		@RequestMapping(path = "/changeStoreFormSelect", method = RequestMethod.POST,produces="application/json;chartset=UTF-8")
+		@RequestMapping(path = "/changeStoreFormSelect" ,method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
 //		public List<Product> search(Product product) {
 			public String search(Product product) {	
 				List<Product> lis =pro.getSelect(product);
 				System.out.println(lis);
-			   Gson gson = new Gson();
+//			   Gson gson = new Gson();
+				Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 			   String json = gson.toJson(lis);
 			   System.out.println(json);   
-	   
+			  
 			   return json;
 				//return new JSONArray(lis);
 //			   System.out.println(json);
@@ -147,5 +147,22 @@ public class _TestSearchController {
 				System.out.println("hahaha");
 				return lis;
 		}
+//		@Autowired
+//		private _TestServiceStoreProduct spro;
+//	 
+//		@ResponseBody
+//		@RequestMapping(path = "/StoreProductForm", method = RequestMethod.GET)
+//		public List<StoreProduct> changeLeftProduct(String search) {
+//			System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+//				System.out.println(search);
+//				System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuul");
+//				List<StoreProduct> lis =spro.getStoreProductForm(search);
+//				
+////				System.out.println(lis);
+//				System.out.println("hahaha");
+//				return lis;
+//		}
+//		
+//		
 		
 }

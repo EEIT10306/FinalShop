@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>會員中心｜我的成就</title>
+    <title>會員中心｜購買清單-商店</title>
     <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 
     <!-- Required meta tags -->
@@ -81,19 +81,20 @@
                     </div>
                 </div>
                 <div class="userpage-sidebar-menu">
-                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item">
+
+                    <a href="" class="userpage-sidebar-menu_item">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Man.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">我的帳戶</div>
                     </a>
-                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item">
+                    <a href="" class="userpage-sidebar-menu_item">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user//Checklist.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">購買清單</div>
                     </a>
-                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item">
+                    <a href="" class="userpage-sidebar-menu_item">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Medal.svg">
                         </div>
@@ -105,22 +106,79 @@
                         </div>
                         <div class="userpage-sidebar-menu-text">通知記錄</div>
                     </a>
-                    <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                    <a href="" class="userpage-sidebar-menu_item">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Analytics.svg">
                         </div>
-                        <div class="userpage-sidebar-menu-text">賣家中心</div>
+                        <div class="userpage-sidebar-menu-text">販賣清單</div>
                     </a>
                 </div>
             </div>
             <div class="purchase-list-page_tabs-container col-lg-10">
                 <div class="row">
-                    <div class="purchase-list-page_tab col-sm-6" id="oder1">已完成</div>
-                    <div class="purchase-list-page_tab col-sm-6" id="oder5">待完成</div>
+                    <div class="purchase-list-page_tab col-sm-2" id="oder1">全部</div>
+                    <div class="purchase-list-page_tab col-sm-2" id="oder5">待出貨</div>
+                    <div class="purchase-list-page_tab col-sm-2" id="oder5">配送中</div>
+                    <div class="purchase-list-page_tab col-sm-2" id="oder2">待付款/收貨</div>
+                    <div class="purchase-list-page_tab col-sm-2" id="oder5">完成</div>
+                    <div class="purchase-list-page_tab col-sm-2" id="oder6">取消</div>
                 </div>
                 <div class="row">
                     <div class="container-wrapper">
-                        
+                        <div class="order-card">
+                            <div class="order-content_header row">
+                                <div class="order-content-header_left">
+                                    <div class="seller-pic">
+                                        <img src="../images/user/account/profile/001.png">
+                                    </div>
+                                    <div class="seller-name">twofishsman</div>
+                                </div>
+                                <div class="order-content-header_right"></div>
+                            </div>
+                            <div class="order-content_item row">
+                                <div class="item-image">
+                                </div>
+                                <div class="item-detail col-lg">
+                                    <div class="item-name">【台灣現貨|今天訂明天到】小米手環2 | 智慧型手環 | 生活防水 | iOS Android可用</div>
+                                    <div class="item-misc">
+                                        <div class="misc">
+                                            <span class="total">$ 690</span>
+                                            <span class="singlePrice">單價 $ 690 數量 1</span>
+                                        </div>
+                                        <input type="button" value="確認資訊" class="btn btn-sm order_btn">
+                                    </div>
+                                    <div class="item-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-card">
+                            <div class="order-content_header row">
+                                <div class="order-content-header_left">
+                                    <div class="seller-pic">
+                                        <img src="../images/user/account/profile/001.png">
+                                    </div>
+                                    <div class="seller-name">twofishsman</div>
+                                </div>
+                                <div class="order-content-header_right"></div>
+                            </div>
+                            <div class="order-content_item row">
+                                <div class="item-image">
+                                </div>
+                                <div class="item-detail col-lg">
+                                    <div class="item-name">【台灣現貨|今天訂明天到】小米手環2 | 智慧型手環 | 生活防水 | iOS Android可用</div>
+                                    <div class="item-misc">
+                                        <div class="misc">
+                                            <span class="total">$ 690</span>
+                                            <span class="singlePrice">單價 $ 690 數量 1</span>
+                                        </div>
+                                        <input type="button" value="確認資訊" class="btn btn-sm order_btn">
+                                    </div>
+                                    <div class="item-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,16 +186,17 @@
         </div>
     </div> <!-- end of container -->
 
-    <!-- Optional JavaScript -->
-    <script>
-    </script>
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <script>
+        
+    </script>
 </body>
 
 </html>

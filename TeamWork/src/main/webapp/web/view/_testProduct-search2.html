@@ -320,8 +320,7 @@
 									.ajax({
 										type : "GET",
 
-										url : "/TeamWork/StoreProductForm?"
-												+ str_value,
+										url : "/TeamWork/StoreProductForm?"+ str_value,
 
 										success : function(jsonback) {
 											alert("server傳回 = " + jsonback);
@@ -402,9 +401,8 @@
 															url : "/TeamWork/changeStoreFormSelect",
 															data : {"p_id" : exampleFormControlSelect1},
 															success : function(jsonback) {
-																alert("server傳回 = "
-																		+ jsonback);
-																//             	var json=JSON.parse(jsonback);
+																alert("server傳回 = "+ jsonback);
+																            	var json=JSON.parse(jsonback);
 																//             	alert(json);
 
 																var txtselect = "";
@@ -413,10 +411,10 @@
 																//                 txtselect += "<option value="+x+">"+json[x].name+"</option>";        
 																//            	}
 																// 			var txtselect = "" ; 
-																alert(jsonback[0].p_name);
-																for (x = 0; x < jsonback.length; x++) {
+																alert(json[0].p_name);
+																for (x = 0; x < json.length; x++) {
 																	txtselect += "<option value="+x+">"
-																			+ jsonback[x].p_name
+																			+ json[x].p_name
 																			+ "</option>";
 
 																}
