@@ -9,11 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "memC_IDee", "memC_ID" }) })
 public class Conversation {
 
 	@Id
@@ -65,8 +62,7 @@ public class Conversation {
 	@Override
 	public String toString() {
 		return "Conversation [c_id=" + c_id + ", m_idConversation=" + m_idConversation + ", m_id=" + m_id
-				+ ", c_context=" + c_context + ", c_time=" + c_time + ", c_stateId=" + c_stateId
-				+ ", memberConversation=" + memberConversation + ", member=" + member + ", state=" + state + "]\r\n";
+				+ ", c_context=" + c_context + ", c_time=" + c_time + ", c_stateId=" + c_stateId + "]\r\n";
 	}
 
 	public Integer getC_id() {

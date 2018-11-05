@@ -45,8 +45,7 @@ public class WishFavorite {
 
 	@Override
 	public String toString() {
-		return "WishFavorite [wF_id=" + wF_id + ", m_idFavorite=" + m_idFavorite + ", w_id=" + w_id + ", member="
-				+ member + ", wish=" + wish + "]\r\n";
+		return "WishFavorite [wF_id=" + wF_id + ", m_idFavorite=" + m_idFavorite + ", w_id=" + w_id + "]\r\n";
 	}
 
 	public Integer getwF_id() {

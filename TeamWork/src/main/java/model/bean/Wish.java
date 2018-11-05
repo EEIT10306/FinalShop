@@ -106,8 +106,7 @@ public class Wish {
 				+ w_context + ", d_id=" + d_id + ", w_startDate=" + w_startDate + ", w_endDate=" + w_endDate
 				+ ", w_sumPriceBottom=" + w_sumPriceBottom + ", w_sumPriceTop=" + w_sumPriceTop + ", w_changeTime="
 				+ w_changeTime + ", w_hot=" + w_hot + ", w_amountFavorite=" + w_amountFavorite + ", w_completeTime="
-				+ w_completeTime + ", w_stateId=" + w_stateId + ", member=" + member + ", product=" + product
-				+ ", districtType=" + districtType + ", state=" + state + "]\r\n";
+				+ w_completeTime + ", w_stateId=" + w_stateId + "]\r\n";
 	}
 
 	public Integer getW_id() {

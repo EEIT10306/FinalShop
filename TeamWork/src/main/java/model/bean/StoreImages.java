@@ -38,8 +38,7 @@ public class StoreImages {
 
 	@Override
 	public String toString() {
-		return "StoreImages [sI_id=" + sI_id + ", sP_id=" + sP_id + ", sI_context=" + sI_context + ", storeProduct="
-				+ storeProduct + "]\r\n";
+		return "StoreImages [sI_id=" + sI_id + ", sP_id=" + sP_id + ", sI_context=" + sI_context + "]\r\n";
 	}
 
 	public Integer getsI_id() {
@@ -64,10 +63,6 @@ public class StoreImages {
 
 	public void setsI_context(String sI_context) {
 		this.sI_context = sI_context;
-	}
-
-	public StoreProduct getStoreProduct() {
-		return storeProduct;
 	}
 
 	public void setStoreProduct(StoreProduct storeProduct) {

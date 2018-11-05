@@ -24,10 +24,10 @@ public class StoreMessage {
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
 	private Integer m_idMessage;
 
-	@Column(name = "sM_cont", columnDefinition = "int", nullable = false)
+	@Column(name = "sM_cont", columnDefinition = "nvarchar(Max)", nullable = false)
 	private Integer sM_context;
 
-	@Column(name = "sM_time", columnDefinition = "daetime", nullable = false)
+	@Column(name = "sM_time", columnDefinition = "datetime", nullable = false)
 	private Date sM_time;
 
 	@Column(name = "sM_state", columnDefinition = "int", nullable = false)
@@ -62,8 +62,7 @@ public class StoreMessage {
 	@Override
 	public String toString() {
 		return "StoreMessage [sM_id=" + sM_id + ", sP_id=" + sP_id + ", m_idMessage=" + m_idMessage + ", sM_context="
-				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + ", storeProduct=" + storeProduct
-				+ ", member=" + member + ", state=" + state + "]\r\n";
+				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + "]\r\n";
 	}
 
 	public Integer getsM_id() {

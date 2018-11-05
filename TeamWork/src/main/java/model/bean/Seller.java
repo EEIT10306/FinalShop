@@ -52,8 +52,7 @@ public class Seller {
 	@Override
 	public String toString() {
 		return "Seller [seller_id=" + seller_id + ", m_id=" + m_id + ", seller_bank=" + seller_bank + ", seller_card="
-				+ seller_card + ", seller_stateId=" + seller_stateId + ", member=" + member + ", state=" + state
-				+ "]\r\n";
+				+ seller_card + ", seller_stateId=" + seller_stateId + "]\r\n";
 	}
 
 	public Integer getSeller_id() {
