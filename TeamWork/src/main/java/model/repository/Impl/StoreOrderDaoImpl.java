@@ -103,4 +103,5 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 			SO.setsO_amount(bean.getsO_stateId());
 		return SO;
 	}
+	
 }
