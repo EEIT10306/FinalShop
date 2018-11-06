@@ -42,7 +42,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [p_id=" + p_id + ", p_name=" + p_name + ", p_parentsId=" + p_parentsId + ", p_stage=" + p_stage
-				+ ", product=" + product + "]\r\n";
+				+ "]\r\n";
 	}
 
 	public Integer getP_id() {

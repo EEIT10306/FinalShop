@@ -73,6 +73,8 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 				SO.setsO_amount(bean.getsO_amount());
 			if (bean.getsO_sumPrice() != null)
 				SO.setsO_sumPrice(bean.getsO_sumPrice());
+			if (bean.getsO_time() != null)
+				SO.setsO_time(bean.getsO_time());
 			if (bean.getsO_amount() != null)
 				SO.setsO_amount(bean.getsO_stateId());
 			return SO;
@@ -95,6 +97,8 @@ public class StoreOrderDaoImpl implements StoreOrderDao {
 			SO.setsO_amount(bean.getsO_amount());
 		if (bean.getsO_sumPrice() != null)
 			SO.setsO_sumPrice(bean.getsO_sumPrice());
+		if (bean.getsO_time() != null)
+			SO.setsO_time(bean.getsO_time());
 		if (bean.getsO_amount() != null)
 			SO.setsO_amount(bean.getsO_stateId());
 		return SO;

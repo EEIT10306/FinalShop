@@ -75,7 +75,7 @@ public class WishBid {
 	public String toString() {
 		return "WishBid [wB_id=" + wB_id + ", w_id=" + w_id + ", m_idBid=" + m_idBid + ", wB_bid=" + wB_bid
 				+ ", wB_context=" + wB_context + ", wB_freight=" + wB_freight + ", wB_time=" + wB_time + ", wB_stateId="
-				+ wB_stateId + ", wish=" + wish + ", member=" + member + ", state=" + state + "]\r\n";
+				+ wB_stateId + "]\r\n";
 	}
 
 	public Integer getwB_id() {

@@ -62,8 +62,7 @@ public class StoreCallback {
 	@Override
 	public String toString() {
 		return "StoreCallback [sC_id=" + sC_id + ", sM_id=" + sM_id + ", m_idCallback=" + m_idCallback + ", sC_context="
-				+ sC_context + ", sC_time=" + sC_time + ", sC_stateId=" + sC_stateId + ", storeMessage=" + storeMessage
-				+ ", member=" + member + ", state=" + state + "]\r\n";
+				+ sC_context + ", sC_time=" + sC_time + ", sC_stateId=" + sC_stateId + "]\r\n";
 	}
 
 	public Integer getsC_id() {

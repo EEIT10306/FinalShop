@@ -81,8 +81,7 @@ public class WishProduct {
 	public String toString() {
 		return "WishProduct [wP_id=" + wP_id + ", w_id=" + w_id + ", wP_name=" + wP_name + ", p_id=" + p_id
 				+ ", wP_amount=" + wP_amount + ", wP_priceBottom=" + wP_priceBottom + ", wP_priceTop=" + wP_priceTop
-				+ ", wP_completeTime=" + wP_completeTime + ", wP_stateId=" + wP_stateId + ", wish=" + wish
-				+ ", product=" + product + ", state=" + state + ", wishImages=" + wishImages + "]\r\n";
+				+ ", wP_completeTime=" + wP_completeTime + ", wP_stateId=" + wP_stateId + "]\r\n";
 	}
 
 	public Integer getwP_id() {

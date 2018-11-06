@@ -62,8 +62,7 @@ public class WishCallback {
 	@Override
 	public String toString() {
 		return "WishCallback [wC_id=" + wC_id + ", wM_id=" + wM_id + ", m_idCallback=" + m_idCallback + ", wC_context="
-				+ wC_context + ", wC_time=" + wC_time + ", wC_stateId=" + wC_stateId + ", wishMessage=" + wishMessage
-				+ ", member=" + member + ", state=" + state + "]\r\n";
+				+ wC_context + ", wC_time=" + wC_time + ", wC_stateId=" + wC_stateId + "]\r\n";
 	}
 
 	public Integer getwC_id() {

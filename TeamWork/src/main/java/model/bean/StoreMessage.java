@@ -24,6 +24,7 @@ public class StoreMessage {
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
 	private Integer m_idMessage;
 
+
 	@Column(name = "sM_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String sM_context;
 
@@ -62,8 +63,7 @@ public class StoreMessage {
 	@Override
 	public String toString() {
 		return "StoreMessage [sM_id=" + sM_id + ", sP_id=" + sP_id + ", m_idMessage=" + m_idMessage + ", sM_context="
-				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + ", storeProduct=" + storeProduct
-				+ ", member=" + member + ", state=" + state + "]\r\n";
+				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + "]\r\n";
 	}
 
 	public Integer getsM_id() {
