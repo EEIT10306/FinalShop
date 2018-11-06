@@ -146,6 +146,14 @@ public class StoreOrder {
 		this.sO_sumPrice = sO_sumPrice;
 	}
 
+	public Date getsO_time() {
+		return sO_time;
+	}
+
+	public void setsO_time(Date sO_time) {
+		this.sO_time = sO_time;
+	}
+
 	public Integer getsO_stateId() {
 		return sO_stateId;
 	}
