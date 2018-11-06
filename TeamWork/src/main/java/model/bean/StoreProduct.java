@@ -94,8 +94,7 @@ public class StoreProduct {
 		return "StoreProduct [sP_id=" + sP_id + ", s_id=" + s_id + ", sP_name=" + sP_name + ", sP_context=" + sP_context
 				+ ", p_id=" + p_id + ", sP_amount=" + sP_amount + ", sP_price=" + sP_price + ", sP_hot=" + sP_hot
 				+ ", sP_amountFavorite=" + sP_amountFavorite + ", sP_averageAssess=" + sP_averageAssess
-				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + ", store=" + store
-				+ ", product=" + product + ", state=" + state + ", storeImages=" + storeImages + "]\r\n";
+				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + "]\r\n";
 	}
 
 	public Integer getsP_id() {
