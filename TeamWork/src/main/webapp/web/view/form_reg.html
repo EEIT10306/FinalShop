@@ -17,8 +17,7 @@
 
 <body>
 	
-    <form> <img src="../images/form-cat.png"
-        />
+    <form> <img src="../images/form-cat.png"/>
         <h2>還不是會員？加入我們吧!</h2>
 
         <input name="email" placeholder="電子郵件" required/>
@@ -33,67 +32,36 @@
         <div class="feedback"></div>
         <input id="register" class="button" type="button" value="Register">
         <p class="message">Already registered? <a href="form_login.html">Sign In</a></p>
-
-        <fb:login-button scope="public_profile,email"
+        <br>
+        <p>-----------------or-----------------</p>
+        <br>
+        <!--    <fb:login-button scope="public_profile,email"
     		onlogin="checkLoginState();"
     		auto_logout_link="true"
     		size="large"
     		show_faces="false">
-        </fb:login-button><!-- facebook 按钮 -->
+        </fb:login-button> facebook 按钮 -->
+        <div class="fb-login-button" 
+        onlogin="FBlogin();"
+        data-max-rows="1" 
+        data-size="large" 
+        data-button-type="login_with" 
+        data-show-faces="false" 
+        data-auto-logout-link="true" 
+        data-use-continue-as="false"></div>
         <!--<div id="status"></div> 登陸狀態顯示 -->
         <!-- google 登入按鈕 -->
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <div class="g-signin2" data-onsuccess="onSignIn" data-width="250"></div>
         <!-- google 登出按鈕-->
-        <a href="#" onclick="signOut();">Sign out</a>
+        <a class="g-signout2" href="#" onclick="signOut();">Sign out</a>
     </form>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    
+    <script src="../js/Register.js"></script>
     <script src="../js/OAuthRegister.js"></script>
-
-    <script>
-    $("#register").click(function(e){
-
-        var mail = $("[name = 'email']").val();
-        var password = $("[name = 'password']").val();
-        var repassword = $("[name = 'repassword']").val();
-        var name = $("[name = 'name']").val();
-        
-//      var combie = {"account":mail,"name":name , "password":password};
-//      var json   = JSON.stringify(combie);
-//      alert(json) ;
-		
-		if (password == repassword){
-			$("#errorAccount").html("")
-			$("#errorPassword").html("")
-			
-			$.ajax({
-	            type: "post",
-	            url : "/TeamWork/RegisterServlet",
-	            data: {"m_account":mail,"m_name":name , "m_password":password,"m_mail":mail},
-	            success: function(data) {
-
-	            	if(data=="accountNull"){
-	            		$("#errorAccount").html("請輸入欄位")
-	            	}
-	            	if(data=="existsAccount"){
-	            		$("#errorAccount").html("此帳號已被使用")
-	            	}
-	            	if(data=="passwordNull"){
-	            		$("#errorPassword").html("密碼必須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
-	            	}
-	            	if(data == mail){
-	            		window.location.href="form_login.html";
-	            	}
-	                
-	            }
-	        });
-		} else {
-			$("#errorPassword").html("請輸入相同密碼")
-		}
-
-        
-    })
-    </script>
+    <!-- <script src="../js/cookies.js"></script> -->
+    
     
 </body>
 

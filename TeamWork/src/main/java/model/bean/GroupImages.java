@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class GroupImages {
@@ -21,10 +19,6 @@ public class GroupImages {
 
 	@Column(name = "gI_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String gI_context;
-
-	@ManyToOne
-	@JoinColumn(name = "gP_ID", insertable = false, updatable = false)
-	private GroupProduct groupProduct;
 
 	public GroupImages() {
 	}
@@ -63,10 +57,6 @@ public class GroupImages {
 
 	public void setgI_context(String gI_context) {
 		this.gI_context = gI_context;
-	}
-
-	public void setGroupProduct(GroupProduct groupProduct) {
-		this.groupProduct = groupProduct;
 	}
 
 }

@@ -11,7 +11,8 @@
     <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
     <script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
     <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'><!--google登入用-->
-    
+
+    <script src="../js/OAuthLogin.js"></script>
     <title>登入 Sign in</title>
 </head>
 
@@ -30,109 +31,39 @@
 
         <input id="Login" class="button" type="button" value="Login">
         <p class="message">Not registered? <a href="form_reg.html">Create an account</a></p>
-
+        <br>
+        <p>-----------------or-----------------</p>
+        <br>
+        <!--
         <fb:login-button scope="public_profile,email"
     		onlogin="checkLoginState();"
     		auto_logout_link="true"
     		size="large"
     		show_faces="false">
-        </fb:login-button><!-- facebook 按钮 -->
+        </fb:login-button> facebook 按钮 -->
+        <div class="fb-login-button" 
+        data-max-rows="1" 
+        data-size="large" 
+        data-button-type="login_with" 
+        data-show-faces="false" 
+        data-auto-logout-link="true" 
+        data-use-continue-as="false"></div>
         <!--<div id="status"></div> 登陸狀態顯示 -->
         <!-- google 登入按鈕 -->
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <div class="g-signin2" data-onsuccess="onSignIn" data-width="270"></div>
         <!-- google 登出按鈕-->
-        <a href="#" onclick="signOut();">Sign out</a>
+        <a class="g-signout2" href="#" onclick="signOut();">Sign out</a>
+        <!-- <a href="#" onclick="signOut();">Sign out</a> -->
         
         
     </form>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
-    <script src="../js/OAuthLogin.js"></script>
+    
 <!--     <script src="js/main.js"></script> -->
-    <script>
-    //登入先判斷cookie是否有儲存帳號
-    $(document).ready(function(){
-            var cookies = document.cookie;
-            
-            console.log(cookies);
-            console.log(cookies.indexOf("email"));
-            console.log(cookies.includes("email"));
-            console.log(cookies.split("email=")[1]);
-            
-            if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
-                console.log("沒有cookie");
-            } else if(cookies.includes("email")){
-                var email = cookies.split("email=")[1];
-                $.ajax({
-                    type:"post",
-                    url:"/TeamWork/checkAccount",
-                    data:{"m_account":email},
-                    success:function(data){
-                        console.log(data);
-                        alert("抓帳號cookie成功是網站的帳號自動登入")
-                    }
-                });
-            }
-            /*
-            //====設定cookie====================
-            //expire_days = 1; // 過期日期(天)
-            var date = new Date();
-            //date.setTime(date.getTime() + (expire_days * 24 * 60 * 60 * 1000));
-            date.setTime(date.getTime() + (60 * 1000));
-            var expires = "expires=" + date.toGMTString();
-            // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
-            document.cookie = "name=test" + "; " + expires + '; path=/';
-            alert(document.cookie)
-            */
-
-        })
-    </script>
-    <script>
-    $("#Login").click(function(e){
-
-        var account = $("[name='email']").val();
-        var password = $("[name='password']").val();
-
-        $.ajax({
-            type:"post",
-            url:"/TeamWork/LoginServlet",
-            data:{"m_account":account,"m_password":password},
-            
-            success:function(data){
-                alert(data);
-            	$("#errorAccount").html("")
-    			$("#errorPassword").html("")
-            	
-            	if(data=="accountNull"){
-            		$("#errorAccount").html("請輸入帳號")
-            	}
-            	if(data=="passwordNull"){
-            		$("#errorPassword").html("密碼須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
-            	}
-            	if(data== account){
-                    alert("導到首頁")
-                    //====設定cookie====================
-                    //expire_days = 1; // 過期日期(天)
-                    var day = new Date();
-                    //date.setTime(date.getTime() + (expire_days * 24 * 60 * 60 * 1000));
-                    day.setTime(day.getTime() + (60 * 1000));
-                    var expires = "expires=" + day.toGMTString();
-                    // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
-                    document.cookie = "email="+ data + "; " + expires + '; path=/';
-                    alert(document.cookie)
-                    
-                    
-            	}
-            	if(data== "beanNull"){
-            		$("#errorAccount").html("該帳號不存在或密碼錯誤")
-            	}
-            	
-            }
-
-
-        })
-    })
-    </script>
+    <!-- <script src="../js/cookies.js"></script> -->
+    <script src="../js/Login.js"></script>
+    
 </body>
 
 </html>
