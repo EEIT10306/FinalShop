@@ -32,4 +32,9 @@ public class MemberService {
 		return memberDaoImpl.selectHql(hqlString);
 		
 	}
+	
+	public Member emailToMember(String email) throws SQLException{
+		return memberDaoImpl.selectHql("where m_mail="+email).get(0);
+		
+	}
 }
