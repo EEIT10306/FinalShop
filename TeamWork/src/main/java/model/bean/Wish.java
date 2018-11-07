@@ -1,6 +1,8 @@
 package model.bean;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Wish {
@@ -75,6 +78,9 @@ public class Wish {
 	@ManyToOne
 	@JoinColumn(name = "wish_state", insertable = false, updatable = false)
 	private State state;
+	
+	@OneToMany(mappedBy = "w_id")
+	private Set<WishProduct> wishProduct = new LinkedHashSet<>();
 
 	public Wish() {
 	}
@@ -106,7 +112,7 @@ public class Wish {
 				+ w_context + ", d_id=" + d_id + ", w_startDate=" + w_startDate + ", w_endDate=" + w_endDate
 				+ ", w_sumPriceBottom=" + w_sumPriceBottom + ", w_sumPriceTop=" + w_sumPriceTop + ", w_changeTime="
 				+ w_changeTime + ", w_hot=" + w_hot + ", w_amountFavorite=" + w_amountFavorite + ", w_completeTime="
-				+ w_completeTime + ", w_stateId=" + w_stateId + "]\r\n";
+				+ w_completeTime + ", w_stateId=" + w_stateId + ", wishProduct=" + wishProduct + "]\r\n";
 	}
 
 	public Integer getW_id() {
@@ -259,6 +265,14 @@ public class Wish {
 
 	public void setState(State state) {
 		this.state = state;
+	}
+
+	public Set<WishProduct> getWishProduct() {
+		return wishProduct;
+	}
+
+	public void setWishProduct(Set<WishProduct> wishProduct) {
+		this.wishProduct = wishProduct;
 	}
 
 }

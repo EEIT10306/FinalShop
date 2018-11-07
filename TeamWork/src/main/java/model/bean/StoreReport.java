@@ -58,7 +58,7 @@ public class StoreReport {
 	@Override
 	public String toString() {
 		return "StoreReport [sR_id=" + sR_id + ", sP_id=" + sP_id + ", m_idReport=" + m_idReport + ", sR_content="
-				+ sR_content + ", sR_stateId=" + sR_stateId + "]\r\n";
+				+ sR_content + ", sR_stateId=" + sR_stateId + ", storeProduct=" + storeProduct + "]\r\n";
 	}
 
 	public Integer getsR_id() {

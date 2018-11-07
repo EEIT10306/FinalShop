@@ -62,7 +62,8 @@ public class GroupCallback {
 	@Override
 	public String toString() {
 		return "GroupCallback [gC_id=" + gC_id + ", gM_id=" + gM_id + ", m_idCallback=" + m_idCallback + ", gC_context="
-				+ gC_context + ", gC_time=" + gC_time + ", gC_stateId=" + gC_stateId + "]\r\n";
+				+ gC_context + ", gC_time=" + gC_time + ", gC_stateId=" + gC_stateId + ", groupMessage=" + groupMessage
+				+ "]\r\n";
 	}
 
 	public Integer getgC_id() {

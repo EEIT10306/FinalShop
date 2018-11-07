@@ -63,7 +63,8 @@ public class StoreMessage {
 	@Override
 	public String toString() {
 		return "StoreMessage [sM_id=" + sM_id + ", sP_id=" + sP_id + ", m_idMessage=" + m_idMessage + ", sM_context="
-				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + "]\r\n";
+				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + ", storeProduct=" + storeProduct
+				+ "]\r\n";
 	}
 
 	public Integer getsM_id() {
