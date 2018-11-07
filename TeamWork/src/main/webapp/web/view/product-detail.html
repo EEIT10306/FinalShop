@@ -74,7 +74,7 @@
 					amttxt += "<option value="+i+">"+i+"</option>";
 				}
 			}
-			$("#cartAmount").html(amttxt);
+			$("#productAmount").html(amttxt);
 		})
 		
 		var hahaha;  //抓取？後的值
@@ -86,7 +86,11 @@
 		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
 		var member_mail;
 		var theCookies = document.cookie.split(";");
+		var member_id;
 		
+		var member_bean;
+		
+		//取得各種變數
 		$(function(){
 			var path = location.search.substring(1);
 			paths = path.split("&");
@@ -106,19 +110,27 @@
 					member_mail = c.substring(name.length,c.length);
 				}
 			}
-			
+// 			$.ajax({
+// 				url:"", //把m_mail轉換成m_id
+// 				type:"POST",
+// 				data:{m_mail:member_mail},
+// 				success: function(data){
+// 					member_id = memberdata[0].m_id;
+// 				}
+// 			})
+
+//判斷是否為最愛
 		})
 			
 		
 		
-		
+		//Cookie系列  [功能][sP_id key+value] = [個數]
 		$(function(){			
 			//最愛	
 			$("#favorite").click(function(){
 				var fav = "favorite"+hahaha.replace("=", "");
 				var favCookies = document.cookie.split(';');
 				var flag = true;
-				alert(document.cookie);
 				for(i=0;i<favCookies.length;i++){
 					var c = favCookies[i];
 			        while (c.charAt(0) == ' ') {
@@ -132,7 +144,6 @@
 				if(flag == true){
 					document.cookie = fav + " = like;"; 
 				}
-				alert(document.cookie);
 			})
 			
 			//購物車	
@@ -140,7 +151,6 @@
 				var shopCart = "shopCart"+hahaha.replace("=", "");
 				var cartCookies = document.cookie.split(';');
 				var flag = true; 
-				alert(document.cookie);
 				for(i=0;i<cartCookies.length;i++){
 					 if (cartCookies[i].indexOf(shopCart) == 0) {
 					 	 flag = false;
@@ -148,24 +158,35 @@
 				     }
 				}
 				if(flag == true){
-					document.cookie = shopCart+" = " + $("#cartAmount").val()+";" ;
+					document.cookie = shopCart+" = " + $("#productAmount").val()+";" ;
 				}
-				alert(document.cookie);
 			})
 			
+			//直接購買
+			$("#shopNow").click(function(){
+				var shopNow = "shopNow"+hahaha.replace("=", "");
+				document.cookie = shopNow + "=" + $("#productAmount").val()+";" ;
+				alert(document.cookie);
+				window.location.href = "/TeamWork/web/view/shoppingcart.html";
+			})
 			
+			//頁面基本資訊
 			$.ajax({
 				url: "/TeamWork/StoreProduct?"+hahaha,
 				type: "GET",
 				success: function(data){
 					$(".detail-title").text(data.sP_name);
 					$(".star-score").text(data.sP_averageAssess);
-					assessProductAVG = (Math.round(data.sP_averageAssess*10)/10);
+// 					assessProductAVG = (Math.round(data.sP_averageAssess*10)/10);
+					assessProductAVG = data.sP_averageAssess;
+					alert(assessProductAVG);
+
 					assessProductStar = (Math.round(assessProductAVG*2))/2;
+					alert(assessProductStar);
 					var txt = [];
 					for(i = 0;i < 5;i++){
 						if(assessProductStar == i+0.5){
-							for(h = 0;h < i;h++){
+							for(h=0;h<i;h++){
 								txt[h] = "<i class='fas fa-star fa-star-score'></i>";	
 							}
 							txt[i] = "<i class='fas fa-star fa-star-half'></i>";
@@ -173,10 +194,10 @@
 								txt[j] = "<i class='far fa-star fa-star-score'></i>";
 							}
 						}else if(assessProductStar == i){
-							for(k=0;k<=i;k++){
+							for(k=0;k<i;k++){
 								txt[k] = "<i class='fas fa-star fa-star-score'></i>";
 							}
-							for(l= i+1;l<5;l++){
+							for(l= i;l<5;l++){
 								txt[l]="<i class='far fa-star fa-star-score'></i>";
 							}
 						}else if(assessProductStar == 5){
@@ -189,9 +210,9 @@
 							}
 						}
 					}
-// 					$(".col-lg-6 product-top .detail-title").append(txt[0]+txt[1]+txt[2]+txt[3]+txt[4]);
 					$(".detail-title").append("<br>"+txt[0]+txt[1]+txt[2]+txt[3]+txt[4]);
-					if(assessProductAVG.length = 1){
+					alert(assessProductAVG);
+					if(assessProductAVG.toString().length == 1){
 						assessProductAVG = assessProductAVG.toString() + '.0';
 					}
 					$(".star-score").text(assessProductAVG);
@@ -200,12 +221,12 @@
 					$(".detail-des-title").after("<p>"+data.sP_context+"</p>"); 
 				}	
 			})
+			//買家評論顯示
 			$("#buyer-comment-tab").click(function(){
 				$.ajax({
 					url: "/TeamWork/StoreAssess?"+hahaha,
 					type: "GET",
 					success: function(data){
-// 						console.log(data)
 						if(commentClicked == false){
 							for(i=0;i<data.length;i++){
 								var commentDate = new Date(data[i].storeOrder.sO_time);
@@ -214,9 +235,9 @@
 								commentDate = (commentDate.getYear()+1900)+"/"+(commentDate.getMonth()+1)+"/"+commentDate.getDate()+" "+((commentDate.getHours().toString().length==1)?"0"+commentDate.getHours():commentDate.getHours())+":"+((commentDate.getMinutes().toString().length==1)?"0"+commentDate.getMinutes():commentDate.getMinutes());
 								var starsCount = data[i].sA_pointAssess;
 								var starsText = "";
-								for(j=0;j<starsCount;j++)
-	                        		starsText += '<i class="far fa-star fa-star-score"></i>'
 	                        	for(k=5;k>starsCount;k--)	
+	                        		starsText += '<i class="far fa-star fa-star-score"></i>'
+								for(j=0;j<starsCount;j++)
 	                        		starsText += '<i class="fas fa-star fa-star-score"></i>'
 	                        		
 								commentText += `
@@ -233,14 +254,43 @@
 	                                    	`</div>
 	                               	 	</div>
 	                            	</div>
-	                        	</li>`               
+	                        		</li>`  
+							}
+							if(member_id != null){
+								commentText += `
+									<li>
+	                            	<div class="comment-main-level">
+	                                	<div class="comment-avatar"><img src="`+data[i].storeOrder.member.m_photo+`"alt=""></div>
+	                                	<div class="comment-box">
+	                                    	<div class="comment-head">
+	                                     	    <h6 class="comment-name"><a href="http://creaticode.com/blog">`+data[i].storeOrder.member.m_name+`</a></h6>
+	                                        	<span>`+commentDate+`</span>`+starsText+`
+	                                    	</div>
+	                                    	<div class="comment-content">
+	                                    		<textarea id="user-buy-content" cols="70" rows="3" style= "resize: none" >
+	                                    	</div>
+	                               	 	</div>
+	                            	</div>
+	                        		</li>`  
 							}
 							commentClicked = true;
 						$("#comments-list").html(commentText);
 						}
 					}
 				})
+				//按下送出紐
+				$("#").click(function(){
+					$.ajax({
+						url: "",
+						type: "POST",
+						data: {},
+						success: function(){
+							
+						}
+					})
+				})
 			})
+			//問與答
 			$("#qustion-answer-tab").click(function(){
 				$.ajax({
 					url: "/TeamWork/StoreMessage?"+hahaha,
@@ -295,24 +345,17 @@
 				})
 			})
 			//--------------------檢舉
-// 			$("#report-submit").click(function(){
-// 				$.ajax({
-// 					url:"", //把m_mail轉換成m_id
-// 					type:"POST",
-// 					data:{m_mail:member_mail},
-// 					success: function(data){
-// 						$.ajax({
-// 							url:"/TeamWork/SendStoreReport",
-// 							type:"POST",
-// 							data:{m_id:data[0].val(), sP_id:hahaha.substring(6), sR_content:$("#report-content")},
-// 							dataType:"json",
-// 							success: function(response){
-// 								alert("謝謝您的舉報，我們會盡快處裡\n檢舉單號: "+response[0].sR_id+"\n檢舉人: "+response[0].m_id);
-// 							}
-// 						})
-// 					}
-// 				})
-// 			})
+			$("#report-submit").click(function(){
+				$.ajax({
+					url:"/TeamWork/SendStoreReport",
+					type:"POST",
+					data:{m_id:member_id, sP_id:hahaha.substring(6), sR_content:$("#report-content")},
+					dataType:"json",
+					success: function(response){
+						alert("謝謝您的舉報，我們會盡快處裡\n檢舉單號: "+response[0].sR_id+"\n檢舉人: "+response[0].m_id);
+					}
+				})
+			})
 		})
 	</script>
 
@@ -423,10 +466,10 @@
 				</h6>
 				<button type="button" class="btn btn-primary" data-toggle="modal"
 					data-target="#exampleModalCenter">檢舉</button>
-				<select id="cartAmount"></select>
+				<select id="productAmount"></select>
 				<button type="button" id="addShoppingCart"
 					class="btn btn-outline-info" style="width: 48%">加入購物車</button>
-				<button type="button" class="btn btn-outline-info"
+				<button type="button" id="shopNow" class="btn btn-outline-info"
 					style="width: 48%">直接購買</button>
 			</div>
 		</div>
@@ -468,9 +511,9 @@
 								<div class="comment-box">
 									<div class="comment-head">
 										<h6 class="comment-name">
-											<a href="http://creaticode.com/blog">可愛兔兔</a>
+											<a href="http://creaticode.com/blog"></a>
 										</h6>
-										<span>hace 20 minutos</span>
+										<span></span>
 										<!--                                         <i class="fas fa-star fa-star-score"></i> -->
 										<!--                                         <i class="fas fa-star fa-star-score"></i> -->
 										<!--                                         <i class="fas fa-star fa-star-score"></i> -->

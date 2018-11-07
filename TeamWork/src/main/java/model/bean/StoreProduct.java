@@ -55,7 +55,7 @@ public class StoreProduct {
 	private Date sP_time;
 
 	@Column(name = "sP_avgAss", columnDefinition = "float", nullable = false)
-	private Integer sP_averageAssess;
+	private Double sP_averageAssess;
 
 	@Column(name = "sP_amtAss", columnDefinition = "int", nullable = false)
 	private Integer sP_amountAssess;
@@ -83,7 +83,7 @@ public class StoreProduct {
 
 	public StoreProduct(Integer sP_id, Integer s_id, String sP_name, String sP_context, Integer p_id, Integer sP_amount,
 			Integer sP_price, String sP_transport, Boolean sP_new, Integer sP_hot, Integer sP_amountFavorite,
-			Date sP_time, Integer sP_averageAssess, Integer sP_amountAssess, Integer sP_stateId) {
+			Date sP_time, Double sP_averageAssess, Integer sP_amountAssess, Integer sP_stateId) {
 		super();
 		this.sP_id = sP_id;
 		this.s_id = s_id;
@@ -208,11 +208,11 @@ public class StoreProduct {
 		this.sP_time = sP_time;
 	}
 
-	public Integer getsP_averageAssess() {
+	public Double getsP_averageAssess() {
 		return sP_averageAssess;
 	}
 
-	public void setsP_averageAssess(Integer sP_averageAssess) {
+	public void setsP_averageAssess(Double sP_averageAssess) {
 		this.sP_averageAssess = sP_averageAssess;
 	}
 
