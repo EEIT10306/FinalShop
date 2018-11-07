@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="demo1">
+        1234565487/r/n53612321231
+    </div>
+
+    
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+        var text = $(".demo1").text();
+        var res = text.replace("/r/n", "<br>")
+        $(".demo1").click(function () { 
+            $(".demo1").html(res);
+        });
+    </script>
+</body>
+</html>

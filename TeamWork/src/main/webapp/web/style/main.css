@@ -565,8 +565,6 @@ p { margin: 0; }
 	font-size: 0.85rem;
 	letter-spacing: 1px;
 }
-
-<<<<<<< HEAD
 option.dropdown-item {
 	background-color: #fff;
 	appearance: none;
@@ -583,27 +581,6 @@ option.dropdown-item {
 	margin-top: 20px;
 	
 }
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*會員中心-我的帳戶*/
 .user-page_wrapper {
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -673,4 +650,3 @@ option.dropdown-item {
 #form-step-2,#form-step-3{
 	display: none;
   }
->>>>>>> branch 'master' of https://github.com/EEIT10306/FinalShop.git

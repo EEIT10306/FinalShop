@@ -4,12 +4,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import model.bean.GroupAssess;
 import model.bean.GroupOrder;
+import model.bean.Seller;
+import model.bean.Store;
 import model.bean.StoreOrder;
 import model.bean.Wish;
 import model.bean.WishBid;
@@ -21,7 +28,12 @@ public class OrderListController {
 
 	@Autowired
 	OrderService orderService;
-
+	
+	@InitBinder
+	protected void InitBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
+	}
+	
 	// 取得商店訂單資料
 	@RequestMapping(value = "/StoreOrderList", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
@@ -64,6 +76,15 @@ public class OrderListController {
 	@ResponseBody
 	public List<GroupOrder> getGroupOrderListByM_idOrder(GroupOrder groupOrder) throws SQLException {
 		return orderService.getGroupOrderListByM_idOrder(groupOrder);
+	}
+
+	
+	@RequestMapping(path = "/giveAssess.do", method = RequestMethod.POST)
+	public String sellerVerify(GroupAssess groupAssess, BindingResult binder) throws SQLException {
+
+		// 接收資料
+		
+		return "redirect:/web/view/userPage_GroupOrderList.html";
 	}
 
 }

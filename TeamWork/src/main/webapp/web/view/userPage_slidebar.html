@@ -80,57 +80,87 @@
                         <div><a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a></div>
                     </div>
                 </div>
+                <!-- start of userpage-sidebar-menu -->
                 <div class="userpage-sidebar-menu">
-                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item">
+                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Man.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">我的帳戶</div>
                     </a>
-
-                    <a href="#" class="userpage-sidebar-menu_item">
+                    <a href="#" class="userpage-sidebar-menu_item-head" id="storepbtn">
                         <div class="userpage-sidebar-menu-icon">
-                            <img src="../images/user//Checklist.svg">
+                            <img src="../images/user/Shop.svg">
                         </div>
-                        <div class="userpage-sidebar-menu-text">購買清單</div>
+                        <div class="userpage-sidebar-menu-text">商店</div>
                     </a>
-                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item">
-                        <div class="userpage-sidebar-menu-icon">
-                            <img>
-                        </div>
-                        <div class="userpage-sidebar-menu-text">STORE</div>
-                    </a>
-                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item">
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
                         <div class="userpage-sidebar-menu-icon">
                             <img>
                         </div>
-                        <div class="userpage-sidebar-menu-text">WISH</div>
+                        <div class="userpage-sidebar-menu-text">我的商品</div>
                     </a>
-                    <a href="userPage_GroupOrdrList.html" class="userpage-sidebar-menu_item">
+                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
                         <div class="userpage-sidebar-menu-icon">
                             <img>
                         </div>
-                        <div class="userpage-sidebar-menu-text">GROUP</div>
+                        <div class="userpage-sidebar-menu-text">購買的商品</div>
                     </a>
-                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item">
+                    <a href="#" class="userpage-sidebar-menu_item-head" id="wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Ring.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">許願</div>
+                    </a>
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的許願</div>
+                    </a>
+                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">實現願望</div>
+                    </a>
+                    <a href="#" class="userpage-sidebar-menu_item-head" id="groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Party.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">團購</div>
+                    </a>
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的開團</div>
+                    </a>
+                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">跟團</div>
+                    </a>
+                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head" style="display:flex;">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Medal.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">我的成就</div>
                     </a>
-                    <a href="" class="userpage-sidebar-menu_item">
+                    <a href="" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Love-Letter.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">通知記錄</div>
                     </a>
-                    <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Analytics.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">賣家中心</div>
-                    </a>
-                </div>
+                    </a> -->
+                </div><!-- end of userpage-sidebar-menu -->
             </div>
             <div class="purchase-list-page_tabs-container col-lg-10">
                 <div class="row">
@@ -139,24 +169,24 @@
                 </div>
                 <div class="row">
                     <div class="container-wrapper">
-                        
                     </div>
                 </div>
             </div>
-
         </div>
     </div> <!-- end of container -->
 
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../js/userPage.js"></script>
+    
     <!-- Optional JavaScript -->
     <script>
+        
+
     </script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

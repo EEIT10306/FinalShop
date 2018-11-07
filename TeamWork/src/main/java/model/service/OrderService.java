@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.GroupAssess;
 import model.bean.GroupOrder;
 import model.bean.StoreOrder;
 import model.bean.Wish;
 import model.bean.WishBid;
 import model.bean.WishOrder;
+import model.repository.GroupAssessDao;
 import model.repository.GroupOrderDao;
 import model.repository.StoreOrderDao;
 import model.repository.WishBidDao;
@@ -31,11 +33,15 @@ public class OrderService {
 
 	@Autowired
 	WishBidDao wishBidDao;
+
 	@Autowired
 	WishDao wishDao;
 
 	@Autowired
 	GroupOrderDao groupOrderDao;
+
+	@Autowired
+	GroupAssessDao groupAssessDao;
 
 	public OrderService() {
 	}
@@ -127,6 +133,22 @@ public class OrderService {
 			String hql = "WHERE m_idOrder = " + buyerId;
 			return groupOrderDao.selectHql(hql);
 		}
+	}
+
+	// 新增一筆跟團評價資料
+	public String giveAssess(GroupAssess groupAssess) throws SQLException {
+		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
+		Integer gO_id = groupAssess.getgO_id();
+		if (gO_id != null) {
+			String hql = "WHERE gO_id = " + groupAssess.getgO_id();
+			List<GroupAssess> groupAssessBeans = groupAssessDao.selectHql(hql);
+			if(groupAssessBeans.size()==0) {
+				
+			}
+			GroupAssess groupAssessBean = groupAssessBeans.get(0);
+//			groupAssessDao.update(GA, bean)
+		}
+		return "";
 	}
 
 }

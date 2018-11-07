@@ -42,11 +42,20 @@ a.user-page-brief__edit i {
 a.userpage-sidebar-menu_item {
 	padding: 5px;
 	text-decoration: none;
-	
+	display: none;
+	/* display: flex; */
+	flex-direction: row;
+	align-items: center;
+
+}
+a.userpage-sidebar-menu_item-head {
+	padding: 5px;
+	text-decoration: none;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
+
 .userpage-sidebar-menu-icon img {
 	width: 30px;
 	margin-right: 10px;
@@ -258,12 +267,16 @@ a.userpage-sidebar-menu_item {
 		font-weight: bold;
 		font-size: 1.2rem;
 		letter-spacing: 1px;
+		margin-bottom: 0.8rem;
 	}
 	.item-misc {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+	}
+	.misc {
+		margin-right: 2.5rem;
 	}
 	.singlePrice {
 		color: #595959;
@@ -426,6 +439,9 @@ a.userpage-sidebar-menu_item {
 	cursor: pointer;
 	transition-duration: 0.5s;
 }
+.myWish-card:hover{
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+}
 
 .wish-dataRange {
 	letter-spacing: 0.5px;
@@ -435,6 +451,7 @@ a.userpage-sidebar-menu_item {
 .wish-priceRange {
 	color: #d0011b;
 	font-size: 1.5rem;
+	line-height: 3rem;
 }
 .add_icon{
 	position: absolute;
@@ -463,4 +480,10 @@ a.userpage-sidebar-menu_item {
 form.popperForm {
 	margin-top: 0;
 	font-weight: bold;
+}
+
+/*彈出視窗-評分視窗*/
+
+#wrapper input {
+	/* display: none; */
 }
