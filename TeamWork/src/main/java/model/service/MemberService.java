@@ -37,7 +37,7 @@ public class MemberService {
 		if(email==null) {
 			return null;
 		}
-		return memberDaoImpl.selectHql("where m_mail="+email).get(0);
+		return memberDaoImpl.selectHql("where m_mail='"+email+"'").get(0);
 		
 	}
 }
