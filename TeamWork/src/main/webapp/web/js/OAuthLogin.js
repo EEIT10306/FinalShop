@@ -1,4 +1,15 @@
 //========================FB登入==============================
+//引入 facebook SDK
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id))
+        return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/zh_TW/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 //初始化
 window.fbAsyncInit = function () {
     FB.init({
@@ -13,45 +24,10 @@ window.fbAsyncInit = function () {
     });
 };
 
-//引入 facebook SDK
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id))
-        return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://connect.facebook.net/zh_TW/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
         console.log('FB自動連線');
-        //           setElements(true);
-        
-        
-        // var cookies = document.cookie;
-            
-        // console.log(cookies);
-        // console.log(cookies.indexOf("email"));
-        // console.log(cookies.includes("email"));
-        // console.log(cookies.split("email=")[1]);
-            
-        // if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
-        //     console.log("沒有cookie");
-        // } else if(cookies.includes("email")){
-        //     var email = cookies.split("email=")[1];
-        //     $.ajax({
-        //         type:"post",
-        //         url:"/TeamWork/checkAccount",
-        //         data:{"m_account":email},
-        //         success:function(data){
-        //             console.log(data);
-        //             alert("抓帳號cookie成功是網站的帳號自動登入")
-        //         }
-        //     });
-        // }
-
+       
         loginAPI();
     } else {
         console.log('FB沒有自動連線');
@@ -81,7 +57,18 @@ function loginAPI() {
                     console.log(data);
                     console.log(response.email);
                     if(data==response.email){
+                        //設定fbcookie
+                        expire_days = 1; // 過期日期(天)
+                        var day = new Date();
+                        day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+                        // day.setTime(day.getTime() + (60 * 1000));
+                        var expires = "expires=" + day.toGMTString();
+                        // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+                        document.cookie = "email="+ data + "; " + expires + '; path=/';
+                        alert(document.cookie)
+                        //FB登入
                         alert("FB登入成功")
+                        window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                     }
                     // document.getElementById('status').innerHTML =
                     //     'Thanks for logging in, ' + response.name + '!';
@@ -92,7 +79,7 @@ function loginAPI() {
                     if(data=="beanNull"){
                         alert("FB登入失敗")
                     }
-                },
+                }
             });
            
 
@@ -108,7 +95,8 @@ function loginAPI() {
     })
 }
 
-// =================google登入==========================
+// ================================================google登入==========================
+
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
@@ -116,6 +104,7 @@ function signOut() {
     });
     alert("google登出")
 }
+
 
 // 		function onSignIn(googleUser) {
 // 			//跳?到http://gntina.iok.la/sendRedirect(?取用?信息)
@@ -142,6 +131,7 @@ function signOut() {
 // 			xhr.send('idtoken=' + id_token);
 //                        */
 // ?               }
+
 function onSignIn(googleUser) {
 
     var profile = googleUser.getBasicProfile();
@@ -163,10 +153,14 @@ function onSignIn(googleUser) {
         data: {
             userInfo: JSON.stringify(combie)
         },
-        dataType: "json",
         success: function (data) {
-            alert('這裡是google的登入成功後的方訊 :' + data);
+            alert('google登入成功 :' + data);
+            window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
             // window.location.href = "";
+        },
+        error:function (data) {
+            alert('google登入失敗 :' + data);
         }
     });
 }
+

@@ -40,16 +40,18 @@ public class RegisterController {
 		}
 		if (member.getM_password() == null|| member.getM_password().trim().length() == 0) {
 			return "passwordNull";
-		} else if(member.getM_password() != null|| member.getM_password().trim().length() != 0) {
-			member.setM_password(replaceSpecialCharater(member.getM_password()));
-			pattern = Pattern.compile(PASSWORD_PATTERN);
-			matcher = pattern.matcher(member.getM_password());
-			if (matcher.matches()) {
-				member.setM_password(replaceSpecialCharater(member.getM_password()));
-			} else {
-				return "passwordNull";
-			}
 		}
+		//負責密碼複雜度
+//		else if(member.getM_password() != null|| member.getM_password().trim().length() != 0) {
+//			member.setM_password(replaceSpecialCharater(member.getM_password()));
+//			pattern = Pattern.compile(PASSWORD_PATTERN);
+//			matcher = pattern.matcher(member.getM_password());
+//			if (matcher.matches()) {
+//				member.setM_password(replaceSpecialCharater(member.getM_password()));
+//			} else {
+//				return "passwordNull";
+//			}
+//		}
 		if (member.getM_name() == null|| member.getM_name().trim().length() == 0) {
 			return "accountNull";
 		} else {
@@ -66,7 +68,7 @@ public class RegisterController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return "account";
+			return member.getM_account().toString();
 		}
 		
 		
@@ -98,6 +100,7 @@ public class RegisterController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			System.out.println("註冊成功");
 			return "account";
 		}
 	}
