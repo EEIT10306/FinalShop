@@ -58,7 +58,7 @@ public class WishReport {
 	@Override
 	public String toString() {
 		return "WishReport [wR_id=" + wR_id + ", w_id=" + w_id + ", m_idReport=" + m_idReport + ", wR_content="
-				+ wR_content + ", wR_stateId=" + wR_stateId + "]\r\n";
+				+ wR_content + ", wR_stateId=" + wR_stateId + ", wish=" + wish + "]\r\n";
 	}
 
 	public Integer getwR_id() {

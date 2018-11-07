@@ -63,7 +63,7 @@ public class GroupMessage {
 	@Override
 	public String toString() {
 		return "GroupMessage [gM_id=" + gM_id + ", g_id=" + g_id + ", m_idMessage=" + m_idMessage + ", gM_context="
-				+ gM_context + ", gM_time=" + gM_time + ", gM_stateId=" + gM_stateId + "]\r\n";
+				+ gM_context + ", gM_time=" + gM_time + ", gM_stateId=" + gM_stateId + ", groupon=" + groupon + "]\r\n";
 	}
 
 	public Integer getgM_id() {

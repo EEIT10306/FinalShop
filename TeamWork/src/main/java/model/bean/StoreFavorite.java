@@ -45,7 +45,8 @@ public class StoreFavorite {
 
 	@Override
 	public String toString() {
-		return "StoreFavorite [sF_id=" + sF_id + ", m_idFavorite=" + m_idFavorite + ", sP_id=" + sP_id + "]\r\n";
+		return "StoreFavorite [sF_id=" + sF_id + ", m_idFavorite=" + m_idFavorite + ", sP_id=" + sP_id
+				+ ", storeProduct=" + storeProduct + "]\r\n";
 	}
 
 	public Integer getsF_id() {

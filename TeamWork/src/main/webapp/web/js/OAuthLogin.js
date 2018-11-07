@@ -57,18 +57,22 @@ function loginAPI() {
                     console.log(data);
                     console.log(response.email);
                     if(data==response.email){
-                        //設定fbcookie
-                        expire_days = 1; // 過期日期(天)
-                        var day = new Date();
-                        day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
-                        // day.setTime(day.getTime() + (60 * 1000));
-                        var expires = "expires=" + day.toGMTString();
-                        // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
-                        document.cookie = "email="+ data + "; " + expires + '; path=/';
-                        alert(document.cookie)
-                        //FB登入
-                        alert("FB登入成功")
-                        window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
+                        if(data=="existsAccount"){
+                            console.log('此帳號沒註冊或者重複');
+                        } else {
+                            //設定fbcookie
+                            expire_days = 1; // 過期日期(天)
+                            var day = new Date();
+                            day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+                            // day.setTime(day.getTime() + (60 * 1000));
+                            var expires = "expires=" + day.toGMTString();
+                            // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+                            document.cookie = "email="+ data + "; " + expires + '; path=/';
+                            alert(document.cookie)
+                            //FB登入
+                            alert("FB登入成功")
+                            window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
+                        }
                     }
                     // document.getElementById('status').innerHTML =
                     //     'Thanks for logging in, ' + response.name + '!';
@@ -102,7 +106,7 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
-    alert("google登出")
+    console.log('google登出');
 }
 
 
@@ -133,20 +137,14 @@ function signOut() {
 // ?               }
 
 function onSignIn(googleUser) {
-
+    console.log("google開始登入");
     var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     //測試有無進入google登入的方訊
-    console.log('Google自動連線');
-    alert("這裡是google的登入:" + profile.getEmail())
     var id =profile.getId();
     var name = profile.getName();
     var email = profile.getEmail();
     var combie =  {"id":id , "name":name , "email" : email} ; 
-    
+    console.log(combie);
     $.ajax({
         type: "POST",
         url: "/TeamWork/LoginGg",
@@ -154,9 +152,23 @@ function onSignIn(googleUser) {
             userInfo: JSON.stringify(combie)
         },
         success: function (data) {
-            alert('google登入成功 :' + data);
-            window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
-            // window.location.href = "";
+            console.log(data);
+            if(data=="existsAccount"){
+                console.log('此帳號沒註冊或者重複');
+            } else {
+                //設定googlecookie
+                expire_days = 1; // 過期日期(天)
+                var day = new Date();
+                day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+                // day.setTime(day.getTime() + (60 * 1000));
+                var expires = "expires=" + day.toGMTString();
+                // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+                document.cookie = "email="+ data + "; " + expires + '; path=/';
+                alert(document.cookie)
+                //google登入成功
+                alert('google登入成功 :' + data);
+                window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
+            }
         },
         error:function (data) {
             alert('google登入失敗 :' + data);

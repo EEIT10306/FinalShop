@@ -5,12 +5,12 @@ $(document).ready(function(){
     console.log(cookies);
     console.log(cookies.indexOf("email"));
     console.log(cookies.includes("email"));
-    console.log(cookies.split("email=")[1]);
+    console.log(cookies.split("email=")[1].split(";")[0]);
     
     if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
         console.log("沒有cookie");
     } else if(cookies.includes("email")){
-        var email = cookies.split("email=")[1];
+        var email = cookies.split("email=")[1].split(";")[0];
         $.ajax({
             type:"post",
             url:"/TeamWork/checkAccount",

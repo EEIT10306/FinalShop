@@ -79,7 +79,8 @@ public class StoreOrder {
 	public String toString() {
 		return "StoreOrder [sO_id=" + sO_id + ", sP_id=" + sP_id + ", m_idOrder=" + m_idOrder + ", sO_transport="
 				+ sO_transport + ", sO_pay=" + sO_pay + ", sO_remarks=" + sO_remarks + ", sO_amount=" + sO_amount
-				+ ", sO_sumPrice=" + sO_sumPrice + ", sO_time=" + sO_time + ", sO_stateId=" + sO_stateId + "]\r\n";
+				+ ", sO_sumPrice=" + sO_sumPrice + ", sO_time=" + sO_time + ", sO_stateId=" + sO_stateId
+				+ ", storeProduct=" + storeProduct + "]\r\n";
 	}
 
 	public Integer getsO_id() {

@@ -53,7 +53,7 @@ public class GroupAssess {
 	public String toString() {
 		return "GroupAssess [gA_id=" + gA_id + ", gO_id=" + gO_id + ", gA_point=" + gA_point + ", gA_context="
 				+ gA_context + ", gA_pointAssess=" + gA_pointAssess + ", gA_contextAssess=" + gA_contextAssess
-				+ "]\r\n";
+				+ ", groupOrder=" + groupOrder + "]\r\n";
 	}
 
 	public Integer getgA_id() {

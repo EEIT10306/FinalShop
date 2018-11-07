@@ -58,7 +58,7 @@ public class GroupReport {
 	@Override
 	public String toString() {
 		return "GroupReport [gR_id=" + gR_id + ", g_id=" + g_id + ", m_idReport=" + m_idReport + ", gR_content="
-				+ gR_content + ", gR_stateId=" + gR_stateId + "]\r\n";
+				+ gR_content + ", gR_stateId=" + gR_stateId + ", groupon=" + groupon + "]\r\n";
 	}
 
 	public Integer getgR_id() {
