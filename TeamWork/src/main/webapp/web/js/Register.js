@@ -34,7 +34,6 @@ $("#register").click(function(e){
                     var expire_days = 1; // 過期日期(天)
                     var day = new Date();
                     day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
-                    // day.setTime(day.getTime() + (60 * 1000)); //測試用cookie時間
                     var expires = "expires=" + day.toGMTString();
                     // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
                     document.cookie = "email="+ data + "; " + expires + '; path=/';

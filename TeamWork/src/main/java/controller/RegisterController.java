@@ -87,11 +87,12 @@ public class RegisterController {
 		JSONObject json = new JSONObject(userInfo);
 		System.out.println(json.getString("email"));
 		
+		Member member = new Member();
 		if(memberservice.idExists(json.getString("email"))) {
+			System.out.println("existsAccount");
 			return "existsAccount";
 		} else {
 			try {
-				Member member = new Member();
 				member.setM_account(json.getString("email"));
 				member.setM_password("facebook");
 				member.setM_name(json.getString("name"));
@@ -100,8 +101,8 @@ public class RegisterController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("註冊成功");
-			return "account";
+			System.out.println("FB註冊成功");
+			return member.getM_account().toString();
 		}
 	}
 	
@@ -112,11 +113,11 @@ public class RegisterController {
 		JSONObject json = new JSONObject(userInfo);
 		System.out.println(json.getString("email"));
 		
+		Member member = new Member();
 		if(memberservice.idExists(json.getString("email"))) {
 			return "existsAccount";
 		} else {
 			try {
-				Member member = new Member();
 				member.setM_account(json.getString("email"));
 				member.setM_password("google");
 				member.setM_name(json.getString("name"));
@@ -125,7 +126,8 @@ public class RegisterController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return "account";
+			System.out.println("google註冊成功");
+			return member.getM_account().toString();
 		}
 		
 	}
