@@ -34,6 +34,9 @@ public class MemberService {
 	}
 	
 	public Member emailToMember(String email) throws SQLException{
+		if(email==null) {
+			return null;
+		}
 		return memberDaoImpl.selectHql("where m_mail="+email).get(0);
 		
 	}
