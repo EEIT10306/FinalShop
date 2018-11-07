@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class WishImages {
@@ -21,10 +19,6 @@ public class WishImages {
 
 	@Column(name = "wI_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String wI_context;
-
-	@ManyToOne
-	@JoinColumn(name = "wP_ID", insertable = false, updatable = false)
-	private WishProduct wishProduct;
 
 	public WishImages() {
 	}
@@ -63,10 +57,6 @@ public class WishImages {
 
 	public void setwI_context(String wI_context) {
 		this.wI_context = wI_context;
-	}
-
-	public void setWishProduct(WishProduct wishProduct) {
-		this.wishProduct = wishProduct;
 	}
 
 }

@@ -75,7 +75,7 @@ public class StoreProduct {
 	@JoinColumn(name = "sP_state", insertable = false, updatable = false)
 	private State state;
 
-	@OneToMany(mappedBy = "storeProduct")
+	@OneToMany(mappedBy = "sP_ID")
 	private Set<StoreImages> storeImages = new LinkedHashSet<>();
 
 	public StoreProduct() {
