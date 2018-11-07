@@ -82,10 +82,12 @@
 		var replyText="";
 		var commentClicked = false;
 		var replyClicked = false;
-
-		document.cookie = "m_mail = rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
 		
-		$(function(){			
+		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
+		var member_mail;
+		var theCookies = document.cookie.split(";");
+		
+		$(function(){
 			var path = location.search.substring(1);
 			paths = path.split("&");
 				for(param in paths){
@@ -93,8 +95,24 @@
 					if(params[0] == "sP_id")
 						hahaha = paths[param];
 				}
-				
-				
+			
+			for(i=0;i<theCookies.length;i++){
+				var name = "m_mail=";
+				var c = theCookies[i];
+				while (c.charAt(0) == ' ') {
+			    	c = c.substring(1);    //去空格, 若是不去的話跑不下去= =
+			        }
+				if(c.indexOf(name) == 0){
+					member_mail = c.substring(name.length,c.length);
+				}
+			}
+			
+		})
+			
+		
+		
+		
+		$(function(){			
 			//最愛	
 			$("#favorite").click(function(){
 				var fav = "favorite"+hahaha.replace("=", "");
@@ -277,17 +295,24 @@
 				})
 			})
 			//--------------------檢舉
-			$("#report-submit").click(function(){
-				$.ajax({
-					url:"",
-					type:"POST",
-					data:{m_mail:, sP_id:, sR_content:},
-					dataType:"json",
-					success: function(response){
-						
-					}
-				})
-			})
+// 			$("#report-submit").click(function(){
+// 				$.ajax({
+// 					url:"", //把m_mail轉換成m_id
+// 					type:"POST",
+// 					data:{m_mail:member_mail},
+// 					success: function(data){
+// 						$.ajax({
+// 							url:"/TeamWork/SendStoreReport",
+// 							type:"POST",
+// 							data:{m_id:data[0].val(), sP_id:hahaha.substring(6), sR_content:$("#report-content")},
+// 							dataType:"json",
+// 							success: function(response){
+// 								alert("謝謝您的舉報，我們會盡快處裡\n檢舉單號: "+response[0].sR_id+"\n檢舉人: "+response[0].m_id);
+// 							}
+// 						})
+// 					}
+// 				})
+// 			})
 		})
 	</script>
 
