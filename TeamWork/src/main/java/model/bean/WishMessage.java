@@ -62,8 +62,7 @@ public class WishMessage {
 	@Override
 	public String toString() {
 		return "WishMessage [wM_id=" + wM_id + ", w_id=" + w_id + ", m_idMessage=" + m_idMessage + ", wM_context="
-				+ wM_context + ", wM_time=" + wM_time + ", wM_stateId=" + wM_stateId + ", wish=" + wish + ", member="
-				+ member + ", state=" + state + "]\r\n";
+				+ wM_context + ", wM_time=" + wM_time + ", wM_stateId=" + wM_stateId + "]\r\n";
 	}
 
 	public Integer getwM_id() {

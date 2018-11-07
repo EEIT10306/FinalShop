@@ -38,8 +38,7 @@ public class WishImages {
 
 	@Override
 	public String toString() {
-		return "WishImages [wI_id=" + wI_id + ", wP_id=" + wP_id + ", wI_context=" + wI_context + ", wishProduct="
-				+ wishProduct + "]\r\n";
+		return "WishImages [wI_id=" + wI_id + ", wP_id=" + wP_id + ", wI_context=" + wI_context + "]\r\n";
 	}
 
 	public Integer getwI_id() {
@@ -64,10 +63,6 @@ public class WishImages {
 
 	public void setwI_context(String wI_context) {
 		this.wI_context = wI_context;
-	}
-
-	public WishProduct getWishProduct() {
-		return wishProduct;
 	}
 
 	public void setWishProduct(WishProduct wishProduct) {

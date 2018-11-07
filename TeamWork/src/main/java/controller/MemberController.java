@@ -21,7 +21,7 @@ public class MemberController {
 	private UserPageService userPageService;
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
+		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, true));
 	}
 
 	@RequestMapping(path = "/Member", method = RequestMethod.GET, produces = { "application/json"})

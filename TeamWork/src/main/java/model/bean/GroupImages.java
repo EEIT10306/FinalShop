@@ -38,8 +38,7 @@ public class GroupImages {
 
 	@Override
 	public String toString() {
-		return "GroupImages [gI_id=" + gI_id + ", gP_id=" + gP_id + ", gI_context=" + gI_context + ", groupProduct="
-				+ groupProduct + "]\r\n";
+		return "GroupImages [gI_id=" + gI_id + ", gP_id=" + gP_id + ", gI_context=" + gI_context + "]\r\n";
 	}
 
 	public Integer getgI_id() {
@@ -64,10 +63,6 @@ public class GroupImages {
 
 	public void setgI_context(String gI_context) {
 		this.gI_context = gI_context;
-	}
-
-	public GroupProduct getGroupProduct() {
-		return groupProduct;
 	}
 
 	public void setGroupProduct(GroupProduct groupProduct) {

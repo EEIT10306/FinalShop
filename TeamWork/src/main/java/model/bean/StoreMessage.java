@@ -24,10 +24,11 @@ public class StoreMessage {
 	@Column(name = "mem_IDee", columnDefinition = "int", nullable = false)
 	private Integer m_idMessage;
 
-	@Column(name = "sM_cont", columnDefinition = "int", nullable = false)
-	private Integer sM_context;
 
-	@Column(name = "sM_time", columnDefinition = "daetime", nullable = false)
+	@Column(name = "sM_cont", columnDefinition = "nvarchar(max)", nullable = false)
+	private String sM_context;
+
+	@Column(name = "sM_time", columnDefinition = "datetime", nullable = false)
 	private Date sM_time;
 
 	@Column(name = "sM_state", columnDefinition = "int", nullable = false)
@@ -48,7 +49,7 @@ public class StoreMessage {
 	public StoreMessage() {
 	}
 
-	public StoreMessage(Integer sM_id, Integer sP_id, Integer m_idMessage, Integer sM_context, Date sM_time,
+	public StoreMessage(Integer sM_id, Integer sP_id, Integer m_idMessage, String sM_context, Date sM_time,
 			Integer sM_stateId) {
 		super();
 		this.sM_id = sM_id;
@@ -62,8 +63,7 @@ public class StoreMessage {
 	@Override
 	public String toString() {
 		return "StoreMessage [sM_id=" + sM_id + ", sP_id=" + sP_id + ", m_idMessage=" + m_idMessage + ", sM_context="
-				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + ", storeProduct=" + storeProduct
-				+ ", member=" + member + ", state=" + state + "]\r\n";
+				+ sM_context + ", sM_time=" + sM_time + ", sM_stateId=" + sM_stateId + "]\r\n";
 	}
 
 	public Integer getsM_id() {
@@ -90,11 +90,11 @@ public class StoreMessage {
 		this.m_idMessage = m_idMessage;
 	}
 
-	public Integer getsM_context() {
+	public String getsM_context() {
 		return sM_context;
 	}
 
-	public void setsM_context(Integer sM_context) {
+	public void setsM_context(String sM_context) {
 		this.sM_context = sM_context;
 	}
 

@@ -15,6 +15,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import model.bean.Member;
 import model.service.MemberService;
 
+/**
+ * ░░░░░░░░░░░░░░░░░░░░░░░░▄░░
+ * ░░░░░░░░░▐█░░░░░░░░░░░▄▀▒▌░
+ * ░░░░░░░░▐▀▒█░░░░░░░░▄▀▒▒▒▐
+ * ░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
+ * ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐
+ * ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌
+ * ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒
+ * ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐
+ * ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄
+ * ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒
+ * ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒
+ * 單身狗就這樣看著你。
+ */
+
 @Controller
 public class LoginController {
 	private static final long serialVersionUID = 1L;
@@ -80,7 +95,7 @@ public class LoginController {
 	@RequestMapping(value = "/LoginFb" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
 	@ResponseBody
 	private String LogingFbServlet(String userInfo) {
-		System.out.println("LoginFb");
+		System.out.println("LoginFb ="+userInfo);
 		//接收資料
 		JSONObject json = new JSONObject(userInfo);
 		System.out.println(json.getString("email"));
@@ -132,7 +147,7 @@ public class LoginController {
 		if(bean.size()==0) {
 			return "beanNull";
 		} else {
-			return json.getString("email");
+			return json.getString("email").toString();
 		}
 	
 	}

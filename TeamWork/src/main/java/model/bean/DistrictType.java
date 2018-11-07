@@ -43,7 +43,7 @@ public class DistrictType {
 	@Override
 	public String toString() {
 		return "DistrictType [d_id=" + d_id + ", d_name=" + d_name + ", d_parentsId=" + d_parentsId + ", d_stageId="
-				+ d_stageId + ", districtType=" + districtType + "]\r\n";
+				+ d_stageId + "]\r\n";
 	}
 
 	public Integer getD_id() {

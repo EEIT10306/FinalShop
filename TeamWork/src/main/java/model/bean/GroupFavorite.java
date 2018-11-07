@@ -45,8 +45,7 @@ public class GroupFavorite {
 
 	@Override
 	public String toString() {
-		return "GroupFavorite [gF_id=" + gF_id + ", m_idFavorite=" + m_idFavorite + ", g_id=" + g_id + ", member="
-				+ member + ", groupon=" + groupon + "]\r\n";
+		return "GroupFavorite [gF_id=" + gF_id + ", m_idFavorite=" + m_idFavorite + ", g_id=" + g_id + "]\r\n";
 	}
 
 	public Integer getgF_id() {

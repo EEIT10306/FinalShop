@@ -26,14 +26,12 @@ public class GroupOrder {
 
 	@Column(name = "gO_amt", columnDefinition = "int", nullable = false)
 	private Integer gO_amount;
-	
+
 	@Column(name = "gO_sumPri", columnDefinition = "int", nullable = false)
 	private Integer gO_sumPrice;
 
-	
 	@Column(name = "gO_time", columnDefinition = "datetime", nullable = false)
 	private Date gO_time;
-
 
 	@Column(name = "gO_state", columnDefinition = "int", nullable = false)
 	private Integer gO_stateId;
@@ -53,20 +51,23 @@ public class GroupOrder {
 	public GroupOrder() {
 	}
 
-	public GroupOrder(Integer gO_id, Integer gP_id, Integer m_idOrder, Integer gO_amount, Integer gO_stateId) {
+	public GroupOrder(Integer gO_id, Integer gP_id, Integer m_idOrder, Integer gO_amount, Integer gO_sumPrice,
+			Date gO_time, Integer gO_stateId) {
 		super();
 		this.gO_id = gO_id;
 		this.gP_id = gP_id;
 		this.m_idOrder = m_idOrder;
 		this.gO_amount = gO_amount;
+		this.gO_sumPrice = gO_sumPrice;
+		this.gO_time = gO_time;
 		this.gO_stateId = gO_stateId;
 	}
 
 	@Override
 	public String toString() {
 		return "GroupOrder [gO_id=" + gO_id + ", gP_id=" + gP_id + ", m_idOrder=" + m_idOrder + ", gO_amount="
-				+ gO_amount + ", gO_stateId=" + gO_stateId + ", groupProduct=" + groupProduct + ", member=" + member
-				+ ", state=" + state + "]\r\n";
+				+ gO_amount + ", gO_sumPrice=" + gO_sumPrice + ", gO_time=" + gO_time + ", gO_stateId=" + gO_stateId
+				+ "]\r\n";
 	}
 
 	public Integer getgO_id() {
@@ -99,6 +100,22 @@ public class GroupOrder {
 
 	public void setgO_amount(Integer gO_amount) {
 		this.gO_amount = gO_amount;
+	}
+
+	public Integer getgO_sumPrice() {
+		return gO_sumPrice;
+	}
+
+	public void setgO_sumPrice(Integer gO_sumPrice) {
+		this.gO_sumPrice = gO_sumPrice;
+	}
+
+	public Date getgO_time() {
+		return gO_time;
+	}
+
+	public void setgO_time(Date gO_time) {
+		this.gO_time = gO_time;
 	}
 
 	public Integer getgO_stateId() {

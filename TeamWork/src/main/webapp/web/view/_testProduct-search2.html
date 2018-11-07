@@ -175,8 +175,8 @@
 				<!-- end of form.select-filter -->
 			</section>
 			<section id="sectionbot" class="col-lg-10">
-				<div id='odbyvalue' name='0' style='height:50px;' class='row' >
-				
+				<div id='odbyvalue' name='0' style='height:50px;' class='row'>
+
 
 				</div>
 
@@ -307,7 +307,7 @@
 									var txt2 = "<button id='btn1' >最愛排名</button>" +
 										"<button id='btn2' >最新</button>" +
 										"<button id='btn3' >最熱銷</button>" +
-										"<button id='btn4' >價格低到高</button>"+
+										"<button id='btn4' >價格低到高</button>" +
 										"<button id='btn5' >價格高到低</button>"
 									$("#odbyvalue").html(txt2);
 
@@ -329,24 +329,26 @@
 											+ jsonback[x].sP_name
 											+ "</h5>";
 										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-											+ jsonback[x].sP_context
-											+ "</p></div>";
+											+ jsonback[x].sP_context.substr(0,36) 
+										txt	+= (jsonback[x].sP_context.length>36)?"...":""
+										txt	+= "</p></div>";
 										txt += "<p class='card-text'>$"
 											+ jsonback[x].sP_price
 											+ "</p>"
 										txt += "<p class='card-text'>最愛總人數"
 											+ jsonback[x].sP_amountFavorite
 											+ "</p>"
-										txt += "<p class='card-text'>平均評分"
-											+ jsonback[x].sP_averageAssess
-											+ "("
-											+ jsonback[x].sP_amountAssess
-											+ ")</p>"
-
+										i = Math.round(jsonback[x].sP_averageAssess);
+										for (j = 1; i >= j; j++) {
+											txt += "<i class='fas fa-star fa-star-score'></i>"
+										}
+										for (j = 5; i < j; j--) {
+											txt += "<i class='far fa-star fa-star-score'></i>"
+										}
 										txt += "</div>";
 										txt += "</div>";
 										txt += "</div>";
-										// 																					
+										// 	+ jsonback[x].sP_averageAssess																				
 									}
 									$("#tableMenu").html(txt);
 									orderby();
@@ -405,41 +407,45 @@
 		// alert($(this).attr("id"));	
 		// alert($("[name='odbyvalue']").val());
 		// 	$('#odbyvalue').attr('value',);
-		
+
 		// }
-		function orderby(){
-			$("#btn1").click(function(){
-				$('#odbyvalue').attr('name','1');
-		
-			alert($('#odbyvalue').attr("name"));
-				
+		function orderby() {
+			$("#btn1").click(function () {
+				$('#odbyvalue').attr('name', '1');
+
+				alert($('#odbyvalue').attr("name"));
+
 			});
-			$("#btn2").click(function(){
-				$('#odbyvalue').attr('name','2');
+			$("#btn2").click(function () {
+				$('#odbyvalue').attr('name', '2');
 				changefrom();
-			
+
 			});
-			$("#btn3").click(function(){
-				$('#odbyvalue').attr('name','3');
+			$("#btn3").click(function () {
+				$('#odbyvalue').attr('name', '3');
 				changefrom();
-			
+
 			});
-			$("#btn4").click(function(){
-				$('#odbyvalue').attr('name','4');
+			$("#btn4").click(function () {
+				$('#odbyvalue').attr('name', '4');
 				changefrom();
-				
+
 			});
-			$("#btn5").click(function(){
-				$('#odbyvalue').attr('name','5');
+			$("#btn5").click(function () {
+				$('#odbyvalue').attr('name', '5');
 				changefrom();
-				
+
 			});
 		}
 
-		// $("#odbyvalue > button").click(function() {
-		// 	var btnVal = $(this).val();
-		// 	alert(btnVal);
-		// });
+		// txt += "<p class='card-text'>最愛總人數"
+		// 	+ jsonback[x].sP_amountFavorite
+		// 	+ "</p>"
+		// txt += "<p class='card-text'>平均評分"
+		// 	+ jsonback[x].sP_averageAssess
+		// 	+ "("
+		// 	+ jsonback[x].sP_amountAssess
+		// 	+ ")</p>"
 
 
 
@@ -486,10 +492,10 @@
 				function () {
 					changefrom();
 				});
-		$("#pricebot").click(function(){
+		$("#pricebot").click(function () {
 			changefrom();
 		})
-				
+
 		function changefrom() {
 			var catchsearch = "search=" + $("#headsearch").val();
 
@@ -532,7 +538,7 @@
 				var transport2 = $(
 					"#transport2")
 					.val();
-				fromurl += "&e=2" ;
+				fromurl += "&e=2";
 				alert(fromurl);
 			}
 			if ($("#transport3").prop(
@@ -540,7 +546,7 @@
 				var transport3 = $(
 					"#transport3")
 					.val();
-				fromurl += "&f=3" ;
+				fromurl += "&f=3";
 				alert(fromurl);
 			}
 			if ($("#transport4").prop(
@@ -574,100 +580,104 @@
 				var maxprice = $(
 					"#selectChangeprice2")
 					.val();
-				fromurl += "&j=0" ;
-				
+				fromurl += "&j=0";
+
 			}
 			// 價格範圍
-			if($("#minprice").attr("value")!=null){
-				var	minprice =$("#minprice").attr("value");	
-			fromurl += "&k=" + minprice;
+			if ($("#minprice").attr("value") != null) {
+				var minprice = $("#minprice").attr("value");
+				fromurl += "&k=" + minprice;
 				alert(fromurl);
 			}
-			if($("#maxprice").attr("value")!=null){
-				var	maxprice =$("#maxprice").attr("value");	
-			fromurl += "&l=" + maxprice;
+			if ($("#maxprice").attr("value") != null) {
+				var maxprice = $("#maxprice").attr("value");
+				fromurl += "&l=" + maxprice;
 				alert(fromurl);
 			}
-		
-		
-			if($('#odbyvalue').attr("name")!=0)	{
-			var	odbyvalue =$('#odbyvalue').attr("name");	
-			fromurl += "&m=" + odbyvalue;
+
+
+			if ($('#odbyvalue').attr("name") != 0) {
+				var odbyvalue = $('#odbyvalue').attr("name");
+				fromurl += "&m=" + odbyvalue;
 				alert(fromurl);
 
 			}
-			
 
-				$
-						.ajax({
-							type: "GET",
 
-							url:fromurl,
+			$
+				.ajax({
+					type: "GET",
 
-							success: function (jsonback) {
-								alert("server傳回 = " + jsonback);
+					url: fromurl,
 
-								if (jsonback == "") {
-									var txt = "<p>我們找不到 " + search_value + " 商品</p>";
-									$("#odbyvalue").html(txt);
+					success: function (jsonback) {
+						alert("server傳回 = " + jsonback);
+
+						if (jsonback == "") {
+							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
+							$("#odbyvalue").html(txt);
+						}
+
+
+						//	var json=JSON.parse(jsonback);
+						//	alert(json);
+						else {
+							var txt = "";
+							var txt2 = "<button id='btn1' >最愛排名</button>" +
+								"<button id='btn2' >最新</button>" +
+								"<button id='btn3' >最熱銷</button>" +
+								"<button id='btn4' >價格低到高</button>" +
+								"<button id='btn5' >價格高到低</button>"
+							$("#odbyvalue").html(txt2);
+							
+							for (x = 0; x < jsonback.length; x++) {
+								// 												alert("in txt")
+								txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
+
+								txt += "<div class='card card-search'>";
+								if (jsonback[x].storeImages == "") {
+									showStoreImages = "/TeamWork/web/images/form-cat.png";
+								} else {
+									// 													alert(jsonback[6].storeImages[0].sI_context)
+									// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
+									showStoreImages = jsonback[x].storeImages[0].sI_context;
 								}
-
-
-								//	var json=JSON.parse(jsonback);
-								//	alert(json);
-								else {
-									var txt = "";
-									var txt2 = "<button id='btn1' >最愛排名</button>" +
-										"<button id='btn2' >最新</button>" +
-										"<button id='btn3' >最熱銷</button>" +
-										"<button id='btn4' >價格低到高</button>"+
-										"<button id='btn5' >價格高到低</button>"
-									$("#odbyvalue").html(txt2);
-
-									for (x = 0; x < jsonback.length; x++) {
-										// 												alert("in txt")
-										txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
-
-										txt += "<div class='card card-search'>";
-										if (jsonback[x].storeImages == "") {
-											showStoreImages = "/TeamWork/web/images/form-cat.png";
-										} else {
-											// 													alert(jsonback[6].storeImages[0].sI_context)
-											// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
-											showStoreImages = jsonback[x].storeImages[0].sI_context;
-										}
-										txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
-										txt += "<div class='card-body'>";
-										txt += "<h5 class='card-title'>"
-											+ jsonback[x].sP_name
-											+ "</h5>";
-										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-											+ jsonback[x].sP_context
-											+ "</p></div>";
-										txt += "<p class='card-text'>$"
-											+ jsonback[x].sP_price
-											+ "</p>"
-										txt += "<p class='card-text'>最愛總人數"
-											+ jsonback[x].sP_amountFavorite
-											+ "</p>"
-										txt += "<p class='card-text'>平均評分"
-											+ jsonback[x].sP_averageAssess
-											+ "("
-											+ jsonback[x].sP_amountAssess
-											+ ")</p>"
-
-										txt += "</div>";
-										txt += "</div>";
-										txt += "</div>";
-										// 																					
-									}
-									$("#tableMenu").html(txt);
+								txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
+								txt += "<div class='card-body'>";
+								txt += "<h5 class='card-title'>"
+									+ jsonback[x].sP_name
+									+ "</h5>";
+								txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
+									+ jsonback[x].sP_context.substr(0,36) 
+								txt += (jsonback[x].sP_context.length>36)?"...":""
+								txt	+= "</p></div>";
+								txt += "<p class='card-text'>$"
+									+ jsonback[x].sP_price
+									+ "</p>"
+								txt += "<p class='card-text'>最愛總人數"
+									+ jsonback[x].sP_amountFavorite
+									+ "</p>"
+									
+								var i = Math.round(parseInt(jsonback[x].sP_averageAssess));
 								
+								for (j = 1; i >= j; j++) {
+									txt += "<i class='fas fa-star fa-star-score'></i>"
 								}
-
+								for (j = 5; i < j; j--) {
+									txt += "<i class='far fa-star fa-star-score'></i>"
+								}
+								txt += "</div>";
+								txt += "</div>";
+								txt += "</div>";
+								// 																					
 							}
-						});
-					};
+							$("#tableMenu").html(txt);
+							
+						}
+
+					}
+				});
+		};
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 	 crossorigin="anonymous"></script>

@@ -66,6 +66,10 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 				GO.setM_idOrder(bean.getM_idOrder());
 			if (bean.getgO_amount() != null)
 				GO.setgO_amount(bean.getgO_amount());
+			if (bean.getgO_sumPrice() != null)
+				GO.setgO_sumPrice(bean.getgO_sumPrice());
+			if (bean.getgO_time() != null)
+				GO.setgO_time(bean.getgO_time());
 			if (bean.getgO_stateId() != null)
 				GO.setgO_stateId(bean.getgO_stateId());
 			return GO;
@@ -80,6 +84,10 @@ public class GroupOrderDaoImpl implements GroupOrderDao {
 			GO.setM_idOrder(bean.getM_idOrder());
 		if (bean.getgO_amount() != null)
 			GO.setgO_amount(bean.getgO_amount());
+		if (bean.getgO_sumPrice() != null)
+			GO.setgO_sumPrice(bean.getgO_sumPrice());
+		if (bean.getgO_time() != null)
+			GO.setgO_time(bean.getgO_time());
 		if (bean.getgO_stateId() != null)
 			GO.setgO_stateId(bean.getgO_stateId());
 		return GO;

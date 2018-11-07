@@ -113,7 +113,7 @@ public class Member {
 				+ ", m_loginTime=" + m_loginTime + ", m_stateId=" + m_stateId + ", m_wishAssessSumEE="
 				+ m_wishAssessSumEE + ", m_groupAssessSumEE=" + m_groupAssessSumEE + ", m_storeAssessSumEE="
 				+ m_storeAssessSumEE + ", m_wishAssessSum=" + m_wishAssessSum + ", m_groupAssessSum=" + m_groupAssessSum
-				+ ", m_storeAssessSum=" + m_storeAssessSum + ", state=" + state + "]\r\n";
+				+ ", m_storeAssessSum=" + m_storeAssessSum + "]\r\n";
 	}
 
 	public Integer getM_id() {
