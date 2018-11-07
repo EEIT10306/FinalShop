@@ -8,17 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.StoreMessage;
-import model.repository.Impl.StoreMessageDaoImpl;
+import model.repository.StoreMessageDao;
 
 @Service
 @Transactional
 public class StoreMessageService {
 	@Autowired
-	StoreMessageDaoImpl storeMessageDaoImpl;
+	StoreMessageDao storeMessageDaoImpl;
 	
 	public List<StoreMessage> selectAllStoreMessageBySpId(Integer Sp_id) throws SQLException{
 		String hql = " Where sP_id = " +Sp_id;
 		hql += " Order By sM_time desc";
+		System.out.println(storeMessageDaoImpl.selectHql(hql).get(0).getStoreProduct().getStoreImages());
 		return storeMessageDaoImpl.selectHql(hql);
 	}
 }

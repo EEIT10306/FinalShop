@@ -11,16 +11,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.StoreProduct;
-import model.repository.Impl.StoreProductDaoImpl;
+import model.repository.StoreProductDao;
 
 @Service
 @Transactional
 public class StoreProductService {
 	
 	@Autowired
-	StoreProductDaoImpl storeProductDaoImpl;
+	StoreProductDao storeProductDaoImpl;
 	
 	public StoreProduct selectByPk(int id) throws SQLException {
+		System.out.println(storeProductDaoImpl.selectByPk(id).getStoreImages());
 		return storeProductDaoImpl.selectByPk(id);
 	}
 	public List<StoreProduct> getStoreProductChangeForm(String search,String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m){

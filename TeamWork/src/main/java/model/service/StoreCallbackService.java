@@ -8,21 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.StoreCallback;
-import model.bean.StoreMessage;
-import model.repository.Impl.StoreCallbackDaoImpl;
-import model.repository.Impl.StoreMessageDaoImpl;
+import model.repository.StoreCallbackDao;
 
 @Service
 @Transactional
 public class StoreCallbackService {
 	@Autowired
-	StoreCallbackDaoImpl storeCallbackDaoImpl;
+	StoreCallbackDao storeCallbackDaoImpl;
 	
 	public List<StoreCallback> selectAllStoreCallbackBySpId(Integer sP_id) throws SQLException{
 		String hql = "Where storeMessage.sP_id = "+sP_id;
 		hql += " Order By storeMessage.sM_time desc";
-		System.out.println("12345");
-		System.out.println(storeCallbackDaoImpl.selectHql(hql));
+		System.out.println(storeCallbackDaoImpl.selectHql(hql).get(0).getStoreMessage().getStoreProduct().getStoreImages());
 		return storeCallbackDaoImpl.selectHql(hql);
 	}
 }

@@ -77,14 +77,13 @@
 			$("#cartAmount").html(amttxt);
 		})
 		
-		var hahaha; 
-		
+		var hahaha;  //抓取？後的值
 		var commentText=""; 	
 		var replyText="";
 		var commentClicked = false;
 		var replyClicked = false;
-		var FavoriteCookie = document.cookie;
-		var CartCookie = document.cookie;
+
+		document.cookie = "m_mail = rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
 		
 		$(function(){			
 			var path = location.search.substring(1);
@@ -94,30 +93,46 @@
 					if(params[0] == "sP_id")
 						hahaha = paths[param];
 				}
-			
+				
+				
+			//最愛	
 			$("#favorite").click(function(){
-				alert(hahaha.toString().substring(0,5)+hahaha.toString().substring(6));
-				if(FavoriteCookie.hahaha==hahaha.toString().substring(6)){
-					FavoriteCookie.hahaha=0;   
-					alert(FavoriteCookie);
-				}else{
-				FavoriteCookie += hahaha +"="+hahaha.toString().substring(6)+";" ;
-				alert(FavoriteCookie);
-				}
-			})
-			
-			
-			$("#addShoppingCart").click(function(){
-				var shopCart = hahaha.replace("=", "");
-				var shopCartCookieContent = CartCookie.split(";");
-				var duplicate = false;
-				for(i=0;i<shopCartCookieContent.length;i++){
-					if(shopCartCookieContent[i].toString().substring(0,6) == shopCart){
-						CartCookie = CartCookie.replace(shopCartCookieContent[i]+";","") ;
+				var fav = "favorite"+hahaha.replace("=", "");
+				var favCookies = document.cookie.split(';');
+				var flag = true;
+				alert(document.cookie);
+				for(i=0;i<favCookies.length;i++){
+					var c = favCookies[i];
+			        while (c.charAt(0) == ' ') {
+			            c = c.substring(1);    //去空格, 若是不去的話跑不下去= =
+			        }
+					if(c.indexOf(fav) == 0){
+						flag = false;
+						document.cookie = fav + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";						
 					}
 				}
-				CartCookie += shopCart+"="+$("#cartAmount").val()+";" ;
-				alert(CartCookie);
+				if(flag == true){
+					document.cookie = fav + " = like;"; 
+				}
+				alert(document.cookie);
+			})
+			
+			//購物車	
+			$("#addShoppingCart").click(function(){
+				var shopCart = "shopCart"+hahaha.replace("=", "");
+				var cartCookies = document.cookie.split(';');
+				var flag = true; 
+				alert(document.cookie);
+				for(i=0;i<cartCookies.length;i++){
+					 if (cartCookies[i].indexOf(shopCart) == 0) {
+					 	 flag = false;
+						 document.cookie = shopCart+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+				     }
+				}
+				if(flag == true){
+					document.cookie = shopCart+" = " + $("#cartAmount").val()+";" ;
+				}
+				alert(document.cookie);
 			})
 			
 			
@@ -156,12 +171,13 @@
 							}
 						}
 					}
-
+// 					$(".col-lg-6 product-top .detail-title").append(txt[0]+txt[1]+txt[2]+txt[3]+txt[4]);
 					$(".detail-title").append("<br>"+txt[0]+txt[1]+txt[2]+txt[3]+txt[4]);
 					if(assessProductAVG.length = 1){
 						assessProductAVG = assessProductAVG.toString() + '.0';
 					}
 					$(".star-score").text(assessProductAVG);
+					$(".storage-count").text(data.sP_amount);
 					$(".detail-price").text("$"+data.sP_price);
 					$(".detail-des-title").after("<p>"+data.sP_context+"</p>"); 
 				}	
@@ -171,6 +187,7 @@
 					url: "/TeamWork/StoreAssess?"+hahaha,
 					type: "GET",
 					success: function(data){
+// 						console.log(data)
 						if(commentClicked == false){
 							for(i=0;i<data.length;i++){
 								var commentDate = new Date(data[i].storeOrder.sO_time);
@@ -180,9 +197,9 @@
 								var starsCount = data[i].sA_pointAssess;
 								var starsText = "";
 								for(j=0;j<starsCount;j++)
-	                        		starsText += '<i class="fas fa-star fa-star-score"></i>'
-	                        	for(k=5;k>starsCount;k--)	
 	                        		starsText += '<i class="far fa-star fa-star-score"></i>'
+	                        	for(k=5;k>starsCount;k--)	
+	                        		starsText += '<i class="fas fa-star fa-star-score"></i>'
 	                        		
 								commentText += `
 									<li>
@@ -256,6 +273,18 @@
 								}
 							}
 						})
+					}
+				})
+			})
+			//--------------------檢舉
+			$("#report-submit").click(function(){
+				$.ajax({
+					url:"",
+					type:"POST",
+					data:{m_mail:, sP_id:, sR_content:},
+					dataType:"json",
+					success: function(response){
+						
 					}
 				})
 			})
@@ -359,8 +388,8 @@
                 <i class="fas fa-star fa-star-score"></i>
                 <i class="fas fa-star fa-star-half"></i>
                 <i class="far fa-star fa-star-score"></i>-->
-				<span class="star-score">4.8</span> <span class="sell-text">銷售量</span>
-				<span class="sell-count"> 3581</span>
+				<span class="star-score">4.8</span> <span class="storage-text">庫存量</span>
+				<span class="storage-count"> 3581</span>
 				<h4 class="detail-price">$350</h4>
 				<h6>規格</h6>
 				<h6>數量</h6>
@@ -694,10 +723,10 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body"><textarea cols="50" rows="5" style= "resize: none" ></textarea></div>
+				<div class="modal-body"><textarea id="report-content" cols="50" rows="5" style= "resize: none" ></textarea></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary">送出</button>
+					<button type="button" class="btn btn-primary" id="report-submit">送出</button>
 				</div>
 			</div>
 		</div>

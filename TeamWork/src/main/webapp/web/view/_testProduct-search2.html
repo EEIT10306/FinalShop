@@ -38,7 +38,7 @@
 				<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
 			</ul>
 
-			<!-- Button trigger modal -->
+			
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="form_login.html">
 						<i class="fas fa-bell icon"></i>會員通知
@@ -50,24 +50,26 @@
 		</div>
 	</nav>
 	<div class="belowNavbar">
-		<div class="container">
-			<form method="GET" action="/TeamWork/search">
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
-							<option value="store" class="dropdown-item">購物商城</option>
-							<option value="wish" class="dropdown-item">許願池</option>
-							<option value="groupon" class="dropdown-item">限時團購</option>
-						</select>
-					</div>
-					<input id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="submit">Search</button>
-					</div>
-				</div>
-			</form>
-		</div><!-- end of container -->
-	</div>
+
+    <div class="container">
+        <form method="GET" action="/TeamWork/search">
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+                            <option  value="store" class="dropdown-item">購物商城</option>
+                            <option  value="wish" class="dropdown-item">許願池</option>
+                            <option  value="groupon" class="dropdown-item">限時團購</option>
+                        </select>
+                    </div>
+                    <input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-append">
+                        <button   class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+	</div> end of container 
+
+    </div>
 	<div class="container" id="container">
 		<div class="row">
 			<section class="col-lg-2">
@@ -253,10 +255,23 @@
 	<!-- end of footer -->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<!--     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
-	<!--         crossorigin="anonymous"></script> -->
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-	 crossorigin="anonymous"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script>
+	//以下是JS的include方式
+	$(document).ready(function(){
+		console.log("看看有沒有跑INCLUDE")
+		$.get("testheader.html",function(data){
+		$("#header").html(data);
+		});
+	})
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+		crossorigin="anonymous"></script>
+
 	<script>
 		$(document)
 			.ready(

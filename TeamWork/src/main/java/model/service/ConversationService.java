@@ -2,6 +2,7 @@ package model.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -59,6 +60,16 @@ public class ConversationService {
 			return lastConversation;
 		} catch (SQLException e) {
 			System.out.println("ConversationService - getConversationTalker - SQLException");
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Conversation insertConversation(Conversation conversation) {
+		try {
+			return conversationDaoImpl.insert(conversation);
+		} catch (SQLException e) {
+			System.out.println("ConversationService - insertConversation - SQLException");
 			e.printStackTrace();
 			return null;
 		}

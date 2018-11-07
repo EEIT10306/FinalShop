@@ -1,6 +1,7 @@
 package model.repository.Impl;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -48,9 +49,13 @@ public class ConversationDaoImpl implements ConversationDao {
 	@Override
 	public Conversation insert(Conversation bean) throws SQLException {
 		// 查詢此ID有無資料
-		Conversation C = selectByPk(bean.getC_id());
+		Conversation C = null;
+		if (bean.getC_id() != null)
+			C = selectByPk(bean.getC_id());
 		// 沒有才修改
 		if (C == null) {
+			bean.setC_time(new Date());
+			bean.setC_stateId(3);
 			getSession().save(bean);
 			return bean;
 		}

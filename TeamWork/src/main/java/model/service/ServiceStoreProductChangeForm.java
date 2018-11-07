@@ -23,13 +23,13 @@ public class ServiceStoreProductChangeForm {
 	public List<StoreProduct> getStoreProductForm(String str) {
 		try {
 			List<StoreProduct> list = storeProductDaoImpl.selectHql(str);
-			for(StoreProduct sp:list) {
-				Iterator<StoreImages> it = sp.getStoreImages().iterator();
-				while(it.hasNext()) {
-					it.next().setStoreProduct(null);
-					
-				};
-			}
+//			for(StoreProduct sp:list) {
+//				Iterator<StoreImages> it = sp.getStoreImages().iterator();
+//				while(it.hasNext()) {
+//					it.next().setStoreProduct(null);
+//					
+//				};
+//			}
 			return list;
 		} catch (SQLException e) {
 			System.out.println("_TestService - SQLException");

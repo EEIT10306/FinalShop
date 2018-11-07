@@ -16,10 +16,12 @@ import model.bean.StoreAssess;
 import model.bean.StoreCallback;
 import model.bean.StoreMessage;
 import model.bean.StoreProduct;
+import model.bean.StoreReport;
 import model.service.StoreAssessService;
 import model.service.StoreCallbackService;
 import model.service.StoreMessageService;
 import model.service.StoreProductService;
+import model.service.StoreReportService;
 
 @Controller
 public class StoreProductController {
@@ -31,16 +33,17 @@ public class StoreProductController {
 	private StoreMessageService storeMessageService;
 	@Autowired
 	private StoreCallbackService storeCallbackService;
+	@Autowired
+	private StoreReportService storeReportService;
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
 	}
 	
-	@RequestMapping(path = "/StoreProduct", method = RequestMethod.GET, produces = {"application/json"})
+	@RequestMapping(path = "/StoreProduct", method = RequestMethod.GET)
 	@ResponseBody
 	public StoreProduct GetOneStoreProduct(Integer sP_id) throws SQLException {
-		System.out.println(sP_id);
-		return storeProductService.selectByPk(sP_id);		
+		return storeProductService.selectByPk(sP_id);	
 	}
 	@RequestMapping(path = "/StoreAssess", method = RequestMethod.GET, produces = {"application/json"})
 	@ResponseBody
@@ -57,6 +60,8 @@ public class StoreProductController {
 	public List<StoreCallback> GetStoreProductAllMessage(Integer sP_id) throws SQLException{
 		return storeCallbackService.selectAllStoreCallbackBySpId(sP_id);
 	}
-	
+	public StoreReport InsertOneStoreReport(StoreReport bean) throws SQLException{
+		return storeReportService.insertOneReportBySpId(bean);
+	}
 
 }

@@ -22,10 +22,6 @@ public class StoreImages {
 	@Column(name = "sI_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String sI_context;
 
-	@ManyToOne
-	@JoinColumn(name = "sP_ID", insertable = false, updatable = false)
-	private StoreProduct storeProduct;
-
 	public StoreImages() {
 	}
 
@@ -63,10 +59,6 @@ public class StoreImages {
 
 	public void setsI_context(String sI_context) {
 		this.sI_context = sI_context;
-	}
-
-	public void setStoreProduct(StoreProduct storeProduct) {
-		this.storeProduct = storeProduct;
 	}
 
 }
