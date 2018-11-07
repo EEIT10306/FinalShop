@@ -75,7 +75,7 @@ public class StoreProduct {
 	@JoinColumn(name = "sP_state", insertable = false, updatable = false)
 	private State state;
 
-	@OneToMany(mappedBy = "sP_ID")
+	@OneToMany(mappedBy = "sP_id")
 	private Set<StoreImages> storeImages = new LinkedHashSet<>();
 
 	public StoreProduct() {
@@ -108,7 +108,8 @@ public class StoreProduct {
 				+ ", p_id=" + p_id + ", sP_amount=" + sP_amount + ", sP_price=" + sP_price + ", sP_transport="
 				+ sP_transport + ", sP_new=" + sP_new + ", sP_hot=" + sP_hot + ", sP_amountFavorite="
 				+ sP_amountFavorite + ", sP_time=" + sP_time + ", sP_averageAssess=" + sP_averageAssess
-				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + "]\r\n";
+				+ ", sP_amountAssess=" + sP_amountAssess + ", sP_stateId=" + sP_stateId + ", storeImages=" + storeImages
+				+ "]\r\n";
 	}
 
 	public Integer getsP_id() {

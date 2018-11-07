@@ -85,7 +85,8 @@ public class GroupProduct {
 	public String toString() {
 		return "GroupProduct [gP_id=" + gP_id + ", g_iD=" + g_iD + ", gP_name=" + gP_name + ", p_id=" + p_id
 				+ ", gP_amount=" + gP_amount + ", gP_price=" + gP_price + ", gP_context=" + gP_context + ", gP_version="
-				+ gP_version + ", gP_completeTime=" + gP_completeTime + ", gP_stateId=" + gP_stateId + "]\r\n";
+				+ gP_version + ", gP_completeTime=" + gP_completeTime + ", gP_stateId=" + gP_stateId + ", groupImages="
+				+ groupImages + "]\r\n";
 	}
 
 	public Integer getgP_id() {
