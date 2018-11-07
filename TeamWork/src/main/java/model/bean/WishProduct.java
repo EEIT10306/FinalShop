@@ -57,7 +57,7 @@ public class WishProduct {
 	@JoinColumn(name = "wP_state", insertable = false, updatable = false)
 	private State state;
 
-	@OneToMany(mappedBy = "wishProduct")
+	@OneToMany(mappedBy = "wP_id")
 	private Set<WishImages> wishImages = new LinkedHashSet<>();
 
 	public WishProduct() {
@@ -81,7 +81,8 @@ public class WishProduct {
 	public String toString() {
 		return "WishProduct [wP_id=" + wP_id + ", w_id=" + w_id + ", wP_name=" + wP_name + ", p_id=" + p_id
 				+ ", wP_amount=" + wP_amount + ", wP_priceBottom=" + wP_priceBottom + ", wP_priceTop=" + wP_priceTop
-				+ ", wP_completeTime=" + wP_completeTime + ", wP_stateId=" + wP_stateId + "]\r\n";
+				+ ", wP_completeTime=" + wP_completeTime + ", wP_stateId=" + wP_stateId + ", wishImages=" + wishImages
+				+ "]\r\n";
 	}
 
 	public Integer getwP_id() {

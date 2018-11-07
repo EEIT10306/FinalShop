@@ -55,16 +55,17 @@ public class LoginController {
 		}
 		if (member.getM_password() == null || member.getM_password().trim().length() == 0) {
 			return "passwordNull";
-		} else if(member.getM_password() != null|| member.getM_password().trim().length() != 0) {
-			member.setM_password(replaceSpecialCharater(member.getM_password()));
-			pattern = Pattern.compile(PASSWORD_PATTERN);
-			matcher = pattern.matcher(member.getM_password());
-			if (matcher.matches()) {
-				member.setM_password(replaceSpecialCharater(member.getM_password()));
-			} else {
-				return "passwordNull";
-			}
-		}
+		} 
+//		else if(member.getM_password() != null|| member.getM_password().trim().length() != 0) {
+//			member.setM_password(replaceSpecialCharater(member.getM_password()));
+//			pattern = Pattern.compile(PASSWORD_PATTERN);
+//			matcher = pattern.matcher(member.getM_password());
+//			if (matcher.matches()) {
+//				member.setM_password(replaceSpecialCharater(member.getM_password()));
+//			} else {
+//				return "passwordNull";
+//			}
+//		}
 		//呼叫model
 		
 		String hql = "WHERE m_account = '"+member.getM_account()
@@ -159,22 +160,33 @@ public class LoginController {
 		//接收資料
 		//驗證資料
 		//呼叫model
-		
+		System.out.println(member);
 		String hql = "WHERE m_account = '"+member.getM_account()+"'";
+		
 		List<Member> bean = null;
+		
 		try {
 			bean = memberService.selectHql(hql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println(bean);
-		//根據model執行結果，導向view
-		if(bean.size()==0) {
+		if(bean.size()==0||bean.isEmpty()||bean==null) {
 			return "accountNoRepeat";
-		} else {
-			return member.getM_account();
 		}
-	
+		for(Member mbean:bean) {
+			System.out.println(mbean);
+			if("facebook".equals(mbean.getM_password()) || mbean.getM_password()=="facebook"){
+				System.out.println("FB帳號");
+				return mbean.getM_account().toString()+"facebook";
+			} else if("google".equals(mbean.getM_password()) || mbean.getM_password()=="google") {
+				System.out.println("google帳號");
+				return mbean.getM_account().toString()+"google";
+			} else {
+				System.out.println("一般帳號");
+				return mbean.getM_account().toString();
+			}
+			
+		}
+		return "account";
 	}
 }
