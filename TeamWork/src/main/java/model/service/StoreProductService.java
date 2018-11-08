@@ -30,7 +30,7 @@ public class StoreProductService {
 		str += "Where (sP_name like '%"+search+"%' or sP_context like '%" +search+"%') " ;
 		str += (a!=null)?" and product.p_parentsId ="+ a+ " ":"";
 		str += (b!=null)?" and product.p_id ="+ b+" ":"";
-		str += (b!=null)?" and sP_averageAssess >= "+c+" ":"";
+		str += (c!=null)?" and sP_averageAssess >= "+c+" ":"";
 		if(d!=null||e!=null||f!=null||g!=null||h!=null) {
 			
 			if(d!=null) {list.add(" sP_transport="+d);}
@@ -53,15 +53,29 @@ public class StoreProductService {
 //		str += "and (sP_transport="+d+" or sP_transport="+e+" or sP_transport="+f+" or sP_transport="+g+" or sP_transport="+h+")";
 		
 		
-		if(i==null&&j==null) {
-			str+="";
-		}else {
-			str+=(i!=null)?" and sP_new ="+i+" ":"";
-			str+=(j!=null)?" and sP_new ="+j+" ":"";
-		}
+//		if(i==null&&j==null) {
+//			str+="";
+//		}else {
+//			str+=(i!=null)?" and (sP_new ="+i+" ":"";
+//			str+=(j!=null)?" and sP_new ="+j+")":"";
+//		}
+		str+=" and (sP_new ="+i;
+		str+=" or sP_new ="+j+")";
 		str+=(k!=null&&l!=null)?" and (sP_price > "+k+ " and sP_price<"+l+") ":"";
+		if(!m.equals("null")) {
+		if(m.equals("1")){
+			System.out.println("wwwewe");
+			str +=" order by sP_amountFavorite desc";
+			}else if(m.equals("2")){
+				
+				str +=" order by sP_time";
+			}else if(m.equals("3")){str +=" order by sP_hot desc";
+			}else if(m.equals("4")){str +=" order by sP_price";
+			}else {
+				
+				str +=" order by sP_price desc";}
+		}
 		
-		str += (m!=null)?" order by "+m+" ":" ";
 		try {
 			List<StoreProduct> lis = storeProductDaoImpl.selectHql(str);
 			for(StoreProduct sp:lis) {

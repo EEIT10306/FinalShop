@@ -153,22 +153,22 @@
 						<p>商品狀況
 					</div>
 					<div class="form-group form-check">
-						<input name="selectChangeprice1" type="checkbox" value="true" class="form-check-input" id="conditionCheck1">
+						<input name="selectChange" type="checkbox" value="true" class="form-check-input" id="conditionCheck1">
 						<label class="form-check-label" for="exampleCheck1">全新商品</label>
 					</div>
 					<div class="form-group form-check">
-						<input name="selectChangeprice2" type="checkbox" value="false" class="form-check-input" id="conditionCheck2">
+						<input name="selectChange" type="checkbox" value="false" class="form-check-input" id="conditionCheck2">
 						<label class="form-check-label" for="exampleCheck1">二手商品</label>
 					</div>
 					<hr>
 					<form>
 						<div class="form-group">
-							<label for="exampleInputEmail1">價格範圍</label> <input type="email" class="form-control" id="minprice"
-							 aria-describedby="emailHelp" placeholder="$ 最小值">
+							<label for="exampleInputEmail1">價格範圍</label> 
+							<input type="text" class="form-control" id="minprice"placeholder="$ 最小值">
 							<div style="text-align: center">
 								<p>｜
 							</div>
-							<input type="email" class="form-control" id="maxprice" aria-describedby="emailHelp" placeholder="$ 最大值">
+							<input type="text" class="form-control" id="maxprice" placeholder="$ 最大值">
 							<button type="button" id="pricebot" class="btn btn-outline-warning filter-button btn-sm">套用</button>
 						</div>
 					</form>
@@ -177,7 +177,7 @@
 				<!-- end of form.select-filter -->
 			</section>
 			<section id="sectionbot" class="col-lg-10">
-				<div id='odbyvalue' name='0' style='height:50px;' class='row'>
+				<div id='odbyvalue' name='null' style='height:50px;' class='row'>
 
 
 				</div>
@@ -259,7 +259,7 @@
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script>
+	<!-- <script>
 	//以下是JS的include方式
 	$(document).ready(function(){
 		console.log("看看有沒有跑INCLUDE")
@@ -267,7 +267,7 @@
 		$("#header").html(data);
 		});
 	})
-	</script>
+	</script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
 		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 		crossorigin="anonymous"></script>
@@ -319,11 +319,11 @@
 								//	alert(json);
 								else {
 									var txt = "";
-									var txt2 = "<button id='btn1' >最愛排名</button>" +
-										"<button id='btn2' >最新</button>" +
-										"<button id='btn3' >最熱銷</button>" +
-										"<button id='btn4' >價格低到高</button>" +
-										"<button id='btn5' >價格高到低</button>"
+									var txt2 = "<button value='1' id='btn1' >最愛排名</button>" +
+										"<button value='2' id='btn2' >最新</button>" +
+										"<button value='3' id='btn3' >最熱門</button>" +
+										"<button value='4' id='btn4' >價格低到高</button>" +
+										"<button value='5' id='btn5' >價格高到低</button>"
 									$("#odbyvalue").html(txt2);
 
 									for (x = 0; x < jsonback.length; x++) {
@@ -350,8 +350,8 @@
 										txt += "<p class='card-text'>$"
 											+ jsonback[x].sP_price
 											+ "</p>"
-										txt += "<p class='card-text'>最愛總人數"
-											+ jsonback[x].sP_amountFavorite
+										txt += "<i class='fas fa-heart' id='favorite'></i>"
+											+ "("+jsonback[x].sP_amountFavorite+")"
 											+ "</p>"
 										i = Math.round(jsonback[x].sP_averageAssess);
 										for (j = 1; i >= j; j++) {
@@ -360,6 +360,7 @@
 										for (j = 5; i < j; j--) {
 											txt += "<i class='far fa-star fa-star-score'></i>"
 										}
+										txt +=	"("+jsonback[x].sP_amountAssess+")";
 										txt += "</div>";
 										txt += "</div>";
 										txt += "</div>";
@@ -429,27 +430,32 @@
 				$('#odbyvalue').attr('name', '1');
 
 				alert($('#odbyvalue').attr("name"));
+				changefrom();
 
 			});
 			$("#btn2").click(function () {
 				$('#odbyvalue').attr('name', '2');
+				alert($('#odbyvalue').attr("name"));
 				changefrom();
 
 			});
 			$("#btn3").click(function () {
 				$('#odbyvalue').attr('name', '3');
+			
+				alert($('#odbyvalue').attr("name"));
 				changefrom();
-
 			});
 			$("#btn4").click(function () {
 				$('#odbyvalue').attr('name', '4');
+				
+				alert($('#odbyvalue').attr("name"));
 				changefrom();
-
 			});
 			$("#btn5").click(function () {
 				$('#odbyvalue').attr('name', '5');
+				
+				alert($('#odbyvalue').attr("name"));
 				changefrom();
-
 			});
 		}
 
@@ -497,11 +503,11 @@
 
 
 
-		$("[name='selectChangeprice']")
-			.click(
-				function () {
-					changefrom();
-				});
+		// $("[name='selectChangeprice']")
+		// 	.click(
+		// 		function () {
+		// 			changefrom();
+		// 		});
 		$("[name='selectChange']")
 			.change(
 				function () {
@@ -534,12 +540,15 @@
 				fromurl += "&b="
 					+ exampleFormControlSelect2;
 			}
+			// 評價
 			if ($("#evaluation").val() != 0) {
 				var evaluation = $(
 					"#evaluation")
 					.val();
+					alert(evaluation);
 				fromurl += "&c=" + evaluation;
 			}
+			// 運送方式
 			if ($("#transport1").prop(
 				'checked') == true) {
 				var transport1 = $(
@@ -582,38 +591,65 @@
 				alert(fromurl);
 			}
 			// 商品狀況
-			if ($("#selectChangeprice1").prop(
-				'checked') == true) {
-				var minprice = $(
-					"#selectChangeprice1")
-					.val();
-				fromurl += "&i=1";
-				alert(fromurl);
-			}
-			if ($("#selectChangeprice2").prop(
-				'checked') == true) {
-				var maxprice = $(
-					"#selectChangeprice2")
-					.val();
-				fromurl += "&j=0";
 
+			if ($("#conditionCheck1").prop(
+				'checked') == true) {
+				if ($("#conditionCheck2").prop(
+				'checked') == true){
+					fromurl += "&i= true";
+					fromurl += "&j= false";
+				}else{
+					fromurl += "&i= true";
+					fromurl += "&j= true";
+				}
+			
+			}else{
+				if ($("#conditionCheck2").prop(
+				'checked') == true){
+					fromurl += "&i=false";
+					fromurl += "&j= false";
+				}else{
+					fromurl += "&i= true";
+					fromurl += "&j= false";
+				}
+			
 			}
+			// if ($("#conditionCheck2").prop(
+			// 	'checked') == true) {
+			// 	fromurl += "&j= false";
+			// 	// var maxprice = $(
+			// 	// 	"#selectChangeprice2")
+			// 	// 	.val();
+			// }	else{
+			// 		fromurl += "&j= true";
+			// 	}
+			// 	if ($("#conditionCheck1").prop(
+			// 	'checked') == true&& $("#conditionCheck2").prop(
+			// 	'checked') == true ){
+			// 		fromurl += "&i= true";
+			// 		fromurl += "&j= false";
+			// 	}
+
 			// 價格範圍
-			if ($("#minprice").attr("value") != null) {
-				var minprice = $("#minprice").attr("value");
+			
+
+			if(	$("input[id='minprice']").val()!=""){
+				var minprice = $("input[id='minprice']").val()
 				fromurl += "&k=" + minprice;
-				alert(fromurl);
+				alert(minprice)
 			}
-			if ($("#maxprice").attr("value") != null) {
-				var maxprice = $("#maxprice").attr("value");
+			if(	$("input[id='maxprice']").val()!=""){
+				var maxprice = $("input[id='maxprice']").val()
 				fromurl += "&l=" + maxprice;
-				alert(fromurl);
+				alert(maxprice)
 			}
+		
 
 
 			if ($('#odbyvalue').attr("name") != 0) {
 				var odbyvalue = $('#odbyvalue').attr("name");
 				fromurl += "&m=" + odbyvalue;
+				alert(odbyvalue);
 				alert(fromurl);
 
 			}
@@ -638,11 +674,11 @@
 						//	alert(json);
 						else {
 							var txt = "";
-							var txt2 = "<button id='btn1' >最愛排名</button>" +
-								"<button id='btn2' >最新</button>" +
-								"<button id='btn3' >最熱銷</button>" +
-								"<button id='btn4' >價格低到高</button>" +
-								"<button id='btn5' >價格高到低</button>"
+							var txt2 = "<button value='1' id='btn1' >最愛排名</button>" +
+								"<button value='2' id='btn2' >最新</button>" +
+								"<button value='3' id='btn3' >最熱門</button>" +
+								"<button value='4' id='btn4' >價格低到高</button>" +
+								"<button value='5' id='btn5' >價格高到低</button>"
 							$("#odbyvalue").html(txt2);
 							
 							for (x = 0; x < jsonback.length; x++) {
@@ -669,8 +705,8 @@
 								txt += "<p class='card-text'>$"
 									+ jsonback[x].sP_price
 									+ "</p>"
-								txt += "<p class='card-text'>最愛總人數"
-									+ jsonback[x].sP_amountFavorite
+								txt += "<i class='fas fa-heart' id='favorite'></i>"
+									+ "("+jsonback[x].sP_amountFavorite+")"
 									+ "</p>"
 									
 								var i = Math.round(parseInt(jsonback[x].sP_averageAssess));
@@ -687,7 +723,7 @@
 								// 																					
 							}
 							$("#tableMenu").html(txt);
-							
+							orderby();
 						}
 
 					}

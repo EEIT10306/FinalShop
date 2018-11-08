@@ -57,7 +57,7 @@ public class WishProduct {
 	@JoinColumn(name = "wP_state", insertable = false, updatable = false)
 	private State state;
 
-	@OneToMany(mappedBy = "wP_ID")
+	@OneToMany(mappedBy = "wP_id")
 	private Set<WishImages> wishImages = new LinkedHashSet<>();
 
 	public WishProduct() {
