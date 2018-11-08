@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>會員中心｜購買清單-商店</title>
+    <title>會員中心｜購買清單-團購</title>
     <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 
     <!-- Required meta tags -->
@@ -81,49 +81,160 @@
                         </div>
                     </div>
                 </div>
+                <!-- start of userpage-sidebar-menu -->
                 <div class="userpage-sidebar-menu">
-                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item">
+                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Man.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">我的帳戶</div>
-                    </a> <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item">
+                    </a>
+                    <a href="#" class="userpage-sidebar-menu_item-head" id="storepbtn">
                         <div class="userpage-sidebar-menu-icon">
-                            <img src="../images/user//Checklist.svg">
+                            <img src="../images/user/Shop.svg">
                         </div>
-                        <div class="userpage-sidebar-menu-text">購買清單</div>
-                    </a> <a href="userPage_medal.html" class="userpage-sidebar-menu_item">
+                        <div class="userpage-sidebar-menu-text">商店</div>
+                    </a>
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的商品</div>
+                    </a>
+                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">購買的商品</div>
+                    </a>
+                    <a href="#" class="userpage-sidebar-menu_item-head" id="wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Ring.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">許願</div>
+                    </a>
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的許願</div>
+                    </a>
+                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">實現願望</div>
+                    </a>
+                    <a href="#" class="userpage-sidebar-menu_item-head" id="groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Party.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">團購</div>
+                    </a>
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的開團</div>
+                    </a>
+                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">跟團</div>
+                    </a>
+                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head" style="display:flex;">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Medal.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">我的成就</div>
-                    </a> <a href="" class="userpage-sidebar-menu_item">
+                    </a>
+                    <a href="" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Love-Letter.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">通知記錄</div>
-                    </a> <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
-                        <div class="userpage-sidebar-menu-icon">
-                            <img src="../images/user/Analytics.svg">
-                        </div>
-                        <div class="userpage-sidebar-menu-text">賣家中心</div>
                     </a>
-                </div>
+                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                            <div class="userpage-sidebar-menu-icon">
+                                <img src="../images/user/Analytics.svg">
+                            </div>
+                            <div class="userpage-sidebar-menu-text">賣家中心</div>
+                        </a> -->
+                </div><!-- end of userpage-sidebar-menu -->
             </div>
             <div class="purchase-list-page_tabs-container col-lg-10">
                 <div class="row">
-                    <div class="purchase-list-page_tab col-sm-3 tab_lock" id="state28">天使競標中</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state29">競標已結束</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state30">實現願望中</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state31">已下架</div>
+                    <div class="purchase-list-page_tab col-sm-3 tab_lock" id="state55">待出貨</div>
+                    <div class="purchase-list-page_tab col-sm-3" id="state56">配送中</div>
+                    <div class="purchase-list-page_tab col-sm-3" id="state57">待收貨</div>
+                    <div class="purchase-list-page_tab col-sm-3" id="state58">完成</div>
                 </div>
                 <div class="row">
                     <div class="container-wrapper">
-                        <div class="empty">
+                        <div class="myWish-card" id="1">
+                            <div class="order-content_header row">
+                                <div class="order-content-header_left">
+                                    <div class="seller-pic">
+                                        <img src="../images/user/account/profile/001.png">
+                                    </div>
+                                    <div class="seller-name">周子瑜</div>
+                                </div>
+                                <div class="wish-dataRange">2018/10/20
+                                </div>
+                            </div>
+                            <div class="order-content_item row">
+                                <div class="item-image">
+                                </div>
+                                <div class="item-detail col-lg">
+                                    <div class="item-misc">
+                                        <div class="misc">
+                                            <div class="item-name">【早鳥享溫價】SUSTAIN UTILITY lite 發熱外套 輕量版 X1</div>
+                                            <div class="item-des">【早鳥享溫價】<br>內含：<br>SUSTAIN UTILITY lite 發熱外套 輕量版 X1<br>（注：不包含行動電源）<br>▲原售價：8980，現省2600<br></div>
+                                            <span class="wish-priceRange">$36380</span>
+                                        </div>
+                                        <div class="btn-group-vertical">
+                                            <input type="button" value="聯絡賣家" class="btn order_btn">
+                                            <input type="button" value="詳細資訊" class="btn order_btn">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="myWish-card" id="1">
+                            <div class="order-content_header row">
+                                <div class="order-content-header_left">
+                                    <div class="seller-pic">
+                                        <img src="../images/user/account/profile/001.png">
+                                    </div>
+                                    <div class="seller-name">周子瑜</div>
+                                </div>
+                                <div class="wish-dataRange">2018/10/20
+                                </div>
+                            </div>
+                            <div class="order-content_item row">
+                                <div class="item-image">
+                                </div>
+                                <div class="item-detail col-lg">
+                                    <div class="item-misc">
+                                        <div class="misc">
+                                            <div class="item-name">【早鳥享溫價】SUSTAIN UTILITY lite 發熱外套 輕量版 X1</div>
+                                            <div class="item-des">【早鳥享溫價】<br>內含：<br>SUSTAIN UTILITY lite 發熱外套 輕量版 X1<br>（注：不包含行動電源）<br>▲原售價：8980，現省2600<br></div>
+                                            <span class="wish-priceRange">$36380</span>
+                                        </div>
+                                        <div class="btn-group-vertical">
+                                            <input type="button" value="聯絡賣家" class="btn order_btn">
+                                            <input type="button" value="詳細資訊" class="btn order_btn">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="empty">
                             <img src="../images/user/others/empty_order.svg">
                             <p>這裡什麼都沒有耶</p>
                             <p>要不要許些願望呢？</p>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Button trigger modal -->
                     <div class="add_icon" data-toggle="modal" data-target="#exampleModalCenter">
@@ -240,19 +351,19 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../js/userPage.js"></script>
+
     <!-- Optional JavaScript -->
     <script>
         $(document).ready(function () {
             //定義要用到的網址
             //定義要用到的網址
             var userID = "1";
-            var dataurl = "/TeamWork/WishList?m_id=" + userID;
+            var dataurl = "/GroupOrderList?m_idOrder=" + userID;
             var userData = [];
-            var state = 28;
+            var state = 55;
 
             loadData();
             function loadData() {
@@ -270,17 +381,7 @@
                     }
                 })
             }
-            function dateFormat(longDate) {
-                var date = new Date(1398250549490);
-                Y = date.getFullYear() + '-';
-                M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-                D = date.getDate() + ' ';
-                // h = date.getHours() + ':';
-                // m = date.getMinutes() + ':';
-                // s = date.getSeconds();
-                // console.log(Y + M + D + h + m + s);
-                return (Y + M + D);
-            }
+
             function updateData() {
                 $(".container-wrapper").html("");
                 userData.forEach(function (item) {
@@ -339,20 +440,20 @@
                 $(this).addClass("tab_lock");
                 var changeState = $(this).text();
                 switch (changeState) {
-                    case "天使競標中":
-                        state = 28;
+                    case "待出貨":
+                        state = 55;
                         break;
-                    case "競標已結束":
-                        state = 29;
+                    case "配送中":
+                        state = 56;
                         break;
-                    case "實現願望中":
-                        state = 30;
+                    case "待收貨":
+                        state = 57;
                         break;
-                    case "已下架":
-                        state = 31;
+                    case "完成":
+                        state = 58;
                         break;
                     default:
-                        state = 28;
+                        state = 0;
                 }
                 updateData();
             });
