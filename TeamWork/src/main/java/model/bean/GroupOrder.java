@@ -67,7 +67,7 @@ public class GroupOrder {
 	public String toString() {
 		return "GroupOrder [gO_id=" + gO_id + ", gP_id=" + gP_id + ", m_idOrder=" + m_idOrder + ", gO_amount="
 				+ gO_amount + ", gO_sumPrice=" + gO_sumPrice + ", gO_time=" + gO_time + ", gO_stateId=" + gO_stateId
-				+ "]\r\n";
+				+ ", groupProduct=" + groupProduct + "]\r\n";
 	}
 
 	public Integer getgO_id() {

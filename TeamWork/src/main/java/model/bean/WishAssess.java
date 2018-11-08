@@ -53,7 +53,7 @@ public class WishAssess {
 	public String toString() {
 		return "WishAssess [wA_id=" + wA_id + ", wO_id=" + wO_id + ", wA_point=" + wA_point + ", wA_context="
 				+ wA_context + ", wA_pointAssess=" + wA_pointAssess + ", wA_contextAssess=" + wA_contextAssess
-				+ "]\r\n";
+				+ ", wishOrder=" + wishOrder + "]\r\n";
 	}
 
 	public Integer getwA_id() {

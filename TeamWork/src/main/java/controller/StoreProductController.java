@@ -60,6 +60,8 @@ public class StoreProductController {
 	public List<StoreCallback> GetStoreProductAllMessage(Integer sP_id) throws SQLException{
 		return storeCallbackService.selectAllStoreCallbackBySpId(sP_id);
 	}
+	@RequestMapping(path = "/SendStoreReport", method = RequestMethod.POST, produces = {"application/json"})
+	@ResponseBody
 	public StoreReport InsertOneStoreReport(StoreReport bean) throws SQLException{
 		return storeReportService.insertOneReportBySpId(bean);
 	}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,34 +19,48 @@
         crossorigin="anonymous">
 
     <!-- main CSS -->
-    <!-- <link rel="stylesheet" href="/TeamWork/web/style/main.css"> -->
+    <link rel="stylesheet" href="../style/main.css">
 
     <!-- fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-    
-    <script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
-    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'><!--google登入用-->
-    <!-- <script src="../js/OAuthLogin.js"></script> -->
-          
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-    <a class="navbar-brand" href="#">DayDayGo!</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
+        <a class="navbar-brand" href="#">DayDayGo!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
 
-        </ul>
+            </ul>
 
-        <!-- Button trigger modal -->
-        <ul class="navbar-nav ml-auto">
+            <!-- Button trigger modal -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            新增
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button">許願</button>
+                            <button class="dropdown-item" type="button">開團</button>
+                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter">
+                                開店
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <a class="nav-link" href="form_login.html">
+                        <i class="fas fa-plus icon"></i>新增
+                    </a> -->
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="form_login.html">
                         <i class="fas fa-bell icon"></i>會員通知
@@ -61,53 +76,112 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <input class="nav-link" type="button" value="logout" id="MemberLogout" style="display:none"/>
+                    <input class="nav-link" type="button" value="logout" id="MemberLogout" style="display:none" />
                 </li>
-        </ul>
+            </ul>
+        </div>
+    </nav>
+    <!-- Modal 開店彈出的視窗-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    開團商品名稱
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Example label</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                    </div>
+                    商品類別
+                    <select class="custom-select">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    商品數量
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Example label</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                    </div>
+                    單品價格
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Example label</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                    </div>
+                    商品內容
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    圖片內容
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
-<div class="belowNavbar">
-    <div class="container">
-        <form method="GET" action="/TeamWork/search">
-            <div class="input-group mb-3">
+
+    <div class="belowNavbar">
+        <div class="container">
+            <form method="GET" action="/TeamWork/search">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
-                            <option  value="wish" class="dropdown-item">許願池</option>
-                            <option  value="groupon" class="dropdown-item">限時團購</option>
-                            <option  value="store" class="dropdown-item">購物商城</option>
+                            <option value="wish" class="dropdown-item">許願池</option>
+                            <option value="groupon" class="dropdown-item">限時團購</option>
+                            <option value="store" class="dropdown-item">購物商城</option>
                         </select>
                     </div>
                     <input name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
                     <div class="input-group-append">
-                        <button   class="btn btn-outline-secondary" type="submit">Search</button>
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
                     </div>
                 </div>
             </form>
-    </div><!-- end of container -->
-</div>
-<div id="footer"></div>
-<!-- Optional JavaScript -->
+        </div><!-- end of container -->
+    </div>
+    <div id="footer"></div>
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
-    
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function(){
-            console.log("看看有沒有跑INCLUDE")
-            $.get("testfooter.html",function(data){
-            $("#footer").html(data);
-            });
-        })
+    //jquery的include
+//         $(document).ready(function(){
+//             console.log("看看有沒有跑INCLUDE")
+//             $.get("testfooter.html",function(data){
+//             $("#footer").html(data);
+//             });
+//         })
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> google api用-->
+    <!-- <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'> google登入用 -->
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     <script src="../js/cookies.js"></script>
     <script src="../js/Logout.js"></script>
 
+
 </body>
+
 </html>

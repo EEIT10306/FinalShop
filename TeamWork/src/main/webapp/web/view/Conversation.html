@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品詳情</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<!-- main CSS -->
+	<link rel="stylesheet" href="../style/main.css">
+	<!-- jQuery first -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+</head>
+
+<body>
+	<div id="live-chat">
+		<header class="clearfix" id="live-chat-header">
+			<!-- 關閉的叉叉 -->
+			<!-- <a href="#" class="chat-close">x</a> -->
+			<h4>客服小幫手</h4>
+			<span class="chat-message-counter" id="chat-message-counter"></span>
+		</header>
+		<div class="chat">
+			<div class="chat-history" id="chat-history"></div>
+			<!-- end chat-history -->
+			<p class="chat-feedback">Your partner is typing…</p>
+			<form action="#" method="post">
+				<fieldset>
+					<input type="text" id="typeMessage" placeholder="Type your message…" autofocus>
+					<button type="button" id="sendMessage">send</button>
+				</fieldset>
+			</form>
+		</div>
+		<!-- end chat -->
+	</div>
+	<!-- end live-chat -->
+
+	<!-- Optional JavaScript -->
+	<script src="../js/main.js"></script>
+	<script>
+		document.getElementById("typeMessage").addEventListener("keydown",
+			function () {
+				if (event.keyCode == 13) {
+					document.getElementById("sendMessage").click();
+				}
+			})
+
+		$("#sendMessage").click(function () {
+			var m_id = 5;
+			var message = $("#typeMessage").val();
+			$.ajax({
+				type: "POST",
+				url: "/TeamWork/NewConversation",
+				data: {
+					"m_id": m_id,
+					"c_context": message
+				},
+				success: function (data) {
+// 					alert(data);
+				}
+			})
+			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
+		})
+
+		$(document).ready(function () {
+			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
+		})
+
+		$("#sendMessage").hide();
+
+		setInterval(function () {
+			var m_id = 5;
+			$.ajax({
+				type: "POST",
+				url: "/TeamWork/UnreadMessages",
+				data: {
+					"m_id": m_id
+				},
+				success: function (data) {
+					//alert(data);
+					$("#chat-message-counter").text(data);
+				}
+			})
+			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
+		}, 1000)
+
+		setInterval(function () {
+			var m_id = 5;
+			$.ajax({
+				type: "POST",
+				url: "/TeamWork/Communications",
+				data: {
+					"m_id": m_id
+				},
+				dataType: "text",
+				success: function (data) {
+					//alert(data);
+					var c_info = $.parseJSON(data);
+					//alert(c_info);
+					$("#chat-history").empty();
+					for (var i = 0; i < c_info.length; i++) {
+						//alert(c_info.length);
+						for (var j = 0; j < c_info[i].length; j++) {
+							//alert(c_info[i].length);
+							var ctime = new Date(c_info[i][j].c_time);
+							var time = ctime.toLocaleTimeString();
+							//var time = ctime.pattern("yyyy-MM-dd HH:mm");
+							$("#chat-history").append(
+								'<div class="chat-message clearfix">' +
+								'<img' +
+								'src="' + c_info[i][j].memberConversation.m_photo + '"' +
+								'alt="" width="32" height="32">' +
+								'<div class="chat-message-content clearfix">' +
+								'<span class="chat-time">' + time + '</span>' +
+								'<h5>' + c_info[i][j].member.m_name + '</h5>' +
+								'<p>' + c_info[i][j].c_context + '</p>' +
+								'</div>' +
+								//<!-- end chat-message-content -->
+								'</div>' +
+								//<!-- end chat-message -->
+								'<hr>')
+						}
+					}
+				}
+			})
+		}, 1000)
+
+		$(document).ready(function () {
+			$("#live-chat-header").click(function () {
+				var m_id = 5;
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/UpdateConversationState",
+					data: {
+						"m_id": m_id
+					},
+					dataType: "text",
+					success: function (data) {
+// 						alert(data);
+					}
+				})
+			})
+		})
+	</script>
+	<!-- Popper.js, then Bootstrap JS -->
+</body>
+
+</html>
