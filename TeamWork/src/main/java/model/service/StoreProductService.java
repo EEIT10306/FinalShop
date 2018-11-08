@@ -24,6 +24,7 @@ public class StoreProductService {
 		System.out.println(storeProductDaoImpl.selectByPk(id).getStoreImages());
 		return storeProductDaoImpl.selectByPk(id);
 	}
+	
 	public List<StoreProduct> getStoreProductChangeForm(String search,String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m){
 		String str="";
 		 List<String> list = new ArrayList<>();
@@ -88,6 +89,15 @@ public class StoreProductService {
 		}
 		return null;
 		
+	}
+	
+	public StoreProduct insert(StoreProduct bean) {
+		try {
+			return storeProductDaoImpl.insert(bean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bean;
 	}
 	
 }
