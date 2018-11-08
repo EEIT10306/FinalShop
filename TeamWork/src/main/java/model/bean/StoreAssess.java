@@ -53,7 +53,7 @@ public class StoreAssess {
 	public String toString() {
 		return "StoreAssess [sA_id=" + sA_id + ", sO_id=" + sO_id + ", sA_point=" + sA_point + ", sA_content="
 				+ sA_content + ", sA_pointAssess=" + sA_pointAssess + ", sA_contextAssess=" + sA_contextAssess
-				+ "]\r\n";
+				+ ", storeOrder=" + storeOrder + "]\r\n";
 	}
 
 	public Integer getsA_id() {

@@ -62,7 +62,7 @@ public class WishOrder {
 	@Override
 	public String toString() {
 		return "WishOrder [wO_id=" + wO_id + ", w_id=" + w_id + ", m_idOrder=" + m_idOrder + ", wO_sumPrice="
-				+ wO_sumPrice + ", wO_time=" + wO_time + ", wO_stateId=" + wO_stateId + "]\r\n";
+				+ wO_sumPrice + ", wO_time=" + wO_time + ", wO_stateId=" + wO_stateId + ", wish=" + wish + "]\r\n";
 	}
 
 	public Integer getwO_id() {

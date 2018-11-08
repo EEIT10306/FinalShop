@@ -114,13 +114,19 @@ public class LoginController {
 		}
 		
 		System.out.println(bean);
-		//根據model執行結果，導向view
-		if(bean.size()==0) {
-			return "beanNull";
-		} else {
-			return json.getString("email");
+		for(Member mbean:bean) {
+			if(memberService.idExists(mbean.getM_account())) {
+				//根據model執行結果，導向view
+				System.out.println("抓FB帳號=" + mbean.getM_account());
+				if(bean.size()==0) {
+					return "beanNull";
+				} else {
+					return mbean.getM_account();
+				}
+			}
 		}
-	
+		return "existsAccount";
+
 	}
 	
 	@RequestMapping(value = "/LoginGg" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
@@ -142,14 +148,20 @@ public class LoginController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		System.out.println(bean);
-		//根據model執行結果，導向view
-		if(bean.size()==0) {
-			return "beanNull";
-		} else {
-			return json.getString("email").toString();
+		for(Member mbean:bean) {
+			if(memberService.idExists(mbean.getM_account())) {
+				//根據model執行結果，導向view
+				System.out.println("抓google帳號=" + mbean.getM_account());
+				if(bean.size()==0) {
+					return "beanNull";
+				} else {
+					return mbean.getM_account();
+				}
+			}
 		}
+		return "existsAccount";
+		
 	
 	}
 	
@@ -170,6 +182,7 @@ public class LoginController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println(bean);
 		if(bean.size()==0||bean.isEmpty()||bean==null) {
 			return "accountNoRepeat";
 		}

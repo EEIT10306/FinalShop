@@ -1,4 +1,5 @@
 package controller;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.google.gson.GsonBuilder;
 
 import model.bean.Product;
 import model.bean.StoreProduct;
+import model.service.StoreProductService;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceProduct;
 import model.service._TestServiceStoreProduct;
@@ -147,22 +149,22 @@ public class _TestSearchController {
 				System.out.println("hahaha");
 				return lis;
 		}
-//		@Autowired
-//		private _TestServiceStoreProduct spro;
-//	 
-//		@ResponseBody
-//		@RequestMapping(path = "/StoreProductForm", method = RequestMethod.GET)
-//		public List<StoreProduct> changeLeftProduct(String search) {
-//			System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-//				System.out.println(search);
-//				System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuul");
-//				List<StoreProduct> lis =spro.getStoreProductForm(search);
-//				
-////				System.out.println(lis);
-//				System.out.println("hahaha");
-//				return lis;
-//		}
-//		
-//		
+		@Autowired
+		private StoreProductService sps;
+	 
+		
+		
+		@ResponseBody
+		@RequestMapping(path = "/StoreProductChangeForm", method = RequestMethod.GET)
+		public List<StoreProduct> changeLeftProduct(String search,String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m) {
+				
+				System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuul");
+				List<StoreProduct> lis =sps.getStoreProductChangeForm(search,a,b,c,d,e,f,g,h,i,j,k,l,m);	
+				System.out.println(lis);
+				
+				return lis;
+		}
+		
+		
 		
 }
