@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
+import model.bean.StoreAssess;
 import model.bean.StoreOrder;
 import model.bean.Wish;
 import model.bean.WishBid;
 import model.bean.WishOrder;
 import model.repository.GroupAssessDao;
 import model.repository.GroupOrderDao;
+import model.repository.StoreAssessDao;
 import model.repository.StoreOrderDao;
 import model.repository.WishBidDao;
 import model.repository.WishDao;
@@ -42,6 +44,9 @@ public class OrderService {
 
 	@Autowired
 	GroupAssessDao groupAssessDao;
+
+	@Autowired
+	StoreAssessDao storeAssessDao;
 
 	public OrderService() {
 	}
@@ -135,28 +140,28 @@ public class OrderService {
 		}
 	}
 
-	// 新增一筆跟團評價資料
-	public GroupAssess giveAssess(GroupAssess groupAssess) throws SQLException {
+	// 新增一筆跟團評價資料(買的人評)
+	public GroupAssess giveAssess_GroupBuyer(GroupAssess groupAssess) throws SQLException {
 		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
 		Integer gO_id = groupAssess.getgO_id();
 		if (gO_id != null) {
-			String hql = "WHERE gO_id = " + groupAssess.getgO_id();
+			String hql = "WHERE gO_id = " + gO_id;
 			List<GroupAssess> groupAssessBeans = groupAssessDao.selectHql(hql);
-			if(groupAssessBeans.size()==0) {
+			if (groupAssessBeans.size() == 0) {
 				return groupAssessDao.insert(groupAssess);
-			}else {								
+			} else {
 				GroupAssess groupAssessBean = groupAssessBeans.get(0);
 				return groupAssessDao.update(groupAssessBean, groupAssess);
 			}
-		}else {
+		} else {
 			return null;
 		}
 	}
-	
+
 	// 將開團訂單的狀態由待收貨轉為完成
 	public GroupOrder confirmReceive_Group(GroupOrder groupOrder) throws SQLException {
 		Integer gO_ID = groupOrder.getgO_id();
-		if(gO_ID!=null) {
+		if (gO_ID != null) {
 			GroupOrder bean = groupOrderDao.selectByPk(gO_ID);
 			bean.setgO_stateId(58);
 			groupOrderDao.update(bean);
@@ -165,4 +170,33 @@ public class OrderService {
 		return null;
 	}
 
+	// 將商店訂單的狀態由待收貨轉為完成
+	public StoreOrder confirmReceive_Store(StoreOrder storeOrder) throws SQLException {
+		Integer sO_ID = storeOrder.getsO_id();
+		if (sO_ID != null) {
+			StoreOrder bean = storeOrderDao.selectByPk(sO_ID);
+			bean.setsO_stateId(19);
+			storeOrderDao.update(bean);
+			return bean;
+		}
+		return null;
+	}
+
+	// 新增一筆商店訂單評價資料(買的人評)
+	public StoreAssess giveAssess_StoreBuyer(StoreAssess storeAssess) throws SQLException {
+		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
+		Integer sO_id = storeAssess.getsO_id();
+		if (sO_id != null) {
+			String hql = "WHERE sO_id = " + sO_id;
+			List<StoreAssess> storeAssessBeans = storeAssessDao.selectHql(hql);
+			if (storeAssessBeans.size() == 0) {
+				return storeAssessDao.insert(storeAssess);
+			} else {
+				StoreAssess groupAssessBean = storeAssessBeans.get(0);
+				return storeAssessDao.update(groupAssessBean, storeAssess);
+			}
+		} else {
+			return null;
+		}
+	}
 }

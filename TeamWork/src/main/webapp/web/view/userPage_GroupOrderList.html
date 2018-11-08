@@ -321,7 +321,8 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div><!-- end of 新增評價(互動視窗) -->
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -463,7 +464,7 @@
                 if ($(".container-wrapper").html() == "") {
                     initData();
                 }
-                //卡片click事件
+                //詳細資訊按鈕的click事件 轉向詳細資料的頁面
                 $(".hrefUrl").click(function () {
                     var hrefUrl = "test.html"
                     document.location.href = hrefUrl;
@@ -506,7 +507,6 @@
                             loadData();
                         }
                     });
-
                 });
 
             }// end of updateData()
