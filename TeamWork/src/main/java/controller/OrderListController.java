@@ -78,13 +78,17 @@ public class OrderListController {
 		return orderService.getGroupOrderListByM_idOrder(groupOrder);
 	}
 
-	
+	// 新增一筆跟團評價資料
 	@RequestMapping(path = "/giveAssess.do", method = RequestMethod.POST)
-	public String sellerVerify(GroupAssess groupAssess, BindingResult binder) throws SQLException {
-
-		// 接收資料
-		
+	public String giveAssess(GroupAssess groupAssess, BindingResult binder) throws SQLException {
+		orderService.giveAssess(groupAssess);
 		return "redirect:/web/view/userPage_GroupOrderList.html";
 	}
 
+	//將開團訂單的狀態由待收貨轉為完成
+	@RequestMapping(path = "/confirmReceive_Group", method = RequestMethod.POST)
+	public String confirmReceive_Group(GroupOrder groupOrder, BindingResult binder) throws SQLException {
+		orderService.confirmReceive_Group(groupOrder);
+		return "redirect:/web/view/userPage_GroupOrderList.html";
+	}
 }

@@ -485,5 +485,15 @@ form.popperForm {
 /*彈出視窗-評分視窗*/
 
 #wrapper input {
-	/* display: none; */
+	display: none;
+}
+#wrapper label {
+	font-weight: normal;
+	color: #495057;
+}
+#wrapper label i {
+	color: #e09c08;
+	cursor: pointer;
+	font-size: 2rem;
+	letter-spacing: 5px;
 }

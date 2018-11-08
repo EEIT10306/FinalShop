@@ -136,19 +136,33 @@ public class OrderService {
 	}
 
 	// 新增一筆跟團評價資料
-	public String giveAssess(GroupAssess groupAssess) throws SQLException {
+	public GroupAssess giveAssess(GroupAssess groupAssess) throws SQLException {
 		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
 		Integer gO_id = groupAssess.getgO_id();
 		if (gO_id != null) {
 			String hql = "WHERE gO_id = " + groupAssess.getgO_id();
 			List<GroupAssess> groupAssessBeans = groupAssessDao.selectHql(hql);
 			if(groupAssessBeans.size()==0) {
-				
+				return groupAssessDao.insert(groupAssess);
+			}else {								
+				GroupAssess groupAssessBean = groupAssessBeans.get(0);
+				return groupAssessDao.update(groupAssessBean, groupAssess);
 			}
-			GroupAssess groupAssessBean = groupAssessBeans.get(0);
-//			groupAssessDao.update(GA, bean)
+		}else {
+			return null;
 		}
-		return "";
+	}
+	
+	// 將開團訂單的狀態由待收貨轉為完成
+	public GroupOrder confirmReceive_Group(GroupOrder groupOrder) throws SQLException {
+		Integer gO_ID = groupOrder.getgO_id();
+		if(gO_ID!=null) {
+			GroupOrder bean = groupOrderDao.selectByPk(gO_ID);
+			bean.setgO_stateId(58);
+			groupOrderDao.update(bean);
+			return bean;
+		}
+		return null;
 	}
 
 }
