@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
-import model.bean.Seller;
-import model.bean.Store;
 import model.bean.StoreOrder;
 import model.bean.Wish;
+import model.bean.WishAssess;
 import model.bean.WishBid;
 import model.bean.WishOrder;
 import model.service.OrderService;
@@ -28,12 +27,12 @@ public class OrderListController {
 
 	@Autowired
 	OrderService orderService;
-	
+
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
 	}
-	
+
 	// 取得商店訂單資料
 	@RequestMapping(value = "/StoreOrderList", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
@@ -85,10 +84,39 @@ public class OrderListController {
 		return "redirect:/web/view/userPage_GroupOrderList.html";
 	}
 
-	//將開團訂單的狀態由待收貨轉為完成
+	// 將開團訂單的狀態由待收貨轉為完成
 	@RequestMapping(path = "/confirmReceive_Group", method = RequestMethod.POST)
 	public String confirmReceive_Group(GroupOrder groupOrder, BindingResult binder) throws SQLException {
 		orderService.confirmReceive_Group(groupOrder);
 		return "redirect:/web/view/userPage_GroupOrderList.html";
 	}
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+	// 新增一筆許願訂單評價資料(買的人評)
+	@RequestMapping(path = "/giveAssess_WishBuyer", method = RequestMethod.POST)
+	public String giveAssess_WishBuyer(WishAssess wishAssess, BindingResult binder) throws SQLException {
+		orderService.giveAssess_WishBuyer(wishAssess);
+		return "redirect:/web/view/userPage_WishOrderList.html";
+	}
+
+	// 將願望訂單的狀態由待收貨轉為完成
+	@RequestMapping(path = "/confirmReceive_Wish", method = RequestMethod.POST)
+	public String confirmReceive_Wish(WishOrder wishOrder, BindingResult binder) throws SQLException {
+		orderService.confirmReceive_Wish(wishOrder);
+		return "redirect:/web/view/userPage_WishOrderList.html";
+	}
+
 }
