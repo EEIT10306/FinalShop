@@ -96,7 +96,7 @@
                         <textarea class="form-control" name="StoreProductContext" rows="3"></textarea>
                     </div>
                     商品類別
-                    <select class="custom-select" class="form-group" name="StoreProductSort1" id="addProductSort1">
+                    <select class="custom-select form-group" name = 'StoreProductSort1'>
                         <option value="0">商品類別</option>
                         <option value="1">女生衣著</option>
                         <option value="2">男生衣著</option>
@@ -121,7 +121,7 @@
                         <option value="21">遊戲王</option>
                         <option value="22">其他類別</option>
                     </select>
-                    <select class="custom-select" class="form-group" id="addProductSort2">
+                    <select class="custom-select" class="form-group" name="addSort">
                         <option value="0">--請選擇--</option>
                     </select>
                     <div class="form-group">
@@ -184,7 +184,7 @@
                         <textarea class="form-control" name="GrouponContext" rows="3"></textarea>
                     </div>
                     開團類別
-                    <select class="custom-select" class="form-group" name="GrouponSort1" id="addProductSort1">
+                    <select class="custom-select form-group" name = 'GrouponSort1'>
                         <option value="0">商品類別</option>
                         <option value="1">女生衣著</option>
                         <option value="2">男生衣著</option>
@@ -209,7 +209,7 @@
                         <option value="21">遊戲王</option>
                         <option value="22">其他類別</option>
                     </select>
-                    <select class="custom-select" class="form-group" id="addProductSort2">
+                    <select class="custom-select" class="form-group" name="addSort">
                         <option value="0">--請選擇--</option>
                     </select>
                     <div class="form-group">
@@ -222,7 +222,7 @@
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput">更新版本</label>
-                        <input type="text" class="form-control" name="GrouponVersion" value="1.0">
+                        <input type="text" class="form-control" name="GrouponVersion" value="1">
                     </div>
                     商品圖片
                     <div class="custom-file" class="form-group">
@@ -255,7 +255,7 @@
                         <input type="text" class="form-control" name="WishName" placeholder="Example input">
                     </div>
                     商品類別
-                    <select class="custom-select" class="form-group" name="WishSort1" id="addProductSort1">
+                    <select class="custom-select form-group" name = 'WishSort1'>
                         <option value="0">商品類別</option>
                         <option value="1">女生衣著</option>
                         <option value="2">男生衣著</option>
@@ -280,7 +280,7 @@
                         <option value="21">遊戲王</option>
                         <option value="22">其他類別</option>
                     </select>
-                    <select class="custom-select" class="form-group" id="addProductSort2">
+                    <select class="custom-select" class="form-group" name="addSort">
                         <option value="0">--請選擇--</option>
                     </select>
                     <div class="form-group">
@@ -355,24 +355,24 @@
 
     <script>
         //=================================抓取商品類型=====================================
-        $("#addProductSort1").change(function () {
-            var StoreProductSort1 = $("#addProductSort1").val();
+        $("[class='custom-select form-group']").change(function () {
+            var addProductSort = $("[class='custom-select form-group']").val();
             $.ajax({
                 type: "POST",
                 url: "/TeamWork/changeStoreFormSelect",
-                data: { "p_id": addProductSort1 },
+                data: { "p_id": addProductSort },
                 success: function (jsonback) {
                     alert("server傳回 = " + jsonback);
                     var json = JSON.parse(jsonback);
                     var txtselect = "";
                     txtselect += "<option value=0>--請選擇--</option>";
-                    alert(json[0].p_name);
+        
                     for (x = 0; x < json.length; x++) {
                         txtselect += "<option value=" + x + ">"
                             + json[x].p_name
                             + "</option>";
                     }
-                    $("#addProductSort2").html(txtselect);
+                    $("[name='addSort']").html(txtselect);
                 }
             });
         });
@@ -380,7 +380,7 @@
         $("#StoreProductClick").click(function (e) {
             var StoreProductName = $("[name = 'StoreProductName']").val();
             var StoreProductContext = $("[name = 'StoreProductContext']").val();
-            var StoreProductSort = $("[id = 'StoreProductSort1']").val();
+            var StoreProductSort = $("[name = 'StoreProductSort1']").val();
             var StoreProductAmount = $("[name = 'StoreProductAmount']").val();
             var StoreProductPrice = $("[name = 'StoreProductPrice']").val();
             var Transport = $("[id = 'Transport']").val();
@@ -410,15 +410,16 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    // var jsons = JSON.stringify(response);
-                    alert("MVC傳回 = " + response);
-                    console.log("MVC傳回 = " + response.get(0))
+                    var jsons = JSON.stringify(response);
+                    alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
                     alert("SSSS");
 
                 },
                 error: function (response) {
-                    alert("MVC傳回 = " + response);
-                    console.log("MVC傳回 = " + response.get(0))
+                    var jsons = JSON.stringify(response);
+                    alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
                     alert("GG");
                 }
             })
@@ -429,7 +430,7 @@
         $("#GrouponClick").click(function (e) {
             var GrouponName = $("[name = 'GrouponName']").val();
             var GrouponContext = $("[name = 'GrouponContext']").val();
-            var GrouponSort = $("[id = 'GrouponSort1']").val();
+            var GrouponSort = $("[name = 'GrouponSort1']").val();
             var GrouponAmount = $("[name = 'GrouponAmount']").val();
             var GrouponPrice = $("[name = 'GrouponPrice']").val();
             var GrouponVersion = $("[name = 'GrouponVersion']").val();
@@ -445,7 +446,7 @@
             console.log(combie);
             $.ajax({
                 type: "POST",
-                url: "/TeamWork/AddStoreProduct",
+                url: "/TeamWork/AddGroupon",
                 data: {
                     "gP_name": GrouponName,
                     "gP_context": GrouponContext,
@@ -457,25 +458,28 @@
                 dataType: "json",
                 success: function (response) {
                     // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
                     alert("MVC傳回 = " + response);
-                    console.log("MVC傳回 = " + response.get(0))
+                    // console.log("MVC傳回 = " + response.get(0))
                     alert("SSSS");
 
                 },
                 error: function (response) {
+                    // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
                     alert("MVC傳回 = " + response);
-                    console.log("MVC傳回 = " + response.get(0))
+                    // console.log("MVC傳回 = " + response.get(0))
                     alert("GG");
                 }
             })
-
-
         })
         //===========================新增許願商品===============================
         $("#WishClick").click(function (e) {
             var WishName = $("[name = 'WishName']").val();
             var WishSort = $("[name = 'WishSort1']").val();
-            var WishAmount = $("[id = 'WishAmount']").val();
+            var WishAmount = $("[name = 'WishAmount']").val();
             var WishPriceBottom = $("[name = 'WishPriceBottom']").val();
             var WishPriceTop = $("[name = 'WishPriceTop']").val();
             var WishImagesUpload = $("[id = 'WishImagesUpload']").val();
@@ -490,7 +494,7 @@
             console.log(combie);
             $.ajax({
                 type: "POST",
-                url: "/TeamWork/AddStoreProduct",
+                url: "/TeamWork/AddWish",
                 data: {
                     "wP_name": WishName,
                     "p_id": WishSort,
@@ -501,14 +505,19 @@
                 dataType: "json",
                 success: function (response) {
                     // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
                     alert("MVC傳回 = " + response);
-                    console.log("MVC傳回 = " + response.get(0))
+                    // console.log("MVC傳回 = " + response.get(0))
                     alert("SSSS");
 
                 },
                 error: function (response) {
+                    // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
                     alert("MVC傳回 = " + response);
-                    console.log("MVC傳回 = " + response.get(0))
+                    // console.log("MVC傳回 = " + response.get(0))
                     alert("GG");
                 }
             })
