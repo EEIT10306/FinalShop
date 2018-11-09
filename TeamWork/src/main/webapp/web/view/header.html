@@ -96,7 +96,7 @@
                         <textarea class="form-control" name="StoreProductContext" rows="3"></textarea>
                     </div>
                     商品類別
-                    <select class="custom-select form-group" name = 'StoreProductSort1'>
+                    <select class="custom-select form-group" name='StoreProductSort1'>
                         <option value="0">商品類別</option>
                         <option value="1">女生衣著</option>
                         <option value="2">男生衣著</option>
@@ -184,7 +184,7 @@
                         <textarea class="form-control" name="GrouponContext" rows="3"></textarea>
                     </div>
                     開團類別
-                    <select class="custom-select form-group" name = 'GrouponSort1'>
+                    <select class="custom-select form-group" name='GrouponSort1'>
                         <option value="0">商品類別</option>
                         <option value="1">女生衣著</option>
                         <option value="2">男生衣著</option>
@@ -255,7 +255,7 @@
                         <input type="text" class="form-control" name="WishName" placeholder="Example input">
                     </div>
                     商品類別
-                    <select class="custom-select form-group" name = 'WishSort1'>
+                    <select class="custom-select form-group" name='WishSort1'>
                         <option value="0">商品類別</option>
                         <option value="1">女生衣著</option>
                         <option value="2">男生衣著</option>
@@ -354,6 +354,16 @@
     <script src="../js/Logout.js"></script>
 
     <script>
+        //===================CookieToJson=======================
+        function cookieToJson() {
+            let cookieArr = document.cookie.split(";");
+            let obj = {}
+            cookieArr.forEach((i) => {
+                let arr = i.split("=");
+                obj[arr[0]] = arr[1];
+            });
+            return obj
+        }
         //=================================抓取商品類型=====================================
         $("[class='custom-select form-group']").change(function () {
             var addProductSort = $("[class='custom-select form-group']").val();
@@ -366,7 +376,7 @@
                     var json = JSON.parse(jsonback);
                     var txtselect = "";
                     txtselect += "<option value=0>--請選擇--</option>";
-        
+
                     for (x = 0; x < json.length; x++) {
                         txtselect += "<option value=" + x + ">"
                             + json[x].p_name
@@ -376,6 +386,26 @@
                 }
             });
         });
+        //===========================判斷有無賣家身份=======================
+        function VerifySeller() {
+            var json = cookieToJson();
+            var cookieAccount = json['email']
+            console.log(cookieAccount)
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/accountVerifySeller",
+                data: {"m_account":cookieAccount},
+                success: function (response) {
+                    alert(response);
+                    alert("SSSS");
+                    // window.location.href=""
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("GG");
+                }
+            })
+        }
         //============================新增開店商品==========================
         $("#StoreProductClick").click(function (e) {
             var StoreProductName = $("[name = 'StoreProductName']").val();
@@ -414,6 +444,7 @@
                     alert("MVC傳回 = " + jsons);
                     // console.log("MVC傳回 = " + jsons.get(0))
                     alert("SSSS");
+                    // window.location.href=""
 
                 },
                 error: function (response) {

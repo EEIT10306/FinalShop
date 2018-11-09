@@ -14,6 +14,7 @@ import model.bean.GroupProduct;
 import model.bean.StoreProduct;
 import model.bean.WishProduct;
 import model.service.GroupProductService;
+import model.service.SellerVerifyService;
 import model.service.StoreProductService;
 import model.service.WishProductService;
 
@@ -26,7 +27,9 @@ public class AddProduct {
 	GroupProductService groupProductService;
 	@Autowired
 	WishProductService wishProductService;
-	
+	@Autowired
+	SellerVerifyService sellerVerifyService;
+	//新增開店
 	@RequestMapping(value = "/AddStoreProduct" , method = RequestMethod.POST)
 	@ResponseBody
 	private String AddStoreProduct(StoreProduct storeProduct) {
@@ -47,7 +50,7 @@ public class AddProduct {
 		return json;
 		
 	}
-	
+	//新增開團
 	@RequestMapping(value = "/AddGroupon" , method = RequestMethod.POST)
 	@ResponseBody
 	private String AddGroupon(GroupProduct groupProduct) {
@@ -60,7 +63,7 @@ public class AddProduct {
 		
 		
 	}
-	
+	//新增許願
 	@RequestMapping(value = "/AddWish" , method = RequestMethod.POST)
 	@ResponseBody
 	private String AddWish(WishProduct wishProduct) {
@@ -70,7 +73,14 @@ public class AddProduct {
 		WishProduct list = wishProductService.insert(wishProduct);
 		System.out.println(list);
 		return null;
-		
-		
+	}
+	//驗證是否為賣家
+	@RequestMapping(value = "/accountVerifySeller" , method = RequestMethod.POST)
+	@ResponseBody
+	private Integer accountVerifySeller(String account) {
+		System.out.println(account);
+		Integer SellerID = sellerVerifyService.AccountVerifySellerData(account);
+		System.out.println("SellerID="+SellerID);
+		return SellerID;
 	}
 }
