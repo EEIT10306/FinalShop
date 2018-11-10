@@ -124,12 +124,12 @@
                             <img>
                         </div>
                         <div class="userpage-sidebar-menu-text">我的開團</div>
-                    </a> <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                    </a> <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
                         <div class="userpage-sidebar-menu-icon">
                             <img>
                         </div>
                         <div class="userpage-sidebar-menu-text">跟團</div>
-                    </a> <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head" style="display: flex;">
+                    </a> <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Medal.svg">
                         </div>
@@ -159,9 +159,8 @@
                 <div class="row">
                     <div class="container-wrapper">
                         <div class="empty">
-                            <img src="../images/user/others/empty_order.svg">
-                            <p>這裡什麼都沒有耶</p>
-                            <p>要不要許些願望呢？</p>
+                            <img src="../images/user/others/loading.gif">
+                            <p>LOADING...</p>
                         </div>
                     </div>
                     <!-- 新增願望單據(產生互動視窗) -->
@@ -210,7 +209,8 @@
         </div>
     </div>
     </div>
-    <input type="button" value="給予評價" class="btn order_btn" data-toggle="modal" data-target="#giveAssess">
+    <!-- 測試互動視窗的按鈕 -->
+    <!-- <input type="button" value="給予評價" class="btn order_btn" data-toggle="modal" data-target="#giveAssess"> -->
     <!-- end of container -->
     <!-- start of footer -->
     <div class="contaminer-fluid">
@@ -289,35 +289,40 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="popperForm" id="giveAssess_form" method="post" action="/TeamWork/giveAssess.do">
+                <form class="popperForm" id="giveAssess_form" method="post">
                     <div class="modal-body">
                         <div id="wrapper">
-                            <input type="radio" id="star1" name="gA_pointAssess" value="1"/>
-                            <label for="star1"><i class="fas fa-star"></i></label>
-                            
-                            <input type="radio" id="star2" name="gA_pointAssess" value="2"/>
-                            <label for="star2"><i class="fas fa-star"></i></label>
+                            <div class="form-group">
+                                <label class="col-form-label">分數：</label>
 
-                            <input type="radio" id="star3" name="gA_pointAssess" checked="checked" value="3"/>
-                            <label for="star3"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star1" name="gA_pointAssess" value="1" />
+                                <label for="star1"><i class="fas fa-star AssessStar" id="forStar1"></i></label>
 
-                            <input type="radio" id="star4" name="gA_pointAssess" value="4"/>
-                            <label for="star4"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star2" name="gA_pointAssess" value="2" />
+                                <label for="star2"><i class="fas fa-star AssessStar" id="forStar2"></i></label>
 
-                            <input type="radio" id="star5" name="gA_pointAssess" value="5"/>
-                            <label for="star5"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star3" name="gA_pointAssess" checked="checked" value="3" />
+                                <label for="star3"><i class="fas fa-star AssessStar" id="forStar3"></i></label>
+
+                                <input type="radio" id="star4" name="gA_pointAssess" value="4" />
+                                <label for="star4"><i class="far fa-star AssessStar" id="forStar4"></i></label>
+
+                                <input type="radio" id="star5" name="gA_pointAssess" value="5" />
+                                <label for="star5"><i class="far fa-star AssessStar" id="forStar5"></i></label>
+                            </div>
                         </div>
                         <textarea class="form-control" id="message-text" placeholder="評價" name="gA_contextAssess"></textarea>
-                        <input type="hidden" name="gO_id" value="" id="gO_id"/>
+                        <input type="hidden" name="gO_id" value="" id="gO_id" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-sm userSubmitBtn" id="AssessSubmitBtn">送出評價</button>
+                        <button type="submit" class="btn btn-sm userSubmitBtn" id="AssessSubmitBtn">送出評價</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
+    </div><!-- end of 新增評價(互動視窗) -->
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -410,7 +415,7 @@
                                                     <span class="wish-priceRange">$${item.gO_sumPrice}</span>
                                                 </div>
                                                 <div class="btn-group-vertical">
-                                                    <input type="button" value="確認收貨" class="btn order_btn">
+                                                    <input type="button" value="確認收貨" class="btn order_btn confirmReceive" id="confirmReceive${item.gO_id}">
                                                     <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
                                                 </div>
                                             </div>
@@ -459,18 +464,54 @@
                 if ($(".container-wrapper").html() == "") {
                     initData();
                 }
-                //卡片click事件
+                //詳細資訊按鈕的click事件 轉向詳細資料的頁面
                 $(".hrefUrl").click(function () {
                     var hrefUrl = "test.html"
                     document.location.href = hrefUrl;
                 });
 
                 //給予評價按鈕click事件
-                $("#StartAssessBtn").click(function () { 
+                $("#StartAssessBtn").click(function () {
+                    console.log("給予評價按鈕click事件");
                     var gO_id = $(this).attr("name");
                     $("input#gO_id").val(gO_id);
                 });
+
+                //評價表單submit事件(AJAX)
+                $("#giveAssess_form").on('submit', function () {
+                    console.log("評價表單submit");
+                    $.ajax({
+                        type: "POST",
+                        url: "/TeamWork/giveAssess.do",
+                        data: $(this).serialize(),
+                        success: function () {
+                            $("#giveAssess").css("display", "none");
+                            //關閉互動視窗
+                            $("button.close").click();
+                            $("#giveAssess_form").find(":text,textarea").each(function () {
+                                //清空表單所有欄位
+                                $(this).val("");
+                            });
+                        }
+                    });
+                    return false; //阻止form submit
+                });
+                //確認收貨按鈕
+                $(".confirmReceive").click(function () {
+                    var gO_id = $(this).attr("id").replace("confirmReceive","")
+                    alert(gO_id);
+                    $.ajax({
+                        type: "POST",
+                        url: "/TeamWork/confirmReceive_Group",
+                        data: { "gO_id": gO_id },
+                        success: function () {
+                            alert("success!");
+                            loadData();
+                        }
+                    });
+                });
             }// end of updateData()
+
 
             //預設顯示插圖
             function initData() {

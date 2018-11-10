@@ -38,28 +38,22 @@
                 <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
-
             </ul>
 
             <!-- Button trigger modal -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            新增
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button">許願</button>
-                            <button class="dropdown-item" type="button">開團</button>
-                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter">
-                                開店
-                            </button>
-                        </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-plus icon"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#WishModalCenter">許願</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#GrouponModalCenter">開團</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#StoreModalCenter">開店</a>
                     </div>
-                    <!-- <a class="nav-link" href="form_login.html">
-                        <i class="fas fa-plus icon"></i>新增
-                    </a> -->
+                </li>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="form_login.html">
@@ -82,54 +76,234 @@
         </div>
     </nav>
     <!-- Modal 開店彈出的視窗-->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade" id="StoreModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">商城</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    開團商品名稱
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Example label</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        <label for="formGroupExampleInput">商品名稱</label>
+                        <input type="text" class="form-control" name="StoreProductName" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">商品內容</label>
+                        <textarea class="form-control" name="StoreProductContext" rows="3"></textarea>
                     </div>
                     商品類別
-                    <select class="custom-select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="custom-select form-group" name='StoreProductSort1'>
+                        <option value="0">商品類別</option>
+                        <option value="1">女生衣著</option>
+                        <option value="2">男生衣著</option>
+                        <option value="3">美妝保健</option>
+                        <option value="4">手機平板與周邊</option>
+                        <option value="5">嬰幼童與母親</option>
+                        <option value="6">3C</option>
+                        <option value="7">居家生活</option>
+                        <option value="8">家電影音</option>
+                        <option value="9">女生配件</option>
+                        <option value="10">男生包包與配件</option>
+                        <option value="11">女鞋</option>
+                        <option value="12">男鞋</option>
+                        <option value="13">女生包包/精品</option>
+                        <option value="14">戶外與運動用品</option>
+                        <option value="15">美食、伴手禮</option>
+                        <option value="16">汽機車零件百貨</option>
+                        <option value="17">寵物</option>
+                        <option value="18">娛樂、收藏</option>
+                        <option value="19">寵物</option>
+                        <option value="20">服務、票券</option>
+                        <option value="21">遊戲王</option>
+                        <option value="22">其他類別</option>
                     </select>
-                    商品數量
+                    <select class="custom-select" class="form-group" name="addSort">
+                        <option value="0">--請選擇--</option>
+                    </select>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Example label</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        <label for="formGroupExampleInput">商品數量</label>
+                        <input type="text" class="form-control" name="StoreProductAmount" placeholder="Example input">
                     </div>
-                    單品價格
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Example label</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        <label for="formGroupExampleInput">商品單價</label>
+                        <input type="text" class="form-control" name="StoreProductPrice" placeholder="Example input">
                     </div>
-                    商品內容
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Example textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    圖片內容
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                    運送方式
+                    <!--可為空就預設-->
+                    <select class="custom-select" id="Transport" multiple>
+                        <option>全家</option>
+                        <option>7-11</option>
+                        <option>萊爾富</option>
+                        <option>中華郵政</option>
+                        <option>賣家宅配</option>
+                    </select>
+                    全新
+                    <!--可為空就預設-->
+                    <select class="custom-select" class="form-group" id="isNew">
+                        <option selected>是否全新</option>
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                    商品圖片
+                    <div class="custom-file" class="form-group">
+                        <input type="file" class="custom-file-input" id="StoreImagesUpload" required multiple>
+                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="StoreProductClick">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 開團彈出的視窗-->
+    <div class="modal fade" id="GrouponModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">開團</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">開團名稱</label>
+                        <input type="text" class="form-control" name="GrouponName" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">開團內容</label>
+                        <textarea class="form-control" name="GrouponContext" rows="3"></textarea>
+                    </div>
+                    開團類別
+                    <select class="custom-select form-group" name='GrouponSort1'>
+                        <option value="0">商品類別</option>
+                        <option value="1">女生衣著</option>
+                        <option value="2">男生衣著</option>
+                        <option value="3">美妝保健</option>
+                        <option value="4">手機平板與周邊</option>
+                        <option value="5">嬰幼童與母親</option>
+                        <option value="6">3C</option>
+                        <option value="7">居家生活</option>
+                        <option value="8">家電影音</option>
+                        <option value="9">女生配件</option>
+                        <option value="10">男生包包與配件</option>
+                        <option value="11">女鞋</option>
+                        <option value="12">男鞋</option>
+                        <option value="13">女生包包/精品</option>
+                        <option value="14">戶外與運動用品</option>
+                        <option value="15">美食、伴手禮</option>
+                        <option value="16">汽機車零件百貨</option>
+                        <option value="17">寵物</option>
+                        <option value="18">娛樂、收藏</option>
+                        <option value="19">寵物</option>
+                        <option value="20">服務、票券</option>
+                        <option value="21">遊戲王</option>
+                        <option value="22">其他類別</option>
+                    </select>
+                    <select class="custom-select" class="form-group" name="addSort">
+                        <option value="0">--請選擇--</option>
+                    </select>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">開團商品數量</label>
+                        <input type="text" class="form-control" name="GrouponAmount" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">單品價格</label>
+                        <input type="text" class="form-control" name="GrouponPrice" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">更新版本</label>
+                        <input type="text" class="form-control" name="GrouponVersion" value="1">
+                    </div>
+                    商品圖片
+                    <div class="custom-file" class="form-group">
+                        <input type="file" class="custom-file-input" id="GrouponImagesUpload" required multiple>
+                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="GrouponClick">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 許願彈出的視窗-->
+    <div class="modal fade" id="WishModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">許願</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">許願商品</label>
+                        <input type="text" class="form-control" name="WishName" placeholder="Example input">
+                    </div>
+                    商品類別
+                    <select class="custom-select form-group" name='WishSort1'>
+                        <option value="0">商品類別</option>
+                        <option value="1">女生衣著</option>
+                        <option value="2">男生衣著</option>
+                        <option value="3">美妝保健</option>
+                        <option value="4">手機平板與周邊</option>
+                        <option value="5">嬰幼童與母親</option>
+                        <option value="6">3C</option>
+                        <option value="7">居家生活</option>
+                        <option value="8">家電影音</option>
+                        <option value="9">女生配件</option>
+                        <option value="10">男生包包與配件</option>
+                        <option value="11">女鞋</option>
+                        <option value="12">男鞋</option>
+                        <option value="13">女生包包/精品</option>
+                        <option value="14">戶外與運動用品</option>
+                        <option value="15">美食、伴手禮</option>
+                        <option value="16">汽機車零件百貨</option>
+                        <option value="17">寵物</option>
+                        <option value="18">娛樂、收藏</option>
+                        <option value="19">寵物</option>
+                        <option value="20">服務、票券</option>
+                        <option value="21">遊戲王</option>
+                        <option value="22">其他類別</option>
+                    </select>
+                    <select class="custom-select" class="form-group" name="addSort">
+                        <option value="0">--請選擇--</option>
+                    </select>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">商品數量</label>
+                        <input type="text" class="form-control" name="WishAmount" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">接受價格_底</label>
+                        <input type="text" class="form-control" name="WishPriceBottom" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">接受價格_頂</label>
+                        <input type="text" class="form-control" name="WishPriceTop" placeholder="Example input">
+                    </div>
+                    商品圖片
+                    <div class="custom-file" class="form-group">
+                        <input type="file" class="custom-file-input" id="WishImagesUpload" required multiple>
+                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="WishClick">Save changes</button>
                 </div>
             </div>
         </div>
@@ -157,12 +331,10 @@
     <div id="footer"></div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script>
-    //jquery的include
+//=========jquery的include
 //         $(document).ready(function(){
 //             console.log("看看有沒有跑INCLUDE")
 //             $.get("testfooter.html",function(data){
@@ -181,6 +353,209 @@
     <script src="../js/cookies.js"></script>
     <script src="../js/Logout.js"></script>
 
+    <script>
+        //===================CookieToJson=======================
+        function cookieToJson() {
+            let cookieArr = document.cookie.split(";");
+            let obj = {}
+            cookieArr.forEach((i) => {
+                let arr = i.split("=");
+                obj[arr[0]] = arr[1];
+            });
+            return obj
+        }
+        //=================================抓取商品類型=====================================
+        $("[class='custom-select form-group']").change(function () {
+            var addProductSort = $("[class='custom-select form-group']").val();
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/changeStoreFormSelect",
+                data: { "p_id": addProductSort },
+                success: function (jsonback) {
+                    alert("server傳回 = " + jsonback);
+                    var json = JSON.parse(jsonback);
+                    var txtselect = "";
+                    txtselect += "<option value=0>--請選擇--</option>";
+
+                    for (x = 0; x < json.length; x++) {
+                        txtselect += "<option value=" + x + ">"
+                            + json[x].p_name
+                            + "</option>";
+                    }
+                    $("[name='addSort']").html(txtselect);
+                }
+            });
+        });
+        //===========================判斷有無賣家身份=======================
+        function VerifySeller() {
+            var json = cookieToJson();
+            var cookieAccount = json['email']
+            console.log(cookieAccount)
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/accountVerifySeller",
+                data: {"m_account":cookieAccount},
+                success: function (response) {
+                    alert(response);
+                    alert("SSSS");
+                    // window.location.href=""
+                },
+                error: function (response) {
+                    alert(response);
+                    alert("GG");
+                }
+            })
+        }
+        //============================新增開店商品==========================
+        $("#StoreProductClick").click(function (e) {
+            var StoreProductName = $("[name = 'StoreProductName']").val();
+            var StoreProductContext = $("[name = 'StoreProductContext']").val();
+            var StoreProductSort = $("[name = 'StoreProductSort1']").val();
+            var StoreProductAmount = $("[name = 'StoreProductAmount']").val();
+            var StoreProductPrice = $("[name = 'StoreProductPrice']").val();
+            var Transport = $("[id = 'Transport']").val();
+            var isNew = $("[id = 'isNew']").val();
+            var StoreImagesUpload = $("[id = 'StoreImagesUpload']").val();
+            var combie = {
+                "sP_name": StoreProductName,
+                "sP_context": StoreProductContext,
+                "p_id": StoreProductSort,
+                "sP_amount": StoreProductAmount,
+                "sP_price": StoreProductPrice,
+                "sP_transport": JSON.stringify(Transport),
+                "sP_new": isNew
+            };
+            console.log(combie);
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/AddStoreProduct",
+                data: {
+                    "sP_name": StoreProductName,
+                    "sP_context": StoreProductContext,
+                    "p_id": StoreProductSort,
+                    "sP_amount": StoreProductAmount,
+                    "sP_price": StoreProductPrice,
+                    "sP_transport": JSON.stringify(Transport),
+                    "sP_new": isNew
+                },
+                dataType: "json",
+                success: function (response) {
+                    var jsons = JSON.stringify(response);
+                    alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("SSSS");
+                    // window.location.href=""
+
+                },
+                error: function (response) {
+                    var jsons = JSON.stringify(response);
+                    alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("GG");
+                }
+            })
+
+
+        })
+        //===========================新增開團商品===============================
+        $("#GrouponClick").click(function (e) {
+            var GrouponName = $("[name = 'GrouponName']").val();
+            var GrouponContext = $("[name = 'GrouponContext']").val();
+            var GrouponSort = $("[name = 'GrouponSort1']").val();
+            var GrouponAmount = $("[name = 'GrouponAmount']").val();
+            var GrouponPrice = $("[name = 'GrouponPrice']").val();
+            var GrouponVersion = $("[name = 'GrouponVersion']").val();
+            var GrouponImagesUpload = $("[id = 'GrouponImagesUpload']").val();
+            var combie = {
+                "gP_name": GrouponName,
+                "gP_context": GrouponContext,
+                "p_id": GrouponSort,
+                "gP_amount": GrouponAmount,
+                "gP_price": GrouponPrice,
+                "gP_version": GrouponVersion
+            };
+            console.log(combie);
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/AddGroupon",
+                data: {
+                    "gP_name": GrouponName,
+                    "gP_context": GrouponContext,
+                    "p_id": GrouponSort,
+                    "gP_amount": GrouponAmount,
+                    "gP_price": GrouponPrice,
+                    "gP_version": GrouponVersion
+                },
+                dataType: "json",
+                success: function (response) {
+                    // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("MVC傳回 = " + response);
+                    // console.log("MVC傳回 = " + response.get(0))
+                    alert("SSSS");
+
+                },
+                error: function (response) {
+                    // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("MVC傳回 = " + response);
+                    // console.log("MVC傳回 = " + response.get(0))
+                    alert("GG");
+                }
+            })
+        })
+        //===========================新增許願商品===============================
+        $("#WishClick").click(function (e) {
+            var WishName = $("[name = 'WishName']").val();
+            var WishSort = $("[name = 'WishSort1']").val();
+            var WishAmount = $("[name = 'WishAmount']").val();
+            var WishPriceBottom = $("[name = 'WishPriceBottom']").val();
+            var WishPriceTop = $("[name = 'WishPriceTop']").val();
+            var WishImagesUpload = $("[id = 'WishImagesUpload']").val();
+
+            var combie = {
+                "wP_name": WishName,
+                "p_id": WishSort,
+                "wP_amount": WishAmount,
+                "wP_priceBottom": WishPriceBottom,
+                "wP_priceTop": WishPriceTop
+            };
+            console.log(combie);
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/AddWish",
+                data: {
+                    "wP_name": WishName,
+                    "p_id": WishSort,
+                    "wP_amount": WishAmount,
+                    "wP_priceBottom": WishPriceBottom,
+                    "wP_priceTop": WishPriceTop
+                },
+                dataType: "json",
+                success: function (response) {
+                    // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("MVC傳回 = " + response);
+                    // console.log("MVC傳回 = " + response.get(0))
+                    alert("SSSS");
+
+                },
+                error: function (response) {
+                    // var jsons = JSON.stringify(response);
+                    // alert("MVC傳回 = " + jsons);
+                    // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("MVC傳回 = " + response);
+                    // console.log("MVC傳回 = " + response.get(0))
+                    alert("GG");
+                }
+            })
+
+
+        })
+    </script>
 
 </body>
 

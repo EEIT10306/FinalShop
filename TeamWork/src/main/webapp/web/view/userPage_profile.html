@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>商品搜尋</title>
+	<title>會員中心｜我的帳戶</title>
 	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 
 	<!-- Required meta tags -->
@@ -74,44 +74,87 @@
 						</div>
 					</a>
 					<div class="user-page-brief_right">
-						<div class="user-page-brief__username"></div>
-						<div>
+						<div class="user-page-brief__username">jennifer8306</div>
+						<!-- <div>
 							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
+						</div> -->
+						<div class="user-page-brief__coin">
+							<img src="../images/user/others/coin.png" style="display: inline-block;">
+							<span>100</span>
 						</div>
 					</div>
 				</div>
-				<div class="userpage-sidebar-menu">
-					<a href="userPage_profile.html" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Man.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">我的帳戶</div>
-					</a>
-					<a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user//Checklist.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">購買清單</div>
-					</a>
-					<a href="userPage_medal.html" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Medal.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">我的成就</div>
-					</a>
-					<a href="" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Love-Letter.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">通知記錄</div>
-					</a>
-					<a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Analytics.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">賣家中心</div>
-					</a>
-				</div>
+				<!-- start of userpage-sidebar-menu -->
+                <div class="userpage-sidebar-menu">
+                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Man.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的帳戶</div>
+                    </a> <a href="#" class="userpage-sidebar-menu_item-head" id="storepbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Shop.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">商店</div>
+                    </a> <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的商品</div>
+                    </a> <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">購買的商品</div>
+                    </a> <a href="#" class="userpage-sidebar-menu_item-head" id="wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Ring.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">許願</div>
+                    </a> <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的許願</div>
+                    </a> <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">實現願望</div>
+                    </a> <a href="#" class="userpage-sidebar-menu_item-head" id="groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Party.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">團購</div>
+                    </a> <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的開團</div>
+                    </a> <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">跟團</div>
+                    </a> <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Medal.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的成就</div>
+                    </a> <a href="" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Love-Letter.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">通知記錄</div>
+                    </a>
+                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                            <div class="userpage-sidebar-menu-icon">
+                                <img src="../images/user/Analytics.svg">
+                            </div>
+                            <div class="userpage-sidebar-menu-text">賣家中心</div>
+                        </a> -->
+                </div>
+                <!-- end of userpage-sidebar-menu -->
 			</div>
 
 			<div class="user-page_wrapper col-lg-10">
@@ -121,32 +164,32 @@
 				</div>
 				<div class="my-account_content">
 					<div class="my-account-profile_left">
-						<form>
+						<form id="my-account_form">
 							<div class="form-group row">
 								<label for="mem_name" class="col-sm-3 col-form-label">姓名</label>
-								<div class="col-sm-7">
-									<input type="text" readonly class="form-control-plaintext userInput" id="mem_name" placeholder="請輸入姓名">
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control userInput" id="mem_name" placeholder="請輸入姓名">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="mem_acc" class="col-sm-3 col-form-label">Email</label>
-								<div class="col-sm-7">
-									<input type="text" readonly class="form-control-plaintext userInput" id="mem_acc" value="">
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control userInput" id="mem_acc" value="" placeholder="請輸入Email">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="mem_tel" class="col-sm-3 col-form-label">手機號碼</label>
-								<div class="col-sm-7">
-									<input type="text" readonly class="form-control-plaintext userInput" id="mem_tel" value="">
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control userInput" id="mem_tel" value="" placeholder="請輸入手機號碼">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="mem_add" class="col-sm-3 col-form-label">地址</label>
-								<div class="col-sm-7">
-									<input type="text" readonly class="form-control-plaintext userInput" id="mem_add" placeholder="請輸入地址" value="">
+								<div class="col-sm-9">
+									<input type="text" readonly class="form-control userInput" id="mem_add" value="" placeholder="請輸入地址">
 								</div>
-							</div>
-							<input type="button" id="editOrUpdate" class="btn btn-sm userSubmitBtn" value="編輯資料" />
+							</div>				
+								<input type="button" id="editOrUpdate" class="btn btn-sm userSubmitBtn" value="編輯資料" style="margin:auto;"/>
 						</form>
 					</div>
 
@@ -246,24 +289,24 @@
 		</div>
 	</div><!-- end of footer -->
 
-	<!-- Optional JavaScript -->
+	
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	 crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	 crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../js/userPage.js"></script>
+    <!-- Optional JavaScript -->
 	<script>
 		$(document).ready(function () {
 			//定義要用到的網址
-			var userID = "2";
+			var userID = "1";
 			var dataurl = "/TeamWork/Member?m_id=" + userID;
 			var userData = [];
-			//下載所有鞋子資料
+			//下載所有資料
 			$.ajax({
 				url: dataurl,
 				error: function () {
-					console.log("載入失敗")
+					console.log("載入會員資料失敗")
 				},
 				success: function (res) {
 					console.log("載入會員資料")
@@ -275,19 +318,21 @@
 
 			function updateUserData() {
 				$(".user-page-brief__username").text(userData.account);
-				$("#mem_name").val(userData.name);
-				$("#mem_acc").val(userData.mail);
-				$("#mem_tel").val(userData.telephone);
-				$("#mem_add").val(userData.address);
+				$("#mem_name").val(userData.m_name);
+				$("#mem_acc").val(userData.m_account);
+				$("#mem_tel").val(userData.m_telephone);
+				$("#mem_add").val(userData.m_address);
 			}
 
 			$("#editOrUpdate").click(function () {
 				if ($("#editOrUpdate").val() == "編輯資料") {
 					$("#editOrUpdate").val("確認更新");
-					$(".userInput").attr("readonly", false).removeClass("form-control-plaintext").addClass("form-control");
+					$(".userInput").attr("readonly", false)
+					//.removeClass("form-control-plaintext").addClass("form-control");
 				} else {
 					$("#editOrUpdate").val("編輯資料");
-					$(".userInput").attr("readonly", true).removeClass("form-control").addClass("form-control-plaintext");
+					$(".userInput").attr("readonly", true)
+					//.removeClass("form-control").addClass("form-control-plaintext");
 				}
 			});
 		});
