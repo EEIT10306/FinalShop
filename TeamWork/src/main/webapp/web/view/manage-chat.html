@@ -61,6 +61,29 @@
     	padding: 14px 5px;
     	color: var(--grey)
     }
+    .conversationLeftNoRead-active {
+  		position: absolute;
+    	width: 20px;
+    	height: 20px;
+    	text-align: center;
+    	left: -10px;
+    	top: -10px;
+    	font-size: small;
+    	color: white;
+    	background: red;
+    	border-radius: 20px;
+	}
+	.conversationLeftNoRead{
+		display: none;	
+	}
+	.isZero{
+		display: none;	
+	}
+	.leftPeople{
+    	height: 460px;
+    	overflow-y: scroll;
+    }
+    
     </style>
 </head>
 
@@ -90,17 +113,18 @@
                 <div class="container-box">
                     <div class="left">
                         <div class="top">
-                            <input type="text" placeholder="Search" />
-                            <a href="javascript:;" class="search"></a>
+                            <input id="searchMe" type="text" placeholder="Search" />
                         </div>
-                        <ul id="conversation_page" class="people"> 
+                        <div class="leftPeople">
+                            <ul id="conversation_page" class="people"> 
+                        </div>
                         </ul>
                     </div>
                     <div class="right">
                         <div class="top"><span>To: <span class="name"></span></span></div>
                         <div id = "contextIn"></div>
                         <div class="write">
-            				<input id="sendMe" type="text"/>
+            				<input id="sendMe" type="text" />
            					<a class="write-link send" onclick="sendNewConversation()"></a>
         				</div>
                     </div>
