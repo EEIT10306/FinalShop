@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
+
 import model.bean.StoreAssess;
+
 import model.bean.StoreOrder;
 import model.bean.Wish;
+import model.bean.WishAssess;
 import model.bean.WishBid;
 import model.bean.WishOrder;
 import model.service.OrderService;
@@ -104,4 +107,34 @@ public class OrderListController {
 		orderService.giveAssess_StoreBuyer(storeAssess);
 		return "redirect:/web/view/userPage_StoreOrderList.html";
 	}
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+	// 新增一筆許願訂單評價資料(買的人評)
+	@RequestMapping(path = "/giveAssess_WishBuyer", method = RequestMethod.POST)
+	public String giveAssess_WishBuyer(WishAssess wishAssess, BindingResult binder) throws SQLException {
+		orderService.giveAssess_WishBuyer(wishAssess);
+		return "redirect:/web/view/userPage_WishOrderList.html";
+	}
+
+	// 將願望訂單的狀態由待收貨轉為完成
+	@RequestMapping(path = "/confirmReceive_Wish", method = RequestMethod.POST)
+	public String confirmReceive_Wish(WishOrder wishOrder, BindingResult binder) throws SQLException {
+		orderService.confirmReceive_Wish(wishOrder);
+		return "redirect:/web/view/userPage_WishOrderList.html";
+	}
+
+
 }

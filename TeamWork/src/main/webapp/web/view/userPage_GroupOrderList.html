@@ -289,7 +289,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="popperForm" id="giveAssess_form" method="post" action="/TeamWork/giveAssess.do">
+                <form class="popperForm" id="giveAssess_form" method="post">
                     <div class="modal-body">
                         <div id="wrapper">
                             <div class="form-group">
@@ -472,12 +472,14 @@
 
                 //給予評價按鈕click事件
                 $("#StartAssessBtn").click(function () {
+                    console.log("給予評價按鈕click事件");
                     var gO_id = $(this).attr("name");
                     $("input#gO_id").val(gO_id);
                 });
 
                 //評價表單submit事件(AJAX)
                 $("#giveAssess_form").on('submit', function () {
+                    console.log("評價表單submit");
                     $.ajax({
                         type: "POST",
                         url: "/TeamWork/giveAssess.do",
@@ -502,13 +504,12 @@
                         type: "POST",
                         url: "/TeamWork/confirmReceive_Group",
                         data: { "gO_id": gO_id },
-                        success: function (response) {
+                        success: function () {
                             alert("success!");
                             loadData();
                         }
                     });
                 });
-
             }// end of updateData()
 
 
