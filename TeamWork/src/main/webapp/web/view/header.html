@@ -394,19 +394,26 @@
             $.ajax({
                 type: "POST",
                 url: "/TeamWork/accountVerifySeller",
-                data: {"m_account":cookieAccount},
+                data: {"account":cookieAccount},
+                async : false,
                 success: function (response) {
-                    alert(response);
-                    alert("SSSS");
-                    // window.location.href=""
+                    alert("賣家ID"+response);
+                    alert("驗證賣家成功");
+                    //判斷是不是空值
+                    if(response == null || response == undefined || response == ''){
+                        window.location.href="http://localhost:8080/TeamWork/web/view/userPage_sellerVerify.html"
+                    } 
+                    result=true
                 },
                 error: function (response) {
+                	alert(3)
                     alert(response);
-                    alert("GG");
+                    alert("驗證失敗");
                 }
             })
+            return result;
         }
-        //============================新增開店商品==========================
+        //============================新增開店商品//需要店家身份==========================
         $("#StoreProductClick").click(function (e) {
             var StoreProductName = $("[name = 'StoreProductName']").val();
             var StoreProductContext = $("[name = 'StoreProductContext']").val();
@@ -426,38 +433,40 @@
                 "sP_new": isNew
             };
             console.log(combie);
-            $.ajax({
-                type: "POST",
-                url: "/TeamWork/AddStoreProduct",
-                data: {
-                    "sP_name": StoreProductName,
-                    "sP_context": StoreProductContext,
-                    "p_id": StoreProductSort,
-                    "sP_amount": StoreProductAmount,
-                    "sP_price": StoreProductPrice,
-                    "sP_transport": JSON.stringify(Transport),
-                    "sP_new": isNew
-                },
-                dataType: "json",
-                success: function (response) {
-                    var jsons = JSON.stringify(response);
-                    alert("MVC傳回 = " + jsons);
-                    // console.log("MVC傳回 = " + jsons.get(0))
-                    alert("SSSS");
-                    // window.location.href=""
+            //開始判斷有無店家身份
+            if( VerifySeller() ){
+                $.ajax({
+                    type: "POST",
+                    url: "/TeamWork/AddStoreProduct",
+                    data: {
+                        "sP_name": StoreProductName,
+                        "sP_context": StoreProductContext,
+                        "p_id": StoreProductSort,
+                        "sP_amount": StoreProductAmount,
+                        "sP_price": StoreProductPrice,
+                        "sP_transport": JSON.stringify(Transport),
+                        "sP_new": isNew
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        var jsons = JSON.stringify(response);
+                        alert("MVC傳回 = " + jsons);
+                        // console.log("MVC傳回 = " + jsons.get(0))
+                        alert("SSSS");
+                        // window.location.href=""
 
-                },
-                error: function (response) {
-                    var jsons = JSON.stringify(response);
-                    alert("MVC傳回 = " + jsons);
-                    // console.log("MVC傳回 = " + jsons.get(0))
-                    alert("GG");
-                }
-            })
-
+                    },
+                    error: function (response) {
+                        var jsons = JSON.stringify(response);
+                        alert("MVC傳回 = " + jsons);
+                        // console.log("MVC傳回 = " + jsons.get(0))
+                        alert("GG");
+                    }
+                })
+            }
 
         })
-        //===========================新增開團商品===============================
+        //===========================新增開團商品//需要賣家身份===============================
         $("#GrouponClick").click(function (e) {
             var GrouponName = $("[name = 'GrouponName']").val();
             var GrouponContext = $("[name = 'GrouponContext']").val();
@@ -488,18 +497,18 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    // var jsons = JSON.stringify(response);
-                    // alert("MVC傳回 = " + jsons);
                     // console.log("MVC傳回 = " + jsons.get(0))
                     alert("MVC傳回 = " + response);
+                    var jsons = JSON.stringify(response);
+                    alert("MVC傳回 = " + jsons);
                     // console.log("MVC傳回 = " + response.get(0))
                     alert("SSSS");
 
                 },
                 error: function (response) {
-                    // var jsons = JSON.stringify(response);
-                    // alert("MVC傳回 = " + jsons);
                     // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("MVC傳回 = " + response);
+                    var jsons = JSON.stringify(response);
                     alert("MVC傳回 = " + response);
                     // console.log("MVC傳回 = " + response.get(0))
                     alert("GG");
@@ -535,18 +544,18 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    // var jsons = JSON.stringify(response);
-                    // alert("MVC傳回 = " + jsons);
                     // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("MVC傳回 = " + response);
+                    var jsons = JSON.stringify(response);
                     alert("MVC傳回 = " + response);
                     // console.log("MVC傳回 = " + response.get(0))
                     alert("SSSS");
 
                 },
                 error: function (response) {
-                    // var jsons = JSON.stringify(response);
-                    // alert("MVC傳回 = " + jsons);
                     // console.log("MVC傳回 = " + jsons.get(0))
+                    alert("MVC傳回 = " + response);
+                    var jsons = JSON.stringify(response);
                     alert("MVC傳回 = " + response);
                     // console.log("MVC傳回 = " + response.get(0))
                     alert("GG");
