@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.Store;
 import model.bean.StoreProduct;
 import model.repository.StoreProductDao;
 
@@ -98,6 +99,19 @@ public class StoreProductService {
 			e.printStackTrace();
 		}
 		return bean;
+	}
+	
+	public Integer sPnameToID(String spname) throws SQLException {
+		
+		String hql = "WHERE sP_name = '" +  spname + "'";
+		//取得商城商品資料
+		System.out.println("StorePro=" + storeProductDaoImpl.selectHql(hql));
+		// 去找店家家的ID 如果不是NULL就回傳ID
+		for (StoreProduct storebean : storeProductDaoImpl.selectHql(hql)) {
+			return storebean.getsP_id();
+		}
+		return null;
+		
 	}
 	
 }
