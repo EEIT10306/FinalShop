@@ -89,21 +89,4 @@ public class SellerService {
 		}
 		return null;
 	}
-	
-	// 新增或更新一筆商店訂單評價資料(賣的人評)
-	public StoreAssess giveAssess_StoreSeller(StoreAssess storeAssess) throws SQLException {
-		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
-		Integer sO_id = storeAssess.getsO_id();
-		if (sO_id != null) {
-			String hql = "WHERE sO_id = " + sO_id;
-			List<StoreAssess> storeAssessBeans = storeAssessDao.selectHql(hql);
-			if (storeAssessBeans.size() == 0) {
-				return storeAssessDao.insert(storeAssess);
-			} else {
-				StoreAssess groupAssessBean = storeAssessBeans.get(0);
-				return storeAssessDao.update(groupAssessBean, storeAssess);
-			}
-		} else {
-			return null;
-		}
-	}}
+}

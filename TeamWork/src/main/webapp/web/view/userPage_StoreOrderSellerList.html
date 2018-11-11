@@ -252,24 +252,24 @@
                             <div class="form-group">
                                 <label class="col-form-label">分數：</label>
 
-                                <input type="radio" id="star1" name="gA_pointAssess" value="1" />
+                                <input type="radio" id="star1" name="sA_point" value="1" />
                                 <label for="star1"><i class="fas fa-star AssessStar" id="forStar1"></i></label>
 
-                                <input type="radio" id="star2" name="gA_pointAssess" value="2" />
+                                <input type="radio" id="star2" name="sA_point" value="2" />
                                 <label for="star2"><i class="fas fa-star AssessStar" id="forStar2"></i></label>
 
-                                <input type="radio" id="star3" name="gA_pointAssess" checked="checked" value="3" />
+                                <input type="radio" id="star3" name="sA_point" checked="checked" value="3" />
                                 <label for="star3"><i class="fas fa-star AssessStar" id="forStar3"></i></label>
 
-                                <input type="radio" id="star4" name="gA_pointAssess" value="4" />
+                                <input type="radio" id="star4" name="sA_point" value="4" />
                                 <label for="star4"><i class="far fa-star AssessStar" id="forStar4"></i></label>
 
-                                <input type="radio" id="star5" name="gA_pointAssess" value="5" />
+                                <input type="radio" id="star5" name="sA_point" value="5" />
                                 <label for="star5"><i class="far fa-star AssessStar" id="forStar5"></i></label>
                             </div>
                         </div>
-                        <textarea class="form-control" id="message-text" placeholder="評價" name="gA_contextAssess"></textarea>
-                        <input type="hidden" name="gO_id" value="" id="gO_id" />
+                        <textarea class="form-control" id="message-text" placeholder="評價" name="sA_context"></textarea>
+                        <input type="hidden" name="sO_id" value="" id="sO_id" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
@@ -414,6 +414,13 @@
                 $("input.editBtn").click(function () {
                     var hrefUrl = "test.html"
                     document.location.href = hrefUrl;
+                });
+
+                //給予評價按鈕click事件
+                $("#StartAssessBtn").click(function () {
+                    console.log("給予評價按鈕click事件");
+                    var sO_id = $(this).attr("name");
+                    $("input#sO_id").val(sO_id);
                 });
             }// end of updateData()
 
