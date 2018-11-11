@@ -142,7 +142,7 @@
                         <option>賣家宅配</option>
                     </select>
                     全新
-                    <!--可為空就預設-->
+                    <!--可為空就預設true-->
                     <select class="custom-select" class="form-group" id="isNew">
                         <option selected>是否全新</option>
                         <option value="true">True</option>
@@ -169,6 +169,10 @@
                         <img id="preview" />
                         <label>請上傳多張商品圖片...</label>
                         -->
+                        <!--原始寫法
+                        <input type="file" class="custom-file-input" id="StoreImagesUpload" required multiple>
+                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -492,59 +496,62 @@
             var StoreProductPrice = $("[name = 'StoreProductPrice']").val();
             var Transport = $("[id = 'Transport']").val();
             var isNew = $("[id = 'isNew']").val();
-            var StoreImagesUpload = $("[id = 'StoreImagesUpload']").val();
-
-            //上傳圖片
+            if(isNew=="是否全新"){
+                isNew="true"
+            }
+            alert("isNew===="+isNew)
+            //上傳圖片變數
             e.preventDefault(); // 停止觸發submit
             alert("upload");
             $("input[name='te']").val(StoreProductName);
-            alert("inputtext="+$("input[name='te']").val())
+            alert("inputtext======"+$("input[name='te']").val())
             var formData = new FormData($("#myForm")[0]); // 使用FormData包裝form表單來傳輸資料
-            alert(formData.getAll)
-            $.ajax({
-                type: "POST",
-                url: "/TeamWork/uploadmutipart",
-                data: formData,
-                cache: false, // 不需要cache
-                processData: false, // jQuery預設會把data轉為query String, 所以要停用
-                contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
-                dataType: 'text',
-                success: function (data) {
-                    alert("upload sucess");
-                }
-            });
-            //開始判斷有無店家身份
-            // if (VerifySeller()) {
-            //     $.ajax({
-            //         type: "POST",
-            //         url: "/TeamWork/AddStoreProduct",
-            //         data: {
-            //             "sP_name": StoreProductName,
-            //             "sP_context": StoreProductContext,
-            //             "p_id": StoreProductSort,
-            //             "sP_amount": StoreProductAmount,
-            //             "sP_price": StoreProductPrice,
-            //             "sP_transport": JSON.stringify(Transport),
-            //             "sP_new": isNew
-            //         },
-            //         dataType: "json",
-            //         success: function (response) {
-            //             var jsons = JSON.stringify(response);
-            //             alert("MVC傳回 = " + jsons);
-            //             // console.log("MVC傳回 = " + jsons.get(0))
-            //             alert("SSSS");
-            //             // window.location.href=""
+            alert("formData========="+formData.getAll)
+            
+            // 開始判斷有無店家身份
+            if (VerifySeller()) {
+                $.ajax({
+                    type: "POST",
+                    url: "/TeamWork/AddStoreProduct",
+                    data: {
+                        "sP_name": StoreProductName,
+                        "sP_context": StoreProductContext,
+                        "p_id": StoreProductSort,
+                        "sP_amount": StoreProductAmount,
+                        "sP_price": StoreProductPrice,
+                        "sP_transport": JSON.stringify(Transport),
+                        "sP_new": isNew
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        var jsons = JSON.stringify(response);
+                        alert("MVC傳回 = " + jsons);
+                        // console.log("MVC傳回 = " + jsons.get(0))
+                        alert("SSSS");
+                        //上傳圖片
+                        $.ajax({
+                            type: "POST",
+                            url: "/TeamWork/uploadmutipart",
+                            data: formData,
+                            cache: false, // 不需要cache
+                            processData: false, // jQuery預設會把data轉為query String, 所以要停用
+                            contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
+                            dataType: 'text',
+                            success: function (data) {
+                                alert("upload sucess");
+                            }
+                        });
+                        // window.location.href=""
 
-            //         },
-            //         error: function (response) {
-            //             var jsons = JSON.stringify(response);
-            //             alert("MVC傳回 = " + jsons);
-            //             // console.log("MVC傳回 = " + jsons.get(0))
-            //             alert("GG");
-            //         }
-            //     })
-            // }
-
+                    },
+                    error: function (response) {
+                        var jsons = JSON.stringify(response);
+                        alert("MVC傳回 = " + jsons);
+                        // console.log("MVC傳回 = " + jsons.get(0))
+                        alert("GG");
+                    }
+                })
+            }
         })
         //===========================新增開團商品//需要賣家身份===============================
         $("#GrouponClick").click(function (e) {
