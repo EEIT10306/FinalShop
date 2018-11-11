@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import model.bean.Member;
 import model.bean.StoreAssess;
 import model.bean.StoreCallback;
+import model.bean.StoreFavorite;
 import model.bean.StoreMessage;
 import model.bean.StoreProduct;
 import model.bean.StoreReport;
+import model.service.MemberService;
 import model.service.StoreAssessService;
 import model.service.StoreCallbackService;
+import model.service.StoreFavoriteService;
 import model.service.StoreMessageService;
 import model.service.StoreProductService;
 import model.service.StoreReportService;
@@ -35,6 +39,10 @@ public class StoreProductController {
 	private StoreCallbackService storeCallbackService;
 	@Autowired
 	private StoreReportService storeReportService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private StoreFavoriteService storeFavoriteService;
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
@@ -60,10 +68,46 @@ public class StoreProductController {
 	public List<StoreCallback> GetStoreProductAllMessage(Integer sP_id) throws SQLException{
 		return storeCallbackService.selectAllStoreCallbackBySpId(sP_id);
 	}
-	@RequestMapping(path = "/SendStoreReport", method = RequestMethod.POST, produces = {"application/json"})
+	@RequestMapping(path = "/SendStoreReport", method = RequestMethod.POST)
 	@ResponseBody
 	public StoreReport InsertOneStoreReport(StoreReport bean) throws SQLException{
 		return storeReportService.insertOneReportBySpId(bean);
 	}
-
+	@RequestMapping(path = "/FindMemberById", method = RequestMethod.POST, produces = {"application/json"})
+	@ResponseBody
+	public Member emailToMember(String email) throws SQLException {
+		return memberService.emailToMember(email);
+	}
+	@RequestMapping(path = "/InsertOneStoreMessage", method = RequestMethod.POST)
+	@ResponseBody
+	public StoreMessage InsertOneStoreMessage(StoreMessage bean) throws SQLException{
+		return storeMessageService.insert(bean);
+	}
+	@RequestMapping(path = "/InsertOneStoreCallback", method = RequestMethod.POST)
+	@ResponseBody
+	public StoreCallback InsertOneStoreCallback(StoreCallback bean) throws SQLException {
+		return storeCallbackService.insertOneStoreCallback(bean);
+	}
+	@RequestMapping(path = "/checkStoreProductFavorite", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean checkStoreProductFavorite(StoreFavorite bean) throws SQLException {
+		List<StoreFavorite> list = storeFavoriteService.checkStoreProductFavorite(bean);
+		return list.isEmpty();
+	}
+	@RequestMapping(path = "/FindOneStoreProductFavoriteBean", method = RequestMethod.POST)
+	@ResponseBody
+	public List<StoreFavorite> findOneStoreFavorite(StoreFavorite bean) throws SQLException {
+		return storeFavoriteService.checkStoreProductFavorite(bean);
+	}
+	@RequestMapping(path = "/InsertOneStoreProductFavorite", method = RequestMethod.POST)
+	@ResponseBody
+	public StoreFavorite insertOneStoreFavorite(StoreFavorite bean) throws SQLException {
+		return storeFavoriteService.insertOneStoreFavorite(bean);
+	}
+	@RequestMapping(path = "/DeleteOneStoreProductFavorite", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean DeleteOneStoreFavorite(StoreFavorite bean) throws SQLException {
+		System.out.println(bean);
+		return storeFavoriteService.deleteOneStoreFavorite(bean);
+	}
 }
