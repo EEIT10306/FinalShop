@@ -14,24 +14,25 @@
 window.fbAsyncInit = function () {
     FB.init({
         appId: '333388330578468',
-        cookie: true,
+        cookie: false,
         xfbml: true,
         version: 'v3.2'
     });
+
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            console.log("有FB帳號自動登入")
+        }
+    });
 };
 
-function fbLogout(){
+function fbLogout(data){
     console.log("FB登出1")
-    FB.getLoginStatus(handleSessionResponse);
-}
-
-function handleSessionResponse(response) {
-    if (response.status=='connected') {
-        console.log("FB登出2")
-        FB.logout();
+    FB.logout(function(){
         console.log("FB成功登出")
-        history.go(0);
-    }
+        // history.go(0);
+        DelCookie(data)
+    });
 }
 //-----------------------------------------------------
 //google登出
@@ -107,7 +108,7 @@ if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
                     console.log("帳號沒有重複");
                 } else if (data==email+"facebook"){
                     alert("抓到FB帳號cookie")
-                    fbLogout()         
+                    fbLogout(email)         
                 } else if (data==email+"google"){
                     alert("抓到Google帳號cookie")
                     signOut(email)

@@ -17,7 +17,6 @@ $(document).ready(function(){
             data:{"m_account":email},
             success:function(data){
                 console.log(data);
-                console.log(email+"facebook");
                 if(data=="accountNoRepeat"){
                     console.log("帳號沒有重複");
                 } else if (data==email+"facebook"){

@@ -26,7 +26,8 @@ public class ManagerController {
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"), true));
+		binder.registerCustomEditor(Date.class,
+				new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"), true));
 	}
 
 	@RequestMapping(path = "/Manager.getConversation", method = RequestMethod.POST)
@@ -36,17 +37,41 @@ public class ManagerController {
 		System.out.println("in " + conversation);
 		return CS.getConversationTalker(conversation);
 	}
-	
+
 	@RequestMapping(path = "/Manager.sendNewConversation", method = RequestMethod.POST)
 	@ResponseBody
 	public Conversation sendNewConversation(Conversation conversation, BindingResult binder) {
 		System.out.println("in /Manager.sendNewConversation");
 		System.out.println("in " + conversation);
-		if(conversation.getM_idConversation() ==null || "".equals(conversation.getC_context())) {
+		if (conversation.getM_idConversation() == null || "".equals(conversation.getC_context())) {
 			System.out.println("null");
 			return null;
-		}		
+		}
 		return CS.insertConversation(conversation);
 	}
 
+	@RequestMapping(path = "/Manager.changeConversationRead", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer changeConversationRead(Conversation conversation, BindingResult binder) {
+		System.out.println("in /Manager.changeConversationRead");
+		System.out.println("in " + conversation);
+		if (conversation.getM_id() == null || conversation.getC_stateId() == null) {
+			System.out.println("null");
+			return null;
+		}
+		if (CS.updateConversationState(conversation))
+			return 0;
+		return null;
+	}
+	
+	@RequestMapping(path = "/Manager.haveNewMessage", method = RequestMethod.POST)
+	@ResponseBody
+	public List<List<Conversation>> haveNewMessage() {
+		System.out.println("in /Manager.haveNewMessage");
+		List<List<Conversation>> beans = CS.getNewMessage();
+		if(beans.size()!=0) {
+			return beans;
+		}
+		return null;
+	}
 }

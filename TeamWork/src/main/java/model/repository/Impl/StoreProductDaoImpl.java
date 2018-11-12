@@ -1,13 +1,17 @@
 package model.repository.Impl;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.hibernate.type.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import model.bean.StoreImages;
 import model.bean.StoreProduct;
 import model.repository.StoreProductDao;
 
@@ -40,9 +44,17 @@ public class StoreProductDaoImpl implements StoreProductDao {
 	public List<StoreProduct> selectHql(String hqlString) throws SQLException {
 		String hql = "from StoreProduct ";
 		hql += hqlString;
-		List<StoreProduct> LSP = getSession().createQuery(hql, StoreProduct.class).list();
-//		System.out.println(LSP);
+		System.out.println(hql);
+		List<StoreProduct> LSP = getSession().createQuery(hql, StoreProduct.class).getResultList();
+//		for(StoreProduct SP : LSP) {
+//			Iterator<StoreImages> it = SP.getStoreImages().iterator();
+//			while(it.hasNext()) {
+//				it.next().setStoreProduct(null);;
+//			}
+//		}
+		System.out.println(LSP);
 		return LSP;
+		
 	}
 
 	@Override

@@ -23,7 +23,8 @@ public class _TestServiceStoreProduct {
 	public List<StoreProduct> getStoreProductForm(String storeProduct) {
 		String str="";
 		if(storeProduct!=null) {
-		str += "Where sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%'" ;
+		str += "Where sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%' " ;
+		str += "and (product.p_id = 9 or product.p_parentsId = 9)";
 		}
 //		as sp left join sp.product as pro left join sp.state as st
 		try {

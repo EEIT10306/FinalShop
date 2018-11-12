@@ -80,38 +80,77 @@
                         <div><a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a></div>
                     </div>
                 </div>
+                <!-- start of userpage-sidebar-menu -->
                 <div class="userpage-sidebar-menu">
-                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item">
+                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Man.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">我的帳戶</div>
-                    </a>
-                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item">
+                    </a> <a href="#" class="userpage-sidebar-menu_item-head" id="storepbtn">
                         <div class="userpage-sidebar-menu-icon">
-                            <img src="../images/user//Checklist.svg">
+                            <img src="../images/user/Shop.svg">
                         </div>
-                        <div class="userpage-sidebar-menu-text">購買清單</div>
-                    </a>
-                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item">
+                        <div class="userpage-sidebar-menu-text">商店</div>
+                    </a> <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的商品</div>
+                    </a> <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">購買的商品</div>
+                    </a> <a href="#" class="userpage-sidebar-menu_item-head" id="wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Ring.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">許願</div>
+                    </a> <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的許願</div>
+                    </a> <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">實現願望</div>
+                    </a> <a href="#" class="userpage-sidebar-menu_item-head" id="groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img src="../images/user/Party.svg">
+                        </div>
+                        <div class="userpage-sidebar-menu-text">團購</div>
+                    </a> <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">我的開團</div>
+                    </a> <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon">
+                            <img>
+                        </div>
+                        <div class="userpage-sidebar-menu-text">跟團</div>
+                    </a> <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Medal.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">我的成就</div>
-                    </a>
-                    <a href="" class="userpage-sidebar-menu_item">
+                    </a> <a href="" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon">
                             <img src="../images/user/Love-Letter.svg">
                         </div>
                         <div class="userpage-sidebar-menu-text">通知記錄</div>
                     </a>
-                    <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
-                        <div class="userpage-sidebar-menu-icon">
-                            <img src="../images/user/Analytics.svg">
-                        </div>
-                        <div class="userpage-sidebar-menu-text">賣家中心</div>
-                    </a>
+                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                            <div class="userpage-sidebar-menu-icon">
+                                <img src="../images/user/Analytics.svg">
+                            </div>
+                            <div class="userpage-sidebar-menu-text">賣家中心</div>
+                        </a> -->
                 </div>
+                <!-- end of userpage-sidebar-menu -->
             </div>
             <div class="purchase-list-page_tabs-container col-lg-10">
                 <div class="row">
@@ -211,7 +250,7 @@
         </div>
     </div><!-- end of footer -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>F
     <!-- Optional JavaScript -->
     <script>
         $(document).ready(function () {
@@ -222,7 +261,6 @@
             var userData = [];
             var userData2 = [];
             var state = 6;
-<<<<<<< HEAD
             loadData();
             function loadData(){
             //下載資料
@@ -293,73 +331,11 @@
                                 loadData();
                             }
                         });
-
-
                     });
 
                     if ($(".container-wrapper").html() == "") {
                         initData();
                     }
-=======
-            //下載資料
-            $.ajax({
-                url: dataurl,
-                error: function () {
-                    console.log("載入失敗")
-                },
-                success: function (res) {
-                    userData = res
-                    console.log("載入資料" + userData.length)
-                    updateData()
-                }
-            })
-            $.ajax({
-                url: dataurl2,
-                error: function () {
-                    console.log("載入失敗")
-                },
-                success: function (res) {
-                    userData2 = res
-                    console.log("載入資料" + userData2.length)
-                }
-            })
-            function updateData() {
-                if (state == 0) {
-                    Task();
-                } else {
-                    $(".container-wrapper").html("");
-                    userData.forEach(function (item) {
-                        if (state == item.cA_stateId) {
-                            var amount = parseInt(item.cA_amount);
-                            console.log("parseInt(item.cA_amount)=" + amount);
-                            var total = parseInt(item.achievement.a_amount);
-                            console.log("parseInt(item.achievement.a_amount)=" + total);
-                            var number = (amount / total * 100).toFixed();
-                            var itemEl = $(`
-                                <div class="medal-card flag${item.cA_stateId}" id="${item.cA_id}">
-                                    <div class="medal-img">
-                                        <img src="../images/user/medal/${item.a_id}.svg">
-                                    </div>
-                                    <div class="medal-detail">
-                                        <div class="progress" style="height: 20px;">
-                                            <div class="progress-bar" style="width: ${number}%;">${number}%</div>
-                                        </div>
-                                        <div class="medal-detail-text">
-                                            <div class="medal-name">${item.achievement.a_context}</div>
-                                            <div class="progress-text">${item.cA_amount}/${item.achievement.a_amount}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `)
-                            $(".container-wrapper").append(itemEl);
-                        }
-                    });
-                    $(".flag7").click(function () {
-                        var cA_ID = $(this).attr("id");
-                        alert(cA_ID);
-                        
-                    });
->>>>>>> branch 'master' of https://github.com/EEIT10306/FinalShop.git
                 }
             }
             function initData() {

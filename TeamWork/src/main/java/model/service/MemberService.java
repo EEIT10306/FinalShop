@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.Member;
-import model.repository.Impl.MemberDaoImpl;
+import model.repository.MemberDao;
 
 @Service
 @Transactional
 public class MemberService {
 	
 	@Autowired
-	MemberDaoImpl memberDaoImpl;
+	MemberDao memberDaoImpl;
 	
 	public MemberService() {
 	}
@@ -37,7 +37,6 @@ public class MemberService {
 		if(email==null) {
 			return null;
 		}
-		
 		return memberDaoImpl.selectHql("where m_mail='"+email+"'").get(0);
 		
 	}

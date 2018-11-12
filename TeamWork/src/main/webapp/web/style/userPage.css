@@ -1,6 +1,11 @@
+
 /*user-page*/
 .user-page-slidebar {
 	margin-top: 1.8rem;
+}
+body{
+	margin: 0;
+	padding: 0;
 }
 .user-page-brief{
 	margin: 1rem;
@@ -8,7 +13,7 @@
 	flex-direction: column;
 	align-items: center;
 	border-bottom: solid 3px #ffce3d;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 }
 .user-avatar_placeholder{
 	margin-right: 20px;
@@ -31,18 +36,40 @@ a.user-page-brief__edit{
 a.user-page-brief__edit i {
 	margin-right: 5px;
 }
+.user-page-brief__coin {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	font-family: serif;
+	color: #e09c08;
+	font-weight: bold;
+}
 .userpage-sidebar-menu {
 
 }
 
 a.userpage-sidebar-menu_item {
-	padding: 5px;
+	padding: 1px;
 	text-decoration: none;
-	
+	display: none;
+	/* display: flex; */
+	flex-direction: row;
+	align-items: center;
+
+}
+.userpage-sidebar-menu_item-head {
+	padding: 2px;
+	text-decoration: none;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	cursor: pointer;
+	color: #03658C;
 }
+a.userpage-sidebar-menu_item-head{
+	text-decoration: none;
+}
+
 .userpage-sidebar-menu-icon img {
 	width: 30px;
 	margin-right: 10px;
@@ -54,6 +81,8 @@ a.userpage-sidebar-menu_item {
 .purchase-list-page_tabs-container{
 	margin-top: 2.5rem;
 }
+
+/*頁籤-紫色*/
 .purchase-list-page_tab {
 	font-weight: bold;
 	color: #525abb;
@@ -63,6 +92,7 @@ a.userpage-sidebar-menu_item {
 	padding-bottom: 20px;
 	cursor: pointer;
 	border-bottom: solid 1px #525abb;
+	transition-duration: 0.5s;
 }
 
 .tab_lock {
@@ -70,11 +100,39 @@ a.userpage-sidebar-menu_item {
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	background-color: #525abb;
 	color: #fff;
+	
 }
 .purchase-list-page_tab:hover {
 	font-weight: bold;
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
 	background-color: #525abb;
+	color: #fff;
+}
+
+/*頁籤-藍色*/
+.purchase-list-page_tab2 {
+	font-weight: bold;
+	color: #1e5793;
+	background-color: rgb(247, 247, 247);
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	cursor: pointer;
+	border-bottom: solid 1px #1e5793;
+	transition-duration: 0.5s;
+}
+
+.tab_lock2 {
+	font-weight: bold;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	background-color: #1e5793;
+	color: #fff;
+	
+}
+.purchase-list-page_tab2:hover {
+	font-weight: bold;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	background-color: #1e5793;
 	color: #fff;
 }
 
@@ -85,7 +143,80 @@ a.userpage-sidebar-menu_item {
 	min-width: 100%;;
 	background-color: rgb(247, 247, 247);
 } 
+/*會員中心-我的帳戶*/
+#my-account_form{
+	display: flex;
+	flex-direction: column;
+}
+.user-page_wrapper {
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+	background-color: rgb(250, 250, 250);
+	margin-top: 2rem;
+	padding: 3rem;
+}
+.my-account_header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-bottom: 1px solid #525abb;
+	color: #525abb;
+}
+.my-account_header>h2 {
+	margin: 15px;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+.my-account_content {
+	display: flex;
+}
+.my-account-profile_left {
+	padding-left: 3rem;
+	padding-right: 5rem;
+	width: 60%;
+	border-right: #525abb 1px solid;
+}
+.my-account-profile_right {
 
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+}
+.col-form-label {
+	font-size: 1rem;
+	color: #525abb;
+	text-align: right;
+}
+.userSubmitBtn {
+	background-color: #525abb;
+	color: #fff;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.avatar-uploader__avatar>img{
+	width: 100%;
+}
+.avatar-uploader__avatar {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 1rem;
+}
+.avatar-uploader_text {
+	color: #595959;
+	margin-top: 6px;
+	font-size: 1rem;
+}
+#userSubmitInput {
+	display: none;
+}
+
+#form-step-2,#form-step-3{
+	display: none;
+  }
 
 /*空*/
 .empty {
@@ -143,6 +274,7 @@ a.userpage-sidebar-menu_item {
 	background-color: transparent;
 	padding: 5px 20px;
 	width: 100%;
+	transition-duration: 0.5s;
   }
   .seller-verify_btn:hover {
 	  color: #fff;
@@ -191,6 +323,7 @@ a.userpage-sidebar-menu_item {
 		overflow: hidden;
 		background-color: rgba(255,255,255,0.8);
 		box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+		transition-duration: 0.5s;
 	}
 	.order-card:hover {
 		border: solid 1px #525abb;
@@ -199,11 +332,13 @@ a.userpage-sidebar-menu_item {
 		
 	}
 	.order-content_header {
+		color: #595959;
 		padding: 0.7rem 2rem;
 		border-bottom: 1px solid #a1a1a1;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		align-items: center;
 	}
 	.order-content-header_left {
 		display: flex;
@@ -229,7 +364,6 @@ a.userpage-sidebar-menu_item {
 	}
 	
 	.seller-name {
-		color: #595959;
 		font-size: 1rem;
 		font-weight: bold;
 		padding-left: 15px;
@@ -243,18 +377,22 @@ a.userpage-sidebar-menu_item {
 	}
 	.order-content_item {
 		padding: 1rem 2rem 2rem 2rem;
+		color: #595959;
 	}
 	.item-name {
-		
+		font-weight: bold;
 		font-size: 1.2rem;
 		letter-spacing: 1px;
-		color: #595959;
+		margin-bottom: 0.8rem;
 	}
 	.item-misc {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+	}
+	.misc {
+		margin-right: 2.5rem;
 	}
 	.singlePrice {
 		color: #595959;
@@ -276,6 +414,7 @@ a.userpage-sidebar-menu_item {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
+		transition-duration: 0.5s;
 	}
 	.order_btn:hover {
 		background-color: #525abb;
@@ -402,4 +541,109 @@ a.userpage-sidebar-menu_item {
 	font-size: 1rem;
 	margin-top: 0.5rem;
 	
+}
+
+/*許願清單-我的許願*/
+.myWish-card {
+	border: solid 1px rgb(218, 218, 218);
+	padding-right: 2rem;
+	padding-left: 2rem;
+	margin: 1rem 3rem;
+	overflow: hidden;
+	background-color: rgba(255,255,255,0.8);
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+	cursor: pointer;
+	transition-duration: 0.5s;
+}
+.myWish-card:hover{
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+}
+
+.wish-dataRange {
+	letter-spacing: 0.5px;
+	font-weight: bold;
+	color: #525abb;
+}
+.wish-priceRange {
+	color: #d0011b;
+	font-size: 1.5rem;
+	line-height: 3rem;
+}
+.add_icon{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background-color: #525abb;
+	color: #fff;
+	text-align: center;
+	line-height: 50px;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+	right: 20px;
+	bottom: 20px;
+	cursor: pointer;
+	transition-duration: 0.5s;
+}
+.add_icon:hover{
+	transform: translateY(-5px);
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+}
+/*彈出視窗*/
+.modal-title{
+	font-weight: bold;
+	color: #595959;
+}
+form.popperForm {
+	margin-top: 0;
+	font-weight: bold;
+}
+
+/*彈出視窗-評分視窗*/
+
+#wrapper input {
+	display: none;
+}
+#wrapper label {
+	font-weight: normal;
+	color: #495057;
+}
+#wrapper label i {
+	color: #e09c08;
+	cursor: pointer;
+	font-size: 2rem;
+	letter-spacing: 5px;
+}
+
+
+
+/*賣家中心*/
+.container-wrapper-seller {
+	min-height: 500px;
+	min-width: 100%;;
+	background-color: rgb(247, 247, 247);
+} 
+.container-wrapper-seller td img{
+	height: 30px;
+	margin: auto;
+}
+.container-wrapper-seller td{
+	text-align: center;
+	vertical-align: middle;
+}
+.container-wrapper-seller th{
+	text-align: center;
+	vertical-align: middle;
+}
+.btn-darkBlue{
+	background-color: transparent;
+	border: #1e5793;
+	color: #1e5793;
+}
+.btn-darkBlue:hover{
+	background-color: #1e5793;
+	color: #fff;
+}
+/*賣家中心-團購*/
+.text{
+	color: #1e5793;
 }

@@ -46,24 +46,25 @@
         </div>
     </nav>
     <div class="belowNavbar">
+
         <div class="container">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">項目</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">許願池</a>
-                        <a class="dropdown-item" href="#">限時團購</a>
-                        <a class="dropdown-item" href="#">購物商城</a>
+            <form method="GET" action="/TeamWork/search">
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+                                <option  value="wish" class="dropdown-item">許願池</option>
+                                <option  value="groupon" class="dropdown-item">限時團購</option>
+                                <option  value="store" class="dropdown-item">購物商城</option>
+                            </select>
+                        </div>
+                        <input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+                        <div class="input-group-append">
+                            <button   class="btn btn-outline-secondary" type="submit">Search</button>
+                        </div>
                     </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Search</button>
-                </div>
+                </form>
             </div>
-        </div><!-- end of container -->
-    </div>
+        </div>
     <div class="container">
         <div class="row">
             <section class="col-lg-2">
@@ -74,19 +75,20 @@
                    <hr>
                        <form>
                          <div class="form-group">
-                        <label for="exampleFormControlSelect1">分類</label>
+                        <label for="exampleFormControlSelect1">第ㄑㄩ</label>
                         <select class="form-control" id="exampleFormControlSelect1">
                             <option value="0">--請選擇--</option>
-                            <option value="1">團購美食</option>
-                            <option value="2">保養美妝</option>
-                            <option value="3">服飾配件</option>
-                            <option value="4">育兒親子</option>
-                            <option value="5">居家生活</option>
-                            <option value="6">休閒娛樂</option>   
+                            <option value="1">台灣</option>
+                            <option value="2">日本</option>
+                           
                         </select>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" id="exampleFormControlSelect2">
                             <option value>--請選擇--</option>
                         </select>
+                        <select class="form-control" id="exampleFormControlSelect3">
+                            <option value>--請選擇--</option>
+                        </select>
+                        
                     </div>
                     </form>
 

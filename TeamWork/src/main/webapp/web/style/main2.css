@@ -657,26 +657,6 @@ option.dropdown-item {
 	margin-top: 20px;
 	
 }
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*會員中心-我的帳戶*/
 .user-page_wrapper {
@@ -751,11 +731,13 @@ option.dropdown-item {
   
 .ellipsis{
 	overflow:hidden;
-	white-space: nowrap;
+/* 	white-space: nowrap; */
 	text-overflow: ellipsis;
 }
 .ellipsis-box{
 	height: 4rem;
-	border: #ef5c28 1px solid;
 }
->>>>>>> branch 'master' of https://github.com/EEIT10306/FinalShop.git
+
+i.far.fa-star.fa-star-score  {
+	font-size: 0.5rem;
+}
