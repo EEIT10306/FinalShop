@@ -56,7 +56,7 @@ public class SellerVerifyService {
 		}
 	}
 
-	// 會員Account驗證賣家ID
+	// 會員Account驗證賣家會員ID
 	public Integer AccountVerifySellerData(String account) {
 
 		String hql = "WHERE m_account = '" + account + "'";
@@ -79,8 +79,8 @@ public class SellerVerifyService {
 				e.printStackTrace();
 			}
 			for (Seller sellbean : sellerIdHave) {
-				if (sellbean.getM_id() != null) {
-					return sellbean.getM_id();
+				if (sellbean.getSeller_id() != null) {
+					return sellbean.getSeller_id();
 				}
 			}
 		}
@@ -100,7 +100,7 @@ public class SellerVerifyService {
 		}
 
 		System.out.println("StoreHave=" + getStore);
-		// 去找店家家的ID 如果不是NULL就回傳ID
+		// 去找店家的ID 如果不是NULL就回傳ID
 		for (Store storebean : getStore) {
 			if (storebean.getS_id() != null) {
 				return storebean.getS_id();
