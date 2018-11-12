@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>會員中心｜我的商店訂單</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+    <!-- main CSS -->
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/userPage.css">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
+        <a class="navbar-brand" href="#">DayDayGo!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a>
+                </li>
+
+            </ul>
+            <!-- Button trigger modal -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="form_login.html">
+                        <i class="fas fa-user-circle icon"></i>會員登入 Member login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="belowNavbar">
+        <div class="container">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">項目</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">許願池</a>
+                        <a class="dropdown-item" href="#">限時團購</a>
+                        <a class="dropdown-item" href="#">購物商城</a>
+                    </div>
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+            </div>
+        </div>
+        <!-- end of container -->
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="user-page-slidebar col-lg-2">
+                <div class="user-page-brief">
+                    <a class="user-page-brief_avatar" href="#">
+                        <div class="user-avatar_placeholder">
+                            <img src="../images/user/account/profile/001.png" alt="">
+                        </div>
+                    </a>
+                    <div class="user-page-brief_right">
+						<div class="user-page-brief__username">jennifer8306</div>
+						<!-- <div>
+							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
+						</div> -->
+						<div class="user-page-brief__coin">
+							<img src="../images/user/others/coin.png" style="display: inline-block;">
+							<span>100</span>
+						</div>
+					</div>
+                </div>
+                <!-- start of userpage-sidebar-menu -->
+                <div class="userpage-sidebar-menu">
+                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Man.svg"></div>
+                        <div class="userpage-sidebar-menu-text">我的帳戶</div>
+                    </a>
+                    <div class="userpage-sidebar-menu_item-head" id="storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Shop.svg"></div>
+                        <div class="userpage-sidebar-menu-text">商店</div>
+                    </div>
+                    <a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">我的商品</div>
+                    </a>
+                    <a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">商品訂單</div>
+                    </a>
+                    <a href="userPage_StoreProductSellerList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">購買的商品</div>
+                    </a>
+                    <div class="userpage-sidebar-menu_item-head" id="wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Ring.svg"></div>
+                        <div class="userpage-sidebar-menu-text">許願</div>
+                    </div>
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">我的許願</div>
+                    </a>
+                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">實現願望</div>
+                    </a>
+                    <div class="userpage-sidebar-menu_item-head" id="groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Party.svg"></div>
+                        <div class="userpage-sidebar-menu-text">團購</div>
+                    </div>
+                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">我的開團</div>
+                    </a>
+                    <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">跟團</div>
+                    </a>
+                    <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Medal.svg"></div>
+                        <div class="userpage-sidebar-menu-text">我的成就</div>
+                    </a>
+                    <a href="" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Love-Letter.svg"></div>
+                        <div class="userpage-sidebar-menu-text">通知記錄</div>
+                    </a>
+                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                            <div class="userpage-sidebar-menu-icon"><img src="../images/user/Analytics.svg"></div>
+                            <div class="userpage-sidebar-menu-text">賣家中心</div>
+                        </a> -->
+                </div>
+                <!-- end of userpage-sidebar-menu -->
+            </div>
+            <div class="purchase-list-page_tabs-container col-lg-10">
+                <div class="row">
+                    <div class="purchase-list-page_tab2 col-sm-3 tab_lock2" id="state16">待出貨</div>
+                    <div class="purchase-list-page_tab2 col-sm-3" id="state17">配送中</div>
+                    <div class="purchase-list-page_tab2 col-sm-3" id="state18">待付款/收貨</div>
+                    <div class="purchase-list-page_tab2 col-sm-3" id="state19">完成</div>
+                </div>
+                <div class="row">
+                    <div class="container-wrapper-seller">
+                        <div class="empty">
+                            <img src="../images/user/others/loading.gif">
+                            <p>LOADING...</p>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- end of container -->
+    <!-- start of footer -->
+    <div class="contaminer-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">客服中心</div>
+                    <ul class="footer-category-list">
+                        <li><a href="#">幫助中心</a></li>
+                        <li><a href="#">購物商城</a></li>
+                        <li><a href="#">付款方式</a></li>
+                        <li><a href="#">運費補助</a></li>
+                        <li><a href="#">退貨退款</a></li>
+                        <li><a href="#">我們承諾</a></li>
+                        <li><a href="#">聯絡客服</a></li>
+                    </ul>
+                </div>
+                <div class="footer-part col-lg-2">
+                    <div class="footer-category-name">關注我們</div>
+                    <ul class="footer-category-list">
+                        <li><img src="../images/social/facebook.png"><a href="#">Facebook</a></li>
+                        <li><img src="../images/social/instagram.png"><a href="#">Instagram</a></li>
+                        <li><img src="../images/social/line.png"><a href="#">LINE</a></li>
+                        <li><img src="../images/social/linkedin.png"><a href="#">Linkedin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of footer -->
+    <!-- 新增評價(互動視窗) -->
+    <!-- Modal -->
+    <div class="modal fade" id="giveAssess" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">給予買家評價</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form class="popperForm" id="giveAssess_form" method="post">
+                    <div class="modal-body">
+                        <div id="wrapper">
+                            <div class="form-group">
+                                <label class="col-form-label">分數：</label>
+
+                                <input type="radio" id="star1" name="sA_point" value="1" />
+                                <label for="star1"><i class="fas fa-star AssessStar" id="forStar1"></i></label>
+
+                                <input type="radio" id="star2" name="sA_point" value="2" />
+                                <label for="star2"><i class="fas fa-star AssessStar" id="forStar2"></i></label>
+
+                                <input type="radio" id="star3" name="sA_point" checked="checked" value="3" />
+                                <label for="star3"><i class="fas fa-star AssessStar" id="forStar3"></i></label>
+
+                                <input type="radio" id="star4" name="sA_point" value="4" />
+                                <label for="star4"><i class="far fa-star AssessStar" id="forStar4"></i></label>
+
+                                <input type="radio" id="star5" name="sA_point" value="5" />
+                                <label for="star5"><i class="far fa-star AssessStar" id="forStar5"></i></label>
+                            </div>
+                        </div>
+                        <textarea class="form-control" id="message-text" placeholder="評價" name="sA_context"></textarea>
+                        <input type="hidden" name="sO_id" value="" id="sO_id" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-sm userSubmitBtn" id="AssessSubmitBtn">送出評價</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- end of 新增評價(互動視窗) -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../js/userPage.js"></script>
+
+    <!-- Optional JavaScript -->
+    <script>
+        $(document).ready(function () {
+            var userID = "1";
+            var dataurl = "/TeamWork/StoreOrderSellerListByM_id?m_id=" + userID;
+            var userData = [];
+            var state = 16;
+            //下載資料
+            loadData();
+            function loadData() {
+                console.log(dataurl);
+                $.ajax({
+                    url: dataurl,
+                    error: function () {
+                        console.log("載入失敗")
+                    },
+                    success: function (res) {
+                        console.log("載入資料")
+                        userData = res
+                        updateData()
+                    }
+                })
+            }
+            function updateData() {
+                console.log("執行updateData")
+                $(".container-wrapper-seller").html("");
+                var tableEl = $(`
+                    <table class="table table-hover table-bordered table-sm">
+                        <thead><tr>
+                            <th scope="col">編號</th>
+                            <th scope="col">圖片</th>
+                            <th scope="col">商品名稱</th>
+                            <th scope="col">購買人</th>
+                            <th scope="col">運送方式</th>
+                            <th scope="col">付款方式</th>
+                            <th scope="col">數量</th>
+                            <th scope="col">總金額</th>
+                            <th scope="col">管理</th>
+                        </tr></thead>
+                        <tbody id="sellerTableBody"></tbody>
+                    </table>
+                `)
+                $(".container-wrapper-seller").append(tableEl);
+                userData.forEach(function (item) {
+                    console.log("ueserData.forEach")
+                    //有現貨
+                    if ((state == 16) && state == item.sO_stateId) {
+                        console.log("state16")
+                        var itemEl = $(`
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img class="storeSellerTable-img" src="../images/user/product/001.jpg"></td>
+                                <td>${item.storeProduct.sP_name}</td>
+                                <td>${item.member.m_name}</td>
+                                <td>${item.sO_transport}</td>
+                                <td>${item.sO_pay}</td>
+                                <td>${item.sO_amount}</td>
+                                <td>${item.sO_sumPrice}</td>
+                                <td><input type="button" class="btn btn-sm btn-outline-info editBtn" value="查看詳細"></td>
+                            </tr>
+                        `)
+                        $("#sellerTableBody").append(itemEl);
+                    }else if ((state == 17) && state == item.sO_stateId) {
+                        console.log("state17")
+                        var itemEl = $(`
+                        <tr>
+                                <th scope="row">1</th>
+                                <td><img class="storeSellerTable-img" src="../images/user/product/001.jpg"></td>
+                                <td>${item.storeProduct.sP_name}</td>
+                                <td>${item.member.m_name}</td>
+                                <td>${item.sO_transport}</td>
+                                <td>${item.sO_pay}</td>
+                                <td>${item.sO_amount}</td>
+                                <td>${item.sO_sumPrice}</td>
+                                <td><input type="button" class="btn btn-sm btn-outline-info editBtn" value="查看詳細"></td>
+                            </tr>
+                        `)
+                        $("#sellerTableBody").append(itemEl);
+                    }else if ((state == 18) && state == item.sO_stateId) {
+                        console.log("state18")
+                        var itemEl = $(`
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img class="storeSellerTable-img" src="../images/user/product/001.jpg"></td>
+                                <td>${item.storeProduct.sP_name}</td>
+                                <td>${item.member.m_name}</td>
+                                <td>${item.sO_transport}</td>
+                                <td>${item.sO_pay}</td>
+                                <td>${item.sO_amount}</td>
+                                <td>${item.sO_sumPrice}</td>
+                                <td><input type="button" class="btn btn-sm btn-outline-info editBtn" value="查看詳細"></td>
+                            </tr>
+                        `)
+                        $("#sellerTableBody").append(itemEl);
+                    }else if ((state == 19) && state == item.sO_stateId) {
+                        console.log("state19")
+                        var itemEl = $(`
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img class="storeSellerTable-img" src="../images/user/product/001.jpg"></td>
+                                <td>${item.storeProduct.sP_name}</td>
+                                <td>${item.member.m_name}</td>
+                                <td>${item.sO_transport}</td>
+                                <td>${item.sO_pay}</td>
+                                <td>${item.sO_amount}</td>
+                                <td>${item.sO_sumPrice}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <input type="button" value="給予評價" class="btn btn-outline-info" data-toggle="modal" data-target="#giveAssess" id="StartAssessBtn" name="${item.sO_id}">
+                                        <input type="button" value="詳細資訊" class="btn btn-outline-info editBtn">
+                                    </div>
+                                    
+                                </td>
+                            </tr>
+                        `)
+                        $("#sellerTableBody").append(itemEl);
+                    }
+
+                });
+                
+                //如果沒有東西可以顯示就顯示插圖
+                if ($("#sellerTableBody").html() == "") {
+                    initData();
+                }
+                
+                //查看詳細按鈕click事件
+                $("input.editBtn").click(function () {
+                    var hrefUrl = "test.html"
+                    document.location.href = hrefUrl;
+                });
+
+                //給予評價按鈕click事件
+                $("#StartAssessBtn").click(function () {
+                    console.log("給予評價按鈕click事件");
+                    var sO_id = $(this).attr("name");
+                    $("input#sO_id").val(sO_id);
+                });
+            }// end of updateData()
+
+
+            //預設顯示插圖
+            function initData() {
+                var emptyEl = $(`
+                        <div class="empty">
+                            <img src="../images/user/others/empty_order.svg">
+                            <p>這裡什麼都沒有耶</p>
+                            <p>要不要上架些商品呢？</p>
+                        </div>
+                    `)
+                $(".container-wrapper-seller").html("").append(emptyEl);
+            }
+
+            //依照頁籤更改狀態代號
+            $(".purchase-list-page_tab2").click(function (e) {
+                $(".tab_lock2").removeClass("tab_lock2");
+                $(this).addClass("tab_lock2");
+                var changeState = $(this).text();
+                switch (changeState) {
+                    case "待出貨":
+                        state = 16;
+                        break;
+                    case "配送中":
+                        state = 17;
+                        break;
+                    case "待付款/收貨":
+                        state = 18;
+                        break;
+                    case "完成":
+                        state = 19;
+                        break;
+                    default:
+                        state = 16;
+                }
+                updateData();
+            });
+        });// end of $(document).ready()
+    </script>
+</body>
+
+</html>

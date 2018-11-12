@@ -142,7 +142,7 @@
                         <option>賣家宅配</option>
                     </select>
                     全新
-                    <!--可為空就預設-->
+                    <!--可為空就預設true-->
                     <select class="custom-select" class="form-group" id="isNew">
                         <option selected>是否全新</option>
                         <option value="true">True</option>
@@ -150,9 +150,14 @@
                     </select>
                     商品圖片
                     <div class="custom-file" class="form-group">
-                        <input type="file" class="custom-file-input" id="StoreImagesUpload" required multiple>
-                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        <form id="myForm">
+                            <input type="text" name="te" style="display: none">
+                            <input type="file" name="file" id="input_file" class="custom-file-input" onchange="imgPreview(this)"
+                                required multiple="multiple">
+                            <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                            <img id="preview" />
+                            <label>請上傳多張商品圖片...</label>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -352,219 +357,7 @@
         onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     <script src="../js/cookies.js"></script>
     <script src="../js/Logout.js"></script>
-
-    <script>
-        //===================CookieToJson=======================
-        function cookieToJson() {
-            let cookieArr = document.cookie.split(";");
-            let obj = {}
-            cookieArr.forEach((i) => {
-                let arr = i.split("=");
-                obj[arr[0]] = arr[1];
-            });
-            return obj
-        }
-        //=================================抓取商品類型=====================================
-        $("[class='custom-select form-group']").change(function () {
-            var addProductSort = $("[class='custom-select form-group']").val();
-            $.ajax({
-                type: "POST",
-                url: "/TeamWork/changeStoreFormSelect",
-                data: { "p_id": addProductSort },
-                success: function (jsonback) {
-                    alert("server傳回 = " + jsonback);
-                    var json = JSON.parse(jsonback);
-                    var txtselect = "";
-                    txtselect += "<option value=0>--請選擇--</option>";
-
-                    for (x = 0; x < json.length; x++) {
-                        txtselect += "<option value=" + x + ">"
-                            + json[x].p_name
-                            + "</option>";
-                    }
-                    $("[name='addSort']").html(txtselect);
-                }
-            });
-        });
-        //===========================判斷有無賣家身份=======================
-        function VerifySeller() {
-            var json = cookieToJson();
-            var cookieAccount = json['email']
-            console.log(cookieAccount)
-            $.ajax({
-                type: "POST",
-                url: "/TeamWork/accountVerifySeller",
-                data: {"account":cookieAccount},
-                async : false,
-                success: function (response) {
-                    alert("賣家ID"+response);
-                    alert("驗證賣家成功");
-                    //判斷是不是空值
-                    if(response == null || response == undefined || response == ''){
-                        window.location.href="http://localhost:8080/TeamWork/web/view/userPage_sellerVerify.html"
-                    } 
-                    result=true
-                },
-                error: function (response) {
-                	alert(3)
-                    alert(response);
-                    alert("驗證失敗");
-                }
-            })
-            return result;
-        }
-        //============================新增開店商品//需要店家身份==========================
-        $("#StoreProductClick").click(function (e) {
-            var StoreProductName = $("[name = 'StoreProductName']").val();
-            var StoreProductContext = $("[name = 'StoreProductContext']").val();
-            var StoreProductSort = $("[name = 'StoreProductSort1']").val();
-            var StoreProductAmount = $("[name = 'StoreProductAmount']").val();
-            var StoreProductPrice = $("[name = 'StoreProductPrice']").val();
-            var Transport = $("[id = 'Transport']").val();
-            var isNew = $("[id = 'isNew']").val();
-            var StoreImagesUpload = $("[id = 'StoreImagesUpload']").val();
-            var combie = {
-                "sP_name": StoreProductName,
-                "sP_context": StoreProductContext,
-                "p_id": StoreProductSort,
-                "sP_amount": StoreProductAmount,
-                "sP_price": StoreProductPrice,
-                "sP_transport": JSON.stringify(Transport),
-                "sP_new": isNew
-            };
-            console.log(combie);
-            //開始判斷有無店家身份
-            if( VerifySeller() ){
-                $.ajax({
-                    type: "POST",
-                    url: "/TeamWork/AddStoreProduct",
-                    data: {
-                        "sP_name": StoreProductName,
-                        "sP_context": StoreProductContext,
-                        "p_id": StoreProductSort,
-                        "sP_amount": StoreProductAmount,
-                        "sP_price": StoreProductPrice,
-                        "sP_transport": JSON.stringify(Transport),
-                        "sP_new": isNew
-                    },
-                    dataType: "json",
-                    success: function (response) {
-                        var jsons = JSON.stringify(response);
-                        alert("MVC傳回 = " + jsons);
-                        // console.log("MVC傳回 = " + jsons.get(0))
-                        alert("SSSS");
-                        // window.location.href=""
-
-                    },
-                    error: function (response) {
-                        var jsons = JSON.stringify(response);
-                        alert("MVC傳回 = " + jsons);
-                        // console.log("MVC傳回 = " + jsons.get(0))
-                        alert("GG");
-                    }
-                })
-            }
-
-        })
-        //===========================新增開團商品//需要賣家身份===============================
-        $("#GrouponClick").click(function (e) {
-            var GrouponName = $("[name = 'GrouponName']").val();
-            var GrouponContext = $("[name = 'GrouponContext']").val();
-            var GrouponSort = $("[name = 'GrouponSort1']").val();
-            var GrouponAmount = $("[name = 'GrouponAmount']").val();
-            var GrouponPrice = $("[name = 'GrouponPrice']").val();
-            var GrouponVersion = $("[name = 'GrouponVersion']").val();
-            var GrouponImagesUpload = $("[id = 'GrouponImagesUpload']").val();
-            var combie = {
-                "gP_name": GrouponName,
-                "gP_context": GrouponContext,
-                "p_id": GrouponSort,
-                "gP_amount": GrouponAmount,
-                "gP_price": GrouponPrice,
-                "gP_version": GrouponVersion
-            };
-            console.log(combie);
-            $.ajax({
-                type: "POST",
-                url: "/TeamWork/AddGroupon",
-                data: {
-                    "gP_name": GrouponName,
-                    "gP_context": GrouponContext,
-                    "p_id": GrouponSort,
-                    "gP_amount": GrouponAmount,
-                    "gP_price": GrouponPrice,
-                    "gP_version": GrouponVersion
-                },
-                dataType: "json",
-                success: function (response) {
-                    // console.log("MVC傳回 = " + jsons.get(0))
-                    alert("MVC傳回 = " + response);
-                    var jsons = JSON.stringify(response);
-                    alert("MVC傳回 = " + jsons);
-                    // console.log("MVC傳回 = " + response.get(0))
-                    alert("SSSS");
-
-                },
-                error: function (response) {
-                    // console.log("MVC傳回 = " + jsons.get(0))
-                    alert("MVC傳回 = " + response);
-                    var jsons = JSON.stringify(response);
-                    alert("MVC傳回 = " + response);
-                    // console.log("MVC傳回 = " + response.get(0))
-                    alert("GG");
-                }
-            })
-        })
-        //===========================新增許願商品===============================
-        $("#WishClick").click(function (e) {
-            var WishName = $("[name = 'WishName']").val();
-            var WishSort = $("[name = 'WishSort1']").val();
-            var WishAmount = $("[name = 'WishAmount']").val();
-            var WishPriceBottom = $("[name = 'WishPriceBottom']").val();
-            var WishPriceTop = $("[name = 'WishPriceTop']").val();
-            var WishImagesUpload = $("[id = 'WishImagesUpload']").val();
-
-            var combie = {
-                "wP_name": WishName,
-                "p_id": WishSort,
-                "wP_amount": WishAmount,
-                "wP_priceBottom": WishPriceBottom,
-                "wP_priceTop": WishPriceTop
-            };
-            console.log(combie);
-            $.ajax({
-                type: "POST",
-                url: "/TeamWork/AddWish",
-                data: {
-                    "wP_name": WishName,
-                    "p_id": WishSort,
-                    "wP_amount": WishAmount,
-                    "wP_priceBottom": WishPriceBottom,
-                    "wP_priceTop": WishPriceTop
-                },
-                dataType: "json",
-                success: function (response) {
-                    // console.log("MVC傳回 = " + jsons.get(0))
-                    alert("MVC傳回 = " + response);
-                    var jsons = JSON.stringify(response);
-                    alert("MVC傳回 = " + response);
-                    // console.log("MVC傳回 = " + response.get(0))
-                    alert("SSSS");
-
-                },
-                error: function (response) {
-                    // console.log("MVC傳回 = " + jsons.get(0))
-                    alert("MVC傳回 = " + response);
-                    var jsons = JSON.stringify(response);
-                    alert("MVC傳回 = " + response);
-                    // console.log("MVC傳回 = " + response.get(0))
-                    alert("GG");
-                }
-            })
-
-
-        })
-    </script>
+    <script src="../js/AddProduct.js"></script>
 
 </body>
 

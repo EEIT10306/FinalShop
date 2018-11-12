@@ -43,15 +43,6 @@ public class OrderListController {
 		return orderService.getStoreOrder(storeOrder);
 	}
 
-	// 取得商店訂單資料
-	// 這個方法還有問題
-	@RequestMapping(value = "/StoreOrderListByBuyerIdAndState", method = RequestMethod.GET, produces = {
-			"application/json" })
-	@ResponseBody
-	public List<StoreOrder> getStoreOrderByBuyerIdAndState(StoreOrder storeOrder) throws SQLException {
-		return orderService.getStoreOrder(storeOrder);
-	}
-
 	// 取得許願資料
 	@RequestMapping(value = "/WishList", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
@@ -107,20 +98,6 @@ public class OrderListController {
 		orderService.giveAssess_StoreBuyer(storeAssess);
 		return "redirect:/web/view/userPage_StoreOrderList.html";
 	}
-
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
 	// 新增一筆許願訂單評價資料(買的人評)
 	@RequestMapping(path = "/giveAssess_WishBuyer", method = RequestMethod.POST)

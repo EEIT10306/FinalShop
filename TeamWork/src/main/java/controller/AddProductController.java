@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,6 +20,7 @@ import model.bean.GroupProduct;
 import model.bean.StoreProduct;
 import model.bean.WishProduct;
 import model.service.GroupProductService;
+import model.service.ImageService;
 import model.service.SellerVerifyService;
 import model.service.StoreProductService;
 import model.service.WishProductService;
@@ -33,6 +36,8 @@ public class AddProductController {
 	WishProductService wishProductService;
 	@Autowired
 	SellerVerifyService sellerVerifyService;
+	@Autowired
+	ImageService imageService;
 
 	// 新增開店
 	@RequestMapping(value = "/AddStoreProduct", method = RequestMethod.POST)
@@ -104,14 +109,30 @@ public class AddProductController {
 	}
 	//多圖檔上傳 傳圖檔和商品名稱or開團名稱or許願名稱
 	@RequestMapping(value = "/uploadmutipart", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-	public @ResponseBody String uploadmutipart(@RequestParam("file") MultipartFile[] files,
+	public @ResponseBody String uploadmutipart(@RequestParam("file") List<MultipartFile> files,
 			@RequestParam("te") String te) throws IOException {
-		
-		for (int i = 0; i < files.length; i++) {
-			System.out.println("for"+te);
-			MultipartFile file = files[i];
-			System.out.println("for"+file.getOriginalFilename());
+//		MultipartFile file = null;
+		System.out.println("==================="+files.get(0));
+		System.out.println("==================="+files.get(1));
+//		for (int i = 0; i < files.length; i++) {
+//			System.out.println("for="+te);
+//			file = files[i];
+//			System.out.println("for="+file.getOriginalFilename());
+//		}
+		//取得spid
+		Integer spid = null;
+		try {
+			spid = storeProductService.sPnameToID(te);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		System.out.println("imgup="+spid);
+		//執行上傳圖片方法
+		for(MultipartFile file : files) {			
+			imageService.insertStoreProductImage(file, spid);
+		}
+		
 		return "success";
 	}
 }

@@ -75,10 +75,10 @@ public class OrderService {
 
 	@Autowired
 	SellerDao sellerDao;
-	
+
 	@Autowired
 	StoreDao storeDao;
-	
+
 	public OrderService() {
 	}
 
@@ -94,29 +94,6 @@ public class OrderService {
 		}
 	}
 
-	// 這個方法還有問題
-	public List<StoreOrder> getStoreOrderByBuyerIdAndState(StoreOrder storeOrder) throws SQLException {
-		Integer MemberId = storeOrder.getM_idOrder();
-		Integer OrderState = storeOrder.getsO_stateId();
-		String hql = "";
-		if (MemberId == null && OrderState == null) {
-			// 若無給予指定使用者ID與狀態ID則回傳全部
-			System.out.println("1==============================================" + MemberId + ":" + MemberId);
-			return storeOrderDao.selectAll();
-		} else if (MemberId != null && OrderState == null) {
-			System.out.println("2==============================================" + MemberId + ":" + MemberId);
-			hql = "WHERE memS_IDee =" + MemberId;
-			return storeOrderDao.selectHql(hql);
-		} else if (MemberId == null && OrderState != null) {
-			System.out.println("3==============================================" + MemberId + ":" + MemberId);
-			hql = "WHERE sO_state =" + OrderState;
-			return storeOrderDao.selectHql(hql);
-		} else {
-			System.out.println("4==============================================" + MemberId + ":" + MemberId);
-			hql = "WHERE memS_IDee = " + MemberId + " AND sO_state = " + OrderState;
-			return storeOrderDao.selectHql(hql);
-		}
-	}
 
 	// (許願)利用買家ID取得購買訂單資料
 	public List<WishOrder> getWishOrderByBuyerId(Wish wish) throws SQLException {
@@ -207,7 +184,6 @@ public class OrderService {
 		return null;
 	}
 
-
 	// 將商店訂單的狀態由待收貨轉為完成
 	public StoreOrder confirmReceive_Store(StoreOrder storeOrder) throws SQLException {
 		Integer sO_ID = storeOrder.getsO_id();
@@ -238,16 +214,6 @@ public class OrderService {
 		}
 	}
 
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 	// 新增一筆跟團評價資料
 	public WishAssess giveAssess_WishBuyer(WishAssess wishAssess) throws SQLException {
 		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
@@ -280,15 +246,6 @@ public class OrderService {
 		return null;
 	}
 
-	// 用開團者ID取得開團資料清單
-	public List<Groupon> getGrouponSellerListByM_id(Groupon groupon) throws SQLException {
-		Integer seller_id = groupon.getSeller_id();
-		if (seller_id == null) {
-			return grouponDao.selectAll();
-		} else {
-			String hql = "WHERE seller_id = " + seller_id;
-			return grouponDao.selectHql(hql);
-		}
-	}
+	
 
 }
