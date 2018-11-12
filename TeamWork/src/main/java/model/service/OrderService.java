@@ -121,7 +121,7 @@ public class OrderService {
 
 	}
 
-	// 取得所有許願資料
+	// 利用會員ID取得許願資料
 	public List<Wish> getWishByM_id(Wish wish) throws SQLException {
 		Integer buyerId = wish.getM_id();
 		if (buyerId == null) {
@@ -199,6 +199,7 @@ public class OrderService {
 	// 新增一筆商店訂單評價資料(買的人評)
 	public StoreAssess giveAssess_StoreBuyer(StoreAssess storeAssess) throws SQLException {
 		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
+		System.out.println("giveAssess_StoreBuyer==========>"+storeAssess);
 		Integer sO_id = storeAssess.getsO_id();
 		if (sO_id != null) {
 			String hql = "WHERE sO_id = " + sO_id;

@@ -103,11 +103,11 @@
                         <div class="userpage-sidebar-menu-icon"><img></div>
                         <div class="userpage-sidebar-menu-text">我的商品</div>
                     </a>
-                    <a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
+                    <a href="userPage_StoreOrderSellerList.html" class="userpage-sidebar-menu_item storepbtn">
                         <div class="userpage-sidebar-menu-icon"><img></div>
                         <div class="userpage-sidebar-menu-text">商品訂單</div>
                     </a>
-                    <a href="userPage_StoreProductSellerList.html" class="userpage-sidebar-menu_item storepbtn">
+                    <a href="userPage_StoreOrderList.html" class="userpage-sidebar-menu_item storepbtn">
                         <div class="userpage-sidebar-menu-icon"><img></div>
                         <div class="userpage-sidebar-menu-text">購買的商品</div>
                     </a>
@@ -115,11 +115,15 @@
                         <div class="userpage-sidebar-menu-icon"><img src="../images/user/Ring.svg"></div>
                         <div class="userpage-sidebar-menu-text">許願</div>
                     </div>
-                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                    <a href="userPage_WishList.html" class="userpage-sidebar-menu_item wishpbtn">
                         <div class="userpage-sidebar-menu-icon"><img></div>
                         <div class="userpage-sidebar-menu-text">我的許願</div>
                     </a>
-                    <a href="userPage_WishOrdrList.html" class="userpage-sidebar-menu_item wishpbtn">
+                    <a href="userPage_WishOrderList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">許願訂單</div>
+                    </a>
+                    <a href="userPage_WishOrderSellerList.html" class="userpage-sidebar-menu_item wishpbtn">
                         <div class="userpage-sidebar-menu-icon"><img></div>
                         <div class="userpage-sidebar-menu-text">實現願望</div>
                     </a>
@@ -127,19 +131,23 @@
                         <div class="userpage-sidebar-menu-icon"><img src="../images/user/Party.svg"></div>
                         <div class="userpage-sidebar-menu-text">團購</div>
                     </div>
-                    <a href="userPage_StoreOrdrList.html" class="userpage-sidebar-menu_item groupbtn">
+                    <a href="userPage_GroupList.html" class="userpage-sidebar-menu_item groupbtn">
                         <div class="userpage-sidebar-menu-icon"><img></div>
                         <div class="userpage-sidebar-menu-text">我的開團</div>
+                    </a>
+                    <a href="userPage_GroupSellerList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">開團訂單</div>
                     </a>
                     <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
                         <div class="userpage-sidebar-menu-icon"><img></div>
                         <div class="userpage-sidebar-menu-text">跟團</div>
                     </a>
-                    <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item-head">
+                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon"><img src="../images/user/Medal.svg"></div>
                         <div class="userpage-sidebar-menu-text">我的成就</div>
                     </a>
-                    <a href="" class="userpage-sidebar-menu_item-head">
+                    <a href="userPage_notifications.html" class="userpage-sidebar-menu_item-head">
                         <div class="userpage-sidebar-menu-icon"><img src="../images/user/Love-Letter.svg"></div>
                         <div class="userpage-sidebar-menu-text">通知記錄</div>
                     </a>
@@ -162,7 +170,7 @@
                         <div class="empty">
                             <img src="../images/user/others/loading.gif">
                             <p>LOADING...</p>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -268,7 +276,7 @@
                                 <label for="star5"><i class="far fa-star AssessStar" id="forStar5"></i></label>
                             </div>
                         </div>
-                        <textarea class="form-control" id="message-text" placeholder="評價" name="sA_context"></textarea>
+                        <textarea class="form-control" id="message-text" placeholder="評價" name="sA_content"></textarea>
                         <input type="hidden" name="sO_id" value="" id="sO_id" />
                     </div>
                     <div class="modal-footer">
@@ -393,10 +401,9 @@
                                 <td>${item.sO_sumPrice}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <input type="button" value="給予評價" class="btn btn-outline-info" data-toggle="modal" data-target="#giveAssess" id="StartAssessBtn" name="${item.sO_id}">
-                                        <input type="button" value="詳細資訊" class="btn btn-outline-info editBtn">
+                                        <input type="button" value="給予評價" class="btn btn-sm btn-outline-info StartAssessBtn" data-toggle="modal" data-target="#giveAssess" name="${item.sO_id}">
+                                        <input type="button" value="詳細資訊" class="btn btn-sm btn-outline-info editBtn">
                                     </div>
-                                    
                                 </td>
                             </tr>
                         `)
@@ -417,10 +424,30 @@
                 });
 
                 //給予評價按鈕click事件
-                $("#StartAssessBtn").click(function () {
+                $(".StartAssessBtn").click(function () {
                     console.log("給予評價按鈕click事件");
                     var sO_id = $(this).attr("name");
                     $("input#sO_id").val(sO_id);
+                    alert($("input#sO_id").val())
+                });
+
+                //評價表單submit事件(AJAX)
+                $("#giveAssess_form").on('submit', function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/TeamWork/giveAssess_StoreBuyer",
+                        data: $(this).serialize(),
+                        success: function () {
+                            $("#giveAssess").css("display", "none");
+                            //關閉互動視窗
+                            $("button.close").click();
+                            $("#giveAssess_form").find(":text,textarea").each(function () {
+                                //清空表單所有欄位
+                                $(this).val("");
+                            });
+                        }
+                    });
+                    return false; //阻止form submit
                 });
             }// end of updateData()
 

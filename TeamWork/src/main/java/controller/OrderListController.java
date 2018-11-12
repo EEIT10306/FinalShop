@@ -43,7 +43,7 @@ public class OrderListController {
 		return orderService.getStoreOrder(storeOrder);
 	}
 
-	// 取得許願資料
+	// 利用會員ID取得許願資料
 	@RequestMapping(value = "/WishList", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
 	public List<Wish> getWishList(Wish wish) throws SQLException {
