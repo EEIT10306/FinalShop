@@ -16,6 +16,7 @@ import model.bean.Member;
 import model.bean.StoreAssess;
 import model.bean.StoreCallback;
 import model.bean.StoreFavorite;
+import model.bean.StoreImages;
 import model.bean.StoreMessage;
 import model.bean.StoreProduct;
 import model.bean.StoreReport;
@@ -23,6 +24,7 @@ import model.service.MemberService;
 import model.service.StoreAssessService;
 import model.service.StoreCallbackService;
 import model.service.StoreFavoriteService;
+import model.service.StoreImagesService;
 import model.service.StoreMessageService;
 import model.service.StoreProductService;
 import model.service.StoreReportService;
@@ -31,6 +33,8 @@ import model.service.StoreReportService;
 public class StoreProductController {
 	@Autowired
 	private StoreProductService storeProductService;
+	@Autowired
+	private StoreImagesService storeImagesService;
 	@Autowired
 	private StoreAssessService storeAssessService;
 	@Autowired
@@ -52,6 +56,11 @@ public class StoreProductController {
 	@ResponseBody
 	public StoreProduct GetOneStoreProduct(Integer sP_id) throws SQLException {
 		return storeProductService.selectByPk(sP_id);	
+	}
+	@RequestMapping(path = "/StoreProductPhotos", method = RequestMethod.GET)
+	@ResponseBody
+	public List<StoreImages> GetStoreProductPhotos(Integer sP_id) throws SQLException {
+		return storeImagesService.selectBySp_Id(sP_id);	
 	}
 	@RequestMapping(path = "/StoreAssess", method = RequestMethod.GET, produces = {"application/json"})
 	@ResponseBody

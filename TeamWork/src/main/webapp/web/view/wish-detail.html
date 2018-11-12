@@ -18,6 +18,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <script src="../js/jquery.func_toggle.js"></script>
 	<script>
+		var hahaha;  //抓取？後的值
+		var commentText=""; 	
+		var commentClicked = false;
+		var replyClicked = false;
+		var nowDate = new Date();
+		var nowDateFormed = (nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes());
+		
+		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
+		var member_mail;
+		var theCookies = document.cookie.split(";");
+		var member_id;
+		
+		var member_bean;
+		
 		$(function(){
 			$('.fa-heart').funcToggle('click', 
 	            function() {
@@ -32,7 +46,8 @@
 		var head = 0;
 		var tail = 3;
 		var slideNo = document.getElementsByClassName("hotSale-box");
-		$(function(){			
+		$(function(){		
+			//相關熱門許願商品
 			$("#next").click(function(){
 				for(i=0;i<slideNo.length;i++){
 					slideNo[i].style.display = "none";
@@ -58,6 +73,8 @@
 					slideNo[j].style.display = "block";					
 				}
 			})
+			//頁面相關資訊顯示
+			
 		})	
 		
 	</script>
@@ -153,8 +170,8 @@
                 <span class="sell-text">銷售量</span>
                 <span class="sell-count"> 3581</span>
                 <h4 class="detail-price">$350</h4>
-                <h6>規格</h6>
-                <h6>數量</h6>
+                <h6>可接受底價</h6>
+                <h6>可接受頂價</h6>
                 <h6><i class="far fa-heart"></i>&nbsp;加到最愛</h6>
                 <h6>檢舉</h6>
                 <button type="button" class="btn btn-outline-info" style="width:48%">加入購物車</button>
@@ -183,10 +200,13 @@
         <div class="tab-content" id="productContent">
             <div class="tab-pane fade show active" id="detail-information" role="tabpanel" aria-labelledby="detail-information-tab">
                 <!-- 分頁-詳細資訊 -->
-                <h5 class="detail-des-title">商品規格</h5>
+                <h5 class="detail-des-title">許願地區</h5>
+                
+                
+                <h5 class="detail-des-title">可接受總價格</h5>
 
 
-                <h5 class="detail-des-title">商品詳情</h5>
+                <h5 class="detail-des-title">許願內容</h5>
                 <p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色，光12個顏色我們小編們就自留了8色，不易起球、不易變形、材質舒服親膚</p>
                 <p>秋冬搭配都很適合，冷一點裡面搭配襯衫等等的，判決指出，牟恩廣主張與妻子在民國102年結婚，但他們婚後並未共同生活，自己回到台灣的期間，都住在台北晶華酒店，從未與她同居，夫妻之情蕩然無存，已無維持婚姻關係的主觀意願及客觀實益。</p>
                 <p>法官審理後認為，牟男雖因工作長期滯留外地生活，而與妻子分居兩地，然而多年來兩造生活甚少交集，夫妻感情維繫困難，分居期間也未見他們積極維繫婚姻及感情，原告訴請離婚洵屬有據。</p>

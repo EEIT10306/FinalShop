@@ -107,6 +107,9 @@
 				data:{email:member_mail},
 				success: function(data){
 					member_bean = data;
+					if(member_bean == null){
+						$(".navbar-nav ml-auto")
+					}
 					$.ajax({
 						url:"/TeamWork/checkStoreProductFavorite", //判斷商品是否已經加入最愛
 						type:"POST",
@@ -120,12 +123,6 @@
 					})
 				}
 			})
-			
-			//最愛功能
-			
-// 	        $('.far.fa-heart').click(function(){
-// 	        	
-// 	        })
 		})
 			
 		
@@ -162,6 +159,8 @@
 				success: function(data){
 					$(".detail-title").text(data.sP_name);
 					$(".star-score").text(data.sP_averageAssess);
+					
+					
 					assessProductAVG = (Math.round(data.sP_averageAssess*10)/10);
 // 					assessProductAVG = data.sP_averageAssess;
 
@@ -193,6 +192,40 @@
 							}
 						}
 					}
+					//輪播牆
+					var productDemoPhototxt;
+					$.ajax({
+						url:"/TeamWork/StoreProductPhotos?"+hahaha,
+						type:"GET",
+						success:function(data){
+							alert($(".carousel-inner").html());
+							console.log(data);
+							if(data.length != 0){
+								for(i=0;i<data.length;i++){
+									if(i==0){
+										productDemoPhototxt += `
+											<div class="carousel-item avtive">
+												<img class="d-block w-100"
+														src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
+											</div>`;
+									}
+									productDemoPhototxt += `
+									<div class="carousel-item">
+										<img class="d-block w-100"
+												src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
+									</div>`;
+								}
+							}else{
+								productDemoPhototxt = 
+									`<div class="carousel-item active">
+										<img class="d-block w-100"
+												src="/TeamWork/web/images/user/product/defaultProductImage.gif">
+									</div>`;
+							}
+							$(".carousel-inner").html(productDemoPhototxt);
+							alert($(".carousel-inner").html());
+						}
+					})
 					$(".detail-title").append("<br>"+txt[0]+txt[1]+txt[2]+txt[3]+txt[4]);
 					if(assessProductAVG.toString().length == 1)
 						assessProductAVG = assessProductAVG.toString() + '.0';
@@ -200,6 +233,9 @@
 					$(".storage-count").text(data.sP_amount);
 					$(".detail-price").text("$"+data.sP_price);
 					$(".detail-des-title").after("<p>"+data.sP_context+"</p>"); 
+// 					$(".carousel-inner").after(productDemoPhototxt);
+					
+					
 				}	
 			})
 			//買家評論顯示
@@ -225,11 +261,11 @@
 	                        		starsText += '<i class="far fa-star fa-star-score"></i>'
 								for(j=0;j<starsCount;j++)
 	                        		starsText += '<i class="fas fa-star fa-star-score"></i>'
-	                        	
+	                        var photo = (data[i].storeOrder.member.m_photo != "")?data[i].storeOrder.member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
 								commentText += `
 									<li>
 	                            	<div class="comment-main-level">
-	                                	<div class="comment-avatar"><img src="`+data[i].storeOrder.member.m_photo+`"alt=""></div>
+	                                	<div class="comment-avatar"><img src="`+photo+`"alt=""></div>
 	                                	<div class="comment-box">
 	                                    	<div class="comment-head">
 	                                     	    <h6 class="comment-name"><a href="http://creaticode.com/blog">`+data[i].storeOrder.member.m_name+`</a></h6>
@@ -263,11 +299,12 @@
 							success: function(data2){
 									for(i=0;i<data1.length;i++){
 										var replyDate = new Date(data1[i].sM_time);
+										var photo = (data1[i].member.m_photo != "")?data1[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
 										replyText +=`
 										<ul>
 											<li>
 												<div class="comment-main-level">
-					                                <div class="comment-avatar"><img src="`+data1[i].member.m_photo+`"alt=""></div>
+					                                <div class="comment-avatar"><img src="`+photo+`"alt=""></div>
 					                                <!-- Contenedor del Comentario -->
 						                                <div class="comment-box">
 						                                    <div class="comment-head">
@@ -284,10 +321,11 @@
 					                            `	
 			                        	for(j=0;j<data2.length;j++){
 			                        		var callBackDate = new Date(data2[j].sC_time);
+			                        		var photo2 = (data2[i].member.m_photo != "")?data2[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
 			                        		 if(data1[i].sM_id == data2[j].sM_id){
 			                        			 replyText +=`
 					                                    <li>
-					                                        <div class="comment-avatar"><img src="`+data2[j].member.m_photo+`"
+					                                        <div class="comment-avatar"><img src="`+photo2+`"
 					                                                alt=""></div>
 					                                        <div class="comment-box">
 					                                            <div class="comment-head">
@@ -299,39 +337,47 @@
 					                                    </li>`
 							                    }     
 			                        	}
-			                            replyText += `
-			                            	<li>
-	                                        	<div class="comment-avatar"><img src="`+member_bean.m_photo+`"
-                                            			alt=""></div>
-                                    			<div class="comment-box">
-                                        			<div class="comment-head">
-                                            			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
-                                            			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
-                                        			</div>
-                                        			<div class="comment-content">
-                                        				<textarea id="reply-content" cols="50" rows="5" style="resize: none"></textarea>
-                                        			</div>
-                                        			<div><button type="button" value="submit" class="callBack">送出</button>    <button type="button" value="reset">取消</button></div>
-                                    			</div>
-                                			</li>
-                                		</ul>`; 
+					                    var photo3 = (member_bean.m_photo != '')?member_bean.m_photo:'/TeamWork/web/images/user/account/profile/001.png'
+			                            if(member_bean.m_id!=undefined){			                            	
+						                    replyText += `
+				                            	<li>
+		                                        	<div class="comment-avatar"><img src="`+photo3+`"
+	                                            			alt=""></div>
+	                                    			<div class="comment-box">
+	                                        			<div class="comment-head">
+	                                            			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+	                                            			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
+	                                        			</div>
+	                                        			<div class="comment-content">
+	                                        				<textarea id="reply-content" cols="50" rows="5" style="resize: none"></textarea>
+	                                        			</div>
+	                                        			<div><button type="button" value="submit" class="callBack">送出</button>    <button type="button" value="reset">取消</button></div>
+	                                    			</div>
+	                                			</li>
+	                                		</ul>`; 
+			                            }
 									}
+									var photo4 = (member_bean.m_photo != '')?member_bean.m_photo:'/TeamWork/web/images/user/account/profile/001.png';	
+																									     // web/images/user/account/profile/001.png
+									
 									replyText += "</ul>";
-									replyText += `
-		                            	<li>
-                                        	<div class="comment-avatar"><img src="`+member_bean.m_photo+`"
-                                        			alt=""></div>
-                                			<div class="comment-box">
-                                    			<div class="comment-head">
-                                        			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
-                                        			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
-                                    			</div>
-                                    			<div class="comment-content">
-                                    				<textarea id="reply-content" cols="50" rows="5" style="resize: none"></textarea>
-                                    			</div>
-                                    			<div><button type="button" value="submit" class="reply">送出</button>    <button type="button" value="reset">取消</button></div>
-                                			</div>
-                            			</li>`; 
+									if(member_bean.m_id!=undefined){
+										replyText += `
+			                            	<li>
+	                                        	<div class="comment-avatar"><img src="`+photo4+`"
+	                                        			alt=""></div>
+	                                			<div class="comment-box">
+	                                    			<div class="comment-head">
+	                                        			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+	                                        			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
+	                                    			</div>
+	                                    			<div class="comment-content">
+	                                    				<textarea id="reply-content" cols="50" rows="5" style="resize: none"></textarea>
+	                                    			</div>
+	                                    			<div><button type="button" value="submit" class="reply">送出</button>    <button type="button" value="reset">取消</button></div>
+	                                			</div>
+	                            			</li>`; 
+									}
 									$("#reply-list").html(replyText);
 									$(".reply").click(function(){//一般留言
 										$.ajax({
@@ -368,8 +414,8 @@
 					type:"POST",
 					data:{m_idReport:member_bean.m_id, sP_id:hahaha.substring(6), sR_content:$("#report-content").val(),sR_stateId:25},
 					success: function(response){
-						console.log(response);
 						alert("謝謝您的舉報，我們會盡快處理");
+						window.location.href = "/TeamWork/web/view/product-detail.html?"+hahaha
 					}
 				})
 			})
@@ -546,11 +592,7 @@
 				role="tabpanel" aria-labelledby="detail-information-tab">
 				<!-- 分頁-詳細資訊 -->
 				<h5 class="detail-des-title">商品規格</h5>
-
-
 				<h5 class="detail-des-title">商品詳情</h5>
-
-
 			</div>
 			<div class="tab-pane fade" id="buyer-comment" role="tabpanel"
 				aria-labelledby="buyer-comment-tab">
