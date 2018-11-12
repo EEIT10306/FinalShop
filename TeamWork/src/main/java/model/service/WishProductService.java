@@ -25,5 +25,18 @@ public class WishProductService {
 		return bean;
 		
 	}
+	
+	public Integer wPnameToID(String wpname) throws SQLException {
+		
+		String hql = "WHERE wP_name = '" +  wpname + "'";
+		//取得商城商品資料
+		System.out.println("WishPro=" + wishProductDaoImpl.selectHql(hql));
+		// 去找店家家的ID 如果不是NULL就回傳ID
+		for (WishProduct storebean : wishProductDaoImpl.selectHql(hql)) {
+			return storebean.getwP_id();
+		}
+		return null;
+		
+	}
 
 }

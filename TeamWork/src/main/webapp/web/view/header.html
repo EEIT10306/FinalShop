@@ -150,12 +150,13 @@
                     </select>
                     商品圖片
                     <div class="custom-file" class="form-group">
-                        <form id="myForm">
+                        <form id="StoremyForm">
+                            <input type="text" name="inputstr" value="Store" style="display: none">
                             <input type="text" name="te" style="display: none">
-                            <input type="file" name="file" id="input_file" class="custom-file-input" onchange="imgPreview(this)"
+                            <input type="file" name="file" id="Storeinput_file" class="custom-file-input" onchange="imgPreview(this)"
                                 required multiple="multiple">
                             <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="preview" />
+                            <img id="Storepreview" src="" />
                             <label>請上傳多張商品圖片...</label>
                         </form>
                     </div>
@@ -231,8 +232,15 @@
                     </div>
                     商品圖片
                     <div class="custom-file" class="form-group">
-                        <input type="file" class="custom-file-input" id="GrouponImagesUpload" required multiple>
-                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                        <form id="GroupmyForm">
+                            <input type="text" name="inputstr" value="Group" style="display: none">
+                            <input type="text" name="te" style="display: none">
+                            <input type="file" name="file" id="Groupinput_file" class="custom-file-input" onchange="imgPreview(this)"
+                                required multiple="multiple">
+                            <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                            <img id="Grouppreview" src=""/>
+                            <label>請上傳多張商品圖片...</label>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -302,8 +310,15 @@
                     </div>
                     商品圖片
                     <div class="custom-file" class="form-group">
-                        <input type="file" class="custom-file-input" id="WishImagesUpload" required multiple>
-                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                        <form id="WishmyForm">
+                            <input type="text" name="inputstr" value="Wish" style="display: none">
+                            <input type="text" name="te" style="display: none">
+                            <input type="file" name="file" id="Wishinput_file" class="custom-file-input" onchange="imgPreview(this)"
+                                required multiple="multiple">
+                            <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                            <img id="Wishpreview" src=""/>
+                            <label>請上傳多張商品圖片...</label>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer">
