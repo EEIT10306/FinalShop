@@ -33,14 +33,14 @@ public class ImageService {
 	private WishImagesDaoImpl wishImagesDaoImpl;
 
 	public void saveImage(MultipartFile file, String fileName) throws IllegalStateException, IOException {
-		file.transferTo(new File(SetImagePath + file));
+		file.transferTo(new File(SetImagePath + fileName));
 	}
 
 	public boolean insertStoreProductImage(MultipartFile file, Integer sP_id) {
 		try {
 			int count = storeImagesDaoImpl.selectHql("Where sP_id = " + sP_id).size();
-			String fileName = "sP_" + sP_id + "_" + count + 1 + file.getContentType().split("/")[1];
-			
+			String fileName = "sP_" + sP_id + "_" + (count + 1) + "." + file.getContentType().split("/")[1];
+
 			saveImage(file, fileName);
 
 			String filePath = GetImagePath + fileName;

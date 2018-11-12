@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,11 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "wish_ID", "mem_ID" }) })
 public class WishReport {
 
 	@Id
@@ -27,6 +26,9 @@ public class WishReport {
 
 	@Column(name = "wR_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String wR_content;
+
+	@Column(name = "wR_time", columnDefinition = "datetime", nullable = false)
+	private Date wR_time;
 
 	@Column(name = "wR_state", columnDefinition = "int", nullable = false)
 	private Integer wR_stateId;
@@ -46,19 +48,22 @@ public class WishReport {
 	public WishReport() {
 	}
 
-	public WishReport(Integer wR_id, Integer w_id, Integer m_idReport, String wR_content, Integer wR_stateId) {
+	public WishReport(Integer wR_id, Integer w_id, Integer m_idReport, String wR_content, Date wR_time,
+			Integer wR_stateId, Wish wish) {
 		super();
 		this.wR_id = wR_id;
 		this.w_id = w_id;
 		this.m_idReport = m_idReport;
 		this.wR_content = wR_content;
+		this.wR_time = wR_time;
 		this.wR_stateId = wR_stateId;
+		this.wish = wish;
 	}
 
 	@Override
 	public String toString() {
 		return "WishReport [wR_id=" + wR_id + ", w_id=" + w_id + ", m_idReport=" + m_idReport + ", wR_content="
-				+ wR_content + ", wR_stateId=" + wR_stateId + ", wish=" + wish + "]\r\n";
+				+ wR_content + ", wR_time=" + wR_time + ", wR_stateId=" + wR_stateId + ", wish=" + wish + "]\r\n";
 	}
 
 	public Integer getwR_id() {
@@ -99,6 +104,14 @@ public class WishReport {
 
 	public void setwR_stateId(Integer wR_stateId) {
 		this.wR_stateId = wR_stateId;
+	}
+
+	public Date getwR_time() {
+		return wR_time;
+	}
+
+	public void setwR_time(Date wR_time) {
+		this.wR_time = wR_time;
 	}
 
 	public Wish getWish() {
