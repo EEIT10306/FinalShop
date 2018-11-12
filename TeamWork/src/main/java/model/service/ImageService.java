@@ -40,7 +40,7 @@ public class ImageService {
 		try {
 			int count = storeImagesDaoImpl.selectHql("Where sP_id = " + sP_id).size();
 			String fileName = "sP_" + sP_id + "_" + (count + 1) + "." + file.getContentType().split("/")[1];
-			
+
 			saveImage(file, fileName);
 
 			String filePath = GetImagePath + fileName;

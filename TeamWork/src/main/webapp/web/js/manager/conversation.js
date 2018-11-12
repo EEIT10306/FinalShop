@@ -178,8 +178,12 @@ function timer() {
 
 $("#sendMe").keyup(function (e) {
     if (e.keyCode == 13) {
-        sendNewConversation();
-        divBottom();
+        if ($(this).val() != "" && $(".active-chat").length != 0) {
+            sendNewConversation();
+            divBottom();
+        } else {
+            $("#sendMe").val("");
+        }
     }
 });
 
@@ -239,14 +243,14 @@ function haveNewMessage() {
                         }
                         //原本全都已讀
                     } else {
-                        response.forEach(now => {
+                        for (let now of response) {
                             alert(3)
                             setUnReadMessage(now, now.length);
-                        });
+                        };
                     }
                 }
-                console.log(lastData)
-                console.log(response)
+                // console.log(lastData)
+                // console.log(response)
             } else {
                 unfirst = true
             }
