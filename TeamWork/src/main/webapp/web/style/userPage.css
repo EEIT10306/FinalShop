@@ -1,3 +1,4 @@
+
 /*user-page*/
 .user-page-slidebar {
 	margin-top: 1.8rem;
@@ -48,7 +49,7 @@ a.user-page-brief__edit i {
 }
 
 a.userpage-sidebar-menu_item {
-	padding: 5px;
+	padding: 1px;
 	text-decoration: none;
 	display: none;
 	/* display: flex; */
@@ -56,12 +57,17 @@ a.userpage-sidebar-menu_item {
 	align-items: center;
 
 }
-a.userpage-sidebar-menu_item-head {
+.userpage-sidebar-menu_item-head {
 	padding: 2px;
 	text-decoration: none;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	cursor: pointer;
+	color: #03658C;
+}
+a.userpage-sidebar-menu_item-head{
+	text-decoration: none;
 }
 
 .userpage-sidebar-menu-icon img {
@@ -129,14 +135,6 @@ a.userpage-sidebar-menu_item-head {
 	background-color: #1e5793;
 	color: #fff;
 }
-
-
-
-
-
-
-
-
 
 .container-wrapper {
 	padding-top: 2rem;
@@ -618,6 +616,33 @@ form.popperForm {
 
 
 
+/*賣家中心*/
+.container-wrapper-seller {
+	min-height: 500px;
+	min-width: 100%;;
+	background-color: rgb(247, 247, 247);
+} 
+.container-wrapper-seller td img{
+	height: 30px;
+	margin: auto;
+}
+.container-wrapper-seller td{
+	text-align: center;
+	vertical-align: middle;
+}
+.container-wrapper-seller th{
+	text-align: center;
+	vertical-align: middle;
+}
+.btn-darkBlue{
+	background-color: transparent;
+	border: #1e5793;
+	color: #1e5793;
+}
+.btn-darkBlue:hover{
+	background-color: #1e5793;
+	color: #fff;
+}
 /*賣家中心-團購*/
 .text{
 	color: #1e5793;

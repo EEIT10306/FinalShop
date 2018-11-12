@@ -36,7 +36,6 @@ public class ConversationService {
 			tempId.remove(conversation.getM_id());// 與本人對話之他人
 			System.out.println(tempId);// M_idTalker
 
-			
 			List<List<Conversation>> lastConversation = new ArrayList<>();
 			Iterator<Integer> tempIdIt = tempId.iterator();
 			while (tempIdIt.hasNext()) {
@@ -67,6 +66,45 @@ public class ConversationService {
 	public Conversation insertConversation(Conversation conversation) {
 		try {
 			return conversationDaoImpl.insert(conversation);
+		} catch (SQLException e) {
+			System.out.println("ConversationService - insertConversation - SQLException");
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Boolean updateConversationState(Conversation conversation) {
+		try {
+			List<Conversation> beans = conversationDaoImpl
+					.selectHql("Where m_id = " + conversation.getM_id() + " and m_idConversation = " + 25 + " and c_stateId = 3 ");
+			System.out.println(beans);
+			for (Conversation bean : beans) {
+				conversationDaoImpl.update(bean, conversation);
+			}
+			System.out.println(beans);
+			return true;
+		} catch (SQLException e) {
+			System.out.println("ConversationService - insertConversation - SQLException");
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<List<Conversation>> getNewMessage() {
+		try {
+			Set<Integer> SI = new LinkedHashSet<Integer>();
+			List<Conversation> LC = conversationDaoImpl.selectHql("Where m_idConversation = 25 and c_stateId = 3");
+			for(Conversation C : LC) {
+				SI.add(C.getM_id());
+			}
+			
+			List<List<Conversation>> LLC = new ArrayList<List<Conversation>>();
+			Iterator<Integer> iSI = SI.iterator();
+			while(iSI.hasNext()){
+				Integer now = iSI.next();
+				LLC.add(conversationDaoImpl.selectHql("Where m_id = " + now + " and m_idConversation = 25 and c_stateId = 3 Order by c_time Desc"));
+			}						
+			return LLC;
 		} catch (SQLException e) {
 			System.out.println("ConversationService - insertConversation - SQLException");
 			e.printStackTrace();

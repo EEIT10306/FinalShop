@@ -55,35 +55,58 @@ public class SellerVerifyService {
 			storeDao.update(storeTemps.get(0), store);
 		}
 	}
-	//會員Account驗證賣家ID
-	public Integer AccountVerifySellerData(String account){
-		
+
+	// 會員Account驗證賣家ID
+	public Integer AccountVerifySellerData(String account) {
+
 		String hql = "WHERE m_account = '" + account + "'";
 		List<Member> getAccount = null;
-		//先去取得會員資料
+		// 先去取得會員資料
 		try {
 			getAccount = memberDao.selectHql(hql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("MemberHave="+getAccount);
-		//用會員的ID去找賣家的ID 如果不是NULL就回傳ID
-		for(Member bean:getAccount) {
+
+		System.out.println("MemberHave=" + getAccount);
+		// 用會員的ID去找賣家的ID 如果不是NULL就回傳ID
+		for (Member bean : getAccount) {
 			String hqlfind = "WHERE m_id = " + bean.getM_id();
-			List<Seller> sellerIdHave =null;
+			List<Seller> sellerIdHave = null;
 			try {
 				sellerIdHave = sellerDao.selectHql(hqlfind);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			for(Seller sellbean:sellerIdHave) {
-				if(sellbean.getM_id()!=null) {
+			for (Seller sellbean : sellerIdHave) {
+				if (sellbean.getM_id() != null) {
 					return sellbean.getM_id();
 				}
 			}
 		}
 		return null;
-		
+	}
+
+	// 賣家ID驗證個人店家
+	public Integer accountVerifyStore(Integer SellerID) {
+
+		String hql = "WHERE seller_id = " + SellerID;
+		List<Store> getStore = null;
+		// 去取得個人店家資料
+		try {
+			getStore = storeDao.selectHql(hql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("StoreHave=" + getStore);
+		// 去找店家家的ID 如果不是NULL就回傳ID
+		for (Store storebean : getStore) {
+			if (storebean.getS_id() != null) {
+				return storebean.getS_id();
+			}
+		}
+		return null;
+
 	}
 }

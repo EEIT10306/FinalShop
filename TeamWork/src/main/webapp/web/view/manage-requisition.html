@@ -5,6 +5,7 @@
 
   <meta charset="UTF-8">
   <title>Go Go Buy Managemnet System!</title>
+  <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,6 +20,16 @@
   <!-- fontawesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .btn-button {
+      margin-left: -5%;
+      margin-right: 15%;
+    }
+  </style>
 
 </head>
 
@@ -33,179 +44,2362 @@
   </div>
   <div class="sidebar">
     <ul>
-      <li><a href="manager-overview.html"><i class="fa fa-desktop"></i><span>首頁公告欄</span></a></li>
-      <li><a href="manage-chat.html"><i class="fa fa-server"></i><span>客服諮詢</span></a></li>
-      <li><a href="manage-requisition.html"><i class="fa fa-calendar"></i><span>申請單據處理</span></a></li>
-      <li><a href="manage-report.html"><i class="fa fa-envelope-o"></i><span>營業報表</span></a></li>
-      <li><a href="#"><i class="fa fa-table"></i><span>其他</span></a></li>
+      <li>
+        <a href="manager-overview.html">
+          <i class="fa fa-desktop"></i>
+          <span>首頁公告欄</span>
+        </a>
+      </li>
+      <li>
+        <a href="manage-chat.html">
+          <i class="fa fa-server"></i>
+          <span>客服諮詢</span>
+        </a>
+      </li>
+      <li>
+        <a href="manage-requisition.html">
+          <i class="fa fa-calendar"></i>
+          <span>申請單據處理</span>
+        </a>
+      </li>
+      <li>
+        <a href="manage-report.html">
+          <i class="fa fa-envelope"></i>
+          <span>營業報表</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-table"></i>
+          <span>其他</span>
+        </a>
+      </li>
   </div>
 
   <!-- Content -->
   <div class="main">
     <div class="hipsum">
       <div class="jumbotron">
-        <h1 id="hello,-world!">申請單據處理<a class="anchorjs-link" href="#hello,-world!"><span class="anchorjs-icon"></span></a></h1>
-        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
-          content or information.</p>
-        <p><a class="btn btn-primary" href="#" role="button">Learn more</a></p>
+        <h1 id="hello,-world!">檢舉單據處理
+          <a class="anchorjs-link" href="#hello,-world!">
+            <span class="anchorjs-icon"></span>
+          </a>
+        </h1>
+        <p>This is a simple hero unit.
+        </p>
+
       </div>
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">未處理</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">處理中</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">已處理</a>
-        </li>
-      </ul>
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>時間</th>
-            <th>單據號碼</th>
-            <th>被檢舉者</th>
-            <th>檢舉人</th>
-            <th>附檔</th>
-            <th>審核</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>2018/05/05</td>
-            <td>A055689</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">7</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">8</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">9</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-          <tr>
-            <th scope="row">10</th>
-            <td>A055689</td>
-            <td>2018/05/05</td>
-            <td>神咪小皮果</td>
-            <td>暗黑小迷果</td>
-            <td>截圖.pdf</td>
-            <td>已處理</td>
-          </tr>
-        </tbody>
-      </table>
-      <nav aria-label="Page navigation example">
+      <div class="requisition-content">
+        <ul class="nav justify-content-center">
+          <span class="btn-button">
+            <div class="btn btn-primary">Wish</div>
+            <div class="btn btn-primary">Group</div>
+            <div class="btn btn-primary">StoreProduct</div>
+          </span>
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">未處理</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">處理中</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">已處理</a>
+          </li>
+        </ul>
+      </div>
+      <div class="requisition-box">
+        <table class="table table-bordered table-striped hidden" data-list="Wish1">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>許願名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Wish2">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>許願名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Wish3">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>許願名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Wish4">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>許願名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Wish5">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>許願名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Wish6">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>許願名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Wish7">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>許願名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Group1">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>開團名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Group2">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>開團名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Group3">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>開團名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Group4">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>開團名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Group5">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>開團名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Group6">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>開團名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="Group7">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>開團名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="StoreProduct1">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>商城名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="StoreProduct2">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>商城名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="StoreProduct3">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>商城名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="StoreProduct4">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>商城名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="StoreProduct5">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>商城名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="StoreProduct6">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>商城名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered table-striped hidden" data-list="StoreProduct7">
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th>商城名稱</th>
+              <th>被檢舉人</th>
+              <th>檢舉人</th>
+              <th>檢舉原因</th>
+              <th>檢舉時間</th>
+              <th>審核</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>A055689</td>
+              <td>2018/05/05</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>神咪小皮果</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>A055689</td>
+              <td>神咪小皮果</td>
+              <td>暗黑小迷果</td>
+              <td>截圖.pdf</td>
+              <td>2018/05/05</td>
+              <td>已處理</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <nav aria-label="Page navigation example" class="page" data-list="Wish">
         <ul class="pagination justify-content-center">
           <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
+            <div class="page-link">Previous-Wish</div>
           </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item disabled">
+            <div class="page-link">1</div>
+          </li>
           <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+            <div class="page-link">2</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">3</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">Next</div>
           </li>
         </ul>
       </nav>
-      <p>Slow-carb fanny pack yr Brooklyn gentrify. Fanny pack keffiyeh taxidermy, ugh viral polaroid craft beer. +1
-        distillery Truffaut typewriter tousled crucifix, lo-fi butcher normcore skateboard. Drinking vinegar ugh
-        whatever sriracha. Synth tofu viral
-        butcher flexitarian. 3 wolf moon Schlitz plaid small batch kale chips blog. Fingerstache selfies freegan,
-        Helvetica Neutra Brooklyn semiotics cred narwhal beard tousled leggings.</p>
+      <nav aria-label="Page navigation example" class="page hidden" data-list="Group">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <div class="page-link">Previous-Group</div>
+          </li>
+          <li class="page-item disabled">
+            <div class="page-link">1</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">2</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">3</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">Next</div>
+          </li>
+        </ul>
+      </nav>
+      <nav aria-label="Page navigation example" class="page hidden" data-list="StoreProduct">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <div class="page-link">Previous-StoreProduct</div>
+          </li>
+          <li class="page-item disabled">
+            <div class="page-link">1</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">2</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">3</div>
+          </li>
+          <li class="page-item">
+            <div class="page-link">Next</div>
+          </li>
+        </ul>
+      </nav>
+      <p>Slow-carb fanny pack yr Brooklyn gentrify. Fanny pack keffiyeh taxidermy, ugh viral polaroid craft beer. +1 distillery
+        Truffaut typewriter tousled crucifix, lo-fi butcher normcore skateboard. Drinking vinegar ugh whatever sriracha.
+        Synth tofu viral butcher flexitarian. 3 wolf moon Schlitz plaid small batch kale chips blog. Fingerstache selfies
+        freegan, Helvetica Neutra Brooklyn semiotics cred narwhal beard tousled leggings.</p>
       <div class="row">
         <div class="col-sm-6">
-          <p>Slow-carb fanny pack yr Brooklyn gentrify. Fanny pack keffiyeh taxidermy, ugh viral polaroid craft beer.
-            +1 distillery Truffaut typewriter tousled crucifix, lo-fi butcher normcore skateboard. Drinking vinegar ugh
-            whatever sriracha. Synth tofu
-            viral butcher flexitarian. 3 wolf moon Schlitz plaid small batch kale chips blog. Fingerstache selfies
+          <p>Slow-carb fanny pack yr Brooklyn gentrify. Fanny pack keffiyeh taxidermy, ugh viral polaroid craft beer. +1 distillery
+            Truffaut typewriter tousled crucifix, lo-fi butcher normcore skateboard. Drinking vinegar ugh whatever sriracha.
+            Synth tofu viral butcher flexitarian. 3 wolf moon Schlitz plaid small batch kale chips blog. Fingerstache selfies
             freegan, Helvetica Neutra Brooklyn semiotics cred narwhal beard tousled leggings.</p>
         </div>
         <div class="col-sm-6">
-          <p>Slow-carb fanny pack yr Brooklyn gentrify. Fanny pack keffiyeh taxidermy, ugh viral polaroid craft beer.
-            +1 distillery Truffaut typewriter tousled crucifix, lo-fi butcher normcore skateboard. Drinking vinegar ugh
-            whatever sriracha. Synth tofu
-            viral butcher flexitarian. 3 wolf moon Schlitz plaid small batch kale chips blog. Fingerstache selfies
+          <p>Slow-carb fanny pack yr Brooklyn gentrify. Fanny pack keffiyeh taxidermy, ugh viral polaroid craft beer. +1 distillery
+            Truffaut typewriter tousled crucifix, lo-fi butcher normcore skateboard. Drinking vinegar ugh whatever sriracha.
+            Synth tofu viral butcher flexitarian. 3 wolf moon Schlitz plaid small batch kale chips blog. Fingerstache selfies
             freegan, Helvetica Neutra Brooklyn semiotics cred narwhal beard tousled leggings.</p>
         </div>
       </div>
     </div>
   </div>
-
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!--   <script src='https//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
   <script src="../js/back.js"></script>
+  <script src="../js/manager/requisition.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,11 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "sP_ID", "mem_ID" }) })
 public class StoreReport {
 
 	@Id
@@ -27,6 +26,9 @@ public class StoreReport {
 
 	@Column(name = "sR_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String sR_content;
+
+	@Column(name = "sR_time", columnDefinition = "datetime", nullable = false)
+	private Date sR_time;
 
 	@Column(name = "sR_state", columnDefinition = "int", nullable = false)
 	private Integer sR_stateId;
@@ -46,19 +48,22 @@ public class StoreReport {
 	public StoreReport() {
 	}
 
-	public StoreReport(Integer sR_id, Integer sP_id, Integer m_idReport, String sR_content, Integer sR_stateId) {
+	public StoreReport(Integer sR_id, Integer sP_id, Integer m_idReport, String sR_content, Date sR_time,
+			Integer sR_stateId) {
 		super();
 		this.sR_id = sR_id;
 		this.sP_id = sP_id;
 		this.m_idReport = m_idReport;
 		this.sR_content = sR_content;
+		this.sR_time = sR_time;
 		this.sR_stateId = sR_stateId;
 	}
 
 	@Override
 	public String toString() {
 		return "StoreReport [sR_id=" + sR_id + ", sP_id=" + sP_id + ", m_idReport=" + m_idReport + ", sR_content="
-				+ sR_content + ", sR_stateId=" + sR_stateId + ", storeProduct=" + storeProduct + "]\r\n";
+				+ sR_content + ", sR_time=" + sR_time + ", sR_stateId=" + sR_stateId + ", storeProduct=" + storeProduct
+				+ "]\r\n";
 	}
 
 	public Integer getsR_id() {
@@ -99,6 +104,14 @@ public class StoreReport {
 
 	public void setsR_stateId(Integer sR_stateId) {
 		this.sR_stateId = sR_stateId;
+	}
+
+	public Date getsR_time() {
+		return sR_time;
+	}
+
+	public void setsR_time(Date sR_time) {
+		this.sR_time = sR_time;
 	}
 
 	public StoreProduct getStoreProduct() {
