@@ -1,5 +1,8 @@
 //===================圖片瀏覽======================
 function imgPreview(fileDom) {
+    var id = $(event.target).next().next().attr("id");
+    // alert("img======="+document.getElementById("Storepreview"))
+    // alert("img2======="+img)
     //判斷是否支援filereader
     if (window.FileReader) {
         var reader = new FileReader();
@@ -18,9 +21,14 @@ function imgPreview(fileDom) {
     //讀取成功
     reader.onload = function (e) {
         //獲取圖片
-        var img = document.getElementById("preview");
+        //  var img = $(event.target).files[i]
+        // for(i=0;i<$(event.target).files.length;i++){
+            // var img = createElement("img");
+        $("#"+id).attr("src",e.target.result);
+        // };
+        // var img = document.getElementById("Storepreview");
+        
         //圖片路徑設置為讀取的圖片
-        img.src = e.target.result;
     };
     reader.readAsDataURL(file);
 }
@@ -56,11 +64,11 @@ $("[class='custom-select form-group']").change(function () {
         }
     });
 });
-//===========================判斷有無賣家身份=======================
+//===========================cookie判斷有無賣家身份=======================
 function VerifySeller() {
     var json = cookieToJson();
     var cookieAccount = json['email']
-    console.log(cookieAccount)
+    alert("判斷有無賣家抓帳號=========="+cookieAccount)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifySeller",
@@ -71,12 +79,40 @@ function VerifySeller() {
             //判斷是不是空值
             if (response == null || response == undefined || response == '') {
                 alert("驗證賣家失敗");
-                window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerify.html"
+                window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerifyNoStore.html"
             } else{
                 alert("驗證賣家成功");
                 result = true
             }
-            
+        },
+        error: function (response) {
+            alert(3)
+            alert(response);
+            alert("驗證失敗");
+        }
+    })
+    return result;
+}
+//===========================cookie判斷有無店家身份=======================
+function VerifyStore() {
+    var json = cookieToJson();
+    var cookieAccount = json['email']
+    alert("判斷有無店家抓帳號=========="+cookieAccount)
+    $.ajax({
+        type: "POST",
+        url: "/TeamWork/accountVerifyStore",
+        data: { "account": cookieAccount },
+        async: false,
+        success: function (response) {
+            alert("店家ID==========" + response);
+            //判斷是不是空值
+            if (response == null || response == undefined || response == '') {
+                alert("驗證店家失敗");
+                window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerify.html"
+            } else{
+                alert("驗證店家成功");
+                result = true
+            }
         },
         error: function (response) {
             alert(3)
@@ -104,11 +140,11 @@ $("#StoreProductClick").click(function (e) {
     alert("upload");
     $("input[name='te']").val(StoreProductName);
     alert("inputtext======" + $("input[name='te']").val())
-    var formData = new FormData($("#myForm")[0]); // 使用FormData包裝form表單來傳輸資料
+    var formData = new FormData($("#StoremyForm")[0]); // 使用FormData包裝form表單來傳輸資料
     alert("formData=========" + formData.getAll)
 
     // 開始判斷有無店家身份
-    if (VerifySeller()) {
+    if (VerifyStore()) {
         $.ajax({
             type: "POST",
             url: "/TeamWork/AddStoreProduct",
@@ -146,7 +182,6 @@ $("#StoreProductClick").click(function (e) {
             error: function (response) {
                 var jsons = JSON.stringify(response);
                 alert("MVC傳回 = " + jsons);
-                // console.log("MVC傳回 = " + jsons.get(0))
                 alert("GG");
             }
         })
@@ -160,46 +195,60 @@ $("#GrouponClick").click(function (e) {
     var GrouponAmount = $("[name = 'GrouponAmount']").val();
     var GrouponPrice = $("[name = 'GrouponPrice']").val();
     var GrouponVersion = $("[name = 'GrouponVersion']").val();
-    var GrouponImagesUpload = $("[id = 'GrouponImagesUpload']").val();
-    var combie = {
-        "gP_name": GrouponName,
-        "gP_context": GrouponContext,
-        "p_id": GrouponSort,
-        "gP_amount": GrouponAmount,
-        "gP_price": GrouponPrice,
-        "gP_version": GrouponVersion
-    };
-    console.log(combie);
-    $.ajax({
-        type: "POST",
-        url: "/TeamWork/AddGroupon",
-        data: {
-            "gP_name": GrouponName,
-            "gP_context": GrouponContext,
-            "p_id": GrouponSort,
-            "gP_amount": GrouponAmount,
-            "gP_price": GrouponPrice,
-            "gP_version": GrouponVersion
-        },
-        dataType: "json",
-        success: function (response) {
-            // console.log("MVC傳回 = " + jsons.get(0))
-            alert("MVC傳回 = " + response);
-            var jsons = JSON.stringify(response);
-            alert("MVC傳回 = " + jsons);
-            // console.log("MVC傳回 = " + response.get(0))
-            alert("SSSS");
 
-        },
-        error: function (response) {
-            // console.log("MVC傳回 = " + jsons.get(0))
-            alert("MVC傳回 = " + response);
-            var jsons = JSON.stringify(response);
-            alert("MVC傳回 = " + response);
-            // console.log("MVC傳回 = " + response.get(0))
-            alert("GG");
-        }
-    })
+    //上傳圖片變數
+    e.preventDefault(); // 停止觸發submit
+    alert("upload");
+    $("input[name='te']").val(GrouponName);
+    alert("inputtext======" + $("input[name='te']").val())
+    var formData = new FormData($("#GroupmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
+    alert("formData=========" + formData.getAll)
+    //判斷賣家
+    if(VerifySeller()){
+        $.ajax({
+            type: "POST",
+            url: "/TeamWork/AddGroupon",
+            data: {
+                "gP_name": GrouponName,
+                "gP_context": GrouponContext,
+                "p_id": GrouponSort,
+                "gP_amount": GrouponAmount,
+                "gP_price": GrouponPrice,
+                "gP_version": GrouponVersion
+            },
+            dataType: "json",
+            success: function (response) {
+                // console.log("MVC傳回 = " + jsons.get(0))
+                // alert("MVC傳回 = " + response);
+                var jsons = JSON.stringify(response);
+                alert("MVC傳回 = " + jsons);
+                // console.log("MVC傳回 = " + response.get(0))
+                alert("SSSS");
+                 //上傳圖片修改為開團
+                $.ajax({
+                    type: "POST",
+                    url: "/TeamWork/uploadmutipart",
+                    data: formData,
+                    cache: false, // 不需要cache
+                    processData: false, // jQuery預設會把data轉為query String, 所以要停用
+                    contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
+                    dataType: 'text',
+                    success: function (data) {
+                        alert("upload sucess");
+                    }
+                });
+                // window.location.href=""
+    
+            },
+            error: function (response) {
+                // console.log("MVC傳回 = " + jsons.get(0))
+                var jsons = JSON.stringify(response);
+                alert("MVC傳回 = " + jsons);
+                // console.log("MVC傳回 = " + response.get(0))
+                alert("GG");
+            }
+        })
+    }
 })
 //===========================新增許願商品===============================
 $("#WishClick").click(function (e) {
@@ -208,16 +257,15 @@ $("#WishClick").click(function (e) {
     var WishAmount = $("[name = 'WishAmount']").val();
     var WishPriceBottom = $("[name = 'WishPriceBottom']").val();
     var WishPriceTop = $("[name = 'WishPriceTop']").val();
-    var WishImagesUpload = $("[id = 'WishImagesUpload']").val();
 
-    var combie = {
-        "wP_name": WishName,
-        "p_id": WishSort,
-        "wP_amount": WishAmount,
-        "wP_priceBottom": WishPriceBottom,
-        "wP_priceTop": WishPriceTop
-    };
-    console.log(combie);
+    //上傳圖片變數
+    e.preventDefault(); // 停止觸發submit
+    alert("upload");
+    $("input[name='te']").val(WishName);
+    alert("inputtext======" + $("input[name='te']").val())
+    var formData = new FormData($("#WishmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
+    alert("formData=========" + formData.getAll)
+
     $.ajax({
         type: "POST",
         url: "/TeamWork/AddWish",
@@ -231,18 +279,30 @@ $("#WishClick").click(function (e) {
         dataType: "json",
         success: function (response) {
             // console.log("MVC傳回 = " + jsons.get(0))
-            alert("MVC傳回 = " + response);
+            // alert("MVC傳回 = " + response);
             var jsons = JSON.stringify(response);
-            alert("MVC傳回 = " + response);
+            alert("MVC傳回 = " + jsons);
             // console.log("MVC傳回 = " + response.get(0))
             alert("SSSS");
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/uploadmutipart",
+                data: formData,
+                cache: false, // 不需要cache
+                processData: false, // jQuery預設會把data轉為query String, 所以要停用
+                contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
+                dataType: 'text',
+                success: function (data) {
+                    alert("upload sucess");
+                }
+            });
 
         },
         error: function (response) {
             // console.log("MVC傳回 = " + jsons.get(0))
             alert("MVC傳回 = " + response);
             var jsons = JSON.stringify(response);
-            alert("MVC傳回 = " + response);
+            alert("MVC傳回 = " + jsons);
             // console.log("MVC傳回 = " + response.get(0))
             alert("GG");
         }

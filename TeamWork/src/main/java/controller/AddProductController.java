@@ -56,7 +56,7 @@ public class AddProductController {
 		StoreProduct list = storeProductService.insert(storeProduct);
 		String json = gson.toJson(list);
 
-		System.out.println("json = " + json);
+		System.out.println("Storejson = " + json);
 		return json;
 
 	}
@@ -68,8 +68,9 @@ public class AddProductController {
 		groupProduct.setG_iD(5);
 		groupProduct.setgP_stateId(53);
 		GroupProduct list = groupProductService.insert(groupProduct);
-		System.out.println(list);
-		return null;
+		String json = gson.toJson(list);
+		System.out.println("Grouponjson = "+json);
+		return json;
 	}
 	// 新增許願
 	@RequestMapping(value = "/AddWish", method = RequestMethod.POST)
@@ -79,10 +80,11 @@ public class AddProductController {
 		wishProduct.setW_id(5);
 		wishProduct.setwP_stateId(32);
 		WishProduct list = wishProductService.insert(wishProduct);
-		System.out.println(list);
-		return null;
+		String json = gson.toJson(list);
+		System.out.println("Wishjson = "+json);
+		return json;
 	}
-	// 驗證是否為賣家
+	// 會員Account取得賣家ID
 	@RequestMapping(value = "/accountVerifySeller", method = RequestMethod.POST)
 	@ResponseBody
 	private Integer accountVerifySeller(String account) {
@@ -91,14 +93,15 @@ public class AddProductController {
 		System.out.println("SellerID=" + SellerID);
 		return SellerID;
 	}
-	// 驗證是否為店家
+	//驗證是否有店家ID 要不要判斷有無賣家
 	@RequestMapping(value = "/accountVerifyStore", method = RequestMethod.POST)
 	@ResponseBody
 	private Integer accountVerifyStore(String account) {
 		System.out.println(account);
 		Integer SellerID = sellerVerifyService.AccountVerifySellerData(account);
-		System.out.println("SellerID=" + SellerID);
-		return SellerID;
+		Integer StoreID = sellerVerifyService.accountVerifyStore(SellerID);
+		System.out.println("StoreID=" + StoreID);
+		return StoreID;
 	}
 	//沒用到的單圖檔上傳 只傳圖檔
 	@RequestMapping(value = "/upload", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -110,29 +113,58 @@ public class AddProductController {
 	//多圖檔上傳 傳圖檔和商品名稱or開團名稱or許願名稱
 	@RequestMapping(value = "/uploadmutipart", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
 	public @ResponseBody String uploadmutipart(@RequestParam("file") List<MultipartFile> files,
-			@RequestParam("te") String te) throws IOException {
+			@RequestParam("te") String te,@RequestParam String inputstr) throws IOException {
 //		MultipartFile file = null;
+		System.out.println(files);
 		System.out.println("==================="+files.get(0));
 		System.out.println("==================="+files.get(1));
+		System.out.println(inputstr);
 //		for (int i = 0; i < files.length; i++) {
 //			System.out.println("for="+te);
 //			file = files[i];
 //			System.out.println("for="+file.getOriginalFilename());
 //		}
-		//取得spid
 		Integer spid = null;
-		try {
-			spid = storeProductService.sPnameToID(te);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Integer gpid = null;
+		Integer wpid = null;
+		if(inputstr=="Wish"||"Wish".equals(inputstr)) {
+			//取得wpid
+			try {
+				wpid = wishProductService.wPnameToID(te);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			System.out.println("wpid============="+wpid);
+			//執行上傳圖片方法
+			for(MultipartFile file : files) {			
+				imageService.insertWishProductImage(file, wpid);
+			}
+		} else if(inputstr=="Group"||"Group".equals(inputstr)) {
+			//取得gpid
+			try {
+				gpid = groupProductService.gPnameToID(te);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			System.out.println("gpid========="+gpid);
+			//執行上傳圖片方法
+			for(MultipartFile file : files) {			
+				imageService.insertGroupProductImage(file, gpid);
+			}
+		} else if(inputstr=="Store"||"Store".equals(inputstr)) {
+			//取得spid
+			try {
+				spid = storeProductService.sPnameToID(te);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			System.out.println("spid=========="+spid);
+			//執行上傳圖片方法
+			for(MultipartFile file : files) {			
+				imageService.insertStoreProductImage(file, spid);
+			}
 		}
-		System.out.println("imgup="+spid);
-		//執行上傳圖片方法
-		for(MultipartFile file : files) {			
-			imageService.insertStoreProductImage(file, spid);
-		}
-		
+
 		return "success";
 	}
 }
