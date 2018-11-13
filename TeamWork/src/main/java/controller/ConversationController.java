@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.Conversation;
+import model.bean.Member;
 import model.service.ConversationService_forCustomers;
 
 @Controller
@@ -39,7 +40,7 @@ public class ConversationController {
 		return amt;
 	}
 
-	@RequestMapping(value = "/Communications", method = RequestMethod.POST)
+	@RequestMapping(value = "/CommunicationsWithCustomerService", method = RequestMethod.POST)
 	@ResponseBody
 	private List<List<Conversation>> Communications(Conversation conversation) {
 		System.out.println("============= Show Conversations ============= ");
@@ -47,12 +48,19 @@ public class ConversationController {
 		System.out.println(data.get(0).get(0).getC_time());
 		return data;
 	}
-	
+
 	@RequestMapping(value = "/UpdateConversationState", method = RequestMethod.POST)
 	@ResponseBody
 	private List<Conversation> UpdateConversationState(Conversation conversation) {
 		System.out.println("============= Update Conversation State ============= ");
 		conversationService.updateConversationState_C(conversation);
 		return conversationService.updateConversationState_C(conversation);
+	}
+
+	@RequestMapping(value = "/FindServiceConversationMemberId", method = RequestMethod.POST)
+	@ResponseBody
+	private Integer FindServiceConversationMemberId(Member member) {
+		System.out.println("============= Find Member Information By Account ============= ");
+		return conversationService.findMemberInformation(member);
 	}
 }
