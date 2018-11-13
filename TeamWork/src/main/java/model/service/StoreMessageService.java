@@ -22,4 +22,8 @@ public class StoreMessageService {
 		System.out.println(storeMessageDaoImpl.selectHql(hql).get(0).getStoreProduct().getStoreImages());
 		return storeMessageDaoImpl.selectHql(hql);
 	}
+	
+	public StoreMessage insert(StoreMessage bean) throws SQLException {
+		return storeMessageDaoImpl.insert(bean);
+	}
 }

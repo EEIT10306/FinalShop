@@ -64,7 +64,7 @@ public class ImageService {
 	public boolean insertGroupProductImage(MultipartFile file, Integer gP_id) {
 		try {
 			int count = groupImagesDaoImpl.selectHql("Where gP_id = " + gP_id).size();
-			String fileName = "gP_" + gP_id + "_" + count + 1 + file.getContentType().split("/")[1];
+			String fileName = "gP_" + gP_id + "_" + (count + 1) + "." + file.getContentType().split("/")[1];
 
 			saveImage(file, fileName);
 
@@ -89,7 +89,7 @@ public class ImageService {
 	public boolean insertWishProductImage(MultipartFile file, Integer wP_id) {
 		try {
 			int count = wishImagesDaoImpl.selectHql("Where wP_id = " + wP_id).size();
-			String fileName = "wP_" + wP_id + "_" + count + 1 + file.getContentType().split("/")[1];
+			String fileName = "wP_" + wP_id + "_" + (count + 1) + "." + file.getContentType().split("/")[1];
 
 			saveImage(file, fileName);
 

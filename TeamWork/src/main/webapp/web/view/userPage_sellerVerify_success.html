@@ -67,48 +67,92 @@
 	<div class="container">
 		<div class="row">
 			<div class="user-page-slidebar col-lg-2">
-				<div class="user-page-brief">
-					<a class="user-page-brief_avatar" href="#">
-						<div class="user-avatar_placeholder">
-							<img src="../images/user/account/profile/001.png" alt="">
-						</div>
-					</a>
-					<div class="user-page-brief_right">
-						<div class="user-page-brief__username"></div>
-						<div>
+                <div class="user-page-brief">
+                    <a class="user-page-brief_avatar" href="#">
+                        <div class="user-avatar_placeholder">
+                            <img src="../images/user/account/profile/001.png" alt="">
+                        </div>
+                    </a>
+                    <div class="user-page-brief_right">
+						<div class="user-page-brief__username">jennifer8306</div>
+						<!-- <div>
 							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
+						</div> -->
+						<div class="user-page-brief__coin">
+							<img src="../images/user/others/coin.png" style="display: inline-block;">
+							<span>100</span>
 						</div>
 					</div>
-				</div>
-				<div class="userpage-sidebar-menu">
-					<a href="" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Man.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">我的帳戶</div>
-					</a> <a href="" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user//Checklist.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">購買清單</div>
-					</a> <a href="" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Medal.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">我的成就</div>
-					</a> <a href="" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Love-Letter.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">通知記錄</div>
-					</a> <a href="" class="userpage-sidebar-menu_item">
-						<div class="userpage-sidebar-menu-icon">
-							<img src="../images/user/Analytics.svg">
-						</div>
-						<div class="userpage-sidebar-menu-text">賣家驗證</div>
-					</a>
-				</div>
-			</div>
+                </div>
+                <!-- start of userpage-sidebar-menu -->
+                <div class="userpage-sidebar-menu">
+                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Man.svg"></div>
+                        <div class="userpage-sidebar-menu-text">我的帳戶</div>
+                    </a>
+                    <div class="userpage-sidebar-menu_item-head" id="storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Shop.svg"></div>
+                        <div class="userpage-sidebar-menu-text">商店</div>
+                    </div>
+                    <a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">我的商品</div>
+                    </a>
+                    <a href="userPage_StoreOrderSellerList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">商品訂單</div>
+                    </a>
+                    <a href="userPage_StoreOrderList.html" class="userpage-sidebar-menu_item storepbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">購買的商品</div>
+                    </a>
+                    <div class="userpage-sidebar-menu_item-head" id="wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Ring.svg"></div>
+                        <div class="userpage-sidebar-menu-text">許願</div>
+                    </div>
+                    <a href="userPage_WishList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">我的許願</div>
+                    </a>
+                    <a href="userPage_WishOrderList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">許願訂單</div>
+                    </a>
+                    <a href="userPage_WishOrderSellerList.html" class="userpage-sidebar-menu_item wishpbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">實現願望</div>
+                    </a>
+                    <div class="userpage-sidebar-menu_item-head" id="groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Party.svg"></div>
+                        <div class="userpage-sidebar-menu-text">團購</div>
+                    </div>
+                    <a href="userPage_GroupList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">我的開團</div>
+                    </a>
+                    <a href="userPage_GroupSellerList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">開團訂單</div>
+                    </a>
+                    <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
+                        <div class="userpage-sidebar-menu-icon"><img></div>
+                        <div class="userpage-sidebar-menu-text">跟團</div>
+                    </a>
+                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Medal.svg"></div>
+                        <div class="userpage-sidebar-menu-text">我的成就</div>
+                    </a>
+                    <a href="userPage_notifications.html" class="userpage-sidebar-menu_item-head">
+                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Love-Letter.svg"></div>
+                        <div class="userpage-sidebar-menu-text">通知記錄</div>
+                    </a>
+                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                            <div class="userpage-sidebar-menu-icon"><img src="../images/user/Analytics.svg"></div>
+                            <div class="userpage-sidebar-menu-text">賣家中心</div>
+                        </a> -->
+                </div>
+                <!-- end of userpage-sidebar-menu -->
+            </div>
 
 			<div class="user-page_wrapper col-lg-10">
 				<div class="seller-verify_header">
@@ -269,18 +313,10 @@
 									</div>
 									<div class="col-sm-4">
 										<input type="submit" class="btn btn-sm seller-verify_btn" value="COMPLETE" />
-									</div>
-
-
-
-								
+									</div>	
 						</fieldset>
-
-
 					</form>
-
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -363,13 +399,12 @@
 		</div>
 	</div><!-- end of footer -->
 
-	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	 crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	 crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../js/userPage.js"></script>
+	<!-- Optional JavaScript -->
 	<script>
 		$(document).ready(function () {
 			var currentStep = 1;

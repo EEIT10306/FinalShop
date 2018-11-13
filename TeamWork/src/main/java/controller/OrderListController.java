@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
-
+import model.bean.Member;
 import model.bean.StoreAssess;
-
 import model.bean.StoreOrder;
 import model.bean.Wish;
 import model.bean.WishAssess;
@@ -43,7 +42,7 @@ public class OrderListController {
 		return orderService.getStoreOrder(storeOrder);
 	}
 
-	// 取得許願資料
+	// 利用會員ID取得許願資料
 	@RequestMapping(value = "/WishList", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
 	public List<Wish> getWishList(Wish wish) throws SQLException {
@@ -112,6 +111,5 @@ public class OrderListController {
 		orderService.confirmReceive_Wish(wishOrder);
 		return "redirect:/web/view/userPage_WishOrderList.html";
 	}
-
 
 }
