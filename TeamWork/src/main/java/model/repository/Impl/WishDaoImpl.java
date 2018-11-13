@@ -34,13 +34,7 @@ public class WishDaoImpl implements WishDao {
 	public Wish selectByPk(Integer id) throws SQLException {
 		if (id == null)
 			return null;
-		Wish W = getSession().get(Wish.class, id);
-		Set<WishProduct> WishProducts = W.getWishProduct();
-		for(WishProduct s:WishProducts) {
-			s.setWish(null);
-		}
-		W.setWishProduct(WishProducts);
-		
+		Wish W = getSession().get(Wish.class, id);		
 		System.out.println(W);
 		return W;
 	}

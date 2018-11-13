@@ -32,12 +32,11 @@ public class WishProductService {
 		return wishProductDaoImpl.selectByPk(w_id);
 	}
 
-	public List<WishProduct> selectWishProductsByWBean(Wish bean) throws SQLException{
+	public List<WishProduct> selectWishProductsByWBean(WishProduct bean) throws SQLException{
 		String hql = "where w_id = " + bean.getW_id();
 //		hql += " Order by wP_id desc";
 		System.out.println("123");
 		List<WishProduct> list = wishProductDaoImpl.selectHql(hql);
-		System.out.println(list.get(0));
 		return list;
 	}
 }

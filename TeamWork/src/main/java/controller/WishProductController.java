@@ -63,7 +63,7 @@ public class WishProductController {
 	}
 	@RequestMapping(path = "/GetWishProducts", method = RequestMethod.POST)
 	@ResponseBody
-	public List<WishProduct> getWishProduct(Wish bean) throws SQLException {
+	public List<WishProduct> getWishProduct(WishProduct bean) throws SQLException {
 		return wishProductService.selectWishProductsByWBean(bean);
 	}
 }
