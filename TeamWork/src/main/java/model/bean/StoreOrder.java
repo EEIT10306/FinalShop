@@ -74,6 +74,7 @@ public class StoreOrder {
 		this.sO_time = sO_time;
 		this.sO_stateId = sO_stateId;
 	}
+	
 
 	@Override
 	public String toString() {

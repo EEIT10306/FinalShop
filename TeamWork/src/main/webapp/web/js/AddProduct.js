@@ -86,7 +86,6 @@ function VerifySeller() {
             }
         },
         error: function (response) {
-            alert(3)
             alert(response);
             alert("驗證失敗");
         }
@@ -115,7 +114,6 @@ function VerifyStore() {
             }
         },
         error: function (response) {
-            alert(3)
             alert(response);
             alert("驗證失敗");
         }
