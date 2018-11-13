@@ -68,22 +68,22 @@
 		<div class="row">
 			<div class="user-page-slidebar col-lg-2">
                 <div class="user-page-brief">
-                    <a class="user-page-brief_avatar" href="#">
-                        <div class="user-avatar_placeholder">
-                            <img src="../images/user/account/profile/001.png" alt="">
-                        </div>
-                    </a>
-                    <div class="user-page-brief_right">
-						<div class="user-page-brief__username">jennifer8306</div>
+					<a class="user-page-brief_avatar" href="userPage_profile.html">
+						<div class="user-avatar_placeholder">
+							<img id="member_pic" src="">
+						</div>
+					</a>
+					<div class="user-page-brief_right">
+						<div class="user-page-brief__username" id="member_username"></div>
 						<!-- <div>
 							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
 						</div> -->
 						<div class="user-page-brief__coin">
 							<img src="../images/user/others/coin.png" style="display: inline-block;">
-							<span>100</span>
+							<span id="member_coin"></span>
 						</div>
 					</div>
-                </div>
+				</div>
                 <!-- start of userpage-sidebar-menu -->
                 <div class="userpage-sidebar-menu">
                     <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
@@ -310,6 +310,7 @@
 					userData = res
 					// 更新畫面中的元素
 					updateUserData()
+					updateMemberData(userData)
 				}
 			})
 

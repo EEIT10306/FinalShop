@@ -12,15 +12,16 @@ import model.bean.Groupon;
 import model.bean.Member;
 import model.bean.Seller;
 import model.bean.Store;
-import model.bean.StoreAssess;
 import model.bean.StoreOrder;
 import model.bean.StoreProduct;
+import model.bean.Wish;
 import model.repository.GrouponDao;
 import model.repository.SellerDao;
 import model.repository.StoreAssessDao;
 import model.repository.StoreDao;
 import model.repository.StoreOrderDao;
 import model.repository.StoreProductDao;
+import model.repository.WishDao;
 
 @Service
 @Transactional
@@ -38,6 +39,8 @@ public class SellerService {
 	StoreOrderDao storeOrderDao;
 	@Autowired
 	StoreAssessDao storeAssessDao;
+	@Autowired
+	WishDao wishDao;
 	public SellerService() {
 	}
 
@@ -69,7 +72,7 @@ public class SellerService {
 
 	// 用會員ID取得該使用者之商店的訂單資料(賣家)
 	public List<StoreOrder> getStoreOrderSellerListByM_id(Member member) throws SQLException {
-		ArrayList <StoreOrder> storeOrders = new ArrayList();
+		ArrayList <StoreOrder> storeOrders = new ArrayList<StoreOrder>();
 		Integer m_id = member.getM_id();
 		List<Seller> sellers = sellerDao.selectHql("WHERE m_id=" + m_id);
 		if (sellers.size() != 0) {
@@ -88,5 +91,21 @@ public class SellerService {
 			}
 		}
 		return null;
+	}
+	
+	// 編輯願望
+	public Wish editWish(Wish wish) throws SQLException {
+		Integer w_id = wish.getW_id();
+		wish.setW_stateId(28);
+		Wish bean = wishDao.selectByPk(w_id);
+		return wishDao.update(bean, wish);
+	}
+	
+	//下架願望
+	public Wish cancelWish(Wish wish) throws SQLException {
+		Integer w_id = wish.getW_id();
+		Wish bean = wishDao.selectByPk(w_id);
+		bean.setW_stateId(31);
+		return wishDao.update(bean);
 	}
 }
