@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.StoreFavorite;
+import model.bean.StoreProduct;
 import model.repository.StoreFavoriteDao;
 import model.repository.StoreProductDao;
 @Service
@@ -25,18 +26,20 @@ public class StoreFavoriteService {
 	
 	public StoreFavorite insertOneStoreFavorite(StoreFavorite bean) throws SQLException {
 		StoreFavorite result = storeFavoriteDaoImpl.insert(bean);
+		StoreProduct storeProduct = storeProductDaoImpl.selectByPk(result.getsP_id());
+		storeProduct.setsP_hot(storeProduct.getsP_hot()+1);
 		if(result != null) {
-			result.getStoreProduct().setsP_hot(result.getStoreProduct().getsP_hot()+1);
-			storeProductDaoImpl.update(result.getStoreProduct());
+			storeProductDaoImpl.update(storeProduct);
 		}
 		return storeFavoriteDaoImpl.insert(bean);
 	}
 	
 	public boolean deleteOneStoreFavorite(StoreFavorite bean) throws SQLException{
 		boolean result = storeFavoriteDaoImpl.delete(bean);
+		StoreProduct storeProduct = storeProductDaoImpl.selectByPk(bean.getsP_id());
+		storeProduct.setsP_hot(storeProduct.getsP_hot()-1);
 		if(result != false) {
-			bean.getStoreProduct().setsP_hot(bean.getStoreProduct().getsP_hot()-1);
-			storeProductDaoImpl.update(bean.getStoreProduct());
+			storeProductDaoImpl.update(storeProduct);
 		}
 		return storeFavoriteDaoImpl.delete(bean);
 	}

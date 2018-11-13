@@ -116,7 +116,6 @@ public class StoreProductController {
 	@RequestMapping(path = "/DeleteOneStoreProductFavorite", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean DeleteOneStoreFavorite(StoreFavorite bean) throws SQLException {
-		System.out.println(bean);
 		return storeFavoriteService.deleteOneStoreFavorite(bean);
 	}
 }

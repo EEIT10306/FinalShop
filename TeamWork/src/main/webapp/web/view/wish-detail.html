@@ -19,11 +19,13 @@
     <script src="../js/jquery.func_toggle.js"></script>
 	<script>
 		var hahaha;  //抓取？後的值
+		var singlePriceContent="";
 		var commentText=""; 	
 		var commentClicked = false;
 		var replyClicked = false;
 		var nowDate = new Date();
 		var nowDateFormed = (nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes());
+		var productDemoPhototxt;
 		
 		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
 		var member_mail;
@@ -73,9 +75,154 @@
 					slideNo[j].style.display = "block";					
 				}
 			})
+			//取得各種變數
+			var path = location.search.substring(1);
+			paths = path.split("&");
+				for(param in paths){
+					params = paths[param].split("=");
+					if(params[0] == "w_id")
+						hahaha = paths[param];	//hahaha= w_id=?
+				}
+			for(i=0;i<theCookies.length;i++){
+				var name = "m_mail=";
+				var c = theCookies[i];
+				while (c.charAt(0) == ' ') {
+			    	c = c.substring(1);    //去空格, 若是不去的話跑不下去= =
+			        }
+				if(c.indexOf(name) == 0){
+					member_mail = c.substring(name.length,c.length);
+				}
+			}
 			//頁面相關資訊顯示
-			
+			$.ajax({
+				url:"/TeamWork/FindMemberByEmail", //把m_mail轉換成m_id
+				type:"POST",
+				data:{email:member_mail},
+				async:false,
+				success: function(data){
+					member_bean = data;
+					$.ajax({
+						url:"/TeamWork/CheckWishFavorite", //判斷商品是否已經加入最愛
+						type:"POST",
+						data:{"m_idFavorite": member_bean.m_id, "w_id": hahaha.substring(5)},
+						success:function(data1){
+							if(data1==false){//如果資料庫有撈出重複值(即為已加入最愛)
+								$("#favorite").removeClass("far");
+								$("#favorite").addClass("fas");
+							}
+						}
+					})
+				}
+			})
+
+			$.ajax({
+				url: "/TeamWork/FindOneWish?"+hahaha,
+				type: "GET",
+				async:false,
+				success: function(data1){
+					console.log(data1);
+					//許願地區等詳細資訊
+					$.ajax({
+						url:"/TeamWork/FindOneWishDistrictType",
+						type: "POST",
+						data: {"d_id": data1.d_id},
+						success: function(data2){
+							$("#wish_district").after("<p>"+data2.d_name+"</p>");
+						}
+					})
+					for(i=0;i<data1.wishProduct.length;i++){
+						singlePriceContent += "<p>"+data1.wishProduct[i].wP_name;
+						if(data1.wishProduct[i].wP_priceBottom!=null)
+							singlePriceContent += "最低價格為 " + data1.wishProduct[i].wP_priceBottom+" ";
+						
+						if(data1.wishProduct[i].wP_priceTop!=null)
+							singlePriceContent += " 最高價格為 "+data1.wishProduct[i].wP_priceTop;
+						
+						if(data1.wishProduct[i].wP_priceBottom == null && data1.wishProduct[i].wP_priceTop == null)
+							singlePriceContent += "未設有最低與最高價格限度"
+						
+						singlePriceContent += "</p>";
+					}
+//		 			輪播牆
+					$.ajax({
+						url:"/TeamWork/GetWishProducts",
+						type:"POST",
+						data:{"w_id":data1.w_id},
+						success:function(wishProducts){
+							console.log(wishProducts);
+						}
+					})
+					$.ajax({
+						url:"/TeamWork/FindWishImagesByWPBean",
+						type:"POST",
+						data:{"wP_id":data1.wishProduct[0].wP_id},
+						success:function(wishPImages){
+							console.log(wishPImages);
+							alert(data1.wishProduct);
+// 							if(data.length != 0){
+// 								for(i=0;i<data.length;i++){
+// 									if(i==0){
+// 										productDemoPhototxt += `
+// 											<div class="carousel-item avtive">
+// 												<img class="d-block w-100"
+// 														src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
+// 											</div>`;
+// 									}
+// 									productDemoPhototxt += `
+// 									<div class="carousel-item">
+// 										<img class="d-block w-100"
+// 												src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
+// 									</div>`;
+// 								}
+// 							}else{
+// 								productDemoPhototxt = 
+// 									`<div class="carousel-item active">
+// 										<img class="d-block w-100"
+// 												src="/TeamWork/web/images/user/product/defaultProductImage.gif">
+// 									</div>`;
+// 							}
+// 							$(".carousel-inner").html(productDemoPhototxt);
+// 							alert($(".carousel-inner").html());
+						}
+					})
+					//輪播牆  關聯版(有空再做)
+// 					if(data1.wishProduct.wishImages.length != 0){
+// 						for(i=0;i<data1.wishProduct.wishImages.length;i++){
+// 							if(i==0){
+// 								productDemoPhototxt += `
+// 									<div class="carousel-item avtive">
+// 										<img class="d-block w-100"
+// 												src="`+(data1.wishProduct.wishImages.sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
+// 									</div>`;
+// 							}
+// 							productDemoPhototxt += `
+// 							<div class="carousel-item">
+// 								<img class="d-block w-100"
+// 										src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
+// 							</div>`;
+// 						}
+// 					}else{
+// 						productDemoPhototxt = 
+// 							`<div class="carousel-item active">
+// 								<img class="d-block w-100"
+// 										src="/TeamWork/web/images/user/product/defaultProductImage.gif">
+// 							</div>`;
+// 					}
+					$(".carousel-inner").html(productDemoPhototxt);
+					alert($(".carousel-inner").html());
+					$("#wish_individualAcceptablePrice").after(singlePriceContent);
+					
+					$("#wish_content").after("<p>"+data1.w_context+"</p>");
+					$(".detail-title").text(data1.w_title);
+					$("#state").text(data1.state.state_context);
+					if(data1.w_sumPriceBottom != null || data1.w_sumPriceTop != null)
+						$(".detail-price").text("$"+((data1.data1.w_sumPriceBottom!=null)?data1.data1.w_sumPriceBottom:"")+"~"(data1.w_sumPriceTop!=null)?data1.w_sumPriceTop:"");
+					if(data1.w_sumPriceBottom == null && data1.w_sumPriceTop == null)
+						$(".detail-price").text("總金額未設上下限");
+				}
+			})
 		})	
+
 		
 	</script>
 
@@ -160,22 +307,22 @@
                 </div>
             </div>
             <div class="col-lg-6 product-top">
-                <h3 class="detail-title">快速出貨 韓版黑白橫條短袖ㄒ恤【F0225 500】現貨</h3>
-                <i class="fas fa-star fa-star-score"></i>
-                <i class="fas fa-star fa-star-score"></i>
-                <i class="fas fa-star fa-star-score"></i>
-                <i class="far fa-star fa-star-score"></i>
-                <i class="far fa-star fa-star-score"></i>
-                <span class="star-score">4.8</span>
-                <span class="sell-text">銷售量</span>
-                <span class="sell-count"> 3581</span>
-                <h4 class="detail-price">$350</h4>
-                <h6>可接受底價</h6>
-                <h6>可接受頂價</h6>
-                <h6><i class="far fa-heart"></i>&nbsp;加到最愛</h6>
+                <h3 class="detail-title" >快速出貨 韓版黑白橫條短袖ㄒ恤【F0225 500】現貨</h3>
+<!--                 <i class="fas fa-star fa-star-score"></i> -->
+<!--                 <i class="fas fa-star fa-star-score"></i> -->
+<!--                 <i class="fas fa-star fa-star-score"></i> -->
+<!--                 <i class="far fa-star fa-star-score"></i> -->
+<!--                 <i class="far fa-star fa-star-score"></i> -->
+                <span class="star-score" id="state">狀態</span>
+<!--                 <span class="sell-text">銷售量</span> -->
+<!--                 <span class="sell-count"> 3581</span> -->
+                <h4 class="detail-price"></h4>
+<!--                 <h6>可接受底價</h6> -->
+<!--                 <h6>可接受頂價</h6> -->
+                <h6><i class="fa-heart far"></i>&nbsp;加到最愛</h6>
                 <h6>檢舉</h6>
-                <button type="button" class="btn btn-outline-info" style="width:48%">加入購物車</button>
-                <button type="button" class="btn btn-outline-info" style="width:48%">直接購買</button>
+<!--                 <button type="button" class="btn btn-outline-info" style="width:48%">加入購物車</button> -->
+<!--                 <button type="button" class="btn btn-outline-info" style="width:48%">直接購買</button> -->
 
             </div>
         </div>
@@ -200,18 +347,13 @@
         <div class="tab-content" id="productContent">
             <div class="tab-pane fade show active" id="detail-information" role="tabpanel" aria-labelledby="detail-information-tab">
                 <!-- 分頁-詳細資訊 -->
-                <h5 class="detail-des-title">許願地區</h5>
+                <h5 class="detail-des-title" id="wish_district">許願地區</h5>
                 
                 
-                <h5 class="detail-des-title">可接受總價格</h5>
+                <h5 class="detail-des-title" id="wish_individualAcceptablePrice">單品可接受價格</h5>
 
 
-                <h5 class="detail-des-title">許願內容</h5>
-                <p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色，光12個顏色我們小編們就自留了8色，不易起球、不易變形、材質舒服親膚</p>
-                <p>秋冬搭配都很適合，冷一點裡面搭配襯衫等等的，判決指出，牟恩廣主張與妻子在民國102年結婚，但他們婚後並未共同生活，自己回到台灣的期間，都住在台北晶華酒店，從未與她同居，夫妻之情蕩然無存，已無維持婚姻關係的主觀意願及客觀實益。</p>
-                <p>法官審理後認為，牟男雖因工作長期滯留外地生活，而與妻子分居兩地，然而多年來兩造生活甚少交集，夫妻感情維繫困難，分居期間也未見他們積極維繫婚姻及感情，原告訴請離婚洵屬有據。</p>
-                <p>此外牟恩廣為化解紛爭，決意以「好散」的方式離婚，更請求在判決書內，避免以口出惡言方式，記載任何攻擊防禦方法；北院為達到家事法庭圓融解決家事紛爭及司法為民的理念，以簡易方式記載做出判決，圓領毛衣不限身形
-                    穿上都百搭👍👍</p>
+                <h5 class="detail-des-title" id="wish_content">許願內容</h5>
             </div>
             <div class="tab-pane fade" id="buyer-comment" role="tabpanel" aria-labelledby="buyer-comment-tab">
                 <div class="comments-container">

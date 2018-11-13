@@ -107,9 +107,6 @@
 				data:{email:member_mail},
 				success: function(data){
 					member_bean = data;
-					if(member_bean == null){
-						$(".navbar-nav ml-auto")
-					}
 					$.ajax({
 						url:"/TeamWork/checkStoreProductFavorite", //判斷商品是否已經加入最愛
 						type:"POST",
@@ -198,7 +195,6 @@
 						url:"/TeamWork/StoreProductPhotos?"+hahaha,
 						type:"GET",
 						success:function(data){
-							alert($(".carousel-inner").html());
 							console.log(data);
 							if(data.length != 0){
 								for(i=0;i<data.length;i++){
@@ -412,7 +408,7 @@
 				$.ajax({
 					url:"/TeamWork/SendStoreReport",
 					type:"POST",
-					data:{m_idReport:member_bean.m_id, sP_id:hahaha.substring(6), sR_content:$("#report-content").val(),sR_stateId:25},
+					data:{m_idReport:member_bean.m_id, sP_id:hahaha.substring(6), sR_content:$("#report-content").val(),sR_time:nowDateFormed,sR_stateId:25},
 					success: function(response){
 						alert("謝謝您的舉報，我們會盡快處理");
 						window.location.href = "/TeamWork/web/view/product-detail.html?"+hahaha
@@ -563,7 +559,7 @@
 				<h6>規格</h6>
 				<h6>數量</h6>
 				<h6>
-					<i class="far fa-heart" id="favorite" onclick="favs()"></i>&nbsp;加到最愛
+					<i class="fa-heart far" id="favorite" onclick="favs()"></i>&nbsp;加到最愛
 				</h6>
 				<button type="button" class="btn btn-primary" data-toggle="modal"
 					data-target="#exampleModalCenter">檢舉</button>

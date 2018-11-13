@@ -2,6 +2,7 @@ package model.repository.Impl;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import model.bean.Wish;
+import model.bean.WishProduct;
 import model.repository.WishDao;
 
 @Repository
@@ -33,6 +35,12 @@ public class WishDaoImpl implements WishDao {
 		if (id == null)
 			return null;
 		Wish W = getSession().get(Wish.class, id);
+		Set<WishProduct> WishProducts = W.getWishProduct();
+		for(WishProduct s:WishProducts) {
+			s.setWish(null);
+		}
+		W.setWishProduct(WishProducts);
+		
 		System.out.println(W);
 		return W;
 	}

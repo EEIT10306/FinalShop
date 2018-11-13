@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 public class Wish {
 
@@ -20,65 +22,47 @@ public class Wish {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
 	private Integer w_id;
-
 	@Column(name = "memW_ID", columnDefinition = "int", nullable = false)
 	private Integer m_id;
-
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
 	private Integer p_id;
-
 	@Column(name = "wish_title", columnDefinition = "nvarchar(Max)", nullable = false)
 	private String w_title;
-
 	@Column(name = "wish_cont", columnDefinition = "nvarchar(Max)", nullable = false)
 	private String w_context;
-
 	@Column(name = "dist_ID", columnDefinition = "int", nullable = false)
 	private Integer d_id;
-
 	@Column(name = "wish_sDate", columnDefinition = "datetime", nullable = false)
 	private Date w_startDate;
-
 	@Column(name = "wish_eDate", columnDefinition = "datetime", nullable = false)
 	private Date w_endDate;
-
 	@Column(name = "wish_sumPriBot", columnDefinition = "int")
 	private Integer w_sumPriceBottom;
-
 	@Column(name = "wish_sumPriTop", columnDefinition = "int")
 	private Integer w_sumPriceTop;
-
 	@Column(name = "wish_chanTime", columnDefinition = "datetime", nullable = false)
 	private Date w_changeTime;
-
 	@Column(name = "wish_hot", columnDefinition = "int", nullable = false)
 	private Integer w_hot;
-
 	@Column(name = "wish_amtFav", columnDefinition = "int", nullable = false)
 	private Integer w_amountFavorite;
-
 	@Column(name = "wish_compTime", columnDefinition = "datetime")
 	private Date w_completeTime;
-
 	@Column(name = "wish_state", columnDefinition = "int", nullable = false)
 	private Integer w_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "memW_ID", insertable = false, updatable = false)
 	private Member member;
-
 	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
 	private Product product;
-
 	@ManyToOne
 	@JoinColumn(name = "dist_ID", insertable = false, updatable = false)
 	private DistrictType districtType;
-
 	@ManyToOne
 	@JoinColumn(name = "wish_state", insertable = false, updatable = false)
 	private State state;
-	
 	@OneToMany(mappedBy = "w_id")
 	private Set<WishProduct> wishProduct = new LinkedHashSet<>();
 
