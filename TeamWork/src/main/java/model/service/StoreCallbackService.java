@@ -22,4 +22,10 @@ public class StoreCallbackService {
 		System.out.println(storeCallbackDaoImpl.selectHql(hql).get(0).getStoreMessage().getStoreProduct().getStoreImages());
 		return storeCallbackDaoImpl.selectHql(hql);
 	}
+	
+	public StoreCallback insertOneStoreCallback(StoreCallback bean) throws SQLException {
+		return storeCallbackDaoImpl.insert(bean);
+	}
+	
+	
 }

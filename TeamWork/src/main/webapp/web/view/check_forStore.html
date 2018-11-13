@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>商城結帳</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<!-- main CSS -->
+	<link rel="stylesheet" href="../style/main.css">
+	<!-- jQuery first -->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+	<script src="../js/jquery.func_toggle.js"></script>
+	<style>
+		.main {
+			max-width: 1024px;
+			margin: 30px auto
+		}
+
+		.store-shopping-cart-list {
+			max-width: 80%;
+			margin: 0 auto;
+			margin-top: 30px;
+		}
+
+		.product-selected {
+			border: 0.5px solid #888888;
+			box-shadow: 3px 3px 3px #AAAAAA;
+			border-radius: 10px;
+			padding: 10px;
+			overflow: auto;
+		}
+
+		.remove-this-item {
+			float: right;
+			margin: 10px;
+		}
+
+		.store-product-image {
+			width: 150px;
+			height: 150px;
+			margin: 5px;
+			float: left;
+		}
+
+		.store-product-name {
+			width: 100px;
+			height: 100px;
+			margin: 15px;
+			float: left;
+			text-align: center;
+		}
+
+		.order-amount {
+			width: 100px;
+			height: 25px;
+			padding: 15px;
+			float: right;
+			text-align: center;
+		}
+
+		.order-amount-of-this-store-product {
+			border: 0.5px solid #888888;
+			width: 50px;
+			margin: 3px;
+			float: right;
+			text-align: center;
+		}
+
+		.store-product-price-by-1 {
+			width: 100px;
+			padding: 5px;
+			margin: 10px;
+			float: right;
+			text-align: center;
+		}
+
+		.selections {
+			overflow: auto;
+			margin: 20px;
+			padding: 10px;
+		}
+
+		.delivery-selection {
+			width: 400px;
+			float: left;
+		}
+
+		.payment-selection {
+			width: 200px;
+			float: right;
+		}
+
+		.selection {
+			width: 120px;
+		}
+
+		#member-information {
+			width: 80%;
+			border: 0.5px solid #888888;
+			box-shadow: 3px 3px 3px #AAAAAA;
+			border-radius: 10px;
+			margin: 30px auto;
+			padding: 20px;
+			overflow: auto;
+		}
+
+		.order-summary {
+			width: 80%;
+			border: 0.5px solid #888888;
+			box-shadow: 3px 3px 3px #AAAAAA;
+			border-radius: 10px;
+			margin: 30px auto;
+			padding: 20px;
+			overflow: auto;
+		}
+
+		.products-price-lists {
+			overflow: auto;
+		}
+
+		.price-list {
+			overflow: auto;
+		}
+
+		.product-name {
+			width: 300px;
+			float: left;
+		}
+
+		.product-price {
+			width: 300px;
+			float: right;
+			text-align: right;
+		}
+
+		.total-store-order-cost {
+			overflow: auto;
+		}
+
+		.FinalLabel {
+			width: 300px;
+			float: left;
+		}
+
+		.FinalPrice {
+			width: 300px;
+			float: right;
+			text-align: right;
+		}
+
+		.check-button {
+			margin-right: 10%;
+			margin-bottom: 100px;
+			width: 80px;
+			height: 45px;
+			float: right;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div id="header-result"></div>
+	</header>
+	<div class="main">
+		<h2>商城結帳</h2>
+		<div id="store-shopping-cart-list" class="store-shopping-cart-list">
+			<!--商品資訊-->
+			<div id="product-selected" class="product-selected">
+				<!--移除商品-->
+				<button type="button" class="remove-this-item">x</button>
+				<img class="store-product-image" src="">
+				<div class="store-product-name"></div>
+				<!--商品訂購數量-->
+				<div class="order-amount">
+					<span>訂購數量:</span>
+					<input type="text" id="order-amount-of-this-store-product" class="order-amount-of-this-store-product">
+				</div>
+				<!--商品單價-->
+				<span id="store-product-price-by-1" class="store-product-price-by-1"></span>
+			</div>
+			<div id="delivery">
+				<label>商品配送方式:</label>
+				<select>
+					<option></option>
+				</select>
+			</div>
+			<div id="payment">
+				<label>付款方式:</label>
+				<select>
+					<option></option>
+				</select>
+			</div>
+		</div>
+		<!--會員資訊-->
+		<!--載入會員資料-->
+		<div id="member">
+			<h2>訂購人資訊</h2>
+			<div id="member-information">
+				<div>
+					<label>訂購人:</label>
+					<span id="member-name"></span>
+				</div>
+				<div>
+					<label>通訊地址:</label>
+					<span id="member-address"></span>
+				</div>
+				<div>
+					<label>手機:</label>
+					<span id="member-phone"></span>
+				</div>
+				<div>
+					<label>E-Mail:</label>
+					<span id="member-email"></span>
+				</div>
+			</div>
+		</div>
+		<h2>訂單摘要</h2>
+		<div class="order-summary">
+			<div class="products-price-lists">
+				<div id="label-for-checklist" class="label">商品總計:</div>
+				<div id="price-list">
+					<div id="product-name" class="product-name"></div>
+					<div id="product-price" class="product-price"></div>
+				</div>
+			</div>
+			<div>
+				<div></div>
+			</div>
+			<hr>
+			<div class="total-store-order-cost">
+				<div class="FinalLabel">結帳總金額:</div>
+				<div id="FinalPrice" class="FinalPrice">
+					<span id="total-check-price"></span>元</div>
+			</div>
+		</div>
+		<button id="order-checked" class="check-button" type="button">結帳</button>
+	</div>
+
+	<script type="text/javascript">
+
+		//載入Header
+		$(document).ready(function () {
+			$("#header-result").load("header.html");
+		})
+
+		var productsInShopCart; //全域變數--購物車物品清單
+		var productsOrderAmount; //全域變數--購物車物品訂購數量
+		var sp_id; //全域變數--商品ID
+		var m_account; //全域變數--使用者帳號
+		var m_id; //全域變數--使用者ID
+
+		//測試用 Cookie =======================================================================================
+		document.cookie = "email=beautifulzhuyu"; //登入Cookie
+		document.cookie = "sp_id1=3";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
+		document.cookie = "sp_id10=5";             //購物車Cookie 2號 (商品ID=10，訂購數量=5)
+		//=====================================================================================================	
+
+		$(document).ready(
+			function () {
+				$("#store-shopping-cart-list").empty();
+				$("#price-list").empty();
+				getCookie();
+				if (m_account == null) {
+					alert("請登入以結帳");
+					window.location = "form_login.html";
+				}
+				if (m_account != null) {
+					getMemberInformation();
+					if (productsInShopCart == "") {
+						alert("購物車內沒有商品");
+						window.location = "product-search.html";
+					}
+					if (productsInShopCart != "") {
+						getProductInformation();
+					}
+				}
+			});
+
+		//取得Cookie資料
+		function getCookie() {
+			productsInShopCart = "";
+			productsOrderAmount = "";
+			//alert("get cookies");
+			var cookies = {};
+			var all = document.cookie;
+			if (all == "") {
+				//alert("空 cookies");
+			}
+			//alert("所有Cookie = { " + all + "}");
+			var list = all.split(';');
+			for (var i = 0; i < list.length; i++) {
+				var cookie = list[i];
+				var p = cookie.indexOf("=");
+				var name = cookie.substring(0, p).trim();
+				var value = cookie.substring(p + 1);
+				value = decodeURIComponent(value);
+				if (name.substr(0, 5).toLowerCase() == "sp_id") {
+					productsInShopCart += (name.substr(5) + "|");
+					productsOrderAmount += (value + "|");
+					//alert("購物車內的商品ID = " + productsInShopCart);
+					//alert("商品訂購數量 = " + productsOrderAmount);
+				}
+				if (name == "email") {
+					m_account = value;
+					//alert("會員帳號 = " + m_account);
+				}
+			}
+		}
+
+		///取得商品資訊信
+		function getProductInformation() {
+			//alert("get Product Information");
+			var totalprice = 0;
+			var shoppinglist = productsInShopCart.split("|");
+			var shoppingamount = productsOrderAmount.split("|");
+			for (var i = 0; i < (shoppinglist.length - 1); i++) {
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/GetShoppingCartProduct",
+					data: {
+						"sP_id": shoppinglist[i]
+					},
+					dataType: "text",
+					async: false,
+					success: function (data) {
+						//alert(data);
+						var productfile = $.parseJSON(data);
+						$("#store-shopping-cart-list").append(
+							'<div>' +
+							'<div id="product-selected' + i + '" class="product-selected">' +
+							'<div id="product-id' + i + '" class="product-id" style="display:none">' + productfile.sP_id + '</div>' +
+							'<div id="remove-this-item' + i + '" class="remove-this-item">x</div>' +
+							'<img class="store-product-image" src="' + productfile.storeImages[0].sI_context + '">' +
+							'<div id="store-product-name' + i + '" class="store-product-name">' + productfile.sP_name + '</div>' + '<div class="order-amount"><div>訂購數量</div>' +
+							'<input type="number" min="1" id="order-amount-of-this-store-product' + i + '" class="order-amount-of-this-store-product" value=' + shoppingamount[i] + '></div>' +
+							'<div id="store-product-price-by-1' + i + '" class="store-product-price-by-1">商品單價' + '<p id="price-by-1-' + i + '">' + productfile.sP_price + '</p>' + '</div>' +
+							'</div>' +
+							'<div id="selections' + i + '" class="selections">' +
+							'<div class="delivery-selection">' +
+							'<label>商品配送方式</label>' +
+							'<select id="delivery' + i + '" class="selection">' +
+							'<option val=""></option><option val="7-11">7-11</option><option val="全家">全家</option><option val="黑貓到府">黑貓到府</option>' +
+							'</select>' +
+							'</div>' +
+							'<div class="payment-selection">' +
+							'<label>付款方式</label>' +
+							'<select id="payment' + i + '" class="selection">' +
+							'<option val=""></option><option val="信用卡">信用卡</option><option val="貨到付款">貨到付款</option>' +
+							'</select>' +
+							'</div>' + '</div>' + '</div>'
+						)
+						$("#price-list").append(
+							'<div id="product-name' + i + '" class="product-name">' + productfile.sP_name + '</div>' +
+							'<div class="product-price"><span id="product-price' + i + '">' + (shoppingamount[i] * productfile.sP_price) + '</span>元</div>'
+						)
+						totalprice += (shoppingamount[i] * productfile.sP_price);
+						//alert(totalprice);
+						$("#total-check-price").text(totalprice);
+					}
+				})
+			}
+
+			//從清單移除商品
+			$(".remove-this-item").click(function () {
+				var number = $(this).attr("id").substr(16);
+				var sp_id = "sp_id" + $("#product-id" + number + "").text();
+				//alert(sp_id);
+				$(this).parent().parent().remove();
+				removeOneCookie(sp_id);
+				getCookie();
+				$("#store-shopping-cart-list").empty();
+				$("#price-list").empty();
+				getProductInformation();
+			})
+
+			//改變商品訂購數量時，商品金額也改變
+			$(".order-amount-of-this-store-product").change(function () {
+				var amount = $(this).val();
+				var list_number = $(this).attr("id").substr(34);
+				var sp_id = "sp_id" + $("#product-id" + list_number + "").text();
+				//alert(sp_id);
+				//alert(amount);
+				//alert(list_number);
+				document.cookie = sp_id + "=" + amount + ";";
+				//alert("cookies = " + document.cookie);
+				var price = $("#price-by-1-" + list_number + "").text();
+				//alert(price);
+				var total = price * amount;
+				//alert(total);
+				$("#product-price" + list_number + "").text(total);
+				var totalprice = 0;
+				var size = $(".product-selected").length;
+				//alert(size);
+				for (var i = 0; i < size; i++) {
+					var amount1 = $("#order-amount-of-this-store-product" + i + "").val();
+					var price1 = $("#price-by-1-" + i + "").text();
+					totalprice += amount1 * price1;
+				}
+				//alert(totalprice);
+				$("#total-check-price").text(totalprice);
+			})
+		}
+
+		//移除特定cookie
+		function removeOneCookie(key1) {
+			//alert("remove cookie");
+			var cookies = {};
+			var all = document.cookie;
+			var list = all.split(";");
+			for (var i = 0; i < list.length; i++) {
+				var cookie = list[i];
+				var p = cookie.indexOf("=");
+				var name = cookie.substring(0, p).trim();
+				var value = cookie.substring(p + 1);
+				value = decodeURIComponent(value);
+				cookies[name] = value;
+			}
+			var keys = [];
+			for (var key in cookies) {
+				keys.push(key);
+			}
+			if (!(key1 in cookies)) {
+				return;
+			}
+			delete cookies[key1];
+			for (var i = 0; i < keys.length; i++) {
+				if (keys[i] == key1) {
+					//alert(key1);
+					keys.splice(i, 1);
+					break;
+				}
+			}
+			this.length--;
+			document.cookie = key1 + "=; max-age=0";
+		}
+
+		//取得會員資料
+		function getMemberInformation() {
+			$("#member-information").empty();
+			$.ajax({
+				type: "POST",
+				url: "/TeamWork/GetMemberInformation",
+				data: {
+					"m_account": m_account
+				},
+				dataType: "text",
+				async: true,
+				success: function (data) {
+					//alert(data);
+					var member = $.parseJSON(data);
+					$("#member-information").append(
+						'<div>' + '<label>訂購人:</label>'
+						+ '<span id="member-name">' + member.m_name
+						+ '</span>' + '</div>' + '<div>'
+						+ '<label>通訊地址:</label>'
+						+ '<span id="member-address">'
+						+ member.m_address + '</span>' + '</div>'
+						+ '<div>' + '<label>手機:</label>'
+						+ '<span id="member-phone">'
+						+ member.m_telephone + '</span>' + '</div>'
+						+ '<div>' + '<label>E-Mail:</label>'
+						+ '<span id="member-email">'
+						+ member.m_mail + '</span>' + '</div>')
+					m_id = member.m_id;
+					//alert(m_id);
+				}
+			})
+		}
+
+		//結帳，傳送交易資料至資料庫
+		$("#order-checked").click(function () {
+			var size = $(".product-selected").length;
+			//alert(size);
+			for (var i = 0; i < size; i++) {
+				var sp_id = $("#product-id" + i + "").text();
+				//alert("商品ID = " + sp_id);
+				var amount = $("#order-amount-of-this-store-product" + i + "").val();
+				//alert("訂購數量 : " + amount);
+				var price = $("#product-price" + i + "").text();
+				//alert("商品金額 : " + price);
+				var transport = $("#delivery" + i + "").val();
+				//alert(transport);
+				if (transport == "") {
+					alert("請瑱寫商品配送方式");
+					return "";
+				}
+				var payment = $("#payment" + i + "").val();
+				//alert(payment);
+				if (payment == "") {
+					//alert("請填寫付款方式");
+					return "";
+				}
+				$.ajax({
+					type: "POST",
+					async: true,
+					url: "/TeamWork/AddNewStoreOrder",
+					data: {
+						"sP_id": sp_id,
+						"m_idOrder": m_id,
+						"sO_amount": amount,
+						"sO_sumPrice": price,
+						"sO_transport": transport,
+						"sO_pay": payment
+					},
+					success: function (data) {
+						//alert("交易成功");
+						var key1 = "sp_id" + sp_id;
+						//alert(key1);
+						removeOneCookie(key1);
+						//alert("cookies = " + document.cookie);
+						window.location = "userPage_StoreOrdrList_OOO.html";
+					}
+				})
+			}
+		})
+
+		//刪除所有購物車cookies
+		function removeShoppingCartCookies() {
+			var cookies = {};
+			var all = document.cookie;
+			var list = all.split(";");
+			for (var i = 0; i < list.length; i++) {
+				var cookie = list[i];
+				var p = cookie.indexOf("=");
+				var name = cookie.substring(0, p).trim();
+				var value = cookie.substring(p + 1);
+				value = decodeURIComponent(value);
+				cookies[name] = value;
+				var keys = [];
+				for (var key in cookies) {
+					keys.push(key);
+				}
+				if (name.substr(0, 5).toLowerCase() == "sp_id") {
+					var key1 = name;
+					delete cookies[key1];
+					for (var i = 0; i < keys.length; i++) {
+						if (keys[i] == key1) {
+							keys.splice(i, 1);
+							break;
+						}
+					}
+					this.length--;
+					document.cookie = key1 + "=; max-age=0";
+				}
+			}
+		}
+
+	</script>
+</body>
+
+</html>

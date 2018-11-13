@@ -651,6 +651,8 @@ form.popperForm {
 	vertical-align: middle;
 	color: #525abb;
 	margin: 0;
+	font-weight: normal;
+	float: right;
 }
 .modal-form-group {
 	justify-content: center;
