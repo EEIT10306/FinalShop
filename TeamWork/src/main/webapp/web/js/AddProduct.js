@@ -1,6 +1,8 @@
 //===================圖片瀏覽======================
 function imgPreview(fileDom) {
-    var id = $(event.target).next().next().attr("id");
+    var theEvent = arguments.callee.caller.arguments[0];
+    var target = theEvent.target | event.target;
+    var id = $(target).next().next().attr("id");
     // alert("img======="+document.getElementById("Storepreview"))
     // alert("img2======="+img)
     //判斷是否支援filereader
