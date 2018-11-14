@@ -34,7 +34,7 @@ public class WishMessage {
 	private Integer wM_stateId;
 
 	@ManyToOne
-	@JoinColumn(name = "wist_ID", insertable = false, updatable = false)
+	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
 	private Wish wish;
 
 	@ManyToOne
