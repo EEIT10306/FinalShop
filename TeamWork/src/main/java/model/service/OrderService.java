@@ -36,6 +36,8 @@ import model.repository.WishOrderDao;
 public class OrderService {
 	
 	@Autowired
+	MemberDao memberDao;
+	@Autowired
 	StoreOrderDao storeOrderDao;
 	@Autowired
 	WishOrderDao wishOrderDao;
@@ -49,6 +51,7 @@ public class OrderService {
 	GroupAssessDao groupAssessDao;
 	@Autowired
 	StoreAssessDao storeAssessDao;
+	@Autowired
 	WishAssessDao wishAssessDao;
 	@Autowired
 	GrouponDao grouponDao;
@@ -62,7 +65,16 @@ public class OrderService {
 	public OrderService() {
 	}
 	
-	
+	// 更新使用者個人資料
+	public Member editAccountData(Member member) throws SQLException {
+		Integer m_id = member.getM_id();
+		if (m_id == null) {
+			return null;
+		} else {
+			Member temp = memberDao.selectByPk(m_id);
+			return memberDao.update(temp, member);
+		}
+	}
 	// (商店)利用買家ID取得購買訂單資料
 	public List<StoreOrder> getStoreOrder(StoreOrder storeOrder) throws SQLException {
 		Integer MemberId = storeOrder.getM_idOrder();

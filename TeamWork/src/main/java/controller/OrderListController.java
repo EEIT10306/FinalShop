@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
+import model.bean.Member;
 import model.bean.StoreAssess;
 import model.bean.StoreOrder;
 import model.bean.Wish;
@@ -39,17 +40,25 @@ public class OrderListController {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
 	}
 	
-	// 更新使用者圖像
+	// 更新使用者資料
+	@RequestMapping(value = "/EditAccountData", method = RequestMethod.POST)
+	public String editAccountData(Member member) throws SQLException {
+		System.out.println(member);
+		orderService.editAccountData(member);
+		return "redirect:/web/view/userPage_profile.html";
+	}
+	
+	//更新使用者圖像
 	@RequestMapping(value = "/UpdateAccountImage", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-	public @ResponseBody String updateAccountImage(List<MultipartFile> files,Integer m_id) {
-		System.out.println(files);
+	public @ResponseBody String updateAccountImage(List<MultipartFile> files) {
+		System.out.println("UpdateAccountImage-files:==========="+files);
 		//執行上傳圖片方法
 		for(MultipartFile file : files) {			
-			userPageImageService.insertAccountImage(file, m_id);
+			userPageImageService.insertAccountImage(file, 1);
 		}
 		return "updateAccountImage Success!";
 	}
-
+	
 	// 取得商店訂單資料
 	@RequestMapping(value = "/StoreOrderList", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
