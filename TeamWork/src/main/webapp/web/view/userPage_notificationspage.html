@@ -117,10 +117,10 @@
             </div>
             <div class="purchase-list-page_tabs-container col-lg-10">
                 <div class="row">
-                    <div class="purchase-list-page_tab col-sm-3 tab_lock" id="state38">完願中</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state39">配送中</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state40">待收貨</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state41">完成</div>
+                    <div class="purchase-list-page_tab col-sm-3 tab_lock" id="state16">待出貨</div>
+                    <div class="purchase-list-page_tab col-sm-3" id="state17">配送中</div>
+                    <div class="purchase-list-page_tab col-sm-3" id="state18">待收貨</div>
+                    <div class="purchase-list-page_tab col-sm-3" id="state19">完成</div>
                 </div>
                 <div class="row">
                     <div class="container-wrapper">
@@ -304,25 +304,43 @@
     <script src="../js/userPage.js"></script>
     <!-- Optional JavaScript -->
     <script>
+        //===================CookieToJson=======================
+        function cookieToJson() {
+            let cookieArr = document.cookie.split(";");
+            let obj = {}
+            cookieArr.forEach((i) => {
+                let arr = i.split("=");
+                obj[arr[0]] = arr[1];
+            });
+            return obj
+        }
         $(document).ready(function () {
+
             //定義要用到的網址
-            //定義要用到的網址
-            var userID = "1";
-            var dataurl = "/TeamWork/WishOrderList?m_id=" + userID;
-            var userData = [];
-            var state = 38;
+            // var userID = "1";
+            // var dataurl = "/TeamWork/WishOrderList?m_id=" + userID;
+            var userData;
+            var state = 16;
 
             loadData();
             function loadData() {
+                var json = cookieToJson();
+                var cookieAccount = json['email'];
                 //下載資料
                 $.ajax({
-                    url: dataurl,
-                    error: function () {
-                        console.log("載入失敗")
+                    type: "POST",
+                    url: "/TeamWork/ReadStoreOrderState",
+                    data: { "account": cookieAccount },
+                    error: function (response) {
+                        var jsons = JSON.stringify(response);
+                        alert("noticeMVC傳回失敗 = " + jsons);
                     },
-                    success: function (res) {
-                        console.log("載入資料")
-                        userData = res
+                    async: false,
+                    success: function (response) {
+                        console.log("傳入使用者資料")
+                        userData = response;
+                        console.log("全域變數")
+                        console.log(userData)
                         // 更新畫面中的元素
                         updateData()
                     }
@@ -330,146 +348,73 @@
             }
             function updateData() {
                 $(".container-wrapper").html("");
-                userData.forEach(function (item) {
-                    //完願中
-                    if (state == 38 && state == item.wO_stateId) {
+                for (let k in userData) {
+                    //待出貨
+                    if (state == 16 && state == userData[k].sO_stateId) {
                         var itemEl = $(`
-                            <div class="myWish-card" id="${item.wO_id}">
-                                <div class="order-content_header row">
-                                    <div class="order-content-header_left">
-                                        <div class="seller-pic">
-                                            <img src="../images/user/account/profile/001.png">
-                                        </div>
-                                        <div class="seller-name">${item.member.m_name}</div>
-                                    </div>
-                                    <div class="wish-dataRange">${dateFormat(item.wish.w_startDate)}-${dateFormat(item.wish.w_endDate)}
-                                    </div>
-                                </div>
-                                <div class="order-content_item row">
-                                    <div class="item-image">
-                                    </div>
-                                    <div class="item-detail col-lg">
-                                        <div class="item-misc">
-                                            <div class="misc">
-                                                <div class="item-name">${item.wish.w_title}</div>
-                                                <div class="item-des">${item.wish.w_context}</div>
-                                                <span class="wish-priceRange">$${item.wish.w_sumPriceBottom}-${item.wish.w_sumPriceTop}</span>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <input type="button" value="聯絡賣家" class="btn order_btn">
-                                                <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
                             </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">待出貨</div>
+                                <div class="noti-card-detail_text">會員 ${userData[k].member.m_name} 已完成付款</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
                         `)
                         $(".container-wrapper").append(itemEl);
-                    } else if (state == 39 && state == item.wO_stateId) {
+                    } else if (state == 17 && state == userData[k].sO_stateId) {
                         //配送中
                         var itemEl = $(`
-                            <div class="myWish-card" id="${item.wO_id}">
-                                <div class="order-content_header row">
-                                    <div class="order-content-header_left">
-                                        <div class="seller-pic">
-                                            <img src="../images/user/account/profile/001.png">
-                                        </div>
-                                        <div class="seller-name">${item.member.m_name}</div>
-                                    </div>
-                                    <div class="wish-dataRange">${dateFormat(item.wish.w_startDate)}-${dateFormat(item.wish.w_endDate)}
-                                    </div>
-                                </div>
-                                <div class="order-content_item row">
-                                    <div class="item-image">
-                                    </div>
-                                    <div class="item-detail col-lg">
-                                        <div class="item-misc">
-                                            <div class="misc">
-                                                <div class="item-name">${item.wish.w_title}</div>
-                                                <div class="item-des">${item.wish.w_context}</div>
-                                                <span class="wish-priceRange">$${item.wish.w_sumPriceBottom}-${item.wish.w_sumPriceTop}</span>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <input type="button" value="聯絡賣家" class="btn order_btn">
-                                                <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
                             </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">已出貨</div>
+                                <div class="noti-card-detail_text">${userData[k].storeProduct.store.s_name} 已將你的訂單透過 ${userData[k].sO_transport} 出貨</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
                         `)
                         $(".container-wrapper").append(itemEl);
-                    } else if (state == 40 && state == item.wO_stateId) {
+                    } else if (state == 18 && state == userData[k].sO_stateId) {
                         //待收貨
                         var itemEl = $(`
-                            <div class="myWish-card" id="${item.wO_id}">
-                                <div class="order-content_header row">
-                                    <div class="order-content-header_left">
-                                        <div class="seller-pic">
-                                            <img src="../images/user/account/profile/001.png">
-                                        </div>
-                                        <div class="seller-name">${item.member.m_name}</div>
-                                    </div>
-                                    <div class="wish-dataRange">${dateFormat(item.wish.w_startDate)}-${dateFormat(item.wish.w_endDate)}
-                                    </div>
-                                </div>
-                                <div class="order-content_item row">
-                                    <div class="item-image">
-                                    </div>
-                                    <div class="item-detail col-lg">
-                                        <div class="item-misc">
-                                            <div class="misc">
-                                                <div class="item-name">${item.wish.w_title}</div>
-                                                <div class="item-des">${item.wish.w_context}</div>
-                                                <span class="wish-priceRange">$${item.wish.w_sumPriceBottom}-${item.wish.w_sumPriceTop}</span>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <input type="button" value="確認收貨" class="btn order_btn confirmReceive" id="confirmReceive${item.wO_id}">
-                                                <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
                             </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已送達</div>
+                                <div class="noti-card-detail_text">會員的訂單已送達，請 ${userData[k].member.m_name} 完成取貨，謝謝</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
                         `)
                         $(".container-wrapper").append(itemEl);
-                    } else if (state == 41 && state == item.wO_stateId) {
+                    } else if (state == 19 && state == userData[k].sO_stateId) {
                         //完成
                         var itemEl = $(`
-                            <div class="myWish-card" id="${item.wO_id}">
-                                <div class="order-content_header row">
-                                    <div class="order-content-header_left">
-                                        <div class="seller-pic">
-                                            <img src="../images/user/account/profile/001.png">
-                                        </div>
-                                        <div class="seller-name">${item.member.m_name}</div>
-                                    </div>
-                                    <div class="wish-dataRange">${dateFormat(item.wish.w_startDate)}-${dateFormat(item.wish.w_endDate)}
-                                    </div>
-                                </div>
-                                <div class="order-content_item row">
-                                    <div class="item-image">
-                                    </div>
-                                    <div class="item-detail col-lg">
-                                        <div class="item-misc">
-                                            <div class="misc">
-                                                <div class="item-name">${item.wish.w_title}</div>
-                                                <div class="item-des">${item.wish.w_context}</div>
-                                                <span class="wish-priceRange">$${item.wish.w_sumPriceBottom}-${item.wish.w_sumPriceTop}</span>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <input type="button" value="給予評價" class="btn order_btn StartAssessBtn" data-toggle="modal" data-target="#giveAssess" name="${item.wO_id}">
-                                                <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
                             </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已完成</div>
+                                <div class="noti-card-detail_text">會員 ${userData[k].member.m_name} 的 ${userData[k].sO_pay} 訂單已完成</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
                         `)
                         $(".container-wrapper").append(itemEl);
                     }
-                }
-                );
+                };
 
                 //如果沒有東西可以顯示就顯示插圖
                 if ($(".container-wrapper").html() == "") {
@@ -539,20 +484,20 @@
                 $(this).addClass("tab_lock");
                 var changeState = $(this).text();
                 switch (changeState) {
-                    case "完願中":
-                        state = 38;
+                    case "待出貨":
+                        state = 16;
                         break;
                     case "配送中":
-                        state = 39;
+                        state = 17;
                         break;
                     case "待收貨":
-                        state = 40;
+                        state = 18;
                         break;
                     case "完成":
-                        state = 41;
+                        state = 19;
                         break;
                     default:
-                        state = 38;
+                        state = 16;
                 }
                 updateData();
             });

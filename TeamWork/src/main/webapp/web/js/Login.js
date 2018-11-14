@@ -31,7 +31,7 @@ $("#Login").click(function(e){
                 alert(document.cookie)
 
                 alert("登入成功")
-                window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
+                window.location.href=window.history.back();
                 
                 
             }
