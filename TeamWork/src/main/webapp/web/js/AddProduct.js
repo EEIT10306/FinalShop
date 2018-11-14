@@ -37,7 +37,8 @@ function imgPreview(fileDom) {
 }
 //===================CookieToJson=======================
 function cookieToJson() {
-    let cookieArr = document.cookie.split(";");
+	//cookie分割並去掉所有空白字串
+	let cookieArr = document.cookie.replace(/\s/g,"").split(";");
     let obj = {}
     cookieArr.forEach((i) => {
         let arr = i.split("=");
