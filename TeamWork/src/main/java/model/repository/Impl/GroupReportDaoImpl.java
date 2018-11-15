@@ -65,6 +65,8 @@ public class GroupReportDaoImpl implements GroupReportDao {
 				GR.setM_idReport(bean.getM_idReport());
 			if (bean.getgR_content() != null)
 				GR.setgR_content(bean.getgR_content());
+			if (bean.getgR_time() != null)
+				GR.setgR_time(bean.getgR_time());
 			if (bean.getgR_stateId() != null)
 				GR.setgR_stateId(bean.getgR_stateId());
 			return GR;
@@ -79,6 +81,8 @@ public class GroupReportDaoImpl implements GroupReportDao {
 			GR.setM_idReport(bean.getM_idReport());
 		if (bean.getgR_content() != null)
 			GR.setgR_content(bean.getgR_content());
+		if (bean.getgR_time() != null)
+			GR.setgR_time(bean.getgR_time());
 		if (bean.getgR_stateId() != null)
 			GR.setgR_stateId(bean.getgR_stateId());
 		return GR;

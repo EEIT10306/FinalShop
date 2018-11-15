@@ -306,7 +306,7 @@
     <script>
         //===================CookieToJson=======================
         function cookieToJson() {
-            let cookieArr = document.cookie.split(";");
+            var cookieArr = document.cookie.replace("\" ","\"").split(";");
             let obj = {}
             cookieArr.forEach((i) => {
                 let arr = i.split("=");
@@ -325,7 +325,9 @@
             loadData();
             function loadData() {
                 var json = cookieToJson();
-                var cookieAccount = json['email'];
+                console.log(json)
+                var cookieAccount = json.email;
+                alert("cookieAccount================="+cookieAccount)
                 //下載資料
                 $.ajax({
                     type: "POST",
