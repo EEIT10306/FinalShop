@@ -24,7 +24,7 @@ import model.service.StoreProductService;
 import model.service._TestServiceAchievement;
 import model.service._TestServiceProduct;
 import model.service._TestServiceStoreProduct;
-@Controller
+//@Controller
 public class _TestSearchController {
 	@Autowired
 	private _TestServiceAchievement tes;
