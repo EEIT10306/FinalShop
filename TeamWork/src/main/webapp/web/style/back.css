@@ -270,7 +270,7 @@ body {
   position: relative;
   left: 50%;
   width: var(--wrapper);
-  height: 800px;
+  height: 620px;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
 }
@@ -280,7 +280,7 @@ body {
   top: 50%;
   left: 50%;
   width: 80%;
-  height: 75%;
+  height: 90%;
   background-color: var(--white);
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -312,7 +312,7 @@ body {
 }
 .container-box .left input {
   float: left;
-  width: 188px;
+  width: 240px;
   height: 42px;
   padding: 0 15px;
   border: 1px solid var(--light);
@@ -341,7 +341,7 @@ body {
   margin-left: -1px;
   border-right: 1px solid var(--light);
   border-left: 1px solid var(--light);
-  width: calc(100% + 2px);
+  width: calc(100% + 1px);
 }
 .container-box .left .people .person {
   position: relative;
@@ -400,7 +400,7 @@ body {
   padding-top: 13px;
   border: 0;
   background-color: var(--blue);
-  width: calc(100% + 2px);
+  width: calc(100% + 1px);
   padding-left: calc(10% + 1px);
 }
 .container-box .left .people .person.active span, .container .left .people .person:hover span {
@@ -492,8 +492,8 @@ body {
 }
 .container-box .right .write {
   position: absolute;
-  bottom: 29px;
-  left: 30px;
+  bottom: 8px;
+  left: 26px;
   height: 42px;
   padding-left: 8px;
   border: 1px solid var(--light);

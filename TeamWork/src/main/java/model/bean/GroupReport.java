@@ -1,5 +1,7 @@
 package model.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,11 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "group_ID", "mem_ID" }) })
 public class GroupReport {
 
 	@Id
@@ -27,6 +26,9 @@ public class GroupReport {
 
 	@Column(name = "gR_cont", columnDefinition = "nvarchar(max)", nullable = false)
 	private String gR_content;
+
+	@Column(name = "gR_time", columnDefinition = "datetime", nullable = false)
+	private Date gR_time;
 
 	@Column(name = "gR_state", columnDefinition = "int", nullable = false)
 	private Integer gR_stateId;
@@ -46,19 +48,21 @@ public class GroupReport {
 	public GroupReport() {
 	}
 
-	public GroupReport(Integer gR_id, Integer g_id, Integer m_idReport, String gR_content, Integer gR_stateId) {
+	public GroupReport(Integer gR_id, Integer g_id, Integer m_idReport, String gR_content, Date gR_time,
+			Integer gR_stateId) {
 		super();
 		this.gR_id = gR_id;
 		this.g_id = g_id;
 		this.m_idReport = m_idReport;
 		this.gR_content = gR_content;
+		this.gR_time = gR_time;
 		this.gR_stateId = gR_stateId;
 	}
 
 	@Override
 	public String toString() {
 		return "GroupReport [gR_id=" + gR_id + ", g_id=" + g_id + ", m_idReport=" + m_idReport + ", gR_content="
-				+ gR_content + ", gR_stateId=" + gR_stateId + ", groupon=" + groupon + "]\r\n";
+				+ gR_content + ", gR_time=" + gR_time + ", gR_stateId=" + gR_stateId + ", groupon=" + groupon + "]\r\n";
 	}
 
 	public Integer getgR_id() {
@@ -91,6 +95,14 @@ public class GroupReport {
 
 	public void setgR_content(String gR_content) {
 		this.gR_content = gR_content;
+	}
+
+	public Date getgR_time() {
+		return gR_time;
+	}
+
+	public void setgR_time(Date gR_time) {
+		this.gR_time = gR_time;
 	}
 
 	public Integer getgR_stateId() {

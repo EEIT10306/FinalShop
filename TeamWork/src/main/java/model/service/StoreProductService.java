@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.Store;
 import model.bean.StoreProduct;
 import model.repository.StoreProductDao;
 
@@ -24,6 +25,7 @@ public class StoreProductService {
 		System.out.println(storeProductDaoImpl.selectByPk(id).getStoreImages());
 		return storeProductDaoImpl.selectByPk(id);
 	}
+	
 	public List<StoreProduct> getStoreProductChangeForm(String search,String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m){
 		String str="";
 		 List<String> list = new ArrayList<>();
@@ -85,6 +87,28 @@ public class StoreProductService {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	public StoreProduct insert(StoreProduct bean) {
+		try {
+			return storeProductDaoImpl.insert(bean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
+	
+	public Integer sPnameToID(String spname) throws SQLException {
+		
+		String hql = "WHERE sP_name = '" +  spname + "'";
+		//取得商城商品資料
+		System.out.println("StorePro=" + storeProductDaoImpl.selectHql(hql));
+		// 去找店家家的ID 如果不是NULL就回傳ID
+		for (StoreProduct storebean : storeProductDaoImpl.selectHql(hql)) {
+			return storebean.getsP_id();
 		}
 		return null;
 		

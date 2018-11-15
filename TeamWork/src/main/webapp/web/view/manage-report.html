@@ -5,6 +5,7 @@
 
     <meta charset="UTF-8">
     <title>Go Go Buy Managemnet System!</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,73 +21,108 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
 
+    <style>
+        ul {
+            list-style-type: none;
+            /* 		list-style-image: url(https://img.icons8.com/android/32/2ecc71/cat-footprint.png); */
+        }
+    </style>
+
     <!-- jQuery UI -->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body translate="no">
-
     <div class="header">
         <a href="#" id="menu-action">
             <i class="fa fa-bars"></i>
             <span>Close</span>
         </a>
-        <div class="logo">Day Day Go System!</div>
+        <div class="logo">Day Day Go System !</div>
     </div>
     <div class="sidebar">
         <ul>
-            <li><a href="manager-overview.html"><i class="fa fa-desktop"></i><span>首頁公告欄</span></a></li>
-            <li><a href="manage-chat.html"><i class="fa fa-server"></i><span>客服諮詢</span></a></li>
-            <li><a href="manage-requisition.html"><i class="fa fa-calendar"></i><span>申請單據處理</span></a></li>
-            <li><a href="manage-report.html"><i class="fa fa-envelope-o"></i><span>營業報表</span></a></li>
-            <li><a href="#"><i class="fa fa-table"></i><span>其他</span></a></li>
+            <li>
+                <a href="manager-overview.html">
+                    <i class="fa fa-desktop"></i>
+                    <span>首頁公告欄</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage-chat.html">
+                    <i class="fa fa-server"></i>
+                    <span>客服諮詢</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage-requisition.html">
+                    <i class="fa fa-calendar"></i>
+                    <span>申請單據處理</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage-report.html">
+                    <i class="fa fa-envelope"></i>
+                    <span>營業報表</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-table"></i>
+                    <span>其他</span>
+                </a>
+            </li>
         </ul>
     </div>
-
     <!-- Content -->
-    <div class="main">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card ">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5 class="card-title">營業報表</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <div class="main">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card ">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">營業報表</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                            <form class="form-inline">
+                                <label class="my-1 mr-2" for="from">From</label>
+                                <input type="text" class="form-control form-control-sm mr-sm-2 from" id="from"
+                                    placeholder="MM/dd/yyyy">
+                                <label class="my-1 mr-2" for="to">to</label>
+                                <input type="text" class="form-control form-control-sm mr-sm-2 to" id="to" placeholder="MM/dd/yyyy">
+                                <button type="submit" class="btn btn-sm btn-primary">確認</button>
+                            </form>
                         </div>
-                        <form class="form-inline">
-                            <label class="my-1 mr-2" for="from">From</label>
-                            <input type="text" class="form-control form-control-sm mr-sm-2 from" id="from" placeholder="MM/dd/yyyy">
-                            <label class="my-1 mr-2" for="to">to</label>
-                            <input type="text" class="form-control form-control-sm mr-sm-2 to" id="to" placeholder="MM/dd/yyyy">
-                            <button type="submit" class="btn btn-sm btn-primary">確認</button>
-                        </form>
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <div class="card">
-                    <div class="card-header">產品銷售統計表A</div>
-                    <div class="card-body text-center">
-                        <svg class="chart1"></svg>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">產品銷售統計表A</div>
+                        <div class="card-body text-center">
+                            <svg class="chart1"></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">產品銷售統計表B</div>
+                        <div class="card-body text-center">
+                            <svg class="chart2"></svg>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <div class="card">
-                    <div class="card-header">產品銷售統計表B</div>
-                    <div class="card-body text-center">
-                        <svg class="chart2"></svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js'></script>
-        <script src="../js/back.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js'></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+                crossorigin="anonymous"></script>
+            <script src="../js/back.js"></script>
 </body>
 
 </html>

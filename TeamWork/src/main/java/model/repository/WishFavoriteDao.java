@@ -3,6 +3,7 @@ package model.repository;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.bean.StoreFavorite;
 import model.bean.WishFavorite;
 
 public interface WishFavoriteDao {

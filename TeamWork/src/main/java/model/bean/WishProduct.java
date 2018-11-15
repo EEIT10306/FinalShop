@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 public class WishProduct {
 
@@ -20,39 +22,29 @@ public class WishProduct {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "wP_ID", columnDefinition = "int", nullable = false)
 	private Integer wP_id;
-
 	@Column(name = "wish_ID", columnDefinition = "int", nullable = false)
 	private Integer w_id;
-
 	@Column(name = "wP_name", columnDefinition = "nvarchar(max)", nullable = false)
 	private String wP_name;
-
 	@Column(name = "prod_ID", columnDefinition = "int", nullable = false)
 	private Integer p_id;
-
 	@Column(name = "wP_amt", columnDefinition = "int", nullable = false)
 	private Integer wP_amount;
-
 	@Column(name = "wP_pBot", columnDefinition = "int")
 	private Integer wP_priceBottom;
-
 	@Column(name = "wP_pTop", columnDefinition = "int")
 	private Integer wP_priceTop;
-
 	@Column(name = "wP_compTime", columnDefinition = "datetime")
 	private Date wP_completeTime;
-
 	@Column(name = "wP_state", columnDefinition = "int", nullable = false)
 	private Integer wP_stateId;
 
 	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
 	private Product product;
-
 	@ManyToOne
 	@JoinColumn(name = "wP_state", insertable = false, updatable = false)
 	private State state;
-
 	@OneToMany(mappedBy = "wP_id")
 	private Set<WishImages> wishImages = new LinkedHashSet<>();
 

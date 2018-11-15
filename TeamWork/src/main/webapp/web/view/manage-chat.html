@@ -61,6 +61,31 @@
     	padding: 14px 5px;
     	color: var(--grey)
     }
+    .conversationLeftNoRead-active {
+  		position: absolute;
+    	width: 20px;
+    	height: 20px;
+    	text-align: center;
+    	left: -10px;
+    	top: -10px;
+    	font-size: small;
+    	color: white;
+    	background: red;
+    	border-radius: 20px;
+	}
+	.conversationLeftNoRead{
+		display: none;	
+	}
+	.isZero{
+		display: none;	
+	}
+	.leftPeople{
+    	height: 460px;
+    	overflow-y: scroll;
+    }
+    .people{
+    	margin-top:10px;
+    }
     </style>
 </head>
 
@@ -80,6 +105,7 @@
             <li><a href="manage-requisition.html"><i class="fa fa-calendar"></i><span>申請單據處理</span></a></li>
             <li><a href="manage-report.html"><i class="fa fa-envelope"></i><span>營業報表</span></a></li>
             <li><a href="#"><i class="fa fa-table"></i><span>其他</span></a></li>
+            </ul>
     </div>
 
     <!-- Content -->
@@ -90,17 +116,18 @@
                 <div class="container-box">
                     <div class="left">
                         <div class="top">
-                            <input type="text" placeholder="Search" />
-                            <a href="javascript:;" class="search"></a>
+                            <input id="searchMe" type="text" placeholder="Search" />
                         </div>
-                        <ul id="conversation_page" class="people"> 
+                        <div class="leftPeople">
+                            <ul id="conversation_page" class="people"> 
                         </ul>
+                        </div>
                     </div>
                     <div class="right">
                         <div class="top"><span>To: <span class="name"></span></span></div>
                         <div id = "contextIn"></div>
                         <div class="write">
-            				<input id="sendMe" type="text"/>
+            				<input id="sendMe" type="text" />
            					<a class="write-link send" onclick="sendNewConversation()"></a>
         				</div>
                     </div>
@@ -108,7 +135,8 @@
             </div>
         </div>
     </div>
-    <script src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
+<!--     <script src='https://code.jquery.com/jquery-1.12.4.min.js'></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src='../js/manager/conversation.js'></script>
 <!--   <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
