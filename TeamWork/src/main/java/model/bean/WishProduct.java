@@ -46,10 +46,6 @@ public class WishProduct {
 	private Integer wP_stateId;
 
 	@ManyToOne
-	@JoinColumn(name = "wish_ID", insertable = false, updatable = false)
-	private Wish wish;
-
-	@ManyToOne
 	@JoinColumn(name = "prod_ID", insertable = false, updatable = false)
 	private Product product;
 
@@ -155,14 +151,6 @@ public class WishProduct {
 
 	public void setwP_stateId(Integer wP_stateId) {
 		this.wP_stateId = wP_stateId;
-	}
-
-	public Wish getWish() {
-		return wish;
-	}
-
-	public void setWish(Wish wish) {
-		this.wish = wish;
 	}
 
 	public Product getProduct() {

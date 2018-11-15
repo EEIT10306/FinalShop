@@ -31,7 +31,7 @@ ul { /* 取消ul預設的內縮及樣式 */
         display: block;
         padding: 0 30px;
         text-decoration: none;
-        line-height: 40px;
+        line-height: 48.5px;
 
     }
      ul.drop-down-menu button {
@@ -80,11 +80,35 @@ ul { /* 取消ul預設的內縮及樣式 */
     }
      ul.drop-down-menu ul { /*隱藏次選單*/
         display: none;
-    }
-
+     }
+    
     ul.drop-down-menu li:hover > ul { /* 滑鼠滑入展開次選單*/
         display: block;
     }
+    
+   .cc{
+   	max-width: 30%;
+	max-height: auto;
+	left: 50%;
+	transform: translate(60%,-50%);
+	position: absolute;
+	z-index: 1;
+	box-shadow:0px 0px 20px rgba(0,0,0,0.3);
+	}
+.div1{
+    float: left;
+    text-align:left;
+}
+.div2{
+    float: right;
+}
+.wishComments_header{
+	color: gray;
+	font-size: 3rem;
+	font-weight: bold;
+	background-color: #A6A6A6;
+}
+
 /*     #haha li ul{ */
 /*         display: none; */
 /*       } */
