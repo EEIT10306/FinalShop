@@ -1,5 +1,5 @@
 //登入先判斷cookie是否有儲存帳號
-var Memberallbean;
+// var Memberallbean;
 $(document).ready(function(){
 	
 	var cookies = document.cookie;
@@ -29,13 +29,12 @@ $(document).ready(function(){
                 console.log(data);
                 if(data=="accountNoRepeat"){
                     console.log("帳號沒有重複");
-                } else if (data==cookieAccount+"facebook"){
+                } else if (data[0].m_password=="facebook"){
 //                    alert("抓到FB帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
-                    // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
-                } else if (data==cookieAccount+"google"){
+                } else if (data[0].m_password=="google"){
 //                    alert("抓到Google帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
@@ -48,10 +47,18 @@ $(document).ready(function(){
                     $("[id='MemberLogout']").show();
                     // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 }
-
-                Memberallbean=data;
-                console.log("Memberallbean======");
-                console.log(Memberallbean);
+                // Memberallbean=data;
+                // console.log("Memberallbean======");
+                // console.log(Memberallbean);
+                 //設定cookie
+                 expire_days = 1; // 過期日期(天)
+                 var day = new Date();
+                 day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+                 // day.setTime(day.getTime() + (60 * 1000));
+                 var expires = "expires=" + day.toGMTString();
+                 // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+                 document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
+//                 alert(document.cookie)
             },
             error:function(data){
                 console.log(data);

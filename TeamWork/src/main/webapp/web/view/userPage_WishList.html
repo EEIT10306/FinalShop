@@ -329,10 +329,12 @@
 	<script src="../js/userPage.js"></script>
 	<!-- Optional JavaScript -->
 	<script>
-		var userID = 1;
+		var userID= 1;
 		$(document).ready(function () {
 			if(document.cookie.split("mid=").length == 2){				
-				console.log(document.cookie.split("mid=")[1].split(";")[0])
+				userID = document.cookie.split("mid=")[1].split(";")[0]
+			}else{
+				window.location.href="form_login.html";
 			}
 				
 			var dataurl = "/TeamWork/WishList?m_id=" + userID;
