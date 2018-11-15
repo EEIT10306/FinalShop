@@ -10,7 +10,6 @@ function cookieToJson() {
     return obj
 }
 $(document).ready(function () {
-
     //定義要用到的網址
     // var userID = "1";
     // var dataurl = "/TeamWork/WishOrderList?m_id=" + userID;
