@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.Member;
+import model.bean.StoreFavorite;
 import model.bean.StoreOrder;
 import model.bean.StoreProduct;
 import model.service.ShoppingCartService_forStroeProduct;
@@ -25,7 +26,7 @@ public class ShoppingCartController_forStroeProduct {
 		return shoppingCartService.showStoreProductInformation(storeProduct);
 	}
 
-	@RequestMapping(value = "/GetMemberInformation", method = RequestMethod.POST)
+	@RequestMapping(value = "/GetMemberInformation_NewStoreOrder", method = RequestMethod.POST)
 	@ResponseBody
 	private Member GetMemberInformation(Member member) {
 		System.out.println(
@@ -39,6 +40,14 @@ public class ShoppingCartController_forStroeProduct {
 		System.out.println(
 				"=====================================Add New Store Order=====================================");
 		shoppingCartService.addNewStoreOrder(storeOrder);
+	}
+	
+	@RequestMapping(value = "/AddNewFavorite_StoreSoppingCart", method = RequestMethod.POST)
+	@ResponseBody
+	private StoreFavorite AddNewFavorite(StoreFavorite storeFavorite) {
+		System.out.println(
+				"=====================================Add New Favorite=====================================");
+		return shoppingCartService.addIntoMyFavorite(storeFavorite);
 	}
 
 }

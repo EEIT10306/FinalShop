@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.Member;
+import model.bean.StoreFavorite;
 import model.bean.StoreImages;
 import model.bean.StoreOrder;
 import model.bean.StoreProduct;
 import model.repository.MemberDao;
+import model.repository.StoreFavoriteDao;
 import model.repository.StoreOrderDao;
 import model.repository.StoreProductDao;
 
@@ -31,6 +33,9 @@ public class ShoppingCartService_forStroeProduct {
 
 	@Autowired
 	private StoreOrderDao storeOrderDaoImpl;
+
+	@Autowired
+	private StoreFavoriteDao storeFavoriteDaoImpl;
 
 //	以 product Id 查詢商品資料
 	public StoreProduct showStoreProductInformation(StoreProduct storeProduct) {
@@ -93,11 +98,38 @@ public class ShoppingCartService_forStroeProduct {
 				System.out.println(storeOrder);
 				storeOrderDaoImpl.insert(storeOrder);
 				System.out.println("order insert success.");
-			}else {
+			} else {
 				System.out.println("order insert fail.");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+//	將商品加入到我的最愛清單中
+	public StoreFavorite addIntoMyFavorite(StoreFavorite storeFavorite) {
+		Integer memberID = storeFavorite.getM_idFavorite();
+		Integer productID = storeFavorite.getsP_id();
+		String hql = "WHERE m_idFavorite = " + memberID + " AND sP_id = " + productID;
+		try {
+			Member member = memberDapImpl.selectByPk(memberID);
+			StoreProduct product = storeProductDaoImpl.selectByPk(productID);
+			if (member != null && product != null) {
+				List<StoreFavorite> favorites = storeFavoriteDaoImpl.selectHql(hql);
+				if (favorites.size() == 0) {
+					StoreFavorite storeFavoriteInserted = storeFavoriteDaoImpl.insert(storeFavorite);
+					System.out.println(storeFavoriteInserted);
+					return storeFavoriteInserted;
+				} else {
+					System.out.println("This store product is in my favorite list.");		
+					return favorites.get(0);
+				}
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 
