@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>會員中心｜訊息通知</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
+
+	<!-- main CSS -->
+	<link rel="stylesheet" href="../style/main.css">
+	<link rel="stylesheet" href="../style/userPage.css">
+
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	 crossorigin="anonymous">
+
+</head>
+
+<body>
+	<div id="header"></div>
+	<!-- header -->
+	<div class="container">
+		<div class="row">
+			<div class="user-page-slidebar col-lg-2">
+				<div class="user-page-brief">
+					<a class="user-page-brief_avatar" href="#">
+						<div class="user-avatar_placeholder">
+							<img src="../images/user/account/profile/001.png" alt="">
+						</div>
+					</a>
+					<div class="user-page-brief_right">
+						<div class="user-page-brief__username">jennifer8306</div>
+						<!-- <div>
+							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
+						</div> -->
+						<div class="user-page-brief__coin">
+							<img src="../images/user/others/coin.png" style="display: inline-block;"> <span>100</span>
+						</div>
+					</div>
+				</div>
+				<!-- start of userpage-sidebar-menu -->
+				<div class="userpage-sidebar-menu">
+					<a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Man.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">我的帳戶</div>
+					</a>
+					<div class="userpage-sidebar-menu_item-head" id="storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Shop.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">商店</div>
+					</div>
+					<a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">我的商品</div>
+					</a> <a href="userPage_StoreOrderSellerList.html" class="userpage-sidebar-menu_item storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">商品訂單</div>
+					</a> <a href="userPage_StoreOrderList.html" class="userpage-sidebar-menu_item storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">購買的商品</div>
+					</a>
+					<div class="userpage-sidebar-menu_item-head" id="wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Ring.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">許願</div>
+					</div>
+					<a href="userPage_WishList.html" class="userpage-sidebar-menu_item wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">我的許願</div>
+					</a> <a href="userPage_WishOrderList.html" class="userpage-sidebar-menu_item wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">許願訂單</div>
+					</a> <a href="userPage_WishOrderSellerList.html" class="userpage-sidebar-menu_item wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">實現願望</div>
+					</a>
+					<div class="userpage-sidebar-menu_item-head" id="groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Party.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">團購</div>
+					</div>
+					<a href="userPage_GroupList.html" class="userpage-sidebar-menu_item groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">我的開團</div>
+					</a> <a href="userPage_GroupSellerList.html" class="userpage-sidebar-menu_item groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">開團訂單</div>
+					</a> <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">跟團</div>
+					</a> <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Medal.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">我的成就</div>
+					</a> <a href="userPage_notifications.html" class="userpage-sidebar-menu_item-head">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Love-Letter.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">通知記錄</div>
+					</a>
+					<!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+                            <div class="userpage-sidebar-menu-icon"><img src="../images/user/Analytics.svg"></div>
+                            <div class="userpage-sidebar-menu-text">賣家中心</div>
+                        </a> -->
+				</div>
+				<!-- end of userpage-sidebar-menu -->
+			</div>
+			<div class="purchase-list-page_tabs-container col-lg-10">
+				<div class="row">
+					<div class="purchase-list-page_tab col-sm-4 tab_lock" id="state16">許願通知</div>
+					<div class="purchase-list-page_tab col-sm-4" id="state17">開團通知</div>
+					<div class="purchase-list-page_tab col-sm-4" id="state18">商城通知</div>
+				</div>
+				<div class="row">
+					<div class="container-wrapper">
+						<div class="empty">
+							<img src="../images/user/others/loading.gif">
+							<p>LOADING...</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- end of container -->
+	<!-- start of footer -->
+	<div class="contaminer-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">關注我們</div>
+					<ul class="footer-category-list">
+						<li><img src="../images/social/facebook.png"> <a href="#">Facebook</a></li>
+						<li><img src="../images/social/instagram.png"> <a href="#">Instagram</a></li>
+						<li><img src="../images/social/line.png"> <a href="#">LINE</a>
+						</li>
+						<li><img src="../images/social/linkedin.png"> <a href="#"> Linkedin</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of footer -->
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script>
+		// =========jquery的include
+		$(document).ready(function () {
+			console.log("看看有沒有跑INCLUDE")
+			$.get("header.html", function (data) {
+				$("#header").html(data);
+			});
+		})
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="../js/userPage.js"></script>
+	<!-- Optional JavaScript -->
+	<script>
+		//===================CookieToJson=======================
+		function cookieToJson() {
+			//cookie分割並去掉所有空白字串
+			let cookieArr = document.cookie.replace(/\s/g, "").split(";");
+			let obj = {}
+			cookieArr.forEach((i) => {
+				let arr = i.split("=");
+				obj[arr[0]] = arr[1];
+			});
+			return obj
+		}
+		$(document).ready(function () {
+
+			//定義要用到的網址
+			// var userID = "1";
+			// var dataurl = "/TeamWork/WishOrderList?m_id=" + userID;
+			var storeuserData;
+			var wishuserData;
+			var groupuserData;
+			var state = 16;
+
+			loadData();
+			function loadData() {
+				var json = cookieToJson();
+				console.log(json)
+				var cookieAccount = json['email'];
+				//下載資料
+				//商店訂單
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/ReadStoreOrderState",
+					data: { "account": cookieAccount },
+					error: function (response) {
+						var jsons = JSON.stringify(response);
+						alert("noticeMVC傳回失敗 = " + jsons);
+					},
+					async: false,
+					success: function (response) {
+						console.log("傳入使用者資料")
+						storeuserData = response;
+						console.log("商店")
+						console.log(storeuserData)
+						// 更新畫面中的元素
+						updateData()
+					}
+				})
+				//許願訂單
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/ReadWishOrderState",
+					data: { "account": cookieAccount },
+					error: function (response) {
+						var jsons = JSON.stringify(response);
+						alert("noticeMVC傳回失敗 = " + jsons);
+					},
+					async: false,
+					success: function (response) {
+						console.log("傳入使用者資料")
+						wishuserData = response;
+						console.log("許願")
+						console.log(wishuserData)
+						// 更新畫面中的元素
+						updateData()
+					}
+				})
+				//開團訂單
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/ReadGroupOrderState",
+					data: { "account": cookieAccount },
+					error: function (response) {
+						var jsons = JSON.stringify(response);
+						alert("noticeMVC傳回失敗 = " + jsons);
+					},
+					async: false,
+					success: function (response) {
+						console.log("傳入使用者資料")
+						groupuserData = response;
+						console.log("開團")
+						console.log(groupuserData)
+						// 更新畫面中的元素
+						// updateData()
+					}
+				})
+			}
+			function updateData() {
+				$(".container-wrapper").html("");
+				//商店
+				if(state == 16){
+					for (let k in storeuserData) {
+					//待出貨
+					var itemElstate1 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">待出貨</div>
+                                <div class="noti-card-detail_text">會員 ${storeuserData[k].member.m_name} 已完成付款</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//配送中
+					var itemElstate2 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">已出貨</div>
+                                <div class="noti-card-detail_text">${storeuserData[k].storeProduct.store.s_name} 已將你的訂單透過 ${storeuserData[k].sO_transport} 出貨</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//待收貨
+					var itemElstate3 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已送達</div>
+                                <div class="noti-card-detail_text">會員的訂單已送達，請 ${storeuserData[k].member.m_name} 完成取貨，謝謝</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//完成
+					var itemElstate4 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已完成</div>
+                                <div class="noti-card-detail_text">會員 ${storeuserData[k].member.m_name} 的 ${storeuserData[k].sO_pay} 訂單已完成</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					if (storeuserData[k].sO_stateId==16) {
+						$(".container-wrapper").append(itemElstate1)
+					}
+					if (storeuserData[k].sO_stateId==17) {
+						$(".container-wrapper").append(itemElstate2)
+					}
+					if (storeuserData[k].sO_stateId==18) {
+						$(".container-wrapper").append(itemElstate3)
+					}
+					if (storeuserData[k].sO_stateId==19) {
+						$(".container-wrapper").append(itemElstate4)
+					}
+					};
+				}
+				//許願
+				if(state == 17){
+					for (let k in wishuserData) {
+					//完願中
+					var itemElstate5 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">完願中</div>
+                                <div class="noti-card-detail_text">會員 ${wishuserData[k].wish.member.m_name} 已完成付款</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//配送中
+					var itemElstate6 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">已出貨</div>
+                                <div class="noti-card-detail_text">${wishuserData[k].member.m_name} 已將你的訂單出貨</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//待收貨
+					var itemElstate7 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已送達</div>
+                                <div class="noti-card-detail_text">會員的訂單已送達，請 ${wishuserData[k].wish.member.m_name} 完成取貨，謝謝</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//完成
+					var itemElstate8 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已完成</div>
+                                <div class="noti-card-detail_text">會員 ${wishuserData[k].wish.member.m_name} 的 ${wishuserData[k].wish.product.p_name} 訂單已完成</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					if (wishuserData[k].sO_stateId==38) {
+						$(".container-wrapper").append(itemElstate5)
+					}
+					if (wishuserData[k].sO_stateId==39) {
+						$(".container-wrapper").append(itemElstate6)
+					}
+					if (wishuserData[k].sO_stateId==40) {
+						$(".container-wrapper").append(itemElstate7)
+					}
+					if (wishuserData[k].sO_stateId==41) {
+						$(".container-wrapper").append(itemElstate8)
+					}
+					};
+				}
+				//開團
+				if(state == 18){
+					for (let k in userData) {
+					//待出貨
+					var itemElstate16 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">待出貨</div>
+                                <div class="noti-card-detail_text">會員 ${userData[k].member.m_name} 已完成付款</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//配送中
+					var itemElstate17 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">已出貨</div>
+                                <div class="noti-card-detail_text">${userData[k].storeProduct.store.s_name} 已將你的訂單透過 ${userData[k].sO_transport} 出貨</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//待收貨
+					var itemElstate18 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已送達</div>
+                                <div class="noti-card-detail_text">會員的訂單已送達，請 ${userData[k].member.m_name} 完成取貨，謝謝</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					//完成
+					var itemElstate19 = $(`
+                        <div class="noti-card">
+                            <div class="noti-card-img">
+                                <img src="../images/user/noti/001.svg">
+                            </div>
+                            <div class="noti-card-detail">
+                                <div class="noti-card-detail_title">商品已完成</div>
+                                <div class="noti-card-detail_text">會員 ${userData[k].member.m_name} 的 ${userData[k].sO_pay} 訂單已完成</div>
+                                <div class="noti-card-detail_date">31-10-2018 19:32</div>
+                            </div>
+                            <div class="btn btn-sm order_btn">詳細資訊</div>
+                        </div>
+                        `)
+					if (userData[k].sO_stateId==16) {
+						$(".container-wrapper").append(itemElstate16)
+					}
+					if (userData[k].sO_stateId==17) {
+						$(".container-wrapper").append(itemElstate17)
+					}
+					if (userData[k].sO_stateId==18) {
+						$(".container-wrapper").append(itemElstate18)
+					}
+					if (userData[k].sO_stateId==19) {
+						$(".container-wrapper").append(itemElstate19)
+					}
+					};
+				}
+
+				//如果沒有東西可以顯示就顯示插圖
+				if ($(".container-wrapper").html() == "") {
+					initData();
+				}
+				//卡片click事件
+				$(".hrefUrl").click(function () {
+					var hrefUrl = "test.html"
+					document.location.href = hrefUrl;
+				});
+
+				//給予評價按鈕click事件
+				$(".StartAssessBtn").click(function () {
+					var wO_id = $(this).attr("name");
+					$("input#wO_id").val(wO_id);
+				});
+
+				//評價表單submit事件(AJAX)
+				$("#giveAssess_form").on('submit', function () {
+					console.log("評價表單submit")
+					$.ajax({
+						type: "POST",
+						url: "/TeamWork/giveAssess_WishBuyer",
+						data: $(this).serialize(),
+						success: function () {
+							alert("success!!!");
+							$("#giveAssess").css("display", "none");
+							//關閉互動視窗
+							$("button.close").click();
+							$("#giveAssess_form").find(":text,textarea").each(function () {
+								//清空表單所有欄位
+								$(this).val("");
+							});
+						}
+					});
+					return false; //阻止form submit
+				});
+				//確認收貨按鈕
+				$(".confirmReceive").click(function () {
+					console.log("確認收貨按鈕click")
+					var wO_id = $(this).attr("id").replace("confirmReceive", "")
+					console.log("wO_id=" + wO_id);
+					$.ajax({
+						type: "POST",
+						url: "/TeamWork/confirmReceive_Wish",
+						data: { "wO_id": wO_id },
+						success: function () {
+							alert("success!");
+							loadData();
+						}
+					});
+
+				});
+			}
+			function initData() {
+				var emptyEl = $(`
+                            <div class="empty">
+                                <img src="../images/user/others/empty_order.svg">
+                                <p>這裡什麼都沒有耶</p>
+                                <p>要不要許些願望呢？</p>
+                            </div>
+                        `)
+				$(".container-wrapper").append(emptyEl);
+			}
+			$(".purchase-list-page_tab").click(function (e) {
+				$(".tab_lock").removeClass("tab_lock");
+				$(this).addClass("tab_lock");
+				var changeState = $(this).text();
+				switch (changeState) {
+					case "許願通知":
+						state = 16;
+						break;
+					case "開團通知":
+						state = 17;
+						break;
+					case "商城通知":
+						state = 18;
+						break;
+					default:
+						state = 16;
+				}
+				updateData();
+			});
+		});
+	</script>
+</body>
+
+</html>
