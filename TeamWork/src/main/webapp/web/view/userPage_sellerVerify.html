@@ -20,6 +20,7 @@
 <!-- main CSS -->
 <link rel="stylesheet" href="../style/main.css">
 <link rel="stylesheet" href="../style/userPage.css">
+
 <!-- fontawesome -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -45,9 +46,6 @@
 					</a>
 					<div class="user-page-brief_right">
 						<div class="user-page-brief__username" id="member_username"></div>
-						<!-- <div>
-							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
-						</div> -->
 						<div class="user-page-brief__coin">
 							<img src="../images/user/others/coin.png"
 								style="display: inline-block;"> <span id="member_coin"></span>
@@ -413,7 +411,6 @@
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<!-- 		<script src="https://code.jquery.com/jquery-1.12.1.js"></script> -->
 	<script src="../js/heacerinclude.js"></script>
 	<script src="../js/headersearchinclude.js"></script>
 	<script
@@ -424,7 +421,7 @@
 	<script src="../js/userPage.js"></script>
 	<!-- Optional JavaScript -->
 	<script>
-		var userID;
+		var userID=1;
 		$(document).ready(
 				function() {
 					if (document.cookie.split("mid=").length == 2) {
