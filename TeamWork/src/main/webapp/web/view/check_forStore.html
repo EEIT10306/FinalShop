@@ -259,9 +259,9 @@
 		var m_id; //全域變數--使用者ID
 
 		//測試用 Cookie =======================================================================================
-		//document.cookie = "email=beautifulzhuyu"; //登入Cookie
-		//document.cookie = "sp_id1=3";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
-		//document.cookie = "sp_id10=5";             //購物車Cookie 2號 (商品ID=10，訂購數量=5)
+		document.cookie = "email=beautifulzhuyu"; //登入Cookie
+		document.cookie = "sp_id1=1";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
+		document.cookie = "sp_id10=1";             //購物車Cookie 2號 (商品ID=10，訂購數量=5)
 		//=====================================================================================================	
 
 		$(document).ready(
@@ -334,6 +334,8 @@
 					success: function (data) {
 						//alert(data);
 						var productfile = $.parseJSON(data);
+						alert(productfile.sP_transport)
+						var tran = productfile.sP_transport.split(",");
 						$("#store-shopping-cart-list").append(
 							'<div>' +
 							'<div id="product-selected' + i + '" class="product-selected">' +
@@ -348,7 +350,6 @@
 							'<div class="delivery-selection">' +
 							'<label>商品配送方式</label>' +
 							'<select id="delivery' + i + '" class="selection">' +
-							'<option val=""></option><option val="7-11">7-11</option><option val="全家">全家</option><option val="黑貓到府">黑貓到府</option>' +
 							'</select>' +
 							'</div>' +
 							'<div class="payment-selection">' +
@@ -362,6 +363,19 @@
 							'<div id="product-name' + i + '" class="product-name">' + productfile.sP_name + '</div>' +
 							'<div class="product-price"><span id="product-price' + i + '">' + (shoppingamount[i] * productfile.sP_price) + '</span>元</div>'
 						)
+						if (productfile.sP_transport.length != 0) {
+							for (var j = 0; j < tran.length; j++) {
+								var t = tran[j];
+								var t1 = t.replace("[", "");
+								var t2 = t1.replace('"', "");
+								var t3 = t2.replace('"', "");
+								var trans = t3.replace("]", "");
+								alert(trans);
+								$("#delivery" + i).append('<option val="' + trans + '">' + trans + '</option>')
+							}
+						} if (productfile.sP_transport.length == 0) {
+							$("#delivery" + i).append('<option val="全家">全家</option><option val="7-11">7-11</option><option val="萊爾富">萊爾富</option><option val="中華郵政">中華郵政</option><option val="賣家宅配">賣家宅配</option>');
+						}
 						totalprice += (shoppingamount[i] * productfile.sP_price);
 						//alert(totalprice);
 						$("#total-check-price").text(totalprice);
@@ -501,6 +515,7 @@
 
 		//結帳，傳送交易資料至資料庫
 		$("#order-checked").click(function () {
+			alert("結帳");
 			var size = $(".product-selected").length;
 			//alert(size);
 			for (var i = 0; i < size; i++) {
@@ -519,7 +534,7 @@
 				var payment = $("#payment" + i + "").val();
 				//alert(payment);
 				if (payment == "") {
-					//alert("請填寫付款方式");
+					alert("請填寫付款方式");
 					return "";
 				}
 				$.ajax({
