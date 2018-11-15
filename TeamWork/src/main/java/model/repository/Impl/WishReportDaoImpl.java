@@ -65,6 +65,8 @@ public class WishReportDaoImpl implements WishReportDao {
 				WR.setM_idReport(bean.getM_idReport());
 			if (bean.getwR_content() != null)
 				WR.setwR_content(bean.getwR_content());
+			if (bean.getwR_time() != null)
+				WR.setwR_time(bean.getwR_time());
 			if (bean.getwR_stateId() != null)
 				WR.setwR_stateId(bean.getwR_stateId());
 			return WR;
@@ -79,6 +81,8 @@ public class WishReportDaoImpl implements WishReportDao {
 			WR.setM_idReport(bean.getM_idReport());
 		if (bean.getwR_content() != null)
 			WR.setwR_content(bean.getwR_content());
+		if (bean.getwR_time() != null)
+			WR.setwR_time(bean.getwR_time());
 		if (bean.getwR_stateId() != null)
 			WR.setwR_stateId(bean.getwR_stateId());
 		return WR;

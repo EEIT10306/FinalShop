@@ -79,7 +79,7 @@
 		var member_id;
 		
 		var member_bean;
-		
+		var isAuthor;
 		//取得各種變數
 		$(function(){
 			var path = location.search.substring(1);
@@ -219,7 +219,6 @@
 									</div>`;
 							}
 							$(".carousel-inner").html(productDemoPhototxt);
-							alert($(".carousel-inner").html());
 						}
 					})
 					$(".detail-title").append("<br>"+txt[0]+txt[1]+txt[2]+txt[3]+txt[4]);
@@ -247,15 +246,13 @@
 							}
 							for(i=0;i<data.length;i++){
 								var commentDate = new Date(data[i].storeOrder.sO_time);
-								var hours;
-								var minutes;
 								commentDate = (commentDate.getYear()+1900)+"/"+(commentDate.getMonth()+1)+"/"+commentDate.getDate()+" "+((commentDate.getHours().toString().length==1)?"0"+commentDate.getHours():commentDate.getHours())+":"+((commentDate.getMinutes().toString().length==1)?"0"+commentDate.getMinutes():commentDate.getMinutes());
 								var starsCount = data[i].sA_pointAssess;
 								var starsText = "";
 								
 	                        	for(k=5;k>starsCount;k--)	
 	                        		starsText += '<i class="far fa-star fa-star-score"></i>'
-								for(j=0;j<starsCount;j++)
+								for(m=0;m<starsCount;m++)
 	                        		starsText += '<i class="fas fa-star fa-star-score"></i>'
 	                        var photo = (data[i].storeOrder.member.m_photo != "")?data[i].storeOrder.member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
 								commentText += `
@@ -267,9 +264,7 @@
 	                                     	    <h6 class="comment-name"><a href="http://creaticode.com/blog">`+data[i].storeOrder.member.m_name+`</a></h6>
 	                                        	<span>`+commentDate+`</span>`+starsText+`
 	                                    	</div>
-	                                    	<div class="comment-content">`+
-	                                        	data[i].sA_contextAssess+
-	                                    	`</div>
+	                                    	<div class="comment-content">`+data[i].sA_contextAssess+`</div>
 	                               	 	</div>
 	                            	</div>
 	                        		</li>`  
@@ -283,7 +278,6 @@
 			//問與答
 			$("#qustion-answer-tab").click(showQandA());
 			function showQandA(){
-				alert("Q&A");
 				$.ajax({
 					url: "/TeamWork/StoreMessage?"+hahaha,
 					type: "GET",
@@ -308,10 +302,12 @@
 						                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>
 						                                        <i class="fa fa-reply"></i>
 						                                    </div>
-						                                <div class="comment-content">`+data1[i].sM_context+`</div>
+						                                <div class="comment-content" value="`+data1[i].sM_context+`">`+data1[i].sM_context+`</div>
 					                            	</div>
 					                            </div>`
-				                        
+// 				                        if(){
+				                        	
+// 				                        }
 			                            replyText += `<ul class="comments-list reply-list">
                                         				<input type="hidden" class="tmp" value="`+data1[i].sM_id+`">
 					                            `	
@@ -382,7 +378,6 @@
 											async : false,
 											data:{sP_id:hahaha.substring(6), m_idMessage:member_bean.m_id, sM_context:$(this).parent().prev().find("textarea").val(),sM_time:nowDateFormed, sM_stateId:21},
 											success: function(){
-												alert("success!");
 												showQandA();
 											}
 										})
@@ -393,7 +388,6 @@
 											type:"POST",
 											data:{sM_id:$(this).parents('.comments-list .reply-list').find('.tmp').val(), m_idCallback: member_bean.m_id , sC_context:$(this).parent().prev().find("textarea").val(), sC_time:nowDateFormed, sC_stateId:23 },
 											success: function(){
-												alert("success!");
 												showQandA();
 											}
 										})
@@ -419,7 +413,6 @@
 	//加入最愛	
 	function favs(){
 		var fav_bean; 
-		alert($('#favorite').attr('class'));
 		$.ajax({
     		url:"/TeamWork/FindOneStoreProductFavoriteBean",
     		type:"POST",
@@ -428,13 +421,11 @@
     			fav_bean = data[0];
     			console.log(fav_bean);
     			if($('#favorite').attr('class') == 'fa-heart far'){
-    				alert("加入最愛");
     	        	$.ajax({
     	        		url:"/TeamWork/InsertOneStoreProductFavorite",
     	        		type:"POST",
     	        		data:{m_idFavorite:member_bean.m_id, sP_id:hahaha.substring(6)},
     	        		success:function(data){
-    	        			alert("success");
     	        			$('#favorite').attr('class', 'fa-heart fas');
     	        		}
     	        	})
@@ -444,14 +435,12 @@
     	        		type:"POST",
     	        		data:{sF_id:fav_bean.sF_id,m_idFavorite:fav_bean.m_idFavorite,sP_id:fav_bean.sP_id},
     	        		success:function(data){
-    	        			alert("success2");
     	        			$('#favorite').attr('class', 'fa-heart far');
     	        		}
     	        	})
     			}
     		}
     	})
-		
 	}
 
 	</script>
@@ -556,8 +545,8 @@
 				<span class="star-score">4.8</span> <span class="storage-text">庫存量</span>
 				<span class="storage-count"> 3581</span>
 				<h4 class="detail-price">$350</h4>
-				<h6>規格</h6>
-				<h6>數量</h6>
+<!-- 				<h6>規格</h6> -->
+<!-- 				<h6>數量</h6> -->
 				<h6>
 					<i class="fa-heart far" id="favorite" onclick="favs()"></i>&nbsp;加到最愛
 				</h6>
@@ -587,7 +576,7 @@
 			<div class="tab-pane fade show active" id="detail-information"
 				role="tabpanel" aria-labelledby="detail-information-tab">
 				<!-- 分頁-詳細資訊 -->
-				<h5 class="detail-des-title">商品規格</h5>
+<!-- 				<h5 class="detail-des-title">商品規格</h5> -->
 				<h5 class="detail-des-title">商品詳情</h5>
 			</div>
 			<div class="tab-pane fade" id="buyer-comment" role="tabpanel"

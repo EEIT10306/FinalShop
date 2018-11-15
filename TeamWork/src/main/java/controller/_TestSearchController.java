@@ -95,7 +95,7 @@ public class _TestSearchController {
 //	        modelAndView.addObject("search", search);
 //	        return modelAndView;
 //	    }
-	 @RequestMapping(value = "/search") 
+	 @RequestMapping(path = "/search") 
 	 public ModelAndView toResultViewForNormal(String selectone, String search) {
 		 System.out.println("進入======================== "+selectone);
 		 System.out.println("search= "+search);

@@ -20,12 +20,12 @@
 	<script>
 		var hahaha;  //抓取？後的值
 		var singlePriceContent="";
-		var commentText=""; 	
-		var commentClicked = false;
+		var commentText=""; 
 		var replyClicked = false;
 		var nowDate = new Date();
 		var nowDateFormed = (nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes());
-		var productDemoPhototxt;
+		var productDemoPhototxt="";
+		
 		
 		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
 		var member_mail;
@@ -33,17 +33,7 @@
 		var member_id;
 		
 		var member_bean;
-		
-		$(function(){
-			$('.fa-heart').funcToggle('click', 
-	            function() {
-	                    $(this).removeClass("far");
-	                    $(this).addClass("fas");
-	            },function(){
-	                    $(this).removeClass("fas");
-	                    $(this).addClass("far");
-	        })
-		})
+		var isAuthor = false;
 		
 		var head = 0;
 		var tail = 3;
@@ -120,7 +110,10 @@
 				type: "GET",
 				async:false,
 				success: function(data1){
-					console.log(data1);
+					
+					if(data1.member.m_id==member_bean.m_id){
+						isAuthor = true;
+					}
 					//許願地區等詳細資訊
 					$.ajax({
 						url:"/TeamWork/FindOneWishDistrictType",
@@ -149,42 +142,44 @@
 						type:"POST",
 						data:{"w_id":data1.w_id},
 						success:function(wishProducts){
-							console.log(wishProducts);
+							for(i=0;i<wishProducts.length;i++){
+								$.ajax({
+									url:"/TeamWork/FindWishImagesByWPBean",
+									type:"POST",
+									data:{"wP_id":data1.wishProduct[i].wP_id},
+									success:function(wishPImages){
+										console.log(wishPImages.length);
+			 							if(wishPImages.length != 0){
+			 								for(i=0;i<wishPImages.length;i++){
+			 									var img = (wishPImages[i].wI_context==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':wishPImages[i].wI_context;
+			 									if(i==0){
+			 										productDemoPhototxt += `
+			 											<div class="carousel-item avtive">
+			 												<img class="d-block w-100"
+			 														src="`+img+`">
+			 											</div>`;
+			 									}else{
+			 									productDemoPhototxt += `
+			 									<div class="carousel-item">
+			 										<img class="d-block w-100"
+			 												src="`+img+`">
+			 									</div>`;
+			 									}
+			 								}
+			 							}else{
+			 								productDemoPhototxt += 
+			 									`<div class="carousel-item active">
+			 										<img class="d-block w-100"
+			 												src="/TeamWork/web/images/user/product/defaultProductImage.gif">
+			 									</div>`;
+			 							}
+			 							$(".carousel-inner").html(productDemoPhototxt);
+									}
+								})
+							}
 						}
 					})
-					$.ajax({
-						url:"/TeamWork/FindWishImagesByWPBean",
-						type:"POST",
-						data:{"wP_id":data1.wishProduct[0].wP_id},
-						success:function(wishPImages){
-							console.log(wishPImages);
-							alert(data1.wishProduct);
-// 							if(data.length != 0){
-// 								for(i=0;i<data.length;i++){
-// 									if(i==0){
-// 										productDemoPhototxt += `
-// 											<div class="carousel-item avtive">
-// 												<img class="d-block w-100"
-// 														src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
-// 											</div>`;
-// 									}
-// 									productDemoPhototxt += `
-// 									<div class="carousel-item">
-// 										<img class="d-block w-100"
-// 												src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
-// 									</div>`;
-// 								}
-// 							}else{
-// 								productDemoPhototxt = 
-// 									`<div class="carousel-item active">
-// 										<img class="d-block w-100"
-// 												src="/TeamWork/web/images/user/product/defaultProductImage.gif">
-// 									</div>`;
-// 							}
-// 							$(".carousel-inner").html(productDemoPhototxt);
-// 							alert($(".carousel-inner").html());
-						}
-					})
+					
 					//輪播牆  關聯版(有空再做)
 // 					if(data1.wishProduct.wishImages.length != 0){
 // 						for(i=0;i<data1.wishProduct.wishImages.length;i++){
@@ -208,8 +203,146 @@
 // 										src="/TeamWork/web/images/user/product/defaultProductImage.gif">
 // 							</div>`;
 // 					}
+					//檢舉功能
+					$("#report-submit").click(function(){
+						$.ajax({
+							url:"/TeamWork/SendWishReport",
+							type:"POST",
+							data:{m_idReport:member_bean.m_id, w_id:hahaha.substring(5), wR_content:$("#report-content").val(),wR_time:nowDateFormed,wR_stateId:46},
+							success: function(response){
+								alert("謝謝您的舉報，我們會盡快處理");
+								window.location.href = "/TeamWork/web/view/wish-detail.html?"+hahaha
+							}
+						})
+					})
+					
+					//我要出價顯示
+					$("#buyer-comment-tab").click(showBid())	
+					
+					
+					//問與答
+					$("#qustion-answer-tab").click(showQandA());
+					function showQandA(){
+						$.ajax({
+							url: "/TeamWork/WishMessage?"+hahaha,
+							type: "GET",
+							success: function(WishMessages){
+								var replyText = "";
+								$.ajax({
+									url: "/TeamWork/WishCallback?"+hahaha,
+									type: "GET",
+									success: function(WishCallbacks){
+											for(i=0;i<WishMessages.length;i++){
+												var replyDate = new Date(WishMessages[i].wM_time);
+												var photo = (WishMessages[i].member.m_photo != "")?WishMessages[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
+												replyText +=`
+												<ul>
+													<li>
+														<div class="comment-main-level">
+							                                <div class="comment-avatar"><img src="`+photo+`"alt=""></div>
+							                                <!-- Contenedor del Comentario -->
+								                                <div class="comment-box">
+								                                    <div class="comment-head">
+								                                        <h6 class="comment-name"><a href="`+WishMessages[i].member.m_photo+`">`+WishMessages[i].member.m_name+`</a></h6> 
+								                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>
+								                                        <i class="fa fa-reply"></i>
+								                                    </div>
+								                                <div class="comment-content">`+WishMessages[i].wM_context+`</div>
+							                            	</div>
+							                            </div>`
+						                        
+					                            replyText += `<ul class="comments-list reply-list">
+		                                        				<input type="hidden" class="tmp" value="`+WishMessages[i].wM_id+`">
+							                            `	
+					                        	for(j=0;j<WishCallbacks.length;j++){
+					                        		var callBackDate = new Date(WishCallbacks[j].wC_time);
+					                        		var photo2 = (WishCallbacks[j].member.m_photo != "")?WishCallbacks[j].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
+					                        		 if(WishMessages[i].wM_id == WishCallbacks[j].wM_id){
+					                        			 replyText +=`
+							                                    <li>
+							                                        <div class="comment-avatar"><img src="`+photo2+`"
+							                                                alt=""></div>
+							                                        <div class="comment-box">
+							                                            <div class="comment-head">
+							                                                <h6 class="comment-name"><a href="http://creaticode.com/blog">`+WishCallbacks[j].member.m_name+`</a></h6>
+							                                                <span>`+(callBackDate.getYear()+1900)+"/"+(callBackDate.getMonth()+1)+"/"+callBackDate.getDate()+" "+((callBackDate.getHours().toString().length==1)?"0"+callBackDate.getHours():callBackDate.getHours())+":"+((callBackDate.getMinutes().toString().length==1)?"0"+callBackDate.getMinutes():callBackDate.getMinutes())+`</span>
+							                                            </div>
+							                                            <div class="comment-content">`+WishCallbacks[j].wC_context+`</div>
+							                                        </div>
+							                                    </li>`
+									                    }     
+					                        	}
+							                    var photo3 = (member_bean.m_photo != '')?member_bean.m_photo:'/TeamWork/web/images/user/account/profile/001.png'
+					                            if(member_bean.m_id!=undefined){			                            	
+								                    replyText += `
+						                            	<li>
+				                                        	<div class="comment-avatar"><img src="`+photo3+`"
+			                                            			alt=""></div>
+			                                    			<div class="comment-box">
+			                                        			<div class="comment-head">
+			                                            			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+			                                            			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
+			                                        			</div>
+			                                        			<div class="comment-content">
+			                                        				<textarea id="reply-content" cols="50" rows="5" style="resize: none"></textarea>
+			                                        			</div>
+			                                        			<div><button type="button" value="submit" class="callBack">送出</button>    <button type="button" value="reset">取消</button></div>
+			                                    			</div>
+			                                			</li>
+			                                		</ul>`; 
+					                            }
+											}
+											var photo4 = (member_bean.m_photo != '')?member_bean.m_photo:'/TeamWork/web/images/user/account/profile/001.png';	
+																											     // web/images/user/account/profile/001.png
+											
+											replyText += "</ul>";
+											if(member_bean.m_id!=undefined){
+												replyText += `
+					                            	<li>
+			                                        	<div class="comment-avatar"><img src="`+photo4+`"
+			                                        			alt=""></div>
+			                                			<div class="comment-box">
+			                                    			<div class="comment-head">
+			                                        			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+			                                        			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
+			                                    			</div>
+			                                    			<div class="comment-content">
+			                                    				<textarea id="reply-content" cols="50" rows="5" style="resize: none"></textarea>
+			                                    			</div>
+			                                    			<div><button type="button" value="submit" class="reply">送出</button>    <button type="button" value="reset">取消</button></div>
+			                                			</div>
+			                            			</li>`; 
+											}
+											$("#reply-list").html(replyText);
+											$(".reply").click(function(){//一般留言
+												$.ajax({
+													url:"/TeamWork/InsertOneWishMessage",
+													type:"POST",
+													async : false,
+													data:{w_id:hahaha.substring(5), m_idMessage:member_bean.m_id, wM_context:$(this).parent().prev().find("textarea").val(),wM_time:nowDateFormed, wM_stateId:42},
+													success: function(){
+														showQandA();
+													}
+												})
+											})
+											$(".callBack").click(function(){//回覆留言
+												$.ajax({
+													url:"/TeamWork/InsertOneWishCallback",
+													type:"POST",
+													data:{wM_id:$(this).parents('.comments-list .reply-list').find('.tmp').val(), m_idCallback: member_bean.m_id , wC_context:$(this).parent().prev().find("textarea").val(), wC_time:nowDateFormed, wC_stateId:44 },
+													success: function(){
+														showQandA();
+													}
+												})
+											})
+									}
+								})
+							}
+						})
+					}
+					
+					
 					$(".carousel-inner").html(productDemoPhototxt);
-					alert($(".carousel-inner").html());
 					$("#wish_individualAcceptablePrice").after(singlePriceContent);
 					
 					$("#wish_content").after("<p>"+data1.w_context+"</p>");
@@ -223,7 +356,151 @@
 			})
 		})	
 
-		
+			//加入最愛	
+	function favs(){
+		var fav_bean; 
+		$.ajax({
+    		url:"/TeamWork/FindOneWishFavoriteBean",
+    		type:"POST",
+    		data:{m_idFavorite:member_bean.m_id, w_id:hahaha.substring(5)},
+    		success:function(data){
+    			fav_bean = data[0];
+    			console.log(fav_bean);
+    			if($('#favorite').attr('class') == 'fa-heart far'){
+    	        	$.ajax({
+    	        		url:"/TeamWork/InsertOneWishFavorite",
+    	        		type:"POST",
+    	        		data:{m_idFavorite:member_bean.m_id, w_id:hahaha.substring(5)},
+    	        		success:function(data){
+    	        			$('#favorite').attr('class', 'fa-heart fas');
+    	        		}
+    	        	})
+    			}else{
+    				$.ajax({
+    	        		url:"/TeamWork/DeleteOneWishFavorite",
+    	        		type:"POST",
+    	        		data:{wF_id:fav_bean.wF_id, m_idFavorite:fav_bean.m_idFavorite, w_id:fav_bean.w_id},
+    	        		success:function(data){
+    	        			$('#favorite').attr('class', 'fa-heart far');
+    	        		}
+    	        	})
+    			}
+    		}
+    	})
+	}
+	function bidPost(){
+		$.ajax({
+   			url:"/TeamWork/InsertOneBid",
+   			type:"POST",
+   			data:{w_id:hahaha.substring(5), m_idBid:member_bean.m_id, wB_bid:$("#reply-price").val(), wB_context:$("#reply-content").val(), wB_time:nowDateFormed, wB_stateId:34},
+   			success:function(data){
+   				console.log(data);
+   				showBid();
+   			}
+   		})
+	}
+	function showBid(){
+		$.ajax({
+			url: "/TeamWork/FindAllBid?"+hahaha,
+			type: "GET",
+			success: function(bids){
+				console.log(bids);
+				var bidText="";
+				var starsAssess="";
+				var photo = (member_bean.m_photo != "")?member_bean.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
+				
+				for(i=0;i<bids.length;i++){
+					
+					
+					var bidDate = new Date(bids[i].wB_time);
+					bidDate = (bidDate.getYear()+1900)+"/"+(bidDate.getMonth()+1)+"/"+bidDate.getDate()+" "+((bidDate.getHours().toString().length==1)?"0"+bidDate.getHours():bidDate.getHours())+":"+((bidDate.getMinutes().toString().length==1)?"0"+bidDate.getMinutes():bidDate.getMinutes());
+					var starsCount = bids[i].member.m_wishAssessSum;
+					var starsText = "";
+					
+                	for(k=5;k>starsCount;k--)	
+                		starsText += '<i class="far fa-star fa-star-score"></i>'
+					for(m=0;m<starsCount;m++)
+                		starsText += '<i class="fas fa-star fa-star-score"></i>'
+               		var photo = (bids[i].member.m_photo != "")?bids[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
+//                 	if(member_bean.m_id != bids[i].wish.member.m_id){
+						
+                		bidText += `
+							<li>
+                        	<div class="comment-main-level">
+                            	<div class="comment-avatar">
+                            		<img src="`+photo+`"alt="">
+                            		<input type="button" class="btn btn-sm btn-outline-info selectMe" id="bids`+i+`" value="選我" style="visibility:hidden">
+                            	</div>
+                            	<div class="comment-box">
+                                	<div class="comment-head">
+                                 	    <h6 class="comment-name" name="`+bids[i].member.m_id+`"><a href="http://creaticode.com/blog">`+bids[i].member.m_name+`</a></h6>
+                                    	<span>`+bidDate+`</span>`+starsText+`
+                                	</div>
+                                	<div class="comment-content">`+
+                                		bids[i].wB_context+
+                                	`</div>
+                                	<div class="comment-content orderPrice" value=`+bids[i].wB_bid+`>價碼: `+
+                                		bids[i].wB_bid+
+                                	`</div>
+                           	 	</div>
+                        	</div>
+                    		</li>`  
+//                 	}
+				
+				}
+				if(member_bean.m_id != bids[0].wish.member.m_id){
+					var examDup = false;
+					for(n=0;n<bids.length;n++){
+						if(member_bean.m_id == bids[n].member.m_id){
+							examDup = true;	
+						}
+					}
+					if(examDup == false){
+						bidText += `
+							<li>
+	                    	<div class="comment-main-level">
+	                        	<div class="comment-avatar"><img src="`+photo+`"alt=""></div>
+	                        	<div class="comment-box">
+	                            	<div class="comment-head">
+	                             	    <h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+	                                	<span>`+bidDate+`</span>`+starsText+`
+	                            	</div>
+	                            	<div class="comment-content">
+	                            		<textarea id="reply-content" cols="50" rows="5" style="resize: none"></textarea>
+	                            	</div>
+	                            	<div class="comment-content">
+	                            		出價 : 
+	                            		<textarea id="reply-price" cols="50" rows="1" style="resize: none"></textarea>
+	                            	</div>
+	                            	<div><button type="button" id="reply" onclick=bidPost()>我要出價</button>    <button type="button" value="reset">取消</button></div>
+	                       	 	</div>
+	                    	</div>
+	                		</li>` 
+					}
+				}
+				$("#comments-list").html(bidText);
+				if(isAuthor && bids[0].wish.w_stateId==28){
+					$(idSelect).css("visibility","visible");
+					for(o=0;o<bids.length;o++){
+						var idSelect = "#bids"+o;
+						$(idSelect).css("visibility","visible");
+						$("#bids"+o).click(function(){
+							console.log($(this).parent().next().first().find(".comment-name").attr("name"));
+							$.ajax({
+								url:"/TeamWork/InsertOneWishOrder",
+								type:"POST",
+								data:{w_id:hahaha.substring(5), m_idOrder:$(this).parent().next().first().find(".comment-name").attr("name"), wO_sumPrice:$(this).parent().next().find(".orderPrice").attr("value"), wO_time:nowDateFormed, wO_stateId:38},
+								success:function(wishOrder){
+									console.log(wishOrder);
+									alert("success!");
+								}
+							})
+						})
+					}
+				}
+			}
+		})	
+	}	
 	</script>
 
 </head>
@@ -319,8 +596,9 @@
                 <h4 class="detail-price"></h4>
 <!--                 <h6>可接受底價</h6> -->
 <!--                 <h6>可接受頂價</h6> -->
-                <h6><i class="fa-heart far"></i>&nbsp;加到最愛</h6>
-                <h6>檢舉</h6>
+                <h6><i class="fa-heart far" id="favorite" onclick="favs()"></i>&nbsp;加到最愛</h6>
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#exampleModalCenter">檢舉</button>
 <!--                 <button type="button" class="btn btn-outline-info" style="width:48%">加入購物車</button> -->
 <!--                 <button type="button" class="btn btn-outline-info" style="width:48%">直接購買</button> -->
 
@@ -408,7 +686,7 @@
             </div>
             <div class="tab-pane fade" id="qustion-answer" role="tabpanel" aria-labelledby="qustion-answer-tab">
                 <div class="comments-container">
-                    <ul id="comments-list" class="comments-list">
+                    <ul id="reply-list" class="comments-list">
                         <li>
                             <div class="comment-main-level">
                                 <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
@@ -425,7 +703,7 @@
                                 </div>
                             </div>
 
-                            <ul class="comments-list reply-list">
+                            <ul class="comments-list reply-list" >
                                 <li>
                                     <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
                                             alt=""></div>
@@ -478,85 +756,85 @@
                 </div>
             </div>
         </div>
-        <div class="hot-sale" style="box-shadow:2px 2px 10px gray; padding:1rem; margin-top:2rem; display:flex; align-items:center;"><!--相關商品start-->
-        	<input type="button" name="last" id="last" value="<">
+<!--         <div class="hot-sale" style="box-shadow:2px 2px 10px gray; padding:1rem; margin-top:2rem; display:flex; align-items:center;">相關商品start -->
+<!--         	<input type="button" name="last" id="last" value="<"> -->
         	
-        	<ul style="display:flex; justify-content:space-around; margin-bottom:0; width:98%;">
-        		<li class="hotSale-box" id="1">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			1
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="2">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			2
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="3">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			3
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="4">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			4
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="5" class="hotSale-box" id="5" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			5
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="6" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			6
-        			</div>
-        		</li>
-        		<li  class="hotSale-box" id="7" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			7
-        			</div>
-        		</li>
-        		<li  class="hotSale-box" id="8" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			8
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="9" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			9
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="10" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			10
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="11" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			11
-        			</div>
-        		</li>
-        		<li class="hotSale-box" id="12" style="display:none">
-        			<div>
-        			<img src="../images/product/001.jpg" height="150px" width="150px">
-        			12
-        			</div>
-        		</li>
-        	</ul>
-        	<input type="button" name="next" id="next" value=">" >
-        </div><!--相關商品end-->
+<!--         	<ul style="display:flex; justify-content:space-around; margin-bottom:0; width:98%;"> -->
+<!--         		<li class="hotSale-box" id="1"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			1 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="2"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			2 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="3"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			3 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="4"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			4 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="5" class="hotSale-box" id="5" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			5 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="6" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			6 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li  class="hotSale-box" id="7" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			7 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li  class="hotSale-box" id="8" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			8 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="9" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			9 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="10" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			10 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="11" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			11 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         		<li class="hotSale-box" id="12" style="display:none"> -->
+<!--         			<div> -->
+<!--         			<img src="../images/product/001.jpg" height="150px" width="150px"> -->
+<!--         			12 -->
+<!--         			</div> -->
+<!--         		</li> -->
+<!--         	</ul> -->
+<!--         	<input type="button" name="next" id="next" value=">" > -->
+<!--         </div>相關商品end -->
     </div> <!-- end of container -->
     <div class="contaminer-fluid">
         <!-- start of footer -->
@@ -684,7 +962,31 @@
             </form>
         </div> <!-- end chat -->
     </div> <!-- end live-chat -->
-
+    <!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">請輸入您的檢舉內容:</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<textarea id="report-content" cols="50" rows="5"
+						style="resize: none"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="report-submit">送出</button>
+				</div>
+			</div>
+		</div>
+	</div>
     <!-- Optional JavaScript -->
     <script src="../js/main.js"></script>
     <!-- Popper.js, then Bootstrap JS -->
