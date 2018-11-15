@@ -79,7 +79,7 @@
 		var member_id;
 		
 		var member_bean;
-		
+		var isAuthor;
 		//取得各種變數
 		$(function(){
 			var path = location.search.substring(1);
@@ -264,9 +264,7 @@
 	                                     	    <h6 class="comment-name"><a href="http://creaticode.com/blog">`+data[i].storeOrder.member.m_name+`</a></h6>
 	                                        	<span>`+commentDate+`</span>`+starsText+`
 	                                    	</div>
-	                                    	<div class="comment-content">`+
-	                                        	data[i].sA_contextAssess+
-	                                    	`</div>
+	                                    	<div class="comment-content">`+data[i].sA_contextAssess+`</div>
 	                               	 	</div>
 	                            	</div>
 	                        		</li>`  
@@ -304,10 +302,12 @@
 						                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>
 						                                        <i class="fa fa-reply"></i>
 						                                    </div>
-						                                <div class="comment-content">`+data1[i].sM_context+`</div>
+						                                <div class="comment-content" value="`+data1[i].sM_context+`">`+data1[i].sM_context+`</div>
 					                            	</div>
 					                            </div>`
-				                        
+// 				                        if(){
+				                        	
+// 				                        }
 			                            replyText += `<ul class="comments-list reply-list">
                                         				<input type="hidden" class="tmp" value="`+data1[i].sM_id+`">
 					                            `	
@@ -545,8 +545,8 @@
 				<span class="star-score">4.8</span> <span class="storage-text">庫存量</span>
 				<span class="storage-count"> 3581</span>
 				<h4 class="detail-price">$350</h4>
-				<h6>規格</h6>
-				<h6>數量</h6>
+<!-- 				<h6>規格</h6> -->
+<!-- 				<h6>數量</h6> -->
 				<h6>
 					<i class="fa-heart far" id="favorite" onclick="favs()"></i>&nbsp;加到最愛
 				</h6>
@@ -576,7 +576,7 @@
 			<div class="tab-pane fade show active" id="detail-information"
 				role="tabpanel" aria-labelledby="detail-information-tab">
 				<!-- 分頁-詳細資訊 -->
-				<h5 class="detail-des-title">商品規格</h5>
+<!-- 				<h5 class="detail-des-title">商品規格</h5> -->
 				<h5 class="detail-des-title">商品詳情</h5>
 			</div>
 			<div class="tab-pane fade" id="buyer-comment" role="tabpanel"

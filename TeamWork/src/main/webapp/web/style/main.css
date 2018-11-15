@@ -222,7 +222,7 @@ ul {
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	overflow: hidden;
+	text-align: center;
 }
 
 .comments-list .comment-avatar img {
@@ -580,5 +580,8 @@ option.dropdown-item {
 .btn .btn-outline-warning .filter-button {
 	margin-top: 20px;
 	
+}
+.selectMe{
+	margin-top: 10px;
 }
 

@@ -17,6 +17,7 @@ import model.bean.WishCallback;
 import model.bean.WishFavorite;
 import model.bean.WishImages;
 import model.bean.WishMessage;
+import model.bean.WishOrder;
 import model.bean.WishProduct;
 import model.bean.WishReport;
 import model.service.DistrictTypeService;
@@ -25,6 +26,7 @@ import model.service.WishBidService;
 import model.service.WishCallbackService;
 import model.service.WishFavoriteService;
 import model.service.WishMessageService;
+import model.service.WishOrderService;
 import model.service.WishProductImagesSerivce;
 import model.service.WishProductService;
 import model.service.WishReportService;
@@ -52,6 +54,8 @@ public class WishProductController {
 	private WishMessageService wishMessageService;
 	@Autowired
 	private WishCallbackService wishCallbackService;
+	@Autowired
+	private WishOrderService wishOrderService; 
 	
 	
 	@RequestMapping(path = "/FindMemberByEmail", method = RequestMethod.POST, produces = {"application/json"})
@@ -134,5 +138,10 @@ public class WishProductController {
 	@ResponseBody
 	public WishBid InsertOneWishBid(WishBid bean) throws SQLException {
 		return wishBidService.insertOneWishBid(bean);
+	}
+	@RequestMapping(path = "/InsertOneWishOrder", method = RequestMethod.POST)
+	@ResponseBody
+	public WishOrder InsertOneWishOrder(WishOrder bean) throws SQLException {
+		return wishOrderService.InsertOneWishOrder(bean);
 	}
 }
