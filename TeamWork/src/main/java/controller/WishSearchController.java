@@ -81,7 +81,7 @@ public class WishSearchController {
 	
 
 	@ResponseBody
-	@RequestMapping(path = "/WishBidList", method = RequestMethod.GET, produces = { "application/json" })
+	@RequestMapping(path = "/WishBidLists", method = RequestMethod.GET, produces = { "application/json" })
 	public List<WishBid> WishBidList(Wish wish) throws SQLException {
 		System.out.println("WishBidList");
 		return wishSearch.getWishBidListByW_id(wish);

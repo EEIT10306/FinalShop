@@ -807,7 +807,7 @@
 			}
 			function pricew_id(w_id){
 						$.ajax({
-						url: "/TeamWork/WishBidList?w_id=" +w_id,
+						url: "/TeamWork/WishBidLists?w_id=" +w_id,
 						error: function () {
 							var txt = "<p>我們找不到 	" + search_value + "	 商品</p>";
 							$("#odbyvalue").html(txt);		
@@ -1072,7 +1072,7 @@
 			}
 			function pricew_id(w_id){
 						$.ajax({
-						url: "/TeamWork/WishBidList?w_id=" +w_id,
+						url: "/TeamWork/WishBidLists?w_id=" +w_id,
 						error: function () {
 							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
 							$("#odbyvalue").html(txt);
