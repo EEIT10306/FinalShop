@@ -230,7 +230,7 @@
 							</div>
 						</fieldset>
 						<fieldset class="section" id="form-step-2">
-							<input type="hidden" name="m_id" value="5"> <input
+							<input id="iamqueen" type="hidden" name="m_id" value="5"> <input
 								type="hidden" name="s_stateId" value="1">
 							<!-- <div class="form-group row">
 									<label for="idNumType" class="col-sm-5 col-form-label">身份 / 證件類型</label>
@@ -439,6 +439,7 @@
 				function() {
 					if (document.cookie.split("mid=").length == 2) {
 						userID = document.cookie.split("mid=")[1].split(";")[0]
+						$("#iamqueen").val(userID)
 					} else {
 						window.location.href = "form_login.html";
 					}
@@ -450,19 +451,7 @@
 
 					loadData();
 					function loadData() {
-						//下載Wish資料
-						$.ajax({
-							url : dataurl,
-							error : function() {
-								console.log("載入Wish資料失敗")
-							},
-							success : function(res) {
-								console.log("載入Wish資料")
-								userData = res
-								// 							updateData()
-								loadMemberData(userID);
-							}
-						})
+						loadMemberData(userID);
 					}
 
 					var currentStep = 1;
