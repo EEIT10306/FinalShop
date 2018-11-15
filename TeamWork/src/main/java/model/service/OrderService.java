@@ -10,29 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
-
-import model.bean.StoreAssess;
-
-import model.bean.Groupon;
 import model.bean.Member;
-import model.bean.Seller;
-import model.bean.Store;
-
+import model.bean.StoreAssess;
 import model.bean.StoreOrder;
-import model.bean.StoreProduct;
 import model.bean.Wish;
 import model.bean.WishAssess;
 import model.bean.WishBid;
 import model.bean.WishOrder;
 import model.repository.GroupAssessDao;
 import model.repository.GroupOrderDao;
-
-import model.repository.StoreAssessDao;
-
 import model.repository.GrouponDao;
+import model.repository.MemberDao;
 import model.repository.SellerDao;
+import model.repository.StoreAssessDao;
 import model.repository.StoreDao;
-
 import model.repository.StoreOrderDao;
 import model.repository.StoreProductDao;
 import model.repository.WishAssessDao;
@@ -43,45 +34,47 @@ import model.repository.WishOrderDao;
 @Service
 @Transactional
 public class OrderService {
-
+	
+	@Autowired
+	MemberDao memberDao;
 	@Autowired
 	StoreOrderDao storeOrderDao;
-
 	@Autowired
 	WishOrderDao wishOrderDao;
-
 	@Autowired
 	WishBidDao wishBidDao;
-
 	@Autowired
 	WishDao wishDao;
-
 	@Autowired
 	GroupOrderDao groupOrderDao;
-
 	@Autowired
 	GroupAssessDao groupAssessDao;
-
 	@Autowired
 	StoreAssessDao storeAssessDao;
-
+	@Autowired
 	WishAssessDao wishAssessDao;
-
 	@Autowired
 	GrouponDao grouponDao;
-
 	@Autowired
 	StoreProductDao storeProductDao;
-
 	@Autowired
 	SellerDao sellerDao;
-
 	@Autowired
 	StoreDao storeDao;
 
 	public OrderService() {
 	}
-
+	
+	// 更新使用者個人資料
+	public Member editAccountData(Member member) throws SQLException {
+		Integer m_id = member.getM_id();
+		if (m_id == null) {
+			return null;
+		} else {
+			Member temp = memberDao.selectByPk(m_id);
+			return memberDao.update(temp, member);
+		}
+	}
 	// (商店)利用買家ID取得購買訂單資料
 	public List<StoreOrder> getStoreOrder(StoreOrder storeOrder) throws SQLException {
 		Integer MemberId = storeOrder.getM_idOrder();

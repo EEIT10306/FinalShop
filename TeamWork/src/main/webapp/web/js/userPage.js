@@ -33,3 +33,39 @@ $(".AssessStar").click(function () {
         $("#forStar" + i).removeClass("far").addClass("fas");
     }
 });
+
+
+
+
+
+
+
+//會員中心的slidebar使用者的預設照片處理
+function defaultUserPic(imgPath){
+    if(imgPath==""){
+        imgPath = "../images/user/account/profile/001.png"
+    }
+    return imgPath
+}
+
+//下載Member資料
+function loadMemberData(userID) {
+    $.ajax({
+        url: "/TeamWork/Member?m_id=" + userID,
+        error: function () {
+            console.log("載入Member資料失敗")
+        },
+        success: function (res) {
+            console.log("載入Member資料")
+            memberData = res
+            updateMemberData(memberData)
+        }
+    })
+}
+
+//更新會員中心slidebar資料
+function updateMemberData(memberData) {
+    $("#member_username").text(memberData.m_name);
+    $("#member_coin").text(memberData.m_coin);
+    $("#member_pic").attr("src", defaultUserPic(memberData.m_photo));
+}

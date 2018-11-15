@@ -226,7 +226,7 @@ function haveNewMessage() {
                                                 }
                                             };
                                             if (nowEachBox != null) {
-                                                alert(1)
+                                                // alert(1)
                                                 setUnReadMessage(nowEachBox, now.length);
                                             }
                                         }
@@ -236,7 +236,7 @@ function haveNewMessage() {
                                 };
                                 //此人之前未有未讀
                                 if (!unRead) {
-                                    alert(2)
+                                    // alert(2)
                                     setUnReadMessage(now, now.length);
                                 }
                             };
@@ -244,7 +244,7 @@ function haveNewMessage() {
                         //原本全都已讀
                     } else {
                         for (let now of response) {
-                            alert(3)
+                            // alert(3)
                             setUnReadMessage(now, now.length);
                         };
                     }

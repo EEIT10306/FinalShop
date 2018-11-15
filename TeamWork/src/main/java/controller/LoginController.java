@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import model.bean.Member;
 import model.service.MemberService;
 
@@ -43,10 +45,11 @@ public class LoginController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value = "/LoginServlet" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
+	@RequestMapping(value = "/LoginServlet" , method = RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	@ResponseBody
 	private String LogingServlet(Member member) {
 		System.out.println("LoginServlet");
+		Gson gson = new Gson();
 		//接收資料
 		//驗證資料
 		// 如果 member.getM_account() 欄位為空白，回傳字串accountNull到form_login.html
@@ -82,7 +85,8 @@ public class LoginController {
 		if(bean.size()==0) {
 			return "beanNull";
 		} else {
-			return member.getM_account();
+			String json = gson.toJson(bean);
+			return json;
 		}
 	
 	}
@@ -165,13 +169,14 @@ public class LoginController {
 	
 	}
 	
-	@RequestMapping(value = "/checkAccount" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
+	@RequestMapping(value = "/checkAccount" , method = RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	@ResponseBody
 	private String checkAccount(Member member) {
 		System.out.println("LoginCheckAccount");
 		//接收資料
 		//驗證資料
 		//呼叫model
+		Gson gson = new Gson();
 		System.out.println(member);
 		String hql = "WHERE m_account = '"+member.getM_account()+"'";
 		
@@ -186,20 +191,22 @@ public class LoginController {
 		if(bean.size()==0||bean.isEmpty()||bean==null) {
 			return "accountNoRepeat";
 		}
-		for(Member mbean:bean) {
-			System.out.println(mbean);
-			if("facebook".equals(mbean.getM_password()) || mbean.getM_password()=="facebook"){
-				System.out.println("FB帳號");
-				return mbean.getM_account().toString()+"facebook";
-			} else if("google".equals(mbean.getM_password()) || mbean.getM_password()=="google") {
-				System.out.println("google帳號");
-				return mbean.getM_account().toString()+"google";
-			} else {
-				System.out.println("一般帳號");
-				return mbean.getM_account().toString();
-			}
-			
-		}
-		return "account";
+		String json = gson.toJson(bean);
+		return json;
+//		for(Member mbean:bean) {
+//			System.out.println(mbean);
+//			if("facebook".equals(mbean.getM_password()) || mbean.getM_password()=="facebook"){
+//				System.out.println("FB帳號");
+//				return mbean.getM_account().toString()+"facebook";
+//			} else if("google".equals(mbean.getM_password()) || mbean.getM_password()=="google") {
+//				System.out.println("google帳號");
+//				return mbean.getM_account().toString()+"google";
+//			} else {
+//				System.out.println("一般帳號");
+//				return mbean.getM_account().toString();
+//			}
+//			
+//		}
+//		return "account";
 	}
 }

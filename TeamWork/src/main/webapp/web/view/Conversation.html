@@ -13,7 +13,7 @@
 	<!-- main CSS -->
 	<link rel="stylesheet" href="../style/main.css">
 	<!-- jQuery first -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
@@ -30,11 +30,10 @@
 		<div class="chat">
 			<div class="chat-history" id="chat-history"></div>
 			<!-- end chat-history -->
-			<p class="chat-feedback">Your partner is typing…</p>
+			<!-- 			<p class="chat-feedback">Your partner is typing…</p> -->
 			<form action="#" method="post">
 				<fieldset>
 					<input type="text" id="typeMessage" placeholder="Type your message…" autofocus>
-					<button type="button" id="sendMessage">send</button>
 				</fieldset>
 			</form>
 		</div>
@@ -45,15 +44,70 @@
 	<!-- Optional JavaScript -->
 	<script src="../js/main.js"></script>
 	<script>
-		document.getElementById("typeMessage").addEventListener("keydown",
-			function () {
-				if (event.keyCode == 13) {
-					document.getElementById("sendMessage").click();
-				}
-			})
+	
+		var m_account;
+		var m_id;
+		var photo;
+		
+		//測試用 Cookie =======================================================================================
+// 		document.cookie = "email=beautifulzhuyu;"; //登入Cookie
+		//=====================================================================================================
+		
+		//取得Cookie資料
+		$(document).ready(getCookies());
+		$(document).ready(FindMember());
 
-		$("#sendMessage").click(function () {
-			var m_id = 5;
+		function getCookies() {
+			//alert("get cookies");
+			var cookies = {};
+			var all = document.cookie;
+			if (all == "") {
+				//alert("cookies");
+				return "cookies";
+			}
+			var list = all.split(";");
+			for (var i = 0; i < list.length; i++) {
+				var cookie = list[i];
+				var p = cookie.indexOf("=");
+				var name = cookie.substring(0, p);
+				var value = cookie.substring(p + 1);
+				//alert(name + "=" + value);
+				if (name == "email") {
+					//alert(name);
+					m_account = value;
+					alert(m_account);
+				}
+			}
+		}
+
+		function FindMember() {
+			//alert("FindMemberId " + m_account);
+			if (m_account == null) {
+				$("#chat-history").append('<div class="chat-message clearfix">請登入會員以使用客服小幫手</div><hr>')
+				$("#typeMessage").hide();
+			} else {
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/FindServiceConversationMemberId",
+					data: {
+						"m_account": m_account
+					},
+					success: function (data) {
+						m_id = data;
+						alert(m_id);
+					}
+				})
+
+			}
+		}
+
+		$("#typeMessage").keydown(function (event) {
+			if (event.which == 13) {
+				sendMessage();
+			}
+		})
+
+		function sendMessage() {
 			var message = $("#typeMessage").val();
 			$.ajax({
 				type: "POST",
@@ -63,20 +117,20 @@
 					"c_context": message
 				},
 				success: function (data) {
-// 					alert(data);
+					//alert(data);
 				}
 			})
 			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
-		})
+		}
 
 		$(document).ready(function () {
 			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
 		})
 
-		$("#sendMessage").hide();
-
 		setInterval(function () {
-			var m_id = 5;
+			if(m_id==""){
+				return "m_id=null";
+			}
 			$.ajax({
 				type: "POST",
 				url: "/TeamWork/UnreadMessages",
@@ -92,16 +146,21 @@
 		}, 1000)
 
 		setInterval(function () {
-			var m_id = 5;
+			if(m_id==""){
+				return "m_id=null";
+			}
 			$.ajax({
 				type: "POST",
-				url: "/TeamWork/Communications",
+				url: "/TeamWork/CommunicationsWithCustomerService",
 				data: {
 					"m_id": m_id
 				},
 				dataType: "text",
 				success: function (data) {
 					//alert(data);
+					if(data==null){
+						return "data=null";;
+					}
 					var c_info = $.parseJSON(data);
 					//alert(c_info);
 					$("#chat-history").empty();
@@ -109,22 +168,36 @@
 						//alert(c_info.length);
 						for (var j = 0; j < c_info[i].length; j++) {
 							//alert(c_info[i].length);
+							var today = new Date();
 							var ctime = new Date(c_info[i][j].c_time);
+							var photo = String(c_info[i][j].memberConversation.m_photo);
+							if (ctime.toLocaleDateString() != today.toLocaleDateString()) {
+								var cdate = ctime.toLocaleDateString();
+								$("#chat-history").append('<div class="chat-message clearfix">' + cdate + '</div><hr>')
+							}
+							if (ctime.toLocaleDateString() == today.toLocaleDateString()) {
+								$("#chat-history").append('<div class="chat-message clearfix">今天</div><hr>')
+							}
+							if(photo==""){
+								photo = "../images/user/account/profile/001.png";
+							}
 							var time = ctime.toLocaleTimeString();
 							//var time = ctime.pattern("yyyy-MM-dd HH:mm");
 							$("#chat-history").append(
-								'<div class="chat-message clearfix">' +
-								'<img' +
-								'src="' + c_info[i][j].memberConversation.m_photo + '"' +
-								'alt="" width="32" height="32">' +
-								'<div class="chat-message-content clearfix">' +
-								'<span class="chat-time">' + time + '</span>' +
-								'<h5>' + c_info[i][j].member.m_name + '</h5>' +
-								'<p>' + c_info[i][j].c_context + '</p>' +
+								'<div class="chat-message clearfix">'
+								+ '<img src="' + photo + '" alt="" width="32" height="32">'
+								+ '<div class="chat-message-content clearfix">'
+								+ '<span class="chat-time">'
+								+ time
+								+ '</span>'
+								+ '<h5>'
+								+ c_info[i][j].member.m_name
+								+ '</h5>'
+								+ '<p>'
+								+ c_info[i][j].c_context
+								+ '</p>'
+								+ '</div>' +
 								'</div>' +
-								//<!-- end chat-message-content -->
-								'</div>' +
-								//<!-- end chat-message -->
 								'<hr>')
 						}
 					}
@@ -134,7 +207,9 @@
 
 		$(document).ready(function () {
 			$("#live-chat-header").click(function () {
-				var m_id = 5;
+				if(m_id==""){
+					return "m_id=null";
+				}
 				$.ajax({
 					type: "POST",
 					url: "/TeamWork/UpdateConversationState",
@@ -143,7 +218,7 @@
 					},
 					dataType: "text",
 					success: function (data) {
-// 						alert(data);
+						//alert(data);
 					}
 				})
 			})

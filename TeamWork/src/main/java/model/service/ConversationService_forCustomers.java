@@ -114,12 +114,16 @@ public class ConversationService_forCustomers {
 			hql += conversation.getM_id();
 			List<Conversation> list = null;
 			list = conversationDaoImpl.selectHql(hql);
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setC_stateId(4);
+			if (list.size() > 0) {
+				for (int i = 0; i < list.size(); i++) {
+					list.get(i).setC_stateId(4);
 					conversationDaoImpl.update(list.get(i));
+					System.out.println(list.get(0));
+				}
+				return list;
+			}else {
+				return null;
 			}
-			System.out.println(list.get(0));
-			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -139,6 +143,24 @@ public class ConversationService_forCustomers {
 			int amt = list.size();
 			System.out.println(amt);
 			return amt;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+//	以email尋找會員資料
+	public Integer findMemberInformation(Member member) {
+		String hql = "WHERE m_account = '" + member.getM_account() + "'";
+		System.out.println(hql);
+		List<Member> list = null;
+		try {
+			list = memberDapImpl.selectHql(hql);
+			System.out.println(list);
+			Member membersFound = list.get(0);
+			Integer m_id = membersFound.getM_id();
+			System.out.println("m_id = " + m_id);
+			return m_id;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

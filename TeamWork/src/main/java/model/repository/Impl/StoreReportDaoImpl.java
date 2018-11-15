@@ -65,6 +65,8 @@ public class StoreReportDaoImpl implements StoreReportDao {
 				SR.setM_idReport(bean.getM_idReport());
 			if (bean.getsR_content() != null)
 				SR.setsR_content(bean.getsR_content());
+			if (bean.getsR_time() != null)
+				SR.setsR_time(bean.getsR_time());
 			if (bean.getsR_stateId() != null)
 				SR.setsR_stateId(bean.getsR_stateId());
 			return SR;
@@ -79,6 +81,8 @@ public class StoreReportDaoImpl implements StoreReportDao {
 			SR.setM_idReport(bean.getM_idReport());
 		if (bean.getsR_content() != null)
 			SR.setsR_content(bean.getsR_content());
+		if (bean.getsR_time() != null)
+			SR.setsR_time(bean.getsR_time());
 		if (bean.getsR_stateId() != null)
 			SR.setsR_stateId(bean.getsR_stateId());
 		return SR;
