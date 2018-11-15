@@ -24,8 +24,8 @@
 </head>
 
 <body>
-	<div id="header"></div>
 	<!-- header -->
+	<div id="header"></div>
 
 	<div class="container">
 		<div class="row">
@@ -325,13 +325,19 @@
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="../js/cookies.js"></script>
 	<script src="../js/userPage.js"></script>
 	<!-- Optional JavaScript -->
 	<script>
+		var userID = 1;
 		$(document).ready(function () {
-			var userID = "1";
+			if(document.cookie.split("mid=").length == 2){				
+				console.log(document.cookie.split("mid=")[1].split(";")[0])
+			}
+				
 			var dataurl = "/TeamWork/WishList?m_id=" + userID;
 			var userData = [];
+			
 			var state = 28;
 
 			loadData();

@@ -1,6 +1,7 @@
 //登入先判斷cookie是否有儲存帳號
 var Memberallbean;
 $(document).ready(function(){
+	
 	var cookies = document.cookie;
     //===================CookieToJson=======================
     function cookiesToJson() {
@@ -29,19 +30,19 @@ $(document).ready(function(){
                 if(data=="accountNoRepeat"){
                     console.log("帳號沒有重複");
                 } else if (data==cookieAccount+"facebook"){
-                    alert("抓到FB帳號cookie")
+//                    alert("抓到FB帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
                     // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 } else if (data==cookieAccount+"google"){
-                    alert("抓到Google帳號cookie")
+//                    alert("抓到Google帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
                     // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 } else {
-                    alert("抓到一般帳號cookie")
+//                    alert("抓到一般帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
