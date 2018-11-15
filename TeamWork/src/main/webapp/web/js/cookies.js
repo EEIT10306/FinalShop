@@ -1,4 +1,5 @@
 //登入先判斷cookie是否有儲存帳號
+var Memberallbean;
 $(document).ready(function(){
 	var cookies = document.cookie;
     //===================CookieToJson=======================
@@ -46,7 +47,10 @@ $(document).ready(function(){
                     $("[id='MemberLogout']").show();
                     // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 }
-                
+
+                Memberallbean=data;
+                console.log("Memberallbean======");
+                console.log(Memberallbean);
             },
             error:function(data){
                 console.log(data);
