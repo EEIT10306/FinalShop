@@ -21,38 +21,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-        <a class="navbar-brand" href="#">DayDayGo!</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-star icon"></i>許願池 Wish Pool</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-gift icon"></i>限時團購 Together</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-store icon"></i>購物商城 Shopping store</a>
-                </li>
-
-            </ul>
-            <!-- Button trigger modal -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="form_login.html">
-                        <i class="fas fa-user-circle icon"></i>會員登入 Member login
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- header -->
+	<div id="header"></div>
+	
     <div class="belowNavbar">
         <div class="container">
             <div class="input-group mb-3">
@@ -76,22 +47,22 @@
         <div class="row">
             <div class="user-page-slidebar col-lg-2">
                 <div class="user-page-brief">
-                    <a class="user-page-brief_avatar" href="#">
-                        <div class="user-avatar_placeholder">
-                            <img src="../images/user/account/profile/001.png" alt="">
-                        </div>
-                    </a>
-                    <div class="user-page-brief_right">
-						<div class="user-page-brief__username">jennifer8306</div>
+					<a class="user-page-brief_avatar" href="userPage_profile.html">
+						<div class="user-avatar_placeholder">
+							<img id="member_pic" src="">
+						</div>
+					</a>
+					<div class="user-page-brief_right">
+						<div class="user-page-brief__username" id="member_username"></div>
 						<!-- <div>
 							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
 						</div> -->
 						<div class="user-page-brief__coin">
 							<img src="../images/user/others/coin.png" style="display: inline-block;">
-							<span>100</span>
+							<span id="member_coin"></span>
 						</div>
 					</div>
-                </div>
+				</div>
                 <!-- start of userpage-sidebar-menu -->
                 <div class="userpage-sidebar-menu">
                     <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
@@ -253,8 +224,13 @@
 
     <!-- Optional JavaScript -->
     <script>
+    	var userID = 1;
         $(document).ready(function () {
-            var userID = "1";
+        	if(document.cookie.split("mid=").length == 2){				
+				userID = document.cookie.split("mid=")[1].split(";")[0]
+			}else{
+				window.location.href="form_login.html";
+			}
             var dataurl = "/TeamWork/StoreProductSellerListByM_id?m_id=" + userID;
             var userData = [];
             var state = 13;
@@ -271,6 +247,7 @@
                         console.log("載入資料")
                         userData = res
                         updateData()
+                        loadMemberData(userID);
                     }
                 })
             }
