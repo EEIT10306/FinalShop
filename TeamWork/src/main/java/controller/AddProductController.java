@@ -46,12 +46,11 @@ public class AddProductController {
 		Gson gson = new Gson();
 		System.out.println(storeProduct.toString());
 		System.out.println("AddStoreProduct");
-		storeProduct.setS_id(1);
-		storeProduct.setsP_hot(5);
-		storeProduct.setsP_amountFavorite(4);
+		storeProduct.setsP_hot(0);
+		storeProduct.setsP_amountFavorite(0);
 		storeProduct.setsP_time(new Date());
-		storeProduct.setsP_averageAssess(2.0);
-		storeProduct.setsP_amountAssess(1);
+		storeProduct.setsP_averageAssess(0.0);
+		storeProduct.setsP_amountAssess(0);
 		storeProduct.setsP_stateId(13);
 		StoreProduct list = storeProductService.insert(storeProduct);
 		String json = gson.toJson(list);
@@ -117,7 +116,6 @@ public class AddProductController {
 //		MultipartFile file = null;
 		System.out.println(files);
 		System.out.println("==================="+files.get(0));
-		System.out.println("==================="+files.get(1));
 		System.out.println(inputstr);
 //		for (int i = 0; i < files.length; i++) {
 //			System.out.println("for="+te);

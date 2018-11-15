@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+
+
+<head>
+	<title>商品搜尋</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
+
+	<!-- main CSS -->
+	<link rel="stylesheet" href="../style/main.css">
+	<link rel="stylesheet" href="../style/main2.css">
+		<link rel="stylesheet" href="../style/DistrictType.css">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	 crossorigin="anonymous">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-yellow">
+		<a class="navbar-brand" href="#">DayDayGo!</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+		 aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
+			</ul>
+
+			
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="form_login.html">
+						<i class="fas fa-bell icon"></i>會員通知
+					</a></li>
+				<li class="nav-item"><a class="nav-link" href="form_login.html">
+						<i class="fas fa-user-circle icon"></i>會員登入 Member login
+					</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="belowNavbar">
+
+    <div class="container">
+        <form method="GET" action="/TeamWork/search">
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+                            <option  value="store" class="dropdown-item">購物商城</option>
+                            <option  value="wish" class="dropdown-item">許願池</option>
+                            <option  value="groupon" class="dropdown-item">限時團購</option>
+                        </select>
+                    </div>
+                    <input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+                    <div class="input-group-append">
+                        <button   class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+	</div> end of container 
+
+    </div>
+	<div class="container" id="container">
+		<div class="row">
+			<section class="col-lg-2">
+				<form class="select-filter">
+					<div class="form-group">
+						<h3>條件篩選</h3>
+					</div>
+					<hr>
+					<form>
+						<div class="form-group">
+							<p>分類</p>
+							<!--                         <label for="exampleFormControlSelect1">分類</label> -->
+							<select name="selectChange" class="form-control" id="exampleFormControlSelect1">
+								<option value="0">--請選擇--</option>
+								<option value="1">女生衣著</option>
+								<option value="2">男生衣著</option>
+								<option value="3">美妝保健</option>
+								<option value="4">手機平板與周邊</option>
+								<option value="5">嬰幼童與母親</option>
+								<option value="6">3C</option>
+								<option value="7">居家生活</option>
+								<option value="8">家電影音</option>
+								<option value="9">女生配件</option>
+								<option value="10">男生包包與配件</option>
+								<option value="11">女鞋</option>
+								<option value="12">男鞋</option>
+								<option value="13">女生包包/精品</option>
+								<option value="14">戶外與運動用品</option>
+								<option value="15">美食、伴手禮</option>
+								<option value="16">汽機車零件百貨</option>
+								<option value="17">寵物</option>
+								<option value="18">娛樂、收藏</option>
+								<option value="19">寵物</option>
+								<option value="20">服務、票券</option>
+								<option value="21">遊戲王</option>
+								<option value="22">其他類別</option>
+
+							</select> <select name="selectChange" class="form-control" id="exampleFormControlSelect2">
+								<option value="0">--請選擇--</option>
+
+							</select>
+						</div>
+					</form>
+					<hr>
+					<div class="form-group">
+						<p>運送方式
+					</div>
+					<div class="form-group form-check">
+						<input name="selectChange" id="transport1" type="checkbox" value="transport1" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">全家</label>
+					</div>
+					<div class="form-group form-check">
+						<input name="selectChange" id="transport2" type="checkbox" value="transport2" class="form-check-input" id="exampleCheck2">
+						<label class="form-check-label" for="exampleCheck1">7-11</label>
+					</div>
+					<div class="form-group form-check">
+						<input name="selectChange" id="transport3" type="checkbox" value="transport3" class="form-check-input" id="exampleCheck2">
+						<label class="form-check-label" for="exampleCheck1">萊爾富</label>
+					</div>
+					<div class="form-group form-check">
+						<input name="selectChange" id="transport4" type="checkbox" value="transport4" class="form-check-input" id="exampleCheck2">
+						<label class="form-check-label" for="exampleCheck1">中華郵政</label>
+					</div>
+					<div class="form-group form-check">
+						<input name="selectChange" id="transport5" type="checkbox" value="transport5" class="form-check-input" id="exampleCheck2">
+						<label class="form-check-label" for="exampleCheck1">賣家宅配</label>
+					</div>
+					<hr>
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">賣家評價</label> <select name="selectChange" class="form-control" id="evaluation">
+							<option value="0">--請選擇--</option>
+							<option value="5">5顆星</option>
+							<option value="4">4顆星以上</option>
+							<option value="3">3顆星以上</option>
+							<option value="2">2顆星以上</option>
+							<option value="1">1顆星以上</option>
+						</select>
+					</div>
+					<hr>
+					<div class="form-group">
+						<p>商品狀況
+					</div>
+					<div class="form-group form-check">
+						<input name="selectChange" type="checkbox" value="true" class="form-check-input" id="conditionCheck1">
+						<label class="form-check-label" for="exampleCheck1">全新商品</label>
+					</div>
+					<div class="form-group form-check">
+						<input name="selectChange" type="checkbox" value="false" class="form-check-input" id="conditionCheck2">
+						<label class="form-check-label" for="exampleCheck1">二手商品</label>
+					</div>
+					<hr>
+					<form>
+						<div class="form-group">
+							<label for="exampleInputEmail1">價格範圍</label> 
+							<input type="text" class="form-control" id="minprice"placeholder="$ 最小值">
+							<div style="text-align: center">
+								<p>｜
+							</div>
+							<input type="text" class="form-control" id="maxprice" placeholder="$ 最大值">
+							<button type="button" id="pricebot" class="btn btn-outline-warning filter-button btn-sm">套用</button>
+						</div>
+					</form>
+					<hr>
+				</form>
+				<!-- end of form.select-filter -->
+			</section>
+			<section id="sectionbot" class="col-lg-10">
+				<div id='odbyvalue' name='null' style='height:50px;' class='row d-flex justify-content-between'>
+
+
+				</div>
+
+				<div class="row row-card" id="tableMenu"></div>
+			</section>
+		</div>
+	</div>
+	<!-- end of container -->
+	<div class="contaminer-fluid">
+		<!-- start of footer -->
+		<div class="container">
+			<div class="row">
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">關注我們</div>
+					<ul class="footer-category-list">
+						<li><img src="../images/social/facebook.png"> <a href="#">Facebook</a></li>
+						<li><img src="../images/social/instagram.png"> <a href="#">Instagram</a></li>
+						<li><img src="../images/social/line.png"> <a href="#">LINE</a>
+						</li>
+						<li><img src="../images/social/linkedin.png"> <a href="#"> Linkedin</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of footer -->
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<!-- <script>
+	//以下是JS的include方式
+	$(document).ready(function(){
+		console.log("看看有沒有跑INCLUDE")
+		$.get("testheader.html",function(data){
+		$("#header").html(data);
+		});
+	})
+	</script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+		crossorigin="anonymous"></script>
+
+	<script>
+		$(document)
+			.ready(
+				function () {
+					var url = location.href;
+					alert(url);
+					var str = ""; //參數中等號左邊的值
+					var str_value = ""; //參數中等號右邊的值
+					if (url.indexOf("?") != -1) {
+						//如果網址有"?"符號
+						var ary = url.split("?")[1].split("&");
+						//取得"?"右邊網址後利用"&"分割字串存入ary陣列 ["a=1","b=2","c=3"]
+						for (var i in ary) {
+							//取得陣列長度去跑迴圈，如:網址有三個參數，則會跑三次
+							str = ary[i].split("=")[0];
+							//取得參數"="左邊的值存入str變數中
+							if (str == "search") {
+								//若str等於想要抓取參數 如:b
+								alert(ary[i])
+								str_value = decodeURI(ary[i]);
+								search_value = decodeURI(ary[i].split("=")[1]);
+								//取得b等號右邊的值並經過中文轉碼後存入str_value
+							}
+						}
+						alert(str_value)
+
+						$("#headsearch").val(search_value);
+					}
+					$.ajax({
+							type: "GET",
+
+							url: "/TeamWork/StoreProductForm?" + str_value,
+
+							success: function (jsonback) {
+								alert("server傳回 = " + jsonback);
+
+								if (jsonback == "") {
+									var txt = "<p>我們找不到 " + search_value + " 商品</p>";
+									$("#odbyvalue").html(txt);
+									
+								
+									$("#tableMenu").html(txt2);
+									orderby();
+
+								}
+							
+
+								//	var json=JSON.parse(jsonback);
+								//	alert(json);
+								else {
+									var txt = "";
+									var txt2 =` <div><ul id="haha" class="drop-down-menu">
+        										<li><a href="#" value='1' id='btn1'>最愛排名</a></li>
+												<li><a href="#" value='2' id='btn2'>最新</a></li>
+												<li><a href="#" value='3' id='btn3'>最熱門</a></li>
+												<li><a href="#">價格排序</a>
+													<ul>
+														<li><a href="#" value='4' id='btn4'>價格低到高排序</a></li>
+														<li><a href="#" value='5' id='btn5'>價格高到低排序</a></li>
+													</ul>
+												</li>
+											</ul>
+											</div>
+											<div>
+											<button type='btn' class='btn btn-light'><</button>
+											<button type='btn' class='btn btn-light'>></button>
+											</div>`
+											
+									$("#odbyvalue").html(txt2);
+
+									for (x = 0; x < jsonback.length; x++) {
+										// 												alert("in txt")
+										txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id + "'>";
+
+										txt += "<div class='card card-search'>";
+										if (jsonback[x].storeImages == "") {
+											showStoreImages = "/TeamWork/web/images/form-cat.png";
+										} else {
+											// 													alert(jsonback[6].storeImages[0].sI_context)
+											// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
+											showStoreImages = jsonback[x].storeImages[0].sI_context;
+										}
+										txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
+										txt += "<div class='card-body'>";
+										txt += "<h5 class='card-title'>"
+											+ jsonback[x].sP_name
+											+ "</h5>";
+										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
+											+ jsonback[x].sP_context.substr(0,36) 
+										txt	+= (jsonback[x].sP_context.length>36)?"...":""
+										txt	+= "</p></div>";
+										txt += "<p class='card-text'>$"
+											+ jsonback[x].sP_price
+											+ "</p>"
+										txt += "<i class='fas fa-heart' id='favorite'></i>"
+											+ "("+jsonback[x].sP_amountFavorite+")"
+											+ "</p>"
+										i = Math.round(jsonback[x].sP_averageAssess);
+										for (j = 1; i >= j; j++) {
+											txt += "<i class='fas fa-star fa-star-score'></i>"
+										}
+										for (j = 5; i < j; j--) {
+											txt += "<i class='far fa-star fa-star-score'></i>"
+										}
+										txt +=	"("+jsonback[x].sP_amountAssess+")";
+										txt += "</div>";
+										txt += "</div>";
+										txt += "</div>";
+										// 	+ jsonback[x].sP_averageAssess																				
+									}
+									$("#tableMenu").html(txt).append(`<div class="row d-flex justify-content-center col-12">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Previous">
+							  <span aria-hidden="true">&laquo;</span>
+							  <span class="sr-only">Previous</span>
+							</a>
+						  </li>
+						  <li class="page-item"><a class="page-link" href="#">1</a></li>
+						  <li class="page-item"><a class="page-link" href="#">2</a></li>
+						  <li class="page-item"><a class="page-link" href="#">3</a></li>
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Next">
+							  <span aria-hidden="true">&raquo;</span>
+							  <span class="sr-only">Next</span>
+							</a>
+						  </li>
+						</ul>
+					</nav>
+					</div>`
+									)
+									orderby();
+								}
+
+							}
+						});
+
+
+
+
+
+
+
+
+
+				});
+		// function odby1() {
+		// alert($(this).attr("id"));	
+		// alert($("[name='odbyvalue']").val());
+		// 	$('#odbyvalue').attr('value',);
+
+		// }
+		function orderby() {
+			$("#btn1").click(function () {
+				$('#odbyvalue').attr('name', '1');
+
+				alert($('#odbyvalue').attr("name"));
+				changefrom();
+
+			});
+			$("#btn2").click(function () {
+				$('#odbyvalue').attr('name', '2');
+				alert($('#odbyvalue').attr("name"));
+				changefrom();
+
+			});
+			$("#btn3").click(function () {
+				$('#odbyvalue').attr('name', '3');
+			
+				alert($('#odbyvalue').attr("name"));
+				changefrom();
+			});
+			$("#btn4").click(function () {
+				$('#odbyvalue').attr('name', '4');
+				
+				alert($('#odbyvalue').attr("name"));
+				changefrom();
+			});
+			$("#btn5").click(function () {
+				$('#odbyvalue').attr('name', '5');
+				
+				alert($('#odbyvalue').attr("name"));
+				changefrom();
+			});
+		}
+
+		$("#exampleFormControlSelect1")
+			.change(
+				function () {
+					var exampleFormControlSelect1 = $(
+						"#exampleFormControlSelect1")
+						.val();
+					$.ajax({
+						type: "POST",
+						url: "/TeamWork/changeStoreFormSelect",
+						data: { "p_id": exampleFormControlSelect1 },
+						success: function (jsonback) {
+							alert("server傳回 = " + jsonback);
+							var json = JSON.parse(jsonback);
+							//             	alert(json);
+							var txtselect = "";
+							txtselect += "<option value=0>--請選擇--</option>";
+							//           	for( x = 0 ; x< json.length ; x++) {            
+							//                 txtselect += "<option value="+x+">"+json[x].name+"</option>";        
+							//            	}
+							// 			var txtselect = "" ; 
+							for (x = 0; x < json.length; x++) {
+								txtselect += "<option value=" + x + ">"
+									+ json[x].p_name
+									+ "</option>";
+
+							}
+							$("#exampleFormControlSelect2").html(txtselect);
+						}
+					});
+				});
+
+
+
+		// $("[name='selectChangeprice']")
+		// 	.click(
+		// 		function () {
+		// 			changefrom();
+		// 		});
+		$("[name='selectChange']")
+			.change(
+				function () {
+					changefrom();
+				});
+		$("#pricebot").click(function () {
+			changefrom();
+		})
+
+		function changefrom() {
+			var catchsearch = "search=" + $("#headsearch").val();
+
+			alert(catchsearch)
+			var fromurl = "/TeamWork/StoreProductChangeForm?" + catchsearch;
+			if ($(
+				"#exampleFormControlSelect1")
+				.val() != 0) {
+				var exampleFormControlSelect1 = $(
+					"#exampleFormControlSelect1")
+					.val();
+				fromurl += "&a="
+					+ exampleFormControlSelect1;
+			}
+			if ($(
+				"#exampleFormControlSelect2")
+				.val() != 0) {
+				var exampleFormControlSelect2 = $(
+					"#exampleFormControlSelect2")
+					.val();
+				fromurl += "&b="
+					+ exampleFormControlSelect2;
+			}
+			// 評價
+			if ($("#evaluation").val() != 0) {
+				var evaluation = $(
+					"#evaluation")
+					.val();
+					alert(evaluation);
+				fromurl += "&c=" + evaluation;
+			}
+			// 運送方式
+			if ($("#transport1").prop(
+				'checked') == true) {
+				var transport1 = $(
+					"#transport1")
+					.val();
+				fromurl += "&d=1";
+				alert(fromurl);
+			}
+			if ($("#transport2").prop(
+				'checked') == true) {
+				var transport2 = $(
+					"#transport2")
+					.val();
+				fromurl += "&e=2";
+				alert(fromurl);
+			}
+			if ($("#transport3").prop(
+				'checked') == true) {
+				var transport3 = $(
+					"#transport3")
+					.val();
+				fromurl += "&f=3";
+				alert(fromurl);
+			}
+			if ($("#transport4").prop(
+				'checked') == true) {
+				var transport4 = $(
+					"#transport4")
+					.val();
+				fromurl += "&g=4";
+				alert(fromurl);
+
+			}
+			if ($("#transport5").prop(
+				'checked') == true) {
+				var transport5 = $(
+					"#transport5")
+					.val();
+				fromurl += "&h=5";
+				alert(fromurl);
+			}
+			// 商品狀況
+
+			if ($("#conditionCheck1").prop(
+				'checked') == true) {
+				if ($("#conditionCheck2").prop(
+				'checked') == true){
+					fromurl += "&i= true";
+					fromurl += "&j= false";
+				}else{
+					fromurl += "&i= true";
+					fromurl += "&j= true";
+				}
+			
+			}else{
+				if ($("#conditionCheck2").prop(
+				'checked') == true){
+					fromurl += "&i=false";
+					fromurl += "&j= false";
+				}else{
+					fromurl += "&i= true";
+					fromurl += "&j= false";
+				}
+			
+			}
+	
+
+			// 價格範圍
+			
+
+			if(	$("input[id='minprice']").val()!=""){
+				var minprice = $("input[id='minprice']").val()
+				fromurl += "&k=" + minprice;
+				alert(minprice)
+			}
+			if(	$("input[id='maxprice']").val()!=""){
+				var maxprice = $("input[id='maxprice']").val()
+				fromurl += "&l=" + maxprice;
+				alert(maxprice)
+			}
+		
+
+
+			if ($('#odbyvalue').attr("name") != 0) {
+				var odbyvalue = $('#odbyvalue').attr("name");
+				fromurl += "&m=" + odbyvalue;
+				alert(odbyvalue);
+				alert(fromurl);
+
+			}$.ajax({
+					type: "GET",
+
+					url: fromurl,
+
+					success: function (jsonback) {
+						alert("server傳回 = " + jsonback);
+
+						if (jsonback == "") {
+							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
+							$("#odbyvalue").html(txt);
+							var txt2="";
+							$("#tableMenu").html(txt2);
+									orderby();
+						}
+
+
+						//	var json=JSON.parse(jsonback);
+						//	alert(json);
+						else {
+							var txt = "";
+							var txt2 =` <ul id="haha" class="drop-down-menu">
+        										<li><a href="#" value='1' id='btn1'>最愛排名</a></li>
+												<li><a href="#" value='2' id='btn2'>最新</a></li>
+												<li><a href="#" value='3' id='btn3'>最熱門</a></li>
+												<li><a href="#">價格排序</a>
+													<ul>
+													<li><a href="#" value='4' id='btn4'>價格低到高排序</a></li>
+													<li><a href="#" value='5' id='btn5'>價格高到低排序</a></li>
+													</ul>
+												</li>
+											</ul>
+											<div>
+											<button type='btn' class='btn btn-light'><</button>
+											<button type='btn' class='btn btn-light'>></button>
+											</div>`
+							$("#odbyvalue").html(txt2);
+							
+							for (x = 0; x < jsonback.length; x++) {
+								// 												alert("in txt")
+								txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id +"'>";
+
+								txt += "<div class='card card-search'>";
+								if (jsonback[x].storeImages == "") {
+									showStoreImages = "/TeamWork/web/images/form-cat.png";
+								} else {
+									// 													alert(jsonback[6].storeImages[0].sI_context)
+									// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
+									showStoreImages = jsonback[x].storeImages[0].sI_context;
+								}
+								txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
+								txt += "<div class='card-body'>";
+								txt += "<h5 class='card-title'>"
+									+ jsonback[x].sP_name
+									+ "</h5>";
+								txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
+									+ jsonback[x].sP_context.substr(0,36) 
+								txt += (jsonback[x].sP_context.length>36)?"...":""
+								txt	+= "</p></div>";
+								txt += "<p class='card-text'>$"
+									+ jsonback[x].sP_price
+									+ "</p>"
+								txt += "<i class='fas fa-heart' id='favorite'></i>"
+									+ "("+jsonback[x].sP_amountFavorite+")"
+									+ "</p>"
+									
+								var i = Math.round(parseInt(jsonback[x].sP_averageAssess));
+								
+								for (j = 1; i >= j; j++) {
+									txt += "<i class='fas fa-star fa-star-score'></i>"
+								}
+								for (j = 5; i < j; j--) {
+									txt += "<i class='far fa-star fa-star-score'></i>"
+								}
+								txt += "</div>";
+								txt += "</div>";
+								txt += "</div>";
+								// 																					
+							}
+							$("#tableMenu").html(txt);
+							orderby();
+					
+						
+					}
+						}
+						
+				});
+		};
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	 crossorigin="anonymous"></script>
+<script>
+function clickdiv(){
+	var sp_id = $(event.target).parents(".col-lg-3").attr("data-box")
+	$.ajax({
+				type: "GET",
+				url: "/TeamWork/productHot?sP_id=" + sp_id,
+				success: function(response){
+					alert("hahahaha")
+				}			
+	// location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
+	})
+	location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
+}
+</script>
+</body>
+</html>

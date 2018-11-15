@@ -2,361 +2,402 @@
 <html lang="en">
 
 <head>
-    <title>會員中心｜我的許願</title>
-    <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+	<title>會員中心｜我的許願</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 
-    <!-- main CSS -->
-    <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="../style/userPage.css">
+	<!-- main CSS -->
+	<link rel="stylesheet" href="../style/main.css">
+	<link rel="stylesheet" href="../style/userPage.css">
 
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 </head>
 
 <body>
+	<!-- header -->
+	<div id="header"></div>
+	<!-- header-search -->
+	<div id="header-search"></div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-        <a class="navbar-brand" href="#">DayDayGo!</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
-
-            </ul>
-            <!-- Button trigger modal -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="form_login.html">
-                        <i class="fas fa-user-circle icon"></i>會員登入 Member login
-                    </a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="belowNavbar">
-        <div class="container">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">項目</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">許願池</a> <a class="dropdown-item" href="#">限時團購</a> <a class="dropdown-item"
-                            href="#">購物商城</a>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Search</button>
-                </div>
-            </div>
-        </div>
-        <!-- end of container -->
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="user-page-slidebar col-lg-2">
-                <div class="user-page-brief">
-                    <a class="user-page-brief_avatar" href="#">
-                        <div class="user-avatar_placeholder">
-                            <img src="../images/user/account/profile/001.png" alt="">
-                        </div>
-                    </a>
-                    <div class="user-page-brief_right">
-						<div class="user-page-brief__username">jennifer8306</div>
-						<!-- <div>
-							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
-						</div> -->
+	<div class="container">
+		<div class="row">
+			<div class="user-page-slidebar col-lg-2">
+				<div class="user-page-brief">
+					<a class="user-page-brief_avatar" href="userPage_profile.html">
+						<div class="user-avatar_placeholder">
+							<img id="member_pic" src="">
+						</div>
+					</a>
+					<div class="user-page-brief_right">
+						<div class="user-page-brief__username" id="member_username"></div>
 						<div class="user-page-brief__coin">
 							<img src="../images/user/others/coin.png" style="display: inline-block;">
-							<span>100</span>
+							<span id="member_coin"></span>
 						</div>
 					</div>
-                </div>
-                <!-- start of userpage-sidebar-menu -->
-                <div class="userpage-sidebar-menu">
-                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Man.svg"></div>
-                        <div class="userpage-sidebar-menu-text">我的帳戶</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Shop.svg"></div>
-                        <div class="userpage-sidebar-menu-text">商店</div>
-                    </div>
-                    <a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的商品</div>
-                    </a>
-                    <a href="userPage_StoreOrderSellerList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">商品訂單</div>
-                    </a>
-                    <a href="userPage_StoreOrderList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">購買的商品</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Ring.svg"></div>
-                        <div class="userpage-sidebar-menu-text">許願</div>
-                    </div>
-                    <a href="userPage_WishList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的許願</div>
-                    </a>
-                    <a href="userPage_WishOrderList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">許願訂單</div>
-                    </a>
-                    <a href="userPage_WishOrderSellerList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">實現願望</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Party.svg"></div>
-                        <div class="userpage-sidebar-menu-text">團購</div>
-                    </div>
-                    <a href="userPage_GroupList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的開團</div>
-                    </a>
-                    <a href="userPage_GroupSellerList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">開團訂單</div>
-                    </a>
-                    <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">跟團</div>
-                    </a>
-                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Medal.svg"></div>
-                        <div class="userpage-sidebar-menu-text">我的成就</div>
-                    </a>
-                    <a href="userPage_notifications.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Love-Letter.svg"></div>
-                        <div class="userpage-sidebar-menu-text">通知記錄</div>
-                    </a>
-                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
+				</div>
+				<!-- start of userpage-sidebar-menu -->
+				<div class="userpage-sidebar-menu">
+					<a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Man.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">我的帳戶</div>
+					</a>
+					<div class="userpage-sidebar-menu_item-head" id="storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Shop.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">商店</div>
+					</div>
+					<a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">我的商品</div>
+					</a> <a href="userPage_StoreOrderSellerList.html" class="userpage-sidebar-menu_item storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">商品訂單</div>
+					</a> <a href="userPage_StoreOrderList.html" class="userpage-sidebar-menu_item storepbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">購買的商品</div>
+					</a>
+					<div class="userpage-sidebar-menu_item-head" id="wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Ring.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">許願</div>
+					</div>
+					<a href="userPage_WishList.html" class="userpage-sidebar-menu_item wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">我的許願</div>
+					</a> <a href="userPage_WishOrderList.html" class="userpage-sidebar-menu_item wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">許願訂單</div>
+					</a> <a href="userPage_WishOrderSellerList.html" class="userpage-sidebar-menu_item wishpbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">實現願望</div>
+					</a>
+					<div class="userpage-sidebar-menu_item-head" id="groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Party.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">團購</div>
+					</div>
+					<a href="userPage_GroupList.html" class="userpage-sidebar-menu_item groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">我的開團</div>
+					</a> <a href="userPage_GroupSellerList.html" class="userpage-sidebar-menu_item groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">開團訂單</div>
+					</a> <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
+						<div class="userpage-sidebar-menu-icon">
+							<img>
+						</div>
+						<div class="userpage-sidebar-menu-text">跟團</div>
+					</a> <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Medal.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">我的成就</div>
+					</a> <a href="userPage_notifications.html" class="userpage-sidebar-menu_item-head">
+						<div class="userpage-sidebar-menu-icon">
+							<img src="../images/user/Love-Letter.svg">
+						</div>
+						<div class="userpage-sidebar-menu-text">通知記錄</div>
+					</a>
+					<!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
                             <div class="userpage-sidebar-menu-icon"><img src="../images/user/Analytics.svg"></div>
                             <div class="userpage-sidebar-menu-text">賣家中心</div>
                         </a> -->
-                </div>
-                <!-- end of userpage-sidebar-menu -->
-            </div>
-            <div class="purchase-list-page_tabs-container col-lg-10">
-                <div class="row">
-                    <div class="purchase-list-page_tab col-sm-3 tab_lock" id="state28">競標中</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state29">競標完成</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state30">已接受</div>
-                    <div class="purchase-list-page_tab col-sm-3" id="state31">下架</div>
-                </div>
-                <div class="row">
-                    <div class="container-wrapper">
-                        <div class="empty">
-                            <img src="../images/user/others/loading.gif">
-                            <p>LOADING...</p>
-                        </div>
-                    </div>
-                    <!-- Button trigger modal -->
-                    <div class="add_icon" data-toggle="modal" data-target="#exampleModalCenter">
-                        <i class="fas fa-plus"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
+				</div>
+				<!-- end of userpage-sidebar-menu -->
+			</div>
+			<div class="purchase-list-page_tabs-container col-lg-10">
+				<div class="row">
+					<div class="purchase-list-page_tab col-sm-3 tab_lock" id="state28">競標中</div>
+					<div class="purchase-list-page_tab col-sm-3" id="state29">競標完成</div>
+					<div class="purchase-list-page_tab col-sm-3" id="state30">已接受</div>
+					<div class="purchase-list-page_tab col-sm-3" id="state31">下架</div>
+				</div>
+				<div class="row">
+					<div class="container-wrapper">
+						<div class="empty">
+							<img src="../images/user/others/loading.gif">
+							<p>LOADING...</p>
+						</div>
+					</div>
+					<!-- Button trigger modal -->
+					<div class="add_icon" data-toggle="modal" data-target="#exampleModalCenter">
+						<i class="fas fa-plus"></i>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">新增許願單</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form class="popperForm">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">標題：</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">詳細描述：</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">價錢範圍：</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">新增許願單</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form class="popperForm">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">標題：</label> <input type="text" class="form-control" id="recipient-name">
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">詳細描述：</label>
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">價錢範圍：</label>
+							<input type="text" class="form-control" id="recipient-name">
+						</div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn userSubmitBtn">新增願望</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+						<button type="button" class="btn userSubmitBtn">新增願望</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-    <input type="button" value="編輯許願" class="btn order_btn editWish_btn" data-toggle="modal" data-target="#editWish" name="${item.w_id}">
-    <!-- end of container -->
-    
-    <!-- start of footer -->
-    <div class="contaminer-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">關注我們</div>
-                    <ul class="footer-category-list">
-                        <li><img src="../images/social/facebook.png"> <a href="#">Facebook</a></li>
-                        <li><img src="../images/social/instagram.png"> <a href="#">Instagram</a></li>
-                        <li><img src="../images/social/line.png"> <a href="#">LINE</a>
-                        </li>
-                        <li><img src="../images/social/linkedin.png"> <a href="#"> Linkedin</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end of footer -->
-    
-    <!-- 編輯願望(互動視窗) -->
-    <!-- Modal edit Wish -->
-    <div class="modal fade" id="editWish" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">編輯我的許願</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form class="popperForm" id="giveAssess_form" method="post" action="/TeamWork/giveAssess_WishBuyer">
-                        <div class="modal-body">
-                            <input type="hidden" name="w_id" value="" id="w_id" />
-                            <div class="modal-form-group row">
-                                <label for="w_title" class="col-sm-3 modal-label">許願標題</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="w_title" name="w_title" placeholder="編輯許願標題">
+	<input type="button" value="編輯許願" class="btn order_btn editWish_btn" data-toggle="modal" data-target="#editWish" name="${item.w_id}">
+	<!-- end of container -->
+
+	<!-- start of footer -->
+	<div class="contaminer-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">客服中心</div>
+					<ul class="footer-category-list">
+						<li><a href="#">幫助中心</a></li>
+						<li><a href="#">購物商城</a></li>
+						<li><a href="#">付款方式</a></li>
+						<li><a href="#">運費補助</a></li>
+						<li><a href="#">退貨退款</a></li>
+						<li><a href="#">我們承諾</a></li>
+						<li><a href="#">聯絡客服</a></li>
+					</ul>
+				</div>
+				<div class="footer-part col-lg-2">
+					<div class="footer-category-name">關注我們</div>
+					<ul class="footer-category-list">
+						<li><img src="../images/social/facebook.png"> <a href="#">Facebook</a></li>
+						<li><img src="../images/social/instagram.png"> <a href="#">Instagram</a></li>
+						<li><img src="../images/social/line.png"> <a href="#">LINE</a>
+						</li>
+						<li><img src="../images/social/linkedin.png"> <a href="#"> Linkedin</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of footer -->
+
+	<!-- 編輯願望(互動視窗) -->
+	<!-- Modal edit Wish -->
+	<div class="modal fade" id="editWish" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">編輯我的許願</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form class="popperForm" id="EditWish_form" method="post" action="/TeamWork/EditWish">
+					<div class="modal-body">
+						<input type="hidden" name="w_id" value="" id="w_id" />
+						<div class="modal-form-group row">
+							<label for="w_title" class="col-sm-3 modal-label">許願標題：</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="w_title" name="w_title" placeholder="編輯許願標題">
+							</div>
+						</div>
+						<div class="modal-form-group row">
+							<label for="w_context" class="col-sm-3 modal-label">許願內容：</label>
+							<div class="col-sm-9">
+								<textarea class="form-control" id="w_context" name="w_context" placeholder="編輯許願內容"></textarea>
+							</div>
+						</div>
+						<div class="modal-form-group row">
+							<label for="w_title" class="col-sm-3 modal-label">價錢範圍：</label>
+							<div class="col-sm-4">
+								<input type="number" class="form-control" id="w_sumPriceBottom" name="w_sumPriceBottom" min="0" placeholder="下限">
+							</div>
+							<div class="col-sm-1">-</div>
+							<div class="col-sm-4">
+								<input type="number" class="form-control" id="w_sumPriceTop" name="w_sumPriceTop" max="1000000" placeholder="上限">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+						<button type="submit" class="btn btn-sm userSubmitBtn" id="EditWishSubmitBtn">確定送出</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- end of Modal edit Wish -->
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="../js/heacerinclude.js"></script>
+	<script src="../js/headersearchinclude.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="../js/userPage.js"></script>
+	<script>
+		$(document).ready(function () {
+			$.get("header.html", function (data) {
+				$("#header").html(data);
+			});
+			$.get("header-search.html", function (data) {
+				$("#header-search").html(data);
+			});
+		})
+	</script>
+	<!-- Optional JavaScript -->
+	<script>
+		var userID = 1;
+		$(document).ready(function () {
+			if (document.cookie.split("mid=").length == 2) {
+				userID = document.cookie.split("mid=")[1].split(";")[0]
+			} else {
+				userID = "";
+				window.history.pushState("","page 2" , "userPage_WishList.html")
+				window.location.href = "form_login.html";
+			}
+
+			var dataurl = "/TeamWork/WishList?m_id=" + userID;
+			var userData = [];
+			var state = 28;
+
+			loadData();
+			function loadData() {
+				//下載Wish資料
+				$.ajax({
+					url: dataurl,
+					error: function () {
+						console.log("載入Wish資料失敗")
+					},
+					success: function (res) {
+						console.log("載入Wish資料")
+						userData = res
+						updateData()
+						loadMemberData(userID);
+					}
+				})
+			}
+			function updateData() {
+				$(".container-wrapper").html("");
+				userData.forEach(function (item) {
+					//競標中
+					if (state == 28 && state == item.w_stateId) {
+						var itemEl = $(`
+                            <div class="myWish-card" id="${item.w_id}">
+                                <div class="order-content_header row">
+                                    <div class="order-content-header_left">
+                                        <div class="seller-pic">
+                                            <img src="../images/user/account/profile/001.png">
+                                        </div>
+                                        <div class="seller-name">${item.member.m_name}</div>
+                                    </div>
+                                    <div class="wish-dataRange">最後更新日期：${dateFormat(item.w_changeTime)}
+                                    </div>
+                                </div>
+                                <div class="order-content_item row">
+                                    <div class="item-image">
+                                    </div>
+                                    <div class="item-detail col-lg">
+                                        <div class="item-misc">
+                                            <div class="misc">
+                                                <div class="item-name">${item.w_title}</div>
+                                                <div class="item-des">${item.w_context}</div>
+                                                <span class="wish-priceRange">$${item.w_sumPriceBottom}-${item.w_sumPriceTop}</span>
+                                            </div>
+                                            <div class="btn-group-vertical">
+                                                <input type="button" value="詳細資訊" class="btn btn-sm order_btn hrefUrl">
+                                                <input type="button" value="下架願望" class="btn btn-sm order_btn" id="CancelWishBtn" name="${item.w_id}">
+                                                <input type="button" value="編輯許願" class="btn btn-sm order_btn editWish_btn" data-toggle="modal" data-target="#editWish">
+                                            </div> 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="modal-form-group row">
-                                <label for="w_context" class="col-sm-3 modal-label">許願內容</label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control" id="w_context" name="w_context" placeholder="編輯許願內容"></textarea>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-sm userSubmitBtn" id="AssessSubmitBtn">送出評價</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div><!-- end of Modal edit Wish -->
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="../js/userPage.js"></script>
-    <!-- Optional JavaScript -->
-    <script>
-        $(document).ready(function () {
-            //定義要用到的網址
-            //定義要用到的網址
-            var userID = "1";
-            var dataurl = "/TeamWork/WishList?m_id=" + userID;
-            var userData = [];
-            var state = 28;
-
-            loadData();
-            function loadData() {
-                //下載資料
-                $.ajax({
-                    url: dataurl,
-                    error: function () {
-                        console.log("載入失敗")
-                    },
-                    success: function (res) {
-                        console.log("載入資料")
-                        userData = res
-                        // 更新畫面中的元素
-                        updateData()
-                    }
-                })
-            }
-            function updateData() {
-                $(".container-wrapper").html("");
-                userData.forEach(function (item) {
-                    //競標中
-                    if (state == 28 && state == item.w_stateId) {
-                        var itemEl = $(`
+                        `)
+						$(".container-wrapper").append(itemEl);
+					} else if (state == 29 && state == item.w_stateId) {
+						//競標完成
+						var itemEl = $(`
                             <div class="myWish-card" id="${item.w_id}">
                                 <div class="order-content_header row">
                                     <div class="order-content-header_left">
@@ -380,6 +421,71 @@
                                             </div>
                                             <div class="btn-group-vertical">
                                                 <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `)
+						$(".container-wrapper").append(itemEl);
+					} else if (state == 30 && state == item.w_stateId) {
+						//已接受
+						var itemEl = $(`
+                            <div class="myWish-card" id="${item.w_id}">
+                                <div class="order-content_header row">
+                                    <div class="order-content-header_left">
+                                        <div class="seller-pic">
+                                            <img src="../images/user/account/profile/001.png">
+                                        </div>
+                                        <div class="seller-name">${item.member.m_name}</div>
+                                    </div>
+                                    <div class="wish-dataRange">最後更新日期：${dateFormat(item.w_changeTime)}
+                                    </div>
+                                </div>
+                                <div class="order-content_item row">
+                                    <div class="item-image">
+                                    </div>
+                                    <div class="item-detail col-lg">
+                                        <div class="item-misc">
+                                            <div class="misc">
+                                                <div class="item-name">${item.w_title}</div>
+                                                <div class="item-des">${item.w_context}</div>
+                                                <span class="wish-priceRange">$${item.w_sumPriceBottom}-${item.w_sumPriceTop}</span>
+                                            </div>
+                                            <div class="btn-group-vertical">
+                                                <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `)
+						$(".container-wrapper").append(itemEl);
+					} else if (state == 31 && state == item.w_stateId) {
+						//下架
+						var itemEl = $(`
+                            <div class="myWish-card" id="${item.w_id}">
+                                <div class="order-content_header row">
+                                    <div class="order-content-header_left">
+                                        <div class="seller-pic">
+                                            <img src="../images/user/account/profile/001.png">
+                                        </div>
+                                        <div class="seller-name">${item.member.m_name}</div>
+                                    </div>
+                                    <div class="wish-dataRange">最後更新日期：${dateFormat(item.w_changeTime)}
+                                    </div>
+                                </div>
+                                <div class="order-content_item row">
+                                    <div class="item-image">
+                                    </div>
+                                    <div class="item-detail col-lg">
+                                        <div class="item-misc">
+                                            <div class="misc">
+                                                <div class="item-name">${item.w_title}</div>
+                                                <div class="item-des">${item.w_context}</div>
+                                                <span class="wish-priceRange">$${item.w_sumPriceBottom}-${item.w_sumPriceTop}</span>
+                                            </div>
+                                            <div class="btn-group-vertical">
                                                 <input type="button" value="編輯許願" class="btn order_btn editWish_btn" data-toggle="modal" data-target="#editWish" name="${item.w_id}">
                                             </div> 
                                         </div>
@@ -387,154 +493,106 @@
                                 </div>
                             </div>
                         `)
-                        $(".container-wrapper").append(itemEl);
-                    } else if (state == 29 && state == item.w_stateId) {
-                        //競標完成
-                        var itemEl = $(`
-                            <div class="myWish-card" id="${item.w_id}">
-                                <div class="order-content_header row">
-                                    <div class="order-content-header_left">
-                                        <div class="seller-pic">
-                                            <img src="../images/user/account/profile/001.png">
-                                        </div>
-                                        <div class="seller-name">${item.member.m_name}</div>
-                                    </div>
-                                    <div class="wish-dataRange">最後更新日期：${dateFormat(item.w_changeTime)}
-                                    </div>
-                                </div>
-                                <div class="order-content_item row">
-                                    <div class="item-image">
-                                    </div>
-                                    <div class="item-detail col-lg">
-                                        <div class="item-misc">
-                                            <div class="misc">
-                                                <div class="item-name">${item.w_title}</div>
-                                                <div class="item-des">${item.w_context}</div>
-                                                <span class="wish-priceRange">$${item.w_sumPriceBottom}-${item.w_sumPriceTop}</span>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `)
-                        $(".container-wrapper").append(itemEl);
-                    } else if (state == 30 && state == item.w_stateId) {
-                        //已接受
-                        var itemEl = $(`
-                            <div class="myWish-card" id="${item.w_id}">
-                                <div class="order-content_header row">
-                                    <div class="order-content-header_left">
-                                        <div class="seller-pic">
-                                            <img src="../images/user/account/profile/001.png">
-                                        </div>
-                                        <div class="seller-name">${item.member.m_name}</div>
-                                    </div>
-                                    <div class="wish-dataRange">最後更新日期：${dateFormat(item.w_changeTime)}
-                                    </div>
-                                </div>
-                                <div class="order-content_item row">
-                                    <div class="item-image">
-                                    </div>
-                                    <div class="item-detail col-lg">
-                                        <div class="item-misc">
-                                            <div class="misc">
-                                                <div class="item-name">${item.w_title}</div>
-                                                <div class="item-des">${item.w_context}</div>
-                                                <span class="wish-priceRange">$${item.w_sumPriceBottom}-${item.w_sumPriceTop}</span>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <input type="button" value="詳細資訊" class="btn order_btn hrefUrl">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `)
-                        $(".container-wrapper").append(itemEl);
-                    } else if (state == 31 && state == item.w_stateId) {
-                        //下架
-                        var itemEl = $(`
-                            <div class="myWish-card" id="${item.w_id}">
-                                <div class="order-content_header row">
-                                    <div class="order-content-header_left">
-                                        <div class="seller-pic">
-                                            <img src="../images/user/account/profile/001.png">
-                                        </div>
-                                        <div class="seller-name">${item.member.m_name}</div>
-                                    </div>
-                                    <div class="wish-dataRange">最後更新日期：${dateFormat(item.w_changeTime)}
-                                    </div>
-                                </div>
-                                <div class="order-content_item row">
-                                    <div class="item-image">
-                                    </div>
-                                    <div class="item-detail col-lg">
-                                        <div class="item-misc">
-                                            <div class="misc">
-                                                <div class="item-name">${item.w_title}</div>
-                                                <div class="item-des">${item.w_context}</div>
-                                                <span class="wish-priceRange">$${item.w_sumPriceBottom}-${item.w_sumPriceTop}</span>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <input type="button" value="編輯許願" class="btn order_btn editWish_btn" data-toggle="modal" data-target="#editWish" name="${item.w_id}">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `)
-                        $(".container-wrapper").append(itemEl);
-                    }
-                }
-                );
+						$(".container-wrapper").append(itemEl);
+					}
+				});
 
-                //如果沒有東西可以顯示就顯示插圖
-                if ($(".container-wrapper").html() == "") {
-                    initData();
-                }
-                //卡片click事件
-                $(".hrefUrl").click(function () {
-                    var hrefUrl = "test.html"
-                    document.location.href = hrefUrl;
-                });
-            }
-            function initData() {
-                var emptyEl = $(`
+				//如果沒有東西可以顯示就顯示插圖
+				if ($(".container-wrapper").html() == "") {
+					initData();
+				}
+				//卡片click事件
+				$(".hrefUrl").click(function () {
+					var hrefUrl = "test.html"
+					document.location.href = hrefUrl;
+				});
+
+				//編輯願望按鈕click事件
+				$(".editWish_btn").click(function () {
+					var w_id = $(this).attr("name");
+					var oneData = userData.find(function (item) {
+						return item.w_id == w_id
+					});
+					console.log(oneData);
+					console.log(oneData.w_title)
+					$("#w_id").val(oneData.w_id);
+					$("#w_title").val(oneData.w_title);
+					$("#w_context").val(oneData.w_context);
+					$("#w_sumPriceBottom").val(oneData.w_sumPriceBottom);
+					$("#w_sumPriceTop").val(oneData.w_sumPriceTop);
+				});
+
+				//下架願望按鈕click事件
+				$("#CancelWishBtn").click(function () {
+					var w_id = $(this).attr("name");
+					alert(w_id);
+					$.ajax({
+						type: "POST",
+						url: "/TeamWork/CancelWish",
+						data: { "w_id": w_id },
+						success: function () {
+							loadData();
+						}
+					});
+					return false; //阻止form submit
+				});
+
+			}//end of function updateData()
+			function initData() {
+				var emptyEl = $(`
                             <div class="empty">
                                 <img src="../images/user/others/empty_order.svg">
                                 <p>這裡什麼都沒有耶</p>
                                 <p>要不要許些願望呢？</p>
                             </div>
                         `)
-                $(".container-wrapper").append(emptyEl);
-            }
-            $(".purchase-list-page_tab").click(function (e) {
-                $(".tab_lock").removeClass("tab_lock");
-                $(this).addClass("tab_lock");
-                var changeState = $(this).text();
-                switch (changeState) {
-                    case "競標中":
-                        state = 28;
-                        break;
-                    case "競標完成":
-                        state = 29;
-                        break;
-                    case "已接受":
-                        state = 30;
-                        break;
-                    case "下架":
-                        state = 31;
-                        break;
-                    default:
-                        state = 28;
-                }
-                updateData();
-            });
-        });
-    </script>
+				$(".container-wrapper").append(emptyEl);
+			}
+			$(".purchase-list-page_tab").click(function (e) {
+				$(".tab_lock").removeClass("tab_lock");
+				$(this).addClass("tab_lock");
+				var changeState = $(this).text();
+				switch (changeState) {
+					case "競標中":
+						state = 28;
+						break;
+					case "競標完成":
+						state = 29;
+						break;
+					case "已接受":
+						state = 30;
+						break;
+					case "下架":
+						state = 31;
+						break;
+					default:
+						state = 28;
+				}
+				updateData();
+			});
+
+			//編輯願望表單submit事件(AJAX)
+			$("#EditWish_form").on('submit', function () {
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/EditWish",
+					data: $(this).serialize(),
+					success: function () {
+						$("#EditWish").css("display", "none");
+						//關閉互動視窗
+						$("button.close").click();
+						$("#EditWish_form").find(":text,textarea").each(function () {
+							//清空表單所有欄位
+							$(this).val("");
+						});
+						loadData();
+					}
+				});
+				return false; //阻止form submit
+			});
+
+		});
+	</script>
 </body>
 
 </html>

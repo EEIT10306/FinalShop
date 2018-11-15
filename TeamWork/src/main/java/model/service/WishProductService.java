@@ -1,11 +1,13 @@
 package model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import model.bean.Wish;
 import model.bean.WishProduct;
 import model.repository.WishProductDao;
 
@@ -26,6 +28,9 @@ public class WishProductService {
 		
 	}
 	
+	public WishProduct selectWishProductByWId(Integer w_id) throws SQLException {
+		return wishProductDaoImpl.selectByPk(w_id);
+	}
 	public Integer wPnameToID(String wpname) throws SQLException {
 		
 		String hql = "WHERE wP_name = '" +  wpname + "'";
@@ -39,4 +44,12 @@ public class WishProductService {
 		
 	}
 
+	public List<WishProduct> selectWishProductsByWBean(WishProduct bean) throws SQLException{
+		String hql = "where w_id = " + bean.getW_id();
+		hql += " Order by wP_id desc";
+		System.out.println("123");
+		List<WishProduct> list = wishProductDaoImpl.selectHql(hql);
+		return list;
+	}
+	
 }

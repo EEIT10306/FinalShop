@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -12,30 +13,52 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
-
+import model.bean.Member;
 import model.bean.StoreAssess;
-
 import model.bean.StoreOrder;
 import model.bean.Wish;
 import model.bean.WishAssess;
 import model.bean.WishBid;
 import model.bean.WishOrder;
 import model.service.OrderService;
+import model.service.UserPageImageService;
 
 @Controller
 public class OrderListController {
 
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	UserPageImageService userPageImageService;
 
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
 	}
-
+	
+	// 更新使用者資料
+	@RequestMapping(value = "/EditAccountData", method = RequestMethod.POST)
+	public String editAccountData(Member member) throws SQLException {
+		System.out.println(member);
+		orderService.editAccountData(member);
+		return "redirect:/web/view/userPage_profile.html";
+	}
+	
+	//更新使用者圖像
+	@RequestMapping(value = "/UpdateAccountImage", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+	public @ResponseBody String updateAccountImage(List<MultipartFile> files) {
+		System.out.println("UpdateAccountImage-files:==========="+files);
+		//執行上傳圖片方法
+		for(MultipartFile file : files) {			
+			userPageImageService.insertAccountImage(file, 1);
+		}
+		return "updateAccountImage Success!";
+	}
+	
 	// 取得商店訂單資料
 	@RequestMapping(value = "/StoreOrderList", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
@@ -112,6 +135,5 @@ public class OrderListController {
 		orderService.confirmReceive_Wish(wishOrder);
 		return "redirect:/web/view/userPage_WishOrderList.html";
 	}
-
 
 }
