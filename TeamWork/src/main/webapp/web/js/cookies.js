@@ -1,6 +1,5 @@
 //登入先判斷cookie是否有儲存帳號
 $(document).ready(function(){
-    var Memberallbean;
 	var cookies = document.cookie;
     //===================CookieToJson=======================
     function cookiesToJson() {
@@ -25,29 +24,29 @@ $(document).ready(function(){
             url:"/TeamWork/checkAccount",
             data:{"m_account":cookieAccount},
             success:function(data){
-                console.log("cookie======");
                 console.log(data);
                 if(data=="accountNoRepeat"){
                     console.log("帳號沒有重複");
-                } else if (data.m_password=="facebook"){
+                } else if (data==cookieAccount+"facebook"){
                     alert("抓到FB帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
-                } else if (data.m_password=="google"){
+                    // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
+                } else if (data==cookieAccount+"google"){
                     alert("抓到Google帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
+                    // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 } else {
                     alert("抓到一般帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
+                    // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 }
-                Memberallbean=data;
-                console.log("cookie======");
-                console.log(Memberallbean);
+                
             },
             error:function(data){
                 console.log(data);
