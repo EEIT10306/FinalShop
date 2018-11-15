@@ -21,27 +21,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-        <a class="navbar-brand" href="#">DayDayGo!</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
-
-            </ul>
-            <!-- Button trigger modal -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="form_login.html">
-                        <i class="fas fa-user-circle icon"></i>會員登入 Member login
-                    </a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- header -->
+	<div id="header"></div>
+	
     <div class="belowNavbar">
         <div class="container">
             <div class="input-group mb-3">
@@ -321,12 +303,22 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script>
+		// =========jquery的include
+		$(document).ready(function () {
+			console.log("看看有沒有跑INCLUDE")
+			$.get("header.html", function (data) {
+				$("#header").html(data);
+			});
+		})
+	</script>
     <script src="../js/userPage.js"></script>
 
     <!-- Optional JavaScript -->
     <script>
+    	var userID
         $(document).ready(function () {
-            var userID = "1";
+        	userID = Memberallbean[0].m_id;
             var dataurl = "/TeamWork/GroupOrderList?m_idOrder=" + userID;
             var userData = [];
             var state = 55;

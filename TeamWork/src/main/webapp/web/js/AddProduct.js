@@ -37,7 +37,8 @@ function imgPreview(fileDom) {
 }
 //===================CookieToJson=======================
 function cookieToJson() {
-    let cookieArr = document.cookie.split(";");
+	//cookie分割並去掉所有空白字串
+	let cookieArr = document.cookie.replace(/\s/g,"").split(";");
     let obj = {}
     cookieArr.forEach((i) => {
         let arr = i.split("=");
@@ -96,6 +97,7 @@ function VerifySeller() {
     return result;
 }
 //===========================cookie判斷有無店家身份=======================
+var storeid;
 function VerifyStore() {
     var json = cookieToJson();
     var cookieAccount = json['email']
@@ -113,7 +115,8 @@ function VerifyStore() {
                 window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerify.html"
             } else{
                 alert("驗證店家成功");
-                result = true
+                storeid = response;
+                result = true;
             }
         },
         error: function (response) {
@@ -143,13 +146,14 @@ $("#StoreProductClick").click(function (e) {
     alert("inputtext======" + $("input[name='te']").val())
     var formData = new FormData($("#StoremyForm")[0]); // 使用FormData包裝form表單來傳輸資料
     alert("formData=========" + formData.getAll)
-
+    
     // 開始判斷有無店家身份
     if (VerifyStore()) {
         $.ajax({
             type: "POST",
             url: "/TeamWork/AddStoreProduct",
             data: {
+                "s_id":storeid,
                 "sP_name": StoreProductName,
                 "sP_context": StoreProductContext,
                 "p_id": StoreProductSort,
