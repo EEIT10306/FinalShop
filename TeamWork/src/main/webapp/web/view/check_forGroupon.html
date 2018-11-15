@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>商城結帳</title>
+	<title>加入團購</title>
 	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -171,7 +171,7 @@
 		<div id="header-result"></div>
 	</header>
 	<div class="main">
-		<h2>商城結帳</h2>
+		<h2>加入團購</h2>
 		<div id="store-shopping-cart-list" class="store-shopping-cart-list">
 			<!--商品資訊-->
 			<div id="product-selected" class="product-selected">
@@ -254,14 +254,13 @@
 
 		var productsInShopCart; //全域變數--購物車物品清單
 		var productsOrderAmount; //全域變數--購物車物品訂購數量
-		var sp_id; //全域變數--商品ID
+		var gp_id; //全域變數--商品ID
 		var m_account; //全域變數--使用者帳號
 		var m_id; //全域變數--使用者ID
 
 		//測試用 Cookie =======================================================================================
 		document.cookie = "email=beautifulzhuyu"; //登入Cookie
-		document.cookie = "sp_id1=3";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
-		document.cookie = "sp_id10=5";             //購物車Cookie 2號 (商品ID=10，訂購數量=5)
+		document.cookie = "gp_id8=2";              //購物車Cookie 1號 (商品ID=8，訂購數量=2)
 		//=====================================================================================================	
 
 		$(document).ready(
@@ -277,7 +276,7 @@
 					getMemberInformation();
 					if (productsInShopCart == "") {
 						alert("購物車內沒有商品");
-						window.location = "product-search.html";
+						window.location = "groupBuying-search.html";
 					}
 					if (productsInShopCart != "") {
 						getProductInformation();
@@ -289,13 +288,13 @@
 		function getCookie() {
 			productsInShopCart = "";
 			productsOrderAmount = "";
-			//alert("get cookies");
+			alert("get cookies");
 			var cookies = {};
 			var all = document.cookie;
 			if (all == "") {
 				//alert("空 cookies");
 			}
-			//alert("所有Cookie = { " + all + "}");
+			alert("所有Cookie = { " + all + "}");
 			var list = all.split(';');
 			for (var i = 0; i < list.length; i++) {
 				var cookie = list[i];
@@ -303,11 +302,11 @@
 				var name = cookie.substring(0, p).trim();
 				var value = cookie.substring(p + 1);
 				value = decodeURIComponent(value);
-				if (name.substr(0, 5).toLowerCase() == "sp_id") {
+				if (name.substr(0, 5).toLowerCase() == "gp_id") {
 					productsInShopCart += (name.substr(5) + "|");
 					productsOrderAmount += (value + "|");
-					//alert("購物車內的商品ID = " + productsInShopCart);
-					//alert("商品訂購數量 = " + productsOrderAmount);
+					alert("購物車內的商品ID = " + productsInShopCart);
+					alert("商品訂購數量 = " + productsOrderAmount);
 				}
 				if (name == "email") {
 					m_account = value;
@@ -316,53 +315,41 @@
 			}
 		}
 
-		///取得商品資訊信
+		///取得商品資訊
 		function getProductInformation() {
-			//alert("get Product Information");
+			alert("get Product Information");
 			var totalprice = 0;
 			var shoppinglist = productsInShopCart.split("|");
 			var shoppingamount = productsOrderAmount.split("|");
 			for (var i = 0; i < (shoppinglist.length - 1); i++) {
 				$.ajax({
 					type: "POST",
-					url: "/TeamWork/GetShoppingCartProduct",
+					url: "/TeamWork/GetGroupShoppingCartProduct",
 					data: {
-						"sP_id": shoppinglist[i]
+						"gP_id": shoppinglist[i]
 					},
 					dataType: "text",
 					async: false,
 					success: function (data) {
-						//alert(data);
+						alert(data);
 						var productfile = $.parseJSON(data);
 						$("#store-shopping-cart-list").append(
 							'<div>' +
 							'<div id="product-selected' + i + '" class="product-selected">' +
-							'<div id="product-id' + i + '" class="product-id" style="display:none">' + productfile.sP_id + '</div>' +
+							'<div id="product-id' + i + '" class="product-id" style="display:none">' + productfile.gP_id + '</div>' +
 							'<div id="remove-this-item' + i + '" class="remove-this-item" title="移除這項商品">x</div>' +
-							'<img class="store-product-image" src="' + productfile.storeImages[0].sI_context + '" title="' + productfile.sP_name + '">' +
-							'<div id="store-product-name' + i + '" class="store-product-name">' + productfile.sP_name + '</div>' + '<div class="order-amount"><div>訂購數量</div>' +
+							'<img class="store-product-image" src="' + productfile.groupImages[0].gI_context + '" title="' + productfile.gP_name + '">' +
+							'<div id="store-product-name' + i + '" class="store-product-name">' + productfile.gP_name + '</div>' + '<div class="order-amount"><div>訂購數量</div>' +
 							'<input type="number" min="1" id="order-amount-of-this-store-product' + i + '" class="order-amount-of-this-store-product" value=' + shoppingamount[i] + '></div>' +
-							'<div id="store-product-price-by-1' + i + '" class="store-product-price-by-1">商品單價' + '<p id="price-by-1-' + i + '">' + productfile.sP_price + '</p>' + '</div>' +
+							'<div id="store-product-price-by-1' + i + '" class="store-product-price-by-1">商品單價' + '<p id="price-by-1-' + i + '">' + productfile.gP_price + '</p>' + '</div>' +
 							'</div>' +
-							'<div id="selections' + i + '" class="selections">' +
-							'<div class="delivery-selection">' +
-							'<label>商品配送方式</label>' +
-							'<select id="delivery' + i + '" class="selection">' +
-							'<option val=""></option><option val="7-11">7-11</option><option val="全家">全家</option><option val="黑貓到府">黑貓到府</option>' +
-							'</select>' +
-							'</div>' +
-							'<div class="payment-selection">' +
-							'<label>付款方式</label>' +
-							'<select id="payment' + i + '" class="selection">' +
-							'<option val=""></option><option val="信用卡">信用卡</option><option val="貨到付款">貨到付款</option>' +
-							'</select>' +
-							'</div>' + '</div>' + '</div>'
+							'</div>'
 						)
 						$("#price-list").append(
-							'<div id="product-name' + i + '" class="product-name">' + productfile.sP_name + '</div>' +
-							'<div class="product-price"><span id="product-price' + i + '">' + (shoppingamount[i] * productfile.sP_price) + '</span>元</div>'
+							'<div id="product-name' + i + '" class="product-name">' + productfile.gP_name + '</div>' +
+							'<div class="product-price"><span id="product-price' + i + '">' + (shoppingamount[i] * productfile.gP_price) + '</span>元</div>'
 						)
-						totalprice += (shoppingamount[i] * productfile.sP_price);
+						totalprice += (shoppingamount[i] * productfile.gP_price);
 						//alert(totalprice);
 						$("#total-check-price").text(totalprice);
 					}
@@ -373,29 +360,31 @@
 			$(".remove-this-item").click(function () {
 				var number = $(this).attr("id").substr(16);
 				var idnumber = $("#product-id" + number + "").text();
-				var sp_id = "sp_id" + idnumber;
+				var gp_id = "gp_id" + idnumber;
 				//alert(sp_id);
-				var like = confirm("是否將該商品加入我的最愛?");
-				if (like == true) {
-					addToFavorite(idnumber);
-				}
 				$(this).parent().parent().remove();
-				removeOneCookie(sp_id);
+				removeOneCookie(gp_id);
 				getCookie();
 				$("#store-shopping-cart-list").empty();
 				$("#price-list").empty();
-				getProductInformation();
+				if (productsInShopCart == "") {
+					alert("購物車內沒有商品");
+					window.location = "groupBuying-search.html";
+				}
+				if (productsInShopCart != "") {
+					getProductInformation();
+				}
 			})
 
 			//改變商品訂購數量時，商品金額也改變
 			$(".order-amount-of-this-store-product").change(function () {
 				var amount = $(this).val();
 				var list_number = $(this).attr("id").substr(34);
-				var sp_id = "sp_id" + $("#product-id" + list_number + "").text();
+				var gp_id = "gp_id" + $("#product-id" + list_number + "").text();
 				//alert(sp_id);
 				//alert(amount);
 				//alert(list_number);
-				document.cookie = sp_id + "=" + amount + ";";
+				document.cookie = gp_id + "=" + amount + ";";
 				//alert("cookies = " + document.cookie);
 				var price = $("#price-by-1-" + list_number + "").text();
 				//alert(price);
@@ -412,24 +401,6 @@
 				}
 				//alert(totalprice);
 				$("#total-check-price").text(totalprice);
-			})
-		}
-
-		//將商品加入我的最愛
-		function addToFavorite(sp_id) {
-			$.ajax({
-				type: "POST",
-				url: "/TeamWork/AddNewFavorite_StoreSoppingCart",
-				data: {
-					"m_idFavorite": m_id,
-					"sP_id": sp_id
-				},
-				dataType: "text",
-				async: true,
-				success: function (data) {
-					//alert(data);
-					alert("已將商品加入到我的最愛中");
-				}
 			})
 		}
 
@@ -471,7 +442,7 @@
 			$("#member-information").empty();
 			$.ajax({
 				type: "POST",
-				url: "/TeamWork/GetMemberInformation_NewStoreOrder",
+				url: "/TeamWork/GetMemberInformation_NewGroupOrder",
 				data: {
 					"m_account": m_account
 				},
@@ -504,43 +475,29 @@
 			var size = $(".product-selected").length;
 			//alert(size);
 			for (var i = 0; i < size; i++) {
-				var sp_id = $("#product-id" + i + "").text();
+				var gp_id = $("#product-id" + i + "").text();
 				//alert("商品ID = " + sp_id);
 				var amount = $("#order-amount-of-this-store-product" + i + "").val();
 				//alert("訂購數量 : " + amount);
 				var price = $("#product-price" + i + "").text();
 				//alert("商品金額 : " + price);
-				var transport = $("#delivery" + i + "").val();
-				//alert(transport);
-				if (transport == "") {
-					alert("請瑱寫商品配送方式");
-					return "";
-				}
-				var payment = $("#payment" + i + "").val();
-				//alert(payment);
-				if (payment == "") {
-					//alert("請填寫付款方式");
-					return "";
-				}
 				$.ajax({
 					type: "POST",
 					async: true,
-					url: "/TeamWork/AddNewStoreOrder",
+					url: "/TeamWork/AddNewGroupOrder",
 					data: {
-						"sP_id": sp_id,
+						"gP_id": gp_id,
 						"m_idOrder": m_id,
-						"sO_amount": amount,
-						"sO_sumPrice": price,
-						"sO_transport": transport,
-						"sO_pay": payment
+						"gO_amount": amount,
+						"gO_sumPrice": price,
 					},
 					success: function (data) {
 						//alert("交易成功");
-						var key1 = "sp_id" + sp_id;
+						var key1 = "gp_id" + gp_id;
 						//alert(key1);
 						removeOneCookie(key1);
 						//alert("cookies = " + document.cookie);
-						window.location = "userPage_StoreOrdrList_OOO.html";
+						window.location = "userPage_GroupOrderList_OOO.html";
 					}
 				})
 			}
@@ -562,7 +519,7 @@
 				for (var key in cookies) {
 					keys.push(key);
 				}
-				if (name.substr(0, 5).toLowerCase() == "sp_id") {
+				if (name.substr(0, 5).toLowerCase() == "gp_id") {
 					var key1 = name;
 					delete cookies[key1];
 					for (var i = 0; i < keys.length; i++) {
