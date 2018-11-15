@@ -19,7 +19,7 @@ $("#Login").click(function(e){
             if(data=="passwordNull"){
                 $("#errorPassword").html("密碼須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
             }
-            if(data== account){
+            if(data[0].m_account== account){
                 //設定cookie
                 expire_days = 1; // 過期日期(天)
                 var day = new Date();
@@ -27,7 +27,8 @@ $("#Login").click(function(e){
                 // day.setTime(day.getTime() + (60 * 1000));
                 var expires = "expires=" + day.toGMTString();
                 // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
-                document.cookie = "email="+ data + "; " + expires + "; path=/";
+                document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
+                document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
                 alert(document.cookie)
 
                 alert("登入成功")

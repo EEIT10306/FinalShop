@@ -45,10 +45,11 @@ public class LoginController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value = "/LoginServlet" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
+	@RequestMapping(value = "/LoginServlet" , method = RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	@ResponseBody
 	private String LogingServlet(Member member) {
 		System.out.println("LoginServlet");
+		Gson gson = new Gson();
 		//接收資料
 		//驗證資料
 		// 如果 member.getM_account() 欄位為空白，回傳字串accountNull到form_login.html
@@ -84,7 +85,8 @@ public class LoginController {
 		if(bean.size()==0) {
 			return "beanNull";
 		} else {
-			return member.getM_account();
+			String json = gson.toJson(bean);
+			return json;
 		}
 	
 	}
