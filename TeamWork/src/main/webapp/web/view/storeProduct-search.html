@@ -19,6 +19,7 @@
 	<!-- main CSS -->
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/main2.css">
+		<link rel="stylesheet" href="../style/DistrictType.css">
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	 crossorigin="anonymous">
@@ -177,7 +178,7 @@
 				<!-- end of form.select-filter -->
 			</section>
 			<section id="sectionbot" class="col-lg-10">
-				<div id='odbyvalue' name='null' style='height:50px;' class='row'>
+				<div id='odbyvalue' name='null' style='height:50px;' class='row d-flex justify-content-between'>
 
 
 				</div>
@@ -300,8 +301,7 @@
 
 						$("#headsearch").val(search_value);
 					}
-					$
-						.ajax({
+					$.ajax({
 							type: "GET",
 
 							url: "/TeamWork/StoreProductForm?" + str_value,
@@ -312,23 +312,40 @@
 								if (jsonback == "") {
 									var txt = "<p>我們找不到 " + search_value + " 商品</p>";
 									$("#odbyvalue").html(txt);
-								}
+									
+								
+									$("#tableMenu").html(txt2);
+									orderby();
 
+								}
+							
 
 								//	var json=JSON.parse(jsonback);
 								//	alert(json);
 								else {
 									var txt = "";
-									var txt2 = "<button value='1' id='btn1' >最愛排名</button>" +
-										"<button value='2' id='btn2' >最新</button>" +
-										"<button value='3' id='btn3' >最熱門</button>" +
-										"<button value='4' id='btn4' >價格低到高</button>" +
-										"<button value='5' id='btn5' >價格高到低</button>"
+									var txt2 =` <div><ul id="haha" class="drop-down-menu">
+        										<li><a href="#" value='1' id='btn1'>最愛排名</a></li>
+												<li><a href="#" value='2' id='btn2'>最新</a></li>
+												<li><a href="#" value='3' id='btn3'>最熱門</a></li>
+												<li><a href="#">價格排序</a>
+													<ul>
+														<li><a href="#" value='4' id='btn4'>價格低到高排序</a></li>
+														<li><a href="#" value='5' id='btn5'>價格高到低排序</a></li>
+													</ul>
+												</li>
+											</ul>
+											</div>
+											<div>
+											<button type='btn' class='btn btn-light'><</button>
+											<button type='btn' class='btn btn-light'>></button>
+											</div>`
+											
 									$("#odbyvalue").html(txt2);
 
 									for (x = 0; x < jsonback.length; x++) {
 										// 												alert("in txt")
-										txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
+										txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id + "'>";
 
 										txt += "<div class='card card-search'>";
 										if (jsonback[x].storeImages == "") {
@@ -366,7 +383,28 @@
 										txt += "</div>";
 										// 	+ jsonback[x].sP_averageAssess																				
 									}
-									$("#tableMenu").html(txt);
+									$("#tableMenu").html(txt).append(`<div class="row d-flex justify-content-center col-12">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Previous">
+							  <span aria-hidden="true">&laquo;</span>
+							  <span class="sr-only">Previous</span>
+							</a>
+						  </li>
+						  <li class="page-item"><a class="page-link" href="#">1</a></li>
+						  <li class="page-item"><a class="page-link" href="#">2</a></li>
+						  <li class="page-item"><a class="page-link" href="#">3</a></li>
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Next">
+							  <span aria-hidden="true">&raquo;</span>
+							  <span class="sr-only">Next</span>
+							</a>
+						  </li>
+						</ul>
+					</nav>
+					</div>`
+									)
 									orderby();
 								}
 
@@ -380,43 +418,6 @@
 
 
 
-					// 運送方式ABCDE
-					// &a=abc&b=123 split之後取得參數左邊的KEY 判斷ABCD是否有值 如果有hql  WHEWR 運送店家 =運送店家ID or 運送店家ID
-
-					//     $(".form-check-input").change(function(){
-					//         var selectone =$("[name='selectone']").val();
-					//         var search= $("[name='search']").val();
-					//         $.post("/mvc/client1/test2",{selectone:selectone,seaech:seaech})
-					//     });
-					//     if(selectone==store && search==null){
-
-					//         $.ajax({
-					//             type: "GET",
-					//             url:"/TeamWork/search",
-					//             success:function(jsonback){
-					//             	 alert("server傳回 = " + jsonback) ; 
-					//             	var json=JSON.parse(jsonback);
-					//             	var txt = "" ; 
-
-					//           	for( x = 0 ; x< json.length ; x++) {            
-					//             	  txt += "<div class='col-lg-3'>"; 
-					//             	  txt += "<div class='card card-search'>"; 
-					//             	  txt += "<img class='card-img-top' src="+圖片+" alt='Card image cap'>"  ; 
-					//             	  txt += "<div class='card-body'>"  ;
-					//             	  txt += "<h5 class='card-title'>"+商品名稱+"</h5>"  ;
-					//             	  txt += "<p class='card-text'>"+商品內容+"</p>"  ;
-					//             	  txt +="<p class='card-text'>$"+300+"</p>"
-					//             	  txt += "</div>"; 
-					//             	  txt += "</div>"; 
-					//             	  txt += "</div>"; 
-
-					//            	}
-
-					//             	$("#tableMenu").html(txt);
-					//             }
-					//         });
-					//     }  
-					//     });
 
 				});
 		// function odby1() {
@@ -458,17 +459,6 @@
 				changefrom();
 			});
 		}
-
-		// txt += "<p class='card-text'>最愛總人數"
-		// 	+ jsonback[x].sP_amountFavorite
-		// 	+ "</p>"
-		// txt += "<p class='card-text'>平均評分"
-		// 	+ jsonback[x].sP_averageAssess
-		// 	+ "("
-		// 	+ jsonback[x].sP_amountAssess
-		// 	+ ")</p>"
-
-
 
 		$("#exampleFormControlSelect1")
 			.change(
@@ -614,21 +604,7 @@
 				}
 			
 			}
-			// if ($("#conditionCheck2").prop(
-			// 	'checked') == true) {
-			// 	fromurl += "&j= false";
-			// 	// var maxprice = $(
-			// 	// 	"#selectChangeprice2")
-			// 	// 	.val();
-			// }	else{
-			// 		fromurl += "&j= true";
-			// 	}
-			// 	if ($("#conditionCheck1").prop(
-			// 	'checked') == true&& $("#conditionCheck2").prop(
-			// 	'checked') == true ){
-			// 		fromurl += "&i= true";
-			// 		fromurl += "&j= false";
-			// 	}
+	
 
 			// 價格範圍
 			
@@ -652,11 +628,7 @@
 				alert(odbyvalue);
 				alert(fromurl);
 
-			}
-
-
-			$
-				.ajax({
+			}$.ajax({
 					type: "GET",
 
 					url: fromurl,
@@ -667,6 +639,9 @@
 						if (jsonback == "") {
 							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
 							$("#odbyvalue").html(txt);
+							var txt2="";
+							$("#tableMenu").html(txt2);
+									orderby();
 						}
 
 
@@ -674,16 +649,26 @@
 						//	alert(json);
 						else {
 							var txt = "";
-							var txt2 = "<button value='1' id='btn1' >最愛排名</button>" +
-								"<button value='2' id='btn2' >最新</button>" +
-								"<button value='3' id='btn3' >最熱門</button>" +
-								"<button value='4' id='btn4' >價格低到高</button>" +
-								"<button value='5' id='btn5' >價格高到低</button>"
+							var txt2 =` <ul id="haha" class="drop-down-menu">
+        										<li><a href="#" value='1' id='btn1'>最愛排名</a></li>
+												<li><a href="#" value='2' id='btn2'>最新</a></li>
+												<li><a href="#" value='3' id='btn3'>最熱門</a></li>
+												<li><a href="#">價格排序</a>
+													<ul>
+													<li><a href="#" value='4' id='btn4'>價格低到高排序</a></li>
+													<li><a href="#" value='5' id='btn5'>價格高到低排序</a></li>
+													</ul>
+												</li>
+											</ul>
+											<div>
+											<button type='btn' class='btn btn-light'><</button>
+											<button type='btn' class='btn btn-light'>></button>
+											</div>`
 							$("#odbyvalue").html(txt2);
 							
 							for (x = 0; x < jsonback.length; x++) {
 								// 												alert("in txt")
-								txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
+								txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id +"'>";
 
 								txt += "<div class='card card-search'>";
 								if (jsonback[x].storeImages == "") {
@@ -724,9 +709,11 @@
 							}
 							$("#tableMenu").html(txt);
 							orderby();
-						}
-
+					
+						
 					}
+						}
+						
 				});
 		};
 	</script>
@@ -734,6 +721,19 @@
 	 crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	 crossorigin="anonymous"></script>
+<script>
+function clickdiv(){
+	var sp_id = $(event.target).parents(".col-lg-3").attr("data-box")
+	$.ajax({
+				type: "GET",
+				url: "/TeamWork/productHot?sP_id=" + sp_id,
+				success: function(response){
+					alert("hahahaha")
+				}			
+	// location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
+	})
+	location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
+}
+</script>
 </body>
-
 </html>

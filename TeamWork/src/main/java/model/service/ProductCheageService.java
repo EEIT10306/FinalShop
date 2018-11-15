@@ -15,7 +15,7 @@ import model.repository.WishMessageDao;
 
 @Service
 @Transactional
-public class _TestServiceProduct {
+public class ProductCheageService {
 
 	@Autowired
 	private ProductDao productDaoImpl;
