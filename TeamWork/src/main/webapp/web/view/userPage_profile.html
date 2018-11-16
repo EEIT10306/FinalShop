@@ -124,7 +124,7 @@
 				<div class="my-account_content">
 					<div class="my-account-profile_left">
 						<form id="my-account_form">
-							<input type="hidden" name="m_id" value="">
+							<input type="hidden" name="m_id" value="" id="m_id">
 							<div class="form-group row">
 								<label for="mem_name" class="col-sm-3 col-form-label">姓名</label>
 								<div class="col-sm-9">
@@ -278,7 +278,10 @@
 		$(document).ready(function () {
 			if (document.cookie.split("mid=").length == 2) {
 				userID = document.cookie.split("mid=")[1].split(";")[0]
+				$("#m_id").val(userID);
 			} else {
+				userID = "";
+                window.history.pushState("", "page 2", "userPage_profile.html")
 				window.location.href = "form_login.html";
 			}
 			var dataurl = "/TeamWork/Member?m_id=" + userID;
@@ -348,7 +351,6 @@
 
 			//個人資料更新確認更新按鈕click事件
 			$("#my-account_form").on('submit', function () {
-				alert("#my-account_form")
 				$.ajax({
 					type: "POST",
 					url: "/TeamWork/EditMyAccountData",
@@ -358,6 +360,8 @@
 						$("#editUserDataBtn").css("display", "inline-block")
 						$("#updateUserDataBtn").css("display", "none")
 						$(".userInput").attr("readonly", true)
+						updateUserData()
+						updateMemberData(userData)
 					},
 					error: function () {
 						alert("error!")
