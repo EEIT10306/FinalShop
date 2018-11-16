@@ -79,7 +79,7 @@ public class WishSearchService {
 
 	public List<Wish> getWishCheage(String search, String a, String b, String c, String d, String e, String f) {
 		String str = "";
-		
+		 
 //		if(e!=null) {		
 //			e1 = Integer.parseInt(e);
 //		}
@@ -92,39 +92,75 @@ public class WishSearchService {
 		str += (c != null && d != null) ? " and (sP_price > " + c + " and sP_price<" + d + ") " : "";
 		System.out.println("e="+e);
 		System.out.println("f="+f);
-		if(f!=null) {	
+//		if(f!=null) {	
+//		
+//		if (f=="0"||f.equals("0")) {
+//			str += "and districtType.d_id > 0";
+//		} else if (f.equals("1")||f=="1") {
+//			str += "and (districtType.d_id >1 and districtType.d_id<31)";
+//		} 
+////		else if (e < 31) {
+////			str += "and districtType.d_parentsId = " + e;} 
+//		else if (f.equals("31")||f=="31") {
+//			str += "and districtType.d_id >31";
+//		} else if (f.equals("32")||f=="32") {
+//			str += "and (districtType.d_parentsId =40 and districtType.d_parentsId = 41 and districtType.d_parentsId = 42 and districtType.d_parentsId = 43)";
+//		} else if (f.equals("33")||f=="34") {
+//			str += "and (districtType.d_parentsId >43 and districtType.d_parentsId <50)";
+//		} else if (f.equals("34")||f=="34") {
+//			str += "and (districtType.d_parentsId >49 and districtType.d_parentsId <57)";
+//		} else if (f.equals("35")||f=="35") {
+//			str += "and (districtType.d_parentsId >56 and districtType.d_parentsId <66)";
+//		} else if (f.equals("36")||f=="36") {
+//			str += "and (districtType.d_parentsId >65 and districtType.d_parentsId <73)";
+//		} else if (f.equals("37")||f=="37") {
+//			str += "and (districtType.d_parentsId >72 and districtType.d_parentsId <78)";
+//		} else if (f.equals("38")||f=="38") {
+//			str += "and (districtType.d_parentsId >77 and districtType.d_parentsId <82)";
+//		} else if (f.equals("39")||f=="39") {
+//			str += "and (districtType.d_parentsId >81 and districtType.d_parentsId <90)";
+//		}else {
+//			str += "and districtType.d_parentsId = " + f;
+//		}
+//		}else {
+//			f="";
+//		}
 		
-		if (f=="0"||f.equals("0")) {
-			str += "and districtType.d_id > 0";
-		} else if (f.equals("1")||f=="1") {
-			str += "and (districtType.d_id >1 and districtType.d_id<31)";
-		} 
-//		else if (e < 31) {
-//			str += "and districtType.d_parentsId = " + e;} 
-		else if (f.equals("31")||f=="31") {
-			str += "and districtType.d_id >31";
-		} else if (f.equals("32")||f=="32") {
-			str += "and (districtType.d_parentsId =40 and districtType.d_parentsId = 41 and districtType.d_parentsId = 42 and districtType.d_parentsId = 43)";
-		} else if (f.equals("33")||f=="34") {
-			str += "and (districtType.d_parentsId >43 and districtType.d_parentsId <50)";
-		} else if (f.equals("34")||f=="34") {
-			str += "and (districtType.d_parentsId >49 and districtType.d_parentsId <57)";
-		} else if (f.equals("35")||f=="35") {
-			str += "and (districtType.d_parentsId >56 and districtType.d_parentsId <66)";
-		} else if (f.equals("36")||f=="36") {
-			str += "and (districtType.d_parentsId >65 and districtType.d_parentsId <73)";
-		} else if (f.equals("37")||f=="37") {
-			str += "and (districtType.d_parentsId >72 and districtType.d_parentsId <78)";
-		} else if (f.equals("38")||f=="38") {
-			str += "and (districtType.d_parentsId >77 and districtType.d_parentsId <82)";
-		} else if (f.equals("39")||f=="39") {
-			str += "and (districtType.d_parentsId >81 and districtType.d_parentsId <90)";
-		}else {
-			str += "and districtType.d_parentsId = " + f;
-		}
-		}else {
-			f="";
-		}
+		if(f!=null) {	
+					
+			Integer f1 = Integer.parseInt(f);
+			
+			if (f1==0) {
+				str += "and districtType.d_id > 0";
+			} else if (f1==1 ){
+				str += "and (districtType.d_id >1 and districtType.d_id<31)";
+			} 
+			else if ((f1>8&&f1<31) ||f1>89) {
+				str += "and districtType.d_id = " + f;} 
+			else if (f1==31) {
+				str += "and districtType.d_id >31";
+			} else if (f1==32) {
+				str += "and (districtType.d_parentsId =40 and districtType.d_parentsId = 41 and districtType.d_parentsId = 42 and districtType.d_parentsId = 43)";
+			} else if  (f1==33) {
+				str += "and (districtType.d_parentsId >43 and districtType.d_parentsId <50)";
+			} else if (f1==34)  {
+				str += "and (districtType.d_parentsId >49 and districtType.d_parentsId <57)";
+			} else if (f1==35) {
+				str += "and (districtType.d_parentsId >56 and districtType.d_parentsId <66)";
+			} else if (f1==36) {
+				str += "and (districtType.d_parentsId >65 and districtType.d_parentsId <73)";
+			} else if (f1==37) {
+				str += "and (districtType.d_parentsId >72 and districtType.d_parentsId <78)";
+			} else if (f1==38) {
+				str += "and (districtType.d_parentsId >77 and districtType.d_parentsId <82)";
+			} else if (f1==39) {
+				str += "and (districtType.d_parentsId >81 and districtType.d_parentsId <90)";
+			}else {
+				str += "and districtType.d_parentsId = " + f;
+			}
+			}else {
+				f="";
+			}
 //		str += (e != null) ? " and districtType.d_parentsId =" + e + " " : "";
 
 //		if (!e.equals("0") || e!= "0"||e!=null) {

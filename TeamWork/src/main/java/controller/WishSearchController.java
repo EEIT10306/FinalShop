@@ -18,7 +18,7 @@ import model.bean.WishBid;
 import model.service.WishBidService;
 import model.service.WishSearchService;
 
-//@Controller
+@Controller
 public class WishSearchController {
 	
 	@Autowired
