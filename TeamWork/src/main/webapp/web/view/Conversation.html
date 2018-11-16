@@ -81,6 +81,7 @@
 			}
 		}
 
+		//取得會員資料
 		function FindMember() {
 			//alert("FindMemberId " + m_account);
 			if (m_account == null) {
@@ -102,12 +103,14 @@
 			}
 		}
 
+		//在input按下Enter即可傳送訊息
 		$("#typeMessage").keydown(function (event) {
 			if (event.which == 13) {
 				sendMessage();
 			}
 		})
 
+		//傳送訊息
 		function sendMessage() {
 			var message = $("#typeMessage").val();
 			$.ajax({
@@ -121,107 +124,112 @@
 					//alert(data);
 				}
 			})
-			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
+			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight); //聊天室拉條拉至最底下
 		}
 
+		//聊天室拉條拉至最底下
 		$(document).ready(function () {
 			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
 		})
 
+		//每秒檢查尚未讀取的聊天紀錄筆數
 		setInterval(function () {
 			if(m_id==""){
 				return "m_id=null";
-			}
-			$.ajax({
-				type: "POST",
-				url: "/TeamWork/UnreadMessages",
-				data: {
-					"m_id": m_id
-				},
-				success: function (data) {
-					//alert(data);
-					$("#chat-message-counter").text(data);
-				}
-			})
-			$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
-		}, 1000)
-
-		setInterval(function () {
-			if(m_id==""){
-				return "m_id=null";
-			}
-			$.ajax({
-				type: "POST",
-				url: "/TeamWork/CommunicationsWithCustomerService",
-				data: {
-					"m_id": m_id
-				},
-				dataType: "text",
-				success: function (data) {
-					//alert(data);
-					if(data==null){
-						return "data=null";;
-					}
-					var c_info = $.parseJSON(data);
-					//alert(c_info);
-					$("#chat-history").empty();
-					for (var i = 0; i < c_info.length; i++) {
-						//alert(c_info.length);
-						for (var j = 0; j < c_info[i].length; j++) {
-							//alert(c_info[i].length);
-							var today = new Date();
-							var ctime = new Date(c_info[i][j].c_time);
-							var photo = String(c_info[i][j].memberConversation.m_photo);
-							if (ctime.toLocaleDateString() != today.toLocaleDateString()) {
-								var cdate = ctime.toLocaleDateString();
-								$("#chat-history").append('<div class="chat-message clearfix">' + cdate + '</div><hr>')
-							}
-							if (ctime.toLocaleDateString() == today.toLocaleDateString()) {
-								$("#chat-history").append('<div class="chat-message clearfix">今天</div><hr>')
-							}
-							if(photo==""){
-								photo = "../images/user/account/profile/001.png";
-							}
-							var time = ctime.toLocaleTimeString();
-							//var time = ctime.pattern("yyyy-MM-dd HH:mm");
-							$("#chat-history").append(
-								'<div class="chat-message clearfix">'
-								+ '<img src="' + photo + '" alt="" width="32" height="32">'
-								+ '<div class="chat-message-content clearfix">'
-								+ '<span class="chat-time">'
-								+ time
-								+ '</span>'
-								+ '<h5>'
-								+ c_info[i][j].member.m_name
-								+ '</h5>'
-								+ '<p>'
-								+ c_info[i][j].c_context
-								+ '</p>'
-								+ '</div>' +
-								'</div>' +
-								'<hr>')
-						}
-					}
-				}
-			})
-		}, 1000)
-
-		$(document).ready(function () {
-			$("#live-chat-header").click(function () {
-				if(m_id==""){
-					return "m_id=null";
-				}
+			}else{
 				$.ajax({
 					type: "POST",
-					url: "/TeamWork/UpdateConversationState",
+					url: "/TeamWork/UnreadMessages",
+					data: {
+						"m_id": m_id
+					},
+					success: function (data) {
+						//alert(data);
+						$("#chat-message-counter").text(data);
+					}
+				})
+				$("#chat-history").scrollTop($("#chat-history")[0].scrollHeight);
+			}}, 1000)
+
+		//每秒查詢新的聊天紀錄
+		setInterval(function () {
+			if(m_id==""){
+				return "m_id=null";
+			}else{
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/CommunicationsWithCustomerService",
 					data: {
 						"m_id": m_id
 					},
 					dataType: "text",
 					success: function (data) {
 						//alert(data);
+						if(data==null){
+							return "data=null";;
+						}
+						var c_info = $.parseJSON(data);
+						//alert(c_info);
+						$("#chat-history").empty();
+						for (var i = 0; i < c_info.length; i++) {
+							//alert(c_info.length);
+							for (var j = 0; j < c_info[i].length; j++) {
+								//alert(c_info[i].length);
+								var today = new Date();
+								var ctime = new Date(c_info[i][j].c_time);
+								var photo = String(c_info[i][j].memberConversation.m_photo);
+								if (ctime.toLocaleDateString() != today.toLocaleDateString()) {
+									var cdate = ctime.toLocaleDateString();
+									$("#chat-history").append('<div class="chat-message clearfix">' + cdate + '</div><hr>')
+								}
+								if (ctime.toLocaleDateString() == today.toLocaleDateString()) {
+									$("#chat-history").append('<div class="chat-message clearfix">今天</div><hr>')
+								}
+								if(photo==""){
+									photo = "../images/user/account/profile/001.png";
+								}
+								var time = ctime.toLocaleTimeString();
+								//var time = ctime.pattern("yyyy-MM-dd HH:mm");
+								$("#chat-history").append(
+									'<div class="chat-message clearfix">'
+									+ '<img src="' + photo + '" alt="" width="32" height="32">'
+									+ '<div class="chat-message-content clearfix">'
+									+ '<span class="chat-time">'
+									+ time
+									+ '</span>'
+									+ '<h5>'
+									+ c_info[i][j].member.m_name
+									+ '</h5>'
+									+ '<p>'
+									+ c_info[i][j].c_context
+									+ '</p>'
+									+ '</div>' +
+									'</div>' +
+									'<hr>')
+							}
+						}
 					}
 				})
+			}}, 1000)
+
+		//按下聊天室視窗時，將聊天內容改為"已讀"
+		$(document).ready(function () {
+			$("#live-chat-header").click(function () {
+				if(m_id==""){
+					return "m_id=null";
+				}else{
+					$.ajax({
+						type: "POST",
+						url: "/TeamWork/UpdateConversationState",
+						data: {
+							"m_id": m_id
+						},
+						dataType: "text",
+						success: function (data) {
+							//alert(data);
+						}
+					})
+				}			
 			})
 		})
 	</script>
