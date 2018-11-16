@@ -22,46 +22,29 @@
 
 <body>
     <!-- header -->
-	<div id="header"></div>
-	
-    <div class="belowNavbar">
-        <div class="container">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">項目</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">許願池</a> <a class="dropdown-item" href="#">限時團購</a> <a class="dropdown-item"
-                            href="#">購物商城</a>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Search</button>
-                </div>
-            </div>
-        </div>
-        <!-- end of container -->
-    </div>
+    <div id="header"></div>
+    <!-- header-search -->
+    <div id="header-search"></div>
+
     <div class="container">
         <div class="row">
             <div class="user-page-slidebar col-lg-2">
                 <div class="user-page-brief">
-                    <a class="user-page-brief_avatar" href="#">
+                    <a class="user-page-brief_avatar" href="userPage_profile.html">
                         <div class="user-avatar_placeholder">
-                            <img src="../images/user/account/profile/001.png" alt="">
+                            <img id="member_pic" src="">
                         </div>
                     </a>
                     <div class="user-page-brief_right">
-						<div class="user-page-brief__username">jennifer8306</div>
-						<!-- <div>
-							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
-						</div> -->
-						<div class="user-page-brief__coin">
-							<img src="../images/user/others/coin.png" style="display: inline-block;">
-							<span>100</span>
-						</div>
-					</div>
+                        <div class="user-page-brief__username" id="member_username"></div>
+                        <!-- <div>
+                                    <a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
+                                </div> -->
+                        <div class="user-page-brief__coin">
+                            <img src="../images/user/others/coin.png" style="display: inline-block;">
+                            <span id="member_coin"></span>
+                        </div>
+                    </div>
                 </div>
                 <!-- start of userpage-sidebar-menu -->
                 <div class="userpage-sidebar-menu">
@@ -146,44 +129,44 @@
                             <p>LOADING...</p>
                         </div>
                     </div>
-            	</div>
-        	</div>
-    	</div>
-    <!-- 新增願望單據(互動視窗) -->
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">新增許願單</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
-                <form class="popperForm">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">標題：</label> <input type="text" class="form-control"
-                                id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">詳細描述：</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">價錢範圍：</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn userSubmitBtn">新增願望</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
+        <!-- 新增願望單據(互動視窗) -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">新增許願單</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form class="popperForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">標題：</label> <input type="text" class="form-control"
+                                    id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">詳細描述：</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">價錢範圍：</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn userSubmitBtn">新增願望</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- 測試互動視窗的按鈕 -->
     <!-- <input type="button" value="給予評價" class="btn order_btn" data-toggle="modal" data-target="#giveAssess"> -->
@@ -298,27 +281,34 @@
             </div>
         </div>
     </div><!-- end of 新增評價(互動視窗) -->
-    
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script>
-		// =========jquery的include
-		$(document).ready(function () {
-			console.log("看看有沒有跑INCLUDE")
-			$.get("header.html", function (data) {
-				$("#header").html(data);
-			});
-		})
-	</script>
     <script src="../js/userPage.js"></script>
+    <script>
+        // =========jquery的include
+        $(document).ready(function () {
+            $.get("header.html", function (data) {
+                $("#header").html(data);
+            });
+            $.get("header-search.html", function (data) {
+                $("#header-search").html(data);
+            });
+        })
+    </script>
 
     <!-- Optional JavaScript -->
     <script>
-    	var userID
+        var userID = 1;
         $(document).ready(function () {
-        	userID = Memberallbean[0].m_id;
+            if (document.cookie.split("mid=").length == 2) {
+                userID = document.cookie.split("mid=")[1].split(";")[0]
+            } else {
+                window.location.href = "form_login.html";
+            }
+
             var dataurl = "/TeamWork/GroupOrderList?m_idOrder=" + userID;
             var userData = [];
             var state = 55;
@@ -336,6 +326,7 @@
                         userData = res
                         // 更新畫面中的元素
                         updateData()
+                        loadMemberData(userID)
                     }
                 })
             }
@@ -484,7 +475,7 @@
                 });
                 //確認收貨按鈕
                 $(".confirmReceive").click(function () {
-                    var gO_id = $(this).attr("id").replace("confirmReceive","")
+                    var gO_id = $(this).attr("id").replace("confirmReceive", "")
                     alert(gO_id);
                     $.ajax({
                         type: "POST",

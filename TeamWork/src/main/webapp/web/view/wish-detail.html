@@ -27,7 +27,7 @@
 		var productDemoPhototxt="";
 		
 		
-		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
+// 		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
 		var member_mail;
 		var theCookies = document.cookie.split(";");
 		var member_id;
@@ -492,7 +492,6 @@
 								data:{w_id:hahaha.substring(5), m_idOrder:$(this).parent().next().first().find(".comment-name").attr("name"), wO_sumPrice:$(this).parent().next().find(".orderPrice").attr("value"), wO_time:nowDateFormed, wO_stateId:38},
 								success:function(wishOrder){
 									console.log(wishOrder);
-									alert("success!");
 								}
 							})
 						})

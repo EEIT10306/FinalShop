@@ -10,22 +10,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 
 	<!-- main CSS -->
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/userPage.css">
 
 	<!-- fontawesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	 crossorigin="anonymous">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 </head>
 
 <body>
 	<!-- header -->
 	<div id="header"></div>
+	<!-- header-search -->
 	<div id="header-search"></div>
 
 	<div class="container">
@@ -39,9 +37,6 @@
 					</a>
 					<div class="user-page-brief_right">
 						<div class="user-page-brief__username" id="member_username"></div>
-						<!-- <div>
-							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
-						</div> -->
 						<div class="user-page-brief__coin">
 							<img src="../images/user/others/coin.png" style="display: inline-block;">
 							<span id="member_coin"></span>
@@ -317,11 +312,11 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="../js/headersearchinclude.js"></script>
+	<script src="../js/heacerinclude.js"></script>
 	<script src="../js/userPage.js"></script>
 	<script>
-		// =========jquery的include
 		$(document).ready(function () {
-			console.log("看看有沒有跑INCLUDE")
 			$.get("header.html", function (data) {
 				$("#header").html(data);
 			});
@@ -332,17 +327,18 @@
 	</script>
 	<!-- Optional JavaScript -->
 	<script>
-		var userID= 1;
+		var userID = 1;
 		$(document).ready(function () {
-			if(document.cookie.split("mid=").length == 2){				
+			if (document.cookie.split("mid=").length == 2) {
 				userID = document.cookie.split("mid=")[1].split(";")[0]
-			}else{
-				window.location.href="form_login.html";
+			} else {
+				userID = "";
+				window.history.pushState("","page 2" , "userPage_WishList.html")
+				window.location.href = "form_login.html";
 			}
-				
+
 			var dataurl = "/TeamWork/WishList?m_id=" + userID;
 			var userData = [];
-			
 			var state = 28;
 
 			loadData();

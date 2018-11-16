@@ -60,6 +60,14 @@ a.userpage-sidebar-menu_item {
 	align-items: center;
 
 }
+a.userpage-sidebar-menu_item:hover {
+	padding: 1px;
+	text-decoration: none;
+	display: none;
+	/* display: flex; */
+	flex-direction: row;
+	align-items: center;
+}
 .userpage-sidebar-menu_item-head {
 	padding: 2px;
 	text-decoration: none;
