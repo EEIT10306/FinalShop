@@ -135,6 +135,7 @@ function  DelCookie(name){
     var expires = "expires=" + day.toGMTString();
     document.cookie = "email="+ "" + "; " + expires + "; path=/";
     document.cookie = "mid="+ "" + "; " + expires + "; path=/";
+    document.cookie = "e_mail="+ "" + "; " + expires + "; path=/";
     location.reload()
     // documents.cookie  =  name  +  "="  +  cval  +  ";  expires="+  exp.toGMTString();
 }

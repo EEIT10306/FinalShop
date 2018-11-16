@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import model.bean.CommitAchievement;
 import model.bean.Member;
 import model.bean.StoreFavorite;
 import model.bean.StoreOrder;
@@ -41,13 +42,21 @@ public class ShoppingCartController_forStroeProduct {
 				"=====================================Add New Store Order=====================================");
 		shoppingCartService.addNewStoreOrder(storeOrder);
 	}
-	
+
 	@RequestMapping(value = "/AddNewFavorite_StoreSoppingCart", method = RequestMethod.POST)
 	@ResponseBody
 	private StoreFavorite AddNewFavorite(StoreFavorite storeFavorite) {
-		System.out.println(
-				"=====================================Add New Favorite=====================================");
+		System.out
+				.println("=====================================Add New Favorite=====================================");
 		return shoppingCartService.addIntoMyFavorite(storeFavorite);
+	}
+
+	@RequestMapping(value = "/UpdateAchievements_forStoreOrders", method = RequestMethod.POST)
+	@ResponseBody
+	private void UpdateAchievements(CommitAchievement achievement) {
+		System.out.println(
+				"===================================== Update Achievements =====================================");
+		shoppingCartService.newAchievement_forStoreOrder(achievement);
 	}
 
 }

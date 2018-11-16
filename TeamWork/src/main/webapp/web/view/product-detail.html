@@ -145,6 +145,7 @@
 			$("#shopNow").click(function(){
 				var shopNow = "shopNow"+hahaha.replace("=", "");
 				document.cookie = shopNow + "=" + $("#productAmount").val()+";" ;
+				window.history.pushState("","page 1","product-detail.html?" + hahaha)
 				window.location.href = "/TeamWork/web/view/shoppingcart.html";
 			})
 			
