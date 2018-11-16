@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.Member;
-import model.bean.WishImages;
 import model.repository.Impl.MemberDaoImpl;
 
 @Service
@@ -18,12 +17,14 @@ import model.repository.Impl.MemberDaoImpl;
 public class UserPageImageService {
 
 	private static String SetAccountImagePath = "C:/EEIT10306/TeamWork/repository/TeamWork/src/main/webapp/web/images/user/account/";
+	private static String SetAccountImagePathTomcat = "C:/EEIT10306/TeamWork/apache-tomcat-9.0.11/wtpwebapps/TeamWork/web/images/user/account/";
 	private static String GetAccountImagePath = "/TeamWork/web/images/user/account/";
 	@Autowired
 	private MemberDaoImpl memberDaoImpl;
 
 	public void saveAccountImage(MultipartFile file, String fileName) throws IllegalStateException, IOException {
 		file.transferTo(new File(SetAccountImagePath + fileName));
+		file.transferTo(new File(SetAccountImagePathTomcat + fileName));
 	}
 
 	public boolean insertAccountImage(MultipartFile file, Integer m_id) {
