@@ -213,63 +213,47 @@
                         <input type="hidden" name="w_id" value="" id="w_id" />
                         <div class="modal-form-group row">
                             <label for="w_title" class="col-sm-2 modal-label">商品名稱：</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-10">
                                 <input type="text" class="form-control" id="w_title" name="w_title" placeholder="編輯商品名稱">
                             </div>
+                        </div>
+                        <div class="modal-form-group row">
                             <label for="w_context" class="col-sm-2 modal-label">商品內容：</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-10">
                                 <textarea class="form-control" id="w_context" name="w_context" placeholder="編輯商品內容"></textarea>
                             </div>
                         </div>
                         <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-3 modal-label">價格：</label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="">
+                            <label for="w_title" class="col-sm-2 modal-label">庫存數量：</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="100">
                             </div>
-                        </div>
-                        <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-3 modal-label">庫存數量：</label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="">
-                            </div>
-                        </div>
-                        <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-3 modal-label">運送方式：</label>
-                            <div class="col-sm-9">
-                                <select multiple class="form-control">
-                                    <option>全家</option>
-                                    <option>7-11</option>
-                                    <option>萊爾富</option>
-                                    <option>中華郵政</option>
-                                    <option>賣家宅配</option>
-                                    <option>面交</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-3 modal-label">新品：</label>
-                            <div class="col-sm-2"></div>
+                            <label for="w_title" class="col-sm-2 modal-label">　　
+                                新品：</label>
                             <div class="col-sm-1">
                                 <input type="radio" class="form-control" id="w_title" name="w_title" value=1>
                             </div>
                             <div class="col-sm-1">
                                 <span style="font-weight: normal">是</span>
                             </div>
-                            <div class="col-sm-1"></div>
                             <div class="col-sm-1">
                                 <input type="radio" class="form-control" id="w_title" name="w_title" value=0>
                             </div>
                             <div class="col-sm-1">
                                 <span style="font-weight: normal">否</span>
                             </div>
-                            <div class="col-sm-2"></div>
                         </div>
                         <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-3 modal-label">商品數量：</label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="">
+                            <label for="w_title" class="col-sm-2 modal-label">運送方式：</label>
+                            <div class="col-sm-4">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
                             </div>
                         </div>
+                        <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                              </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>

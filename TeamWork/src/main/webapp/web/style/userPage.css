@@ -672,3 +672,6 @@ form.popperForm {
 	justify-content: center;
 	align-items: center;
 }
+form#editStoreProduct .modal-body{
+	font-weight: normal;
+}
