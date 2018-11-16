@@ -296,7 +296,8 @@
 				//alert("空 cookies");
 			}
 			//alert("所有Cookie = { " + all + "}");
-			var list = all.split(';');
+			var all_1 = all.replace(" ","");
+			var list = all_1.split(";");
 			for (var i = 0; i < list.length; i++) {
 				var cookie = list[i];
 				var p = cookie.indexOf("=");

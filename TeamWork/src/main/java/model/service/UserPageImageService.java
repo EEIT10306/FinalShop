@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.Member;
-import model.bean.WishImages;
 import model.repository.Impl.MemberDaoImpl;
 
 @Service
@@ -18,22 +17,31 @@ import model.repository.Impl.MemberDaoImpl;
 public class UserPageImageService {
 
 	private static String SetAccountImagePath = "C:/EEIT10306/TeamWork/repository/TeamWork/src/main/webapp/web/images/user/account/";
+	private static String SetAccountImagePathTomcat = "C:/EEIT10306/TeamWork/apache-tomcat-9.0.11/wtpwebapps/TeamWork/web/images/user/account/";
 	private static String GetAccountImagePath = "/TeamWork/web/images/user/account/";
 	@Autowired
 	private MemberDaoImpl memberDaoImpl;
 
 	public void saveAccountImage(MultipartFile file, String fileName) throws IllegalStateException, IOException {
 		file.transferTo(new File(SetAccountImagePath + fileName));
+		file.transferTo(new File(SetAccountImagePathTomcat + fileName));
 	}
 
 	public boolean insertAccountImage(MultipartFile file, Integer m_id) {
 		try {
-			String fileName = "m_photo_" + m_id + "." + file.getContentType().split("/")[1];
-			saveAccountImage(file, fileName);
-			String filePath = GetAccountImagePath + fileName;
-			Member member = memberDaoImpl.selectByPk(m_id);
-			member.setM_photo(filePath);
-			return true;
+			if (file.isEmpty() || m_id == null) {
+				System.out.println("1");
+				return false;
+			} else {
+				String fileName = "m_photo_" + m_id + "." + file.getContentType().split("/")[1];
+				saveAccountImage(file, fileName);
+				String filePath = GetAccountImagePath + fileName;
+				Member member = memberDaoImpl.selectByPk(m_id);
+				member.setM_photo(filePath);
+				System.out.println("2");
+				System.out.println(member);
+				return true;
+			}
 		} catch (IllegalStateException | IOException e) {
 			System.err.println("UserPageImageService - saveAccountImage() - IllegalStateException | IOExceptio");
 			e.printStackTrace();

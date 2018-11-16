@@ -41,8 +41,8 @@ public class OrderListController {
 	}
 	
 	// 更新使用者資料
-	@RequestMapping(value = "/EditAccountData", method = RequestMethod.POST)
-	public String editAccountData(Member member) throws SQLException {
+	@RequestMapping(value = "/EditMyAccountData", method = RequestMethod.POST)
+	public String editAccountData(Member member, BindingResult binder) throws SQLException {
 		System.out.println(member);
 		orderService.editAccountData(member);
 		return "redirect:/web/view/userPage_profile.html";
@@ -50,11 +50,12 @@ public class OrderListController {
 	
 	//更新使用者圖像
 	@RequestMapping(value = "/UpdateAccountImage", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-	public @ResponseBody String updateAccountImage(List<MultipartFile> files) {
+	public @ResponseBody String updateAccountImage(List<MultipartFile> files,Integer m_id) {
 		System.out.println("UpdateAccountImage-files:==========="+files);
+		System.out.println("m_id:==========="+m_id);
 		//執行上傳圖片方法
 		for(MultipartFile file : files) {			
-			userPageImageService.insertAccountImage(file, 1);
+			userPageImageService.insertAccountImage(file, m_id);
 		}
 		return "updateAccountImage Success!";
 	}

@@ -4,7 +4,7 @@
 
 
 <head>
-	<title>商品搜尋</title>
+	<title>許願搜尋</title>
 	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 
 	<!-- Required meta tags -->
@@ -27,30 +27,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-		<a class="navbar-brand" href="#">DayDayGo!</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-		 aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarText">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
-			</ul>
-
-
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="form_login.html">
-						<i class="fas fa-bell icon"></i>會員通知
-					</a></li>
-				<li class="nav-item"><a class="nav-link" href="form_login.html">
-						<i class="fas fa-user-circle icon"></i>會員登入 Member login
-					</a></li>
-			</ul>
-		</div>
-	</nav>
+	<div id="header"></div>
 	<div class="belowNavbar">
 
 		<div class="container">
@@ -69,7 +46,7 @@
 					</div>
 				</div>
 			</form>
-		</div> 
+		</div>
 
 	</div>
 	<div class="container" id="container">
@@ -133,10 +110,10 @@
 			</section>
 			<div name='null' style='height:50px;' class='row'>
 			</div>
-			<div  class="col-lg-10">
+			<div class="col-lg-10">
 				<div id='odbyvalue' name='0' style='height:50px;' class='d-flex justify-content-between'>
-					
-				
+
+
 				</div>
 				<div id="topmenu">
 
@@ -229,20 +206,22 @@
 		});
 	})
 	</script> -->
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	 crossorigin="anonymous"></script>
+	<script src="../js/heacerinclude.js"></script>
 	<script>
 		$(document).ready(function () {
 			var cataurl = "/TeamWork/WishLoadList?"
 			var url = location.href;
-			var fromurl ="";
-			
-			var txt2="";
+			var fromurl = "";
+
+			var txt2 = "";
 			var str = ""; //參數中等號左邊的值
 			var str_value = ""; //參數中等號右邊的值
 			var items = [];
 			var items2 = [];
-			url=url.replace("#","");
+			url = url.replace("#", "");
 			if (url.indexOf("?") != -1) {
 				//如果網址有"?"符號
 				var ary = url.split("?")[1].split("&");
@@ -253,7 +232,7 @@
 					//取得參數"="左邊的值存入str變數中
 					if (str == "search") {
 						//若str等於想要抓取參數 如:b
-						
+
 						str_value = decodeURI(ary[i]);
 						search_value = decodeURI(ary[i].split("=")[1]);
 						//取得b等號右邊的值並經過中文轉碼後存入str_value
@@ -267,9 +246,9 @@
 				cataurl = cataurl + str_value;
 				search_value = "";
 			}
-		
-			function txt22(){
-			txt2 = `<div class='ml-3' id="topvalue" name="">
+
+			function txt22() {
+				txt2 = `<div class='ml-3' id="topvalue" name="">
 						<ul  class="drop-down-menu">
 							<li id="btn1"><a href="#">最愛總數</a></li>
 							<li id="btn2"><a href="#">熱門排行</a></li>
@@ -672,75 +651,77 @@
 						<button type='btn' class='btn btn-light'><</button>
 						<button type='btn' class='btn btn-light'>></button>
 						</div>`
-						
-					}
+
+			}
 
 			$.ajax({
 				type: "GET",
 				url: "/TeamWork/WishLoad?" + str_value,
 				error: function () {
-				
+
 					var txt = "<p>我們找不到有關	" + search_value + "	許願商品</p>";
 					$("#odbyvalue").html(txt);
-					var txt1 =""
+					var txt1 = ""
 					$("#topmenu").html(txt1);
 					console.log("載入失敗")
 				},
 				success: function (res) {
-			
-					console.log("載入所有資料")
-					if(res.length==0){
-						var txt = "<p>我們找不到有關" + search_value + " 許願</p>";
-					$("#odbyvalue").html(txt);
-					var txt1="";
-					$("#topmenu").html(txt1);
-					}else{
 
-					items = res;
-					// $("#odbyvalue").append(txt2)
-					txt22();
-					$("#odbyvalue").append(txt2)
-					// 更新畫面中的元素
-					updateList();
-					dymenuclick();
-					btn1click()
+					console.log("載入所有資料")
+					if (res.length == 0) {
+						var txt = "<p>我們找不到有關" + search_value + " 許願</p>";
+						$("#odbyvalue").html(txt);
+						var txt1 = "";
+						$("#topmenu").html(txt1);
+					} else {
+
+						items = res;
+						var txt3="";
+						$("#odbyvalue").html(txt3)
+						// $("#odbyvalue").append(txt2)
+						txt22();
+						$("#odbyvalue").html(txt2)
+						// 更新畫面中的元素
+						updateList();
+						dymenuclick();
+						btn1click()
 					}
-					
-					
-				}	
+
+
+				}
 			})
 
-			
+
 			function imageJudge(isImage) {
-						if (isImage == ""||isImage==null) {
-							return "/TeamWork/web/images/form-cat.png"
-						} else {
-							return isImage
-						}
-					}
+				if (isImage == "" || isImage == null) {
+					return "/TeamWork/web/images/form-cat.png"
+				} else {
+					return isImage
+				}
+			}
 			function changeTime(isTime) {
-							if (isTime == "") {
-								return w_startDate
-							} else {
-								return w_changeTime
-							}
-						}	
+				if (isTime == "") {
+					return w_startDate
+				} else {
+					return w_changeTime
+				}
+			}
 
 			function imageWish(isImage) {
-				if(isImage != undefined && isImage != null){
+				if (isImage != undefined && isImage != null) {
 					if (isImage.wishImages[0] != undefined && isImage.wishImages[0] != null) {
-						if(isImage.wishImages[0].wI_context  !=undefined && isImage.wishImages[0].wI_context != ""){
+						if (isImage.wishImages[0].wI_context != undefined && isImage.wishImages[0].wI_context != "") {
 							return isImage.wishImages[0].mI_context
 						}
 					}
 				}
 				return "/TeamWork/web/images/form-cat.png"
-			}	
+			}
 			function updateList() {
 				console.log(items)
-				var itemEl =""
-						items.forEach(function (item) {
-							itemEl +=`<div class="comments-container">
+				var itemEl = ""
+				items.forEach(function (item) {
+					itemEl += `<div class="comments-container">
 					<ul  class="comments-list">
 						<li>
 							<div class="comment-main-level">
@@ -778,8 +759,8 @@
 						</li>
 					</ul>
 				</div>`
-				pricew_id(item.w_id)
-				
+					pricew_id(item.w_id)
+
 				})
 				$("#topmenu").html(itemEl).append(
 					`<div class="row d-flex justify-content-center">
@@ -805,35 +786,43 @@
 					</div>`
 				)
 			}
-			function pricew_id(w_id){
-						$.ajax({
-						url: "/TeamWork/WishBidLists?w_id=" +w_id,
-						error: function () {
-							var txt = "<p>我們找不到 	" + search_value + "	 商品</p>";
-							$("#odbyvalue").html(txt);		
-							console.log("載入失敗");
-						},
-						success: function (res) {
-							console.log("載入第二次所有資料");
-							console.log(items2)
-							items2 = res;
-							// 更新畫面中的元素
-							items2.forEach(function(item2) {
-								// if(item2.wB_bid==null||item2.wB_bid==0||item2.wB_bid==""||item2.wB_bid==undefined){
-							
-								$("#price" + w_id).text("目前出價:"+item2.wB_bid)
-							})
+			function pricew_id(w_id) {
+				$.ajax({
+					url: "/TeamWork/WishBidLists?w_id=" + w_id,
+					error: function () {
+						var txt = "<p>我們找不到 	" + search_value + "	 商品</p>";
+						$("#odbyvalue").html(txt);
+						console.log("載入失敗");
+					},
+					success: function (res) {
+						console.log("載入第二次所有資料");
+						console.log(items2)
+						items2 = res;
+						// 更新畫面中的元素
+						items2.forEach(function (item2) {
+							// if(item2.wB_bid==null||item2.wB_bid==0||item2.wB_bid==""||item2.wB_bid==undefined){
 
+							$("#price" + w_id).text("目前出價:" + item2.wB_bid)
+						})
 
-						}
-					})
 
 					}
-	})
+				})
+
+			}
+		})
+
+		$("#dymenu ul a").on('click', function () {
+			$("#dymenu ul").hide();
+
+		});
+
+
+
 		function dymenuclick() {
-			$("#dymenu a").click(function () {	
+			$("#dymenu a").click(function () {
 				var tt = $(this).attr("name")
-			$("#topmenu").attr('name', tt);	
+				$("#topmenu").attr('name', tt);
 				changefrom();
 			});
 		}
@@ -844,7 +833,7 @@
 				});
 		$("#pricebot").click(function () {
 			changefrom();
-		})		
+		})
 
 		$("#exampleFormControlSelect1")
 			.change(
@@ -874,8 +863,8 @@
 						}
 					});
 				});
-		
-		
+
+
 		function btn1click() {
 			$("#btn1").click(function () {
 				$("#topvalue").attr('name', '1');
@@ -886,7 +875,7 @@
 				$("#topvalue").attr('name', '2');
 
 				changefrom();
-			})	
+			})
 			$("#btn3").click(function () {
 				$("#topvalue").attr('name', '3');
 
@@ -909,36 +898,36 @@
 			})
 		}
 		function imageJudge(isImage) {
-						if (isImage == ""||isImage==null) {
-							return "/TeamWork/web/images/form-cat.png"
-						} else {
-							return isImage
-						}
-					}
-			function changeTime(isTime) {
-							if (isTime == "") {
-								return w_startDate
-							} else {
-								return w_changeTime
-							}
-						}	
+			if (isImage == "" || isImage == null) {
+				return "/TeamWork/web/images/form-cat.png"
+			} else {
+				return isImage
+			}
+		}
+		function changeTime(isTime) {
+			if (isTime == "") {
+				return w_startDate
+			} else {
+				return w_changeTime
+			}
+		}
 
-			function imageWish(isImage) {
-				if(isImage != undefined && isImage != null){
-					if (isImage.wishImages[0] != undefined && isImage.wishImages[0] != null) {
-						if(isImage.wishImages[0].wI_context  !=undefined && isImage.wishImages[0].wI_context != ""){
-							return isImage.wishImages[0].mI_context
-						}
+		function imageWish(isImage) {
+			if (isImage != undefined && isImage != null) {
+				if (isImage.wishImages[0] != undefined && isImage.wishImages[0] != null) {
+					if (isImage.wishImages[0].wI_context != undefined && isImage.wishImages[0].wI_context != "") {
+						return isImage.wishImages[0].mI_context
 					}
 				}
-				return "/TeamWork/web/images/form-cat.png"
-			}	
+			}
+			return "/TeamWork/web/images/form-cat.png"
+		}
 
-		 function changefrom() {
+		function changefrom() {
 			var catchsearch = "search=" + $("#headsearch").val();
 
 			fromurl = "/TeamWork/WishCheage?" + catchsearch;
-			fromurl = fromurl.replace("#","");
+			fromurl = fromurl.replace("#", "");
 			if ($(
 				"#exampleFormControlSelect1")
 				.val() != 0) {
@@ -957,77 +946,483 @@
 				fromurl += "&b="
 					+ exampleFormControlSelect2;
 			}
-	
-				// 價格範圍
-			
 
-			if(	$("input[id='minprice']").val()!=""){
+			// 價格範圍
+
+
+			if ($("input[id='minprice']").val() != "") {
 				var minprice = $("input[id='minprice']").val()
 				fromurl += "&c=" + minprice;
-			
+
 			}
-			if(	$("input[id='maxprice']").val()!=""){
+			if ($("input[id='maxprice']").val() != "") {
 				var maxprice = $("input[id='maxprice']").val()
 				fromurl += "&d=" + maxprice;
-			
+
 			}
-			if($("#topvalue").attr("name")!=null){
+			if ($("#topvalue").attr("name") != null) {
 				var topvalue = $('#topvalue').attr("name");
 				fromurl += "&e=" + topvalue;
-				
-			
+
+
 			}
-			
+
 
 			if ($('#topmenu').attr("name") != null) {
 				var topmenu = $('#topmenu').attr("name");
 				fromurl += "&f=" + topmenu;
-			
-			
-			}
-		
-			fromurl= fromurl.replace("#","");
 
-		 
+
+			}
+
+			fromurl = fromurl.replace("#", "");
+
+
 			$.ajax({
-				
+
 				type: "GET",
 				url: fromurl,
 				error: function () {
 					var txt = "<p>我們找不到此分類有關 " + search_value + " 的許願商品</p>";
 					$("#odbyvalue").html(txt);
-					var txt1="";
+					var txt1 = "";
 					$("#topmenu").html(txt1);
 					console.log("載入失敗")
 				},
 				success: function (res) {
 					console.log("載入所有資料")
-					if(res.length==0){
+					if (res.length == 0) {
 						var txt = "<p>我們找不到此分類有關		" + search_value + "		的許願商品</p>";
-					$("#odbyvalue").html(txt);
-					var txt1="";
-					$("#topmenu").html(txt1);
+						$("#odbyvalue").html(txt);
+						var txt1 = "";
+						$("#topmenu").html(txt1);
 
-					}else{
+					} else {
 
-					items = res;
-					// $("#odbyvalue").append(txt2)
-					// txt22();
-					// $("#odbyvalue").append(txt2)
-					// 更新畫面中的元素
-					updateList();
-					dymenuclick();
-					btn1click()
+						items = res;
+						var txt3="";
+						$("#odbyvalue").html(txt3)	
+						txt2 = `<div class='ml-3' id="topvalue" name="">
+						<ul  class="drop-down-menu">
+							<li id="btn1"><a href="#">最愛總數</a></li>
+							<li id="btn2"><a href="#">熱門排行</a></li>
+							<li	><a href="#">刊登日期</a>
+								<ul>
+									<li id="btn3"><a href="#">刊登起始日排序</a></li>
+									<li id="btn4"><a href="#">刊登終止日排序</a></li>
+								</ul>
+							</li>
+							<li><a href="#">接受總價格</a>
+								<ul>
+									<li id="btn5"><a href="#" name="1">價格低到高排序</a></li>
+									<li id="btn6"><a href="#" name="2">價格高到低排序</a></li>
+								</ul>
+							</li>
+							<li id="dymenu"><a href="#"  name="0">許願地區</a>
+								<ul  >
+									<li ><a href="#" name="1">台灣</a>
+										<ul>
+											<li><a href="#" name="2">北北基</a>
+												<ul>
+													<li><a href="#" name="9">台北市</a></li>
+													<li><a href="#" name="10">新北市</a></li>
+													<li><a href="#" name="11">基隆市</a></li>
+												</ul>
+											</li>
+											<li><a href="#" name="3">桃竹苗</a>
+												<ul>
+													<li><a href="#" name="12">桃園市</a></li>       
+													<li><a href="#" name="13">新竹市</a></li>
+													<li><a href="#" name="14">新竹縣</a></li>
+													<li><a href="#" name="15">苗栗縣</a></li>
+												</ul>
+											</li>
+											<li><a href="#"  name="4">中彰投</a>
+												<ul>
+													<li><a href="#" name="16">台中市</a></li>
+													<li><a href="#" name="17">彰化縣</a></li>
+													<li><a href="#" name="18">南投縣</a></li>
+												</ul>
+											</li>
+											<li><a href="#"  name="5">雲嘉南</a>
+												<ul>
+													<li><a href="#" name="19">雲林縣</a></li>
+													<li><a href="#" name="20">嘉義市</a></li>
+													<li><a href="#" name="21">嘉義縣</a></li>
+													<li><a href="#" name="22">台南市</a></li>
+												</ul>
+											</li>
+											<li><a href="#"  name="6">高屏</a>
+												<ul>
+													<li><a href="#" name="23">高雄市</a></li>
+													<li><a href="#" name="24">屏東縣</a></li>
+												</ul>
+											</li>
+											<li><a href="#"  name="7">宜花東</a>
+												<ul>
+													<li><a href="#" name="25">宜蘭縣</a></li>
+													<li><a href="#" name="26">花蓮縣</a></li>
+													<li><a href="#" name="27">台東縣</a></li>
+												</ul>
+											</li>
+											<li><a href="#" name="8">離島地區</a>
+												<ul>
+													<li><a href="#" name="28">澎湖縣</a></li>
+													<li><a href="#" name="29">金門縣</a></li>
+													<li><a href="#" name="30">連江縣</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<!--台灣 -->
+									<li><a href="#" name="31">日本</a>
+										<ul>
+											<li><a href="#" name="32">北海道</a>
+												<ul>
+													<li><a href="#" name="40">道北</a>
+														<ul>
+															<li><a href="#" name="90">旭川</a></li>
+															<li><a href="#" name="91>美瑛</a></li>
+															<li><a href="#" name="92">富良野</a></li>
+															<li><a href="#" name="93">層雲峽</a></li>
+															<li><a href="#" name="94">稚內</a></li>
+															<li><a href="#" name="95">留萌</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="41">道央</a>
+														<ul>
+															<li><a href="#" name="96">札幌</a></li>
+															<li><a href="#" name="97">小樽</a></li>
+															<li><a href="#" name="98">苫小木</a></li>
+															<li><a href="#" name="99">洞爺湖</a></li>
+														</ul>
+													</li>
+													<li><a href="#name="42">道東</a>
+														<ul>
+															<li><a href="#" name="100">帶廣</a></li>
+															<li><a href="#" name="101">網走</a></li>
+															<li><a href="#" name="102">釧路</a></li>
+															<li><a href="#" name="103">阿寒湖</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="43">道南</a>
+														<ul>
+															<li><a href="#" name="104">函館</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li><a href="#" name="33">東北地方</a>
+												<ul>
+													<li><a href="#" name="44">青森</a>
+														<ul>
+															<li><a href="#" name="105">弘前</a></li>
+															<li><a href="#" name="106">津輕</a></li>
+															<li><a href="#" name="107">陸奧</a></li>
+															<li><a href="#" name="108">八戶</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="45">岩手</a>
+														<ul>
+															<li><a href="#" name="109">盛岡</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="46">秋田</a>
+														<ul>
+															<li><a href="#" name="110">秋田</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="47">宮城</a>
+														<ul>
+															<li><a href="#" name="111">仙台</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="48">山形</a>
+														<ul>
+															<li><a href="#" name="112">山形</a></li>
+														</ul>
+													</li> 
+													<li><a href="#" name="49">福島</a>
+														<ul>
+															<li><a href="#" name="113">福島</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li><a href="#" name="34">關東地方</a>
+												<ul>
+													<li><a href="# name="50">茨城</a>
+														<ul>
+															<li><a href="#" name="114">水戶</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="51">栃木</a>
+														<ul>
+															<li><a href="#" name="115">宇都宮</a></li>
+															<li><a href="#" name="116">日光</a></li>
+															<li><a href="#" name="117">佐野</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="52">群馬</a>
+														<ul>
+															<li><a href="#" name="118">前橋</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="53">埼玉</a>
+														<ul>
+															<li><a href="#" name="119">埼玉</a></li>
+														</ul>
+													</li>
+													<li><a href="#"  name="54">千葉</a>
+														<ul>
+															<li><a href="#" name="120">千葉</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="55">東京</a>
+														<ul>
+															<li><a href="#" name="121">東京</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="56">神奈川</a>
+														<ul>
+															<li><a href="#" name="122">橫濱</a></li>
+															<li><a href="#" name="123">箱根</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li><a href="#" name="35">中部地方</a>
+												<ul>
+													<li><a href="#" name="57">山梨</a>
+														<ul>
+															<li><a href="#" name="124">甲府</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="58">長野</a>
+														<ul>
+															<li><a href="#" name="125">長野</a></li>
+															<li><a href="#" name="126">輕井澤</a></li>
+															<li><a href="#" name="127">野澤溫泉</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="59">新潟</a>
+														<ul>
+															<li><a href="#" name="128">新潟</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="60">富山</a>
+														<ul>
+															<li><a href="#" name="129">富山</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="61">石川</a>
+														<ul>
+															<li><a href="#" name="130">金澤</a></li>
+															<li><a href="#" name="131">加賀</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="62">福井</a>
+														<ul>
+															<li><a href="#" name="132">福井</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="63">靜岡</a>
+														<ul>
+															<li><a href="#" name="133">靜岡</a></li>
+															<li><a href="#" name="134">伊豆</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="64">愛知</a>
+														<ul>
+															<li><a href="#" name="135">名古屋</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="65">岐阜</a>
+														<ul>
+															<li><a href="#" name="136">岐阜</a></li>
+															<li><a href="#" name="137">美濃</a></li>
+															<li><a href="#" name="138">飛驒地區</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li><a href="#" name="36">近畿地方</a>
+												<ul>
+													<li><a href="#" name="66">滋賀</a>
+														<ul>
+															<li><a href="#" name="139">大津</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="67">京都</a>
+														<ul>
+															<li><a href="#" name="140">京都</a></li>
+															<li><a href="#" name="141">宇治</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="68">大阪</a>
+														<ul>
+															<li><a href="#" name="142">大阪</a></li>
+															<li><a href="#" name="143">堺</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="69">兵庫</a>
+														<ul>
+															<li><a href="#" name="144">神戶</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="70">奈良</a>
+														<ul>
+															<li><a href="#" name="145">奈良</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="71">三重</a>
+														<ul>
+															<li><a href="#" name="146">津</a></li>
+															<li><a href="#" name="147">伊勢</a></li>
+														</ul>
+													</li>
+													<li><a href="#"  name="72">和歌山</a>
+														<ul>
+															<li><a href="#" name="148">和歌山</a></li>
+														</ul>
+													</li>
+
+												</ul>
+											</li>
+											<li><a href="#" name="37">中國地方</a>
+												<ul>
+													<li><a href="#"  name="73">鳥取</a>
+														<ul>
+															<li><a href="#" name="149">鳥取</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="74">島根</a>
+														<ul>
+															<li><a href="#" name="150">松江</a></li>
+															<li><a href="#" name="151">石見</a></li>
+															<li><a href="#" name="152">出雲</a></li>
+															<li><a href="#" name="153">隱岐</a></li>
+															<li><a href="#" name="154">溫泉津溫泉</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="75">岡山</a>
+														<ul>
+															<li><a href="#" name="155">岡山</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="76">廣島</a>
+														<ul>
+															<li><a href="#" name="156">廣島</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="77">山口</a>
+														<ul>
+															<li><a href="#" name="157">山口</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li><a href="#" name="38">四國</a>
+												<ul>
+													<li><a href="#" name="78">德島</a>
+														<ul>
+															<li><a href="#" name="158">德島</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="79">香川</a>
+														<ul>
+															<li><a href="#" name="159">高松</a></li>
+															<li><a href="#" name="160">讚岐</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="80">愛媛</a>
+														<ul>
+															<li><a href="#" name="161">松山</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="81">高知</a>
+														<ul>
+															<li><a href="#" name="162">高知</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											<li><a href="#" name="39">九州</a>
+												<ul>
+													<li><a href="#" name="82">福岡</a>
+														<ul>
+															<li><a href="#" name="163">福岡</a></li>
+															<li><a href="#" name="164">博多</a></li>
+															<li><a href="#" name="165">北九州</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="83">佐賀</a>
+														<ul>
+															<li><a href="#" name="166">佐賀</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name=84">長崎</a>
+														<ul>
+															<li><a href="#" name="167">長崎</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="85">熊本</a>
+														<ul>
+															<li><a href="#" name="168">熊本</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="86">大分</a>
+														<ul>
+															<li><a href="#" name="169">大分</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="87" >宮崎</a>
+														<ul>
+															<li><a href="#" name="170">宮崎</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="88">鹿兒島</a>
+														<ul>
+															<li><a href="#" name="171">鹿兒島</a></li>
+															<li><a href="#" name="172">薩摩</a></li>
+														</ul>
+													</li>
+													<li><a href="#" name="89">沖繩</a>
+														<ul>
+															<li><a href="#" name="173">那霸</a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+
+						</ul>
+						</div><!-- 地區 -->
+						<div>
+						<button type='btn' class='btn btn-light'><</button>
+						<button type='btn' class='btn btn-light'>></button>
+						</div>`
+
+						$("#odbyvalue").html(txt2)
+						// txt22();
+						// $("#odbyvalue").append(txt2)
+						// 更新畫面中的元素
+						updateList();
+						dymenuclick();
+						btn1click()
 					}
-					
-				}	
+
+				}
 			})
 		}
 		function updateList() {
-				console.log(items)
-				var itemEl =""
-						items.forEach(function (item) {
-							itemEl +=`<div class="comments-container">
+			console.log(items)
+			var itemEl = ""
+			items.forEach(function (item) {
+				itemEl += `<div class="comments-container">
 					<ul  class="comments-list">
 						<li>
 							<div class="comment-main-level">
@@ -1066,54 +1461,54 @@
 					</ul>
 				</div>`
 				pricew_id(item.w_id)
-				
-				})
-				$("#topmenu").html(itemEl)
-			}
-			function pricew_id(w_id){
-						$.ajax({
-						url: "/TeamWork/WishBidLists?w_id=" +w_id,
-						error: function () {
-							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
-							$("#odbyvalue").html(txt);
-							console.log("載入失敗");
-						},
-						success: function (res) {
-							console.log("載入第二次所有資料");
-							items2 = res;
-							console.log(items2)
-							// 更新畫面中的元素
-							items2.forEach(function(item2) {
-								// if(item2.wB_bid==null||item2.wB_bid==0||item2.wB_bid==""||item2.wB_bid==undefined){
-							
-								$("#price" + w_id).text("目前出價:"+item2.wB_bid)
-							})
 
+			})
+			$("#topmenu").html(itemEl)
+		}
+		function pricew_id(w_id) {
+			$.ajax({
+				url: "/TeamWork/WishBidLists?w_id=" + w_id,
+				error: function () {
+					var txt = "<p>我們找不到 " + search_value + " 商品</p>";
+					$("#odbyvalue").html(txt);
+					console.log("載入失敗");
+				},
+				success: function (res) {
+					console.log("載入第二次所有資料");
+					items2 = res;
+					console.log(items2)
+					// 更新畫面中的元素
+					items2.forEach(function (item2) {
+						// if(item2.wB_bid==null||item2.wB_bid==0||item2.wB_bid==""||item2.wB_bid==undefined){
 
-						}
+						$("#price" + w_id).text("目前出價:" + item2.wB_bid)
 					})
 
-					}
+
+				}
+			})
+
+		}
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 	 crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	 crossorigin="anonymous"></script>
-	 <script>
-function clickdiv(){
-	var w_id = $(event.target).attr("data-box")
-	
-	$.ajax({
+	<script>
+		function clickdiv() {
+			var w_id = $(event.target).attr("data-box")
+
+			$.ajax({
 				type: "GET",
 				url: "/TeamWork/WishHot?w_id=" + w_id,
-				success: function(response){
-					
-				}			
-	// location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
-	})
-	location.href="/TeamWork/web/view/wish-detail.html?w_id=" + w_id
-}
-</script>
+				success: function (response) {
+
+				}
+				// location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
+			})
+			location.href = "/TeamWork/web/view/wish-detail.html?w_id=" + w_id
+		}
+	</script>
 </body>
 
 </html>
