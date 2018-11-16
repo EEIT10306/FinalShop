@@ -41,8 +41,8 @@ public class OrderListController {
 	}
 	
 	// 更新使用者資料
-	@RequestMapping(value = "/EditAccountData", method = RequestMethod.POST)
-	public String editAccountData(Member member) throws SQLException {
+	@RequestMapping(value = "/EditMyAccountData", method = RequestMethod.POST)
+	public String editAccountData(Member member, BindingResult binder) throws SQLException {
 		System.out.println(member);
 		orderService.editAccountData(member);
 		return "redirect:/web/view/userPage_profile.html";
