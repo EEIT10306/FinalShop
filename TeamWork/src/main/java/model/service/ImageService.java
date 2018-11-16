@@ -21,6 +21,7 @@ import model.repository.Impl.WishImagesDaoImpl;
 public class ImageService {
 
 	private static String SetImagePath = "C:/EEIT10306/TeamWork/repository/TeamWork/src/main/webapp/web/images/product/";
+	private static String SetImagePathTomcat = "C:/EEIT10306/TeamWork/apache-tomcat-9.0.11/wtpwebapps/TeamWork/src/main/webapp/web/images/product/";
 	private static String GetImagePath = "/TeamWork/web/images/product/";
 	private StoreImages SI;
 	private GroupImages GI;
@@ -34,6 +35,7 @@ public class ImageService {
 
 	public void saveImage(MultipartFile file, String fileName) throws IllegalStateException, IOException {
 		file.transferTo(new File(SetImagePath + fileName));
+		file.transferTo(new File(SetImagePathTomcat + fileName));
 	}
 
 	public boolean insertStoreProductImage(MultipartFile file, Integer sP_id) {
