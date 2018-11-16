@@ -16,11 +16,10 @@
 <!-- main CSS -->
 <link rel="stylesheet" href="../style/main.css">
 <!-- jQuery first -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <!-- fontawesome -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../js/jquery.func_toggle.js"></script>
 <script>
 		var head = 0;
@@ -291,6 +290,8 @@
 									for(i=0;i<StoreMessages.length;i++){
 										var replyDate = new Date(StoreMessages[i].sM_time);
 										var photo = (StoreMessages[i].member.m_photo != "")?StoreMessages[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
+										var authorClass = (StoreMessages[i].member.m_id == StoreMessages[i].storeProduct.store.seller_id)?"comment-name by-author":"comment-name";
+										
 										replyText +=`
 										<ul>
 											<li>
@@ -299,9 +300,11 @@
 					                                <!-- Contenedor del Comentario -->
 						                                <div class="comment-box">
 						                                    <div class="comment-head">
-						                                        <h6 class="comment-name"><a href="`+StoreMessages[i].member.m_photo+`">`+StoreMessages[i].member.m_name+`</a></h6> 
+						                                        <h6 class="`+authorClass+`"><a href="`+StoreMessages[i].member.m_photo+`">`+StoreMessages[i].member.m_name+`</a></h6> 
 						                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>
-						                                        <i class="fa fa-reply"></i>
+						                                        <i class="fas fa-pencil-alt"></i>
+						                                        <i class="fas fa-trash-alt"></i>
+						                                        <i class="fas fa-comment-dots"></i>
 						                                    </div>
 						                                <div class="comment-content">`+StoreMessages[i].sM_context+`</div>
 					                            	</div>
@@ -313,14 +316,15 @@
 			                        	for(j=0;j<StoreCallbacks.length;j++){
 			                        		var callBackDate = new Date(StoreCallbacks[j].sC_time);
 			                        		var photo2 = (StoreCallbacks[j].member.m_photo != "")?StoreCallbacks[j].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
-			                        		 if(StoreMessages[i].sM_id == StoreCallbacks[j].sM_id){
+			                        		var authorCallbackClass = (StoreCallbacks[j].member.m_id == StoreMessages[i].storeProduct.store.seller_id)?"comment-name by-author":"comment-name"
+			                        		if(StoreMessages[i].sM_id == StoreCallbacks[j].sM_id){
 			                        			 replyText +=`
 					                                    <li>
 					                                        <div class="comment-avatar"><img src="`+photo2+`"
 					                                                alt=""></div>
 					                                        <div class="comment-box">
 					                                            <div class="comment-head">
-					                                                <h6 class="comment-name"><a href="http://creaticode.com/blog">`+StoreCallbacks[j].member.m_name+`</a></h6>
+					                                                <h6 class="`+authorCallbackClass+`"><a href="http://creaticode.com/blog">`+StoreCallbacks[j].member.m_name+`</a></h6>
 					                                                <span>`+(callBackDate.getYear()+1900)+"/"+(callBackDate.getMonth()+1)+"/"+callBackDate.getDate()+" "+((callBackDate.getHours().toString().length==1)?"0"+callBackDate.getHours():callBackDate.getHours())+":"+((callBackDate.getMinutes().toString().length==1)?"0"+callBackDate.getMinutes():callBackDate.getMinutes())+`</span>
 					                                            </div>
 					                                            <div class="comment-content">`+StoreCallbacks[j].sC_context+`</div>
@@ -336,7 +340,7 @@
 	                                            			alt=""></div>
 	                                    			<div class="comment-box">
 	                                        			<div class="comment-head">
-	                                            			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+	                                            			<h6 class="`+authorCallbackClass+`"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
 	                                            			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
 	                                        			</div>
 	                                        			<div class="comment-content">
@@ -360,7 +364,7 @@
 	                                        			alt=""></div>
 	                                			<div class="comment-box">
 	                                    			<div class="comment-head">
-	                                        			<h6 class="comment-name"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+	                                        			<h6 class="`+authorClass+`"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
 	                                        			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
 	                                    			</div>
 	                                    			<div class="comment-content">
@@ -370,6 +374,7 @@
 	                                			</div>
 	                            			</li>`; 
 									}
+									console.log(replyText);
 									$("#reply-list").html(replyText);
 									$(".reply").click(function(){//一般留言
 										$.ajax({
@@ -448,51 +453,9 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-		<a class="navbar-brand" href="#">DayDayGo!</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarText" aria-controls="navbarText"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarText">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#"><i
-						class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"><i
-						class="fas fa-gift icon"></i>限時團購 Together</a></li>
-				<li class="nav-item"><a class="nav-link" href="#"><i
-						class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
-			</ul>
-			<!-- Button trigger modal -->
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="form_login.html">
-						<i class="fas fa-user-circle icon"></i>會員登入 Member login
-				</a></li>
-			</ul>
-		</div>
-	</nav>
-	<div class="belowNavbar">
-		<div class="container">
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<button class="btn btn-outline-secondary dropdown-toggle"
-						type="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">項目</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">許願池</a> <a class="dropdown-item"
-							href="#">限時團購</a> <a class="dropdown-item" href="#">購物商城</a>
-					</div>
-				</div>
-				<input type="text" class="form-control"
-					aria-label="Text input with dropdown button">
-				<div class="input-group-append">
-					<button class="btn btn-outline-secondary" type="button">Search</button>
-				</div>
-			</div>
-		</div>
-		<!-- end of container -->
-	</div>
+	<!-- header -->
+	<div id="header"></div>
+	<div id="header-search"></div>
 
 	<div class="container">
 		<div class="row product-quick-view">
@@ -886,6 +849,8 @@
 		</div>
 	</div>
 	<!-- Optional JavaScript -->
+	<script src="../js/heacerinclude.js"></script>
+	<script src="../js/headersearchinclude.js"></script>
 	<script src="../js/main.js"></script>
 	<!-- Popper.js, then Bootstrap JS -->
 

@@ -285,16 +285,6 @@ ul {
 	position: relative;
 	top: 2px;
 }
-.comment-box .comment-head i.fa-reply {
-	color: #A6A6A6;
-	cursor: pointer;
-	-webkit-transition: color 0.3s ease;
-	-o-transition: color 0.3s ease;
-	transition: color 0.3s ease;
-}
-.comment-box .comment-head i.fa-reply:hover {
-	color: #03658c;
-}
 
 
 
