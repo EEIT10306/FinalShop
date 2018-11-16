@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>會員中心｜我的帳戶</title>
+	<title>會員中心｜訊息通知</title>
 	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 
 	<!-- Required meta tags -->
@@ -16,32 +16,34 @@
 	<!-- main CSS -->
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/userPage.css">
+
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	 crossorigin="anonymous">
 
-
 </head>
 
 <body>
-	<!-- header -->
 	<div id="header"></div>
-	<!-- header-search -->
-	<div id="header-search"></div>
 
+	<div id="header-search"></div>
+	<!-- header -->
 	<div class="container">
 		<div class="row">
 			<div class="user-page-slidebar col-lg-2">
 				<div class="user-page-brief">
-					<a class="user-page-brief_avatar" href="userPage_profile.html">
+					<a class="user-page-brief_avatar" href="#">
 						<div class="user-avatar_placeholder">
-							<img id="member_pic" src="">
+							<img src="../images/user/account/profile/001.png" alt="">
 						</div>
 					</a>
 					<div class="user-page-brief_right">
-						<div class="user-page-brief__username" id="member_username"></div>
+						<div class="user-page-brief__username">jennifer8306</div>
+						<!-- <div>
+							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
+						</div> -->
 						<div class="user-page-brief__coin">
-							<img src="../images/user/others/coin.png" style="display: inline-block;"> <span id="member_coin"></span>
+							<img src="../images/user/others/coin.png" style="display: inline-block;"> <span>100</span>
 						</div>
 					</div>
 				</div>
@@ -136,68 +138,24 @@
 				</div>
 				<!-- end of userpage-sidebar-menu -->
 			</div>
-
-			<div class="user-page_wrapper col-lg-10">
-				<div class="my-account_header">
-					<h2>我的檔案</h2>
-					<span>管理您的檔案以保護你的帳戶</span>
+			<div class="purchase-list-page_tabs-container col-lg-10">
+				<div class="row">
+					<div class="purchase-list-page_tab col-sm-4 tab_lock" id="state16">許願通知</div>
+					<div class="purchase-list-page_tab col-sm-4" id="state17">開團通知</div>
+					<div class="purchase-list-page_tab col-sm-4" id="state18">商城通知</div>
 				</div>
-				<div class="my-account_content">
-					<div class="my-account-profile_left">
-						<form id="my-account_form">
-							<input type="hidden" name="m_id" value="" id="m_id">
-							<div class="form-group row">
-								<label for="mem_name" class="col-sm-3 col-form-label">姓名</label>
-								<div class="col-sm-9">
-									<input type="text" readonly class="form-control userInput" id="m_name" name="m_name" placeholder="請輸入姓名">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="mem_acc" class="col-sm-3 col-form-label">Email</label>
-								<div class="col-sm-9">
-									<input type="text" readonly class="form-control userInput" id="m_mail" name="m_mail" value="" placeholder="請輸入Email">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="mem_tel" class="col-sm-3 col-form-label">手機號碼</label>
-								<div class="col-sm-9">
-									<input type="text" readonly class="form-control userInput" id="m_telephone" name="m_telephone" value=""
-									 placeholder="請輸入手機號碼">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="mem_add" class="col-sm-3 col-form-label">地址</label>
-								<div class="col-sm-9">
-									<input type="text" readonly class="form-control userInput" id="m_address" name="m_address" value=""
-									 placeholder="請輸入地址">
-								</div>
-							</div>
-							<div class="btn-row" style="text-align: center">
-								<input type="button" id="editUserDataBtn" class="btn btn-sm userSubmitBtn" value="編輯資料" />
-								<button type="submit" id="updateUserDataBtn" class="btn btn-sm userSubmitBtn" style="display: none">確認更新</button>
-							</div>
-						</form>
-					</div>
-
-					<div class="my-account-profile_right">
-						<div class="avatar-uploader__avatar">
-							<img src="../images/user/account/profile/001.png">
+				<div class="row">
+					<div class="container-wrapper">
+						<div class="empty">
+							<img src="../images/user/others/loading.gif">
+							<p>LOADING...</p>
 						</div>
-						<form id="submitProfile_form">
-							<div class="btn-row">
-								<input type="hidden" name="m_id" id="m_id_profile" value="">
-								<label class="btn btn-sm userSubmitBtn"> <input id="selectProfile" type="file" name="file" required>
-									上傳圖片
-								</label> <input type="button" id="submitProfile" class="btn btn-sm userSubmitBtn" value="確認上傳">
-							</div>
-						</form>
-						<div class="avatar-uploader_text">檔案大小:最大10KB</div>
-						<div class="avatar-uploader_text">檔案限制: .JPEG, .PNG</div>
 					</div>
+					
 				</div>
-
 			</div>
 		</div>
+
 	</div>
 	<!-- end of container -->
 	<!-- start of footer -->
@@ -270,147 +228,15 @@
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<!-- head的include方法 -->
+	<script src="../js/heacerinclude.js"></script>
+	<script src="../js/headersearchinclude.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="../js/userPage.js"></script>
-	<script>
-		$(document).ready(function () {
-			$.get("header.html", function (data) {
-				$("#header").html(data);
-			});
-			$.get("header-search.html", function (data) {
-				$("#header-search").html(data);
-			});
-		})
-	</script>
+	<script defer src="../js/Notification.js"></script>
 	<!-- Optional JavaScript -->
-	<script>
-		var userID = 1;
-		$(document)
-			.ready(
-				function () {
-					if (document.cookie.split("mid=").length == 2) {
-						userID = document.cookie.split("mid=")[1]
-							.split(";")[0]
-						$("#m_id").val(userID);
-						$("#m_id_profile").val(userID);
-					} else {
-						userID = "";
-						window.history.pushState("", "page 2",
-							"userPage_profile.html")
-						window.location.href = "form_login.html";
-					}
-					var dataurl = "/TeamWork/Member?m_id=" + userID;
-					var userData = [];
-					loadData()
-					function loadData() {
-						//下載所有資料
-						$.ajax({
-							url: dataurl,
-							error: function () {
-								console.log("載入會員資料失敗")
-							},
-							success: function (res) {
-								console.log("載入會員資料")
-								userData = res
-								// 更新畫面中的元素
-								updateUserData()
-								updateMemberData(userData)
-							}
-						})
-					}
 
-					function updateUserData() {
-						$(".user-page-brief__username").text(
-							userData.account);
-						$(".avatar-uploader__avatar>img").attr("src",
-							defaultUserPic(userData.m_photo));
-						$("#m_name").val(userData.m_name);
-						$("#m_mail").val(userData.m_mail);
-						$("#m_telephone").val(userData.m_telephone);
-						$("#m_address").val(userData.m_address);
-					}
-
-					$("#editUserDataBtn").click(
-						function () {
-							$("#updateUserDataBtn").css("display",
-								"inline-block")
-							$("#editUserDataBtn").css("display",
-								"none")
-							$(".userInput").attr("readonly", false)
-						});
-
-					//使用者頭貼選擇檔案後預覽
-					$("#selectProfile").on('change', function (event) {
-						var files = event.target.files;
-						var image = files[0];
-						// here's the file size
-						var reader = new FileReader();
-						reader.onload = function (file) {
-							var img = new Image();
-							img.src = file.target.result;
-							$(".avatar-uploader__avatar").html(img);
-						}
-						reader.readAsDataURL(image);
-					});
-
-					//上傳使用者頭貼click事件
-					$("#submitProfile").click(
-						function () {
-							var formData = new FormData($('#uploadForm')[0]);
-							formData.append('files', $('#selectProfile')[0].files[0]);
-							formData.append('m_id', userID);
-							console.log("上傳使用者頭貼");
-							$.ajax({
-								type: "POST",
-								url: "/TeamWork/UpdateAccountImage",
-								data: formData,
-								processData: false,
-								contentType: false,
-								success: function () {
-									alert("success!");
-									$("#member_pic").attr("src", $(".avatar-uploader__avatar>img").attr("src"));
-								}
-							});
-						});
-
-					//個人資料更新確認更新按鈕click事件
-					$("#my-account_form")
-						.on('submit', function () {
-							$.ajax({
-								type: "POST",
-								url: "/TeamWork/EditMyAccountData",
-								data: $(this).serialize(),
-								success: function () {
-									alert("success!")
-									$("#editUserDataBtn").css("display", "inline-block")
-									$("#updateUserDataBtn").css("display", "none")
-									$(".userInput").attr("readonly", true)
-									loadData();
-								},
-								error: function () {
-									alert("error!")
-									$(
-										"#editUserDataBtn")
-										.css(
-											"display",
-											"inline-block")
-									$(
-										"#updateUserDataBtn")
-										.css(
-											"display",
-											"none")
-									$(".userInput")
-										.attr(
-											"readonly",
-											true)
-								}
-							});
-							return false; //阻止form submit
-
-						});
-				});
-	</script>
 </body>
 
 </html>
