@@ -22,47 +22,27 @@
 
 <body>
     <!-- header -->
-	<div id="header"></div>
-	
-    <div class="belowNavbar">
-        <div class="container">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">項目</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">許願池</a>
-                        <a class="dropdown-item" href="#">限時團購</a>
-                        <a class="dropdown-item" href="#">購物商城</a>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Search</button>
-                </div>
-            </div>
-        </div>
-        <!-- end of container -->
-    </div>
+    <div id="header"></div>
+    <!-- header-search -->
+    <div id="header-search"></div>
+
     <div class="container">
         <div class="row">
             <div class="user-page-slidebar col-lg-2">
                 <div class="user-page-brief">
-					<a class="user-page-brief_avatar" href="userPage_profile.html">
-						<div class="user-avatar_placeholder">
-							<img id="member_pic" src="">
-						</div>
-					</a>
-					<div class="user-page-brief_right">
-						<div class="user-page-brief__username" id="member_username"></div>
-						<!-- <div>
-							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
-						</div> -->
-						<div class="user-page-brief__coin">
-							<img src="../images/user/others/coin.png" style="display: inline-block;">
-							<span id="member_coin"></span>
-						</div>
-					</div>
-				</div>
+                    <a class="user-page-brief_avatar" href="userPage_profile.html">
+                        <div class="user-avatar_placeholder">
+                            <img id="member_pic" src="../images/user/account/profile/001.png">
+                        </div>
+                    </a>
+                    <div class="user-page-brief_right">
+                        <div class="user-page-brief__username" id="member_username"></div>
+                        <div class="user-page-brief__coin">
+                            <img src="../images/user/others/coin.png" style="display: inline-block;">
+                            <span id="member_coin"></span>
+                        </div>
+                    </div>
+                </div>
                 <!-- start of userpage-sidebar-menu -->
                 <div class="userpage-sidebar-menu">
                     <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
@@ -149,7 +129,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- end of container -->
     <!-- start of footer -->
     <div class="contaminer-fluid">
@@ -216,21 +196,103 @@
         </div>
     </div>
     <!-- end of footer -->
+
+    <!-- 編輯商店商品(互動視窗) -->
+    <!-- Modal edit StoreProduct -->
+    <div class="modal fade" id="editStoreProduct" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">編輯我的許願</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form class="popperForm" id="EditWish_form" method="post" action="/TeamWork/EditWish">
+                    <div class="modal-body">
+                        <input type="hidden" name="w_id" value="" id="w_id" />
+                        <div class="modal-form-group row">
+                            <label for="w_title" class="col-sm-3 modal-label">商品名稱：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="w_title" name="w_title" placeholder="編輯商品名稱">
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="w_context" class="col-sm-3 modal-label">商品內容：</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="w_context" name="w_context" placeholder="編輯商品內容"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="w_title" class="col-sm-3 modal-label">價格：</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="">
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="w_title" class="col-sm-3 modal-label">庫存數量：</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="">
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="w_title" class="col-sm-3 modal-label">運送方式：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="w_title" name="w_title" placeholder="">
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="w_title" class="col-sm-3 modal-label">新品：</label>
+                            <div class="col-sm-4">
+                                <input type="radio" class="form-control" id="w_title" name="w_title" value=1>是
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-4">
+                                <input type="radio" class="form-control" id="w_title" name="w_title" value=0>否
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="w_title" class="col-sm-3 modal-label">商品數量：</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-sm userSubmitBtn" id="EditWishSubmitBtn">確定送出</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="../js/userPage.js"></script>
-
+    <script>
+        $(document).ready(function () {
+            $.get("header.html", function (data) {
+                $("#header").html(data);
+            });
+            $.get("header-search.html", function (data) {
+                $("#header-search").html(data);
+            });
+        })
+    </script>
     <!-- Optional JavaScript -->
     <script>
-    	var userID = 1;
+        var userID = 1;
         $(document).ready(function () {
-        	if(document.cookie.split("mid=").length == 2){				
-				userID = document.cookie.split("mid=")[1].split(";")[0]
-			}else{
-				window.location.href="form_login.html";
-			}
+            if (document.cookie.split("mid=").length == 2) {
+                userID = document.cookie.split("mid=")[1].split(";")[0]
+            } else {
+                userID = "";
+                window.history.pushState("", "page 2", "userPage_StoreProductList.html")
+                window.location.href = "form_login.html";
+            }
             var dataurl = "/TeamWork/StoreProductSellerListByM_id?m_id=" + userID;
             var userData = [];
             var state = 13;
@@ -258,7 +320,6 @@
                     <table class="table table-hover table-bordered table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">編號</th>
                                 <th scope="col">圖片</th>
                                 <th scope="col">商品名稱</th>
                                 <th scope="col">售價</th>
@@ -270,68 +331,77 @@
                     </table>
                 `)
                 $(".container-wrapper-seller").append(tableEl);
-                userData.forEach(function (item) {
-                    console.log("ueserData.forEach")
-                    //有現貨
-                    if ((state == 13) && state == item.sP_stateId) {
-                        var itemEl = $(`
-                           <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
-                                </td>
-                                <td>${item.sP_name}</td>
-                                <td>${item.sP_amount}</td>
-                                <td>${item.sP_price}</td>
-                                <td>
-                                    <input type="button" class="btn btn-sm btn-outline-info editBtn" value="查看詳細">
-                                </td>
-                            </tr>
-                        `)
-                        $("#sellerTableBody").append(itemEl);
-                    }else if ((state == 14) && state == item.sP_stateId) {
-                        var itemEl = $(`
-                           <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
-                                </td>
-                                <td>${item.sP_name}</td>
-                                <td>${item.sP_amount}</td>
-                                <td>${item.sP_price}</td>
-                                <td>
-                                    <input type="button" class="btn btn-sm btn-outline-info editBtn" value="查看詳細">
-                                </td>
-                            </tr>
-                        `)
-                        $("#sellerTableBody").append(itemEl);
-                    }else if ((state == 15) && state == item.sP_stateId) {
-                        var itemEl = $(`
-                           <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
-                                </td>
-                                <td>${item.sP_name}</td>
-                                <td>${item.sP_amount}</td>
-                                <td>${item.sP_price}</td>
-                                <td>
-                                    <input type="button" class="btn btn-sm btn-outline-info editBtn" value="查看詳細">
-                                </td>
-                            </tr>
-                        `)
-                        $("#sellerTableBody").append(itemEl);
-                    }
 
-                });
-                
+                if (userData.length != 0) {
+                    userData.forEach(function (item) {
+                        console.log("ueserData.forEach")
+                        //有現貨
+                        if ((state == 13) && state == item.sP_stateId) {
+                            var itemEl = $(`
+	                           <tr>
+	                                <td>
+	                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
+	                                </td>
+	                                <td>${item.sP_name}</td>
+	                                <td>${item.sP_price}</td>
+	                                <td>${item.sP_amount}</td>
+	                                <td>
+                                        <div class="btn-group">
+	                                        <input type="button" class="btn btn-sm btn-outline-info detailBtn" value="查看詳細">
+                                            <input type="button" class="btn btn-sm btn-outline-info" value="編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+                                        </div>
+	                                </td>
+	                            </tr>
+	                        `)
+                            $("#sellerTableBody").append(itemEl);
+                        } else if ((state == 14) && state == item.sP_stateId) {
+                            var itemEl = $(`
+	                           <tr>
+	                                <td>
+	                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
+	                                </td>
+	                                <td>${item.sP_name}</td>
+	                                <td>${item.sP_price}</td>
+	                                <td>${item.sP_amount}</td>
+	                                <td>
+	                                    <div class="btn-group">
+	                                        <input type="button" class="btn btn-sm btn-outline-info detailBtn" value="查看詳細">
+                                            <input type="button" class="btn btn-sm btn-outline-info" value="編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+                                        </div>
+	                                </td>
+	                            </tr>
+	                        `)
+                            $("#sellerTableBody").append(itemEl);
+                        } else if ((state == 15) && state == item.sP_stateId) {
+                            var itemEl = $(`
+	                           <tr>
+	                                <td>
+	                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
+	                                </td>
+	                                <td>${item.sP_name}</td>
+	                                <td>${item.sP_price}</td>
+	                                <td>${item.sP_amount}</td>
+	                                <td>
+	                                    <div class="btn-group">
+	                                        <input type="button" class="btn btn-sm btn-outline-info detailBtn" value="查看詳細">
+                                            <input type="button" class="btn btn-sm btn-outline-info" value="編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+                                        </div>
+	                                </td>
+	                            </tr>
+	                        `)
+                            $("#sellerTableBody").append(itemEl);
+                        }
+
+                    });
+                }
+
                 //如果沒有東西可以顯示就顯示插圖
                 if ($("#sellerTableBody").html() == "") {
                     initData();
                 }
-                
+
                 //查看詳細按鈕click事件
-                $("input.editBtn").click(function () {
+                $("input.detailBtn").click(function () {
                     var hrefUrl = "test.html"
                     document.location.href = hrefUrl;
                 });

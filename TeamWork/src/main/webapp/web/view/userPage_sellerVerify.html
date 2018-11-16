@@ -20,6 +20,7 @@
 <!-- main CSS -->
 <link rel="stylesheet" href="../style/main.css">
 <link rel="stylesheet" href="../style/userPage.css">
+
 <!-- fontawesome -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -45,9 +46,6 @@
 					</a>
 					<div class="user-page-brief_right">
 						<div class="user-page-brief__username" id="member_username"></div>
-						<!-- <div>
-							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
-						</div> -->
 						<div class="user-page-brief__coin">
 							<img src="../images/user/others/coin.png"
 								style="display: inline-block;"> <span id="member_coin"></span>
@@ -230,7 +228,7 @@
 							</div>
 						</fieldset>
 						<fieldset class="section" id="form-step-2">
-							<input type="hidden" name="m_id" value="5"> <input
+							<input id="iamqueen" type="hidden" name="m_id" value="5"> <input
 								type="hidden" name="s_stateId" value="1">
 							<!-- <div class="form-group row">
 									<label for="idNumType" class="col-sm-5 col-form-label">身份 / 證件類型</label>
@@ -413,33 +411,25 @@
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<!-- 		<script src="https://code.jquery.com/jquery-1.12.1.js"></script> -->
+	<script src="../js/heacerinclude.js"></script>
+	<script src="../js/headersearchinclude.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script>
-		// =========jquery的include
-		$(document).ready(function() {
-			console.log("看看有沒有跑INCLUDE")
-			$.get("header.html", function(data) {
-				$("#header").html(data);
-			});
-			$.get("header-search.html", function(data) {
-				$("#header-search").html(data);
-			});
-		})
-	</script>
 
 	<script src="../js/userPage.js"></script>
 	<!-- Optional JavaScript -->
 	<script>
-		var userID;
+		var userID=1;
 		$(document).ready(
 				function() {
 					if (document.cookie.split("mid=").length == 2) {
 						userID = document.cookie.split("mid=")[1].split(";")[0]
+						$("#iamqueen").val(userID)
 					} else {
+						userID = "";
+						window.history.pushState("","page 2" , "userPage_sellerVerify.html")
 						window.location.href = "form_login.html";
 					}
 
@@ -450,19 +440,7 @@
 
 					loadData();
 					function loadData() {
-						//下載Wish資料
-						$.ajax({
-							url : dataurl,
-							error : function() {
-								console.log("載入Wish資料失敗")
-							},
-							success : function(res) {
-								console.log("載入Wish資料")
-								userData = res
-								// 							updateData()
-								loadMemberData(userID);
-							}
-						})
+						loadMemberData(userID);
 					}
 
 					var currentStep = 1;

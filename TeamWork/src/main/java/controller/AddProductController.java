@@ -116,7 +116,6 @@ public class AddProductController {
 //		MultipartFile file = null;
 		System.out.println(files);
 		System.out.println("==================="+files.get(0));
-		System.out.println("==================="+files.get(1));
 		System.out.println(inputstr);
 //		for (int i = 0; i < files.length; i++) {
 //			System.out.println("for="+te);

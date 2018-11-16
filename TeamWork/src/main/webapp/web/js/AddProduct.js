@@ -149,6 +149,7 @@ $("#StoreProductClick").click(function (e) {
     
     // 開始判斷有無店家身份
     if (VerifyStore()) {
+        alert(storeid)
         $.ajax({
             type: "POST",
             url: "/TeamWork/AddStoreProduct",

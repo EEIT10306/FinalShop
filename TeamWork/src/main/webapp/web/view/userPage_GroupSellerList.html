@@ -23,26 +23,9 @@
 <body>
     <!-- header -->
 	<div id="header"></div>
+	<!-- header-search -->
+	<div id="header-search"></div>
 	
-    <div class="belowNavbar">
-        <div class="container">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">項目</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">許願池</a> <a class="dropdown-item" href="#">限時團購</a> <a class="dropdown-item"
-                            href="#">購物商城</a>
-                    </div>
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Search</button>
-                </div>
-            </div>
-        </div>
-        <!-- end of container -->
-    </div>
     <div class="container">
         <div class="row">
             <div class="user-page-slidebar col-lg-2">
@@ -54,9 +37,6 @@
 					</a>
 					<div class="user-page-brief_right">
 						<div class="user-page-brief__username" id="member_username"></div>
-						<!-- <div>
-							<a class="user-page-brief__edit" href="/user/account/profile/"><i class="fas fa-pen"></i>編輯個人簡介</a>
-						</div> -->
 						<div class="user-page-brief__coin">
 							<img src="../images/user/others/coin.png" style="display: inline-block;">
 							<span id="member_coin"></span>
@@ -313,9 +293,11 @@
     <script>
 		// =========jquery的include
 		$(document).ready(function () {
-			console.log("看看有沒有跑INCLUDE")
 			$.get("header.html", function (data) {
 				$("#header").html(data);
+			});
+			$.get("header-search.html", function (data) {
+				$("#header-search").html(data);
 			});
 		})
 	</script>
@@ -323,10 +305,10 @@
     <script>
         var userID = 1;
         $(document).ready(function () {
-        	if(document.cookie.split("mid=").length == 2){				
+        	if (document.cookie.split("mid=").length == 2) {
 				userID = document.cookie.split("mid=")[1].split(";")[0]
-			}else{
-				window.location.href="form_login.html";
+			} else {
+				window.location.href = "form_login.html";
 			}
         	
             var dataurl = "/TeamWork/GroupOrderList?m_idOrder=" + userID;
