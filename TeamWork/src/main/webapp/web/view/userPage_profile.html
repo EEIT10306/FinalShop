@@ -183,12 +183,15 @@
 						<div class="avatar-uploader__avatar">
 							<img src="../images/user/account/profile/001.png">
 						</div>
-						<div class="btn-row">
-							<label class="btn btn-sm userSubmitBtn"> <input id="selectProfile" type="file" name="file" required>
-								上傳圖片
-							</label> <input type="button" id="submitProfile" class="btn btn-sm userSubmitBtn" value="確認上傳">
-						</div>
-						<div class="avatar-uploader_text">檔案大小:最大1MB</div>
+						<form id="submitProfile_form">
+							<div class="btn-row">
+								<input type="hidden" name="m_id" id="m_id_profile" value="">
+								<label class="btn btn-sm userSubmitBtn"> <input id="selectProfile" type="file" name="file" required>
+									上傳圖片
+								</label> <input type="button" id="submitProfile" class="btn btn-sm userSubmitBtn" value="確認上傳">
+							</div>
+						</form>
+						<div class="avatar-uploader_text">檔案大小:最大10KB</div>
 						<div class="avatar-uploader_text">檔案限制: .JPEG, .PNG</div>
 					</div>
 				</div>
@@ -290,6 +293,7 @@
 						userID = document.cookie.split("mid=")[1]
 							.split(";")[0]
 						$("#m_id").val(userID);
+						$("#m_id_profile").val(userID);
 					} else {
 						userID = "";
 						window.history.pushState("", "page 2",
@@ -351,86 +355,60 @@
 					});
 
 					//上傳使用者頭貼click事件
-					$("#submitProfile")
-						.click(
-							function () {
-								var formData = new FormData();
-								formData
-									.append(
-										'files',
-										$('#selectProfile')[0].files[0]);
-								console.log("上傳使用者頭貼");
-								$
-									.ajax({
-										type: "POST",
-										url: "/TeamWork/UpdateAccountImage?m_id="
-											+ userID,
-										data: formData,
-										processData: false,
-										contentType: false,
-										success: function () {
-											alert("success!");
-											$("#member_pic")
-												.attr(
-													"src",
-													$(
-														".avatar-uploader__avatar>img")
-														.attr(
-															"src"));
-										}
-									});
+					$("#submitProfile").click(
+						function () {
+							var formData = new FormData($('#uploadForm')[0]);
+							formData.append('files', $('#selectProfile')[0].files[0]);
+							formData.append('m_id', userID);
+							console.log("上傳使用者頭貼");
+							$.ajax({
+								type: "POST",
+								url: "/TeamWork/UpdateAccountImage",
+								data: formData,
+								processData: false,
+								contentType: false,
+								success: function () {
+									alert("success!");
+									$("#member_pic").attr("src", $(".avatar-uploader__avatar>img").attr("src"));
+								}
 							});
+						});
 
 					//個人資料更新確認更新按鈕click事件
 					$("#my-account_form")
-						.on(
-							'submit',
-							function () {
-								$
-									.ajax({
-										type: "POST",
-										url: "/TeamWork/EditMyAccountData",
-										data: $(this)
-											.serialize(),
-										success: function () {
-											alert("success!")
-											$(
-												"#editUserDataBtn")
-												.css(
-													"display",
-													"inline-block")
-											$(
-												"#updateUserDataBtn")
-												.css(
-													"display",
-													"none")
-											$(".userInput")
-												.attr(
-													"readonly",
-													true)
-											loadData();
-										},
-										error: function () {
-											alert("error!")
-											$(
-												"#editUserDataBtn")
-												.css(
-													"display",
-													"inline-block")
-											$(
-												"#updateUserDataBtn")
-												.css(
-													"display",
-													"none")
-											$(".userInput")
-												.attr(
-													"readonly",
-													true)
-										}
-									});
-								return false; //阻止form submit
-								
+						.on('submit', function () {
+							$.ajax({
+								type: "POST",
+								url: "/TeamWork/EditMyAccountData",
+								data: $(this).serialize(),
+								success: function () {
+									alert("success!")
+									$("#editUserDataBtn").css("display", "inline-block")
+									$("#updateUserDataBtn").css("display", "none")
+									$(".userInput").attr("readonly", true)
+									loadData();
+								},
+								error: function () {
+									alert("error!")
+									$(
+										"#editUserDataBtn")
+										.css(
+											"display",
+											"inline-block")
+									$(
+										"#updateUserDataBtn")
+										.css(
+											"display",
+											"none")
+									$(".userInput")
+										.attr(
+											"readonly",
+											true)
+								}
 							});
+							return false; //阻止form submit
+
+						});
 				});
 	</script>
 </body>

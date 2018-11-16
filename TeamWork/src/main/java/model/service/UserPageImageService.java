@@ -29,12 +29,19 @@ public class UserPageImageService {
 
 	public boolean insertAccountImage(MultipartFile file, Integer m_id) {
 		try {
-			String fileName = "m_photo_" + m_id + "." + file.getContentType().split("/")[1];
-			saveAccountImage(file, fileName);
-			String filePath = GetAccountImagePath + fileName;
-			Member member = memberDaoImpl.selectByPk(m_id);
-			member.setM_photo(filePath);
-			return true;
+			if (file.isEmpty() || m_id == null) {
+				System.out.println("1");
+				return false;
+			} else {
+				String fileName = "m_photo_" + m_id + "." + file.getContentType().split("/")[1];
+				saveAccountImage(file, fileName);
+				String filePath = GetAccountImagePath + fileName;
+				Member member = memberDaoImpl.selectByPk(m_id);
+				member.setM_photo(filePath);
+				System.out.println("2");
+				System.out.println(member);
+				return true;
+			}
 		} catch (IllegalStateException | IOException e) {
 			System.err.println("UserPageImageService - saveAccountImage() - IllegalStateException | IOExceptio");
 			e.printStackTrace();
