@@ -256,7 +256,7 @@
 			.ready(
 				function () {
 					var url = location.href;
-					alert(url);
+				
 					var str = ""; //參數中等號左邊的值
 					var str_value = ""; //參數中等號右邊的值
 					if (url.indexOf("?") != -1) {
@@ -269,13 +269,13 @@
 							//取得參數"="左邊的值存入str變數中
 							if (str == "search") {
 								//若str等於想要抓取參數 如:b
-								alert(ary[i])
+							
 								str_value = decodeURI(ary[i]);
 								search_value = decodeURI(ary[i].split("=")[1]);
 								//取得b等號右邊的值並經過中文轉碼後存入str_value
 							}
 						}
-						alert(str_value)
+						
 
 						$("#headsearch").val(search_value);
 					}
@@ -285,7 +285,7 @@
 							url: "/TeamWork/StoreProductForm?" + str_value,
 
 							success: function (jsonback) {
-								alert("server傳回 = " + jsonback);
+								
 
 								if (jsonback == "") {
 									var txt = "<p>我們找不到 " + search_value + " 商品</p>";
@@ -302,6 +302,7 @@
 								//	alert(json);
 								else {
 									var txt = "";
+									$("#odbyvalue").html(txt);
 									var txt2 =` <div><ul id="haha" class="drop-down-menu">
         										<li><a href="#" value='1' id='btn1'>最愛排名</a></li>
 												<li><a href="#" value='2' id='btn2'>最新</a></li>
@@ -388,15 +389,6 @@
 
 							}
 						});
-
-
-
-
-
-
-
-
-
 				});
 		// function odby1() {
 		// alert($(this).attr("id"));	
@@ -408,32 +400,32 @@
 			$("#btn1").click(function () {
 				$('#odbyvalue').attr('name', '1');
 
-				alert($('#odbyvalue').attr("name"));
+			
 				changefrom();
 
 			});
 			$("#btn2").click(function () {
 				$('#odbyvalue').attr('name', '2');
-				alert($('#odbyvalue').attr("name"));
+				
 				changefrom();
 
 			});
 			$("#btn3").click(function () {
 				$('#odbyvalue').attr('name', '3');
 			
-				alert($('#odbyvalue').attr("name"));
+			
 				changefrom();
 			});
 			$("#btn4").click(function () {
 				$('#odbyvalue').attr('name', '4');
 				
-				alert($('#odbyvalue').attr("name"));
+				
 				changefrom();
 			});
 			$("#btn5").click(function () {
 				$('#odbyvalue').attr('name', '5');
 				
-				alert($('#odbyvalue').attr("name"));
+				
 				changefrom();
 			});
 		}
@@ -449,7 +441,7 @@
 						url: "/TeamWork/changeStoreFormSelect",
 						data: { "p_id": exampleFormControlSelect1 },
 						success: function (jsonback) {
-							alert("server傳回 = " + jsonback);
+						
 							var json = JSON.parse(jsonback);
 							//             	alert(json);
 							var txtselect = "";
@@ -488,7 +480,7 @@
 		function changefrom() {
 			var catchsearch = "search=" + $("#headsearch").val();
 
-			alert(catchsearch)
+		
 			var fromurl = "/TeamWork/StoreProductChangeForm?" + catchsearch;
 			if ($(
 				"#exampleFormControlSelect1")
@@ -513,7 +505,7 @@
 				var evaluation = $(
 					"#evaluation")
 					.val();
-					alert(evaluation);
+					
 				fromurl += "&c=" + evaluation;
 			}
 			// 運送方式
@@ -523,7 +515,7 @@
 					"#transport1")
 					.val();
 				fromurl += "&d=1";
-				alert(fromurl);
+				
 			}
 			if ($("#transport2").prop(
 				'checked') == true) {
@@ -531,7 +523,7 @@
 					"#transport2")
 					.val();
 				fromurl += "&e=2";
-				alert(fromurl);
+				
 			}
 			if ($("#transport3").prop(
 				'checked') == true) {
@@ -539,7 +531,7 @@
 					"#transport3")
 					.val();
 				fromurl += "&f=3";
-				alert(fromurl);
+				
 			}
 			if ($("#transport4").prop(
 				'checked') == true) {
@@ -547,7 +539,7 @@
 					"#transport4")
 					.val();
 				fromurl += "&g=4";
-				alert(fromurl);
+				
 
 			}
 			if ($("#transport5").prop(
@@ -556,7 +548,7 @@
 					"#transport5")
 					.val();
 				fromurl += "&h=5";
-				alert(fromurl);
+			
 			}
 			// 商品狀況
 
@@ -590,12 +582,12 @@
 			if(	$("input[id='minprice']").val()!=""){
 				var minprice = $("input[id='minprice']").val()
 				fromurl += "&k=" + minprice;
-				alert(minprice)
+				
 			}
 			if(	$("input[id='maxprice']").val()!=""){
 				var maxprice = $("input[id='maxprice']").val()
 				fromurl += "&l=" + maxprice;
-				alert(maxprice)
+				
 			}
 		
 
@@ -603,8 +595,8 @@
 			if ($('#odbyvalue').attr("name") != 0) {
 				var odbyvalue = $('#odbyvalue').attr("name");
 				fromurl += "&m=" + odbyvalue;
-				alert(odbyvalue);
-				alert(fromurl);
+				
+			
 
 			}$.ajax({
 					type: "GET",
@@ -612,7 +604,7 @@
 					url: fromurl,
 
 					success: function (jsonback) {
-						alert("server傳回 = " + jsonback);
+						
 
 						if (jsonback == "") {
 							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
@@ -627,6 +619,7 @@
 						//	alert(json);
 						else {
 							var txt = "";
+							$("#odbyvalue").html(txt);
 							var txt2 =` <ul id="haha" class="drop-down-menu">
         										<li><a href="#" value='1' id='btn1'>最愛排名</a></li>
 												<li><a href="#" value='2' id='btn2'>最新</a></li>
@@ -645,7 +638,7 @@
 							$("#odbyvalue").html(txt2);
 							
 							for (x = 0; x < jsonback.length; x++) {
-								// 												alert("in txt")
+								// 												
 								txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id +"'>";
 
 								txt += "<div class='card card-search'>";
@@ -706,7 +699,7 @@ function clickdiv(){
 				type: "GET",
 				url: "/TeamWork/productHot?sP_id=" + sp_id,
 				success: function(response){
-					alert("hahahaha")
+				
 				}			
 	// location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
 	})
