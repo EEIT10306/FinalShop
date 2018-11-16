@@ -73,7 +73,7 @@
 		var nowDate = new Date();
 		var nowDateFormed = (nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes());
 		
-		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
+// 		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
 		var member_mail;
 		var theCookies = document.cookie.split(";");
 		var member_id;
@@ -281,15 +281,16 @@
 				$.ajax({
 					url: "/TeamWork/StoreMessage?"+hahaha,
 					type: "GET",
-					success: function(data1){
+					success: function(StoreMessages){
 						var replyText = "";
 						$.ajax({
 							url: "/TeamWork/StoreCallback?"+hahaha,
 							type: "GET",
-							success: function(data2){
-									for(i=0;i<data1.length;i++){
-										var replyDate = new Date(data1[i].sM_time);
-										var photo = (data1[i].member.m_photo != "")?data1[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
+							success: function(StoreCallbacks){
+								
+									for(i=0;i<StoreMessages.length;i++){
+										var replyDate = new Date(StoreMessages[i].sM_time);
+										var photo = (StoreMessages[i].member.m_photo != "")?StoreMessages[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
 										replyText +=`
 										<ul>
 											<li>
@@ -298,33 +299,31 @@
 					                                <!-- Contenedor del Comentario -->
 						                                <div class="comment-box">
 						                                    <div class="comment-head">
-						                                        <h6 class="comment-name"><a href="`+data1[i].member.m_photo+`">`+data1[i].member.m_name+`</a></h6> 
+						                                        <h6 class="comment-name"><a href="`+StoreMessages[i].member.m_photo+`">`+StoreMessages[i].member.m_name+`</a></h6> 
 						                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>
 						                                        <i class="fa fa-reply"></i>
 						                                    </div>
-						                                <div class="comment-content" value="`+data1[i].sM_context+`">`+data1[i].sM_context+`</div>
+						                                <div class="comment-content">`+StoreMessages[i].sM_context+`</div>
 					                            	</div>
 					                            </div>`
-// 				                        if(){
-				                        	
-// 				                        }
+				                        
 			                            replyText += `<ul class="comments-list reply-list">
-                                        				<input type="hidden" class="tmp" value="`+data1[i].sM_id+`">
+                                        				<input type="hidden" class="tmp" value="`+StoreMessages[i].sM_id+`">
 					                            `	
-			                        	for(j=0;j<data2.length;j++){
-			                        		var callBackDate = new Date(data2[j].sC_time);
-			                        		var photo2 = (data2[i].member.m_photo != "")?data2[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
-			                        		 if(data1[i].sM_id == data2[j].sM_id){
+			                        	for(j=0;j<StoreCallbacks.length;j++){
+			                        		var callBackDate = new Date(StoreCallbacks[j].sC_time);
+			                        		var photo2 = (StoreCallbacks[j].member.m_photo != "")?StoreCallbacks[j].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
+			                        		 if(StoreMessages[i].sM_id == StoreCallbacks[j].sM_id){
 			                        			 replyText +=`
 					                                    <li>
 					                                        <div class="comment-avatar"><img src="`+photo2+`"
 					                                                alt=""></div>
 					                                        <div class="comment-box">
 					                                            <div class="comment-head">
-					                                                <h6 class="comment-name"><a href="http://creaticode.com/blog">`+data2[j].member.m_name+`</a></h6>
+					                                                <h6 class="comment-name"><a href="http://creaticode.com/blog">`+StoreCallbacks[j].member.m_name+`</a></h6>
 					                                                <span>`+(callBackDate.getYear()+1900)+"/"+(callBackDate.getMonth()+1)+"/"+callBackDate.getDate()+" "+((callBackDate.getHours().toString().length==1)?"0"+callBackDate.getHours():callBackDate.getHours())+":"+((callBackDate.getMinutes().toString().length==1)?"0"+callBackDate.getMinutes():callBackDate.getMinutes())+`</span>
 					                                            </div>
-					                                            <div class="comment-content">`+data2[j].sC_context+`</div>
+					                                            <div class="comment-content">`+StoreCallbacks[j].sC_context+`</div>
 					                                        </div>
 					                                    </li>`
 							                    }     
@@ -346,8 +345,9 @@
 	                                        			<div><button type="button" value="submit" class="callBack">送出</button>    <button type="button" value="reset">取消</button></div>
 	                                    			</div>
 	                                			</li>
-	                                		</ul>`; 
+	                                		`; 
 			                            }
+					                    replyText += "</ul>";
 									}
 									var photo4 = (member_bean.m_photo != '')?member_bean.m_photo:'/TeamWork/web/images/user/account/profile/001.png';	
 																									     // web/images/user/account/profile/001.png
@@ -386,7 +386,7 @@
 										$.ajax({
 											url:"/TeamWork/InsertOneStoreCallback",
 											type:"POST",
-											data:{sM_id:$(this).parents('.comments-list .reply-list').find('.tmp').val(), m_idCallback: member_bean.m_id , sC_context:$(this).parent().prev().find("textarea").val(), sC_time:nowDateFormed, sC_stateId:23 },
+											data:{sM_id:$(this).parents('.comments-list .reply-list').find('.tmp').val(), m_idCallback: member_bean.m_id , sC_context:$(this).parent().prev().find("textarea").val(), sC_time:nowDateFormed, sC_stateId:23},
 											success: function(){
 												showQandA();
 											}
@@ -442,7 +442,7 @@
     		}
     	})
 	}
-
+	
 	</script>
 
 </head>
