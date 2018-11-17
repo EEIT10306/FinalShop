@@ -1,5 +1,7 @@
 //========================FB登入==============================
 //引入 facebook SDK
+let FB_appID = "333388330578468";
+
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id))
@@ -19,9 +21,9 @@ window.fbAsyncInit = function () {
         version: 'v3.2'
     });
 
-    FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-    });
+//     FB.getLoginStatus(function (response) {
+//         statusChangeCallback(response);
+//     });
 };
 
 function statusChangeCallback(response) {
@@ -32,6 +34,7 @@ function statusChangeCallback(response) {
     } else {
         console.log('FB沒有自動連線');
         //           setElements(false);
+        loginAPI();
     }
 }
 
@@ -42,63 +45,67 @@ function checkLoginState() {
 }
 
 function loginAPI() {
-    FB.api('/me?fields=name,first_name,last_name,email', function (response) {
-        if (response && !response.error) {
-            
-            var cookies =document.cookie; 
-            console.log(cookies);
-            console.log(response);
-            console.log(response.email);
-            $.ajax({
-                type:"post",
-                url:"/TeamWork/LoginFb",
-                data:{userInfo: JSON.stringify(response)},
-                success:function(data){
-                    console.log(data);
-                    console.log(response.email);
-                    
-                    if(data=="existsAccount"){
-                        console.log('此帳號沒註冊或者重複');
-                    } else if(data[0].m_account==response.email) {
-                    	 //設定cookie
-                        expire_days = 1; // 過期日期(天)
-                        var day = new Date();
-                        day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
-                        // day.setTime(day.getTime() + (60 * 1000));
-                        var expires = "expires=" + day.toGMTString();
-                        // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
-                        document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
-                        document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
-                        document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
-                        alert(document.cookie)
-
-                        alert("登入成功")
-                        window.location.href=window.history.back();
+    FB.login(function(response){
+        FB.api('/me?fields=name,first_name,last_name,email', function (response) {
+            if (response && !response.error) {
+                
+                var cookies =document.cookie; 
+                console.log(cookies);
+                console.log(response);
+                console.log(response.email);
+                $.ajax({
+                    type:"post",
+                    url:"/TeamWork/LoginFb",
+                    data:{userInfo: JSON.stringify(response)},
+                    success:function(data){
+                        console.log("=============FB資料");
+                        console.log(data);
+                        console.log(response.email);
+                        
+                        if(data=="existsAccount"){
+                            console.log('此帳號沒註冊或者重複');
+                        } else if(data[0].m_account==response.email) {
+                             //設定cookie
+                            expire_days = 1; // 過期日期(天)
+                            var day = new Date();
+                            day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+                            // day.setTime(day.getTime() + (60 * 1000));
+                            var expires = "expires=" + day.toGMTString();
+                            // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+                            document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
+                            document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
+                            document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
+                            alert(document.cookie)
+    
+                            alert("登入成功")
+                            window.location.href=window.history.back();
+                        }
+                        
+                        // document.getElementById('status').innerHTML =
+                        //     'Thanks for logging in, ' + response.name + '!';
+                    },
+                    error: function(data){
+                        console.log(data);
+                        console.log(response.email);
+                        if(data=="beanNull"){
+                            alert("FB登入失敗")
+                        }
                     }
-                    
-                    // document.getElementById('status').innerHTML =
-                    //     'Thanks for logging in, ' + response.name + '!';
-                },
-                error: function(data){
-                    console.log(data);
-                    console.log(response.email);
-                    if(data=="beanNull"){
-                        alert("FB登入失敗")
-                    }
-                }
-            });
-           
-
-                    
-            
-            //buildProfile(response);
-        }
-        //           FB.api('/me/feed', function(response){
-        //             if(response && !response.error){
-        //               buildFeed(response);
-        //             }
-        //           });
+                });
+               
+    
+                        
+                
+                //buildProfile(response);
+            }
+            //           FB.api('/me/feed', function(response){
+            //             if(response && !response.error){
+            //               buildFeed(response);
+            //             }
+            //           });
+        })
     })
+    
 }
 
 // ================================================google登入==========================
