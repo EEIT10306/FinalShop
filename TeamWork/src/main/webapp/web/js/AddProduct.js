@@ -49,6 +49,7 @@ function cookieToJson() {
 //=================================抓取商品類型=====================================
 $("[class='custom-select form-group']").change(function () {
     var addProductSort = $("[class='custom-select form-group']").val();
+    alert(addProductSort)
     $.ajax({
         type: "POST",
         url: "/TeamWork/changeStoreFormSelect",
