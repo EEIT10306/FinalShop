@@ -234,18 +234,17 @@
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"></script> -->
 	<!-- <script>
-	//以下是JS的include方式
+	以下是JS的include方式
 	$(document).ready(function(){
 		console.log("看看有沒有跑INCLUDE")
 		$.get("testheader.html",function(data){
 		$("#header").html(data);
 		});
 	})
-	</script> -->
+	 </script>  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
 		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 		crossorigin="anonymous"></script>
@@ -278,6 +277,10 @@
 						
 
 						$("#headsearch").val(search_value);
+					}else {
+					str_value = "search=";
+					// cataurl = cataurl + str_value;
+					search_value = "";
 					}
 					$.ajax({
 							type: "GET",
@@ -316,6 +319,8 @@
 											</ul>
 											</div>
 											<div>
+											<button type='btn' class='btn btn-light'><i class="fas fa-list"></i></button>
+											<button type='btn' class='btn btn-light'><i class="fab fa-buromobelexperte"></i></button>
 											<button type='btn' class='btn btn-light'><</button>
 											<button type='btn' class='btn btn-light'>></button>
 											</div>`
@@ -324,9 +329,10 @@
 
 									for (x = 0; x < jsonback.length; x++) {
 										// 												alert("in txt")
+										txt+="<div id='"+jsonback[x].p_id+"' name='txtslect'></div>"	
 										txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id + "'>";
 
-										txt += "<div class='card card-search'>";
+										txt += "<div class='card card-search' >";
 										if (jsonback[x].storeImages == "") {
 											showStoreImages = "/TeamWork/web/images/form-cat.png";
 										} else {
@@ -334,9 +340,10 @@
 											// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
 											showStoreImages = jsonback[x].storeImages[0].sI_context;
 										}
-										txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
+										
+										txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap' >";
 										txt += "<div class='card-body'>";
-										txt += "<h5 class='card-title'>"
+										txt += "<h5 class='card-title' >"
 											+ jsonback[x].sP_name
 											+ "</h5>";
 										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
@@ -451,12 +458,13 @@
 							//            	}
 							// 			var txtselect = "" ; 
 							for (x = 0; x < json.length; x++) {
-								txtselect += "<option value=" + x + ">"
+								txtselect += "<option value=" + json[x].p_id + ">"
 									+ json[x].p_name
 									+ "</option>";
 
 							}
 							$("#exampleFormControlSelect2").html(txtselect);
+							changefrom();
 						}
 					});
 				});
@@ -607,78 +615,91 @@
 						
 
 						if (jsonback == "") {
-							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
-							$("#odbyvalue").html(txt);
-							var txt2="";
-							$("#tableMenu").html(txt2);
-									orderby();
+							if(search_value!=""){
+								var txt = "<p>我們找不到此條件的" + search_value + "商品</p>";
+								$("#odbyvalue").html(txt);
+								var txt2="";
+								$("#tableMenu").html(txt2);
+										orderby();
+							}else{
+								var txt = "<p>我們找不到此條件的相關商品</p>";
+								$("#odbyvalue").html(txt);
+								var txt2="";
+								$("#tableMenu").html(txt2);
+										orderby();
+							}
+
+
 						}
 
 
 						//	var json=JSON.parse(jsonback);
 						//	alert(json);
 						else {
-							var txt = "";
-							$("#odbyvalue").html(txt);
-							var txt2 =` <ul id="haha" class="drop-down-menu">
+									var txt = "";
+									$("#odbyvalue").html(txt);
+									var txt2 =` <div><ul id="haha" class="drop-down-menu">
         										<li><a href="#" value='1' id='btn1'>最愛排名</a></li>
 												<li><a href="#" value='2' id='btn2'>最新</a></li>
 												<li><a href="#" value='3' id='btn3'>最熱門</a></li>
 												<li><a href="#">價格排序</a>
 													<ul>
-													<li><a href="#" value='4' id='btn4'>價格低到高排序</a></li>
-													<li><a href="#" value='5' id='btn5'>價格高到低排序</a></li>
+														<li><a href="#" value='4' id='btn4'>價格低到高排序</a></li>
+														<li><a href="#" value='5' id='btn5'>價格高到低排序</a></li>
 													</ul>
 												</li>
 											</ul>
+											</div>
 											<div>
+											<button type='btn' class='btn btn-light'><i class="fas fa-list"></i></button>
+											<button type='btn' class='btn btn-light'><i class="fab fa-buromobelexperte"></i></button>
 											<button type='btn' class='btn btn-light'><</button>
 											<button type='btn' class='btn btn-light'>></button>
 											</div>`
-							$("#odbyvalue").html(txt2);
-							
-							for (x = 0; x < jsonback.length; x++) {
-								// 												
-								txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id +"'>";
+											
+									$("#odbyvalue").html(txt2);
 
-								txt += "<div class='card card-search'>";
-								if (jsonback[x].storeImages == "") {
-									showStoreImages = "/TeamWork/web/images/form-cat.png";
-								} else {
-									// 													alert(jsonback[6].storeImages[0].sI_context)
-									// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
-									showStoreImages = jsonback[x].storeImages[0].sI_context;
-								}
-								txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
-								txt += "<div class='card-body'>";
-								txt += "<h5 class='card-title'>"
-									+ jsonback[x].sP_name
-									+ "</h5>";
-								txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-									+ jsonback[x].sP_context.substr(0,36) 
-								txt += (jsonback[x].sP_context.length>36)?"...":""
-								txt	+= "</p></div>";
-								txt += "<p class='card-text'>$"
-									+ jsonback[x].sP_price
-									+ "</p>"
-								txt += "<i class='fas fa-heart' id='favorite'></i>"
-									+ "("+jsonback[x].sP_amountFavorite+")"
-									+ "</p>"
-									
-								var i = Math.round(parseInt(jsonback[x].sP_averageAssess));
-								
-								for (j = 1; i >= j; j++) {
-									txt += "<i class='fas fa-star fa-star-score'></i>"
-								}
-								for (j = 5; i < j; j--) {
-									txt += "<i class='far fa-star fa-star-score'></i>"
-								}
-								txt += "</div>";
-								txt += "</div>";
-								txt += "</div>";
-								// 																					
-							}
-							$("#tableMenu").html(txt);
+									for (x = 0; x < jsonback.length; x++) {
+										// 												alert("in txt")
+										txt += "<div class='col-lg-3' onclick='clickdiv()' data-box='" + jsonback[x].sP_id + "'>";
+
+										txt += "<div class='card card-search'>";
+										if (jsonback[x].storeImages == "") {
+											showStoreImages = "/TeamWork/web/images/form-cat.png";
+										} else {
+											// 													alert(jsonback[6].storeImages[0].sI_context)
+											// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
+											showStoreImages = jsonback[x].storeImages[0].sI_context;
+										}
+										txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
+										txt += "<div class='card-body'>";
+										txt += "<h5 class='card-title'>"
+											+ jsonback[x].sP_name
+											+ "</h5>";
+										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
+											+ jsonback[x].sP_context.substr(0,36) 
+										txt	+= (jsonback[x].sP_context.length>36)?"...":""
+										txt	+= "</p></div>";
+										txt += "<p class='card-text'>$"
+											+ jsonback[x].sP_price
+											+ "</p>"
+										txt += "<i class='fas fa-heart' id='favorite'></i>"
+											+ "("+jsonback[x].sP_amountFavorite+")"
+											+ "</p>"
+										i = Math.round(jsonback[x].sP_averageAssess);
+										for (j = 1; i >= j; j++) {
+											txt += "<i class='fas fa-star fa-star-score'></i>"
+										}
+										for (j = 5; i < j; j--) {
+											txt += "<i class='far fa-star fa-star-score'></i>"
+										}
+										txt +=	"("+jsonback[x].sP_amountAssess+")";
+										txt += "</div>";
+										txt += "</div>";
+										txt += "</div>";
+										// 	+ jsonback[x].sP_averageAssess																				
+									}
+									$("#tableMenu").html(txt)
 							orderby();
 					
 						
