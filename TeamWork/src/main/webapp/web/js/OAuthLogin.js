@@ -56,24 +56,26 @@ function loginAPI() {
                 success:function(data){
                     console.log(data);
                     console.log(response.email);
-                    if(data==response.email){
-                        if(data=="existsAccount"){
-                            console.log('此帳號沒註冊或者重複');
-                        } else {
-                            //設定fbcookie
-                            expire_days = 1; // 過期日期(天)
-                            var day = new Date();
-                            day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
-                            // day.setTime(day.getTime() + (60 * 1000));
-                            var expires = "expires=" + day.toGMTString();
-                            // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
-                            document.cookie = "email="+ data + "; " + expires + '; path=/';
-                            alert(document.cookie)
-                            //FB登入
-                            alert("FB登入成功")
-                            window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
-                        }
+                    
+                    if(data=="existsAccount"){
+                        console.log('此帳號沒註冊或者重複');
+                    } else if(data[0].m_account==response.email) {
+                    	 //設定cookie
+                        expire_days = 1; // 過期日期(天)
+                        var day = new Date();
+                        day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+                        // day.setTime(day.getTime() + (60 * 1000));
+                        var expires = "expires=" + day.toGMTString();
+                        // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
+                        document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
+                        document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
+                        document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
+                        alert(document.cookie)
+
+                        alert("登入成功")
+                        window.location.href=window.history.back();
                     }
+                    
                     // document.getElementById('status').innerHTML =
                     //     'Thanks for logging in, ' + response.name + '!';
                 },
@@ -155,19 +157,21 @@ function onSignIn(googleUser) {
             console.log(data);
             if(data=="existsAccount"){
                 console.log('此帳號沒註冊或者重複');
-            } else {
-                //設定googlecookie
+            } else if(data[0].m_account==email) {
+            	//設定cookie
                 expire_days = 1; // 過期日期(天)
                 var day = new Date();
                 day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));
                 // day.setTime(day.getTime() + (60 * 1000));
                 var expires = "expires=" + day.toGMTString();
                 // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
-                document.cookie = "email="+ data + "; " + expires + '; path=/';
+                document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
+                document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
+                document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
                 alert(document.cookie)
-                //google登入成功
-                alert('google登入成功 :' + data);
-                window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
+
+                alert("登入成功")
+                window.location.href=window.history.back();
             }
         },
         error:function (data) {

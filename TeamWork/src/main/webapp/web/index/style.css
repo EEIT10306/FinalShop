@@ -1071,7 +1071,8 @@ ul.tabs-nav .tab-nav.active {
 }
 
 .our-causes .cause-wrap .fund-raised {
-    margin-top: 48px;
+    margin-top: 20px;
+    border-top: solid 1px rgb(106, 17, 203);
 }
 
 .our-causes .swiper-button-next,

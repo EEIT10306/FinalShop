@@ -29,6 +29,7 @@ $("#Login").click(function(e){
                 // document.cookie = "name=test" + "; " + expires + '; domain=localhost:8080; path=/';
                 document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
                 document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
+                document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
                 alert(document.cookie)
 
                 alert("登入成功")

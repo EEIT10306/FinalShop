@@ -51,10 +51,9 @@ public class ConversationController {
 
 	@RequestMapping(value = "/UpdateConversationState", method = RequestMethod.POST)
 	@ResponseBody
-	private List<Conversation> UpdateConversationState(Conversation conversation) {
+	private void UpdateConversationState(Conversation conversation) {
 		System.out.println("============= Update Conversation State ============= ");
 		conversationService.updateConversationState_C(conversation);
-		return conversationService.updateConversationState_C(conversation);
 	}
 
 	@RequestMapping(value = "/FindServiceConversationMemberId", method = RequestMethod.POST)
