@@ -16,7 +16,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-
+    <link href="./datecss/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    
     <!-- main CSS -->
     <link rel="stylesheet" href="../style/main.css">
 
@@ -34,9 +35,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="wish-search.html"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
-                <li class="nav-item"><a class="nav-link" href="groupBuying-search.html"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
-                <li class="nav-item"><a class="nav-link" href="storeProduct-search.html"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
+                <li class="nav-item active"><a class="nav-link" href="wish-search.html"><i class="fas fa-star icon"></i>許願池
+                        Wish Pool</a></li>
+                <li class="nav-item"><a class="nav-link" href="groupBuying-search.html"><i class="fas fa-gift icon"></i>限時團購
+                        Together</a></li>
+                <li class="nav-item"><a class="nav-link" href="storeProduct-search.html"><i class="fas fa-store icon"></i>購物商城
+                        Shopping store</a></li>
             </ul>
 
             <!-- Button trigger modal -->
@@ -184,8 +188,8 @@
                         <input type="text" class="form-control" name="GrouponName" placeholder="Example input">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">開團內容</label>
-                        <textarea class="form-control" name="GrouponContext" rows="3"></textarea>
+                        <label for="exampleFormControlTextarea1">商品內容</label>
+                        <textarea class="form-control" name="StoreProductContext" rows="3"></textarea>
                     </div>
                     開團類別
                     <select class="custom-select form-group" name='GrouponSort1'>
@@ -236,7 +240,7 @@
                             <input type="file" name="file" id="Groupinput_file" class="custom-file-input" onchange="imgPreview(this)"
                                 required multiple="multiple" style="bottom:23px ;cursor: pointer">
                             <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="Grouppreview" src=""/>
+                            <img id="Grouppreview" src="" />
                             <label>請上傳多張商品圖片...</label>
                         </form>
                     </div>
@@ -261,6 +265,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">許願標題</label>
+                        <input type="text" class="form-control" name="Wishlabel" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">許願內容</label>
+                        <textarea class="form-control" name="WishContext" rows="3"></textarea>
+                    </div>
+                    許願地區
+                    <select class="custom-select" class="form-group" id="wisharea" name="addarea">
+                        <option value="0">--請選擇--</option>
+                    </select>
+                    刊登起始日
+                    <input size="16" type="text" value="2012-06-15" name="startdate" readonly class="form_datetime">
+                    <br>
+                    終止日
+                    <input size="16" type="text" value="2012-06-15" name="enddate" readonly class="form_datetime">
                     <div class="form-group">
                         <label for="formGroupExampleInput">許願商品</label>
                         <input type="text" class="form-control" name="WishName" placeholder="Example input">
@@ -310,11 +331,11 @@
                     <div class="custom-file" class="form-group">
                         <form id="WishmyForm">
                             <input type="text" name="inputstr" value="Wish" style="display: none">
-                            <input type="text" name="te" style="display: none">
+                            <input type="text" name="te" id="wishpic" style="display: none">
                             <input type="file" name="file" id="Wishinput_file" class="custom-file-input" onchange="imgPreview(this)"
                                 required multiple="multiple" style="bottom:23px ;cursor: pointer">
                             <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="Wishpreview" src=""/>
+                            <img id="Wishpreview" src="" />
                             <label>請上傳多張商品圖片...</label>
                         </form>
                     </div>
@@ -355,12 +376,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'> 
+    <script type="text/javascript" src="./datejs/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./datejs/locales/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+    
+    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'>
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     <script src="../js/Logout.js"></script>
     <script src="../js/cookies.js"></script>
     <script src="../js/AddProduct.js"></script>
+
+
 
 </body>
 
