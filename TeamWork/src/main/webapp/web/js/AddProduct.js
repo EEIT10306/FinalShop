@@ -1,3 +1,28 @@
+//=================================抓取地區=====================================
+$(document).ready(function () {
+    $.ajax({
+        type: "POST",
+        url: "/TeamWork/changeDistFormSelect",
+        // data: { "p_id": addProductSort },
+        success: function (jsonback) {
+            console.log("Dist")
+            console.log(jsonback)
+            var txtselect = "";
+            txtselect += "<option value=0>--請選擇--</option>";
+
+            for (x = 0; x < jsonback.length; x++) {
+                txtselect += "<option value=" + jsonback[x].d_id + ">"
+                    + jsonback[x].d_name
+                    + "</option>";
+            }
+            $("[name='addarea']").html(txtselect);
+        }
+    });
+})
+//抓時間
+$(".form_datetime").datetimepicker({
+    format: "dd MM yyyy"
+});
 //===================圖片瀏覽======================
 function imgPreview(fileDom) {
     var theEvent = arguments.callee.caller.arguments[0];
@@ -26,19 +51,19 @@ function imgPreview(fileDom) {
         //獲取圖片
         //  var img = $(event.target).files[i]
         // for(i=0;i<$(event.target).files.length;i++){
-            // var img = createElement("img");
-        $("#"+id).attr("src",e.target.result);
+        // var img = createElement("img");
+        $("#" + id).attr("src", e.target.result);
         // };
         // var img = document.getElementById("Storepreview");
-        
+
         //圖片路徑設置為讀取的圖片
     };
     reader.readAsDataURL(file);
 }
 //===================CookieToJson=======================
 function cookieToJson() {
-	//cookie分割並去掉所有空白字串
-	let cookieArr = document.cookie.replace(/\s/g,"").split(";");
+    //cookie分割並去掉所有空白字串
+    let cookieArr = document.cookie.replace(/\s/g, "").split(";");
     let obj = {}
     cookieArr.forEach((i) => {
         let arr = i.split("=");
@@ -57,6 +82,7 @@ $("[class='custom-select form-group']").change(function () {
         success: function (jsonback) {
             alert("server傳回 = " + jsonback);
             var json = JSON.parse(jsonback);
+            console.log(json)
             var txtselect = "";
             txtselect += "<option value=0>--請選擇--</option>";
 
@@ -73,7 +99,7 @@ $("[class='custom-select form-group']").change(function () {
 function VerifySeller() {
     var json = cookieToJson();
     var cookieAccount = json['email']
-    alert("判斷有無賣家抓帳號=========="+cookieAccount)
+    alert("判斷有無賣家抓帳號==========" + cookieAccount)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifySeller",
@@ -85,7 +111,7 @@ function VerifySeller() {
             if (response == null || response == undefined || response == '') {
                 alert("驗證賣家失敗");
                 window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerifyNoStore.html"
-            } else{
+            } else {
                 alert("驗證賣家成功");
                 result = true
             }
@@ -102,7 +128,7 @@ var storeid;
 function VerifyStore() {
     var json = cookieToJson();
     var cookieAccount = json['email']
-    alert("判斷有無店家抓帳號=========="+cookieAccount)
+    alert("判斷有無店家抓帳號==========" + cookieAccount)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifyStore",
@@ -114,7 +140,7 @@ function VerifyStore() {
             if (response == null || response == undefined || response == '') {
                 alert("驗證店家失敗");
                 window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerify.html"
-            } else{
+            } else {
                 alert("驗證店家成功");
                 storeid = response;
                 result = true;
@@ -133,9 +159,9 @@ $("#StoreProductClick").click(function (e) {
     var StoreProductContext = $("[name = 'StoreProductContext']").val();
     var StoreProductSort;
     var addStore = $("[name = 'addSort']").val();
-    if(addStore==0){
+    if (addStore == 0) {
         StoreProductSort = $("[name = 'StoreProductSort1']").val();
-    }  else {
+    } else {
         StoreProductSort = addStore;
     }
     var StoreProductAmount = $("[name = 'StoreProductAmount']").val();
@@ -155,7 +181,7 @@ $("#StoreProductClick").click(function (e) {
     alert("inputtext======" + $("input[name='te']").val())
     var formData = new FormData($("#StoremyForm")[0]); // 使用FormData包裝form表單來傳輸資料
     alert("formData=========" + formData.getAll)
-    
+
     // 開始判斷有無店家身份
     if (VerifyStore()) {
         alert(storeid)
@@ -163,7 +189,7 @@ $("#StoreProductClick").click(function (e) {
             type: "POST",
             url: "/TeamWork/AddStoreProduct",
             data: {
-                "s_id":storeid,
+                "s_id": storeid,
                 "sP_name": StoreProductName,
                 "sP_context": StoreProductContext,
                 "p_id": StoreProductSort,
@@ -219,7 +245,7 @@ $("#GrouponClick").click(function (e) {
     var formData = new FormData($("#GroupmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
     alert("formData=========" + formData.getAll)
     //判斷賣家
-    if(VerifySeller()){
+    if (VerifySeller()) {
         $.ajax({
             type: "POST",
             url: "/TeamWork/AddGroupon",
@@ -239,7 +265,7 @@ $("#GrouponClick").click(function (e) {
                 alert("MVC傳回 = " + jsons);
                 // console.log("MVC傳回 = " + response.get(0))
                 alert("SSSS");
-                 //上傳圖片修改為開團
+                //上傳圖片修改為開團
                 $.ajax({
                     type: "POST",
                     url: "/TeamWork/uploadmutipart",
@@ -253,7 +279,7 @@ $("#GrouponClick").click(function (e) {
                     }
                 });
                 // window.location.href=""
-    
+
             },
             error: function (response) {
                 // console.log("MVC傳回 = " + jsons.get(0))
@@ -267,37 +293,44 @@ $("#GrouponClick").click(function (e) {
 })
 //===========================新增許願商品===============================
 $("#WishClick").click(function (e) {
+    var json = cookieToJson();
+    var cookiemid = json['mid']
+    var wishlabel = $("[name = 'Wishlabel']").val();
+    var WishContext = $("[name = 'WishContext']").val();
+    var addarea = $("[name = 'addarea']").val();
+    var startdate = $("[name = 'startdate']").val();
+    var enddate = $("[name = 'enddate']").val();
     var WishName = $("[name = 'WishName']").val();
     var WishSort = $("[name = 'WishSort1']").val();
     var WishAmount = $("[name = 'WishAmount']").val();
     var WishPriceBottom = $("[name = 'WishPriceBottom']").val();
     var WishPriceTop = $("[name = 'WishPriceTop']").val();
+    //改好的值用json字串給伺服器
+    var wishcombie = {
+        "m_id": cookiemid, "p_id": WishSort, "w_title": wishlabel, "w_context": WishContext,
+        "d_id": addarea, "w_startDate": startdate, "w_endDate": enddate,"wP_name": WishName, "p_id": WishSort, "wP_amount": WishAmount,
+        "wP_priceBottom": WishPriceBottom, "wP_priceTop": WishPriceTop
+    };
+    //原本combie是json物件 利用以下方法翻成json字串 ; 
+    var wishjson = JSON.stringify(wishcombie);
+    console.log("=======================================")
+    console.log(wishjson)
 
     //上傳圖片變數
     e.preventDefault(); // 停止觸發submit
     alert("upload");
-    $("input[name='te']").val(WishName);
-    alert("inputtext======" + $("input[name='te']").val())
+    $("#wishpic").val(WishName);
+    alert("inputtext======" + $("#wishpic").val())
     var formData = new FormData($("#WishmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
     alert("formData=========" + formData.getAll)
 
     $.ajax({
         type: "POST",
-        url: "/TeamWork/AddWish",
-        data: {
-            "wP_name": WishName,
-            "p_id": WishSort,
-            "wP_amount": WishAmount,
-            "wP_priceBottom": WishPriceBottom,
-            "wP_priceTop": WishPriceTop
-        },
-        dataType: "json",
+        url: "/TeamWork/AddWishandProduct",
+        data: wishjson,
+        contentType: "application/json; charset=utf-8",
         success: function (response) {
-            // console.log("MVC傳回 = " + jsons.get(0))
-            // alert("MVC傳回 = " + response);
-            var jsons = JSON.stringify(response);
-            alert("MVC傳回 = " + jsons);
-            // console.log("MVC傳回 = " + response.get(0))
+            console.log(response)
             alert("SSSS");
             $.ajax({
                 type: "POST",
