@@ -2,20 +2,25 @@
 <html lang="zh-tw">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- main CSS -->
-    <link rel="stylesheet" href="../style/form.css">
-    
-    <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
-    <script src="https://apis.google.com/js/platform.js" async defer></script><!--google登入用-->
-    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'><!--google登入用-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>登入 Sign in</title>
+<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+
+<!-- main CSS -->
+<link rel="stylesheet" href="../style/form.css">
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!--google登入用-->
+<meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'>
+<!--google登入用-->
+
+<title>登入 Sign in</title>
 </head>
 
-<body style="overflow: hidden">
+<body>
+
     <form> <img src="../images/form-cat.png"
         />
         <h2>是會員嗎？趕快登入吧！</h2>
@@ -27,43 +32,44 @@
         
         <span class="errorMsg" id="errorPassword"></span>
         <div class="feedback"></div>
+		<span class="errorMsg" id="errorPassword"></span>
+		<div class="feedback"></div>
 
-        <input id="Login" class="button" type="button" value="Login">
-        <p class="message">Not registered? <a href="form_reg.html">Create an account</a></p>
-        <br>
-        <p>-----------------or-----------------</p>
-        <br>
-        <!--
+		<input id="Login" class="button" type="button" value="Login">
+		<input id="Loginfb" class="button" type="button" value="FACEBOOK登入" onclick="checkLoginState()" style="background-color: #4267b2">
+<!-- 		<input id="Login" class="button" type="button" value="GOOGLE登入" style="background-color: #f45151"> -->
+		<p class="message">Not registered?
+			<a href="form_reg.html">Create an account</a>
+		</p>
+
+		<!--
         <fb:login-button scope="public_profile,email"
     		onlogin="checkLoginState();"
     		auto_logout_link="true"
     		size="large"
     		show_faces="false">
         </fb:login-button> facebook 按钮 -->
-        <div class="fb-login-button" 
-        data-max-rows="1" 
-        data-size="large" 
-        data-button-type="login_with" 
-        data-show-faces="false" 
-        data-auto-logout-link="true" 
-        data-use-continue-as="false"></div>
-        <!--<div id="status"></div> 登陸狀態顯示 -->
-        <!-- google 登入按鈕 -->
-        <div class="g-signin2" data-onsuccess="onSignIn" data-width="270"></div>
-        <!-- google 登出按鈕-->
-        <a class="g-signout2" href="#" onclick="signOut();">Sign out</a>
-        <!-- <a href="#" onclick="signOut();">Sign out</a> -->
-        
-        
-    </form>
+<!-- 		<div class="fb-login-button" data-max-rows="1" data-size="large" -->
+<!-- 			data-button-type="login_with" data-show-faces="false" -->
+<!-- 			data-auto-logout-link="true" data-use-continue-as="false"></div> -->
+		<!--<div id="status"></div> 登陸狀態顯示 -->
+		<!-- google 登入按鈕 -->
+<!-- 		<div class="g-signin2" data-onsuccess="onSignIn" data-width="270"></div> -->
+		<!-- google 登出按鈕-->
+<!-- 		<a class="g-signout2" href="#" onclick="signOut();">Sign out</a> -->
+		<!-- <a href="#" onclick="signOut();">Sign out</a> -->
 
-    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
-    
-<!--     <script src="js/main.js"></script> -->
-    <!-- <script src="../js/cookies.js"></script> -->
-    <script src="../js/Login.js"></script>
-    <script src="../js/OAuthLogin.js"></script>
-    
+
+	</form>
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+	<!--     <script src="js/main.js"></script> -->
+	<!-- <script src="../js/cookies.js"></script> -->
+	<script src="../js/Login.js"></script>
+	<script src="../js/OAuthLogin.js"></script>
+
 </body>
 
 </html>

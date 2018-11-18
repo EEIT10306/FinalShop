@@ -106,27 +106,22 @@ public class ConversationService_forCustomers {
 	}
 
 //	更改訊息狀態為"已讀"
-	public List<Conversation> updateConversationState_C(Conversation conversation) {
+	public void updateConversationState_C(Conversation conversation) {
 		try {
 			String hql = "WHERE c_stateId = 3 AND m_id = ";
 			hql += findManager().getM_id();
 			hql += " AND m_idConversation = ";
 			hql += conversation.getM_id();
-			List<Conversation> list = null;
-			list = conversationDaoImpl.selectHql(hql);
-			if (list.size() > 0) {
+			List<Conversation> list = conversationDaoImpl.selectHql(hql);
+			if (list.size() != 0) {
 				for (int i = 0; i < list.size(); i++) {
 					list.get(i).setC_stateId(4);
 					conversationDaoImpl.update(list.get(i));
 					System.out.println(list.get(0));
 				}
-				return list;
-			}else {
-				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
 
 	}

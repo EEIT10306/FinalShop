@@ -52,8 +52,8 @@ $(document).ready(function(){
                 // console.log(Memberallbean);
             },
             error:function(data){
-                console.log(data);
-                alert("抓帳號cookie失敗")
+                console.log("抓帳號cookie失敗");
+//                alert("抓帳號cookie失敗")
             }
         });
     }

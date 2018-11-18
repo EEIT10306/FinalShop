@@ -853,8 +853,8 @@
 							//                 txtselect += "<option value="+x+">"+json[x].name+"</option>";        
 							//            	}
 							// 			var txtselect = "" ; 
-							for (x = 0; x < json.length; x++) {
-								txtselect += "<option value=" + x + ">"
+							for (x = 1; x < json.length; x++) {
+								txtselect += "<option value=" + json[x].p_id + ">"
 									+ json[x].p_name
 									+ "</option>";
 

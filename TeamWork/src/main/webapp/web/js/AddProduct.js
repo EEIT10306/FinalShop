@@ -49,6 +49,7 @@ function cookieToJson() {
 //=================================抓取商品類型=====================================
 $("[class='custom-select form-group']").change(function () {
     var addProductSort = $("[class='custom-select form-group']").val();
+    alert(addProductSort)
     $.ajax({
         type: "POST",
         url: "/TeamWork/changeStoreFormSelect",
@@ -60,7 +61,7 @@ $("[class='custom-select form-group']").change(function () {
             txtselect += "<option value=0>--請選擇--</option>";
 
             for (x = 0; x < json.length; x++) {
-                txtselect += "<option value=" + x + ">"
+                txtselect += "<option value=" + json[x].p_id + ">"
                     + json[x].p_name
                     + "</option>";
             }
@@ -130,7 +131,13 @@ function VerifyStore() {
 $("#StoreProductClick").click(function (e) {
     var StoreProductName = $("[name = 'StoreProductName']").val();
     var StoreProductContext = $("[name = 'StoreProductContext']").val();
-    var StoreProductSort = $("[name = 'StoreProductSort1']").val();
+    var StoreProductSort;
+    var addStore = $("[name = 'addSort']").val();
+    if(addStore==0){
+        StoreProductSort = $("[name = 'StoreProductSort1']").val();
+    }  else {
+        StoreProductSort = addStore;
+    }
     var StoreProductAmount = $("[name = 'StoreProductAmount']").val();
     var StoreProductPrice = $("[name = 'StoreProductPrice']").val();
     var Transport = $("[id = 'Transport']").val();
@@ -139,6 +146,8 @@ $("#StoreProductClick").click(function (e) {
         isNew = "true"
     }
     alert("isNew====" + isNew)
+    alert("addStore====" + addStore)
+    alert("StoreProductSort====" + StoreProductSort)
     //上傳圖片變數
     e.preventDefault(); // 停止觸發submit
     alert("upload");

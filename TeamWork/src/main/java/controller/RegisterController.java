@@ -68,7 +68,10 @@ public class RegisterController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+//			System.out.println("===================");
+//			System.out.println(member);
 			return member.getM_account().toString();
+//			return null;
 		}
 		
 		
