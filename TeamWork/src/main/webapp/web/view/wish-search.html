@@ -81,10 +81,9 @@
 								<option value="16">汽機車零件百貨</option>
 								<option value="17">寵物</option>
 								<option value="18">娛樂、收藏</option>
-								<option value="19">寵物</option>
-								<option value="20">服務、票券</option>
-								<option value="21">遊戲王</option>
-								<option value="22">其他類別</option>
+								<option value="19">服務、票券</option>
+								<option value="20">遊戲王</option>
+								<option value="21">其他類別</option>
 
 							</select> <select name="selectChange" class="form-control" id="exampleFormControlSelect2">
 								<option value="0">--請選擇--</option>
@@ -659,9 +658,24 @@
 				url: "/TeamWork/WishLoad?" + str_value,
 				error: function () {
 
-					var txt = "<p>我們找不到有關	" + search_value + "	許願商品</p>";
-					$("#odbyvalue").html(txt);
-					var txt1 = ""
+					var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的<span style='color:red;font-size:20px;'>" + search_value + "</span>商品，請重新搜尋</p></div>";
+							txt+= `<div><form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form></div></div>`
+								$("#odbyvalue").html(txt);
+						var txt1 = "";
 					$("#topmenu").html(txt1);
 					console.log("載入失敗")
 				},
@@ -669,8 +683,24 @@
 
 					console.log("載入所有資料")
 					if (res.length == 0) {
-						var txt = "<p>我們找不到有關" + search_value + " 許願</p>";
-						$("#odbyvalue").html(txt);
+						var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div>";
+							txt+= `<div><form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form></div></div>`
+								$("#odbyvalue").html(txt);
+								$("#odbyvalue").html(txt);
 						var txt1 = "";
 						$("#topmenu").html(txt1);
 					} else {
@@ -983,8 +1013,24 @@
 				type: "GET",
 				url: fromurl,
 				error: function () {
-					var txt = "<p>我們找不到此分類有關 " + search_value + " 的許願商品</p>";
-					$("#odbyvalue").html(txt);
+					var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div>";
+							txt+= `<div><form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form></div></div>`
+								$("#odbyvalue").html(txt);
+						
 					var txt1 = "";
 					$("#topmenu").html(txt1);
 					console.log("載入失敗")
@@ -992,8 +1038,23 @@
 				success: function (res) {
 					console.log("載入所有資料")
 					if (res.length == 0) {
-						var txt = "<p>我們找不到此分類有關		" + search_value + "		的許願商品</p>";
-						$("#odbyvalue").html(txt);
+						var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div>";
+							txt+= `<div><form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form></div></div>`
+								$("#odbyvalue").html(txt);
 						var txt1 = "";
 						$("#topmenu").html(txt1);
 
