@@ -98,7 +98,15 @@ function VerifyCheckSeller(url) {
             // 判斷是不是空值
             if (response == null || response == undefined || response == '') {
                 console.log("驗證賣家失敗");
-                window.location.href = "userPage_sellerVerifyNoStore.html";
+                swal({
+					title: '需要賣家身分驗證！',
+					text: '您尚未驗證成為賣家，即將前往驗證頁面',
+                    type: 'warning',
+                    confirmButtonText: '前往驗證',
+					confirmButtonColor: '#525abb'
+				}).then(function(){					
+					window.location.href = "userPage_sellerVerifyNoStore.html";
+				})
             } else{
                 console.log("驗證賣家成功");
                 window.location.href = url
@@ -106,20 +114,20 @@ function VerifyCheckSeller(url) {
         },
         error: function (response) {
             console.log(response);
-            console.log("驗證失敗");
+            console.log("賣家驗證失敗");
         }
     })
 }
 // cookie判斷有無店家身份
 var storeid;
+var userEmail = '';
 function VerifyCheckStore(url) {
-    var json = cookieToJson();
-    var cookieAccount = json['email']
-    console.log("判斷有無店家抓帳號:"+cookieAccount)
+    userEmail = document.cookie.split("email=")[1].split(";")[0]
+    console.log("判斷有無店家抓帳號:"+userEmail)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifyStore",
-        data: { "account": cookieAccount },
+        data: { "account": userEmail },
         async: false,
         success: function (response) {
         	console.log("店家ID" + response);
@@ -142,8 +150,7 @@ function VerifyCheckStore(url) {
         },
         error: function (response) {
             console.log(response);
-            console.log("驗證失敗");
+            console.log("店家驗證失敗");
         }
     })
-    return result;
 }
