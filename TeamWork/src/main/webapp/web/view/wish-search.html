@@ -647,6 +647,8 @@
 						</ul>
 						</div><!-- 地區 -->
 						<div>
+						<button type='btn' class='btn btn-light'><i class="fas fa-list"></i></button>
+						<button type='btn' class='btn btn-light'><i class="fab fa-buromobelexperte"></i></button>
 						<button type='btn' class='btn btn-light'><</button>
 						<button type='btn' class='btn btn-light'>></button>
 						</div>`
@@ -659,7 +661,7 @@
 				error: function () {
 
 					var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的<span style='color:red;font-size:20px;'>" + search_value + "</span>商品，請重新搜尋</p></div>";
-							txt+= `<div><form method="GET" action="/TeamWork/search">
+					txt += `<div><form method="GET" action="/TeamWork/search">
 										<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						<div class="input-group-prepend">
                         				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
@@ -674,8 +676,8 @@
 										</div>
 										</div>
 										</form></div></div>`
-								$("#odbyvalue").html(txt);
-						var txt1 = "";
+					$("#odbyvalue").html(txt);
+					var txt1 = "";
 					$("#topmenu").html(txt1);
 					console.log("載入失敗")
 				},
@@ -684,7 +686,7 @@
 					console.log("載入所有資料")
 					if (res.length == 0) {
 						var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div>";
-							txt+= `<div><form method="GET" action="/TeamWork/search">
+						txt += `<div><form method="GET" action="/TeamWork/search">
 										<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						<div class="input-group-prepend">
                         				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
@@ -699,14 +701,14 @@
 										</div>
 										</div>
 										</form></div></div>`
-								$("#odbyvalue").html(txt);
-								$("#odbyvalue").html(txt);
+						$("#odbyvalue").html(txt);
+						$("#odbyvalue").html(txt);
 						var txt1 = "";
 						$("#topmenu").html(txt1);
 					} else {
 
 						items = res;
-						var txt3="";
+						var txt3 = "";
 						$("#odbyvalue").html(txt3)
 						// $("#odbyvalue").append(txt2)
 						txt22();
@@ -761,7 +763,7 @@
 								<div class="comment-box">
 									<div class="comment-head">
 										<h6 class="comment-name by-123"> <a href='/TeamWork/web/view/wish-detail.html?w_id='"${item.m_id}" '>${item.member.m_name}(${item.w_amountFavorite})</a></h6>
-										<span>${item.product.wP_completeTime}</span>
+										<span>${item.product.wP_completeTime||"許願進行中"}</span>
 									</div>
 									<div style="background-color:#E0FFFF" class="comment-content">
 										<img class="card-img-top rounded float-right align-top cc" src='${imageWish(item.wishProduct[0])}' onclick='clickdiv()' data-box='${item.w_id}'  alt="Card image cap">
@@ -781,7 +783,7 @@
 											<p class="p1" name="pricename" id='price${item.w_id}'>目前尚未有人出價</p>
 										</div>
 										<div class="comment-head div2">
-											<p class="text-left p2">最高價格:${item.w_sumPriceTop}</p>
+											<p class="text-left p2">最高價格:${item.w_sumPriceTop||"沒有標價呦"}</p>
 										</div>
 									</div>
 								</div>
@@ -1014,7 +1016,7 @@
 				url: fromurl,
 				error: function () {
 					var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div>";
-							txt+= `<div><form method="GET" action="/TeamWork/search">
+					txt += `<div><form method="GET" action="/TeamWork/search">
 										<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						<div class="input-group-prepend">
                         				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
@@ -1029,8 +1031,8 @@
 										</div>
 										</div>
 										</form></div></div>`
-								$("#odbyvalue").html(txt);
-						
+					$("#odbyvalue").html(txt);
+
 					var txt1 = "";
 					$("#topmenu").html(txt1);
 					console.log("載入失敗")
@@ -1039,7 +1041,7 @@
 					console.log("載入所有資料")
 					if (res.length == 0) {
 						var txt = "<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin: auto'><p padding-top:10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div>";
-							txt+= `<div><form method="GET" action="/TeamWork/search">
+						txt += `<div><form method="GET" action="/TeamWork/search">
 										<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						<div class="input-group-prepend">
                         				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
@@ -1054,15 +1056,15 @@
 										</div>
 										</div>
 										</form></div></div>`
-								$("#odbyvalue").html(txt);
+						$("#odbyvalue").html(txt);
 						var txt1 = "";
 						$("#topmenu").html(txt1);
 
 					} else {
 
 						items = res;
-						var txt3="";
-						$("#odbyvalue").html(txt3)	
+						var txt3 = "";
+						$("#odbyvalue").html(txt3)
 						txt2 = `<div class='ml-3' id="topvalue" name="">
 						<ul  class="drop-down-menu">
 							<li id="btn1"><a href="#">最愛總數</a></li>
@@ -1463,6 +1465,8 @@
 						</ul>
 						</div><!-- 地區 -->
 						<div>
+						<button type='btn' class='btn btn-light'><i class="fas fa-list"></i></button>
+						<button type='btn' class='btn btn-light'><i class="fab fa-buromobelexperte"></i></button>
 						<button type='btn' class='btn btn-light'><</button>
 						<button type='btn' class='btn btn-light'>></button>
 						</div>`
@@ -1492,8 +1496,8 @@
 								</div>
 								<div class="comment-box">
 									<div class="comment-head">
-										<h6 class="comment-name by-123"> <a href='/TeamWork/web/view/product-detail.html?sP_id='"${item.m_id}" '>${item.member.m_name}(${item.w_amountFavorite})</a></h6>
-										<span>${item.product.wP_completeTime}</span>
+										<h6 class="comment-name by-123"> <a href='/TeamWork/web/view/product-detail.html?sP_id='"${item.m_id}" '>${item.member.m_name} (${item.w_amountFavorite}) </a></h6>
+										<span>${item.product.wP_completeTime||"許願進行中"}</span>
 									</div>
 									<div style="background-color:#E0FFFF" class="comment-content">
 										<img class="card-img-top rounded float-right align-top cc" src='${imageWish(item.wishProduct[0])}'  onclick='clickdiv()' data-box='${item.w_id}' alt="Card image cap">
@@ -1513,7 +1517,7 @@
 											<p class="p1" name="pricename" id='price${item.w_id}'>目前尚未有人出價</p>
 										</div>
 										<div class="comment-head div2">
-											<p class="text-left p2">最高價格:${item.w_sumPriceTop}</p>
+											<p class="text-left p2">最高價格:${item.w_sumPriceTop||"沒有標價呦"}</p>
 										</div>
 									</div>
 								</div>
@@ -1564,10 +1568,10 @@
 				url: "/TeamWork/WishHot?w_id=" + w_id,
 				success: function (response) {
 
+			location.href = "/TeamWork/web/view/wish-detail.html?w_id=" + w_id
 				}
 				// location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
 			})
-			location.href = "/TeamWork/web/view/wish-detail.html?w_id=" + w_id
 		}
 	</script>
 </body>
