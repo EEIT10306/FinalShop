@@ -19,13 +19,13 @@
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
-
 </head>
 
 <body>
 	<!-- header -->
 	<div id="header"></div>
 	<div id="header-search"></div>
+
 	<div class="container">
 		<div class="row">
 			<div class="user-page-slidebar col-lg-2" id="slidebar">
@@ -109,8 +109,10 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-
+	<!-- SweetAlert -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
+	<!-- Optional JavaScript -->
+	<script src="../js/userPage.js"></script>
 	<script>
 		var userID = 1;
 		if (document.cookie.split("mid=").length == 2) {
@@ -121,7 +123,7 @@
 			window.history.pushState("", "page 2", "userPage_sellerVerify.html")
 			window.location.href = "form_login.html";
 		}
-		
+
 		loadMemberData(userID);
 
 		$(document).ready(function () {
@@ -139,6 +141,25 @@
 			});
 		});
 
+		$("#seller-verify_form").on('submit', function () {
+			$.ajax({
+				type: "POST",
+				url: "/TeamWork/sellerVerify.do",
+				data: $(this).serialize(),
+				success: function () {
+					swal({
+						title: '成功！',
+						text: '您已完成賣家身分驗證！',
+						type: 'success',
+						confirmButtonText: '太好了！',
+						confirmButtonColor: '#525abb'
+					}).then(function () {
+						window.location.href = "userPage_profile.html";
+					})
+				}
+			});
+			return false; //阻止form submit
+		});
 
 	</script>
 </body>

@@ -44,7 +44,7 @@
 					</h2>
 				</div>
 				<div class="seller-verify_content">
-					<form class="form-wrapper" id="seller-verify_form" method="post" action="/TeamWork/storeVerify.do">
+					<form class="form-wrapper" id="store-verify_form" method="post" action="/TeamWork/storeVerify.do">
 						<fieldset class="section" id="form-step-1">
 							<input id="iamqueen" type="hidden" name="m_id" value="">
 							<input type="hidden" name="s_stateId" value="11">
@@ -103,7 +103,7 @@
 							<div class="form-group row">
 								<label for="store_name" class="col-sm-5 col-form-label">賣場名稱</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" id="store_name" placeholder="請輸入賣場名稱" name="s_name">
+									<input type="text" class="form-control" id="store_name" placeholder="請輸入賣場名稱" name="s_name" required>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -131,17 +131,17 @@
 
 						<fieldset class="section" id="form-step-3">
 							<div class="form-group row">
-								<label for="p_id" class="col-sm-3 col-form-label">主要商品類型</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="p_id" name="p_id">
+								<label for="p_id" class="col-sm-5 col-form-label">主要商品類型</label>
+								<div class="col-sm-7">
+									<select class="form-control" id="p_id" name="p_id" required>
 										<option value="1">女生衣著</option>
-										<option value="2">南生衣著</option>
+										<option value="2">男生衣著</option>
 										<option value="5">美妝保健</option>
 										<option value="4">手機平板與周邊</option>
-										<option value="5">婦嬰用品</option>
+										<option value="5">嬰幼童與母親</option>
 										<option value="6">3C</option>
 										<option value="7">居家生活</option>
-										<option value="8">家電</option>
+										<option value="8">家電影音</option>
 										<option value="9">女生配件</option>
 										<option value="10">男生包包與配件</option>
 										<option value="11">女鞋</option>
@@ -152,13 +152,22 @@
 										<option value="16">汽機車零件百貨</option>
 										<option value="17">寵物</option>
 										<option value="18">娛樂、收藏</option>
+										<option value="19">服務、票券</option>
+										<option value="20">遊戲王</option>
+										<option value="21">其他類別</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="inputPassword" class="col-sm-3 col-form-label">商場描述</label>
-								<div class="col-sm-9">
-									<textarea id="" rows="3" class="form-control" placeholder="請輸入簡略商場描述" name="s_context"></textarea>
+								<label for="inputPassword" class="col-sm-5 col-form-label">商場描述</label>
+								<div class="col-sm-7">
+									<textarea id="" rows="3" class="form-control" placeholder="請輸入簡略商場描述" name="s_context" required></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="s_web" class="col-sm-5 col-form-label">店家網址</label>
+								<div class="col-sm-7">
+									<input type="url" class="form-control" id="s_web" placeholder="請輸入店家網址" name="s_web">
 								</div>
 							</div>
 							<div class="form-group row stepControlRow">
@@ -187,9 +196,10 @@
 	<script src="../js/headersearchinclude.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-	<script src="../js/userPage.js"></script>
+	<!-- SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
 	<!-- Optional JavaScript -->
+	<script src="../js/userPage.js"></script>
 	<script>
 		var userID = 1;
 
@@ -238,6 +248,25 @@
 					$("i.step" + currentStep).removeClass("fa-check-circle").addClass("fa-dot-circle");
 				});
 
+			$("#store-verify_form").on('submit', function () {
+				$.ajax({
+					type: "POST",
+					url: "/TeamWork/storeVerify.do",
+					data: $(this).serialize(),
+					success: function () {
+						swal({
+							title: '成功！',
+							text: '您已完成店家身分驗證！',
+							type: 'success',
+							confirmButtonText: '太好了！',
+							confirmButtonColor: '#525abb'
+						}).then(function(){							
+							window.location.href = "userPage_profile.html";
+						})
+					}
+				});
+				return false; //阻止form submit
+			});
 		});
 	</script>
 </body>
