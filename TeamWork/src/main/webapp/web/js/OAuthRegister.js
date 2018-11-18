@@ -72,7 +72,7 @@ function FBlogin() {
                             //FB登入
                             alert("FB註冊成功")
                             */
-                            window.history.pushState("","page 2" , "userPage_sellerVerify.html")
+                        	window.history.pushState("","page 2" , "index.html")
                             window.location.href="http://localhost:8080/TeamWork/web/view/form_login.html"
                         }
                     },

@@ -34,17 +34,23 @@ $(document).ready(function(){
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
+                    $("#navbarDropdownMenuLink").show();
+                    $("#membernotice").show();
                 } else if (data[0].m_password=="google"){
 //                    alert("抓到Google帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
+                    $("#navbarDropdownMenuLink").show();
+                    $("#membernotice").show();
                     // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 } else {
 //                    alert("抓到一般帳號cookie")
                     $("[name='MemberLogin']").hide();
                     $("[name='MemberName']").show();
                     $("[id='MemberLogout']").show();
+                    $("#navbarDropdownMenuLink").show();
+                    $("#membernotice").show();
                     // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 }
                 // Memberallbean=data;
