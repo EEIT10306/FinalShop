@@ -18,7 +18,7 @@
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    
+
 </head>
 
 <body>
@@ -101,40 +101,40 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="../js/heacerinclude.js"></script>
-	<script src="../js/headersearchinclude.js"></script>
+    <script src="../js/headersearchinclude.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <!-- SweetAlert -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
-	<!-- optional script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
+    <!-- optional script -->
     <script src="../js/userPage.js"></script>
     <script>
-            $(document).ready(function () {
-                $.get("header.html", function (data) {
-                    $("#header").html(data);
-                });
-                $.get("header-search.html", function (data) {
-                    $("#header-search").html(data);
-                });
-                $.get("footer.html", function (data) {
-                    $("#footer").html(data);
-                });
-                $.get("userPage_slidebar.html", function (data) {
+        $(document).ready(function () {
+            $.get("header.html", function (data) {
+                $("#header").html(data);
+            });
+            $.get("header-search.html", function (data) {
+                $("#header-search").html(data);
+            });
+            $.get("footer.html", function (data) {
+                $("#footer").html(data);
+            });
+            $.get("userPage_slidebar.html", function (data) {
                 $("#slidebar").html(data);
             });
-            })
-        </script>
+        })
+    </script>
     <!-- Optional JavaScript -->
     <script>
         var userID = 1;
         $(document).ready(function () {
             if (document.cookie.split("mid=").length == 2) {
-				userID = document.cookie.split("mid=")[1].split(";")[0]
-			} else {
+                userID = document.cookie.split("mid=")[1].split(";")[0]
+            } else {
                 userID = "";
-                window.history.pushState("","page 2" , "userPage_StoreOrderSellerList.html")
-				window.location.href = "form_login.html";
-			}
+                window.history.pushState("", "page 2", "userPage_StoreOrderSellerList.html")
+                window.location.href = "form_login.html";
+            }
             var dataurl = "/TeamWork/StoreOrderSellerListByM_id?m_id=" + userID;
             var userData = [];
             var state = 16;
@@ -159,7 +159,7 @@
                 console.log("執行updateData")
                 $(".container-wrapper-seller").html("");
                 var tableEl = $(`
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered table-sm">
                         <thead><tr>
                             <th scope="col">圖片</th>
                             <th scope="col">商品名稱</th>
