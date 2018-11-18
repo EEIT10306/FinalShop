@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
 import model.bean.Member;
+import model.bean.Product;
 import model.bean.StoreAssess;
 import model.bean.StoreOrder;
 import model.bean.Wish;
@@ -21,6 +22,7 @@ import model.repository.GroupAssessDao;
 import model.repository.GroupOrderDao;
 import model.repository.GrouponDao;
 import model.repository.MemberDao;
+import model.repository.ProductDao;
 import model.repository.SellerDao;
 import model.repository.StoreAssessDao;
 import model.repository.StoreDao;
@@ -34,7 +36,7 @@ import model.repository.WishOrderDao;
 @Service
 @Transactional
 public class OrderService {
-	
+
 	@Autowired
 	MemberDao memberDao;
 	@Autowired
@@ -61,10 +63,22 @@ public class OrderService {
 	SellerDao sellerDao;
 	@Autowired
 	StoreDao storeDao;
+	@Autowired
+	ProductDao productDao;
 
 	public OrderService() {
 	}
-	
+
+	// 取得商品類別第一層資料
+	public List<Product> getProdSelectorFirst() throws SQLException {
+		return productDao.selectHql("WHERE prod_stage = 1");
+	}
+
+	// 依照給予的第一層商品類別ID回應第二層商品類別ID資料
+	public List<Product> getProdSelectorSecond(Integer p_id) throws SQLException {
+		return productDao.selectHql("WHERE prod_parID = " + p_id);
+	}
+
 	// 更新使用者個人資料
 	public Member editAccountData(Member member) throws SQLException {
 		Integer m_id = member.getM_id();
@@ -75,6 +89,7 @@ public class OrderService {
 			return memberDao.update(temp, member);
 		}
 	}
+
 	// (商店)利用買家ID取得購買訂單資料
 	public List<StoreOrder> getStoreOrder(StoreOrder storeOrder) throws SQLException {
 		Integer MemberId = storeOrder.getM_idOrder();
@@ -86,7 +101,6 @@ public class OrderService {
 			return storeOrderDao.selectHql(hql);
 		}
 	}
-
 
 	// (許願)利用買家ID取得購買訂單資料
 	public List<WishOrder> getWishOrderByBuyerId(Wish wish) throws SQLException {
@@ -192,7 +206,7 @@ public class OrderService {
 	// 新增一筆商店訂單評價資料(買的人評)
 	public StoreAssess giveAssess_StoreBuyer(StoreAssess storeAssess) throws SQLException {
 		// 先確認在GroupAssess表格裡有無相同跟團訂單編號的評價資料
-		System.out.println("giveAssess_StoreBuyer==========>"+storeAssess);
+		System.out.println("giveAssess_StoreBuyer==========>" + storeAssess);
 		Integer sO_id = storeAssess.getsO_id();
 		if (sO_id != null) {
 			String hql = "WHERE sO_id = " + sO_id;
@@ -239,7 +253,5 @@ public class OrderService {
 		}
 		return null;
 	}
-
-	
 
 }
