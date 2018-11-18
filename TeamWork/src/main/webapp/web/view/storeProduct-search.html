@@ -80,10 +80,9 @@
 								<option value="16">汽機車零件百貨</option>
 								<option value="17">寵物</option>
 								<option value="18">娛樂、收藏</option>
-								<option value="19">寵物</option>
-								<option value="20">服務、票券</option>
-								<option value="21">遊戲王</option>
-								<option value="22">其他類別</option>
+								<option value="19">服務、票券</option>
+								<option value="20">遊戲王</option>
+								<option value="21">其他類別</option>
 
 							</select> <select name="selectChange" class="form-control" id="exampleFormControlSelect2">
 								<option value="0">--請選擇--</option>
@@ -286,17 +285,53 @@
 
 							success: function (jsonback) {
 								
-
 								if (jsonback == "") {
-									var txt = "<p>我們找不到 " + search_value + " 商品</p>";
-									$("#odbyvalue").html(txt);
-									
-								
-									$("#tableMenu").html(txt2);
-									orderby();
-
-								}
+							if(search_value!=""){
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='display:block; margin:auto;'><p padding-top: 10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div><div>";
+									txt+= `<form method="GET" action="/TeamWork/search">
+            							<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						 <div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form>`
+								$("#odbyvalue").html(txt);
+								var txt2="";
+								$("#tableMenu").html(txt2);
+										orderby();
+							}else{
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin:auto;'><p style='padding-top:10px'>我們找不到此條件的相關商品，請重新搜尋</p></div><div>";
+									txt+= `<form method="GET" action="/TeamWork/search">
+            							<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						 <div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form>`
+								$("#odbyvalue").html(txt);
+								var txt2="";
+								$("#tableMenu").html(txt2);
+										orderby();
+							}
 							
+							
+						}
 
 								//	var json=JSON.parse(jsonback);
 								//	alert(json);
@@ -316,8 +351,6 @@
 											</ul>
 											</div>
 											<div>
-											<button type='btn' class='btn btn-light'><i class="fas fa-list"></i></button>
-											<button type='btn' class='btn btn-light'><i class="fab fa-buromobelexperte"></i></button>
 											<button type='btn' class='btn btn-light'><</button>
 											<button type='btn' class='btn btn-light'>></button>
 											</div>`
@@ -445,7 +478,7 @@
 						url: "/TeamWork/changeStoreFormSelect",
 						data: { "p_id": exampleFormControlSelect1 },
 						success: function (jsonback) {
-						
+							
 							var json = JSON.parse(jsonback);
 							//             	alert(json);
 							var txtselect = "";
@@ -613,20 +646,50 @@
 
 						if (jsonback == "") {
 							if(search_value!=""){
-								var txt = "<p>我們找不到此條件的" + search_value + "商品</p>";
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='display:block; margin:auto;'><p style='padding-top: 10px';>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div><div>";
+								txt+= `<form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form>`
 								$("#odbyvalue").html(txt);
 								var txt2="";
 								$("#tableMenu").html(txt2);
 										orderby();
 							}else{
-								var txt = "<p>我們找不到此條件的相關商品</p>";
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style=' margin:auto;'><p style='padding-top:10px';>我們找不到此條件的相關商品，請重新搜尋</p></div><div>";
+									txt+= `<form method="GET" action="/TeamWork/search">
+            							<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						 <div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="store" class="dropdown-item">購物商城</option>
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form>`
 								$("#odbyvalue").html(txt);
 								var txt2="";
 								$("#tableMenu").html(txt2);
 										orderby();
 							}
-
-
+							
+							
 						}
 
 
@@ -648,8 +711,6 @@
 											</ul>
 											</div>
 											<div>
-											<button type='btn' class='btn btn-light'><i class="fas fa-list"></i></button>
-											<button type='btn' class='btn btn-light'><i class="fab fa-buromobelexperte"></i></button>
 											<button type='btn' class='btn btn-light'><</button>
 											<button type='btn' class='btn btn-light'>></button>
 											</div>`

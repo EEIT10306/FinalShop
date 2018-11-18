@@ -127,7 +127,7 @@
 		$(function(){			
 			//購物車	
 			$("#addShoppingCart").click(function(){
-				var shopCart = "shopCart"+hahaha.replace("=", "");
+				var shopCart = hahaha.replace("=", "");
 				var cartCookies = document.cookie.split(';');
 				var flag = true; 
 				for(i=0;i<cartCookies.length;i++){
@@ -143,7 +143,7 @@
 			
 			//直接購買
 			$("#shopNow").click(function(){
-				var shopNow = "shopNow"+hahaha.replace("=", "");
+				var shopNow = hahaha.replace("=", "");
 				document.cookie = shopNow + "=" + $("#productAmount").val()+";" ;
 				window.history.pushState("","page 1","product-detail.html?" + hahaha)
 				window.location.href = "/TeamWork/web/view/check_forStore.html";

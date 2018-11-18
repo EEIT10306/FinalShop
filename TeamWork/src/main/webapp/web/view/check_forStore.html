@@ -259,8 +259,8 @@
 		var m_id; //全域變數--使用者ID
 
 		//測試用 Cookie =======================================================================================
-		document.cookie = "email=jojo"; //登入Cookie
-		document.cookie = "sp_id30=1";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
+		//document.cookie = "email=beautifulzhuyu"; //登入Cookie
+		//document.cookie = "sp_id1=3";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
 		//document.cookie = "sp_id10=1";             //購物車Cookie 2號 (商品ID=10，訂購數量=5)
 		//=====================================================================================================	
 
@@ -277,7 +277,7 @@
 					getMemberInformation();
 					if (productsInShopCart == "") {
 						alert("購物車內沒有商品");
-						history.go(-1);
+						window.history.go(-1);
 					}
 					if (productsInShopCart != "") {
 						getProductInformation();
@@ -389,7 +389,7 @@
 			$(".remove-this-item").click(function () {
 				var number = $(this).attr("id").substr(16);
 				var idnumber = $("#product-id" + number + "").text();
-				var sp_id = "sp_id" + idnumber;
+				var sp_id = "sP_id" + idnumber;
 				//alert(sp_id);
 				var like = confirm("是否將該商品加入我的最愛?");
 				if (like == true) {
@@ -400,7 +400,13 @@
 				getCookie();
 				$("#store-shopping-cart-list").empty();
 				$("#price-list").empty();
-				getProductInformation();
+				if (productsInShopCart == "") {
+					alert("購物車內沒有商品");
+					window.history.go(-1);
+				}
+				if (productsInShopCart != "") {
+					getProductInformation();
+				}
 			})
 
 			//改變商品訂購數量時，商品金額也改變

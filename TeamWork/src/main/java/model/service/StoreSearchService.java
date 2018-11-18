@@ -24,7 +24,7 @@ public class StoreSearchService {
 	public List<StoreProduct> getStoreProductForm(String storeProduct) {
 		String str="";
 		if(storeProduct!=null) {
-		str += "Where sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%' " ;
+		str += "Where sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%'  order by sP_time desc" ;
 		
 		}
 //		as sp left join sp.product as pro left join sp.state as st
@@ -104,17 +104,20 @@ public class StoreSearchService {
 		str+=" or sP_new ="+j+")";
 		str+=(k!=null&&l!=null)?" and (sP_price > "+k+ " and sP_price<"+l+") ":"";
 		if(!m.equals("null")) {
-		if(m.equals("1")){
-			System.out.println("wwwewe");
-			str +=" order by sP_amountFavorite desc";
+			if(m.equals("1")){
+				System.out.println("wwwewe");
+				str +=" order by sP_amountFavorite desc";
 			}else if(m.equals("2")){
-				
-				str +=" order by sP_time";
-			}else if(m.equals("3")){str +=" order by sP_hot desc";
-			}else if(m.equals("4")){str +=" order by sP_price";
-			}else {
-				
-				str +=" order by sP_price desc";}
+				str +=" order by sP_time desc";
+			}else if(m.equals("3")){
+				str +=" order by sP_hot desc";
+			}else if(m.equals("4")){
+				str +=" order by sP_price";
+			}else {	
+				str +=" order by sP_price desc";
+			}
+		}else {
+			str +=" order by sP_time desc";
 		}
 		
 		try {

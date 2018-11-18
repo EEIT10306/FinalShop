@@ -34,12 +34,6 @@ $(".AssessStar").click(function () {
     }
 });
 
-
-
-
-
-
-
 // 會員中心的slidebar使用者的預設照片處理
 function defaultUserPic(imgPath){
     if(imgPath==""){

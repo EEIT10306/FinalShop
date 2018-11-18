@@ -24,35 +24,60 @@ public class SellerVerifyService {
 	@Autowired
 	MemberDao memberDao;
 
-	public void VerifySellerData(Store store, Seller seller) throws SQLException {
-
+	// 商店驗證(商店驗證+賣家驗證)
+	public Store VerifyStoreData(Store store, Seller seller) throws SQLException {
+		
+		if(seller.getM_id()==null) return null;
+		
+		// 檢查賣家表格有無存在資料
 		String hql = "WHERE m_id = " + seller.getM_id();
 		Seller sellerTemp = null;
+		List<Seller> sellerTemps = sellerDao.selectHql(hql);
+		if (sellerTemps.size() == 0) {
+			// 沒有就新增
+			System.out.println("seller insert======"+seller);
+			sellerTemp = sellerDao.insert(seller);
+			System.out.println(sellerTemp);
+		} else {
+			// 存在唯一一筆就更新
+			System.out.println("seller update======"+seller);
+			sellerTemp = sellerDao.update(sellerTemps.get(0), seller);
+		}
+		
+		//利用上一段的回傳值sellerTemp取得賣家ID
+		String hql2 = "WHERE seller_id = " + sellerTemp.getSeller_id();
+		List<Store> storeTemps = storeDao.selectHql(hql2);
+		// 檢查商店表格有無存在資料
+		store.setSeller_id(sellerTemp.getSeller_id());
+		if (storeTemps.size() == 0) {
+			// 沒有就新增商店表格資料
+			System.out.println("store insert======"+store);
+			Store temp = storeDao.insert(store);
+			System.out.println(temp);
+			return temp;
+		} else {
+			// 存在就更新商店表格資料
+			System.out.println("store update====="+store);
+			return storeDao.update(storeTemps.get(0), store);
+		}
+	}
+
+	// 只有賣家驗證
+	public Seller VerifySellerData(Seller seller) throws SQLException {
+		if(seller.getM_id()==null) return null;
+		
+		String hql = "WHERE m_id = " + seller.getM_id();
 
 		List<Seller> sellerTemps = sellerDao.selectHql(hql);
 		// 檢查賣家表格有無存在資料
 		if (sellerTemps.size() == 0) {
 			// 沒有就新增
 			System.out.println("seller insert");
-			sellerTemp = sellerDao.insert(seller);
+			return sellerDao.insert(seller);
 		} else {
 			// 存在唯一一筆就更新
 			System.out.println("seller update");
-			sellerTemp = sellerDao.update(sellerTemps.get(0), seller);
-		}
-
-		String hql2 = "WHERE seller_id = " + sellerTemp.getSeller_id();
-		List<Store> storeTemps = storeDao.selectHql(hql2);
-		// 檢查賣場表格有無存在資料
-		store.setSeller_id(sellerTemp.getSeller_id());
-		if (storeTemps.size() == 0) {
-			// 沒有就新增
-			System.out.println("store insert");
-			storeDao.insert(store);
-		} else {
-			// 存在就更新
-			System.out.println("store update");
-			storeDao.update(storeTemps.get(0), store);
+			return sellerDao.update(sellerTemps.get(0), seller);
 		}
 	}
 
