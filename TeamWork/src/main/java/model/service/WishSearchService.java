@@ -25,30 +25,30 @@ public class WishSearchService {
 	@Autowired
 	private WishDao wishdaoImpl;
 
-	public List<StoreProduct> getStoreProductForm(String storeProduct) {
-		String str = "";
-		if (storeProduct != null) {
-			str += "Where sP_name like '%" + storeProduct + "%' or sP_context like '%" + storeProduct + "%' ";
-
-		}
-//		as sp left join sp.product as pro left join sp.state as st
-		try {
-			List<StoreProduct> list = storeProductDaoImpl.selectHql(str);
-//			for(StoreProduct sp:list) {
-//				Iterator<StoreImages> it = sp.getStoreImages().iterator();
-//				while(it.hasNext()) {
-//					it.next().setStoreProduct(null);
-//					
-//				};
-//			}
-			return list;
-		} catch (SQLException e) {
-			System.out.println("_TestService - SQLException");
-			e.printStackTrace();
-			return null;
-		}
-
-	}
+//	public List<StoreProduct> getStoreProductForm(String storeProduct) {
+//		String str = "";
+//		if (storeProduct != null) {
+//			str += "Where sP_name like '%" + storeProduct + "%' or sP_context like '%" + storeProduct + "%' order by w_startDate ";
+//
+//		}
+////		as sp left join sp.product as pro left join sp.state as st
+//		try {
+//			List<StoreProduct> list = storeProductDaoImpl.selectHql(str);
+////			for(StoreProduct sp:list) {
+////				Iterator<StoreImages> it = sp.getStoreImages().iterator();
+////				while(it.hasNext()) {
+////					it.next().setStoreProduct(null);
+////					
+////				};
+////			}
+//			return list;
+//		} catch (SQLException e) {
+//			System.out.println("_TestService - SQLException");
+//			e.printStackTrace();
+//			return null;
+//		}
+//
+//	}
 
 	public List<WishBid> getWishBidListByW_id(Wish wish) throws SQLException {
 		Integer w_id = wish.getW_id();
@@ -63,7 +63,7 @@ public class WishSearchService {
 	public List<Wish> getWishLoadList(String search) {
 		String str = "";
 		if (search != null) {
-			str += "Where w_title like '%" + search + "%' or w_context like '%" + search + "%' ";
+			str += "Where w_title like '%" + search + "%' or w_context like '%" + search + "%' order by w_changeTime desc";
 
 			try {
 				return wishdaoImpl.selectHql(str);
@@ -181,6 +181,8 @@ public class WishSearchService {
 				str += " order by w_sumPriceBottom desc";
 			} else if (e.equals("6")) {
 				str += " order by w_sumPriceTop";
+			}else {
+				str += "order by w_changeTime desc";
 			}
 			
 		
