@@ -45,8 +45,12 @@ public class ConversationController {
 	private List<List<Conversation>> Communications(Conversation conversation) {
 		System.out.println("============= Show Conversations ============= ");
 		List<List<Conversation>> data = conversationService.getConversationTalker(conversation);
-		System.out.println(data.get(0).get(0).getC_time());
-		return data;
+		if(data.size()!=0) {
+			System.out.println(data.get(0).get(0).getC_time());
+			return data;
+		}else {
+			return null;
+		}
 	}
 
 	@RequestMapping(value = "/UpdateConversationState", method = RequestMethod.POST)
