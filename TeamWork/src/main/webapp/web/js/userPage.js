@@ -36,7 +36,7 @@ $(".AssessStar").click(function () {
 
 // 會員中心的slidebar使用者的預設照片處理
 function defaultUserPic(imgPath) {
-    if (imgPath == "") {
+    if (imgPath=="" || imgPath==null) {
         imgPath = "../images/user/account/profile/001.png"
     }
     return imgPath
@@ -173,7 +173,6 @@ function updateProdFirstData(prodFirstData) {
 //商品類別第一層選單change事件
 $("#pp_id").change(function() {
     var prodId1 = $("#pp_id").val();
-    alert(prodId1)
     updateProdSecondtData(prodId1)
   });
 //更新商品類別第二層選單選項

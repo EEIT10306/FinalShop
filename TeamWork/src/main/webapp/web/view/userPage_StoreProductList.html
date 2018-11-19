@@ -65,7 +65,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="popperForm" id="editStoreProduct_form" method="post" action="/TeamWork/EditStoreProduct" enctype="multipart/form-data">
+                <form class="popperForm" id="editStoreProduct_form">
                     <div class="modal-body">
                         <input type="hidden" name="sP_id" value="" id="sP_id_input" />
                         <div class="modal-form-group row">
@@ -75,7 +75,8 @@
                             </div>
                             <label for="sP_price" class="col-sm-2 modal-label">商品價格：</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="sP_price" name="sP_price" placeholder="編輯商品價格">
+                                <input type="text" class="form-control" id="sP_price" name="sP_price" placeholder="編輯商品價格"
+                                    min="0" max="9999999">
                             </div>
                         </div>
                         <div class="modal-form-group row">
@@ -100,7 +101,8 @@
                         <div class="modal-form-group row mt-1">
                             <label for="sP_amount" class="col-sm-2 modal-label">庫存數量：</label>
                             <div class="col-sm-4">
-                                <input type="number" class="form-control" id="sP_amount" name="sP_amount" placeholder="100">
+                                <input type="number" class="form-control" id="sP_amount" name="sP_amount" placeholder="100"
+                                    min="0" max="9999999">
                             </div>
                             <label for="sP_new" class="col-sm-2 modal-label">是否新品：</label>
                             <div class="col-sm-1">
@@ -119,7 +121,7 @@
                         <div class="modal-form-group row">
                             <label for="sP_transport" class="col-sm-2 modal-label">運送方式：</label>
                             <div class="col-sm-4">
-                                <select class="custom-select" size="3" id="sP_transport" name="sP_transport">
+                                <select class="custom-select" size="3" id="sP_transport" name="sP_transport" multiple>
                                     <option value="全家">全家</option>
                                     <option value="7-11">7-11</option>
                                     <option value="萊爾富">萊爾富</option>
@@ -129,12 +131,13 @@
                             </div>
                             <label for="storeImages" class="col-sm-2 modal-label">商品圖片：</label>
                             <div class="col-sm-4">
-                                <input type="file" class="form-control-file" id="storeImages" name="storeImages">
+                                <input type="file" class="form-control-file" id="storeImages" name="files" multiple>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="reset" class="btn btn-sm btn-secondary" id="EditStoreProductResetBtn">清空</button>
                         <button type="button" class="btn btn-sm userSubmitBtn" id="EditStoreProductSubmitBtn">確定送出</button>
                     </div>
                 </form>
@@ -166,6 +169,7 @@
     <!-- Optional JavaScript -->
     <script>
         var userID = 1;
+        var userData = [];
         $(document).ready(function () {
             if (document.cookie.split("mid=").length == 2) {
                 userID = document.cookie.split("mid=")[1].split(";")[0]
@@ -176,7 +180,6 @@
             }
             LoadProdSelector()
             var dataurl = "/TeamWork/StoreProductSellerListByM_id?m_id=" + userID;
-            var userData = [];
             var state = 13;
             //下載資料
             loadData();
@@ -220,17 +223,18 @@
                         //有現貨
                         if ((state == 13) && state == item.sP_stateId) {
                             var itemEl = $(`
-	                           <tr>
+	                            <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
+	                                    <img class="storeSellerTable-img" src="${item.storeImages[0].sI_context}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
 	                                <td>${item.sP_amount}</td>
 	                                <td>
-                                        <div class="btn-group">
+                                        <div class="group">
                                             <input type="button" class="btn btn-sm btn-outline-info" value="查看詳細" onclick="javascript:location.href='product-detail.html?sP_id=${item.sP_id}'">
                                             <input type="button" class="btn btn-sm btn-outline-info editBtn" value="重新編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+                                            <input type="button" class="btn btn-sm btn-outline-danger offBtn" value="下架商品" name="${item.sP_id}">
                                         </div>
 	                                </td>
 	                            </tr>
@@ -240,15 +244,16 @@
                             var itemEl = $(`
 	                           <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
+	                                    <img class="storeSellerTable-img" src="${item.storeImages[0].sI_context}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
 	                                <td>${item.sP_amount}</td>
 	                                <td>
-	                                    <div class="btn-group">
-	                                        <input type="button" class="btn btn-sm btn-outline-info" value="查看詳細" onclick="javascript:location.href='product-detail.html?sP_id=${item.sP_id}'">
+                                            <div class="group">
+                                            <input type="button" class="btn btn-sm btn-outline-info" value="查看詳細" onclick="javascript:location.href='product-detail.html?sP_id=${item.sP_id}'">
                                             <input type="button" class="btn btn-sm btn-outline-info editBtn" value="重新編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+                                            <input type="button" class="btn btn-sm btn-outline-danger offBtn" value="下架商品" name="${item.sP_id}">
                                         </div>
 	                                </td>
 	                            </tr>
@@ -258,13 +263,13 @@
                             var itemEl = $(`
 	                           <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="../images/user/product/001.jpg">
+	                                    <img class="storeSellerTable-img" src="${item.storeImages[0].sI_context}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
 	                                <td>${item.sP_amount}</td>
 	                                <td>
-	                                    <div class="btn-group">
+	                                    <div class="group">
                                             <input type="button" class="btn btn-sm btn-outline-info" value="查看詳細" onclick="javascript:location.href='product-detail.html?sP_id=${item.sP_id}'">
                                             <input type="button" class="btn btn-sm btn-outline-info editBtn" value="重新編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
                                         </div>
@@ -295,46 +300,71 @@
                                 updateProdSecondtData(res.product.product.p_id)
                                 $("#p_id").val(res.p_id);
                                 $("#sP_new_" + res.sP_new).attr("checked", "checked")
-                                //$("#storeImages").val(res.storeImages);
                             }
                         })
                     });
 
                     //商品編輯表單確定送出click事件
-                    $("#EditStoreProductSubmitBtn").click(
-                        function () {
-                            var formData = new FormData($('#editStoreProduct_form')[0]);
-                            alert(formData)
-                            // formData.append('files', $('#selectProfile')[0].files[0]);
-                            // formData.append('m_id', userID);
-                            console.log("商品編輯表單送出");
-                            $.ajax({
-                                type: "POST",
-                                url: "/TeamWork/EditStoreProduct",
-                                data: formData,
-                                processData: false,
-                                contentType: false,
-                                success: function () {
-                                    swal({
-                                        title: '成功！',
-                                        text: '您成功更新了您的商品',
-                                        type: 'success',
-                                        confirmButtonText: '太好了！',
-                                        confirmButtonColor: '#525abb'
-                                    })
-                                    loadData();
-                                },
-                                error: function(){
-                                    console.log("更新商品資料失敗")
-                                }
-                            });
+                    $("#EditStoreProductSubmitBtn").click(function (e) {
+                        e.preventDefault;
+                        var formData = new FormData($('#editStoreProduct_form')[0]);
+                        console.log("商品編輯表單送出");
+                        $.ajax({
+                            type: "POST",
+                            url: "/TeamWork/EditStoreProduct",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function () {
+                                //關閉互動視窗
+                                $("#editStoreProduct").css("display", "none");
+                                $("button.close").click();
+                                //清空表單所有欄位
+                                $("#EditStoreProductResetBtn").click()
+                                swal({
+                                    title: '成功！',
+                                    text: '您成功更新了您的商品',
+                                    type: 'success',
+                                    confirmButtonText: '太好了！',
+                                    confirmButtonColor: '#525abb'
+                                })
+                                loadData();
+                            },
+                            error: function () {
+                                console.log("更新商品資料失敗")
+                            }
                         });
+                        return false;
+                    });
                 }
 
                 //如果沒有東西可以顯示就顯示插圖
                 if ($("#sellerTableBody").html() == "") {
                     initData();
                 }
+
+                //下架商品按鈕click事件
+                $(".offBtn").click(function (e) {
+                    console.log("下架商城商品")
+                    var sp_id_off = $(this).attr("name");
+                    $.ajax({
+                        type: "GET",
+                        url: "/TeamWork/CancelStoreProduct?sP_id=" + sp_id_off,
+                        success: function () {
+                            loadData();
+                            swal({
+                                title: '成功！',
+                                text: '您成功下架了您的商品',
+                                type: 'success',
+                                confirmButtonText: '太好了！',
+                                confirmButtonColor: '#525abb'
+                            })
+                        },
+                        error: function () {
+                            console.log("商城商品下架失敗")
+                        }
+                    });
+                });
             }// end of updateData()
 
 
