@@ -19,10 +19,6 @@ $(document).ready(function () {
         }
     });
 })
-//抓時間
-$(".form_datetime").datetimepicker({
-    format: "dd MM yyyy"
-});
 //===================圖片瀏覽======================
 function imgPreview(fileDom) {
     var theEvent = arguments.callee.caller.arguments[0];
@@ -72,8 +68,56 @@ function cookieToJson() {
     return obj
 }
 //=================================抓取商品類型=====================================
-$("[class='custom-select form-group']").change(function () {
-    var addProductSort = $("[class='custom-select form-group']").val();
+$("[name = 'StoreProductSort1']").change(function () {
+    var addProductSort = $("[name = 'StoreProductSort1']").val();
+    alert(addProductSort)
+    $.ajax({
+        type: "POST",
+        url: "/TeamWork/changeStoreFormSelect",
+        data: { "p_id": addProductSort },
+        success: function (jsonback) {
+            alert("server傳回 = " + jsonback);
+            var json = JSON.parse(jsonback);
+            console.log(json)
+            var txtselect = "";
+            txtselect += "<option value=0>--請選擇--</option>";
+
+            for (x = 0; x < json.length; x++) {
+                txtselect += "<option value=" + json[x].p_id + ">"
+                    + json[x].p_name
+                    + "</option>";
+            }
+            $("[name='addSort']").html(txtselect);
+        }
+    });
+});
+//=================================抓取開團類型=====================================
+$("[name = 'GrouponSort1']").change(function () {
+    var addProductSort = $("[name = 'GrouponSort1']").val();
+    alert(addProductSort)
+    $.ajax({
+        type: "POST",
+        url: "/TeamWork/changeStoreFormSelect",
+        data: { "p_id": addProductSort },
+        success: function (jsonback) {
+            alert("server傳回 = " + jsonback);
+            var json = JSON.parse(jsonback);
+            console.log(json)
+            var txtselect = "";
+            txtselect += "<option value=0>--請選擇--</option>";
+
+            for (x = 0; x < json.length; x++) {
+                txtselect += "<option value=" + json[x].p_id + ">"
+                    + json[x].p_name
+                    + "</option>";
+            }
+            $("[name='addSort']").html(txtselect);
+        }
+    });
+});
+//=================================抓取許願類型=====================================
+$("[name = 'WishSort1']").change(function () {
+    var addProductSort = $("[name = 'WishSort1']").val();
     alert(addProductSort)
     $.ajax({
         type: "POST",
@@ -298,7 +342,6 @@ $("#WishClick").click(function (e) {
     var wishlabel = $("[name = 'Wishlabel']").val();
     var WishContext = $("[name = 'WishContext']").val();
     var addarea = $("[name = 'addarea']").val();
-    var startdate = $("[name = 'startdate']").val();
     var enddate = $("[name = 'enddate']").val();
     var WishName = $("[name = 'WishName']").val();
     var WishSort = $("[name = 'WishSort1']").val();
@@ -308,7 +351,7 @@ $("#WishClick").click(function (e) {
     //改好的值用json字串給伺服器
     var wishcombie = {
         "m_id": cookiemid, "p_id": WishSort, "w_title": wishlabel, "w_context": WishContext,
-        "d_id": addarea, "w_startDate": startdate, "w_endDate": enddate,"wP_name": WishName, "p_id": WishSort, "wP_amount": WishAmount,
+        "d_id": addarea, "w_endDate": enddate, "wP_name": WishName, "p_id": WishSort, "wP_amount": WishAmount,
         "wP_priceBottom": WishPriceBottom, "wP_priceTop": WishPriceTop
     };
     //原本combie是json物件 利用以下方法翻成json字串 ; 
