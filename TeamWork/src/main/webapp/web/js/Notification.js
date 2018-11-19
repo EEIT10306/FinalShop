@@ -9,15 +9,21 @@ function cookieToJson() {
     });
     return obj
 }
+var userID = "1";
 $(document).ready(function () {
     //定義要用到的網址
-    // var userID = "1";
     // var dataurl = "/TeamWork/WishOrderList?m_id=" + userID;
     var storeuserData;
     var wishuserData;
     var groupuserData;
     var state = 16;
-
+    if (document.cookie.split("mid=").length == 2) {
+        userID = document.cookie.split("mid=")[1].split(";")[0]
+    } else {
+        userID = "";
+        window.history.pushState("", "page 2", "userPage_Notifications.html")
+        window.location.href = "form_login.html";
+    }
     loadData();
     function loadData() {
         var json = cookieToJson();
@@ -41,6 +47,7 @@ $(document).ready(function () {
                 console.log(storeuserData)
                 // 更新畫面中的元素
                 updateData()
+                loadMemberData(userID)
             }
         })
         //許願訂單

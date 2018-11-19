@@ -41,7 +41,23 @@ public class SellerService {
 	StoreAssessDao storeAssessDao;
 	@Autowired
 	WishDao wishDao;
+
 	public SellerService() {
+	}
+
+	// 重新編輯商店商品資料
+	public StoreProduct updateStoreProductData(StoreProduct storeProduct) throws SQLException {
+		Integer sP_id = storeProduct.getsP_id();
+		Integer sP_amount = storeProduct.getsP_amount();
+		if (sP_id != null) {
+			if(sP_amount==0) {
+				//待補貨
+				storeProduct.setsP_stateId(14);
+			}
+			StoreProduct SP = storeProductDao.selectByPk(sP_id);
+			return storeProductDao.update(SP, storeProduct);
+		}
+		return null;
 	}
 
 	// 用開團者ID取得開團資料清單
@@ -72,7 +88,7 @@ public class SellerService {
 
 	// 用會員ID取得該使用者之商店的訂單資料(賣家)
 	public List<StoreOrder> getStoreOrderSellerListByM_id(Member member) throws SQLException {
-		ArrayList <StoreOrder> storeOrders = new ArrayList<StoreOrder>();
+		ArrayList<StoreOrder> storeOrders = new ArrayList<StoreOrder>();
 		Integer m_id = member.getM_id();
 		List<Seller> sellers = sellerDao.selectHql("WHERE m_id=" + m_id);
 		if (sellers.size() != 0) {
@@ -84,7 +100,7 @@ public class SellerService {
 				if (temps.size() != 0) {
 					for (int i = 0; i < temps.size(); i++) {
 						Integer sP_id = temps.get(i).getsP_id();
-						storeOrders.addAll(storeOrderDao.selectHql ("WHERE sP_id="+sP_id));
+						storeOrders.addAll(storeOrderDao.selectHql("WHERE sP_id=" + sP_id));
 					}
 					return storeOrders;
 				}
@@ -92,7 +108,7 @@ public class SellerService {
 		}
 		return null;
 	}
-	
+
 	// 編輯願望
 	public Wish editWish(Wish wish) throws SQLException {
 		Integer w_id = wish.getW_id();
@@ -100,8 +116,8 @@ public class SellerService {
 		Wish bean = wishDao.selectByPk(w_id);
 		return wishDao.update(bean, wish);
 	}
-	
-	//下架願望
+
+	// 下架願望
 	public Wish cancelWish(Wish wish) throws SQLException {
 		Integer w_id = wish.getW_id();
 		Wish bean = wishDao.selectByPk(w_id);
