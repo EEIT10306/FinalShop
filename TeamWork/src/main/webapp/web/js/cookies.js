@@ -53,6 +53,7 @@ $(document).ready(function(){
                     $("#membernotice").show();
                     // window.location.href="http://localhost:8080/TeamWork/web/view/header.html"
                 }
+                $("[name='spanMemberName']").text(data[0].m_name)
                 // Memberallbean=data;
                 // console.log("Memberallbean======");
                 // console.log(Memberallbean);

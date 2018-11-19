@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import model.bean.Member;
+import model.bean.StoreImages;
 import model.bean.StoreOrder;
 import model.bean.StoreProduct;
 import model.bean.Wish;
@@ -29,6 +31,16 @@ public class SellerListController {
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
+	}
+
+	// 重新編輯商店商品資料
+	@RequestMapping(path = "/EditStoreProduct", method = RequestMethod.POST)
+	public String editStoreProduct(List<MultipartFile> files, StoreProduct storeProduct, BindingResult binder,StoreImages storeImages) throws SQLException {
+		System.out.println("UpdateAccountImage-files:===========" + files);
+		System.out.println("storeProduct:===========" + storeProduct);
+		System.out.println("storeImages:===========" + storeImages);
+		sellerService.updateStoreProductData(storeProduct);
+		return "redirect:/web/view/userPage_StoreProductList.html";
 	}
 
 	// 用會員ID取得商店上架商品的資料(賣家)
@@ -57,8 +69,8 @@ public class SellerListController {
 		System.out.println(temp);
 		return "redirect:/web/view/userPage_WishList.html";
 	}
-	
-	//下架願望
+
+	// 下架願望
 	@RequestMapping(path = "/CancelWish", method = RequestMethod.POST)
 	public String Wish(Wish wish, BindingResult binder) throws SQLException {
 		Wish temp = sellerService.cancelWish(wish);

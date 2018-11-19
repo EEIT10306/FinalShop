@@ -210,7 +210,7 @@ public class AddProductController {
 		wish.setW_title(wishjson.getW_title());
 		wish.setW_context(wishjson.getW_context());
 		wish.setD_id(wishjson.getD_id());
-		wish.setW_startDate(wishjson.getW_startDate());
+		wish.setW_startDate(new Date());
 		wish.setW_endDate(wishjson.getW_endDate());
 		wish.setW_changeTime(new Date());
 		wish.setW_hot(0);

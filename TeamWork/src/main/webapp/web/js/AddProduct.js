@@ -18,11 +18,27 @@ $(document).ready(function () {
             $("[name='addarea']").html(txtselect);
         }
     });
+
+    $.date = function(dateObject) {
+        var d = new Date(dateObject);
+        var day = d.getDate();
+        var month = d.getMonth() + 1;
+        var year = d.getFullYear();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
+        // var date = day + "/" + month + "/" + year;
+        var date = year + "-" + month + "-" + day;
+        return date;
+    };
+
+    console.log($.date(new Date()));
+    //抓今天日期修改參數
+    $("[name='enddate']").attr("value",$.date(new Date())).attr("min",$.date(new Date()));
 })
-//抓時間
-$(".form_datetime").datetimepicker({
-    format: "dd MM yyyy"
-});
 //===================圖片瀏覽======================
 function imgPreview(fileDom) {
     var theEvent = arguments.callee.caller.arguments[0];
@@ -72,8 +88,56 @@ function cookieToJson() {
     return obj
 }
 //=================================抓取商品類型=====================================
-$("[class='custom-select form-group']").change(function () {
-    var addProductSort = $("[class='custom-select form-group']").val();
+$("[name = 'StoreProductSort1']").change(function () {
+    var addProductSort = $("[name = 'StoreProductSort1']").val();
+    alert(addProductSort)
+    $.ajax({
+        type: "POST",
+        url: "/TeamWork/changeStoreFormSelect",
+        data: { "p_id": addProductSort },
+        success: function (jsonback) {
+            alert("server傳回 = " + jsonback);
+            var json = JSON.parse(jsonback);
+            console.log(json)
+            var txtselect = "";
+            txtselect += "<option value=0>--請選擇--</option>";
+
+            for (x = 0; x < json.length; x++) {
+                txtselect += "<option value=" + json[x].p_id + ">"
+                    + json[x].p_name
+                    + "</option>";
+            }
+            $("[name='addSort']").html(txtselect);
+        }
+    });
+});
+//=================================抓取開團類型=====================================
+$("[name = 'GrouponSort1']").change(function () {
+    var addProductSort = $("[name = 'GrouponSort1']").val();
+    alert(addProductSort)
+    $.ajax({
+        type: "POST",
+        url: "/TeamWork/changeStoreFormSelect",
+        data: { "p_id": addProductSort },
+        success: function (jsonback) {
+            alert("server傳回 = " + jsonback);
+            var json = JSON.parse(jsonback);
+            console.log(json)
+            var txtselect = "";
+            txtselect += "<option value=0>--請選擇--</option>";
+
+            for (x = 0; x < json.length; x++) {
+                txtselect += "<option value=" + json[x].p_id + ">"
+                    + json[x].p_name
+                    + "</option>";
+            }
+            $("[name='addSort']").html(txtselect);
+        }
+    });
+});
+//=================================抓取許願類型=====================================
+$("[name = 'WishSort1']").change(function () {
+    var addProductSort = $("[name = 'WishSort1']").val();
     alert(addProductSort)
     $.ajax({
         type: "POST",
@@ -164,6 +228,7 @@ $("#StoreProductClick").click(function (e) {
     } else {
         StoreProductSort = addStore;
     }
+    // alert(StoreProductSort)
     var StoreProductAmount = $("[name = 'StoreProductAmount']").val();
     var StoreProductPrice = $("[name = 'StoreProductPrice']").val();
     var Transport = $("[id = 'Transport']").val();
@@ -298,9 +363,16 @@ $("#WishClick").click(function (e) {
     var wishlabel = $("[name = 'Wishlabel']").val();
     var WishContext = $("[name = 'WishContext']").val();
     var addarea = $("[name = 'addarea']").val();
-    var startdate = $("[name = 'startdate']").val();
     var enddate = $("[name = 'enddate']").val();
     var WishName = $("[name = 'WishName']").val();
+    var addStore = $("#addWishSort").val();
+    var WishSort;
+    if (addStore == 0) {
+        WishSort = $("[name = 'WishSort1']").val();
+    } else {
+        WishSort = addStore;
+    }
+    alert(WishSort)
     var WishSort = $("[name = 'WishSort1']").val();
     var WishAmount = $("[name = 'WishAmount']").val();
     var WishPriceBottom = $("[name = 'WishPriceBottom']").val();
@@ -308,7 +380,7 @@ $("#WishClick").click(function (e) {
     //改好的值用json字串給伺服器
     var wishcombie = {
         "m_id": cookiemid, "p_id": WishSort, "w_title": wishlabel, "w_context": WishContext,
-        "d_id": addarea, "w_startDate": startdate, "w_endDate": enddate,"wP_name": WishName, "p_id": WishSort, "wP_amount": WishAmount,
+        "d_id": addarea, "w_endDate": enddate, "wP_name": WishName, "p_id": WishSort, "wP_amount": WishAmount,
         "wP_priceBottom": WishPriceBottom, "wP_priceTop": WishPriceTop
     };
     //原本combie是json物件 利用以下方法翻成json字串 ; 
@@ -324,36 +396,36 @@ $("#WishClick").click(function (e) {
     var formData = new FormData($("#WishmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
     alert("formData=========" + formData.getAll)
 
-    $.ajax({
-        type: "POST",
-        url: "/TeamWork/AddWishandProduct",
-        data: wishjson,
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            console.log(response)
-            alert("SSSS");
-            $.ajax({
-                type: "POST",
-                url: "/TeamWork/uploadmutipart",
-                data: formData,
-                cache: false, // 不需要cache
-                processData: false, // jQuery預設會把data轉為query String, 所以要停用
-                contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
-                dataType: 'text',
-                success: function (data) {
-                    alert("upload sucess");
-                }
-            });
+    // $.ajax({
+    //     type: "POST",
+    //     url: "/TeamWork/AddWishandProduct",
+    //     data: wishjson,
+    //     contentType: "application/json; charset=utf-8",
+    //     success: function (response) {
+    //         console.log(response)
+    //         alert("SSSS");
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "/TeamWork/uploadmutipart",
+    //             data: formData,
+    //             cache: false, // 不需要cache
+    //             processData: false, // jQuery預設會把data轉為query String, 所以要停用
+    //             contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
+    //             dataType: 'text',
+    //             success: function (data) {
+    //                 alert("upload sucess");
+    //             }
+    //         });
 
-        },
-        error: function (response) {
-            // console.log("MVC傳回 = " + jsons.get(0))
-            alert("MVC傳回 = " + response);
-            var jsons = JSON.stringify(response);
-            alert("MVC傳回 = " + jsons);
-            // console.log("MVC傳回 = " + response.get(0))
-            alert("GG");
-        }
-    })
+    //     },
+    //     error: function (response) {
+    //         // console.log("MVC傳回 = " + jsons.get(0))
+    //         alert("MVC傳回 = " + response);
+    //         var jsons = JSON.stringify(response);
+    //         alert("MVC傳回 = " + jsons);
+    //         // console.log("MVC傳回 = " + response.get(0))
+    //         alert("GG");
+    //     }
+    // })
 
 })
