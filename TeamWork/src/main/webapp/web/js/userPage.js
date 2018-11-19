@@ -35,8 +35,8 @@ $(".AssessStar").click(function () {
 });
 
 // 會員中心的slidebar使用者的預設照片處理
-function defaultUserPic(imgPath){
-    if(imgPath==""){
+function defaultUserPic(imgPath) {
+    if (imgPath == "") {
         imgPath = "../images/user/account/profile/001.png"
     }
     return imgPath
@@ -66,8 +66,8 @@ function updateMemberData(memberData) {
 
 
 function cookieToJson_userPage() {
-	// cookie分割並去掉所有空白字串
-	let cookieArr = document.cookie.replace(/\s/g,"").split(";");
+    // cookie分割並去掉所有空白字串
+    let cookieArr = document.cookie.replace(/\s/g, "").split(";");
     let obj = {}
     cookieArr.forEach((i) => {
         let arr = i.split("=");
@@ -81,7 +81,7 @@ function cookieToJson_userPage() {
 function VerifyCheckSeller(url) {
     var json = cookieToJson_userPage();
     var cookieAccount = json['email']
-    console.log("判斷有無賣家抓帳號:"+cookieAccount)
+    console.log("判斷有無賣家抓帳號:" + cookieAccount)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifySeller",
@@ -93,15 +93,15 @@ function VerifyCheckSeller(url) {
             if (response == null || response == undefined || response == '') {
                 console.log("驗證賣家失敗");
                 swal({
-					title: '需要賣家身分驗證！',
-					text: '您尚未驗證成為賣家，即將前往驗證頁面',
+                    title: '需要賣家身分驗證！',
+                    text: '您尚未驗證成為賣家，即將前往驗證頁面',
                     type: 'warning',
                     confirmButtonText: '前往驗證',
-					confirmButtonColor: '#525abb'
-				}).then(function(){					
-					window.location.href = "userPage_sellerVerifyNoStore.html";
-				})
-            } else{
+                    confirmButtonColor: '#525abb'
+                }).then(function () {
+                    window.location.href = "userPage_sellerVerifyNoStore.html";
+                })
+            } else {
                 console.log("驗證賣家成功");
                 window.location.href = url
             }
@@ -117,26 +117,26 @@ var storeid;
 var userEmail = '';
 function VerifyCheckStore(url) {
     userEmail = document.cookie.split("email=")[1].split(";")[0]
-    console.log("判斷有無店家抓帳號:"+userEmail)
+    console.log("判斷有無店家抓帳號:" + userEmail)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifyStore",
         data: { "account": userEmail },
         async: false,
         success: function (response) {
-        	console.log("店家ID" + response);
+            console.log("店家ID" + response);
             // 判斷是不是空值
             if (response == null || response == undefined || response == '') {
-            	swal({
-					title: '需要店家身分驗證！',
-					text: '您尚未驗證成為店家，即將前往驗證頁面',
+                swal({
+                    title: '需要店家身分驗證！',
+                    text: '您尚未驗證成為店家，即將前往驗證頁面',
                     type: 'warning',
                     confirmButtonText: '前往驗證',
-					confirmButtonColor: '#525abb'
-				}).then(function(){					
-					window.location.href = "userPage_sellerVerify.html";
-				})
-            } else{
+                    confirmButtonColor: '#525abb'
+                }).then(function () {
+                    window.location.href = "userPage_sellerVerify.html";
+                })
+            } else {
                 console.log("驗證店家成功");
                 storeid = response;
                 window.location.href = url
@@ -147,4 +147,51 @@ function VerifyCheckStore(url) {
             console.log("店家驗證失敗");
         }
     })
+}
+
+//商品類別下拉選單
+function LoadProdSelector() {
+    $.ajax({
+        url: "/TeamWork/ProdSelectorFirst",
+        error: function () {
+            console.log("載入商品類別第一層資料失敗")
+        },
+        success: function (res) {
+            console.log("載入商品類別第一層資料成功")
+            prodFirstData = res
+            updateProdFirstData(prodFirstData)
+        }
+    })
+}
+//更新商品類別第一層選單選項
+function updateProdFirstData(prodFirstData) {
+    prodFirstData.forEach(function (item) {
+        var itemEl = $(`<option value="${item.p_id}">${item.p_name}</option>`)
+        $("#pp_id").append(itemEl);
+    })
+}
+//商品類別第一層選單change事件
+$("#pp_id").change(function() {
+    var prodId1 = $("#pp_id").val();
+    alert(prodId1)
+    updateProdSecondtData(prodId1)
+  });
+//更新商品類別第二層選單選項
+function updateProdSecondtData(prodId1) {
+    $.ajax({
+        url: "/TeamWork/ProdSelectorSecond?p_id="+prodId1,
+        error: function () {
+            console.log("載入商品類別第二層資料失敗")
+        },
+        success: function (res) {
+            console.log("載入商品類別第二層資料成功")
+            $("#p_id").html("");
+            prodSecondData = res
+            prodSecondData.forEach(function (item) {
+                var itemEl = $(`<option value="${item.p_id}">${item.p_name}</option>`)
+                $("#p_id").append(itemEl);
+            })
+        }
+    })
+    
 }
