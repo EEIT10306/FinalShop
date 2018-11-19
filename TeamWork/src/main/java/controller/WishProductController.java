@@ -78,6 +78,11 @@ public class WishProductController {
 	public Wish findOneWish(Integer w_id) throws SQLException {
 		return wishService.findOneWishByWId(w_id);
 	}
+	@RequestMapping(path = "/UpdateOneWish", method = RequestMethod.POST)
+	@ResponseBody
+	public Wish updateOneWish(Wish bean) throws SQLException {
+		return wishService.updateOneWish(bean);
+	}
 	@RequestMapping(path = "/FindOneWishDistrictType",method = RequestMethod.POST)
 	@ResponseBody
 	public DistrictType getWishDistrictType(Integer d_id) throws SQLException {

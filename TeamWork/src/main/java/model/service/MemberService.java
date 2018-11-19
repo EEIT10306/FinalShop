@@ -37,6 +37,9 @@ public class MemberService {
 		if(email==null) {
 			return null;
 		}
+		System.out.println("=========================================");
+		System.out.println(memberDaoImpl.selectHql("where m_mail='"+email+"'").get(0));
+		System.out.println("=========================================");
 		return memberDaoImpl.selectHql("where m_mail='"+email+"'").get(0);
 		
 	}

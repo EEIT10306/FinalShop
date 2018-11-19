@@ -18,4 +18,8 @@ public class WishService {
 	public Wish findOneWishByWId(Integer w_id) throws SQLException {
 		return wishDaoImpl.selectByPk(w_id);
 	}
+
+	public Wish updateOneWish(Wish bean) throws SQLException {
+		return wishDaoImpl.update(bean);
+	}
 }
