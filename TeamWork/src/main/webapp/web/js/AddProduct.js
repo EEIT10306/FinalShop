@@ -18,6 +18,26 @@ $(document).ready(function () {
             $("[name='addarea']").html(txtselect);
         }
     });
+
+    $.date = function(dateObject) {
+        var d = new Date(dateObject);
+        var day = d.getDate();
+        var month = d.getMonth() + 1;
+        var year = d.getFullYear();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (month < 10) {
+            month = "0" + month;
+        }
+        // var date = day + "/" + month + "/" + year;
+        var date = year + "-" + month + "-" + day;
+        return date;
+    };
+
+    console.log($.date(new Date()));
+    //抓今天日期修改參數
+    $("[name='enddate']").attr("value",$.date(new Date())).attr("min",$.date(new Date()));
 })
 //===================圖片瀏覽======================
 function imgPreview(fileDom) {
