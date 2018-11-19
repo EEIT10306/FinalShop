@@ -35,11 +35,11 @@ public class SellerListController {
 
 	// 重新編輯商店商品資料
 	@RequestMapping(path = "/EditStoreProduct", method = RequestMethod.POST)
-	public String editStoreProduct(List<MultipartFile> files, StoreProduct storeProduct, BindingResult binder,
-			StoreImages storeImages) throws SQLException {
+	public String editStoreProduct(List<MultipartFile> files, StoreProduct storeProduct, BindingResult binder,StoreImages storeImages) throws SQLException {
 		System.out.println("UpdateAccountImage-files:===========" + files);
 		System.out.println("storeProduct:===========" + storeProduct);
 		System.out.println("storeImages:===========" + storeImages);
+		sellerService.updateStoreProductData(storeProduct);
 		return "redirect:/web/view/userPage_StoreProductList.html";
 	}
 
