@@ -212,7 +212,7 @@
 				function () {
 					var url = location.href;
 					var cataurl = "/TeamWork/GrouponSearch?"+str_value;
-					alert(url);
+				
 					var txt2="";
 					var str = ""; //參數中等號左邊的值
 					var str_value = ""; //參數中等號右邊的值
@@ -226,13 +226,13 @@
 							//取得參數"="左邊的值存入str變數中
 							if (str == "search") {
 								//若str等於想要抓取參數 如:b
-								alert(ary[i])
+							
 								str_value = decodeURI(ary[i]);
 								search_value = decodeURI(ary[i].split("=")[1]);
 								//取得b等號右邊的值並經過中文轉碼後存入str_value
 							}
 						}
-						alert(str_value)
+					
 						$("#headsearch").val(search_value);
 
 					}else {
@@ -643,7 +643,7 @@
 						type: "GET",
 						url: "/TeamWork/GrouponSearch?" + str_value,
 						success: function (jsonback) {
-							alert("server傳回 = " + jsonback);
+						
 							if (jsonback == "") {
 								var txt = "<p>我們找不到 " + search_value + " 商品</p>";
 								$("#odbyvalue").html(txt);
@@ -714,7 +714,7 @@
 				url: "/TeamWork/changeStoreFormSelect",
 				data: { "p_id": exampleFormControlSelect1 },
 				success: function (jsonback) {
-					alert("server傳回 = " + jsonback);
+				
 					var json = JSON.parse(jsonback);
 					//             	alert(json);
 					var txtselect = "";
@@ -739,9 +739,9 @@
 				//  var count=$(this).index();//获取li的下标
 				//  var Tresult=Uarry.eq(count).text();
 				var tt = $(this).text()
-				alert(tt);
+			
 				$("#btn5").attr('name', tt);
-				alert($('#haha').attr("name"));
+			
 				changefrom();
 				// $("#tresult").val(Tresult)
 				// $(this).hide();
@@ -758,22 +758,22 @@
 		function btn1click() {
 			$("#btn1").click(function () {
 				$("#haha").attr('name', '1');
-				alert($('#haha').attr("name"));
+				
 				changefrom();
 			})
 			$("#btn2").click(function () {
 				$("#haha").attr('name', '2');
-				alert($('#haha').attr("name"));
+				
 				changefrom();
 			})	
 			$("#btn3").click(function () {
 				$("#haha").attr('name', '3');
-				alert($('#haha').attr("name"));
+				
 				changefrom();
 			})
 			$("#btn4").click(function () {
 				$("#haha").attr('name', '4');
-				alert($('#haha').attr("name"));
+			
 				changefrom();
 			})
 		}
@@ -788,7 +788,7 @@
 						url: "/TeamWork/changeStoreFormSelect",
 						data: { "p_id": exampleFormControlSelect1 },
 						success: function (jsonback) {
-							alert("server傳回 = " + jsonback);
+						
 							var json = JSON.parse(jsonback);
 							//             	alert(json);
 							var txtselect = "";
@@ -811,7 +811,7 @@
 	
         function changefrom() {
 			var catchsearch = "search=" + $("#headsearch").val();
-			alert(catchsearch)
+		
 			var fromurl = "/TeamWork/GrouponSearchChange?" + catchsearch;
 			if ($(
 				"#exampleFormControlSelect1")
@@ -860,14 +860,13 @@
 			if ($('#haha').attr("name") != 0) {
 				var haha = $('#haha').attr("name");
 				fromurl += "&e=" + haha;
-				alert(haha);
-				alert(fromurl);
+			
+			
 			}
 			if($("#btn5").attr("name")!=0){
 				var btn5 = $('#btn5').attr("name");
 				fromurl += "&f=" + btn5;
-				alert(btn5);
-				alert(fromurl);
+			
 			}
 
 
@@ -877,7 +876,7 @@
 					url: fromurl,
 
 					success: function (jsonback) {
-						alert("server傳回 = " + jsonback);
+					
 
 						if (jsonback == "") {
 							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
