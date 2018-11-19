@@ -18,4 +18,13 @@ public class WishService {
 	public Wish findOneWishByWId(Integer w_id) throws SQLException {
 		return wishDaoImpl.selectByPk(w_id);
 	}
+	
+	public Wish insert(Wish bean) {
+		try {
+			return wishDaoImpl.insert(bean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
 }

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>會員中心｜我的帳戶</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
+
+	<!-- main CSS -->
+	<link rel="stylesheet" href="../style/main.css">
+	<link rel="stylesheet" href="../style/userPage.css">
+
+	<!-- draw six chart css -->
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+	<link rel="stylesheet" href="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.css">
+</head>
+
+<body>
+	<!-- header -->
+	<div id="header"></div>
+	<!-- header-search -->
+	<div id="header-search"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="user-page_wrapper col-lg-12" style="padding:2rem 5rem">
+				<div class="my-account_header">
+					<img src="" id="people_m_photo">
+					<h2 id="people_name"></h2>
+					<span id="people_mail"></span>
+				</div>
+				<div class="my-account_content">
+					<div class="my-account-profile_left">
+						<form id="my-account_form">
+							<input type="hidden" name="m_id" value="" id="m_id">
+							<div class="form-group row">
+								<label for="m_wishAssessSumEE" class="col-sm-4 col-form-label">許願評價</label>
+								<div class="col-sm-8">
+									<input type="text" readonly class="form-control" id="m_wishAssessSumEE" name="m_wishAssessSumEE" value=""
+									 placeholder="許願評價">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="m_groupAssessSumEE" class="col-sm-4 col-form-label">開團評價</label>
+								<div class="col-sm-8">
+									<input type="text" readonly class="form-control" id="m_groupAssessSumEE" name="m_groupAssessSumEE" value=""
+									 placeholder="開團評價">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="m_storeAssessSumEE" class="col-sm-4 col-form-label">商店販賣商品評價</label>
+								<div class="col-sm-8">
+									<input type="text" readonly class="form-control" id="m_storeAssessSumEE" name="m_storeAssessSumEE" value=""
+									 placeholder="商店評價">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="m_wishAssessSum" class="col-sm-4 col-form-label">協助實現許願評價</label>
+								<div class="col-sm-8">
+									<input type="text" readonly class="form-control" id="m_wishAssessSum" name="m_wishAssessSum" value=""
+									 placeholder="實現許願評價">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="m_groupAssessSum" class="col-sm-4 col-form-label">跟團評價</label>
+								<div class="col-sm-8">
+									<input type="text" readonly class="form-control" id="m_groupAssessSum" name="m_groupAssessSum" value=""
+									 placeholder="跟團評價">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="m_storeAssessSum" class="col-sm-4 col-form-label">購物評價</label>
+								<div class="col-sm-8">
+									<input type="text" readonly class="form-control" id="m_storeAssessSum" name="m_storeAssessSum" value=""
+									 placeholder="購物評價">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="my-account-profile_right">
+						<div id="six-chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+	<!-- start of footer -->
+	<div class="contaminer-fluid" id="footer"></div>
+	<!-- end of footer -->
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="http://d3js.org/d3.v3.js"></script>
+	<script src="https://rawgit.com/tpreusse/radar-chart-d3/master/src/radar-chart.js"></script>
+	<!-- optional script -->
+	<script src="../js/userPage.js"></script>
+	<script>
+		$(document).ready(function () {
+			$.get("header.html", function (data) {
+				$("#header").html(data);
+			});
+			$.get("header-search.html", function (data) {
+				$("#header-search").html(data);
+			});
+			$.get("footer.html", function (data) {
+				$("#footer").html(data);
+			});
+		})
+	</script>
+	<!-- Optional JavaScript -->
+	<script>
+		var userID = 1;
+		var peopleId = 1;
+		$(document).ready(function () {
+			if (document.cookie.split("mid=").length == 2) {
+				userID = document.cookie.split("mid=")[1]
+					.split(";")[0]
+				$("#m_id").val(userID);
+				$("#m_id_profile").val(userID);
+			} else {
+				userID = "";
+				window.history.pushState("", "page 2", "userPage_seeProfile.html")
+			}
+			
+			//抓取QueryString參數
+			var url = location.href;
+			if (url.indexOf('?') != -1) {
+				var ary1 = url.split('?');
+				var ary2 = ary1[1].split('=');
+				peopleId = ary2[1];
+			}
+
+
+			var dataurl = "/TeamWork/Member?m_id=" + peopleId;
+			loadData()
+			function loadData() {
+				//下載所有資料
+				$.ajax({
+					url: dataurl,
+					error: function () {
+						console.log("載入塗鴉牆資料失敗")
+					},
+					success: function (res) {
+						console.log("載入塗鴉牆資料成功")
+						updatePeopleData(res)
+						drawSix(res)
+					}
+				})
+			}
+			function updatePeopleData(res) {
+				$("#people_name").text(res.m_name + " 個人評價");
+				$("#people_mail").text(res.m_mail);
+				$("#people_m_photo").attr("src", res.m_photo);
+				$("#m_wishAssessSumEE").val(res.m_wishAssessSumEE);
+				$("#m_groupAssessSumEE").val(res.m_groupAssessSumEE);
+				$("#m_storeAssessSumEE").val(res.m_storeAssessSumEE);
+				$("#m_wishAssessSum").val(res.m_wishAssessSum);
+				$("#m_groupAssessSum").val(res.m_groupAssessSum);
+				$("#m_storeAssessSum").val(res.m_storeAssessSum);
+
+			}
+			//六角形
+			function drawSix(res) {
+				RadarChart.defaultConfig.color = d3.scale.category20b();
+				RadarChart.defaultConfig.radius = 3;
+				RadarChart.defaultConfig.levels = 5;
+				RadarChart.defaultConfig.maxValue = 5;
+				RadarChart.defaultConfig.w = 300;
+				RadarChart.defaultConfig.h = 300;
+				var data = [
+					{
+						className: 'argentina',
+						axes: [
+							{ axis: "許願", value: res.m_wishAssessSumEE },
+							{ axis: "購物", value: res.m_storeAssessSum },
+							{ axis: "開團", value: res.m_groupAssessSumEE },
+							{ axis: "完願", value: res.m_wishAssessSum },
+							{ axis: "販賣", value: res.m_storeAssessSumEE },
+							{ axis: "跟團", value: res.m_groupAssessSum }
+						]
+					}
+				];
+				var chart = RadarChart.chart();
+				var cfg = chart.config(); // retrieve default config
+				var svg = d3.select('#six-chart').append('svg').attr('width', cfg.w + cfg.w + 50).attr('height', cfg.h + cfg.h / 6);
+				svg.append('g').classed('single', 1).datum(dataset()).call(chart);
+
+				function dataset() {
+					return data.map(function (d) {
+						return {
+							className: d.className,
+							axes: d.axes.map(function (axis) {
+								return { axis: axis.axis, value: axis.value };
+							})
+						};
+					});
+				}
+
+			}
+
+		});
+	</script>
+</body>
+
+</html>

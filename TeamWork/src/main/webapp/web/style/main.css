@@ -547,7 +547,7 @@ p { margin: 0; }
 	background-color: rgb(247, 247, 247);
 	min-height: 200px;
 	margin-top: 2rem;
-	padding: 3rem;
+	padding: 2rem 3rem;
 }
 .footer-category-name {
 	margin-bottom: 10px;
