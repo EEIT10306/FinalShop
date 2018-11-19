@@ -376,36 +376,36 @@ $("#WishClick").click(function (e) {
     var formData = new FormData($("#WishmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
     alert("formData=========" + formData.getAll)
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: "/TeamWork/AddWishandProduct",
-    //     data: wishjson,
-    //     contentType: "application/json; charset=utf-8",
-    //     success: function (response) {
-    //         console.log(response)
-    //         alert("SSSS");
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "/TeamWork/uploadmutipart",
-    //             data: formData,
-    //             cache: false, // 不需要cache
-    //             processData: false, // jQuery預設會把data轉為query String, 所以要停用
-    //             contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
-    //             dataType: 'text',
-    //             success: function (data) {
-    //                 alert("upload sucess");
-    //             }
-    //         });
-
-    //     },
-    //     error: function (response) {
-    //         // console.log("MVC傳回 = " + jsons.get(0))
-    //         alert("MVC傳回 = " + response);
-    //         var jsons = JSON.stringify(response);
-    //         alert("MVC傳回 = " + jsons);
-    //         // console.log("MVC傳回 = " + response.get(0))
-    //         alert("GG");
-    //     }
-    // })
+     $.ajax({
+         type: "POST",
+         url: "/TeamWork/AddWishandProduct",
+         data: wishjson,
+         contentType: "application/json; charset=utf-8",
+         success: function (response) {
+             console.log(response)
+             alert("SSSS");
+             $.ajax({
+                 type: "POST",
+                 url: "/TeamWork/uploadmutipart",
+                 data: formData,
+                 cache: false, // 不需要cache
+                 processData: false, // jQuery預設會把data轉為query String, 所以要停用
+                 contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
+                 dataType: 'text',
+                 success: function (data) {
+                     alert("upload sucess");
+                 }
+             });
+    
+         },
+         error: function (response) {
+             // console.log("MVC傳回 = " + jsons.get(0))
+             alert("MVC傳回 = " + response);
+             var jsons = JSON.stringify(response);
+             alert("MVC傳回 = " + jsons);
+             // console.log("MVC傳回 = " + response.get(0))
+             alert("GG");
+         }
+     })
 
 })
