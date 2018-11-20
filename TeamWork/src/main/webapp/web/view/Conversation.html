@@ -54,8 +54,10 @@
 		//=====================================================================================================
 
 		//取得Cookie資料
-		$(document).ready(getCookies());
-		$(document).ready(FindMember());
+		$(document).ready(function(){
+			getCookies();
+			FindMember();
+		})
 
 		function getCookies() {
 			//alert("get cookies");

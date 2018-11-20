@@ -766,7 +766,7 @@
 										<span>${item.product.wP_completeTime||"許願進行中"}</span>
 									</div>
 									<div style="background-color:#E0FFFF" class="comment-content">
-										<img class="card-img-top rounded float-right align-top cc" src='${imageWish(item.wishProduct[0])}' onclick='clickdiv()' data-box='${item.w_id}'  alt="Card image cap">
+										<img class="card-img-top rounded float-right align-top cc" style='min-height:200px;max-height:200px;' src='${imageWish(item.wishProduct[0])}' onclick='clickdiv()' data-box='${item.w_id}'  alt="Card image cap">
 										<p class='text-left'>${item.w_title}</p>
 									</div>
 									<div class="comment-content">
@@ -783,7 +783,7 @@
 											<p class="p1" name="pricename" id='price${item.w_id}'>目前尚未有人出價</p>
 										</div>
 										<div class="comment-head div2">
-											<p class="text-left p2">最高價格:${item.w_sumPriceTop||"沒有標價呦"}</p>
+											<p class="text-left p2">最高價格: $ ${item.wishProduct[0].wP_priceTop||"沒有標價呦"}</p>
 										</div>
 									</div>
 								</div>
@@ -1492,7 +1492,7 @@
 						<li>
 							<div class="comment-main-level">
 								<div class="comment-avatar">
-								<img src="${imageJudge(item.member.m_photo)}" alt="">
+									<a href='/TeamWork/web/view/userPage_seeProfile.html?w_id=${item.m_id}'><img src="${imageJudge(item.member.m_photo)}" alt="">
 								</div>
 								<div class="comment-box">
 									<div class="comment-head">
@@ -1500,7 +1500,7 @@
 										<span>${item.product.wP_completeTime||"許願進行中"}</span>
 									</div>
 									<div style="background-color:#E0FFFF" class="comment-content">
-										<img class="card-img-top rounded float-right align-top cc" src='${imageWish(item.wishProduct[0])}'  onclick='clickdiv()' data-box='${item.w_id}' alt="Card image cap">
+										<img class="card-img-top rounded float-right align-top cc" style='min-height:200px;max-height:200px;' src='${imageWish(item.wishProduct[0])}' onclick='clickdiv()' data-box='${item.w_id}'  alt="Card image cap">
 										<p class='text-left'>${item.w_title}</p>
 									</div>
 									<div class="comment-content">
@@ -1517,7 +1517,7 @@
 											<p class="p1" name="pricename" id='price${item.w_id}'>目前尚未有人出價</p>
 										</div>
 										<div class="comment-head div2">
-											<p class="text-left p2">最高價格:${item.w_sumPriceTop||"沒有標價呦"}</p>
+											<p class="text-left p2">最高價格: $ ${item.wishProduct[0].wP_priceTop||"沒有標價呦"}</p>
 										</div>
 									</div>
 								</div>

@@ -210,770 +210,796 @@
 		$(document)
 			.ready(
 				function () {
-					var url = location.href;
-					var cataurl = "/TeamWork/GrouponSearch?"+str_value;
+
+
+					var txt = `<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/cone.png' style='margin: auto'><p padding-top:10px;>目前網站施工中<span style='color:red;font-size:20px;'></span> ，請重新搜尋</p></div>`
+								txt += `<div><form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="store" class="dropdown-item">購物商城</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form></div></div>`
+										$("#odbyvalue").html(txt);
+							})
+
+
+
+
+		// 			var url = location.href;
+		// 			var cataurl = "/TeamWork/GrouponSearch?"+str_value;
 				
-					var txt2="";
-					var str = ""; //參數中等號左邊的值
-					var str_value = ""; //參數中等號右邊的值
-					if (url.indexOf("?") != -1) {
-						//如果網址有"?"符號
-						var ary = url.split("?")[1].split("&");
-						//取得"?"右邊網址後利用"&"分割字串存入ary陣列 ["a=1","b=2","c=3"]
-						for (var i in ary) {
-							//取得陣列長度去跑迴圈，如:網址有三個參數，則會跑三次
-							str = ary[i].split("=")[0];
-							//取得參數"="左邊的值存入str變數中
-							if (str == "search") {
-								//若str等於想要抓取參數 如:b
+		// 			var txt2="";
+		// 			var str = ""; //參數中等號左邊的值
+		// 			var str_value = ""; //參數中等號右邊的值
+		// 			if (url.indexOf("?") != -1) {
+		// 				//如果網址有"?"符號
+		// 				var ary = url.split("?")[1].split("&");
+		// 				//取得"?"右邊網址後利用"&"分割字串存入ary陣列 ["a=1","b=2","c=3"]
+		// 				for (var i in ary) {
+		// 					//取得陣列長度去跑迴圈，如:網址有三個參數，則會跑三次
+		// 					str = ary[i].split("=")[0];
+		// 					//取得參數"="左邊的值存入str變數中
+		// 					if (str == "search") {
+		// 						//若str等於想要抓取參數 如:b
 							
-								str_value = decodeURI(ary[i]);
-								search_value = decodeURI(ary[i].split("=")[1]);
-								//取得b等號右邊的值並經過中文轉碼後存入str_value
-							}
-						}
+		// 						str_value = decodeURI(ary[i]);
+		// 						search_value = decodeURI(ary[i].split("=")[1]);
+		// 						//取得b等號右邊的值並經過中文轉碼後存入str_value
+		// 					}
+		// 				}
 					
-						$("#headsearch").val(search_value);
+		// 				$("#headsearch").val(search_value);
 
-					}else {
-					str_value = "search=";
-					cataurl = cataurl + str_value;
-					search_value = "";
-					}
-					function dyload() {
-						var txt2 = `<div><ul id="haha" name="0" class="drop-down-menu">
-								        <li id='btn1'><a href="#">所有計畫</a>
-								        </li>
-								        <li id='btn2'><a href="#">集資金額</a>
-								        </li>
-								        <li id='btn3'><a href="#">最後衝刺</a>
-								         </li>
-								        <li id='btn4'><a href="#">最新開團</a>
-								        </li>
-								        <li ><a href="#" >許願地區</a>
-								            <ul id='btn5' name='0'>
-								                <li><a href="#">台灣</a>
-								                    <ul>
-								                        <li><a href="#">北北基</a>
-								                            <ul>
-								                                <li><a href="#">台北市</a></li>
-								                                <li><a href="#">新北市</a></li>
-								                                <li><a href="#">基隆市</a></li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">桃竹苗</a>
-								                            <ul>
-								                                <li><a href="#">桃園市</a></li>
-								                                <li><a href="#">新竹市</a></li>
-								                                <li><a href="#">新竹縣</a></li>
-								                                <li><a href="#">苗栗縣</a></li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">中彰投</a>
-								                            <ul>
-								                                <li><a href="#">台中市</a></li>
-								                                <li><a href="#">彰化縣</a></li>
-								                                <li><a href="#">南投縣</a></li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">雲嘉南</a>
-								                            <ul>
-								                                <li><a href="#">雲林縣</a></li>
-								                                <li><a href="#">嘉義市</a></li>
-								                                <li><a href="#">嘉義縣</a></li>
-								                                <li><a href="#">台南市</a></li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">高屏</a>
-								                            <ul>
-								                                <li><a href="#">高雄市</a></li>
-								                                <li><a href="#">屏東縣</a></li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">宜花東</a>
-								                            <ul>
-								                                <li><a href="#">宜蘭縣</a></li>
-								                                <li><a href="#">花蓮縣</a></li>
-								                                <li><a href="#">台東縣</a></li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">離島地區</a>
-								                            <ul>
-								                                <li><a href="#">澎湖縣</a></li>
-								                                <li><a href="#">金門縣</a></li>
-								                                <li><a href="#">連江縣</a></li>
-								                            </ul>
-								                        </li>
-								                    </ul>
-								                </li><!--台灣 -->
-								                <li><a href="#">日本</a>
-								                    <ul>
-								                        <li><a href="#">北海道</a>
-								                            <ul>
-								                                <li><a href="#">道北</a>
-								                                    <ul>
-								                                        <li><a href="#">旭川</a></li>
-								                                        <li><a href="#">美瑛</a></li>
-								                                        <li><a href="#">富良野</a></li>
-								                                        <li><a href="#">層雲峽</a></li>
-								                                        <li><a href="#">稚內</a></li>
-								                                        <li><a href="#">留萌</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">道央</a>
-								                                    <ul>
-								                                        <li><a href="#">札幌</a></li>
-								                                        <li><a href="#">小樽</a></li>
-								                                        <li><a href="#">苫小木</a></li>
-								                                        <li><a href="#">洞爺湖</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">道東</a>
-								                                    <ul>
-								                                        <li><a href="#">帶廣</a></li>
-								                                        <li><a href="#">網走</a></li>
-								                                        <li><a href="#">釧路</a></li>
-								                                        <li><a href="#">阿寒湖</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">道南</a>
-								                                    <ul>
-								                                        <li><a href="#">函館</a></li>
-								                                    </ul>
-								                                </li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">東北地方</a>
-								                            <ul>
-								                                <li><a href="#">青森</a>
-								                                    <ul>
-								                                        <li><a href="#">弘前</a></li>
-								                                        <li><a href="#">津輕</a></li>
-								                                        <li><a href="#">陸奧</a></li>
-								                                        <li><a href="#">八戶</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">岩手</a>
-								                                    <ul>
-								                                        <li><a href="#">盛岡</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">秋田</a>
-								                                    <ul>
-								                                        <li><a href="#">秋田</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">宮城</a>
-								                                    <ul>
-								                                        <li><a href="#">仙台</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">山形</a>
-								                                    <ul>
-								                                        <li><a href="#">山形</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">福島</a>
-								                                    <ul>
-								                                        <li><a href="#">福島</a></li>
-								                                    </ul>
-								                                </li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">關東地方</a>
-								                            <ul>
-								                                <li><a href="#">茨城</a>
-								                                    <ul>
-								                                        <li><a href="#">水戶</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">栃木</a>
-								                                    <ul>
-								                                        <li><a href="#">宇都宮</a></li>
-								                                        <li><a href="#">日光</a></li>
-								                                        <li><a href="#">佐野</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">群馬</a>
-								                                    <ul>
-								                                        <li><a href="#">前橋</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">埼玉</a>
-								                                    <ul>
-								                                        <li><a href="#">埼玉</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">千葉</a>
-								                                    <ul>
-								                                        <li><a href="#">千葉</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">東京</a>
-								                                    <ul>
-								                                        <li><a href="#">東京</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">神奈川</a>
-								                                    <ul>
-								                                        <li><a href="#">橫濱</a></li>
-								                                        <li><a href="#">箱根</a></li>
-								                                    </ul>
-								                                </li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">中部地方</a>
-								                            <ul>
-								                                <li><a href="#">山梨</a>
-								                                    <ul>
-								                                        <li><a href="#">甲府</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">長野</a>
-								                                    <ul>
-								                                        <li><a href="#">長野</a></li>
-								                                        <li><a href="#">輕井澤</a></li>
-								                                        <li><a href="#">野澤溫泉</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">新潟</a>
-								                                    <ul>
-								                                        <li><a href="#">新潟</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">富山</a>
-								                                    <ul>
-								                                        <li><a href="#">富山</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">石川</a>
-								                                    <ul>
-								                                        <li><a href="#">金澤</a></li>
-								                                        <li><a href="#">加賀</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">福井</a>
-								                                    <ul>
-								                                        <li><a href="#">福井</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">靜岡</a>
-								                                    <ul>
-								                                        <li><a href="#">靜岡</a></li>
-								                                        <li><a href="#">伊豆</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">愛知</a>
-								                                    <ul>
-								                                        <li><a href="#">名古屋</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">岐阜</a>
-								                                    <ul>
-								                                        <li><a href="#">岐阜</a></li>
-								                                        <li><a href="#">美濃</a></li>
-								                                        <li><a href="#">飛驒地區</a></li>
-								                                    </ul>
-								                                </li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">近畿地方</a>
-								                            <ul>
-								                                <li><a href="#">滋賀</a>
-								                                    <ul>
-								                                        <li><a href="#">大津</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">京都</a>
-								                                    <ul>
-								                                        <li><a href="#">京都</a></li>
-								                                        <li><a href="#">宇治</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">大阪</a>
-								                                    <ul>
-								                                        <li><a href="#">大阪</a></li>
-								                                        <li><a href="#">堺</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">兵庫</a>
-								                                    <ul>
-								                                        <li><a href="#">神戶</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">奈良</a>
-								                                    <ul>
-								                                        <li><a href="#">奈良</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">三重</a>
-								                                    <ul>
-								                                        <li><a href="#">津</a></li>
-								                                        <li><a href="#">伊勢</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">和歌山</a>
-								                                    <ul>
-								                                        <li><a href="#">和歌山</a></li>
-								                                    </ul>
-								                                </li>
+		// 			}else {
+		// 			str_value = "search=";
+		// 			cataurl = cataurl + str_value;
+		// 			search_value = "";
+		// 			}
+		// 			function dyload() {
+		// 				var txt2 = `<div><ul id="haha" name="0" class="drop-down-menu">
+		// 						        <li id='btn1'><a href="#">所有計畫</a>
+		// 						        </li>
+		// 						        <li id='btn2'><a href="#">集資金額</a>
+		// 						        </li>
+		// 						        <li id='btn3'><a href="#">最後衝刺</a>
+		// 						         </li>
+		// 						        <li id='btn4'><a href="#">最新開團</a>
+		// 						        </li>
+		// 						        <li ><a href="#" >許願地區</a>
+		// 						            <ul id='btn5' name='0'>
+		// 						                <li><a href="#">台灣</a>
+		// 						                    <ul>
+		// 						                        <li><a href="#">北北基</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">台北市</a></li>
+		// 						                                <li><a href="#">新北市</a></li>
+		// 						                                <li><a href="#">基隆市</a></li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">桃竹苗</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">桃園市</a></li>
+		// 						                                <li><a href="#">新竹市</a></li>
+		// 						                                <li><a href="#">新竹縣</a></li>
+		// 						                                <li><a href="#">苗栗縣</a></li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">中彰投</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">台中市</a></li>
+		// 						                                <li><a href="#">彰化縣</a></li>
+		// 						                                <li><a href="#">南投縣</a></li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">雲嘉南</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">雲林縣</a></li>
+		// 						                                <li><a href="#">嘉義市</a></li>
+		// 						                                <li><a href="#">嘉義縣</a></li>
+		// 						                                <li><a href="#">台南市</a></li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">高屏</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">高雄市</a></li>
+		// 						                                <li><a href="#">屏東縣</a></li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">宜花東</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">宜蘭縣</a></li>
+		// 						                                <li><a href="#">花蓮縣</a></li>
+		// 						                                <li><a href="#">台東縣</a></li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">離島地區</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">澎湖縣</a></li>
+		// 						                                <li><a href="#">金門縣</a></li>
+		// 						                                <li><a href="#">連江縣</a></li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                    </ul>
+		// 						                </li><!--台灣 -->
+		// 						                <li><a href="#">日本</a>
+		// 						                    <ul>
+		// 						                        <li><a href="#">北海道</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">道北</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">旭川</a></li>
+		// 						                                        <li><a href="#">美瑛</a></li>
+		// 						                                        <li><a href="#">富良野</a></li>
+		// 						                                        <li><a href="#">層雲峽</a></li>
+		// 						                                        <li><a href="#">稚內</a></li>
+		// 						                                        <li><a href="#">留萌</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">道央</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">札幌</a></li>
+		// 						                                        <li><a href="#">小樽</a></li>
+		// 						                                        <li><a href="#">苫小木</a></li>
+		// 						                                        <li><a href="#">洞爺湖</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">道東</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">帶廣</a></li>
+		// 						                                        <li><a href="#">網走</a></li>
+		// 						                                        <li><a href="#">釧路</a></li>
+		// 						                                        <li><a href="#">阿寒湖</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">道南</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">函館</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">東北地方</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">青森</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">弘前</a></li>
+		// 						                                        <li><a href="#">津輕</a></li>
+		// 						                                        <li><a href="#">陸奧</a></li>
+		// 						                                        <li><a href="#">八戶</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">岩手</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">盛岡</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">秋田</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">秋田</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">宮城</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">仙台</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">山形</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">山形</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">福島</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">福島</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">關東地方</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">茨城</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">水戶</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">栃木</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">宇都宮</a></li>
+		// 						                                        <li><a href="#">日光</a></li>
+		// 						                                        <li><a href="#">佐野</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">群馬</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">前橋</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">埼玉</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">埼玉</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">千葉</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">千葉</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">東京</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">東京</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">神奈川</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">橫濱</a></li>
+		// 						                                        <li><a href="#">箱根</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">中部地方</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">山梨</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">甲府</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">長野</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">長野</a></li>
+		// 						                                        <li><a href="#">輕井澤</a></li>
+		// 						                                        <li><a href="#">野澤溫泉</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">新潟</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">新潟</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">富山</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">富山</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">石川</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">金澤</a></li>
+		// 						                                        <li><a href="#">加賀</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">福井</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">福井</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">靜岡</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">靜岡</a></li>
+		// 						                                        <li><a href="#">伊豆</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">愛知</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">名古屋</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">岐阜</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">岐阜</a></li>
+		// 						                                        <li><a href="#">美濃</a></li>
+		// 						                                        <li><a href="#">飛驒地區</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">近畿地方</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">滋賀</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">大津</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">京都</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">京都</a></li>
+		// 						                                        <li><a href="#">宇治</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">大阪</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">大阪</a></li>
+		// 						                                        <li><a href="#">堺</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">兵庫</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">神戶</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">奈良</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">奈良</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">三重</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">津</a></li>
+		// 						                                        <li><a href="#">伊勢</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">和歌山</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">和歌山</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
 
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">中國地方</a>
-								                            <ul>
-								                                <li><a href="#">鳥取</a>
-								                                    <ul>
-								                                        <li><a href="#">鳥取</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">島根</a>
-								                                    <ul>
-								                                        <li><a href="#">松江</a></li>
-								                                        <li><a href="#">石見</a></li>
-								                                        <li><a href="#">出雲</a></li>
-								                                        <li><a href="#">隱岐</a></li>
-								                                        <li><a href="#">溫泉津溫泉</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">岡山</a>
-								                                    <ul>
-								                                        <li><a href="#">岡山</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">廣島</a>
-								                                    <ul>
-								                                        <li><a href="#">廣島</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">山口</a>
-								                                    <ul>
-								                                        <li><a href="#">山口</a></li>
-								                                    </ul>
-								                                </li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">四國</a>
-								                            <ul>
-								                                <li><a href="#">德島</a>
-								                                    <ul>
-								                                        <li><a href="#">德島</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">香川</a>
-								                                    <ul>
-								                                        <li><a href="#">高松</a></li>
-								                                        <li><a href="#">讚岐</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">愛媛</a>
-								                                    <ul>
-								                                        <li><a href="#">松山</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">高知</a>
-								                                    <ul>
-								                                        <li><a href="#">高知</a></li>
-								                                    </ul>
-								                                </li>
-								                            </ul>
-								                        </li>
-								                        <li><a href="#">九州</a>
-								                            <ul>
-								                                <li><a href="#">福岡</a>
-								                                    <ul>
-								                                        <li><a href="#">博多</a></li>
-								                                        <li><a href="#">北九州</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">佐賀</a>
-								                                    <ul>
-								                                        <li><a href="#">佐賀</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">長崎</a>
-								                                    <ul>
-								                                        <li><a href="#">長崎</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">熊本</a>
-								                                    <ul>
-								                                        <li><a href="#">熊本</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">大分</a>
-								                                    <ul>
-								                                        <li><a href="#">大分</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">宮崎</a>
-								                                    <ul>
-								                                        <li><a href="#">宮崎</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">鹿兒島</a>
-								                                    <ul>
-								                                        <li><a href="#">鹿兒島</a></li>
-								                                        <li><a href="#">薩摩</a></li>
-								                                    </ul>
-								                                </li>
-								                                <li><a href="#">沖繩</a>
-								                                    <ul>
-								                                        <li><a href="#">那霸</a></li>
-								                                    </ul>
-								                                </li>
-								                            </ul>
-								                        </li>
-								                    </ul>
-								                </li>
-								            </ul>
-								        </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">中國地方</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">鳥取</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">鳥取</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">島根</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">松江</a></li>
+		// 						                                        <li><a href="#">石見</a></li>
+		// 						                                        <li><a href="#">出雲</a></li>
+		// 						                                        <li><a href="#">隱岐</a></li>
+		// 						                                        <li><a href="#">溫泉津溫泉</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">岡山</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">岡山</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">廣島</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">廣島</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">山口</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">山口</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">四國</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">德島</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">德島</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">香川</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">高松</a></li>
+		// 						                                        <li><a href="#">讚岐</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">愛媛</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">松山</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">高知</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">高知</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                        <li><a href="#">九州</a>
+		// 						                            <ul>
+		// 						                                <li><a href="#">福岡</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">博多</a></li>
+		// 						                                        <li><a href="#">北九州</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">佐賀</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">佐賀</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">長崎</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">長崎</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">熊本</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">熊本</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">大分</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">大分</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">宮崎</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">宮崎</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">鹿兒島</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">鹿兒島</a></li>
+		// 						                                        <li><a href="#">薩摩</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                                <li><a href="#">沖繩</a>
+		// 						                                    <ul>
+		// 						                                        <li><a href="#">那霸</a></li>
+		// 						                                    </ul>
+		// 						                                </li>
+		// 						                            </ul>
+		// 						                        </li>
+		// 						                    </ul>
+		// 						                </li>
+		// 						            </ul>
+		// 						        </li>
 
-								    </ul></div><!-- 地區 -->
-								    <div>
-								    <button type='btn' class='btn btn-light'><</button>
-								    <button type='btn' class='btn btn-light'>></button>
-								    </div>`
-						$("#odbyvalue").html(txt2);
-						toplibtn5click();
-						btn1click();
-					}
-					// onload();
-					$.ajax({
-						type: "GET",
-						url: "/TeamWork/GrouponSearch?" + str_value,
-						success: function (jsonback) {
+		// 						    </ul></div><!-- 地區 -->
+		// 						    <div>
+		// 						    <button type='btn' class='btn btn-light'><</button>
+		// 						    <button type='btn' class='btn btn-light'>></button>
+		// 						    </div>`
+		// 				$("#odbyvalue").html(txt2);
+		// 				toplibtn5click();
+		// 				btn1click();
+		// 			}
+		// 			// onload();
+		// 			$.ajax({
+		// 				type: "GET",
+		// 				url: "/TeamWork/GrouponSearch?" + str_value,
+		// 				success: function (jsonback) {
 						
-							if (jsonback == "") {
-								var txt = `<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/cone.png' style='margin: auto'><p padding-top:10px;>目前網站施工中<span style='color:red;font-size:20px;'></span> ，請重新搜尋</p></div>`
-								txt += `<div><form method="GET" action="/TeamWork/search">
-										<div class="input-group mb-1" style='width:60%;margin:auto'>
-                   						<div class="input-group-prepend">
-                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
-										<option  value="groupon" class="dropdown-item">限時團購</option>
-										<option  value="wish" class="dropdown-item">許願池</option>
-										<option  value="store" class="dropdown-item">購物商城</option>
-										</select>
-										</div>
-										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
-										<div class="input-group-append">
-										<button   class="btn btn-outline-secondary" type="submit">Search</button>
-										</div>
-										</div>
-										</form></div></div>`
-										$("#odbyvalue").html(txt);
-							}
-							//	var json=JSON.parse(jsonback);
-							//	alert(json);
-							else {
-								var txt = "";
-								dyload();
+		// 					if (jsonback == "") {
+		// 						var txt = `<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/cone.png' style='margin: auto'><p padding-top:10px;>目前網站施工中<span style='color:red;font-size:20px;'></span> ，請重新搜尋</p></div>`
+		// 						txt += `<div><form method="GET" action="/TeamWork/search">
+		// 								<div class="input-group mb-1" style='width:60%;margin:auto'>
+        //            						<div class="input-group-prepend">
+        //                 				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+		// 								<option  value="groupon" class="dropdown-item">限時團購</option>
+		// 								<option  value="wish" class="dropdown-item">許願池</option>
+		// 								<option  value="store" class="dropdown-item">購物商城</option>
+		// 								</select>
+		// 								</div>
+		// 								<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+		// 								<div class="input-group-append">
+		// 								<button   class="btn btn-outline-secondary" type="submit">Search</button>
+		// 								</div>
+		// 								</div>
+		// 								</form></div></div>`
+		// 								$("#odbyvalue").html(txt);
+		// 					}
+		// 					//	var json=JSON.parse(jsonback);
+		// 					//	alert(json);
+		// 					else {
+		// 						var txt = "";
+		// 						dyload();
 
-								for (x = 0; x < jsonback.length; x++) {
-									// 												alert("in txt")
-									txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
+		// 						for (x = 0; x < jsonback.length; x++) {
+		// 							// 												alert("in txt")
+		// 							txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
 
-									txt += "<div class='card card-search'>";
-									if (jsonback[x].storeImages == "") {
-										showStoreImages = "/TeamWork/web/images/form-cat.png";
-									} else {
-										// 													alert(jsonback[6].storeImages[0].sI_context)
-										// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
-										showStoreImages = jsonback[x].storeImages[0].sI_context;
-									}
-									if (jsonback[x].g_goal != "") {
-										showProgressbar = jsonback[x].g_sumPrice / 10;
-									}
-									txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
-									txt += "<div class='card-body'>";
-									txt += "<h5 class='card-title'>"
-										+ jsonback[x].g_title
-										+ "</h5>";
-									txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-										+ jsonback[x].g_context.substr(0, 36)
-									txt += (jsonback[x].g_context.length > 36) ? "..." : ""
-									txt += "</p></div>";
-									txt += "<div>"
-									txt += "<p>開團地區:" + jsonback[x].DistrictType.d_name + "</p>"
-									txt += "<p>交易方式:" + jsonback[x].DistrictType.d_name + "</p>"
-									txt += "</div>"
-									txt += "<div class='progress'>"
-									txt += "<div class='progress-bar' role='progressbar' style='width:'" + showProgressbar + "'% ; aria-valuenow='" + showProgressbar + "' aria-valuemin='0' aria-valuemax='100'>'" + showProgressbar + "'%</div>"
-									txt += "</div>"
-									txt += "<div>"
-									txt += "<p class='card-text'>剩下時間:"
-										+ jsonback[x].g_endDate
-										+ "</p>"
-									txt += "<p class='card-text'>:"
-										+ jsonback[x].g_sumPrice
-										+ "</p>"
-									txt += "</div>"
+		// 							txt += "<div class='card card-search'>";
+		// 							if (jsonback[x].storeImages == "") {
+		// 								showStoreImages = "/TeamWork/web/images/form-cat.png";
+		// 							} 
+		// 							// else {
+		// 							// 	// 													alert(jsonback[6].storeImages[0].sI_context)
+		// 							// 	// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
+		// 							// 	showStoreImages = jsonback[x].storeImages[0].sI_context;
+		// 							// }
+		// 							if (jsonback[x].g_goal != "") {
+		// 								showProgressbar = jsonback[x].g_sumPrice / 10;
+		// 							}
+		// 							txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
+		// 							txt += "<div class='card-body'>";
+		// 							txt += "<h5 class='card-title'>"
+		// 								+ jsonback[x].g_title
+		// 								+ "</h5>";
+		// 							txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
+		// 								+ jsonback[x].g_context.substr(0, 36)
+		// 							txt += (jsonback[x].g_context.length > 36) ? "..." : ""
+		// 							txt += "</p></div>";
+		// 							txt += "<div>"
+		// 							txt += "<p>開團地區:" + jsonback[x].DistrictType.d_name + "</p>"
+		// 							txt += "<p>交易方式:" + jsonback[x].DistrictType.d_name + "</p>"
+		// 							txt += "</div>"
+		// 							txt += "<div class='progress'>"
+		// 							txt += "<div class='progress-bar' role='progressbar' style='width:'" + showProgressbar + "'% ; aria-valuenow='" + showProgressbar + "' aria-valuemin='0' aria-valuemax='100'>'" + showProgressbar + "'%</div>"
+		// 							txt += "</div>"
+		// 							txt += "<div>"
+		// 							txt += "<p class='card-text'>剩下時間:"
+		// 								+ jsonback[x].g_endDate
+		// 								+ "</p>"
+		// 							txt += "<p class='card-text'>:"
+		// 								+ jsonback[x].g_sumPrice
+		// 								+ "</p>"
+		// 							txt += "</div>"
 
-									txt += "</div>";
-									txt += "</div>";
-									txt += "</div>";
-									// 	+ jsonback[x].sP_averageAssess																				
-								}
-								$("#tableMenu").html(txt);
-								orderby();
-							}
+		// 							txt += "</div>";
+		// 							txt += "</div>";
+		// 							txt += "</div>";
+		// 							// 	+ jsonback[x].sP_averageAssess																				
+		// 						}
+		// 						$("#tableMenu").html(txt);
+		// 						orderby();
+		// 					}
 
-						}
-					});
+		// 				}
+		// 			});
 
-				});
-		$("#exampleFormControlSelect1").change(function () {
-			var exampleFormControlSelect1 = $("#exampleFormControlSelect1").val();
-			$.ajax({
-				type: "POST",
-				url: "/TeamWork/changeStoreFormSelect",
-				data: { "p_id": exampleFormControlSelect1 },
-				success: function (jsonback) {
+		// 		});
+		// $("#exampleFormControlSelect1").change(function () {
+		// 	var exampleFormControlSelect1 = $("#exampleFormControlSelect1").val();
+		// 	$.ajax({
+		// 		type: "POST",
+		// 		url: "/TeamWork/changeStoreFormSelect",
+		// 		data: { "p_id": exampleFormControlSelect1 },
+		// 		success: function (jsonback) {
 				
-					var json = JSON.parse(jsonback);
-					//             	alert(json);
-					var txtselect = "";
-					txtselect += "<option value=0>--請選擇--</option>";
-					//           	for( x = 0 ; x< json.length ; x++) {            
-					//                 txtselect += "<option value="+x+">"+json[x].name+"</option>";        
-					//            	}
-					// 			var txtselect = "" ; 
-					for (x = 0; x < json.length; x++) {
-						txtselect += "<option value=" + x + ">"
-							+ json[x].p_name
-							+ "</option>";
+		// 			var json = JSON.parse(jsonback);
+		// 			//             	alert(json);
+		// 			var txtselect = "";
+		// 			txtselect += "<option value=0>--請選擇--</option>";
+		// 			//           	for( x = 0 ; x< json.length ; x++) {            
+		// 			//                 txtselect += "<option value="+x+">"+json[x].name+"</option>";        
+		// 			//            	}
+		// 			// 			var txtselect = "" ; 
+		// 			for (x = 0; x < json.length; x++) {
+		// 				txtselect += "<option value=" + x + ">"
+		// 					+ json[x].p_name
+		// 					+ "</option>";
 
-					}
-					$("#exampleFormControlSelect2").html(txtselect);
-				}
-			});
-		});
-		function toplibtn5click() {
-			$("#btn5 a").click(function () {
+		// 			}
+		// 			$("#exampleFormControlSelect2").html(txtselect);
+		// 		}
+		// 	});
+		// });
+		// function toplibtn5click() {
+		// 	$("#btn5 a").click(function () {
 
-				//  var count=$(this).index();//获取li的下标
-				//  var Tresult=Uarry.eq(count).text();
-				var tt = $(this).text()
+		// 		//  var count=$(this).index();//获取li的下标
+		// 		//  var Tresult=Uarry.eq(count).text();
+		// 		var tt = $(this).text()
 			
-				$("#btn5").attr('name', tt);
+		// 		$("#btn5").attr('name', tt);
 			
-				changefrom();
-				// $("#tresult").val(Tresult)
-				// $(this).hide();
-				// $(this).toggle();
-				// var orderColumn = $(this).attr("name");
-			});
-		}
-		$("[name='selectChange']")
-			.change(
-				function () {
-					changefrom();
-				});
+		// 		changefrom();
+		// 		// $("#tresult").val(Tresult)
+		// 		// $(this).hide();
+		// 		// $(this).toggle();
+		// 		// var orderColumn = $(this).attr("name");
+		// 	});
+		// }
+		// $("[name='selectChange']")
+		// 	.change(
+		// 		function () {
+		// 			changefrom();
+		// 		});
 
-		function btn1click() {
-			$("#btn1").click(function () {
-				$("#haha").attr('name', '1');
+		// function btn1click() {
+		// 	$("#btn1").click(function () {
+		// 		$("#haha").attr('name', '1');
 				
-				changefrom();
-			})
-			$("#btn2").click(function () {
-				$("#haha").attr('name', '2');
+		// 		changefrom();
+		// 	})
+		// 	$("#btn2").click(function () {
+		// 		$("#haha").attr('name', '2');
 				
-				changefrom();
-			})	
-			$("#btn3").click(function () {
-				$("#haha").attr('name', '3');
+		// 		changefrom();
+		// 	})	
+		// 	$("#btn3").click(function () {
+		// 		$("#haha").attr('name', '3');
 				
-				changefrom();
-			})
-			$("#btn4").click(function () {
-				$("#haha").attr('name', '4');
+		// 		changefrom();
+		// 	})
+		// 	$("#btn4").click(function () {
+		// 		$("#haha").attr('name', '4');
 			
-				changefrom();
-			})
-		}
-		$("#exampleFormControlSelect1")
-			.change(
-				function () {
-					var exampleFormControlSelect1 = $(
-						"#exampleFormControlSelect1")
-						.val();
-					$.ajax({
-						type: "POST",
-						url: "/TeamWork/changeStoreFormSelect",
-						data: { "p_id": exampleFormControlSelect1 },
-						success: function (jsonback) {
+		// 		changefrom();
+		// 	})
+		// }
+		// $("#exampleFormControlSelect1")
+		// 	.change(
+		// 		function () {
+		// 			var exampleFormControlSelect1 = $(
+		// 				"#exampleFormControlSelect1")
+		// 				.val();
+		// 			$.ajax({
+		// 				type: "POST",
+		// 				url: "/TeamWork/changeStoreFormSelect",
+		// 				data: { "p_id": exampleFormControlSelect1 },
+		// 				success: function (jsonback) {
 						
-							var json = JSON.parse(jsonback);
-							//             	alert(json);
-							var txtselect = "";
-							txtselect += "<option value=0>--請選擇--</option>";
-							//           	for( x = 0 ; x< json.length ; x++) {            
-							//                 txtselect += "<option value="+x+">"+json[x].name+"</option>";        
-							//            	}
-							// 			var txtselect = "" ; 
-							for (x = 0; x < json.length; x++) {
-								txtselect += "<option value=" + x + ">"
-									+ json[x].p_name
-									+ "</option>";
+		// 					var json = JSON.parse(jsonback);
+		// 					//             	alert(json);
+		// 					var txtselect = "";
+		// 					txtselect += "<option value=0>--請選擇--</option>";
+		// 					//           	for( x = 0 ; x< json.length ; x++) {            
+		// 					//                 txtselect += "<option value="+x+">"+json[x].name+"</option>";        
+		// 					//            	}
+		// 					// 			var txtselect = "" ; 
+		// 					for (x = 0; x < json.length; x++) {
+		// 						txtselect += "<option value=" + x + ">"
+		// 							+ json[x].p_name
+		// 							+ "</option>";
 
-							}
-							$("#exampleFormControlSelect2").html(txtselect);
-						}
-					});
-				});
+		// 					}
+		// 					$("#exampleFormControlSelect2").html(txtselect);
+		// 				}
+		// 			});
+		// 		});
 
 	
-        function changefrom() {
-			var catchsearch = "search=" + $("#headsearch").val();
+        // function changefrom() {
+		// 	var catchsearch = "search=" + $("#headsearch").val();
 		
-			var fromurl = "/TeamWork/GrouponSearchChange?" + catchsearch;
-			if ($(
-				"#exampleFormControlSelect1")
-				.val() != 0) {
-				var exampleFormControlSelect1 = $(
-					"#exampleFormControlSelect1")
-					.val();
-				fromurl += "&a="
-					+ exampleFormControlSelect1;
-			}
-			if ($(
-				"#exampleFormControlSelect2")
-				.val() != 0) {
-				var exampleFormControlSelect2 = $(
-					"#exampleFormControlSelect2")
-					.val();
-				fromurl += "&b="
-					+ exampleFormControlSelect2;
-			}
+		// 	var fromurl = "/TeamWork/GrouponSearchChange?" + catchsearch;
+		// 	if ($(
+		// 		"#exampleFormControlSelect1")
+		// 		.val() != 0) {
+		// 		var exampleFormControlSelect1 = $(
+		// 			"#exampleFormControlSelect1")
+		// 			.val();
+		// 		fromurl += "&a="
+		// 			+ exampleFormControlSelect1;
+		// 	}
+		// 	if ($(
+		// 		"#exampleFormControlSelect2")
+		// 		.val() != 0) {
+		// 		var exampleFormControlSelect2 = $(
+		// 			"#exampleFormControlSelect2")
+		// 			.val();
+		// 		fromurl += "&b="
+		// 			+ exampleFormControlSelect2;
+		// 	}
 	
-			// 運送方式
-			if ($("#conditionCheck1").prop(
-				'checked') == true) {
-				if ($("#conditionCheck2").prop(
-				'checked') == true){
-					fromurl += "&c= true";
-					fromurl += "&d= false";
-				}else{
-					fromurl += "&c= true";
-					fromurl += "&jd= true";
-				}
+		// 	// 運送方式
+		// 	if ($("#conditionCheck1").prop(
+		// 		'checked') == true) {
+		// 		if ($("#conditionCheck2").prop(
+		// 		'checked') == true){
+		// 			fromurl += "&c= true";
+		// 			fromurl += "&d= false";
+		// 		}else{
+		// 			fromurl += "&c= true";
+		// 			fromurl += "&jd= true";
+		// 		}
 			
-			}else{
-				if ($("#conditionCheck2").prop(
-				'checked') == true){
-					fromurl += "&c=false";
-					fromurl += "&d= false";
-				}else{
-					fromurl += "&c= true";
-					fromurl += "&d= false";
-				}
+		// 	}else{
+		// 		if ($("#conditionCheck2").prop(
+		// 		'checked') == true){
+		// 			fromurl += "&c=false";
+		// 			fromurl += "&d= false";
+		// 		}else{
+		// 			fromurl += "&c= true";
+		// 			fromurl += "&d= false";
+		// 		}
 			
-			}
+		// 	}
 			
 
-			if ($('#haha').attr("name") != 0) {
-				var haha = $('#haha').attr("name");
-				fromurl += "&e=" + haha;
+		// 	if ($('#haha').attr("name") != 0) {
+		// 		var haha = $('#haha').attr("name");
+		// 		fromurl += "&e=" + haha;
 			
 			
-			}
-			if($("#btn5").attr("name")!=0){
-				var btn5 = $('#btn5').attr("name");
-				fromurl += "&f=" + btn5;
+		// 	}
+		// 	if($("#btn5").attr("name")!=0){
+		// 		var btn5 = $('#btn5').attr("name");
+		// 		fromurl += "&f=" + btn5;
 			
-			}
+		// 	}
 
 
-			$.ajax({
-					type: "GET",
+		// 	$.ajax({
+		// 			type: "GET",
 
-					url: fromurl,
+		// 			url: fromurl,
 
-					success: function (jsonback) {
+		// 			success: function (jsonback) {
 					
 
-						if (jsonback == "") {
-							var txt = `<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/cone.png' style='margin: auto'><p padding-top:10px;>目前網站施工中<span style='color:red;font-size:20px;'></span> ，請重新搜尋</p></div>`
-								txt += `<div><form method="GET" action="/TeamWork/search">
-										<div class="input-group mb-1" style='width:60%;margin:auto'>
-                   						<div class="input-group-prepend">
-                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
-										<option  value="groupon" class="dropdown-item">限時團購</option>
-										<option  value="wish" class="dropdown-item">許願池</option>
-										<option  value="store" class="dropdown-item">購物商城</option>
-										</select>
-										</div>
-										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
-										<div class="input-group-append">
-										<button   class="btn btn-outline-secondary" type="submit">Search</button>
-										</div>
-										</div>
-										</form></div></div>`
-										$("#odbyvalue").html(txt);
+		// 				if (jsonback == "") {
+		// 					var txt = `<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/cone.png' style='margin: auto'><p padding-top:10px;>目前網站施工中<span style='color:red;font-size:20px;'></span> ，請重新搜尋</p></div>`
+		// 						txt += `<div><form method="GET" action="/TeamWork/search">
+		// 								<div class="input-group mb-1" style='width:60%;margin:auto'>
+        //            						<div class="input-group-prepend">
+        //                 				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+		// 								<option  value="groupon" class="dropdown-item">限時團購</option>
+		// 								<option  value="wish" class="dropdown-item">許願池</option>
+		// 								<option  value="store" class="dropdown-item">購物商城</option>
+		// 								</select>
+		// 								</div>
+		// 								<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+		// 								<div class="input-group-append">
+		// 								<button   class="btn btn-outline-secondary" type="submit">Search</button>
+		// 								</div>
+		// 								</div>
+		// 								</form></div></div>`
+		// 								$("#odbyvalue").html(txt);
 
-									orderby();
-						}
+		// 							orderby();
+		// 				}
 
 
-						//	var json=JSON.parse(jsonback);
-						//	alert(json);
-						else {
-								var txt = "";
-								dyload();
+		// 				//	var json=JSON.parse(jsonback);
+		// 				//	alert(json);
+		// 				else {
+		// 						var txt = "";
+		// 						dyload();
 
-								for (x = 0; x < jsonback.length; x++) {
-									// 												alert("in txt")
-									txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
+		// 						for (x = 0; x < jsonback.length; x++) {
+		// 							// 												alert("in txt")
+		// 							txt += "<div class='col-lg-3' onclick='location.href=\"/TeamWork/web/view/product-detail.html?sP_id=" + jsonback[x].sP_id + "\"';>";
 
-									txt += "<div class='card card-search'>";
-									if (jsonback[x].storeImages == "") {
-										showStoreImages = "/TeamWork/web/images/form-cat.png";
-									} else {
-										// 													alert(jsonback[6].storeImages[0].sI_context)
-										// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
-										showStoreImages = jsonback[x].storeImages[0].sI_context;
-									}
-									if (jsonback[x].g_goal != "") {
-										showProgressbar = jsonback[x].g_sumPrice / 10;
-									}
-									txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
-									txt += "<div class='card-body'>";
-									txt += "<h5 class='card-title'>"
-										+ jsonback[x].g_title
-										+ "</h5>";
-									txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-										+ jsonback[x].g_context.substr(0, 36)
-									txt += (jsonback[x].g_context.length > 36) ? "..." : ""
-									txt += "</p></div>";
-									txt += "<div>"
-									txt += "<p>開團地區:" + jsonback[x].DistrictType.d_name + "</p>"
-									txt += "<p>交易方式:" + jsonback[x].DistrictType.d_name + "</p>"
-									txt += "</div>"
-									txt += "<div class='progress'>"
-									txt += "<div class='progress-bar' role='progressbar' style='width:'" + showProgressbar + "'% ; aria-valuenow='" + showProgressbar + "' aria-valuemin='0' aria-valuemax='100'>'" + showProgressbar + "'%</div>"
-									txt += "</div>"
-									txt += "<div>"
-									txt += "<p class='card-text'>剩下時間:"
-										+ jsonback[x].g_endDate
-										+ "</p>"
-									txt += "<p class='card-text'>:"
-										+ jsonback[x].g_sumPrice
-										+ "</p>"
-									txt += "</div>"
+		// 							txt += "<div class='card card-search'>";
+		// 							if (jsonback[x].storeImages == "") {
+		// 								showStoreImages = "/TeamWork/web/images/form-cat.png";
+		// 							} 
+		// 							// else {
+		// 								// 													alert(jsonback[6].storeImages[0].sI_context)
+		// 								// 													showStoreImages = "/TeamWork/web/images/form-cat.png";
+		// 								// showStoreImages = jsonback[x].storeImages[0].sI_context;
+		// 							// }
+		// 							if (jsonback[x].g_goal != "") {
+		// 								showProgressbar = jsonback[x].g_sumPrice / 10;
+		// 							}
+		// 							txt += "<img class='card-img-top' src='" + showStoreImages + "' alt='Card image cap'>";
+		// 							txt += "<div class='card-body'>";
+		// 							txt += "<h5 class='card-title'>"
+		// 								+ jsonback[x].g_title
+		// 								+ "</h5>";
+		// 							txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
+		// 								+ jsonback[x].g_context.substr(0, 36)
+		// 							txt += (jsonback[x].g_context.length > 36) ? "..." : ""
+		// 							txt += "</p></div>";
+		// 							txt += "<div>"
+		// 							txt += "<p>開團地區:" + jsonback[x].DistrictType.d_name + "</p>"
+		// 							txt += "<p>交易方式:" + jsonback[x].DistrictType.d_name + "</p>"
+		// 							txt += "</div>"
+		// 							txt += "<div class='progress'>"
+		// 							txt += "<div class='progress-bar' role='progressbar' style='width:'" + showProgressbar + "'% ; aria-valuenow='" + showProgressbar + "' aria-valuemin='0' aria-valuemax='100'>'" + showProgressbar + "'%</div>"
+		// 							txt += "</div>"
+		// 							txt += "<div>"
+		// 							txt += "<p class='card-text'>剩下時間:"
+		// 								+ jsonback[x].g_endDate
+		// 								+ "</p>"
+		// 							txt += "<p class='card-text'>:"
+		// 								+ jsonback[x].g_sumPrice
+		// 								+ "</p>"
+		// 							txt += "</div>"
 
-									txt += "</div>";
-									txt += "</div>";
-									txt += "</div>";
-									// 	+ jsonback[x].sP_averageAssess																				
-								}
-								$("#tableMenu").html(txt);
-								orderby();
-							}
+		// 							txt += "</div>";
+		// 							txt += "</div>";
+		// 							txt += "</div>";
+		// 							// 	+ jsonback[x].sP_averageAssess																				
+		// 						}
+		// 						$("#tableMenu").html(txt);
+		// 						orderby();
+		// 					}
 
-					}
-				})
-		}
+		// 			}
+		// 		})
+		// }
 
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
