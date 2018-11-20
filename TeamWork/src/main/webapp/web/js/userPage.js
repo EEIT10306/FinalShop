@@ -36,12 +36,19 @@ $(".AssessStar").click(function () {
 
 // 會員中心的slidebar使用者的預設照片處理
 function defaultUserPic(imgPath) {
-    if (imgPath=="" || imgPath==null) {
-        imgPath = "../images/user/account/profile/001.png"
+    if (imgPath=="" || imgPath==null|| typeof(imgPath) == "undefined") {
+        imgPath = "../images/user/account/profile/default.png"
     }
     return imgPath
 }
 
+// 會員中心的產品預設照片處理
+function defaultProdPic(imgPath){
+    if (imgPath=="" || imgPath==null || typeof(imgPath) == "undefined") {
+        imgPath = "../images/product/default.jpeg"
+    }
+    return imgPath
+}
 // 下載Member資料
 function loadMemberData(userID) {
     $.ajax({
@@ -62,6 +69,7 @@ function updateMemberData(memberData) {
     $("#member_username").text(memberData.m_name);
     $("#member_coin").text(memberData.m_coin);
     $("#member_pic").attr("src", defaultUserPic(memberData.m_photo));
+    $("#seeProfile").attr("href","userPage_seeProfile.html?id="+memberData.m_id);
 }
 
 
