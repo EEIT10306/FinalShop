@@ -56,7 +56,7 @@
 										<option value="1">華南商業銀行</option>
 										<option value="2">臺灣銀行</option>
 										<option value="3">臺灣土地銀行</option>
-										<option value="4">合作金庫商業銀行</option>
+										<option value="4" id="bardSelect">合作金庫商業銀行</option>
 										<option value="5">第一商業銀行</option>
 										<option value="6">彰化商業銀行</option>
 										<option value="7">上海商業儲蓄銀行</option>
@@ -94,7 +94,10 @@
 							</div>
 							<div class="form-group row stepControlRow">
 								<div class="col-sm-5"></div>
-								<div class="col-sm-7">
+								<div class="col-sm-3">
+									<input type="button" class="btn btn-sm seller-verify_btn" value="DEMO" id="oneKeyin_btn"/>
+								</div>
+								<div class="col-sm-3">
 									<input type="button" class="btn btn-sm seller-verify_btn btn_nextStep" value="NEXT" />
 								</div>
 							</div>
@@ -140,7 +143,7 @@
 										<option value="4">手機平板與周邊</option>
 										<option value="5">嬰幼童與母親</option>
 										<option value="6">3C</option>
-										<option value="7">居家生活</option>
+										<option value="7" id="p_idSelect">居家生活</option>
 										<option value="8">家電影音</option>
 										<option value="9">女生配件</option>
 										<option value="10">男生包包與配件</option>
@@ -161,7 +164,7 @@
 							<div class="form-group row">
 								<label for="inputPassword" class="col-sm-5 col-form-label">商場描述</label>
 								<div class="col-sm-7">
-									<textarea id="" rows="3" class="form-control" placeholder="請輸入簡略商場描述" name="s_context" required></textarea>
+									<textarea id="s_context" rows="3" class="form-control" placeholder="請輸入簡略商場描述" name="s_context" required></textarea>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -197,7 +200,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<!-- SweetAlert -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
 	<!-- Optional JavaScript -->
 	<script src="../js/userPage.js"></script>
 	<script>
@@ -260,13 +263,25 @@
 							type: 'success',
 							confirmButtonText: '太好了！',
 							confirmButtonColor: '#525abb'
-						}).then(function(){							
+						}).then(function () {
 							window.location.href = "userPage_profile.html";
 						})
 					}
 				});
 				return false; //阻止form submit
 			});
+			$("#oneKeyin_btn").click(function(){
+				$("#bardSelect").attr("selected","true")
+				$("#bardName").val("大同分行")
+				$("#cardName").val("曾敏婷")
+				$("#card").val("4601470525678453")
+				$("#store_name").val("KW亞誼樂生活")
+				$("#store_tel").val("02-25922510")
+				$("#store_add").val("新北市板橋區大觀路一段59號")
+				$("#p_idSelect").attr("selected","true")
+				$("#s_context").val("以『品味生活』的概念出發，提供完整生活的系列商品。【品牌】CAMRY、HUKUKU福可、COCORO樂品、BeautyFans、CatchYou凱趣妮")
+				$("#s_web").val("https://oneKeyin.com.tw")
+			})
 		});
 	</script>
 </body>
