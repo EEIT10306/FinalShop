@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.bean.Member;
+import model.service.AchievementService;
 import model.service.MemberService;
 
 @Controller
@@ -26,6 +28,8 @@ public class RegisterController {
 	
 	@Autowired
 	MemberService memberservice;
+	@Autowired
+	AchievementService achievementService;
 	
 	@RequestMapping(value = "/RegisterServlet" , method = RequestMethod.POST )
 	@ResponseBody
@@ -57,14 +61,15 @@ public class RegisterController {
 		} else {
 			member.setM_name(replaceSpecialCharater(member.getM_name()));
 		}
-		
+		Member list = null;
 		//呼叫model
 		//根據model執行結果，導向view
 		if(memberservice.idExists(member.getM_account())) {
 			return "existsAccount";
 		} else {
 			try {
-				memberservice.insert(member);
+				list = memberservice.insert(member);
+				achievementService.insertInitAchievementTask(list);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -91,6 +96,7 @@ public class RegisterController {
 		System.out.println(json.getString("email"));
 		
 		Member member = new Member();
+		Member list = null;
 		if(memberservice.idExists(json.getString("email"))) {
 			System.out.println("existsAccount");
 			return "existsAccount";
@@ -100,7 +106,8 @@ public class RegisterController {
 				member.setM_password("facebook");
 				member.setM_name(json.getString("name"));
 				member.setM_mail(json.getString("email"));
-				memberservice.insert(member);
+				list = memberservice.insert(member);
+				achievementService.insertInitAchievementTask(list);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -117,6 +124,7 @@ public class RegisterController {
 		System.out.println(json.getString("email"));
 		
 		Member member = new Member();
+		Member list = null;
 		if(memberservice.idExists(json.getString("email"))) {
 			return "existsAccount";
 		} else {
@@ -125,7 +133,8 @@ public class RegisterController {
 				member.setM_password("google");
 				member.setM_name(json.getString("name"));
 				member.setM_mail(json.getString("email"));
-				memberservice.insert(member);
+				list = memberservice.insert(member);
+				achievementService.insertInitAchievementTask(list);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

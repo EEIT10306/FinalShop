@@ -47,7 +47,6 @@ public class WishProductService {
 	public List<WishProduct> selectWishProductsByWBean(WishProduct bean) throws SQLException{
 		String hql = "where w_id = " + bean.getW_id();
 		hql += " Order by wP_id desc";
-		System.out.println("123");
 		List<WishProduct> list = wishProductDaoImpl.selectHql(hql);
 		return list;
 	}

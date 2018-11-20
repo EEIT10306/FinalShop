@@ -63,7 +63,7 @@ public class WishSearchService {
 	public List<Wish> getWishLoadList(String search) {
 		String str = "";
 		if (search != null) {
-			str += "Where w_title like '%" + search + "%' or w_context like '%" + search + "%' order by w_changeTime desc";
+			str += "Where (w_title like '%" + search + "%' or w_context like '%" + search + "%') and w_stateId=28 order by w_changeTime desc";
 
 			try {
 				return wishdaoImpl.selectHql(str);
@@ -86,7 +86,7 @@ public class WishSearchService {
 //		if(f!=null) {		
 //			f1 = Integer.parseInt(f);
 //		}
-		str += "Where (w_title like '%" + search + "%' or w_context like '%" + search + "%') ";
+		str += "Where (w_title like '%" + search + "%' or w_context like '%" + search + "%') and w_stateId=28  ";
 		str += (a != null) ? " and product.p_parentsId =" + a + " " : "";
 		str += (b != null) ? " and product.p_id =" + b + " " : "";
 		str += (c != null && d != null) ? " and (sP_price > " + c + " and sP_price<" + d + ") " : "";

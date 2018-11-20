@@ -107,19 +107,19 @@ if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
                 if(data=="accountNoRepeat"){
                     console.log("帳號沒有重複");
                 } else if (data==email+"facebook"){
-                    alert("抓到FB帳號cookie")
+                    // alert("抓到FB帳號cookie")
                     fbLogout(email)         
                 } else if (data==email+"google"){
-                    alert("抓到Google帳號cookie")
+                    // alert("抓到Google帳號cookie")
                     signOut(email)
                 } else {
-                    alert("抓到一般帳號cookie")
+                    // alert("抓到一般帳號cookie")
                     DelCookie(data)
                 }
             },
         error:function(data){
             console.log(data);
-            alert("抓帳號cookie失敗")
+            // alert("抓帳號cookie失敗")
             }   
         });
     }
@@ -128,7 +128,7 @@ if(cookies==null|cookies==false|cookies==undefined|cookies=="undefined"){
 //-----------------------------------------------------
 //删除Cookie
 function  DelCookie(name){
-    alert("移除cookie ="+name)
+    // alert("移除cookie ="+name)
     expire_days = -1; // 過期日期(天)
     var day = new Date();
     day.setTime(day.getTime() + (expire_days * 24 * 60 * 60 * 1000));

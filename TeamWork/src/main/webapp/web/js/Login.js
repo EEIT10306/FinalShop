@@ -9,7 +9,7 @@ $("#Login").click(function(e){
         data:{"m_account":account,"m_password":password},
         
         success:function(data){
-            alert(data);
+            // alert(data);
             $("#errorAccount").html("")
             $("#errorPassword").html("")
             
@@ -30,9 +30,9 @@ $("#Login").click(function(e){
                 document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
                 document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
                 document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
-                alert(document.cookie)
+                // alert(document.cookie)
 
-                alert("登入成功")
+                // alert("登入成功")
                 window.location.href=window.history.back();
                 
                 

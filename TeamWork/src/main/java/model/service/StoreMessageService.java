@@ -17,7 +17,7 @@ public class StoreMessageService {
 	StoreMessageDao storeMessageDaoImpl;
 	
 	public List<StoreMessage> selectAllStoreMessageBySpId(Integer Sp_id) throws SQLException{
-		String hql = " Where sP_id = " +Sp_id;
+		String hql = " Where sP_id = " +Sp_id+" and sM_stateId = 21";
 		hql += " Order By sM_time desc";
 		System.out.println(storeMessageDaoImpl.selectHql(hql).get(0).getStoreProduct().getStoreImages());
 		return storeMessageDaoImpl.selectHql(hql);
@@ -25,5 +25,13 @@ public class StoreMessageService {
 	
 	public StoreMessage insert(StoreMessage bean) throws SQLException {
 		return storeMessageDaoImpl.insert(bean);
+	}
+	
+	public StoreMessage delete(StoreMessage bean) throws SQLException {
+		return storeMessageDaoImpl.update(bean);
+	}
+
+	public StoreMessage update(StoreMessage bean) throws SQLException {
+		return storeMessageDaoImpl.update(bean);
 	}
 }
