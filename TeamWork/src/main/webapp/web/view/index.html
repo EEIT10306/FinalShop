@@ -625,6 +625,7 @@
             $.get("footer.html", function(data){
                 $("#footer").html(data);
             })
+            window.history.pushState("", "page 2", "index.html")
         })
     </script>
 </body>

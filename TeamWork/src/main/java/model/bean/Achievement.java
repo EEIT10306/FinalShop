@@ -18,7 +18,7 @@ public class Achievement {
 	private String a_context;
 
 	@Column(name = "ach_amt", columnDefinition = "int", nullable = false)
-	private String a_amount;
+	private Integer a_amount;
 
 	@Column(name = "ach_bon", columnDefinition = "int", nullable = false)
 	private Integer a_bonus;
@@ -29,7 +29,7 @@ public class Achievement {
 	public Achievement() {
 	}
 
-	public Achievement(Integer a_id, String a_context, String a_amount, Integer a_bonus, Integer a_parentsId) {
+	public Achievement(Integer a_id, String a_context, Integer a_amount, Integer a_bonus, Integer a_parentsId) {
 		super();
 		this.a_id = a_id;
 		this.a_context = a_context;
@@ -60,11 +60,11 @@ public class Achievement {
 		this.a_context = a_context;
 	}
 
-	public String getA_amount() {
+	public Integer getA_amount() {
 		return a_amount;
 	}
 
-	public void setA_amount(String a_amount) {
+	public void setA_amount(Integer a_amount) {
 		this.a_amount = a_amount;
 	}
 

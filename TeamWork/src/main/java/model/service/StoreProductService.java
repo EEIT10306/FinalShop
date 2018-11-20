@@ -23,7 +23,10 @@ public class StoreProductService {
 	
 	public StoreProduct selectByPk(int id) throws SQLException {
 		System.out.println(storeProductDaoImpl.selectByPk(id).getStoreImages());
-		return storeProductDaoImpl.selectByPk(id);
+		StoreProduct sp = new StoreProduct();
+		sp = storeProductDaoImpl.selectByPk(id);
+		sp.setsP_context(sp.getsP_context().replace("\r\n", "<br>"));
+		return sp;
 	}
 	
 	public List<StoreProduct> getStoreProductChangeForm(String search,String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m){
@@ -34,22 +37,18 @@ public class StoreProductService {
 		str += (b!=null)?" and product.p_id ="+ b+" ":"";
 		str += (c!=null)?" and sP_averageAssess >= "+c+" ":"";
 		if(d!=null||e!=null||f!=null||g!=null||h!=null) {
-			
-			if(d!=null) {list.add(" sP_transport="+d);}
-			if(e!=null) {list.add(" sP_transport="+e);}
-			if(f!=null) {list.add(" sP_transport="+f);}
-			if(g!=null) {list.add(" sP_transport="+g);}
-			if(h!=null) {list.add(" sP_transport="+h);}
-			
-			if(list.size()>1) {
-				str+=" and( "+list.get(0);	
-				for(int x =1;list.size()-2>=x;x++) {
-					str+=" or"+list.get(x);
+			if(d!=null) {list.add("sP_transport like '%全家%' ");}
+			if(e!=null) {list.add("sP_transport like '%7-11%' ");}
+			if(f!=null) {list.add("sP_transport like '%萊爾富%' ");}
+			if(g!=null) {list.add("sP_transport like '%中華郵政%' ");}
+			if(h!=null) {list.add("sP_transport like '%賣家宅配%' ");}			
+			if(list.size()!=5) {
+				str += " and (";
+				for(String lis : list) {
+					str += lis + " or ";
 				}
-				str+=" or"+list.get(list.size()-1)+") ";
-			}else {
-				str+=" and ";
-				str+=list.get(0);
+				str = str.substring(0, str.length()-4);
+				str += ") ";
 			}
 		}
 //		str += "and (sP_transport="+d+" or sP_transport="+e+" or sP_transport="+f+" or sP_transport="+g+" or sP_transport="+h+")";

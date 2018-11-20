@@ -20,6 +20,12 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <style>
+   #img-1,#img-2,#img-3 {
+   		max-height: 400px;
+   		min-height: 400px;
+   }
+   </style>
 <script src="../js/jquery.func_toggle.js"></script>
 <script>
 		var head = 0;
@@ -194,35 +200,22 @@
 						}
 					}
 					//輪播牆
-					var productDemoPhototxt;
+					var productDemoPhototxt = "";
 					$.ajax({
 						url:"/TeamWork/StoreProductPhotos?"+hahaha,
 						type:"GET",
 						success:function(data){
 							console.log(data);
 							if(data.length != 0){
-								for(i=0;i<data.length;i++){
-									if(i==0){
-										productDemoPhototxt += `
-											<div class="carousel-item avtive">
-												<img class="d-block w-100"
-														src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
-											</div>`;
-									}
-									productDemoPhototxt += `
-									<div class="carousel-item">
-										<img class="d-block w-100"
-												src="`+(data[i].sP_id==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':data[i].sI_context+`">
-									</div>`;
+								for(i=0;i<3;i++){
+									var imgCont = (data[i]&&data[i].sI_context&&data[i].sI_context!="")?data[i].sI_context:data[0].sI_context
+									$("#img-" + (i+1)).attr("src",imgCont)
 								}
 							}else{
-								productDemoPhototxt = 
-									`<div class="carousel-item active">
-										<img class="d-block w-100"
-												src="/TeamWork/web/images/user/product/defaultProductImage.gif">
-									</div>`;
+								for(i=0;i<3;i++){
+									$("#img-" + (i+1)).attr("src",'/TeamWork/web/images/user/product/defaultProductImage.gif')
+								}
 							}
-							$(".carousel-inner").html(productDemoPhototxt);
 						}
 					})
 					$(".detail-title").append("<br>"+txt[0]+txt[1]+txt[2]+txt[3]+txt[4]);
@@ -265,7 +258,7 @@
 	                                	<div class="comment-avatar"><img src="`+photo+`"alt=""></div>
 	                                	<div class="comment-box">
 	                                    	<div class="comment-head">
-	                                     	    <h6 class="comment-name"><a href="http://creaticode.com/blog">`+data[i].storeOrder.member.m_name+`</a></h6>
+	                                     	    <h6 class="comment-name"><a href="/TeamWork/web/view/userPage_seeProfile.html?m_id=`+data[i].storeOrder.member.m_id+ `">`+data[i].storeOrder.member.m_name+`</a></h6>
 	                                        	<span>`+commentDate+`</span>`+starsText+`
 	                                    	</div>
 	                                    	<div class="comment-content">`+data[i].sA_contextAssess+`</div>
@@ -335,7 +328,7 @@
 					                                                alt=""></div>
 					                                        <div class="comment-box">
 					                                            <div class="comment-head">
-					                                                <h6 class="`+authorCallbackClass+`"><a href="http://creaticode.com/blog">`+StoreCallbacks[j].member.m_name+`</a></h6>
+					                                                <h6 class="`+authorCallbackClass+`"><a href="/TeamWork/web/view/userPage_seeProfile.html">`+StoreCallbacks[j].member.m_name+`</a></h6>
 					                                                <span>`+(callBackDate.getYear()+1900)+"/"+(callBackDate.getMonth()+1)+"/"+callBackDate.getDate()+" "+((callBackDate.getHours().toString().length==1)?"0"+callBackDate.getHours():callBackDate.getHours())+":"+((callBackDate.getMinutes().toString().length==1)?"0"+callBackDate.getMinutes():callBackDate.getMinutes())+`</span>
 					                                            </div>
 					                                            <div class="comment-content">`+StoreCallbacks[j].sC_context+`</div>
@@ -351,7 +344,7 @@
 	                                            			alt=""></div>
 	                                    			<div class="comment-box">
 	                                        			<div class="comment-head">
-	                                            			<h6 class="`+authorCallbackClass+`"><a href="http://creaticode.com/blog">`+member_bean.m_name+`</a></h6>
+	                                            			<h6 class="`+authorCallbackClass+`"><a href="/TeamWork/web/view/userPage_seeProfile.html?m_id="+member_bean.m_id >`+member_bean.m_name+`</a></h6>
 	                                            			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
 	                                        			</div>
 	                                        			<div class="comment-content">
@@ -526,18 +519,18 @@
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img class="d-block w-100"
-								src="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_63504_image_big.jpg?1538642310"
+							<img id="img-1" class="d-block w-100"
+								src="/TeamWork/web/images/others/load.gif"
 								alt="First slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100"
-								src="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_63504_image_big.jpg?1538642310"
+							<img id="img-2" class="d-block w-100"
+								src="/TeamWork/web/images/others/load.gif"
 								alt="Second slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100"
-								src="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_63504_image_big.jpg?1538642310"
+							<img id="img-3" class="d-block w-100"
+								src="/TeamWork/web/images/others/load.gif"
 								alt="Third slide">
 						</div>
 					</div>

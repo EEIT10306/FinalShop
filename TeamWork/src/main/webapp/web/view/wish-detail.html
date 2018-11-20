@@ -153,33 +153,19 @@
 									url:"/TeamWork/FindWishImagesByWPBean",
 									type:"POST",
 									data:{"wP_id":data1.wishProduct[i].wP_id},
-									success:function(wishPImages){
-										console.log(wishPImages.length);
-			 							if(wishPImages.length != 0){
-			 								for(i=0;i<wishPImages.length;i++){
-			 									var img = (wishPImages[i].wI_context==null)?'/TeamWork/web/images/user/product/defaultProductImage.gif':wishPImages[i].wI_context;
-			 									if(i==0){
-			 										productDemoPhototxt += `
-			 											<div class="carousel-item avtive">
-			 												<img class="d-block w-100"
-			 														src="`+img+`">
-			 											</div>`;
-			 									}else{
-			 									productDemoPhototxt += `
-			 									<div class="carousel-item">
-			 										<img class="d-block w-100"
-			 												src="`+img+`">
-			 									</div>`;
-			 									}
-			 								}
-			 							}else{
-			 								productDemoPhototxt += 
-			 									`<div class="carousel-item active">
-			 										<img class="d-block w-100"
-			 												src="/TeamWork/web/images/user/product/defaultProductImage.gif">
-			 									</div>`;
-			 							}
-			 							$(".carousel-inner").html(productDemoPhototxt);
+									success:function(data){
+// 										console.log(data1);
+// 										console.log(data);
+// 										if(data.length != 0){
+// 											for(i=0;i<3;i++){
+// 												var imgCont = (data[i]&&data[i].wI_context&&data[i].wI_context!="")?data[i].wI_context:data[0].wI_context
+// 												$("#img-" + (i+1)).attr("src",imgCont)
+// 											}
+// 										}else{
+// 											for(i=0;i<3;i++){
+// 												$("#img-" + (i+1)).attr("src",'/TeamWork/web/images/user/product/defaultProductImage.gif')
+// 											}
+// 										}
 									}
 								})
 							}
@@ -411,6 +397,7 @@
 			type: "GET",
 			success: function(bids){
 				console.log(bids);
+				if(bids.length!=0){
 				var bidText="";
 				var starsAssess="";
 				var photo = (member_bean.m_photo != "")?member_bean.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
@@ -524,6 +511,7 @@
 					$(".selectMe").attr("disabled", "disabled");
 				}
 			}
+		}
 		})	
 	}	
 	function formDate(time){
@@ -550,18 +538,21 @@
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_63504_image_big.jpg?1538642310"
-                                alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_63504_image_big.jpg?1538642310"
-                                alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_63504_image_big.jpg?1538642310"
-                                alt="Third slide">
-                        </div>
+						<div class="carousel-item active">
+							<img id="img-1" class="d-block w-100"
+								src="/TeamWork/web/images/others/load.gif"
+								alt="First slide">
+						</div>
+						<div class="carousel-item">
+							<img id="img-2" class="d-block w-100"
+								src="/TeamWork/web/images/others/load.gif"
+								alt="Second slide">
+						</div>
+						<div class="carousel-item">
+							<img id="img-3" class="d-block w-100"
+								src="/TeamWork/web/images/others/load.gif"
+								alt="Third slide">
+						</div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -902,55 +893,56 @@
             </div>
         </div>
     </div><!-- end of footer -->
-
-    <div id="live-chat">
-        <header class="clearfix">
-            <!-- 關閉的叉叉 -->
-            <!-- <a href="#" class="chat-close">x</a> -->
-            <h4>客服小幫手</h4>
-            <span class="chat-message-counter">3</span>
-        </header>
-        <div class="chat">
-            <div class="chat-history">
-                <div class="chat-message clearfix">
-                    <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32"
-                        height="32">
-                    <div class="chat-message-content clearfix">
-                        <span class="chat-time">13:35</span>
-                        <h5>可愛阿美姊</h5>
-                        <p>請問您有什麼問題嗎，可以趕快問我喔!</p>
-                    </div> <!-- end chat-message-content -->
-                </div> <!-- end chat-message -->
-                <hr>
-                <div class="chat-message clearfix">
-                    <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32"
-                        height="32">
-                    <div class="chat-message-content clearfix">
-                        <span class="chat-time">13:37</span>
-                        <h5>可愛阿美姊</h5>
-                        <p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色。</p>
-                    </div> <!-- end chat-message-content -->
-                </div> <!-- end chat-message -->
-                <hr>
-                <div class="chat-message clearfix">
-                    <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">
-                    <div class="chat-message-content clearfix">
-                        <span class="chat-time">13:38</span>
-                        <h5>顧客林小姐</h5>
-                        <p>是喔，很好喔讚讚讚讚!</p>
-                    </div> <!-- end chat-message-content -->
-                </div> <!-- end chat-message -->
-                <hr>
-            </div> <!-- end chat-history -->
-            <p class="chat-feedback">Your partner is typing…</p>
-            <form action="#" method="post">
-                <fieldset>
-                    <input type="text" placeholder="Type your message…" autofocus>
-                    <input type="hidden">
-                </fieldset>
-            </form>
-        </div> <!-- end chat -->
-    </div> <!-- end live-chat -->
+	<div id="live-chat"></div>
+<!--     <div id="live-chat"> -->
+<!--         <header class="clearfix"> -->
+<!--             關閉的叉叉 -->
+<!--             <a href="#" class="chat-close">x</a> -->
+<!--             <h4>客服小幫手</h4> -->
+<!--             <span class="chat-message-counter">3</span> -->
+<!--         </header> -->
+<!--         <div class="chat"> -->
+<!--             <div class="chat-history"> -->
+<!--                 <div class="chat-message clearfix"> -->
+<!--                     <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" -->
+<!--                         height="32"> -->
+<!--                     <div class="chat-message-content clearfix"> -->
+<!--                         <span class="chat-time">13:35</span> -->
+<!--                         <h5>可愛阿美姊</h5> -->
+<!--                         <p>請問您有什麼問題嗎，可以趕快問我喔!</p> -->
+<!--                     </div> end chat-message-content -->
+<!--                 </div> end chat-message -->
+<!--                 <hr> -->
+<!--                 <div class="chat-message clearfix"> -->
+<!--                     <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" -->
+<!--                         height="32"> -->
+<!--                     <div class="chat-message-content clearfix"> -->
+<!--                         <span class="chat-time">13:37</span> -->
+<!--                         <h5>可愛阿美姊</h5> -->
+<!--                         <p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色。</p> -->
+<!--                     </div> end chat-message-content -->
+<!--                 </div> end chat-message -->
+<!--                 <hr> -->
+<!--                 <div class="chat-message clearfix"> -->
+<!--                     <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32"> -->
+<!--                     <div class="chat-message-content clearfix"> -->
+<!--                         <span class="chat-time">13:38</span> -->
+<!--                         <h5>顧客林小姐</h5> -->
+<!--                         <p>是喔，很好喔讚讚讚讚!</p> -->
+<!--                     </div> end chat-message-content -->
+<!--                 </div> end chat-message -->
+<!--                 <hr> -->
+<!--             </div> end chat-history -->
+<!--             <p class="chat-feedback">Your partner is typing…</p> -->
+<!--             <form action="#" method="post"> -->
+<!--                 <fieldset> -->
+<!--                     <input type="text" placeholder="Type your message…" autofocus> -->
+<!--                     <input type="hidden"> -->
+<!--                 </fieldset> -->
+<!--             </form> -->
+<!--         </div> end chat -->
+<!--     </div> -->
+     <!-- end live-chat -->
     <!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -986,6 +978,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+        <script src="../js/livechartinclude.js"></script>
 </body>
 
 </html>
