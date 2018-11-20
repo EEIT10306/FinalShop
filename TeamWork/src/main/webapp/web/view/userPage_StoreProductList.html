@@ -225,7 +225,7 @@
                             var itemEl = $(`
 	                            <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="${defaultProdPic(item.storeImages[0].sI_context)}">
+	                                    <img class="storeSellerTable-img" src="${(item.storeImages[0]?defaultProdPic(item.storeImages[0].sI_context):"../images/product/default.jpeg")}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
@@ -244,7 +244,7 @@
                             var itemEl = $(`
 	                           <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="${defaultProdPic(item.storeImages[0].sI_context)}">
+	                                    <img class="storeSellerTable-img" src="${(item.storeImages[0]?defaultProdPic(item.storeImages[0].sI_context):"../images/product/default.jpeg")}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
@@ -263,7 +263,7 @@
                             var itemEl = $(`
 	                           <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="${defaultProdPic(item.storeImages[0].sI_context)}">
+	                                    <img class="storeSellerTable-img" src="${(item.storeImages[0]?defaultProdPic(item.storeImages[0].sI_context):"../images/product/default.jpeg")}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
@@ -317,7 +317,7 @@
                             contentType: false,
                             success: function () {
                                 //關閉互動視窗
-                                $("#editStoreProduct").css("display", "none");
+                                // $("#editStoreProduct").css("display", "none");
                                 $("button.close").click();
                                 //清空表單所有欄位
                                 $("#EditStoreProductResetBtn").click()
