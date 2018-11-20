@@ -13,7 +13,7 @@
 	<!-- main CSS -->
 	<link rel="stylesheet" href="../style/main.css">
 	<!-- jQuery first -->
-<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
@@ -50,7 +50,7 @@
 		var photo;
 
 		//測試用 Cookie =======================================================================================
-		//document.cookie = "email=beautifulzhuyu;"; //登入Cookie
+		//document.cookie = "email=butter;"; //登入Cookie
 		//=====================================================================================================
 
 		//取得Cookie資料
@@ -164,10 +164,11 @@
 						"m_id": m_id
 					},
 					dataType: "text",
+					async: true,
 					success: function (data) {
 						//alert(data);
-						if (data == null) {
-							return "data=null";;
+						if (data == []) {
+							return false;
 						} else {
 							var c_info = $.parseJSON(data);
 							//alert(c_info);
@@ -178,7 +179,7 @@
 									//alert(c_info[i].length);
 									var today = new Date();
 									var ctime = new Date(c_info[i][j].c_time);
-									var photo = String(c_info[i][j].memberConversation.m_photo);
+									var photo = c_info[i][j].member.m_photo;
 									if (ctime.toLocaleDateString() != today.toLocaleDateString()) {
 										var cdate = ctime.toLocaleDateString();
 										$("#chat-history").append('<div class="chat-message clearfix">' + cdate + '</div><hr>')
