@@ -90,6 +90,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form id="StoremyForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="formGroupExampleInput">商品名稱</label>
@@ -153,22 +154,24 @@
                     </select>
                     商品圖片
                     <div class="custom-file" class="form-group">
-                        <form id="StoremyForm">
-                            <input type="text" name="inputstr" value="Store" style="display: none">
-                            <input type="text" name="te" style="display: none">
-                            <input type="file" name="file" id="Storeinput_file" class="custom-file-input" onchange="imgPreview(this)"
-                                required multiple="multiple" style="bottom:23px; cursor: pointer">
-                            <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="Storepreview" src="" />
-                            <label>請上傳多張商品圖片...</label>
-                        </form>
+                        
+                        <input type="text" name="inputstr" value="Store" style="display: none">
+                        <input type="text" name="te" style="display: none">
+                        <input type="file" name="file" id="Storeinput_file" class="custom-file-input" onchange="imgPreview(this)"
+                            required multiple="multiple" style="bottom:23px; cursor: pointer">
+                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                        <img id="Storepreview" src="" />
+                        <label>請上傳多張商品圖片...</label>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="StoreProductClick">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="StoreProductClick" data-toggle="modal" data-target="#StoreModalCenter">Save changes</button>
+                    <button type="reset" id="storerebtn"></button>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 
@@ -183,6 +186,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form id="GroupmyForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="formGroupExampleInput">開團名稱</label>
@@ -234,22 +238,25 @@
                     </div>
                     商品圖片
                     <div class="custom-file" class="form-group">
-                        <form id="GroupmyForm">
-                            <input type="text" name="inputstr" value="Group" style="display: none">
-                            <input type="text" name="te" style="display: none">
-                            <input type="file" name="file" id="Groupinput_file" class="custom-file-input" onchange="imgPreview(this)"
-                                required multiple="multiple" style="bottom:23px ;cursor: pointer">
-                            <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="Grouppreview" src="" />
-                            <label>請上傳多張商品圖片...</label>
-                        </form>
+                        
+                        <input type="text" name="inputstr" value="Group" style="display: none">
+                        <input type="text" name="te" style="display: none">
+                        <input type="file" name="file" id="Groupinput_file" class="custom-file-input" onchange="imgPreview(this)"
+                            required multiple="multiple" style="bottom:23px ;cursor: pointer">
+                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                        <img id="Grouppreview" src="" />
+                        <label>請上傳多張商品圖片...</label>
+                        
                     </div>
                 </div>
+            
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="GrouponClick">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="GrouponClick" data-toggle="modal" data-target="#GrouponModalCenter">Save changes</button>
+                    <button type="reset" id="grouprebtn"></button>
                 </div>
             </div>
+        </form>
         </div>
     </div>
 
@@ -265,6 +272,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form id="WishmyForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="formGroupExampleInput">許願標題</label>
@@ -327,21 +335,23 @@
                     </div>
                     商品圖片
                     <div class="custom-file" class="form-group">
-                        <form id="WishmyForm">
-                            <input type="text" name="inputstr" value="Wish" style="display: none">
-                            <input type="text" name="te" id="wishpic" style="display: none">
-                            <input type="file" name="file" id="Wishinput_file" class="custom-file-input" onchange="imgPreview(this)"
-                                required multiple="multiple" style="bottom:23px ;cursor: pointer">
-                            <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="Wishpreview" src="" />
-                            <label>請上傳多張商品圖片...</label>
-                        </form>
+                        
+                        <input type="text" name="inputstr" value="Wish" style="display: none">
+                        <input type="text" name="te" id="wishpic" style="display: none">
+                        <input type="file" name="file" id="Wishinput_file" class="custom-file-input" onchange="imgPreview(this)"
+                            required multiple="multiple" style="bottom:23px ;cursor: pointer">
+                        <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
+                        <img id="Wishpreview" src="" />
+                        <label>請上傳多張商品圖片...</label>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="WishClick">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="WishClick" data-toggle="modal" data-target="#WishModalCenter">Save changes</button>
+                    <button type="reset" id="wishrebtn"></button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
