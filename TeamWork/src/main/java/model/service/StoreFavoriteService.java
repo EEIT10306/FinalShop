@@ -27,7 +27,7 @@ public class StoreFavoriteService {
 	public StoreFavorite insertOneStoreFavorite(StoreFavorite bean) throws SQLException {
 		StoreFavorite result = storeFavoriteDaoImpl.insert(bean);
 		StoreProduct storeProduct = storeProductDaoImpl.selectByPk(result.getsP_id());
-		storeProduct.setsP_hot(storeProduct.getsP_hot()+1);
+		storeProduct.setsP_amountFavorite(storeProduct.getsP_amountFavorite()+1);
 		if(result != null) {
 			storeProductDaoImpl.update(storeProduct);
 		}
@@ -37,7 +37,7 @@ public class StoreFavoriteService {
 	public boolean deleteOneStoreFavorite(StoreFavorite bean) throws SQLException{
 		boolean result = storeFavoriteDaoImpl.delete(bean);
 		StoreProduct storeProduct = storeProductDaoImpl.selectByPk(bean.getsP_id());
-		storeProduct.setsP_hot(storeProduct.getsP_hot()-1);
+		storeProduct.setsP_amountFavorite(storeProduct.getsP_amountFavorite()-1);
 		if(result != false) {
 			storeProductDaoImpl.update(storeProduct);
 		}

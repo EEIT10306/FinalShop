@@ -90,7 +90,7 @@
 				}
 			
 			for(i=0;i<theCookies.length;i++){
-				var name = "m_mail=";
+				var name = "e_mail=";
 				var c = theCookies[i];
 				while (c.charAt(0) == ' ') {
 			    	c = c.substring(1);    //去空格, 若是不去的話跑不下去= =
@@ -105,7 +105,9 @@
 				type:"POST",
 				data:{email:member_mail},
 				success: function(data){
+					
 					member_bean = data;
+					console.log(data);
 					$.ajax({
 						url:"/TeamWork/checkStoreProductFavorite", //判斷商品是否已經加入最愛
 						type:"POST",
@@ -119,6 +121,8 @@
 					})
 				}
 			})
+			console.log(member_mail);
+			console.log(member_bean);
 		})
 			
 		
@@ -287,7 +291,7 @@
 							url: "/TeamWork/StoreCallback?"+hahaha,
 							type: "GET",
 							success: function(StoreCallbacks){
-								
+								console.log(member_bean);
 									for(i=0;i<StoreMessages.length;i++){
 										var replyDate = new Date(StoreMessages[i].sM_time);
 										var photo = (StoreMessages[i].member.m_photo != "")?StoreMessages[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
@@ -295,17 +299,23 @@
 										
 										replyText +=`
 										<ul>
-											<li>
-												<div class="comment-main-level">
+											<li class="one-message">
+												<div class="comment-main-level" style="display:block">
+													<input type="hidden" class="IdMessageHide" value="`+StoreMessages[i].m_idMessage+`">
+													<input type="hidden" class="sMIdHide" value="`+StoreMessages[i].sM_id+`">
 					                                <div class="comment-avatar"><img src="`+photo+`"alt=""></div>
 					                                <!-- Contenedor del Comentario -->
 						                                <div class="comment-box">
 						                                    <div class="comment-head">
 						                                        <h6 class="`+authorClass+`"><a href="`+StoreMessages[i].member.m_photo+`">`+StoreMessages[i].member.m_name+`</a></h6> 
-						                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>
-						                                        <i class="fas fa-pencil-alt"></i>
-						                                        <i class="fas fa-trash-alt"></i>
-						                                        <i class="fas fa-comment-dots"></i>
+						                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>`
+							                                       
+						                                        if(StoreMessages[i].member.m_id == member_bean.m_id){
+							                                        replyText+=`
+							                                        <i class="fas fa-trash-alt" title="刪除回覆"></i>
+							                                        <i class="fas fa-pencil-alt" title="編輯回覆"></i>`
+						                                        }
+							                                        replyText+=` <i class="fas fa-comment-dots" title="顯示回覆"></i>
 						                                    </div>
 						                                <div class="comment-content">`+StoreMessages[i].sM_context+`</div>
 					                            	</div>
@@ -320,7 +330,7 @@
 			                        		var authorCallbackClass = (StoreCallbacks[j].member.m_id == StoreMessages[i].storeProduct.store.seller_id)?"comment-name by-author":"comment-name"
 			                        		if(StoreMessages[i].sM_id == StoreCallbacks[j].sM_id){
 			                        			 replyText +=`
-					                                    <li>
+					                                    <li style="display:none">
 					                                        <div class="comment-avatar"><img src="`+photo2+`"
 					                                                alt=""></div>
 					                                        <div class="comment-box">
@@ -336,7 +346,7 @@
 					                    var photo3 = (member_bean.m_photo != '')?member_bean.m_photo:'/TeamWork/web/images/user/account/profile/001.png'
 			                            if(member_bean.m_id!=undefined){			                            	
 						                    replyText += `
-				                            	<li>
+				                            	<li style="display:none">
 		                                        	<div class="comment-avatar"><img src="`+photo3+`"
 	                                            			alt=""></div>
 	                                    			<div class="comment-box">
@@ -395,6 +405,50 @@
 											data:{sM_id:$(this).parents('.comments-list .reply-list').find('.tmp').val(), m_idCallback: member_bean.m_id , sC_context:$(this).parent().prev().find("textarea").val(), sC_time:nowDateFormed, sC_stateId:23},
 											success: function(){
 												showQandA();
+											}
+										})
+									})
+									$(".fa-comment-dots").click(function(){
+										$(this).parents(".comment-main-level").next().find("li").attr("style", "display:block");
+									})
+									$(".fa-trash-alt").click(function(){
+// 										alert($(this).parents(".comment-main-level").find(".sMIdHide").val());
+// 										console.log($(this).parents(".comment-main-level").find(".sMIdHide"));
+										$.ajax({
+											url:"/TeamWork/DeleteOneStoreMessage",
+											type:"POST",
+											data:{sM_id:$(this).parents(".comment-main-level").find(".sMIdHide").val(), sP_id:hahaha.substring(6), m_idMessage: $(this).prev().prev().prev().text(), sM_context:$(this).parent().next().text(), sM_time:$(this).prev().prev().text(), sM_stateId:22},
+											success:function(){
+// 												console.log($(this).parents(".comment-main-level"));
+// 												$(this).parents(".comment-main-level").attr("style", "display:none");
+												showQandA();
+											}
+										})
+// 										$(this).parents(".comment-avatar").attr("style", "display:none");
+// 										$(this).parents(".comment-avatar").siblings().attr("style", "display:none");
+									})
+									$(".fa-pencil-alt").click(function(){
+										console.log($(this).parent().next());
+										var text = $(this).parent().next().text()
+// 										console.log($(this).parents(".comment-main-level").find(".sMIdHide").attr("value"));
+// 										console.log($(this).parents(".IdMessageHide").attr("value"));
+// 										var user_id = $(this);
+										if(text != ""){											
+											$(this).parent().next().html("<input id='updateMe' type='text' style='background-color: yellow'></input>")
+											$(this).parent().next().children().focus()
+											$(this).parent().next().children().val(text)
+										}
+										$("#updateMe").blur(function(){
+											text = $(this).val();
+											$(this).parent().text(text);
+											console.log($(this).parents(".comment-main-level").find(".sMIdHide").attr("value"));
+											console.log($(this));
+										})
+										$.ajax({
+											url:"/TeamWork/UpdateOneStoreMessage",
+											type:"POST",
+											data:{sM_id:$("#updateMe").parents(".comment-main-level").find(".sMIdHide").val(), sP_id:hahaha.substring(6), m_idMessage: $("#updateMe").parents(".IdMessageHide").attr("value"), sM_context:text, sM_time:nowDateFormed, sM_stateId:21},
+											success:function(data){
 											}
 										})
 									})

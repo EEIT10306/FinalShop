@@ -92,6 +92,16 @@ public class StoreProductController {
 	public StoreMessage InsertOneStoreMessage(StoreMessage bean) throws SQLException{
 		return storeMessageService.insert(bean);
 	}
+	@RequestMapping(path = "/DeleteOneStoreMessage", method = RequestMethod.POST)
+	@ResponseBody
+	public StoreMessage DeleteOneStoreMessage(StoreMessage bean) throws SQLException {
+		return storeMessageService.delete(bean);
+	}
+	@RequestMapping(path = "/UpdateOneStoreMessage", method = RequestMethod.POST)
+	@ResponseBody
+	public StoreMessage UpdateOneStoreMessage(StoreMessage bean) throws SQLException {
+		return storeMessageService.update(bean);
+	}
 	@RequestMapping(path = "/InsertOneStoreCallback", method = RequestMethod.POST)
 	@ResponseBody
 	public StoreCallback InsertOneStoreCallback(StoreCallback bean) throws SQLException {
