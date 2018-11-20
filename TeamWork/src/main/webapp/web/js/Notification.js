@@ -37,7 +37,7 @@ $(document).ready(function () {
             data: { "account": cookieAccount },
             error: function (response) {
                 var jsons = JSON.stringify(response);
-                alert("noticeMVC傳回失敗 = " + jsons);
+                // alert("noticeMVC傳回失敗 = " + jsons);
             },
             async: false,
             success: function (response) {
@@ -57,7 +57,7 @@ $(document).ready(function () {
             data: { "account": cookieAccount },
             error: function (response) {
                 var jsons = JSON.stringify(response);
-                alert("noticeMVC傳回失敗 = " + jsons);
+                // alert("noticeMVC傳回失敗 = " + jsons);
             },
             async: false,
             success: function (response) {
@@ -76,7 +76,7 @@ $(document).ready(function () {
             data: { "account": cookieAccount },
             error: function (response) {
                 var jsons = JSON.stringify(response);
-                alert("noticeMVC傳回失敗 = " + jsons);
+                // alert("noticeMVC傳回失敗 = " + jsons);
             },
             async: false,
             success: function (response) {
@@ -336,7 +336,7 @@ $(document).ready(function () {
                 url: "/TeamWork/giveAssess_WishBuyer",
                 data: $(this).serialize(),
                 success: function () {
-                    alert("success!!!");
+                    // alert("success!!!");
                     $("#giveAssess").css("display", "none");
                     //關閉互動視窗
                     $("button.close").click();
@@ -358,7 +358,7 @@ $(document).ready(function () {
                 url: "/TeamWork/confirmReceive_Wish",
                 data: { "wO_id": wO_id },
                 success: function () {
-                    alert("success!");
+                    // alert("success!");
                     loadData();
                 }
             });
