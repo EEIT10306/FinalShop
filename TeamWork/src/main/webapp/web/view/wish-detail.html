@@ -25,6 +25,7 @@
 		var nowDate = new Date();
 		var nowDateFormed = (nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes());
 		var productDemoPhototxt="";
+		var bidState = 28;
 		
 		
 // 		document.cookie = "m_mail=rika.tanabe@fgdrvegdsrgf.usa.cc;"; //登入的假cookie
@@ -32,6 +33,7 @@
 		var theCookies = document.cookie.split(";");
 		var member_id;
 		
+		var wish_bean;
 		var member_bean;
 		var isAuthor = false;
 		
@@ -74,7 +76,7 @@
 						hahaha = paths[param];	//hahaha= w_id=?
 				}
 			for(i=0;i<theCookies.length;i++){
-				var name = "m_mail=";
+				var name = "e_mail=";
 				var c = theCookies[i];
 				while (c.charAt(0) == ' ') {
 			    	c = c.substring(1);    //去空格, 若是不去的話跑不下去= =
@@ -110,10 +112,14 @@
 				type: "GET",
 				async:false,
 				success: function(data1){
-					
+					wish_bean = data1;
 					if(data1.member.m_id==member_bean.m_id){
 						isAuthor = true;
 					}
+					//暫時這樣寫
+					if(data1.w_stateId!=28)
+						bidState = data1.w_stateId;
+					
 					//許願地區等詳細資訊
 					$.ajax({
 						url:"/TeamWork/FindOneWishDistrictType",
@@ -123,19 +129,19 @@
 							$("#wish_district").after("<p>"+data2.d_name+"</p>");
 						}
 					})
-					for(i=0;i<data1.wishProduct.length;i++){
-						singlePriceContent += "<p>"+data1.wishProduct[i].wP_name;
-						if(data1.wishProduct[i].wP_priceBottom!=null)
-							singlePriceContent += "最低價格為 " + data1.wishProduct[i].wP_priceBottom+" ";
+// 					for(i=0;i<data1.wishProduct.length;i++){
+// 						singlePriceContent += "<p>"+data1.wishProduct[i].wP_name;
+// 						if(data1.wishProduct[i].wP_priceBottom!=null)
+// 							singlePriceContent += "最低價格為 " + data1.wishProduct[i].wP_priceBottom+" ";
 						
-						if(data1.wishProduct[i].wP_priceTop!=null)
-							singlePriceContent += " 最高價格為 "+data1.wishProduct[i].wP_priceTop;
+// 						if(data1.wishProduct[i].wP_priceTop!=null)
+// 							singlePriceContent += " 最高價格為 "+data1.wishProduct[i].wP_priceTop;
 						
-						if(data1.wishProduct[i].wP_priceBottom == null && data1.wishProduct[i].wP_priceTop == null)
-							singlePriceContent += "未設有最低與最高價格限度"
+// 						if(data1.wishProduct[i].wP_priceBottom == null && data1.wishProduct[i].wP_priceTop == null)
+// 							singlePriceContent += "未設有最低與最高價格限度"
 						
-						singlePriceContent += "</p>";
-					}
+// 						singlePriceContent += "</p>";
+// 					}
 //		 			輪播牆
 					$.ajax({
 						url:"/TeamWork/GetWishProducts",
@@ -410,8 +416,6 @@
 				var photo = (member_bean.m_photo != "")?member_bean.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
 				
 				for(i=0;i<bids.length;i++){
-					
-					
 					var bidDate = new Date(bids[i].wB_time);
 					bidDate = (bidDate.getYear()+1900)+"/"+(bidDate.getMonth()+1)+"/"+bidDate.getDate()+" "+((bidDate.getHours().toString().length==1)?"0"+bidDate.getHours():bidDate.getHours())+":"+((bidDate.getMinutes().toString().length==1)?"0"+bidDate.getMinutes():bidDate.getMinutes());
 					var starsCount = bids[i].member.m_wishAssessSum;
@@ -430,6 +434,7 @@
                             	<div class="comment-avatar">
                             		<img src="`+photo+`"alt="">
                             		<input type="button" class="btn btn-sm btn-outline-info selectMe" id="bids`+i+`" value="選我" style="visibility:hidden">
+                            		<i class="fas fa-shopping-bag" title="由我完成!" style="visibility:hidden"></i>
                             	</div>
                             	<div class="comment-box">
                                 	<div class="comment-head">
@@ -480,7 +485,7 @@
 				}
 				$("#comments-list").html(bidText);
 				if(isAuthor && bids[0].wish.w_stateId==28){
-					$(idSelect).css("visibility","visible");
+// 					$(idSelect).css("visibility","visible");
 					for(o=0;o<bids.length;o++){
 						var idSelect = "#bids"+o;
 						$(idSelect).css("visibility","visible");
@@ -494,12 +499,37 @@
 									console.log(wishOrder);
 								}
 							})
+							$.ajax({
+								url:"/TeamWork/UpdateOneWish",
+								type:"POST",
+								data:{w_id:hahaha.substring(5), m_id:wish_bean.m_id, p_id:wish_bean.p_id, w_title:wish_bean.w_title, w_context:wish_bean.w_context, d_id:wish_bean.d_id, w_startDate:formDate(wish_bean.w_startDate), w_endDate:nowDateFormed, w_sumPriceBottom:wish_bean.w_sumPriceBottom, w_sumPriceTop:wish_bean.w_sumPriceTop, w_changeTime:nowDateFormed, w_hot:wish_bean.w_hot, w_amountFavorite:wish_bean.w_amountFavorite, w_completeTime:nowDateFormed, w_stateId:29},
+								success:function(Wish){
+									console.log(Wish);
+// 									alert("wish updated");
+									window.location.reload();
+								},
+								error:function(){
+// 									alert("error");
+									console.log(wish_bean.w_startDate);
+								}
+							})
+							//尚須更新wish狀態
+							
 						})
 					}
+				}
+				
+				if(bidState!=28){
+// 					alert("button in ")
+					$(".selectMe").attr("disabled", "disabled");
 				}
 			}
 		})	
 	}	
+	function formDate(time){
+		time = new Date();
+		return (time.getYear()+1900)+"/"+(time.getMonth()+1)+"/"+time.getDate()+" "+((time.getHours().toString().length==1)?"0"+time.getHours():time.getHours())+":"+((time.getMinutes().toString().length==1)?"0"+time.getMinutes():time.getMinutes());
+	}
 	</script>
 
 </head>
@@ -588,7 +618,6 @@
                 <h5 class="detail-des-title" id="wish_district">許願地區</h5>
                 
                 
-                <h5 class="detail-des-title" id="wish_individualAcceptablePrice">單品可接受價格</h5>
 
 
                 <h5 class="detail-des-title" id="wish_content">許願內容</h5>
