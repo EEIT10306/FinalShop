@@ -645,8 +645,23 @@
 						success: function (jsonback) {
 						
 							if (jsonback == "") {
-								var txt = "<p>我們找不到 " + search_value + " 商品</p>";
-								$("#odbyvalue").html(txt);
+								var txt = `<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/cone.png' style='margin: auto'><p padding-top:10px;>目前網站施工中<span style='color:red;font-size:20px;'></span> ，請重新搜尋</p></div>`
+								txt += `<div><form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="store" class="dropdown-item">購物商城</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form></div></div>`
+										$("#odbyvalue").html(txt);
 							}
 							//	var json=JSON.parse(jsonback);
 							//	alert(json);
@@ -879,8 +894,23 @@
 					
 
 						if (jsonback == "") {
-							var txt = "<p>我們找不到 " + search_value + " 商品</p>";
-							$("#odbyvalue").html(txt);
+							var txt = `<div><div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/cone.png' style='margin: auto'><p padding-top:10px;>目前網站施工中<span style='color:red;font-size:20px;'></span> ，請重新搜尋</p></div>`
+								txt += `<div><form method="GET" action="/TeamWork/search">
+										<div class="input-group mb-1" style='width:60%;margin:auto'>
+                   						<div class="input-group-prepend">
+                        				<select name="selectone" class="btn btn-outline-secondary dropdown-toggle">
+										<option  value="groupon" class="dropdown-item">限時團購</option>
+										<option  value="wish" class="dropdown-item">許願池</option>
+										<option  value="store" class="dropdown-item">購物商城</option>
+										</select>
+										</div>
+										<input  id="headsearch" name="search" type="text" class="form-control" aria-label="Text input with dropdown button">
+										<div class="input-group-append">
+										<button   class="btn btn-outline-secondary" type="submit">Search</button>
+										</div>
+										</div>
+										</form></div></div>`
+										$("#odbyvalue").html(txt);
 
 									orderby();
 						}
