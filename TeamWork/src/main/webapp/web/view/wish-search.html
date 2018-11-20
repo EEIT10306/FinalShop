@@ -944,16 +944,16 @@
 			}
 		}
 
-		function imageWish(isImage) {
-			if (isImage != undefined && isImage != null) {
-				if (isImage.wishImages[0] != undefined && isImage.wishImages[0] != null) {
-					if (isImage.wishImages[0].wI_context != undefined && isImage.wishImages[0].wI_context != "") {
-						return isImage.wishImages[0].mI_context
+	function imageWish(isImage) {
+				if (isImage != undefined && isImage != null) {
+					if (isImage.wishImages[0] != undefined && isImage.wishImages[0] != null) {
+						if (isImage.wishImages[0].wI_context != undefined && isImage.wishImages[0].wI_context != "") {
+							return isImage.wishImages[0].wI_context
+						}
 					}
 				}
+				return "/TeamWork/web/images/form-cat.png"
 			}
-			return "/TeamWork/web/images/form-cat.png"
-		}
 
 		function changefrom() {
 			var catchsearch = "search=" + $("#headsearch").val();
