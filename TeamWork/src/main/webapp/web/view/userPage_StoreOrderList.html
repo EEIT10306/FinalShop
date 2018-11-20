@@ -341,7 +341,7 @@
                 });
 
                 //評價表單submit事件(AJAX)
-                $("#giveAssess_form").on('submit', function () {
+                $("#giveAssess_form").on('submit', function (e) {
                     $.ajax({
                         type: "POST",
                         url: "/TeamWork/giveAssess_StoreBuyer",
