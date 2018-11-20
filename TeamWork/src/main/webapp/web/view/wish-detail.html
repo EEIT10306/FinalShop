@@ -129,19 +129,19 @@
 							$("#wish_district").after("<p>"+data2.d_name+"</p>");
 						}
 					})
-					for(i=0;i<data1.wishProduct.length;i++){
-						singlePriceContent += "<p>"+data1.wishProduct[i].wP_name;
-						if(data1.wishProduct[i].wP_priceBottom!=null)
-							singlePriceContent += "最低價格為 " + data1.wishProduct[i].wP_priceBottom+" ";
+// 					for(i=0;i<data1.wishProduct.length;i++){
+// 						singlePriceContent += "<p>"+data1.wishProduct[i].wP_name;
+// 						if(data1.wishProduct[i].wP_priceBottom!=null)
+// 							singlePriceContent += "最低價格為 " + data1.wishProduct[i].wP_priceBottom+" ";
 						
-						if(data1.wishProduct[i].wP_priceTop!=null)
-							singlePriceContent += " 最高價格為 "+data1.wishProduct[i].wP_priceTop;
+// 						if(data1.wishProduct[i].wP_priceTop!=null)
+// 							singlePriceContent += " 最高價格為 "+data1.wishProduct[i].wP_priceTop;
 						
-						if(data1.wishProduct[i].wP_priceBottom == null && data1.wishProduct[i].wP_priceTop == null)
-							singlePriceContent += "未設有最低與最高價格限度"
+// 						if(data1.wishProduct[i].wP_priceBottom == null && data1.wishProduct[i].wP_priceTop == null)
+// 							singlePriceContent += "未設有最低與最高價格限度"
 						
-						singlePriceContent += "</p>";
-					}
+// 						singlePriceContent += "</p>";
+// 					}
 //		 			輪播牆
 					$.ajax({
 						url:"/TeamWork/GetWishProducts",
@@ -618,7 +618,6 @@
                 <h5 class="detail-des-title" id="wish_district">許願地區</h5>
                 
                 
-                <h5 class="detail-des-title" id="wish_individualAcceptablePrice">單品可接受價格</h5>
 
 
                 <h5 class="detail-des-title" id="wish_content">許願內容</h5>
