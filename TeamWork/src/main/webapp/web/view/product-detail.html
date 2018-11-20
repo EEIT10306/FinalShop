@@ -407,10 +407,12 @@
 									$(".fa-trash-alt").click(function(){
 // 										alert($(this).parents(".comment-main-level").find(".sMIdHide").val());
 // 										console.log($(this).parents(".comment-main-level").find(".sMIdHide"));
+										data = {sM_id:$(this).parents(".comment-main-level").find(".sMIdHide").val(), sP_id:hahaha.substring(6), m_idMessage: $(this).prev().prev().prev().text(), sM_context:$(this).parent().next().text(), sM_time:$(this).prev().text(), sM_stateId:22}
+										console.log(data)
 										$.ajax({
-											url:"/TeamWork/DeleteOneStoreMessage",
+											url:"/TeamWork/HAHAHAOneStoreMessage",
 											type:"POST",
-											data:{sM_id:$(this).parents(".comment-main-level").find(".sMIdHide").val(), sP_id:hahaha.substring(6), m_idMessage: $(this).prev().prev().prev().text(), sM_context:$(this).parent().next().text(), sM_time:$(this).prev().prev().text(), sM_stateId:22},
+											data: data,
 											success:function(){
 // 												console.log($(this).parents(".comment-main-level"));
 // 												$(this).parents(".comment-main-level").attr("style", "display:none");

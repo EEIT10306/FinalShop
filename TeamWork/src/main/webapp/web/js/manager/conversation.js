@@ -334,6 +334,7 @@ function setUnReadMessage(response, unread) {
             $("div#contextIn").prepend(textRight)
             changeChatList($(".people [data-chat='person" + response[0].m_id + "']"))
             divBottom();
+            chatjs();
         }
     })
 }
