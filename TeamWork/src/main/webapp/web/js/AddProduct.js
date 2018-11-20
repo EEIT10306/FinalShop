@@ -24,6 +24,20 @@ function storeonebringin(){
     $("[name='StoreProductPrice']").val("29500")
     
 }
+//=====================================
+$('#StoreModalCenter').modal('hide')
+$('#GrouponModalCenter').modal('hide')
+$('#WishModalCenter').modal('hide')
+
+$("#StoreModalCenter").on("hidden.bs.modal", function() {
+    $("#storerebtn").click()
+});
+$("#GrouponModalCenter").on("hidden.bs.modal", function() {
+    $("#grouprebtn").click()
+});
+$("#WishModalCenter").on("hidden.bs.modal", function() {
+    $("#wishrebtn").click()
+});
 //=================================抓取地區=====================================
 $(document).ready(function () {
     $.ajax({
@@ -308,6 +322,8 @@ $("#StoreProductClick").click(function (e) {
                         // alert("upload sucess");
                     }
                 });
+                // $("").click()
+                // $("").click()
                 // window.location.href=""
 
             },

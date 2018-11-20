@@ -181,7 +181,7 @@
                         console.log("state16")
                         var itemEl = $(`
                             <tr>
-                                <td><img class="storeSellerTable-img" src="${defaultProdPic(item.storeProduct.storeImages[0].sI_context)}"></td>
+                                <td><img class="storeSellerTable-img" src="${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")}"></td>
                                 <td>${item.storeProduct.sP_name}</td>
                                 <td>${item.member.m_name}</td>
                                 <td>${item.sO_transport}</td>
@@ -196,7 +196,7 @@
                         console.log("state17")
                         var itemEl = $(`
                         <tr>
-                                <td><img class="storeSellerTable-img" src="${defaultProdPic(item.storeProduct.storeImages[0].sI_context)}"></td>
+                                <td><img class="storeSellerTable-img" src="${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")}"></td>
                                 <td>${item.storeProduct.sP_name}</td>
                                 <td>${item.member.m_name}</td>
                                 <td>${item.sO_transport}</td>
@@ -211,7 +211,7 @@
                         console.log("state18")
                         var itemEl = $(`
                             <tr>
-                                <td><img class="storeSellerTable-img" src="${defaultProdPic(item.storeProduct.storeImages[0].sI_context)}"></td>
+                                <td><img class="storeSellerTable-img" src="${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")}"></td>
                                 <td>${item.storeProduct.sP_name}</td>
                                 <td>${item.member.m_name}</td>
                                 <td>${item.sO_transport}</td>
@@ -226,7 +226,7 @@
                         console.log("state19")
                         var itemEl = $(`
                             <tr>
-                                <td><img class="storeSellerTable-img" src="${defaultProdPic(item.storeProduct.storeImages[0].sI_context)}"></td>
+                                <td><img class="storeSellerTable-img" src="${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")}"></td>
                                 <td>${item.storeProduct.sP_name}</td>
                                 <td>${item.member.m_name}</td>
                                 <td>${item.sO_transport}</td>

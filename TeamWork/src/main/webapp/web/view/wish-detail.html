@@ -340,8 +340,11 @@
 					$("#wish_content").after("<p>"+data1.w_context+"</p>");
 					$(".detail-title").text(data1.w_title);
 					$("#state").text(data1.state.state_context);
-					if(data1.w_sumPriceBottom != null || data1.w_sumPriceTop != null)
-						$(".detail-price").text("$"+((data1.data1.w_sumPriceBottom!=null)?data1.data1.w_sumPriceBottom:"")+"~"(data1.w_sumPriceTop!=null)?data1.w_sumPriceTop:"");
+					var priceText = ((wish_bean.w_sumPriceBottom!=null)?"$"+wish_bean.w_sumPriceBottom:"未設下限");
+					priceText += "~"
+					priceText += (wish_bean.w_sumPriceTop!=null)?"$"+wish_bean.w_sumPriceTop:"未設上限";
+					if(wish_bean.w_sumPriceBottom != null || wish_bean.w_sumPriceTop != null)
+						$(".detail-price").text(priceText);
 					if(data1.w_sumPriceBottom == null && data1.w_sumPriceTop == null)
 						$(".detail-price").text("總金額未設上下限");
 				}

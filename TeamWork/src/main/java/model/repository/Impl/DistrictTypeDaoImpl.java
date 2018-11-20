@@ -24,7 +24,7 @@ public class DistrictTypeDaoImpl implements DistrictTypeDao {
 	@Override
 	public List<DistrictType> selectAll() throws SQLException {
 		List<DistrictType> LDT = getSession().createQuery("from DistrictType", DistrictType.class).list();
-		System.out.println(LDT);
+//		System.out.println(LDT);
 		return LDT;
 
 	}
