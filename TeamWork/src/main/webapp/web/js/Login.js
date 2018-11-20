@@ -2,24 +2,26 @@ $("#Login").click(function(e){
 
     var account = $("[name='email']").val();
     var password = $("[name='password']").val();
-
+    $("#errorAccount").html("")
+    $("#errorPassword").html("")
     $.ajax({
         type:"post",
         url:"/TeamWork/LoginServlet",
         data:{"m_account":account,"m_password":password},
         
         success:function(data){
-            // alert(data);
-            $("#errorAccount").html("")
-            $("#errorPassword").html("")
-            
-            if(data=="accountNull"){
+//            console.log(data)
+//            alert(data)
+            if(data.m_account==""){
                 $("#errorAccount").html("請輸入帳號")
-            }
-            if(data=="passwordNull"){
+            } 
+            else if(data.m_password==""){
                 $("#errorPassword").html("密碼須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
             }
-            if(data[0].m_account== account){
+            else if(data== ""){
+                $("#errorAccount").html("該帳號不存在或密碼錯誤")
+            }
+            else if(data[0].m_account== account){
                 //設定cookie
                 expire_days = 1; // 過期日期(天)
                 var day = new Date();
@@ -36,9 +38,6 @@ $("#Login").click(function(e){
                 window.location.href=window.history.back();
                 
                 
-            }
-            if(data== "beanNull"){
-                $("#errorAccount").html("該帳號不存在或密碼錯誤")
             }
             
         }

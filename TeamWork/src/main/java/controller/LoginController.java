@@ -54,10 +54,13 @@ public class LoginController {
 		//驗證資料
 		// 如果 member.getM_account() 欄位為空白，回傳字串accountNull到form_login.html
 		if (member.getM_account() == null || member.getM_account().trim().length() == 0) {
-			return "accountNull";
+//			return "accountNull";
+			String json = gson.toJson(member);
+			return json;
 		}
 		if (member.getM_password() == null || member.getM_password().trim().length() == 0) {
-			return "passwordNull";
+			String json = gson.toJson(member);
+			return json;
 		} 
 //		else if(member.getM_password() != null|| member.getM_password().trim().length() != 0) {
 //			member.setM_password(replaceSpecialCharater(member.getM_password()));
@@ -83,7 +86,8 @@ public class LoginController {
 		System.out.println(bean);
 		//根據model執行結果，導向view
 		if(bean.size()==0) {
-			return "beanNull";
+			String json = gson.toJson(bean);
+			return json;
 		} else {
 			String json = gson.toJson(bean);
 			return json;
