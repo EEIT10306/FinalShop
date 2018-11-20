@@ -10,8 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 
     <!-- main CSS -->
     <link rel="stylesheet" href="../style/main.css">
@@ -28,90 +27,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="user-page-slidebar col-lg-2">
-                <div class="user-page-brief">
-                    <a class="user-page-brief_avatar" href="userPage_profile.html">
-                        <div class="user-avatar_placeholder">
-                            <img id="member_pic" src="../images/user/account/profile/001.png">
-                        </div>
-                    </a>
-                    <div class="user-page-brief_right">
-                        <div class="user-page-brief__username" id="member_username"></div>
-                        <div class="user-page-brief__coin">
-                            <img src="../images/user/others/coin.png" style="display: inline-block;">
-                            <span id="member_coin"></span>
-                        </div>
-                    </div>
-                </div>
-                <!-- start of userpage-sidebar-menu -->
-                <div class="userpage-sidebar-menu">
-                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Man.svg"></div>
-                        <div class="userpage-sidebar-menu-text">我的帳戶</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Shop.svg"></div>
-                        <div class="userpage-sidebar-menu-text">商店</div>
-                    </div>
-                    <a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的商品</div>
-                    </a>
-                    <a href="userPage_StoreOrderSellerList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">商品訂單</div>
-                    </a>
-                    <a href="userPage_StoreOrderList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">購買的商品</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Ring.svg"></div>
-                        <div class="userpage-sidebar-menu-text">許願</div>
-                    </div>
-                    <a href="userPage_WishList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的許願</div>
-                    </a>
-                    <a href="userPage_WishOrderList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">許願訂單</div>
-                    </a>
-                    <a href="userPage_WishOrderSellerList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">實現願望</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Party.svg"></div>
-                        <div class="userpage-sidebar-menu-text">團購</div>
-                    </div>
-                    <a href="userPage_GroupList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的開團</div>
-                    </a>
-                    <a href="userPage_GroupSellerList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">開團訂單</div>
-                    </a>
-                    <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">跟團</div>
-                    </a>
-                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Medal.svg"></div>
-                        <div class="userpage-sidebar-menu-text">我的成就</div>
-                    </a>
-                    <a href="userPage_notifications.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Love-Letter.svg"></div>
-                        <div class="userpage-sidebar-menu-text">通知記錄</div>
-                    </a>
-                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
-                            <div class="userpage-sidebar-menu-icon"><img src="../images/user/Analytics.svg"></div>
-                            <div class="userpage-sidebar-menu-text">賣家中心</div>
-                        </a> -->
-                </div>
-                <!-- end of userpage-sidebar-menu -->
-            </div>
+            <div class="user-page-slidebar col-lg-2" id="slidebar"></div>
             <div class="purchase-list-page_tabs-container col-lg-10">
                 <div class="row">
                     <div class="purchase-list-page_tab col-sm-3" id="state0">成就列表</div>
@@ -132,82 +48,7 @@
         </div>
     </div> <!-- end of container -->
     <!-- start of footer -->
-    <div class="contaminer-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">關注我們</div>
-                    <ul class="footer-category-list">
-                        <li>
-                            <img src="../images/social/facebook.png">
-                            <a href="#">Facebook</a>
-                        </li>
-                        <li>
-                            <img src="../images/social/instagram.png">
-                            <a href="#">Instagram</a>
-                        </li>
-                        <li>
-                            <img src="../images/social/line.png">
-                            <a href="#">LINE</a>
-                        </li>
-                        <li>
-                            <img src="../images/social/linkedin.png">
-                            <a href="#">
-                                Linkedin</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div><!-- end of footer -->
+    <div class="contaminer-fluid" id="footer"></div><!-- end of footer -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="../js/heacerinclude.js"></script>
@@ -226,6 +67,12 @@
             });
             $.get("header-search.html", function (data) {
                 $("#header-search").html(data);
+            });
+            $.get("footer.html", function (data) {
+                $("#footer").html(data);
+            });
+            $.get("userPage_slidebar.html", function (data) {
+                $("#slidebar").html(data);
             });
         })
     </script>

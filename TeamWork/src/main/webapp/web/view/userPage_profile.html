@@ -16,7 +16,7 @@
 	<!-- main CSS -->
 	<link rel="stylesheet" href="../style/main.css">
 	<link rel="stylesheet" href="../style/userPage.css">
-	
+
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
@@ -112,17 +112,17 @@
 	<script>
 		$(document).ready(function () {
 			$.get("header.html", function (data) {
-                $("#header").html(data);
-            });
-            $.get("header-search.html", function (data) {
-                $("#header-search").html(data);
-            });
-            $.get("footer.html", function (data) {
-                $("#footer").html(data);
-            });
-            $.get("userPage_slidebar.html", function (data) {
-                $("#slidebar").html(data);
-            });
+				$("#header").html(data);
+			});
+			$.get("header-search.html", function (data) {
+				$("#header-search").html(data);
+			});
+			$.get("footer.html", function (data) {
+				$("#footer").html(data);
+			});
+			$.get("userPage_slidebar.html", function (data) {
+				$("#slidebar").html(data);
+			});
 		})
 	</script>
 	<!-- Optional JavaScript -->
@@ -212,7 +212,6 @@
 									confirmButtonText: '太好了！',
 									confirmButtonColor: '#525abb'
 								})
-
 								$("#member_pic").attr("src", $(".avatar-uploader__avatar>img").attr("src"));
 							}
 						});
@@ -239,21 +238,10 @@
 								loadData();
 							},
 							error: function () {
-								alert("error!")
-								$(
-									"#editUserDataBtn")
-									.css(
-										"display",
-										"inline-block")
-								$(
-									"#updateUserDataBtn")
-									.css(
-										"display",
-										"none")
-								$(".userInput")
-									.attr(
-										"readonly",
-										true)
+								console.log("個人資料更新失敗")
+								$("#editUserDataBtn").css("display","inline-block")
+								$("#updateUserDataBtn").css("display","none")
+								$(".userInput").attr("readonly",true)
 							}
 						});
 						return false; //阻止form submit

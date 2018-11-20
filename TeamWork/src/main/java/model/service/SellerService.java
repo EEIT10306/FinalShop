@@ -12,6 +12,7 @@ import model.bean.Groupon;
 import model.bean.Member;
 import model.bean.Seller;
 import model.bean.Store;
+import model.bean.StoreImages;
 import model.bean.StoreOrder;
 import model.bean.StoreProduct;
 import model.bean.Wish;
@@ -19,6 +20,7 @@ import model.repository.GrouponDao;
 import model.repository.SellerDao;
 import model.repository.StoreAssessDao;
 import model.repository.StoreDao;
+import model.repository.StoreImagesDao;
 import model.repository.StoreOrderDao;
 import model.repository.StoreProductDao;
 import model.repository.WishDao;
@@ -41,8 +43,30 @@ public class SellerService {
 	StoreAssessDao storeAssessDao;
 	@Autowired
 	WishDao wishDao;
+	@Autowired
+	StoreImagesDao storeImagesDao;
 
 	public SellerService() {
+	}
+	// 刪除此商品ID相關的全部圖片
+	public void deleteStoreProductAllImagesById(StoreImages storeImages) {
+		try {
+			
+			List<StoreImages> temps = storeImagesDao.selectHql("Where sP_id = " + storeImages.getsP_id());
+			for(StoreImages temp : temps) {
+				storeImagesDao.delete(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//下架商城商品資料
+	public StoreProduct cancelStoreProduct(StoreProduct storeProduct) throws SQLException {
+		Integer sP_id = storeProduct.getsP_id();
+		StoreProduct temp = storeProductDao.selectByPk(sP_id);
+		temp.setsP_stateId(15);
+		return temp;
 	}
 
 	// 重新編輯商店商品資料
@@ -51,8 +75,10 @@ public class SellerService {
 		Integer sP_amount = storeProduct.getsP_amount();
 		if (sP_id != null) {
 			if(sP_amount==0) {
-				//待補貨
-				storeProduct.setsP_stateId(14);
+				storeProduct.setsP_stateId(14); //待補貨
+			}else if(sP_amount>0) {
+				storeProduct.setsP_stateId(13); //有現貨
+				
 			}
 			StoreProduct SP = storeProductDao.selectByPk(sP_id);
 			return storeProductDao.update(SP, storeProduct);
