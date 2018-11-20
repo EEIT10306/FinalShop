@@ -209,29 +209,8 @@
 							if(data.length != 0){
 								for(i=0;i<3;i++){
 									var imgCont = (data[i]&&data[i].sI_context&&data[i].sI_context!="")?data[i].sI_context:data[0].sI_context
-// 									if(i==0){
-// 										productDemoPhototxt = 
-// 											`<div class="carousel-item avtive">
-// 												<img class="d-block w-100"
-// 														src="`+imgCont+`" alt='First slide'>
-// 											</div>`;
-// 									}else{										
-// 										productDemoPhototxt += `
-// 										<div class="carousel-item">
-// 											<img class="d-block w-100"
-// 													src="`+ imgCont +`">
-// 										</div>`;
-// 									}
-// 								}
-// 							}else{
-// 								productDemoPhototxt = 
-// 									`<div class="carousel-item active">
-// 										<img class="d-block w-100"
-// 												src="/TeamWork/web/images/user/product/defaultProductImage.gif">
-// 									</div>`;
-								$("#img-" + (i+1)).attr("src",imgCont)
+									$("#img-" + (i+1)).attr("src",imgCont)
 								}
-// 							$(".carousel-inner").html(productDemoPhototxt);
 							}else{
 								for(i=0;i<3;i++){
 									$("#img-" + (i+1)).attr("src",'/TeamWork/web/images/user/product/defaultProductImage.gif')
