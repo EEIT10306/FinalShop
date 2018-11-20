@@ -121,6 +121,7 @@
 	<!-- Optional JavaScript -->
 	<script>
 		var userID = 1;
+		var peopleId = 1;
 		$(document).ready(function () {
 			if (document.cookie.split("mid=").length == 2) {
 				userID = document.cookie.split("mid=")[1]
@@ -131,8 +132,16 @@
 				userID = "";
 				window.history.pushState("", "page 2", "userPage_seeProfile.html")
 			}
+			
+			//抓取QueryString參數
+			var url = location.href;
+			if (url.indexOf('?') != -1) {
+				var ary1 = url.split('?');
+				var ary2 = ary1[1].split('=');
+				peopleId = ary2[1];
+			}
 
-			var peopleId = 1
+
 			var dataurl = "/TeamWork/Member?m_id=" + peopleId;
 			loadData()
 			function loadData() {

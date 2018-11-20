@@ -24,7 +24,7 @@ public class StoreSearchService {
 	public List<StoreProduct> getStoreProductForm(String storeProduct) {
 		String str="";
 		if(storeProduct!=null) {
-		str += "Where sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%'  order by sP_time desc" ;
+		str += "Where (sP_name like '%"+storeProduct+"%' or sP_context like '%" +storeProduct+"%') and sP_stateId=13  order by sP_time desc" ;
 		
 		}
 //		as sp left join sp.product as pro left join sp.state as st
@@ -68,7 +68,7 @@ public class StoreSearchService {
 	public List<StoreProduct> getStoreProductChangeForm(String search,String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m){
 		String str="";
 		 List<String> list = new ArrayList<>();
-		str += "Where (sP_name like '%"+search+"%' or sP_context like '%" +search+"%') " ;
+		str += "Where (sP_name like '%"+search+"%' or sP_context like '%" +search+"%') and sP_stateId=13  " ;
 		str += (a!=null)?" and product.p_parentsId ="+ a+ " ":"";
 		str += (b!=null)?" and product.p_id ="+ b+" ":"";
 		str += (c!=null)?" and sP_averageAssess >= "+c+" ":"";

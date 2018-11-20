@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>會員中心｜我的團購</title>
+    <title>會員中心｜我的商品</title>
     <link rel="Shortcut Icon" type="image/x-icon" href="../images/others/web-icon.png" />
 
     <!-- Required meta tags -->
@@ -65,7 +65,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="popperForm" id="editStoreProduct_form" method="post" action="/TeamWork/EditStoreProduct">
+                <form class="popperForm" id="editStoreProduct_form" method="post" action="/TeamWork/EditStoreProduct" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="sP_id" value="" id="sP_id_input" />
                         <div class="modal-form-group row">
@@ -87,7 +87,7 @@
                         <div class="modal-form-group row">
                             <label for="pp_id" class="col-sm-2 modal-label">商品類別：</label>
                             <div class="col-sm-4">
-                                <select class="custom-select" name='pp_id'id="pp_id">
+                                <select class="custom-select" name='pp_id' id="pp_id">
                                     <option value="0" disabled selected>請選擇商品類別一</option>
                                 </select>
                             </div>
@@ -97,7 +97,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="modal-form-group row mt-1">                            
+                        <div class="modal-form-group row mt-1">
                             <label for="sP_amount" class="col-sm-2 modal-label">庫存數量：</label>
                             <div class="col-sm-4">
                                 <input type="number" class="form-control" id="sP_amount" name="sP_amount" placeholder="100">
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-sm-1">
                                 <span style="font-weight: normal">否</span>
-                            </div>    
+                            </div>
                         </div>
                         <div class="modal-form-group row">
                             <label for="sP_transport" class="col-sm-2 modal-label">運送方式：</label>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-sm userSubmitBtn" id="EditWishSubmitBtn">確定送出</button>
+                        <button type="button" class="btn btn-sm userSubmitBtn" id="EditStoreProductSubmitBtn">確定送出</button>
                     </div>
                 </form>
             </div>
@@ -273,9 +273,10 @@
 	                        `)
                             $("#sellerTableBody").append(itemEl);
                         }
+
                     });
 
-                     //編輯商品按鈕click事件
+                    //編輯商品按鈕click事件
                     $(".editBtn").click(function () {
                         var storeProductId = $(this).attr("name")
                         $("#sP_id_input").val(storeProductId)
@@ -288,16 +289,46 @@
                                 console.log("載入StoreProduct資料成功")
                                 $("#sP_name").val(res.sP_name);
                                 $("#sP_context").val(res.sP_context);
+                                $("#sP_amount").val(res.sP_amount);
                                 $("#sP_price").val(res.sP_price);
                                 $("#pp_id").val(res.product.product.p_id);
                                 updateProdSecondtData(res.product.product.p_id)
                                 $("#p_id").val(res.p_id);
-                                $("#sP_new_"+res.sP_new).attr("checked","checked")
+                                $("#sP_new_" + res.sP_new).attr("checked", "checked")
                                 //$("#storeImages").val(res.storeImages);
                             }
                         })
-
                     });
+
+                    //商品編輯表單確定送出click事件
+                    $("#EditStoreProductSubmitBtn").click(
+                        function () {
+                            var formData = new FormData($('#editStoreProduct_form')[0]);
+                            alert(formData)
+                            // formData.append('files', $('#selectProfile')[0].files[0]);
+                            // formData.append('m_id', userID);
+                            console.log("商品編輯表單送出");
+                            $.ajax({
+                                type: "POST",
+                                url: "/TeamWork/EditStoreProduct",
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function () {
+                                    swal({
+                                        title: '成功！',
+                                        text: '您成功更新了您的商品',
+                                        type: 'success',
+                                        confirmButtonText: '太好了！',
+                                        confirmButtonColor: '#525abb'
+                                    })
+                                    loadData();
+                                },
+                                error: function(){
+                                    console.log("更新商品資料失敗")
+                                }
+                            });
+                        });
                 }
 
                 //如果沒有東西可以顯示就顯示插圖
@@ -339,8 +370,8 @@
                 }
                 updateData();
             });
-            
-           
+
+
         });// end of $(document).ready()
     </script>
 </body>
