@@ -92,12 +92,11 @@ public class StoreProductController {
 	public StoreMessage InsertOneStoreMessage(StoreMessage bean) throws SQLException{
 		return storeMessageService.insert(bean);
 	}
-	@RequestMapping(path = "/HAHAHAOneStoreMessage", method = RequestMethod.POST)
+	@RequestMapping(path = "/DeleteOneStoreMessage", method = RequestMethod.POST)
 	@ResponseBody
-	public StoreMessage DeleteOneStoreMessage(Object bean) throws SQLException {
+	public StoreMessage DeleteOneStoreMessage(StoreMessage bean) throws SQLException {
 		System.out.println("HI");
-		return null;
-//		return storeMessageService.delete(bean);
+		return storeMessageService.delete(bean);
 	}
 	@RequestMapping(path = "/UpdateOneStoreMessage", method = RequestMethod.POST)
 	@ResponseBody

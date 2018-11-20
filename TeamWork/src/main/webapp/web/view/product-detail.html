@@ -299,7 +299,7 @@
 					                                <div class="comment-avatar"><img src="`+photo+`"alt=""></div>
 					                                <!-- Contenedor del Comentario -->
 						                                <div class="comment-box">
-						                                    <div class="comment-head">
+						                                   	<div class="comment-head">
 						                                        <h6 class="`+authorClass+`"><a href="`+StoreMessages[i].member.m_photo+`">`+StoreMessages[i].member.m_name+`</a></h6> 
 						                                        <span>`+(replyDate.getYear()+1900)+"/"+(replyDate.getMonth()+1)+"/"+replyDate.getDate()+" "+((replyDate.getHours().toString().length==1)?"0"+replyDate.getHours():replyDate.getHours())+":"+((replyDate.getMinutes().toString().length==1)?"0"+replyDate.getMinutes():replyDate.getMinutes())+`</span>`
 							                                       
@@ -310,9 +310,9 @@
 						                                        }
 							                                        replyText+=` <i class="fas fa-comment-dots" title="顯示回覆"></i>
 						                                    </div>
-						                                <div class="comment-content">`+StoreMessages[i].sM_context+`</div>
-					                            	</div>
-					                            </div>`
+						                                	<div class="comment-content">`+StoreMessages[i].sM_context+`</div>
+					                            		</div>
+					                           		</div>`
 				                        
 			                            replyText += `<ul class="comments-list reply-list">
                                         				<input type="hidden" class="tmp" value="`+StoreMessages[i].sM_id+`">
@@ -405,20 +405,30 @@
 										$(this).parents(".comment-main-level").next().find("li").attr("style", "display:block");
 									})
 									$(".fa-trash-alt").click(function(){
-// 										alert($(this).parents(".comment-main-level").find(".sMIdHide").val());
-// 										console.log($(this).parents(".comment-main-level").find(".sMIdHide"));
-										data = {sM_id:$(this).parents(".comment-main-level").find(".sMIdHide").val(), sP_id:hahaha.substring(6), m_idMessage: $(this).prev().prev().prev().text(), sM_context:$(this).parent().next().text(), sM_time:$(this).prev().text(), sM_stateId:22}
-										console.log(data)
-										$.ajax({
-											url:"/TeamWork/HAHAHAOneStoreMessage",
-											type:"POST",
-											data: data,
-											success:function(){
-// 												console.log($(this).parents(".comment-main-level"));
-// 												$(this).parents(".comment-main-level").attr("style", "display:none");
-												showQandA();
-											}
+										console.log($(this).parents(".comment-main-level").find(".sMIdHide").attr("value"));
+										console.log($(this).parents(".comment-main-level").find(".IdMessageHide").attr("value"));
+										console.log($(this).parents(".comment-box").find(".comment-content").text());
+										console.log(nowDateFormed);
+										
+										$.post("/TeamWork/DeleteOneStoreMessage",{"sM_id":$(this).parents(".comment-main-level").find(".sMIdHide").attr("value"),
+													 "sP_id":hahaha.substring(6),
+													  "m_idMessage":$(this).parents(".comment-main-level").find(".IdMessageHide").attr("value"),
+													  "sM_context":$(this).parents(".comment-box").find(".comment-content").text(),
+													  "sM_time":nowDateFormed,
+													  "sM_stateId":22
+													  },function(data){
+														  showQandA();
 										})
+// 										$.ajax({
+// 											url:"/TeamWork/DeleteOneStoreMessage",
+// 											type:"POST",
+// 											data:{sM_id:$(this).parents(".comment-main-level").find(".sMIdHide").val(), sP_id:hahaha.substring(6), m_idMessage: $(this).prev().prev().prev().text(), sM_context:$(this).parent().next().text(), sM_time:$(this).prev().prev().text(), sM_stateId:22},
+// 											success:function(){
+// // 												console.log($(this).parents(".comment-main-level"));
+// // 												$(this).parents(".comment-main-level").attr("style", "display:none");
+// 												showQandA();
+// 											}
+// 										})
 // 										$(this).parents(".comment-avatar").attr("style", "display:none");
 // 										$(this).parents(".comment-avatar").siblings().attr("style", "display:none");
 									})
