@@ -100,7 +100,7 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
-    alert("google登出")
+    // alert("google登出")
 }
 
 // 		function onSignIn(googleUser) {
