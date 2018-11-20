@@ -71,12 +71,15 @@ public class StoreSearchService {
 		str += "Where (sP_name like '%"+search+"%' or sP_context like '%" +search+"%') and sP_stateId=13  " ;
 		str += (a!=null)?" and product.p_parentsId ="+ a+ " ":"";
 		str += (b!=null)?" and product.p_id ="+ b+" ":"";
-		if(c.equals("5")) {
-			str +=" and sP_averageAssess >=4.5 ";
-		}else {
-			
-			str += (c!=null)?" and sP_averageAssess >= "+c+" ":"";
+		if(c!=null) {
+			if(c.equals("5")) {
+				str +=" and sP_averageAssess >=4.5 ";
+			}else {
+				
+				str += (c!=null)?" and sP_averageAssess >= "+c+" ":"";
+			}
 		}
+		
 		
 		if(d!=null||e!=null||f!=null||g!=null||h!=null) {
 			if(d!=null) {list.add("sP_transport like '%全家%' ");}
