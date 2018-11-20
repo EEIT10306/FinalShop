@@ -18,6 +18,7 @@
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
 </head>
 
 <body>
@@ -28,90 +29,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="user-page-slidebar col-lg-2">
-                <div class="user-page-brief">
-                    <a class="user-page-brief_avatar" href="userPage_profile.html">
-                        <div class="user-avatar_placeholder">
-                            <img id="member_pic" src="../images/user/account/profile/001.png">
-                        </div>
-                    </a>
-                    <div class="user-page-brief_right">
-                        <div class="user-page-brief__username" id="member_username"></div>
-                        <div class="user-page-brief__coin">
-                            <img src="../images/user/others/coin.png" style="display: inline-block;">
-                            <span id="member_coin"></span>
-                        </div>
-                    </div>
-                </div>
-                <!-- start of userpage-sidebar-menu -->
-                <div class="userpage-sidebar-menu">
-                    <a href="userPage_profile.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Man.svg"></div>
-                        <div class="userpage-sidebar-menu-text">我的帳戶</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Shop.svg"></div>
-                        <div class="userpage-sidebar-menu-text">商店</div>
-                    </div>
-                    <a href="userPage_StoreProductList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的商品</div>
-                    </a>
-                    <a href="userPage_StoreOrderSellerList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">商品訂單</div>
-                    </a>
-                    <a href="userPage_StoreOrderList.html" class="userpage-sidebar-menu_item storepbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">購買的商品</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Ring.svg"></div>
-                        <div class="userpage-sidebar-menu-text">許願</div>
-                    </div>
-                    <a href="userPage_WishList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的許願</div>
-                    </a>
-                    <a href="userPage_WishOrderList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">許願訂單</div>
-                    </a>
-                    <a href="userPage_WishOrderSellerList.html" class="userpage-sidebar-menu_item wishpbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">實現願望</div>
-                    </a>
-                    <div class="userpage-sidebar-menu_item-head" id="groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Party.svg"></div>
-                        <div class="userpage-sidebar-menu-text">團購</div>
-                    </div>
-                    <a href="userPage_GroupList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">我的開團</div>
-                    </a>
-                    <a href="userPage_GroupSellerList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">開團訂單</div>
-                    </a>
-                    <a href="userPage_GroupOrderList.html" class="userpage-sidebar-menu_item groupbtn">
-                        <div class="userpage-sidebar-menu-icon"><img></div>
-                        <div class="userpage-sidebar-menu-text">跟團</div>
-                    </a>
-                    <a href="userPage_medal.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Medal.svg"></div>
-                        <div class="userpage-sidebar-menu-text">我的成就</div>
-                    </a>
-                    <a href="userPage_notifications.html" class="userpage-sidebar-menu_item-head">
-                        <div class="userpage-sidebar-menu-icon"><img src="../images/user/Love-Letter.svg"></div>
-                        <div class="userpage-sidebar-menu-text">通知記錄</div>
-                    </a>
-                    <!-- <a href="userPage_sellerVerify.html" class="userpage-sidebar-menu_item">
-                            <div class="userpage-sidebar-menu-icon"><img src="../images/user/Analytics.svg"></div>
-                            <div class="userpage-sidebar-menu-text">賣家中心</div>
-                        </a> -->
-                </div>
-                <!-- end of userpage-sidebar-menu -->
-            </div>
+            <div class="user-page-slidebar col-lg-2" id="slidebar"></div>
             <div class="purchase-list-page_tabs-container col-lg-10">
                 <div class="row">
                     <div class="purchase-list-page_tab2 col-sm-4 tab_lock2" id="state13">有現貨</div>
@@ -132,68 +50,7 @@
 
     <!-- end of container -->
     <!-- start of footer -->
-    <div class="contaminer-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">客服中心</div>
-                    <ul class="footer-category-list">
-                        <li><a href="#">幫助中心</a></li>
-                        <li><a href="#">購物商城</a></li>
-                        <li><a href="#">付款方式</a></li>
-                        <li><a href="#">運費補助</a></li>
-                        <li><a href="#">退貨退款</a></li>
-                        <li><a href="#">我們承諾</a></li>
-                        <li><a href="#">聯絡客服</a></li>
-                    </ul>
-                </div>
-                <div class="footer-part col-lg-2">
-                    <div class="footer-category-name">關注我們</div>
-                    <ul class="footer-category-list">
-                        <li><img src="../images/social/facebook.png"> <a href="#">Facebook</a></li>
-                        <li><img src="../images/social/instagram.png"> <a href="#">Instagram</a></li>
-                        <li><img src="../images/social/line.png"> <a href="#">LINE</a></li>
-                        <li><img src="../images/social/linkedin.png"> <a href="#"> Linkedin</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="contaminer-fluid" id="footer">
     </div>
     <!-- end of footer -->
 
@@ -208,52 +65,73 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="popperForm" id="EditWish_form" method="post" action="/TeamWork/EditWish">
+                <form class="popperForm" id="editStoreProduct_form" method="post" action="/TeamWork/EditStoreProduct">
                     <div class="modal-body">
-                        <input type="hidden" name="w_id" value="" id="w_id" />
+                        <input type="hidden" name="sP_id" value="" id="sP_id_input" />
                         <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-2 modal-label">商品名稱：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="w_title" name="w_title" placeholder="編輯商品名稱">
-                            </div>
-                        </div>
-                        <div class="modal-form-group row">
-                            <label for="w_context" class="col-sm-2 modal-label">商品內容：</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" id="w_context" name="w_context" placeholder="編輯商品內容"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-2 modal-label">庫存數量：</label>
+                            <label for="sP_name" class="col-sm-2 modal-label">商品名稱：</label>
                             <div class="col-sm-4">
-                                <input type="number" class="form-control" id="w_title" name="w_title" placeholder="100">
+                                <input type="text" class="form-control" id="sP_name" name="sP_name" placeholder="編輯商品名稱">
                             </div>
-                            <label for="w_title" class="col-sm-2 modal-label">　　
-                                新品：</label>
+                            <label for="sP_price" class="col-sm-2 modal-label">商品價格：</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="sP_price" name="sP_price" placeholder="編輯商品價格">
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="sP_context" class="col-sm-2 modal-label">商品內容：</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="sP_context" name="sP_context" placeholder="編輯商品內容"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-form-group row">
+                            <label for="pp_id" class="col-sm-2 modal-label">商品類別：</label>
+                            <div class="col-sm-4">
+                                <select class="custom-select" name='pp_id'id="pp_id">
+                                    <option value="0" disabled selected>請選擇商品類別一</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="custom-select" class="form-group" id="p_id" name="p_id">
+                                    <option value="0" disabled selected>請選擇商品類別二</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-form-group row mt-1">                            
+                            <label for="sP_amount" class="col-sm-2 modal-label">庫存數量：</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="sP_amount" name="sP_amount" placeholder="100">
+                            </div>
+                            <label for="sP_new" class="col-sm-2 modal-label">是否新品：</label>
                             <div class="col-sm-1">
-                                <input type="radio" class="form-control" id="w_title" name="w_title" value=1>
+                                <input type="radio" class="form-control" name="sP_new" value="true" id="sP_new_true">
                             </div>
                             <div class="col-sm-1">
                                 <span style="font-weight: normal">是</span>
                             </div>
                             <div class="col-sm-1">
-                                <input type="radio" class="form-control" id="w_title" name="w_title" value=0>
+                                <input type="radio" class="form-control" name="sP_new" value="false" id="sP_new_false">
                             </div>
                             <div class="col-sm-1">
                                 <span style="font-weight: normal">否</span>
-                            </div>
+                            </div>    
                         </div>
                         <div class="modal-form-group row">
-                            <label for="w_title" class="col-sm-2 modal-label">運送方式：</label>
+                            <label for="sP_transport" class="col-sm-2 modal-label">運送方式：</label>
                             <div class="col-sm-4">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
+                                <select class="custom-select" size="3" id="sP_transport" name="sP_transport">
+                                    <option value="全家">全家</option>
+                                    <option value="7-11">7-11</option>
+                                    <option value="萊爾富">萊爾富</option>
+                                    <option value="中華郵政">中華郵政</option>
+                                    <option value="賣家宅配">賣家宅配</option>
+                                </select>
+                            </div>
+                            <label for="storeImages" class="col-sm-2 modal-label">商品圖片：</label>
+                            <div class="col-sm-4">
+                                <input type="file" class="form-control-file" id="storeImages" name="storeImages">
                             </div>
                         </div>
-                        <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                              </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
@@ -277,6 +155,12 @@
             $.get("header-search.html", function (data) {
                 $("#header-search").html(data);
             });
+            $.get("footer.html", function (data) {
+                $("#footer").html(data);
+            });
+            $.get("userPage_slidebar.html", function (data) {
+                $("#slidebar").html(data);
+            });
         })
     </script>
     <!-- Optional JavaScript -->
@@ -290,6 +174,7 @@
                 window.history.pushState("", "page 2", "userPage_StoreProductList.html")
                 window.location.href = "form_login.html";
             }
+            LoadProdSelector()
             var dataurl = "/TeamWork/StoreProductSellerListByM_id?m_id=" + userID;
             var userData = [];
             var state = 13;
@@ -344,8 +229,8 @@
 	                                <td>${item.sP_amount}</td>
 	                                <td>
                                         <div class="btn-group">
-	                                        <input type="button" class="btn btn-sm btn-outline-info detailBtn" value="查看詳細">
-                                            <input type="button" class="btn btn-sm btn-outline-info" value="編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+                                            <input type="button" class="btn btn-sm btn-outline-info" value="查看詳細" onclick="javascript:location.href='product-detail.html?sP_id=${item.sP_id}'">
+                                            <input type="button" class="btn btn-sm btn-outline-info editBtn" value="重新編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
                                         </div>
 	                                </td>
 	                            </tr>
@@ -362,8 +247,8 @@
 	                                <td>${item.sP_amount}</td>
 	                                <td>
 	                                    <div class="btn-group">
-	                                        <input type="button" class="btn btn-sm btn-outline-info detailBtn" value="查看詳細">
-                                            <input type="button" class="btn btn-sm btn-outline-info" value="編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+	                                        <input type="button" class="btn btn-sm btn-outline-info" value="查看詳細" onclick="javascript:location.href='product-detail.html?sP_id=${item.sP_id}'">
+                                            <input type="button" class="btn btn-sm btn-outline-info editBtn" value="重新編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
                                         </div>
 	                                </td>
 	                            </tr>
@@ -380,14 +265,37 @@
 	                                <td>${item.sP_amount}</td>
 	                                <td>
 	                                    <div class="btn-group">
-	                                        <input type="button" class="btn btn-sm btn-outline-info detailBtn" value="查看詳細">
-                                            <input type="button" class="btn btn-sm btn-outline-info" value="編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
+                                            <input type="button" class="btn btn-sm btn-outline-info" value="查看詳細" onclick="javascript:location.href='product-detail.html?sP_id=${item.sP_id}'">
+                                            <input type="button" class="btn btn-sm btn-outline-info editBtn" value="重新編輯商品" data-toggle="modal" data-target="#editStoreProduct" name="${item.sP_id}">
                                         </div>
 	                                </td>
 	                            </tr>
 	                        `)
                             $("#sellerTableBody").append(itemEl);
                         }
+                    });
+
+                     //編輯商品按鈕click事件
+                    $(".editBtn").click(function () {
+                        var storeProductId = $(this).attr("name")
+                        $("#sP_id_input").val(storeProductId)
+                        $.ajax({
+                            url: "/TeamWork/StoreProduct?sP_id=" + storeProductId,
+                            error: function () {
+                                console.log("載入StoreProduct資料失敗")
+                            },
+                            success: function (res) {
+                                console.log("載入StoreProduct資料成功")
+                                $("#sP_name").val(res.sP_name);
+                                $("#sP_context").val(res.sP_context);
+                                $("#sP_price").val(res.sP_price);
+                                $("#pp_id").val(res.product.product.p_id);
+                                updateProdSecondtData(res.product.product.p_id)
+                                $("#p_id").val(res.p_id);
+                                $("#sP_new_"+res.sP_new).attr("checked","checked")
+                                //$("#storeImages").val(res.storeImages);
+                            }
+                        })
 
                     });
                 }
@@ -396,24 +304,18 @@
                 if ($("#sellerTableBody").html() == "") {
                     initData();
                 }
-
-                //查看詳細按鈕click事件
-                $("input.detailBtn").click(function () {
-                    var hrefUrl = "test.html"
-                    document.location.href = hrefUrl;
-                });
             }// end of updateData()
 
 
             //預設顯示插圖
             function initData() {
                 var emptyEl = $(`
-                            <div class="empty">
-                                <img src="../images/user/others/empty_order.svg">
-                                <p>這裡什麼都沒有耶</p>
-                                <p>要不要上架些商品呢？</p>
-                            </div>
-                        `)
+                    <div class="empty">
+                        <img src="../images/user/others/empty_order.svg">
+                        <p>這裡什麼都沒有耶</p>
+                        <p>要不要上架些商品呢？</p>
+                    </div>
+                `)
                 $(".container-wrapper-seller").html("").append(emptyEl);
             }
 
@@ -437,6 +339,8 @@
                 }
                 updateData();
             });
+            
+           
         });// end of $(document).ready()
     </script>
 </body>

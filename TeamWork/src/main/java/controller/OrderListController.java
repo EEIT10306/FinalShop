@@ -18,8 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import model.bean.GroupAssess;
 import model.bean.GroupOrder;
 import model.bean.Member;
+import model.bean.Product;
 import model.bean.StoreAssess;
+import model.bean.StoreImages;
 import model.bean.StoreOrder;
+import model.bean.StoreProduct;
 import model.bean.Wish;
 import model.bean.WishAssess;
 import model.bean.WishBid;
@@ -38,6 +41,20 @@ public class OrderListController {
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
+	}
+	
+	//取得商品類別第一層資料
+	@RequestMapping(value = "/ProdSelectorFirst", method = RequestMethod.GET, produces = { "application/json" })
+	@ResponseBody
+	public List<Product> getProdSelectorFirst() throws SQLException {
+		return orderService.getProdSelectorFirst();
+	}
+	
+	//依照給予的第一層商品類別ID回應第二層商品類別ID資料
+	@RequestMapping(value = "/ProdSelectorSecond", method = RequestMethod.GET, produces = { "application/json" })
+	@ResponseBody
+	public List<Product> getProdSelectorSecond(Integer p_id) throws SQLException {
+		return orderService.getProdSelectorSecond(p_id);
 	}
 	
 	// 更新使用者資料

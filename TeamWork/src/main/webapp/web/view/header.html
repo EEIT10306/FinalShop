@@ -15,9 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <!-- <link href="./datecss/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"> -->
+    
     <!-- main CSS -->
     <link rel="stylesheet" href="../style/main.css">
 
@@ -28,16 +28,19 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-        <a class="navbar-brand" href="#">DayDayGo!</a>
+        <a class="navbar-brand" href="index.html">DayDayGo!</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-star icon"></i>許願池 Wish Pool</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-gift icon"></i>限時團購 Together</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-store icon"></i>購物商城 Shopping store</a></li>
+                <li class="nav-item active"><a class="nav-link" href="wish-search.html"><i class="fas fa-star icon"></i>許願池
+                        Wish Pool</a></li>
+                <li class="nav-item"><a class="nav-link" href="groupBuying-search.html"><i class="fas fa-gift icon"></i>限時團購
+                        Together</a></li>
+                <li class="nav-item"><a class="nav-link" href="storeProduct-search.html"><i class="fas fa-store icon"></i>購物商城
+                        Shopping store</a></li>
             </ul>
 
             <!-- Button trigger modal -->
@@ -45,7 +48,7 @@
                 <li class="nav-item">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                        aria-haspopup="true" aria-expanded="false" style="display:none">
                         <i class="fas fa-plus icon"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -56,7 +59,7 @@
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="userPage_notifications.html">
+                    <a class="nav-link" id="membernotice" href="userPage_Notifications.html" style="display:none">
                         <i class="fas fa-bell icon"></i>會員通知
                     </a>
                 </li>
@@ -65,7 +68,7 @@
                     <a class="nav-link" href="form_login.html" name="MemberLogin">
                         <i class="fas fa-user-circle icon"></i>會員登入 Member login
                     </a>
-                    <a class="nav-link" href="form_login.html" name="MemberName" style="display:none">
+                    <a class="nav-link" href="userPage_profile.html" name="MemberName" style="display:none">
                         <i class="fas fa-user-circle icon"></i>會員名稱
                     </a>
                 </li>
@@ -116,12 +119,11 @@
                         <option value="16">汽機車零件百貨</option>
                         <option value="17">寵物</option>
                         <option value="18">娛樂、收藏</option>
-                        <option value="19">寵物</option>
-                        <option value="20">服務、票券</option>
-                        <option value="21">遊戲王</option>
-                        <option value="22">其他類別</option>
+                        <option value="19">服務、票券</option>
+                        <option value="20">遊戲王</option>
+                        <option value="21">其他類別</option>
                     </select>
-                    <select class="custom-select" class="form-group" name="addSort">
+                    <select class="custom-select" class="form-group" name=addSort>
                         <option value="0">--請選擇--</option>
                     </select>
                     <div class="form-group">
@@ -154,7 +156,7 @@
                             <input type="text" name="inputstr" value="Store" style="display: none">
                             <input type="text" name="te" style="display: none">
                             <input type="file" name="file" id="Storeinput_file" class="custom-file-input" onchange="imgPreview(this)"
-                                required multiple="multiple">
+                                required multiple="multiple" style="bottom:23px; cursor: pointer">
                             <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
                             <img id="Storepreview" src="" />
                             <label>請上傳多張商品圖片...</label>
@@ -186,8 +188,8 @@
                         <input type="text" class="form-control" name="GrouponName" placeholder="Example input">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">開團內容</label>
-                        <textarea class="form-control" name="GrouponContext" rows="3"></textarea>
+                        <label for="exampleFormControlTextarea1">商品內容</label>
+                        <textarea class="form-control" name="StoreProductContext" rows="3"></textarea>
                     </div>
                     開團類別
                     <select class="custom-select form-group" name='GrouponSort1'>
@@ -210,10 +212,9 @@
                         <option value="16">汽機車零件百貨</option>
                         <option value="17">寵物</option>
                         <option value="18">娛樂、收藏</option>
-                        <option value="19">寵物</option>
-                        <option value="20">服務、票券</option>
-                        <option value="21">遊戲王</option>
-                        <option value="22">其他類別</option>
+                        <option value="19">服務、票券</option>
+                        <option value="20">遊戲王</option>
+                        <option value="21">其他類別</option>
                     </select>
                     <select class="custom-select" class="form-group" name="addSort">
                         <option value="0">--請選擇--</option>
@@ -236,9 +237,9 @@
                             <input type="text" name="inputstr" value="Group" style="display: none">
                             <input type="text" name="te" style="display: none">
                             <input type="file" name="file" id="Groupinput_file" class="custom-file-input" onchange="imgPreview(this)"
-                                required multiple="multiple">
+                                required multiple="multiple" style="bottom:23px ;cursor: pointer">
                             <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="Grouppreview" src=""/>
+                            <img id="Grouppreview" src="" />
                             <label>請上傳多張商品圖片...</label>
                         </form>
                     </div>
@@ -264,6 +265,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="formGroupExampleInput">許願標題</label>
+                        <input type="text" class="form-control" name="Wishlabel" placeholder="Example input">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">許願內容</label>
+                        <textarea class="form-control" name="WishContext" rows="3"></textarea>
+                    </div>
+                    許願地區
+                    <select class="custom-select" class="form-group" id="wisharea" name="addarea">
+                        <option value="0">--請選擇--</option>
+                    </select>
+                    終止日
+                    <!-- <input size="16" type="text" value="2018-06-15" name="enddate" id="datetimepicker" readonly class="form_datetime"> -->
+                    <input type="date" name="enddate" value="2018-01-01" min="2018-01-01"/>
+                    <div class="form-group">
                         <label for="formGroupExampleInput">許願商品</label>
                         <input type="text" class="form-control" name="WishName" placeholder="Example input">
                     </div>
@@ -288,12 +304,11 @@
                         <option value="16">汽機車零件百貨</option>
                         <option value="17">寵物</option>
                         <option value="18">娛樂、收藏</option>
-                        <option value="19">寵物</option>
-                        <option value="20">服務、票券</option>
-                        <option value="21">遊戲王</option>
-                        <option value="22">其他類別</option>
+                        <option value="19">服務、票券</option>
+                        <option value="20">遊戲王</option>
+                        <option value="21">其他類別</option>
                     </select>
-                    <select class="custom-select" class="form-group" name="addSort">
+                    <select class="custom-select" class="form-group" id="addWishSort" name="addSort">
                         <option value="0">--請選擇--</option>
                     </select>
                     <div class="form-group">
@@ -312,11 +327,11 @@
                     <div class="custom-file" class="form-group">
                         <form id="WishmyForm">
                             <input type="text" name="inputstr" value="Wish" style="display: none">
-                            <input type="text" name="te" style="display: none">
+                            <input type="text" name="te" id="wishpic" style="display: none">
                             <input type="file" name="file" id="Wishinput_file" class="custom-file-input" onchange="imgPreview(this)"
-                                required multiple="multiple">
+                                required multiple="multiple" style="bottom:23px ;cursor: pointer">
                             <label class="custom-file-label" for="validatedCustomFile">請上傳多張商品圖片...</label>
-                            <img id="Wishpreview" src=""/>
+                            <img id="Wishpreview" src="" />
                             <label>請上傳多張商品圖片...</label>
                         </form>
                     </div>
@@ -357,12 +372,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'> 
+    
+    <meta name="google-signin-client_id" content='225653973483-ni23q4pk96dskb6ebku50s6o4omss7vq.apps.googleusercontent.com'>
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};HandleGoogleApiLibrary()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     <script src="../js/Logout.js"></script>
     <script src="../js/cookies.js"></script>
     <script src="../js/AddProduct.js"></script>
+
 
 </body>
 

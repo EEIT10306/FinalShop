@@ -131,7 +131,7 @@
 		$(function(){			
 			//購物車	
 			$("#addShoppingCart").click(function(){
-				var shopCart = "shopCart"+hahaha.replace("=", "");
+				var shopCart = hahaha.replace("=", "");
 				var cartCookies = document.cookie.split(';');
 				var flag = true; 
 				for(i=0;i<cartCookies.length;i++){
@@ -147,9 +147,10 @@
 			
 			//直接購買
 			$("#shopNow").click(function(){
-				var shopNow = "shopNow"+hahaha.replace("=", "");
+				var shopNow = hahaha.replace("=", "");
 				document.cookie = shopNow + "=" + $("#productAmount").val()+";" ;
-				window.location.href = "/TeamWork/web/view/shoppingcart.html";
+				window.history.pushState("","page 1","product-detail.html?" + hahaha)
+				window.location.href = "/TeamWork/web/view/check_forStore.html";
 			})
 			
 			//頁面基本資訊
@@ -815,67 +816,67 @@
 		</div>
 	</div>
 	<!-- end of footer -->
-
-	<div id="live-chat">
-		<header class="clearfix">
-			<!-- 關閉的叉叉 -->
-			<!-- <a href="#" class="chat-close">x</a> -->
-			<h4>客服小幫手</h4>
-			<span class="chat-message-counter">3</span>
-		</header>
-		<div class="chat">
-			<div class="chat-history">
-				<div class="chat-message clearfix">
-					<img
-						src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32"
-						alt="" width="32" height="32">
-					<div class="chat-message-content clearfix">
-						<span class="chat-time">13:35</span>
-						<h5>可愛阿美姊</h5>
-						<p>請問您有什麼問題嗎，可以趕快問我喔!</p>
-					</div>
-					<!-- end chat-message-content -->
-				</div>
-				<!-- end chat-message -->
-				<hr>
-				<div class="chat-message clearfix">
-					<img
-						src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32"
-						alt="" width="32" height="32">
-					<div class="chat-message-content clearfix">
-						<span class="chat-time">13:37</span>
-						<h5>可愛阿美姊</h5>
-						<p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色。</p>
-					</div>
-					<!-- end chat-message-content -->
-				</div>
-				<!-- end chat-message -->
-				<hr>
-				<div class="chat-message clearfix">
-					<img
-						src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=30"
-						alt="" width="32" height="32">
-					<div class="chat-message-content clearfix">
-						<span class="chat-time">13:38</span>
-						<h5>顧客林小姐</h5>
-						<p>是喔，很好喔讚讚讚讚!</p>
-					</div>
-					<!-- end chat-message-content -->
-				</div>
-				<!-- end chat-message -->
-				<hr>
-			</div>
-			<!-- end chat-history -->
-			<p class="chat-feedback">Your partner is typing…</p>
-			<form action="#" method="post">
-				<fieldset>
-					<input type="text" placeholder="Type your message…" autofocus>
-					<input type="hidden">
-				</fieldset>
-			</form>
-		</div>
-		<!-- end chat -->
-	</div>
+	<div id="live-chat"></div>
+<!-- 	<div id="live-chat"> -->
+<!-- 		<header class="clearfix"> -->
+<!-- 			<!-- 關閉的叉叉 --> -->
+<!-- 			<!-- <a href="#" class="chat-close">x</a> --> -->
+<!-- 			<h4>客服小幫手</h4> -->
+<!-- 			<span class="chat-message-counter">3</span> -->
+<!-- 		</header> -->
+<!-- 		<div class="chat"> -->
+<!-- 			<div class="chat-history"> -->
+<!-- 				<div class="chat-message clearfix"> -->
+<!-- 					<img -->
+<!-- 						src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" -->
+<!-- 						alt="" width="32" height="32"> -->
+<!-- 					<div class="chat-message-content clearfix"> -->
+<!-- 						<span class="chat-time">13:35</span> -->
+<!-- 						<h5>可愛阿美姊</h5> -->
+<!-- 						<p>請問您有什麼問題嗎，可以趕快問我喔!</p> -->
+<!-- 					</div> -->
+<!-- 					end chat-message-content -->
+<!-- 				</div> -->
+<!-- 				end chat-message -->
+<!-- 				<hr> -->
+<!-- 				<div class="chat-message clearfix"> -->
+<!-- 					<img -->
+<!-- 						src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" -->
+<!-- 						alt="" width="32" height="32"> -->
+<!-- 					<div class="chat-message-content clearfix"> -->
+<!-- 						<span class="chat-time">13:37</span> -->
+<!-- 						<h5>可愛阿美姊</h5> -->
+<!-- 						<p>這款已經是每個韓妹人手一件了，之後又給你們追蹤到新色 豆沙紅 繡紅色 天藍色。</p> -->
+<!-- 					</div> -->
+<!-- 					end chat-message-content -->
+<!-- 				</div> -->
+<!-- 				end chat-message -->
+<!-- 				<hr> -->
+<!-- 				<div class="chat-message clearfix"> -->
+<!-- 					<img -->
+<!-- 						src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=30" -->
+<!-- 						alt="" width="32" height="32"> -->
+<!-- 					<div class="chat-message-content clearfix"> -->
+<!-- 						<span class="chat-time">13:38</span> -->
+<!-- 						<h5>顧客林小姐</h5> -->
+<!-- 						<p>是喔，很好喔讚讚讚讚!</p> -->
+<!-- 					</div> -->
+<!-- 					end chat-message-content -->
+<!-- 				</div> -->
+<!-- 				end chat-message -->
+<!-- 				<hr> -->
+<!-- 			</div> -->
+<!-- 			<!-- end chat-history --> -->
+<!-- 			<p class="chat-feedback">Your partner is typing…</p> -->
+<!-- 			<form action="#" method="post"> -->
+<!-- 				<fieldset> -->
+<!-- 					<input type="text" placeholder="Type your message…" autofocus> -->
+<!-- 					<input type="hidden"> -->
+<!-- 				</fieldset> -->
+<!-- 			</form> -->
+<!-- 		</div> -->
+<!-- 		<!-- end chat --> -->
+<!-- 	</div> -->
 	<!-- end live-chat -->
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
@@ -906,6 +907,7 @@
 	<script src="../js/heacerinclude.js"></script>
 	<script src="../js/headersearchinclude.js"></script>
 	<script src="../js/main.js"></script>
+	
 	<!-- Popper.js, then Bootstrap JS -->
 
 	<script
@@ -916,6 +918,8 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+	
+	<script src="../js/livechartinclude.js"></script>
 </body>
 
 </html>

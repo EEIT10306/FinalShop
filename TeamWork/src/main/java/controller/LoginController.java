@@ -97,11 +97,13 @@ public class LoginController {
 		return value;
 	}
 	
-	@RequestMapping(value = "/LoginFb" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
+	@RequestMapping(value = "/LoginFb" , method = RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	@ResponseBody
 	private String LogingFbServlet(String userInfo) {
 		System.out.println("LoginFb ="+userInfo);
 		//接收資料
+		Gson gson = new Gson();
+		
 		JSONObject json = new JSONObject(userInfo);
 		System.out.println(json.getString("email"));
 		//驗證資料
@@ -125,7 +127,8 @@ public class LoginController {
 				if(bean.size()==0) {
 					return "beanNull";
 				} else {
-					return mbean.getM_account();
+					String jsonbean = gson.toJson(bean);
+					return jsonbean;
 				}
 			}
 		}
@@ -133,11 +136,13 @@ public class LoginController {
 
 	}
 	
-	@RequestMapping(value = "/LoginGg" , method = RequestMethod.POST ,produces="text/html;charset=utf-8")
+	@RequestMapping(value = "/LoginGg" , method = RequestMethod.POST ,produces = "application/json; charset=utf-8")
 	@ResponseBody
 	private String LogingGgServlet(String userInfo) {
 		System.out.println("LoginGg");
 		//接收資料
+		Gson gson = new Gson();
+		
 		JSONObject json = new JSONObject(userInfo);
 		System.out.println(json.getString("email"));
 		//驗證資料
@@ -160,7 +165,8 @@ public class LoginController {
 				if(bean.size()==0) {
 					return "beanNull";
 				} else {
-					return mbean.getM_account();
+					String jsonbean = gson.toJson(bean);
+					return jsonbean;
 				}
 			}
 		}

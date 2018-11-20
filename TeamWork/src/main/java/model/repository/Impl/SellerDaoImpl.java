@@ -51,7 +51,7 @@ public class SellerDaoImpl implements SellerDao {
 		Seller S = selectByPk(bean.getSeller_id());
 		// 沒有才新增
 		if (S == null) {
-			bean.setSeller_stateId(1);
+			bean.setSeller_stateId(9);
 			getSession().save(bean);
 			return bean;
 		}

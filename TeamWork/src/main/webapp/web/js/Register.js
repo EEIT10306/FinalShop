@@ -29,6 +29,7 @@ $("#register").click(function(e){
                     $("#errorPassword").html("密碼必須包含大寫字母、小寫字母、數字與特殊字元，且長度不能小於八個字元")
                 }
                 if(data == mail){
+                    /*
                     console.log("成功註冊")
                     //設定cookie
                     var expire_days = 1; // 過期日期(天)
@@ -39,6 +40,8 @@ $("#register").click(function(e){
                     document.cookie = "email="+ data + "; " + expires + '; path=/';
                     alert(document.cookie)
                     alert("註冊成功")
+                    */
+                    window.history.pushState("","page 2" , "index.html")
                     window.location.href="http://localhost:8080/TeamWork/web/view/form_login.html";
                 } 
             },

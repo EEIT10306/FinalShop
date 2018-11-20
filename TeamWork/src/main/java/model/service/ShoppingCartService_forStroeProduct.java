@@ -11,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sun.corba.se.impl.oa.poa.AOMEntry;
+
+import model.bean.CommitAchievement;
 import model.bean.Member;
 import model.bean.StoreFavorite;
 import model.bean.StoreImages;
 import model.bean.StoreOrder;
 import model.bean.StoreProduct;
+import model.repository.CommitAchievementDao;
 import model.repository.MemberDao;
 import model.repository.StoreFavoriteDao;
 import model.repository.StoreOrderDao;
@@ -36,6 +40,9 @@ public class ShoppingCartService_forStroeProduct {
 
 	@Autowired
 	private StoreFavoriteDao storeFavoriteDaoImpl;
+
+	@Autowired
+	private CommitAchievementDao commitAchievementDaoImpl;
 
 //	以 product Id 查詢商品資料
 	public StoreProduct showStoreProductInformation(StoreProduct storeProduct) {
@@ -121,7 +128,7 @@ public class ShoppingCartService_forStroeProduct {
 					System.out.println(storeFavoriteInserted);
 					return storeFavoriteInserted;
 				} else {
-					System.out.println("This store product is in my favorite list.");		
+					System.out.println("This store product is in my favorite list.");
 					return favorites.get(0);
 				}
 			} else {
@@ -130,6 +137,94 @@ public class ShoppingCartService_forStroeProduct {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+//	商成交易成就
+	public void newAchievement_forStoreOrder(CommitAchievement achievement) {
+		Integer memberID = achievement.getM_id();
+		Integer achievementID = 0;
+		String hql = "WHERE m_idOrder = " + memberID;
+		try {
+			Member member = memberDapImpl.selectByPk(memberID);
+			List<StoreOrder> memberStoreOrder = storeOrderDaoImpl.selectHql(hql);
+			int orderAmount = memberStoreOrder.size();
+			if ((member != null) && (orderAmount >= 1)) {
+				achievementID = 11;
+				achievement.setcA_id(achievementID);
+				achievement.setM_id(memberID);
+				achievement.setcA_amount(1);
+				achievement.setcA_stateId(7);
+				String hql_1 = "WHERE m_id = " + memberID + " AND a_id = " + achievementID + " AND cA_amount = " + 0;
+				List<CommitAchievement> committed = commitAchievementDaoImpl.selectHql(hql_1);
+				if (committed.get(0) != null) {
+					achievement.setcA_id(committed.get(0).getcA_id());
+					commitAchievementDaoImpl.update(achievement);
+					CommitAchievement newAchievement = new CommitAchievement(null, 12, memberID, 0, 6);
+					commitAchievementDaoImpl.insert(newAchievement);
+				}
+			}
+			if ((member != null) && (orderAmount >= 3)) {
+				achievementID = 12;
+				achievement.setcA_id(achievementID);
+				achievement.setM_id(memberID);
+				achievement.setcA_amount(1);
+				achievement.setcA_stateId(7);
+				String hql_1 = "WHERE m_id = " + memberID + " AND a_id = " + achievementID + " AND cA_amount = " + 0;
+				List<CommitAchievement> committed = commitAchievementDaoImpl.selectHql(hql_1);
+				if (committed.get(0) != null) {
+					achievement.setcA_id(committed.get(0).getcA_id());
+					commitAchievementDaoImpl.update(achievement);
+					CommitAchievement newAchievement = new CommitAchievement(null, 13, memberID, 0, 6);
+					commitAchievementDaoImpl.insert(newAchievement);
+				}
+			}
+			if ((member != null) && (orderAmount >= 5)) {
+				achievementID = 13;
+				achievement.setcA_id(achievementID);
+				achievement.setM_id(memberID);
+				achievement.setcA_amount(1);
+				achievement.setcA_stateId(7);
+				String hql_1 = "WHERE m_id = " + memberID + " AND a_id = " + achievementID + " AND cA_amount = " + 0;
+				List<CommitAchievement> committed = commitAchievementDaoImpl.selectHql(hql_1);
+				if (committed.get(0) != null) {
+					achievement.setcA_id(committed.get(0).getcA_id());
+					commitAchievementDaoImpl.update(achievement);
+					CommitAchievement newAchievement = new CommitAchievement(null, 14, memberID, 0, 6);
+					commitAchievementDaoImpl.insert(newAchievement);
+				}
+			}
+			if ((member != null) && (orderAmount >= 10)) {
+				achievementID = 14;
+				achievement.setcA_id(achievementID);
+				achievement.setM_id(memberID);
+				achievement.setcA_amount(1);
+				achievement.setcA_stateId(7);
+				String hql_1 = "WHERE m_id = " + memberID + " AND a_id = " + achievementID + " AND cA_amount = " + 0;
+				List<CommitAchievement> committed = commitAchievementDaoImpl.selectHql(hql_1);
+				if (committed.get(0) != null) {
+					achievement.setcA_id(committed.get(0).getcA_id());
+					commitAchievementDaoImpl.update(achievement);
+					CommitAchievement newAchievement = new CommitAchievement(null, 15, memberID, 0, 6);
+					commitAchievementDaoImpl.insert(newAchievement);
+				}
+			}
+			if ((member != null) && (orderAmount >= 30)) {
+				achievementID = 15;
+				achievement.setcA_id(achievementID);
+				achievement.setM_id(memberID);
+				achievement.setcA_amount(1);
+				achievement.setcA_stateId(7);
+				String hql_1 = "WHERE m_id = " + memberID + " AND a_id = " + achievementID + " AND cA_amount = " + 0;
+				List<CommitAchievement> committed = commitAchievementDaoImpl.selectHql(hql_1);
+				if (committed.get(0) != null) {
+					achievement.setcA_id(committed.get(0).getcA_id());
+					commitAchievementDaoImpl.update(achievement);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

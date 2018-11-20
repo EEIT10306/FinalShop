@@ -59,6 +59,7 @@ function FBlogin() {
                         if(data=="existsAccount"){
                             $("#errorAccount").html("此帳號已被使用")
                         } else{
+                            /* 
                             //設定fbcookie
                             //expire_days = 1; // 過期日期(天)
                             var day = new Date();
@@ -70,13 +71,15 @@ function FBlogin() {
                             alert(document.cookie)
                             //FB登入
                             alert("FB註冊成功")
+                            */
+                        	window.history.pushState("","page 2" , "index.html")
                             window.location.href="http://localhost:8080/TeamWork/web/view/form_login.html"
                         }
                     },
                     error: function(data){
                         console.log(data);
                         console.log(response.email);
-                        alert("FB註冊失敗")
+                        console.log("FB註冊失敗")
                     }
                 });
                 //buildProfile(response);
@@ -145,6 +148,7 @@ function onSignIn(googleUser) {
             if(data=="existsAccount"){
                 $("#errorAccount").html("此帳號已被使用")
             } else {
+                /* 
                 //設定Googlecookie
                 //expire_days = 1; // 過期日期(天)
                 var day = new Date();
@@ -155,11 +159,12 @@ function onSignIn(googleUser) {
                 document.cookie = "email="+ data + "; " + expires + '; path=/';
                 alert(document.cookie)
                 alert('google註冊成功 :' + data);
+                */
                 window.location.href="http://localhost:8080/TeamWork/web/view/form_login.html"
             }
         },
         error:function (data) {
-            alert('google登入失敗 :' + data);
+            console.log('google登入失敗 :' + data);
         }
     });
 }

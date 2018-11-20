@@ -27,14 +27,23 @@ public class SellerVerifyController {
 		binder2.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
 	}
 
-	@RequestMapping(path = "/sellerVerify.do", method = RequestMethod.POST)
-	public String sellerVerify(Store store,BindingResult binder, Seller seller, BindingResult binder2)
+	@RequestMapping(path = "/storeVerify.do", method = RequestMethod.POST)
+	public String storeVerify(Store store,BindingResult binder, Seller seller, BindingResult binder2)
 			throws SQLException {
 		System.out.println(store);
 		System.out.println(seller);
 		// 接收資料
-		sellerVerifyService.VerifySellerData(store,seller);
-		return "redirect:/web/view/userPage_sellerVerify.html";
+		sellerVerifyService.VerifyStoreData(store,seller);
+		return "redirect:/web/view/userPage_profile.html";
+	}
+	
+	@RequestMapping(path = "/sellerVerify.do", method = RequestMethod.POST)
+	public String sellerVerify(Seller seller, BindingResult binder)
+			throws SQLException {
+		System.out.println(seller);
+		// 接收資料
+		sellerVerifyService.VerifySellerData(seller);
+		return "redirect:/web/view/userPage_profile.html";
 	}
 
 }

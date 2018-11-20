@@ -19,7 +19,17 @@ public class WishService {
 		return wishDaoImpl.selectByPk(w_id);
 	}
 
+
 	public Wish updateOneWish(Wish bean) throws SQLException {
 		return wishDaoImpl.update(bean);
+	}
+	
+	public Wish insert(Wish bean) {
+		try {
+			return wishDaoImpl.insert(bean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bean;
 	}
 }

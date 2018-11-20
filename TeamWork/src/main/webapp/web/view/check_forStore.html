@@ -260,7 +260,7 @@
 
 		//測試用 Cookie =======================================================================================
 		//document.cookie = "email=beautifulzhuyu"; //登入Cookie
-		//document.cookie = "sp_id1=1";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
+		//document.cookie = "sp_id1=3";              //購物車Cookie 1號 (商品ID=1，訂購數量=3)
 		//document.cookie = "sp_id10=1";             //購物車Cookie 2號 (商品ID=10，訂購數量=5)
 		//=====================================================================================================	
 
@@ -277,7 +277,7 @@
 					getMemberInformation();
 					if (productsInShopCart == "") {
 						alert("購物車內沒有商品");
-						window.location = "product-search.html";
+						window.history.go(-1);
 					}
 					if (productsInShopCart != "") {
 						getProductInformation();
@@ -296,7 +296,7 @@
 				//alert("空 cookies");
 			}
 			//alert("所有Cookie = { " + all + "}");
-			var all_1 = all.replace(" ","");
+			var all_1 = all.replace(" ", "");
 			var list = all_1.split(";");
 			for (var i = 0; i < list.length; i++) {
 				var cookie = list[i];
@@ -351,7 +351,7 @@
 							'<div class="delivery-selection">' +
 							'<label>商品配送方式</label>' +
 							'<select id="delivery' + i + '" class="selection">' +
-							'<option value=""></option>'+
+							'<option value=""></option>' +
 							'</select>' +
 							'</div>' +
 							'<div class="payment-selection">' +
@@ -389,7 +389,7 @@
 			$(".remove-this-item").click(function () {
 				var number = $(this).attr("id").substr(16);
 				var idnumber = $("#product-id" + number + "").text();
-				var sp_id = "sp_id" + idnumber;
+				var sp_id = "sP_id" + idnumber;
 				//alert(sp_id);
 				var like = confirm("是否將該商品加入我的最愛?");
 				if (like == true) {
@@ -400,7 +400,13 @@
 				getCookie();
 				$("#store-shopping-cart-list").empty();
 				$("#price-list").empty();
-				getProductInformation();
+				if (productsInShopCart == "") {
+					alert("購物車內沒有商品");
+					window.history.go(-1);
+				}
+				if (productsInShopCart != "") {
+					getProductInformation();
+				}
 			})
 
 			//改變商品訂購數量時，商品金額也改變
@@ -557,9 +563,20 @@
 						//alert(key1);
 						removeOneCookie(key1);
 						//alert("cookies = " + document.cookie);
-						window.location = "userPage_StoreOrdrList_OOO.html";
 					}
 				})
+				$.ajax({
+					type: "POST",
+					async: false,
+					url: "/TeamWork/UpdateAchievements_forStoreOrders",
+					data: {
+						"m_id": m_id
+					},
+					success: function (data) {
+						//alert("會員成就已更新")
+					}
+				})
+				setTimeout(window.location.href = "userPage_StoreOrderList.html", 30);
 			}
 		})
 
