@@ -212,6 +212,8 @@ public class AddProductController {
 		wish.setD_id(wishjson.getD_id());
 		wish.setW_startDate(new Date());
 		wish.setW_endDate(wishjson.getW_endDate());
+		wish.setW_sumPriceBottom(wishjson.getwP_priceBottom());
+		wish.setW_sumPriceTop(wishjson.getwP_priceTop());
 		wish.setW_changeTime(new Date());
 		wish.setW_hot(0);
 		wish.setW_amountFavorite(0);

@@ -31,7 +31,7 @@
     }
 
     .requisition-box {
-      min-height: 500px;
+      min-height: 490px;
     }
 
     span.btn-sm {
@@ -42,6 +42,14 @@
       margin-left: -18%;
       zoom: 73%
     }
+    
+ 	.checkState { 
+ 		color: #ea0000; 
+ 	} 
+	
+	.checkState:hover { 
+ 		color: #15FFFF; 
+ 	} 
 
     .changeState ul {
       /* 取消ul樣式符號 */
@@ -101,7 +109,36 @@
       /* 觸動第一層時，顯示第二層 */
       display: inline;
     }
-  </style>
+    .small {
+    	padding:1rem
+    }
+    .nowIn {
+    	background-color: #eac100
+    }
+    
+    .nowIn:hover {
+    	background-color: #d9b300
+    }
+    
+    nav .pagination {
+    	margin-bottom:0
+    }
+    
+    .nav-link{
+	    cursor:pointer;
+	    padding: 7px;
+    }
+    .disabled-link {
+     	border: 1px solid red;
+     	border-radius: 38px;
+     	padding: 7px;
+     	cursor: default;
+    }
+    
+    .disabled.number{
+    	font-size: x-large;
+    }
+    </style>
 
 </head>
 
@@ -145,33 +182,29 @@
 
   <!-- Content -->
   <div class="main">
-    <div class="hipsum" style="zoom:80%">
-      <div class="jumbotron">
+    <div class="hipsum" style="zoom:90%">
+      <div class="jumbotron small">
         <h1 id="hello,-world!">檢舉單據處理
-          <a class="anchorjs-link" href="#hello,-world!">
-            <span class="anchorjs-icon"></span>
-          </a>
         </h1>
-        <p>This is a simple hero unit.
-        </p>
+
 
       </div>
       <div class="requisition-content">
         <ul class="nav justify-content-center">
           <span class="btn-button">
-            <div class="btn btn-primary Ptitle">Wish</div>
+            <div class="btn btn-primary Ptitle nowIn">Wish</div>
             <div class="btn btn-primary Ptitle">Group</div>
             <div class="btn btn-primary Ptitle">StoreProduct</div>
           </span>
 
           <li class="nav-item">
-            <div class="nav-link disabled" style="cursor:pointer" data-state="Processing">未處理</div>
+            <div class="nav-link disabled-link" data-state="Processing">未處理</div>
           </li>
           <li class="nav-item">
-            <div class="nav-link" style="cursor:pointer" data-state="Transaction">已受理</div>
+            <div class="nav-link" data-state="Transaction">已受理</div>
           </li>
           <li class="nav-item">
-            <div class="nav-link" style="cursor:pointer" data-state="Overrule">已駁回</div>
+            <div class="nav-link" data-state="Overrule">已駁回</div>
           </li>
         </ul>
       </div>

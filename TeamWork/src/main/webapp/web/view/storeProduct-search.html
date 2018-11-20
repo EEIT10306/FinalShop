@@ -23,6 +23,12 @@
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	 crossorigin="anonymous">
+	 <style>
+	 [alt="Card image cap"] {
+	 	max-height: 215.5px;
+	 	min-height: 215.5px
+	 }
+	 </style>
 </head>
 
 <body>
@@ -377,8 +383,8 @@
 											+ jsonback[x].sP_name
 											+ "</h5>";
 										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-											+ jsonback[x].sP_context.substr(0,36) 
-										txt	+= (jsonback[x].sP_context.length>36)?"...":""
+											+ jsonback[x].sP_context.replace("<br>"," ").substr(0,32) 
+										txt	+= (jsonback[x].sP_context.length>32)?"...":""
 										txt	+= "</p></div>";
 										txt += "<p class='card-text'>$"
 											+ jsonback[x].sP_price
@@ -735,8 +741,8 @@
 											+ jsonback[x].sP_name
 											+ "</h5>";
 										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-											+ jsonback[x].sP_context.substr(0,36) 
-										txt	+= (jsonback[x].sP_context.length>36)?"...":""
+											+ jsonback[x].sP_context.replace("<br>"," ").substr(0,32) 
+										txt	+= (jsonback[x].sP_context.length>32)?"...":""
 										txt	+= "</p></div>";
 										txt += "<p class='card-text'>$"
 											+ jsonback[x].sP_price
@@ -785,6 +791,6 @@ function clickdiv(){
 	location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
 }
 </script>
-<!-- 	<script src="../js/manager/tap.js"></script> -->
+	<script src="../js/manager/tap.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@ $(document).ready(function () {
     var data = google.visualization.arrayToDataTable(product);
 
     var options = {
-      title: '11月份商品類別銷售比',
+      title: '',
       pieHole: 0.4,
       slices: {
         19: { offset: 0.4 },

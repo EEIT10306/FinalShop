@@ -125,7 +125,7 @@
 		$(document).ready(function () {
 			if (document.cookie.split("mid=").length == 2) {
 				userID = document.cookie.split("mid=")[1]
-					.split(";")[0]
+					.split(";")[0].replace(" ","")
 				$("#m_id").val(userID);
 				$("#m_id_profile").val(userID);
 			} else {
@@ -139,8 +139,9 @@
 				var ary1 = url.split('?');
 				var ary2 = ary1[1].split('=');
 				peopleId = ary2[1];
+			}else{
+				peopleId = userID;
 			}
-
 
 			var dataurl = "/TeamWork/Member?m_id=" + peopleId;
 			loadData()
@@ -162,12 +163,12 @@
 				$("#people_name").text(res.m_name + " 個人評價");
 				$("#people_mail").text(res.m_mail);
 				$("#people_m_photo").attr("src", res.m_photo);
-				$("#m_wishAssessSumEE").val(res.m_wishAssessSumEE);
-				$("#m_groupAssessSumEE").val(res.m_groupAssessSumEE);
-				$("#m_storeAssessSumEE").val(res.m_storeAssessSumEE);
-				$("#m_wishAssessSum").val(res.m_wishAssessSum);
-				$("#m_groupAssessSum").val(res.m_groupAssessSum);
-				$("#m_storeAssessSum").val(res.m_storeAssessSum);
+				$("#m_wishAssessSumEE").val(Math.round(100*res.m_wishAssessSumEE)/100);
+				$("#m_groupAssessSumEE").val(Math.round(100*res.m_groupAssessSumEE)/100);
+				$("#m_storeAssessSumEE").val(Math.round(100*res.m_storeAssessSumEE)/100);
+				$("#m_wishAssessSum").val(Math.round(100*res.m_wishAssessSum)/100);
+				$("#m_groupAssessSum").val(Math.round(100*res.m_groupAssessSum)/100);
+				$("#m_storeAssessSum").val(Math.round(100*res.m_storeAssessSum)/100);
 
 			}
 			//六角形
@@ -182,12 +183,12 @@
 					{
 						className: 'argentina',
 						axes: [
-							{ axis: "許願", value: res.m_wishAssessSumEE },
-							{ axis: "購物", value: res.m_storeAssessSum },
-							{ axis: "開團", value: res.m_groupAssessSumEE },
-							{ axis: "完願", value: res.m_wishAssessSum },
-							{ axis: "販賣", value: res.m_storeAssessSumEE },
-							{ axis: "跟團", value: res.m_groupAssessSum }
+							{ axis: "許願", value: Math.round(100*res.m_wishAssessSumEE)/100 },
+							{ axis: "購物", value: Math.round(100*res.m_storeAssessSum)/100 },
+							{ axis: "開團", value: Math.round(100*res.m_groupAssessSumEE)/100 },
+							{ axis: "完願", value: Math.round(100*res.m_wishAssessSum)/100 },
+							{ axis: "販賣", value: Math.round(100*res.m_storeAssessSumEE)/100 },
+							{ axis: "跟團", value: Math.round(100*res.m_groupAssessSum)/100 }
 						]
 					}
 				];
