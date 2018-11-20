@@ -24,9 +24,9 @@ public class DistrictService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("================");
-		System.out.println(list);
-		System.out.println("================");
+//		System.out.println("================");
+//		System.out.println(list);
+//		System.out.println("================");
 		return list;
 		
 	}

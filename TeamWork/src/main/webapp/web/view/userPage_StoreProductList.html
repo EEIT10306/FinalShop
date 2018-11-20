@@ -138,7 +138,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                         <button type="reset" class="btn btn-sm btn-secondary" id="EditStoreProductResetBtn">清空</button>
-                        <button type="button" class="btn btn-sm userSubmitBtn" id="EditStoreProductSubmitBtn">確定送出</button>
+                        <button type="button" class="btn btn-sm userSubmitBtn" id="EditStoreProductSubmitBtn" data-toggle="modal" data-target="#editStoreProduct">確定送出</button>
                     </div>
                 </form>
             </div>
@@ -225,7 +225,7 @@
                             var itemEl = $(`
 	                            <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="${defaultProdPic(item.storeImages[0].sI_context)}">
+	                                    <img class="storeSellerTable-img" src="${(item.storeImages[0]?defaultProdPic(item.storeImages[0].sI_context):"../images/product/default.jpeg")}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
@@ -244,7 +244,7 @@
                             var itemEl = $(`
 	                           <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="${defaultProdPic(item.storeImages[0].sI_context)}">
+	                                    <img class="storeSellerTable-img" src="${(item.storeImages[0]?defaultProdPic(item.storeImages[0].sI_context):"../images/product/default.jpeg")}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
@@ -263,7 +263,7 @@
                             var itemEl = $(`
 	                           <tr>
 	                                <td>
-	                                    <img class="storeSellerTable-img" src="${defaultProdPic(item.storeImages[0].sI_context)}">
+	                                    <img class="storeSellerTable-img" src="${(item.storeImages[0]?defaultProdPic(item.storeImages[0].sI_context):"../images/product/default.jpeg")}">
 	                                </td>
 	                                <td>${item.sP_name}</td>
 	                                <td>${item.sP_price}</td>
@@ -317,10 +317,11 @@
                             contentType: false,
                             success: function () {
                                 //關閉互動視窗
-                                $("#editStoreProduct").css("display", "none");
-                                $("button.close").click();
-                                //清空表單所有欄位
-                                $("#EditStoreProductResetBtn").click()
+                                $('#editStoreProduct').toggle();
+                                $('.modal-backdrop').toggle();
+                                    $("close").click();
+                                    //清空表單所有欄位
+                                    $("#EditStoreProductResetBtn").click()
                                 swal({
                                     title: '成功！',
                                     text: '您成功更新了您的商品',
