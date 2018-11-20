@@ -75,9 +75,9 @@ function loginAPI() {
                             document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
                             document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
                             document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
-                            alert(document.cookie)
+                            // alert(document.cookie)
     
-                            alert("登入成功")
+                            // alert("登入成功")
                             window.location.href=window.history.back();
                         }
                         
@@ -88,7 +88,7 @@ function loginAPI() {
                         console.log(data);
                         console.log(response.email);
                         if(data=="beanNull"){
-                            alert("FB登入失敗")
+                            // alert("FB登入失敗")
                         }
                     }
                 });
@@ -175,14 +175,14 @@ function onSignIn(googleUser) {
                 document.cookie = "email="+ data[0].m_account + "; " + expires + "; path=/";
                 document.cookie = "mid="+ data[0].m_id + "; " + expires + "; path=/";
                 document.cookie = "e_mail="+ data[0].m_mail + "; " + expires + "; path=/";
-                alert(document.cookie)
+                // alert(document.cookie)
 
-                alert("登入成功")
+                // alert("登入成功")
                 window.location.href=window.history.back();
             }
         },
         error:function (data) {
-            alert('google登入失敗 :' + data);
+            // alert('google登入失敗 :' + data);
         }
     });
 }

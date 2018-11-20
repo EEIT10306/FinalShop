@@ -1,3 +1,29 @@
+//一鍵帶入=============
+function wishonebringin(){
+    $("[name='Wishlabel']").val("誠心 求:蘋果智慧型手機Iphone X")
+    $("[name='WishContext']").val("各種顏色或是各種容量都可以收購")
+    $("[name='enddate']").val("2018-12-01")
+    $("[name='WishName']").val("Iphone X")
+    $("[name='WishAmount']").val("5")
+    $("[name='WishPriceBottom']").val("10000")
+    $("[name='WishPriceTop']").val("30000")
+}
+function storeonebringin(){
+    $("[name='StoreProductName']").val("Dyson Ball fluffy圓筒吸塵器 藍")
+    $("[name='StoreProductContext']").val(
+    `基本配件內容：
+    (1)軟質碳纖維滾筒吸頭(市價$6000) 
+    (2)二合一組合式吸頭(市價$2000) 
+    ■ 戴森第四代數位馬達 
+    ■ 雙層氣旋 
+    ■ 搭載dyson ballTM球型科技 
+    ■ 全新軟質碳纖維滾筒吸頭 
+    ■ 美國哮喘和過敏基金會(AAFA)及瑞士過敏協會 (Allergie Suisse)認證 
+    ■ 五年保固`)
+    $("[name='StoreProductAmount']").val("50")
+    $("[name='StoreProductPrice']").val("29500")
+    
+}
 //=================================抓取地區=====================================
 $(document).ready(function () {
     $.ajax({
@@ -51,10 +77,10 @@ function imgPreview(fileDom) {
     if (window.FileReader) {
         var reader = new FileReader();
     } else {
-        alert("判斷瀏覽器是否支援瀏覽功能");
+        // alert("判斷瀏覽器是否支援瀏覽功能");
     }
     //獲取file
-    alert(fileDom)
+    // alert(fileDom)
     var file = fileDom.files[0];
     var imageType = /^image\//;
     //是否為image
@@ -90,13 +116,13 @@ function cookieToJson() {
 //=================================抓取商品類型=====================================
 $("[name = 'StoreProductSort1']").change(function () {
     var addProductSort = $("[name = 'StoreProductSort1']").val();
-    alert(addProductSort)
+    // alert(addProductSort)
     $.ajax({
         type: "POST",
         url: "/TeamWork/changeStoreFormSelect",
         data: { "p_id": addProductSort },
         success: function (jsonback) {
-            alert("server傳回 = " + jsonback);
+            // alert("server傳回 = " + jsonback);
             var json = JSON.parse(jsonback);
             console.log(json)
             var txtselect = "";
@@ -114,13 +140,13 @@ $("[name = 'StoreProductSort1']").change(function () {
 //=================================抓取開團類型=====================================
 $("[name = 'GrouponSort1']").change(function () {
     var addProductSort = $("[name = 'GrouponSort1']").val();
-    alert(addProductSort)
+    // alert(addProductSort)
     $.ajax({
         type: "POST",
         url: "/TeamWork/changeStoreFormSelect",
         data: { "p_id": addProductSort },
         success: function (jsonback) {
-            alert("server傳回 = " + jsonback);
+            // alert("server傳回 = " + jsonback);
             var json = JSON.parse(jsonback);
             console.log(json)
             var txtselect = "";
@@ -138,13 +164,13 @@ $("[name = 'GrouponSort1']").change(function () {
 //=================================抓取許願類型=====================================
 $("[name = 'WishSort1']").change(function () {
     var addProductSort = $("[name = 'WishSort1']").val();
-    alert(addProductSort)
+    // alert(addProductSort)
     $.ajax({
         type: "POST",
         url: "/TeamWork/changeStoreFormSelect",
         data: { "p_id": addProductSort },
         success: function (jsonback) {
-            alert("server傳回 = " + jsonback);
+            // alert("server傳回 = " + jsonback);
             var json = JSON.parse(jsonback);
             console.log(json)
             var txtselect = "";
@@ -163,26 +189,26 @@ $("[name = 'WishSort1']").change(function () {
 function VerifySeller() {
     var json = cookieToJson();
     var cookieAccount = json['email']
-    alert("判斷有無賣家抓帳號==========" + cookieAccount)
+    // alert("判斷有無賣家抓帳號==========" + cookieAccount)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifySeller",
         data: { "account": cookieAccount },
         async: false,
         success: function (response) {
-            alert("賣家ID==========" + response);
+            // alert("賣家ID==========" + response);
             //判斷是不是空值
             if (response == null || response == undefined || response == '') {
-                alert("驗證賣家失敗");
+                console.log("驗證賣家失敗");
                 window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerifyNoStore.html"
             } else {
-                alert("驗證賣家成功");
+                console.log("驗證賣家成功");
                 result = true
             }
         },
         error: function (response) {
-            alert(response);
-            alert("驗證失敗");
+            console.log(response);
+            console.log("驗證失敗");
         }
     })
     return result;
@@ -192,27 +218,27 @@ var storeid;
 function VerifyStore() {
     var json = cookieToJson();
     var cookieAccount = json['email']
-    alert("判斷有無店家抓帳號==========" + cookieAccount)
+    // alert("判斷有無店家抓帳號==========" + cookieAccount)
     $.ajax({
         type: "POST",
         url: "/TeamWork/accountVerifyStore",
         data: { "account": cookieAccount },
         async: false,
         success: function (response) {
-            alert("店家ID==========" + response);
+            // alert("店家ID==========" + response);
             //判斷是不是空值
             if (response == null || response == undefined || response == '') {
-                alert("驗證店家失敗");
+                // alert("驗證店家失敗");
                 window.location.href = "http://localhost:8080/TeamWork/web/view/userPage_sellerVerify.html"
             } else {
-                alert("驗證店家成功");
+                // alert("驗證店家成功");
                 storeid = response;
                 result = true;
             }
         },
         error: function (response) {
-            alert(response);
-            alert("驗證失敗");
+            console.log(response);
+            console.log("驗證失敗");
         }
     })
     return result;
@@ -236,20 +262,20 @@ $("#StoreProductClick").click(function (e) {
     if (isNew == "是否全新") {
         isNew = "true"
     }
-    alert("isNew====" + isNew)
-    alert("addStore====" + addStore)
-    alert("StoreProductSort====" + StoreProductSort)
+    // alert("isNew====" + isNew)
+    // alert("addStore====" + addStore)
+    // alert("StoreProductSort====" + StoreProductSort)
     //上傳圖片變數
     e.preventDefault(); // 停止觸發submit
-    alert("upload");
+    // alert("upload");
     $("input[name='te']").val(StoreProductName);
-    alert("inputtext======" + $("input[name='te']").val())
+    // alert("inputtext======" + $("input[name='te']").val())
     var formData = new FormData($("#StoremyForm")[0]); // 使用FormData包裝form表單來傳輸資料
-    alert("formData=========" + formData.getAll)
+    // alert("formData=========" + formData.getAll)
 
     // 開始判斷有無店家身份
     if (VerifyStore()) {
-        alert(storeid)
+        // alert(storeid)
         $.ajax({
             type: "POST",
             url: "/TeamWork/AddStoreProduct",
@@ -266,9 +292,9 @@ $("#StoreProductClick").click(function (e) {
             dataType: "json",
             success: function (response) {
                 var jsons = JSON.stringify(response);
-                alert("MVC傳回 = " + jsons);
+                // alert("MVC傳回 = " + jsons);
                 // console.log("MVC傳回 = " + jsons.get(0))
-                alert("SSSS");
+                // alert("SSSS");
                 //上傳圖片
                 $.ajax({
                     type: "POST",
@@ -279,16 +305,16 @@ $("#StoreProductClick").click(function (e) {
                     contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
                     dataType: 'text',
                     success: function (data) {
-                        alert("upload sucess");
+                        // alert("upload sucess");
                     }
                 });
                 // window.location.href=""
 
             },
             error: function (response) {
-                var jsons = JSON.stringify(response);
-                alert("MVC傳回 = " + jsons);
-                alert("GG");
+                // var jsons = JSON.stringify(response);
+                // alert("MVC傳回 = " + jsons);
+                // alert("GG");
             }
         })
     }
@@ -304,11 +330,11 @@ $("#GrouponClick").click(function (e) {
 
     //上傳圖片變數
     e.preventDefault(); // 停止觸發submit
-    alert("upload");
+    // alert("upload");
     $("input[name='te']").val(GrouponName);
-    alert("inputtext======" + $("input[name='te']").val())
+    // alert("inputtext======" + $("input[name='te']").val())
     var formData = new FormData($("#GroupmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
-    alert("formData=========" + formData.getAll)
+    // alert("formData=========" + formData.getAll)
     //判斷賣家
     if (VerifySeller()) {
         $.ajax({
@@ -327,9 +353,9 @@ $("#GrouponClick").click(function (e) {
                 // console.log("MVC傳回 = " + jsons.get(0))
                 // alert("MVC傳回 = " + response);
                 var jsons = JSON.stringify(response);
-                alert("MVC傳回 = " + jsons);
+                // alert("MVC傳回 = " + jsons);
                 // console.log("MVC傳回 = " + response.get(0))
-                alert("SSSS");
+                // alert("SSSS");
                 //上傳圖片修改為開團
                 $.ajax({
                     type: "POST",
@@ -340,7 +366,7 @@ $("#GrouponClick").click(function (e) {
                     contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
                     dataType: 'text',
                     success: function (data) {
-                        alert("upload sucess");
+                        // alert("upload sucess");
                     }
                 });
                 // window.location.href=""
@@ -348,10 +374,10 @@ $("#GrouponClick").click(function (e) {
             },
             error: function (response) {
                 // console.log("MVC傳回 = " + jsons.get(0))
-                var jsons = JSON.stringify(response);
-                alert("MVC傳回 = " + jsons);
+                // var jsons = JSON.stringify(response);
+                // alert("MVC傳回 = " + jsons);
                 // console.log("MVC傳回 = " + response.get(0))
-                alert("GG");
+                // alert("GG");
             }
         })
     }
@@ -372,7 +398,7 @@ $("#WishClick").click(function (e) {
     } else {
         WishSort = addStore;
     }
-    alert(WishSort)
+    // alert(WishSort)
     var WishSort = $("[name = 'WishSort1']").val();
     var WishAmount = $("[name = 'WishAmount']").val();
     var WishPriceBottom = $("[name = 'WishPriceBottom']").val();
@@ -390,42 +416,41 @@ $("#WishClick").click(function (e) {
 
     //上傳圖片變數
     e.preventDefault(); // 停止觸發submit
-    alert("upload");
+    // alert("upload");
     $("#wishpic").val(WishName);
-    alert("inputtext======" + $("#wishpic").val())
+    // alert("inputtext======" + $("#wishpic").val())
     var formData = new FormData($("#WishmyForm")[0]); // 使用FormData包裝form表單來傳輸資料
-    alert("formData=========" + formData.getAll)
+    // alert("formData=========" + formData.getAll)
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: "/TeamWork/AddWishandProduct",
-    //     data: wishjson,
-    //     contentType: "application/json; charset=utf-8",
-    //     success: function (response) {
-    //         console.log(response)
-    //         alert("SSSS");
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "/TeamWork/uploadmutipart",
-    //             data: formData,
-    //             cache: false, // 不需要cache
-    //             processData: false, // jQuery預設會把data轉為query String, 所以要停用
-    //             contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
-    //             dataType: 'text',
-    //             success: function (data) {
-    //                 alert("upload sucess");
-    //             }
-    //         });
+    $.ajax({
+        type: "POST",
+        url: "/TeamWork/AddWishandProduct",
+        data: wishjson,
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            console.log(response)
+            // alert("SSSS");
+            $.ajax({
+                type: "POST",
+                url: "/TeamWork/uploadmutipart",
+                data: formData,
+                cache: false, // 不需要cache
+                processData: false, // jQuery預設會把data轉為query String, 所以要停用
+                contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
+                dataType: 'text',
+                success: function (data) {
+                    // alert("upload sucess");
+                }
+            });
 
-    //     },
-    //     error: function (response) {
-    //         // console.log("MVC傳回 = " + jsons.get(0))
-    //         alert("MVC傳回 = " + response);
-    //         var jsons = JSON.stringify(response);
-    //         alert("MVC傳回 = " + jsons);
-    //         // console.log("MVC傳回 = " + response.get(0))
-    //         alert("GG");
-    //     }
-    // })
-
+        },
+        error: function (response) {
+            // console.log("MVC傳回 = " + jsons.get(0))
+            // alert("MVC傳回 = " + response);
+            // var jsons = JSON.stringify(response);
+            // alert("MVC傳回 = " + jsons);
+            // console.log("MVC傳回 = " + response.get(0))
+            // alert("GG");
+        }
+    })
 })

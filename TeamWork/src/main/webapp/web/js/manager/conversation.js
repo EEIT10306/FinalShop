@@ -303,16 +303,17 @@ function setUnReadMessage(response, unread) {
         if (count == 0) {
             var photo = (response[0].member.m_photo == "") ? "../images/user/account/profile/001.png" : response[0].member.m_photo
             //resetLeft
+            timeLeft = (responseTime.getMinutes() < 10) ? responseTime.getHours() + ":0" + responseTime.getMinutes() : responseTime.getHours() + ":" + responseTime.getMinutes()
             textLeft = `
             <li class="person" data-chat="person` + response[0].m_id + `"><div class="conversationLeftNoRead-active">` + response.length + `</div>
                 <input type="hidden" id="conversationId" value="` + response[0].m_id + `">
                 <img src="` + photo + `" alt="">
                 <span class="name">` + response[0].member.m_name + `</span>
-                <span class="time">` + responseTime + `</span>
+                <span class="time">` + timeLeft + `</span>
                 <span class="preview">` + response[0].c_context + `</span>
             </li>
             `
-            $("ul#conversation_page").prepent(textLeft)
+            $("ul#conversation_page").prepend(textLeft)
             //resetRight
             $("div.top.name").html(response[0].member.m_name)
             dateRightShow = new Date(response[response.length - 1].c_time)

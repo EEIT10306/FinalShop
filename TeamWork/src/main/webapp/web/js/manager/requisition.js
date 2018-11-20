@@ -103,12 +103,12 @@ function setBox(wheres, states, box) {
 
                     if (states == "Processing") {
                         table += `
-                        <td class="changeState" style="cursor:pointer">
+                        <td class="changeState" >
                             <ul>
-                                <li><span>` + box[j].state.state_context + `</span>
+                                <li><span class="checkState" style="cursor:pointer">` + box[j].state.state_context + `</span>
                                     <ul>
-                                        <li><span data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
-                                        <li><span data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -144,12 +144,12 @@ function setBox(wheres, states, box) {
 
                     if (states == "Processing") {
                         table += `
-                        <td class="changeState" style="cursor:pointer">
+                        <td class="changeState" >
                             <ul>
-                                <li><span>` + box[j].state.state_context + `</span>
+                                <li><span class="checkState" style="cursor:pointer">` + box[j].state.state_context + `</span>
                                     <ul>
-                                        <li><span data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
-                                        <li><span data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].wR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -187,12 +187,12 @@ function setBox(wheres, states, box) {
 
                     if (states == "Processing") {
                         table += `
-                        <td class="changeState" style="cursor:pointer">
+                        <td class="changeState" >
                             <ul>
-                                <li><span>` + box[j].state.state_context + `</span>
+                                <li><span class="checkState" style="cursor:pointer">` + box[j].state.state_context + `</span>
                                     <ul>
-                                        <li><span data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
-                                        <li><span data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -228,12 +228,12 @@ function setBox(wheres, states, box) {
 
                     if (states == "Processing") {
                         table += `
-                        <td class="changeState" style="cursor:pointer">
+                        <td class="changeState" >
                             <ul>
-                                <li><span>` + box[j].state.state_context + `</span>
+                                <li><span class="checkState" style="cursor:pointer">` + box[j].state.state_context + `</span>
                                     <ul>
-                                        <li><span data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
-                                        <li><span data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].gR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -271,12 +271,12 @@ function setBox(wheres, states, box) {
 
                     if (states == "Processing") {
                         table += `
-                        <td class="changeState" style="cursor:pointer">
+                        <td class="changeState" >
                             <ul>
-                                <li><span>` + box[j].state.state_context + `</span>
+                                <li><span class="checkState" style="cursor:pointer">` + box[j].state.state_context + `</span>
                                     <ul>
-                                        <li><span data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
-                                        <li><span data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -312,12 +312,12 @@ function setBox(wheres, states, box) {
 
                     if (states == "Processing") {
                         table += `
-                        <td class="changeState" style="cursor:pointer">
+                        <td class="changeState" >
                             <ul>
-                                <li><span>` + box[j].state.state_context + `</span>
+                                <li><span class="checkState" style="cursor:pointer">` + box[j].state.state_context + `</span>
                                     <ul>
-                                        <li><span data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
-                                        <li><span data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 1) + `">通過</span></li>
+                                        <li><span style="cursor:pointer" data-state="` + wheres + "_" + box[j].sR_id + "_" + (box[j].state.state_id + 2) + `">駁回</span></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -357,14 +357,14 @@ function setPage(wheres, states, box) {
                 </li>
                 <div>
                     <ul class="pagination justify-content-center">
-                        <li class="page-item disabled" data-page="1">
+                        <li class="page-item disabled number" data-page="1">
                             <div class="page-link">1</div>
                         </li>
         `
         if (page > 1) {
             for (var i = 2; i <= page; i++) {
                 pagetext += `
-                        <li class="page-item" data-page="` + i + `">
+                        <li class="page-item number" data-page="` + i + `">
                             <div class="page-link">` + i + `</div>
                         </li>
                 `
@@ -526,15 +526,23 @@ function callback() {
         resetShowTable()
         resetState()
         resetPage()
+        $('.nowIn').removeClass("nowIn")
+        $(this).addClass("nowIn")
+        $('.nav-link').removeClass("disabled-link")
+    	$("[data-state='"+state+"']").addClass("disabled-link")
     })
 
     //state 選擇
     $('.nav-link').click(function () {
-        state = $(event.target).attr("data-state")
-        now = 1
-        resetShowTable()
-        resetState()
-        resetPage()
+    	if(!$(this).hasClass("disabled-link")){    		
+    		state = $(event.target).attr("data-state")
+    		now = 1
+    		resetShowTable()
+    		resetState()
+    		resetPage()
+    		$('.nav-link').removeClass("disabled-link")
+    		$(this).addClass("disabled-link")
+    	}
     })
 
     //page 選擇
@@ -683,7 +691,7 @@ function callback() {
         }
         $(".modal-content").text("")
         if (wheres[0] == "Wish") {
-            // $(".modal-content").load("/TeamWork/web/view/.html",hahaha)
+            // $(".modal-content").load("/TeamWork/web/view/wish-detail.html",hahaha)
         } else if (wheres[0] == "Group") {
             // $(".modal-content").load("/TeamWork/web/view/.html",hahaha)
         } else {

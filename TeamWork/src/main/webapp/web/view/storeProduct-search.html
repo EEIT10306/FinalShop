@@ -23,6 +23,12 @@
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	 crossorigin="anonymous">
+	 <style>
+	 [alt="Card image cap"] {
+	 	max-height: 215.5px;
+	 	min-height: 215.5px
+	 }
+	 </style>
 </head>
 
 <body>
@@ -287,7 +293,7 @@
 								
 								if (jsonback == "") {
 							if(search_value!=""){
-								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='display:block; margin:auto;'><p padding-top: 10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div><div>";
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='display:block; margin:auto;'><p padding-top: 10px;>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋或改到許願池許願哦 !</p></div><div>";
 									txt+= `<form method="GET" action="/TeamWork/search">
             							<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						 <div class="input-group-prepend">
@@ -308,7 +314,7 @@
 								$("#tableMenu").html(txt2);
 										orderby();
 							}else{
-								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin:auto;'><p style='padding-top:10px'>我們找不到此條件的相關商品，請重新搜尋</p></div><div>";
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='margin:auto;'><p style='padding-top:10px'>我們找不到此條件的相關商品，請重新搜尋或改到許願池許願哦 !</p></div><div>";
 									txt+= `<form method="GET" action="/TeamWork/search">
             							<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						 <div class="input-group-prepend">
@@ -377,8 +383,8 @@
 											+ jsonback[x].sP_name
 											+ "</h5>";
 										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-											+ jsonback[x].sP_context.substr(0,36) 
-										txt	+= (jsonback[x].sP_context.length>36)?"...":""
+											+ jsonback[x].sP_context.replace("<br>"," ").substr(0,32) 
+										txt	+= (jsonback[x].sP_context.length>32)?"...":""
 										txt	+= "</p></div>";
 										txt += "<p class='card-text'>$"
 											+ jsonback[x].sP_price
@@ -646,7 +652,7 @@
 
 						if (jsonback == "") {
 							if(search_value!=""){
-								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='display:block; margin:auto;'><p style='padding-top: 10px';>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋</p></div><div>";
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style='display:block; margin:auto;'><p style='padding-top: 10px';>我們找不到此條件的  <span style='color:red;font-size:20px;'>" + search_value + "</span>  商品，請重新搜尋或改到許願池許願哦 !</p></div><div>";
 								txt+= `<form method="GET" action="/TeamWork/search">
 										<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						<div class="input-group-prepend">
@@ -667,7 +673,7 @@
 								$("#tableMenu").html(txt2);
 										orderby();
 							}else{
-								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style=' margin:auto;'><p style='padding-top:10px';>我們找不到此條件的相關商品，請重新搜尋</p></div><div>";
+								var txt ="<div style='width:1000px;height:200px;padding-top:100px;text-align:center'><div><img src='/TeamWork/web/images/warningbig.png' style=' margin:auto;'><p style='padding-top:10px';>我們找不到此條件的相關商品，請重新搜尋或改到許願池許願哦 !</p></div><div>";
 									txt+= `<form method="GET" action="/TeamWork/search">
             							<div class="input-group mb-1" style='width:60%;margin:auto'>
                    						 <div class="input-group-prepend">
@@ -735,8 +741,8 @@
 											+ jsonback[x].sP_name
 											+ "</h5>";
 										txt += "<div class='ellipsis-box'><p class='card-text ellipsis'>"
-											+ jsonback[x].sP_context.substr(0,36) 
-										txt	+= (jsonback[x].sP_context.length>36)?"...":""
+											+ jsonback[x].sP_context.replace("<br>"," ").substr(0,32) 
+										txt	+= (jsonback[x].sP_context.length>32)?"...":""
 										txt	+= "</p></div>";
 										txt += "<p class='card-text'>$"
 											+ jsonback[x].sP_price
@@ -785,6 +791,6 @@ function clickdiv(){
 	location.href="/TeamWork/web/view/product-detail.html?sP_id=" + sp_id
 }
 </script>
-<!-- 	<script src="../js/manager/tap.js"></script> -->
+	<script src="../js/manager/tap.js"></script>
 </body>
 </html>

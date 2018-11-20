@@ -20,6 +20,7 @@ import model.bean.StoreOrder;
 import model.bean.StoreProduct;
 import model.bean.Wish;
 import model.bean.WishOrder;
+import model.service.ImageService;
 import model.service.SellerService;
 
 @Controller
@@ -27,19 +28,33 @@ public class SellerListController {
 
 	@Autowired
 	SellerService sellerService;
+	@Autowired
+	ImageService imageService;
 
 	@InitBinder
 	protected void InitBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, new CustomNumberEditor(Integer.class, false));
 	}
 
+	// 賣家下架商城商品
+	@RequestMapping(path = "/CancelStoreProduct", method = RequestMethod.GET)
+	public String cancelStoreProduct(StoreProduct storeProduct) throws SQLException {
+		sellerService.cancelStoreProduct(storeProduct);
+		return "redirect:/web/view/userPage_StoreProductList.html";
+	}
+
 	// 重新編輯商店商品資料
 	@RequestMapping(path = "/EditStoreProduct", method = RequestMethod.POST)
-	public String editStoreProduct(List<MultipartFile> files, StoreProduct storeProduct, BindingResult binder,StoreImages storeImages) throws SQLException {
+	public String editStoreProduct(List<MultipartFile> files, StoreProduct storeProduct, BindingResult binder,
+			StoreImages storeImages) throws SQLException {
 		System.out.println("UpdateAccountImage-files:===========" + files);
-		System.out.println("storeProduct:===========" + storeProduct);
-		System.out.println("storeImages:===========" + storeImages);
 		sellerService.updateStoreProductData(storeProduct);
+		// 先刪除此商品ID的關聯圖片
+		sellerService.deleteStoreProductAllImagesById(storeImages);		
+		// 執行上傳圖片方法
+		for (MultipartFile file : files) {
+			imageService.insertStoreProductImage(file, storeProduct.getsP_id());
+		}
 		return "redirect:/web/view/userPage_StoreProductList.html";
 	}
 

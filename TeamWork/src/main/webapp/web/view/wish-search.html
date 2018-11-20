@@ -702,7 +702,7 @@
 										</div>
 										</form></div></div>`
 						$("#odbyvalue").html(txt);
-						$("#odbyvalue").html(txt);
+						// $("#odbyvalue").html(txt);
 						var txt1 = "";
 						$("#topmenu").html(txt1);
 					} else {
@@ -743,7 +743,7 @@
 				if (isImage != undefined && isImage != null) {
 					if (isImage.wishImages[0] != undefined && isImage.wishImages[0] != null) {
 						if (isImage.wishImages[0].wI_context != undefined && isImage.wishImages[0].wI_context != "") {
-							return isImage.wishImages[0].mI_context
+							return isImage.wishImages[0].wI_context
 						}
 					}
 				}
@@ -762,7 +762,7 @@
 								</div>
 								<div class="comment-box">
 									<div class="comment-head">
-										<h6 class="comment-name by-123"> <a href='/TeamWork/web/view/userPage_seeProfile.html?w_id=${item.m_id}'>${item.member.m_name}(${item.w_amountFavorite})</a></h6>
+										<h6 class="comment-name by-123"> <a href='/TeamWork/web/view/userPage_seeProfile.html?m_id=${item.m_id}'>${item.member.m_name}(${item.w_amountFavorite})</a></h6>
 										<span>${item.product.wP_completeTime||"許願進行中"}</span>
 									</div>
 									<div style="background-color:#E0FFFF" class="comment-content">
