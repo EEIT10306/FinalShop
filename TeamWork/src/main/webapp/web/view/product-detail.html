@@ -284,11 +284,12 @@
 							url: "/TeamWork/StoreCallback?"+hahaha,
 							type: "GET",
 							success: function(StoreCallbacks){
-								console.log(member_bean);
 									for(i=0;i<StoreMessages.length;i++){
 										var replyDate = new Date(StoreMessages[i].sM_time);
 										var photo = (StoreMessages[i].member.m_photo != "")?StoreMessages[i].member.m_photo:"/TeamWork/web/images/user/account/profile/001.png";
 										var authorClass = (StoreMessages[i].member.m_id == StoreMessages[i].storeProduct.store.seller_id)?"comment-name by-author":"comment-name";
+										var replyClass = (member_bean.m_id == StoreMessages[i].storeProduct.store.seller_id)?"comment-name by-author":"comment-name";
+										
 										
 										replyText +=`
 										<ul>
@@ -344,7 +345,7 @@
 	                                            			alt=""></div>
 	                                    			<div class="comment-box">
 	                                        			<div class="comment-head">
-	                                            			<h6 class="`+authorCallbackClass+`"><a href="/TeamWork/web/view/userPage_seeProfile.html?m_id="+member_bean.m_id >`+member_bean.m_name+`</a></h6>
+	                                            			<h6 class="`+replyClass+`"><a href="/TeamWork/web/view/userPage_seeProfile.html?m_id="+member_bean.m_id >`+member_bean.m_name+`</a></h6>
 	                                            			<span>`+(nowDate.getYear()+1900)+"/"+(nowDate.getMonth()+1)+"/"+nowDate.getDate()+" "+((nowDate.getHours().toString().length==1)?"0"+nowDate.getHours():nowDate.getHours())+":"+((nowDate.getMinutes().toString().length==1)?"0"+nowDate.getMinutes():nowDate.getMinutes())+`</span>
 	                                        			</div>
 	                                        			<div class="comment-content">
@@ -576,6 +577,7 @@
 				<button type="button" class="btn btn-primary" data-toggle="modal"
 					data-target="#exampleModalCenter">檢舉</button>
 				<select id="productAmount"></select>
+				<br>
 				<button type="button" id="addShoppingCart"
 					class="btn btn-outline-info" style="width: 48%">加入購物車</button>
 				<button type="button" id="shopNow" class="btn btn-outline-info"

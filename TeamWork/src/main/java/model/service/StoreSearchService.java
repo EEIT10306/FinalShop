@@ -108,6 +108,9 @@ public class StoreSearchService {
 		str+=" and (sP_new ="+i;
 		str+=" or sP_new ="+j+")";
 		str+=(k!=null&&l!=null)?" and (sP_price > "+k+ " and sP_price<"+l+") ":"";
+		if(m==null) {
+			str +=" order by sP_time desc";
+		}
 		if(!m.equals("null")) {
 			if(m.equals("1")){
 				System.out.println("wwwewe");
