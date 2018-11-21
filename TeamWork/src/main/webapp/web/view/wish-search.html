@@ -774,7 +774,7 @@
 									</div>
 									<hr>
 									<div class="comment-content">
-										<p class="text-left">地區:  ${item.districtType.d_name} </p>
+										<p class="text-left">目標物地區： ${item.districtType.d_name} </p>
 									</div>
 									
 									<hr>
@@ -1496,7 +1496,7 @@
 								</div>
 								<div class="comment-box">
 									<div class="comment-head">
-										<h6 class="comment-name by-123"> <a href='/TeamWork/web/view/product-detail.html?sP_id='"${item.m_id}" '>${item.member.m_name} (${item.w_amountFavorite}) </a></h6>
+										<h6 class="comment-name by-123"> <a href='/TeamWork/web/view/userPage_seeProfile.html?m_id=${item.m_id}'>${item.member.m_name}(${item.w_amountFavorite})</a></h6>
 										<span>${item.product.wP_completeTime||"許願進行中"}</span>
 									</div>
 									<div style="background-color:#E0FFFF" class="comment-content">
@@ -1508,7 +1508,7 @@
 									</div>
 									<hr>
 									<div class="comment-content">
-										<p class="text-left">地區:  ${item.districtType.d_name} </p>
+										<p class="text-left">目標物地區： ${item.districtType.d_name} </p>
 									</div>
 									
 									<hr>
@@ -1525,7 +1525,7 @@
 						</li>
 					</ul>
 				</div>`
-				pricew_id(item.w_id)
+					pricew_id(item.w_id)
 
 			})
 			$("#topmenu").html(itemEl)
