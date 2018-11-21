@@ -69,26 +69,37 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="popperForm" id="giveAssess_form" method="post" action="/TeamWork/giveAssess.do">
+<!--                 幹嘛放個/giveAssess.do? -->
+                <form class="popperForm" id="giveAssess_form" method="post" onsubmit="return submitdo()" action="/giveAssess.do">
                     <div class="modal-body">
                         <div id="wrapper">
                             <div class="form-group">
                                 <label class="col-form-label">分數：</label>
 
                                 <input type="radio" id="star1" name="sA_pointAssess" value="1" />
-                                <label for="star1"><i class="fas fa-star AssessStar" id="forStar1"></i></label>
+                                <label for="star1">
+                                    <i class="fas fa-star AssessStar" id="forStar1"></i>
+                                </label>
 
                                 <input type="radio" id="star2" name="sA_pointAssess" value="2" />
-                                <label for="star2"><i class="fas fa-star AssessStar" id="forStar2"></i></label>
+                                <label for="star2">
+                                    <i class="fas fa-star AssessStar" id="forStar2"></i>
+                                </label>
 
                                 <input type="radio" id="star3" name="sA_pointAssess" checked="checked" value="3" />
-                                <label for="star3"><i class="fas fa-star AssessStar" id="forStar3"></i></label>
+                                <label for="star3">
+                                    <i class="fas fa-star AssessStar" id="forStar3"></i>
+                                </label>
 
                                 <input type="radio" id="star4" name="sA_pointAssess" value="4" />
-                                <label for="star4"><i class="far fa-star AssessStar" id="forStar4"></i></label>
+                                <label for="star4">
+                                    <i class="far fa-star AssessStar" id="forStar4"></i>
+                                </label>
 
                                 <input type="radio" id="star5" name="sA_pointAssess" value="5" />
-                                <label for="star5"><i class="far fa-star AssessStar" id="forStar5"></i></label>
+                                <label for="star5">
+                                    <i class="far fa-star AssessStar" id="forStar5"></i>
+                                </label>
                             </div>
                         </div>
                         <textarea class="form-control" id="message-text" placeholder="評價" name="sA_contextAssess"></textarea>
@@ -101,7 +112,8 @@
                 </form>
             </div>
         </div>
-    </div><!-- end of 新增評價(互動視窗) -->
+    </div>
+    <!-- end of 新增評價(互動視窗) -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -178,7 +190,7 @@
                                     <div class="order-content-header_right"></div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")})">
+                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0] ? defaultProdPic(item.storeProduct.storeImages[0].sI_context) : "../images/product/default.jpeg")})">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -210,7 +222,7 @@
                                     <div class="order-content-header_right"></div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")})">
+                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0] ? defaultProdPic(item.storeProduct.storeImages[0].sI_context) : "../images/product/default.jpeg")})">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -242,7 +254,7 @@
                                     <div class="order-content-header_right"></div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")})">
+                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0] ? defaultProdPic(item.storeProduct.storeImages[0].sI_context) : "../images/product/default.jpeg")})">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -275,7 +287,7 @@
                                     <div class="order-content-header_right"></div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")})">
+                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0] ? defaultProdPic(item.storeProduct.storeImages[0].sI_context) : "../images/product/default.jpeg")})">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -308,7 +320,7 @@
                                     <div class="order-content-header_right"></div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0]?defaultProdPic(item.storeProduct.storeImages[0].sI_context):"../images/product/default.jpeg")}>
+                                    <div class="item-image" style="background-image: url(${(item.storeProduct.storeImages[0] ? defaultProdPic(item.storeProduct.storeImages[0].sI_context) : "../images/product/default.jpeg")}>
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -341,30 +353,7 @@
                 });
 
                 //評價表單submit事件(AJAX)
-                $("#giveAssess_form").on('submit', function (e) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/TeamWork/giveAssess_StoreBuyer",
-                        data: $(this).serialize(),
-                        success: function () {
-                            swal({
-                                title: '成功！',
-                                text: '您更新了一個評價！',
-                                type: 'success',
-                                confirmButtonText: '太好了！',
-                                confirmButtonColor: '#525abb'
-                            })
-                            $("#giveAssess").css("display", "none");
-                            //關閉互動視窗
-                            $("button.close").click();
-                            $("#giveAssess_form").find(":text,textarea").each(function () {
-                                //清空表單所有欄位
-                                $(this).val("");
-                            });
-                        }
-                    });
-                    return false; //阻止form submit
-                });
+
 
                 //確認收貨按鈕
                 $(".confirmReceive").click(function () {
@@ -421,6 +410,37 @@
                 updateData();
             });
         });
+
+
+//             $("#giveAssess_form").on('submit', function (e) {
+            	function submitdo(){
+                $.ajax({
+                    type: "POST",
+                    url: "/TeamWork/giveAssess_StoreBuyer",
+                    data: $(event.target).serialize(),
+                    success: function () {
+                        swal({
+                            title: '成功！',
+                            text: '您更新了一個評價！',
+                            type: 'success',
+                            confirmButtonText: '太好了！',
+                            confirmButtonColor: '#525abb'
+                        })
+                        $("#giveAssess").css("display", "none");
+                        //關閉互動視窗
+                        $("button.close").click();
+                        $("#giveAssess_form").find(":text,textarea").each(function () {
+                            //清空表單所有欄位
+                            $(this).val("");
+                        })
+                        //移除灰色背景
+		                $(".modal-backdrop").remove()
+                        return false; //阻止form submit
+                    }
+                })
+                return false;
+            }
+//             	)}
     </script>
 </body>
 

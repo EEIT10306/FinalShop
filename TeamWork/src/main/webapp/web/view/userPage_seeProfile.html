@@ -123,14 +123,16 @@
 		var userID = 1;
 		var peopleId = 1;
 		$(document).ready(function () {
-			if (document.cookie.split("mid=").length == 2) {
-				userID = document.cookie.split("mid=")[1]
-					.split(";")[0].replace(" ","")
-				$("#m_id").val(userID);
-				$("#m_id_profile").val(userID);
-			} else {
-				userID = "";
-				window.history.pushState("", "page 2", "userPage_seeProfile.html")
+			if(location.href.split("m_id=").length==1){				
+				if (document.cookie.split("mid=").length == 2) {
+					userID = document.cookie.split("mid=")[1]
+						.split(";")[0].replace(" ","")
+					$("#m_id").val(userID);
+					$("#m_id_profile").val(userID);
+				} else {
+					userID = "";
+					window.history.back()
+				}
 			}
 			
 			//抓取QueryString參數
