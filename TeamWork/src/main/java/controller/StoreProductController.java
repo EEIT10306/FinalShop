@@ -95,6 +95,7 @@ public class StoreProductController {
 	@RequestMapping(path = "/DeleteOneStoreMessage", method = RequestMethod.POST)
 	@ResponseBody
 	public StoreMessage DeleteOneStoreMessage(StoreMessage bean) throws SQLException {
+		System.out.println("HI");
 		return storeMessageService.delete(bean);
 	}
 	@RequestMapping(path = "/UpdateOneStoreMessage", method = RequestMethod.POST)

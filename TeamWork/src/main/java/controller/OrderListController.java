@@ -20,9 +20,7 @@ import model.bean.GroupOrder;
 import model.bean.Member;
 import model.bean.Product;
 import model.bean.StoreAssess;
-import model.bean.StoreImages;
 import model.bean.StoreOrder;
-import model.bean.StoreProduct;
 import model.bean.Wish;
 import model.bean.WishAssess;
 import model.bean.WishBid;
@@ -136,6 +134,8 @@ public class OrderListController {
 	// 新增一筆跟團評價資料(買的人評)
 	@RequestMapping(path = "/giveAssess_StoreBuyer", method = RequestMethod.POST)
 	public String giveAssess_StoreBuyer(StoreAssess storeAssess, BindingResult binder) throws SQLException {
+		System.out.println("in-----------------------");
+		System.out.println("in-----------------------" + storeAssess);
 		orderService.giveAssess_StoreBuyer(storeAssess);
 		return "redirect:/web/view/userPage_StoreOrderList.html";
 	}
