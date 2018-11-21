@@ -213,7 +213,7 @@
                                     </div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image">
+                                    <div class="item-image" style="background-image: url('${item.wishProduct[0].wishImages[0].wI_context}')">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -248,7 +248,7 @@
                                     </div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image">
+                                    <div class="item-image" style="background-image: url('${item.wishProduct[0].wishImages[0].wI_context}')">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -281,7 +281,7 @@
                                     </div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image">
+                                    <div class="item-image" style="background-image: url('${item.wishProduct[0].wishImages[0].wI_context}')">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -314,7 +314,7 @@
                                     </div>
                                 </div>
                                 <div class="order-content_item row">
-                                    <div class="item-image">
+                                    <div class="item-image" style="background-image: url('${item.wishProduct[0].wishImages[0].wI_context}')">
                                     </div>
                                     <div class="item-detail col-lg">
                                         <div class="item-misc">
@@ -363,7 +363,7 @@
 				//下架願望按鈕click事件
 				$("#CancelWishBtn").click(function () {
 					var w_id = $(this).attr("name");
-					alert(w_id);
+					//alert(w_id);
 					$.ajax({
 						type: "POST",
 						url: "/TeamWork/CancelWish",
