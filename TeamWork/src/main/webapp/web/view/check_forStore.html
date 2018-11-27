@@ -415,10 +415,11 @@
 			$(".order-amount-of-this-store-product").change(function () {
 				var amount = $(this).val();
 				var list_number = $(this).attr("id").substr(34);
-				var sp_id = "sp_id" + $("#product-id" + list_number + "").text();
+				var sp_id = "sP_id" + $("#product-id" + list_number + "").text();
 				//alert(sp_id);
 				//alert(amount);
 				//alert(list_number);
+				removeOneCookie(sp_id);
 				document.cookie = sp_id + "=" + amount + ";";
 				//alert("cookies = " + document.cookie);
 				var price = $("#price-by-1-" + list_number + "").text();

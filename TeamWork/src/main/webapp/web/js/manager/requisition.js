@@ -691,7 +691,7 @@ function callback() {
         }
         $(".modal-content").text("")
         if (wheres[0] == "Wish") {
-            // $(".modal-content").load("/TeamWork/web/view/wish-detail.html",hahaha)
+             $(".modal-content").load("/TeamWork/web/view/wish-detail.html",hahaha)
         } else if (wheres[0] == "Group") {
             // $(".modal-content").load("/TeamWork/web/view/.html",hahaha)
         } else {

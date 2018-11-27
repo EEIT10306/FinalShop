@@ -1,19 +1,19 @@
 //一鍵帶入=============
 function wishonebringin(){
-    $("[name='Wishlabel']").val("誠心 求:蘋果智慧型手機Iphone X")
-    $("[name='WishContext']").val("各種顏色或是各種容量都可以收購")
+    $("[name='Wishlabel']").val("誠心 求:蘑菇 一百年份")
+    $("[name='WishContext']").val("各種顏色都可以接受")
     $("[name='enddate']").val("2018-12-01")
-    $("[name='WishName']").val("Iphone X")
+    $("[name='WishName']").val("香菇一百年份")
     $("[name='WishAmount']").val("5")
     $("[name='WishPriceBottom']").val("10000")
     $("[name='WishPriceTop']").val("30000")
 }
 function storeonebringin(){
-    $("[name='StoreProductName']").val("Dyson Ball fluffy圓筒吸塵器 藍")
+    $("[name='StoreProductName']").val("蘑菇 十年份 黑")
     $("[name='StoreProductContext']").val(
     `基本配件內容：
-    (1)軟質碳纖維滾筒吸頭(市價$6000) 
-    (2)二合一組合式吸頭(市價$2000) 
+    (1)會動
+    (2)馬力歐獨家技術 熟成十年份
     ■ 戴森第四代數位馬達 
     ■ 雙層氣旋 
     ■ 搭載dyson ballTM球型科技 
